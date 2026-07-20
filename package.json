@@ -1,0 +1,13 @@
+{
+  "name": "mythborn",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Temporary launch page for mythborn.co on Cloudflare Workers",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
