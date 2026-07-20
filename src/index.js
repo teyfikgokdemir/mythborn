@@ -142,8 +142,14 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
 
+    if (url.hostname === "www.mythborn.co") {
+      url.hostname = "mythborn.co";
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === "/robots.txt") {
-      return new Response("User-agent: *\\nAllow: /\\nSitemap: https://mythborn.co/sitemap.xml\\n", {
+      return new Response("User-agent: *\nAllow: /\nSitemap: https://mythborn.co/sitemap.xml\n", {
         headers: { "content-type": "text/plain; charset=UTF-8" }
       });
     }
