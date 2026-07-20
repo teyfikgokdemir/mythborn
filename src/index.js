@@ -3,138 +3,260 @@ const html = `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a0a0c">
+  <meta name="theme-color" content="#08070b">
   <meta name="robots" content="index,follow">
-  <meta name="description" content="Mythborn is awakening. A new digital world is coming soon.">
+  <meta name="description" content="Mythborn is coming. A new object of desire is taking shape.">
   <link rel="canonical" href="https://mythborn.co/">
-  <title>Mythborn — Coming Soon</title>
+  <title>Mythborn — What is being born?</title>
   <style>
-    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    * { box-sizing: border-box; }
-    html, body { min-height: 100%; }
-    body {
-      margin: 0;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(117, 77, 255, .22), transparent 34rem),
-        radial-gradient(circle at 82% 72%, rgba(255, 86, 120, .16), transparent 30rem),
-        #09090b;
-      color: #f7f5ff;
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --ink: #f4efe7;
+      --muted: #aaa2b0;
+      --line: rgba(255,255,255,.14);
+      --violet: #a689ff;
+      --ember: #ff6b5d;
     }
-    body::before {
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: #08070b; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(97, 62, 159, .23), transparent 31rem),
+        radial-gradient(circle at 12% 80%, rgba(255, 107, 93, .11), transparent 25rem),
+        radial-gradient(circle at 88% 15%, rgba(140, 102, 255, .12), transparent 23rem),
+        #08070b;
+      color: var(--ink);
+    }
+    body::before,
+    body::after {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: .18;
-      background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, black, transparent 85%);
     }
-    main {
-      width: min(92vw, 980px);
-      padding: 72px 28px;
-      text-align: center;
+    body::before {
+      opacity: .14;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: radial-gradient(circle at center, black 0 45%, transparent 82%);
+    }
+    body::after {
+      opacity: .23;
+      background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.012) 4px);
+      mix-blend-mode: screen;
+    }
+    .shell {
       position: relative;
       z-index: 1;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 26px clamp(20px, 4vw, 58px) 24px;
     }
-    .mark {
-      width: 68px;
-      height: 68px;
-      margin: 0 auto 30px;
-      border: 1px solid rgba(255,255,255,.22);
-      border-radius: 22px;
+    header,
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: #77717f;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .brand {
+      color: var(--ink);
+      font-weight: 800;
+      letter-spacing: .22em;
+    }
+    .signal {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .signal::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--ember);
+      box-shadow: 0 0 18px var(--ember);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    main {
+      width: min(1120px, 100%);
+      margin: auto;
+      padding: 58px 0 52px;
+      text-align: center;
+    }
+    .sigil-wrap {
+      width: min(35vw, 210px);
+      aspect-ratio: 1;
+      margin: 0 auto 24px;
       display: grid;
       place-items: center;
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 24px 80px rgba(0,0,0,.36), inset 0 1px rgba(255,255,255,.12);
-      backdrop-filter: blur(16px);
-      font-size: 30px;
-      font-weight: 800;
-      letter-spacing: -.08em;
+      position: relative;
+    }
+    .sigil-wrap::before,
+    .sigil-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 10%;
+      border: 1px solid rgba(255,255,255,.18);
+      transform: rotate(45deg);
+      animation: drift 14s linear infinite;
+    }
+    .sigil-wrap::after {
+      inset: 22%;
+      border-color: rgba(166,137,255,.34);
+      animation-direction: reverse;
+      animation-duration: 10s;
+    }
+    .sigil {
+      position: relative;
+      z-index: 2;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(76px, 10vw, 132px);
+      line-height: 1;
+      letter-spacing: -.12em;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,.82);
+      text-shadow: 0 0 45px rgba(166,137,255,.22);
     }
     .eyebrow {
       margin: 0 0 18px;
-      color: #b7aecf;
-      font-size: 12px;
+      color: #9d94a6;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: .22em;
+      letter-spacing: .34em;
       text-transform: uppercase;
     }
     h1 {
-      margin: 0;
-      font-size: clamp(56px, 12vw, 132px);
-      line-height: .86;
-      letter-spacing: -.075em;
+      max-width: 980px;
+      margin: 0 auto;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(58px, 9vw, 132px);
+      font-weight: 400;
+      line-height: .88;
+      letter-spacing: -.065em;
       text-wrap: balance;
     }
-    h1 span {
+    h1 em {
       display: block;
-      background: linear-gradient(110deg, #ffffff 22%, #b8a4ff 58%, #ff91ac 92%);
+      font-style: italic;
+      color: transparent;
+      background: linear-gradient(105deg, #fff 10%, #c4b0ff 55%, #ff8d7d 92%);
       -webkit-background-clip: text;
       background-clip: text;
-      color: transparent;
     }
     .intro {
-      max-width: 610px;
-      margin: 30px auto 0;
-      color: #aaa6b5;
-      font-size: clamp(17px, 2vw, 21px);
+      max-width: 630px;
+      margin: 28px auto 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.8vw, 20px);
       line-height: 1.65;
       text-wrap: balance;
     }
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 38px;
-      padding: 11px 16px;
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 999px;
-      background: rgba(255,255,255,.045);
-      color: #d4cfdf;
-      font-size: 13px;
-      letter-spacing: .04em;
-    }
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #9a7cff;
-      box-shadow: 0 0 20px #9a7cff;
-      animation: pulse 2.2s ease-in-out infinite;
-    }
-    footer {
-      position: fixed;
-      bottom: 24px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      color: #696572;
-      font-size: 12px;
-      letter-spacing: .12em;
+    .clue-label {
+      margin: 42px 0 14px;
+      color: #6f6875;
+      font-size: 10px;
+      letter-spacing: .28em;
       text-transform: uppercase;
     }
-    @keyframes pulse { 50% { transform: scale(.72); opacity: .55; } }
-    @media (prefers-reduced-motion: reduce) { .dot { animation: none; } }
-    @media (max-width: 560px) {
-      main { padding: 56px 18px 90px; }
-      .mark { width: 58px; height: 58px; border-radius: 18px; font-size: 26px; }
+    .clues {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .clue {
+      padding: 11px 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.035);
+      color: #d6cfda;
+      font-size: 12px;
+      letter-spacing: .08em;
+      backdrop-filter: blur(10px);
+      transition: transform .3s ease, border-color .3s ease, background .3s ease;
+    }
+    .clue:hover {
+      transform: translateY(-3px);
+      border-color: rgba(166,137,255,.5);
+      background: rgba(166,137,255,.09);
+    }
+    .question {
+      margin: 34px 0 0;
+      color: #ece5ef;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(21px, 2.5vw, 32px);
+      font-style: italic;
+    }
+    .coordinates {
+      font-variant-numeric: tabular-nums;
+    }
+    @keyframes pulse {
+      50% { transform: scale(.7); opacity: .55; }
+    }
+    @keyframes drift {
+      to { transform: rotate(405deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .signal::before,
+      .sigil-wrap::before,
+      .sigil-wrap::after { animation: none; }
+    }
+    @media (max-width: 640px) {
+      .shell { padding: 20px 18px; }
+      header span:last-child { display: none; }
+      main { padding: 38px 0 44px; }
+      .sigil-wrap { width: 145px; margin-bottom: 18px; }
       .intro { line-height: 1.55; }
+      footer { justify-content: center; text-align: center; }
+      footer span:last-child { display: none; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <div class="mark" aria-hidden="true">M</div>
-    <p class="eyebrow">A new realm is forming</p>
-    <h1>Mythborn<span>is awakening.</span></h1>
-    <p class="intro">We are shaping something bold at the edge of myth, identity and digital culture. The first chapter arrives soon.</p>
-    <div class="status"><span class="dot" aria-hidden="true"></span>Development in progress</div>
-  </main>
-  <footer>© 2026 Mythborn</footer>
+  <div class="shell">
+    <header>
+      <span class="brand">MYTHBORN</span>
+      <span class="signal">Signal detected</span>
+      <span>Chapter 00</span>
+    </header>
+
+    <main>
+      <div class="sigil-wrap" aria-hidden="true">
+        <div class="sigil">M</div>
+      </div>
+      <p class="eyebrow">Something uncommon is taking form</p>
+      <h1>You will not need it.<em>You will want it.</em></h1>
+      <p class="intro">Not fashion. Not art. Not merely an object. Somewhere between identity, ritual and obsession, Mythborn is preparing its first release.</p>
+
+      <p class="clue-label">Fragments recovered</p>
+      <div class="clues" aria-label="Clues about the upcoming collection">
+        <span class="clue">WORN OR DISPLAYED?</span>
+        <span class="clue">NUMBERED</span>
+        <span class="clue">BUILT TO BE KEPT</span>
+        <span class="clue">BORN FROM A STORY</span>
+      </div>
+
+      <p class="question">What do you think Mythborn will become?</p>
+    </main>
+
+    <footer>
+      <span>© 2026 Mythborn</span>
+      <span class="coordinates">41.0082° N · 28.9784° E</span>
+      <span>First artifact pending</span>
+    </footer>
+  </div>
 </body>
 </html>`;
 
