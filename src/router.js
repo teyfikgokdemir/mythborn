@@ -1,6 +1,9 @@
 import app from './index.js';
 
 const SITE = 'https://mythborn.co';
+const SOCIAL_TITLE = 'Mythborn — The First Artifact Is Coming';
+const SOCIAL_DESCRIPTION = 'A limited first release shaped by story, identity and collectibility. Follow the clues and enter early.';
+const SOCIAL_IMAGE = `${SITE}/og-image.png`;
 const LEGACY_PREFIXES = ['/products/', '/collections/', '/blogs/', '/cart', '/account', '/search', '/pages/', '/policies/'];
 
 const llms = `# Mythborn
@@ -33,11 +36,16 @@ const graph = {
       '@id': `${SITE}/#brand`,
       name: 'Mythborn',
       url: `${SITE}/`,
-      description: 'An international brand venture in development, preparing a limited first release.',
+      description: SOCIAL_DESCRIPTION,
       founder: { '@id': 'https://teyfikgokdemir.com/#person' },
       email: 'info@mythborn.co',
       logo: `${SITE}/images/mythborn-main-logo.png`,
-      image: `${SITE}/images/mythborn-main-logo.png`
+      image: {
+        '@type': 'ImageObject',
+        url: SOCIAL_IMAGE,
+        width: 1200,
+        height: 630
+      }
     },
     {
       '@type': 'WebSite',
@@ -50,12 +58,17 @@ const graph = {
     {
       '@type': 'WebPage',
       '@id': `${SITE}/#webpage`,
-      name: 'Mythborn — What is being born?',
+      name: SOCIAL_TITLE,
       url: `${SITE}/`,
-      description: 'Mythborn is coming. Follow the clues, make your guess and request early access to the first release.',
+      description: SOCIAL_DESCRIPTION,
       isPartOf: { '@id': `${SITE}/#website` },
       about: { '@id': `${SITE}/#brand` },
-      primaryImageOfPage: `${SITE}/images/mythborn-main-logo.png`,
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: SOCIAL_IMAGE,
+        width: 1200,
+        height: 630
+      },
       inLanguage: 'en'
     }
   ]
@@ -166,15 +179,20 @@ export default {
     const metadata = `
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Mythborn">
-  <meta property="og:title" content="Mythborn — What is being born?">
-  <meta property="og:description" content="Follow the clues and request early access to Mythborn's first limited release.">
+  <meta property="og:title" content="${SOCIAL_TITLE}">
+  <meta property="og:description" content="${SOCIAL_DESCRIPTION}">
   <meta property="og:url" content="https://mythborn.co/">
-  <meta property="og:image" content="https://mythborn.co/images/mythborn-main-logo.png">
-  <meta property="og:image:alt" content="Mythborn celestial compass emblem and wordmark">
+  <meta property="og:image" content="${SOCIAL_IMAGE}">
+  <meta property="og:image:secure_url" content="${SOCIAL_IMAGE}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mythborn — The First Artifact Is Coming">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Mythborn — What is being born?">
-  <meta name="twitter:description" content="Follow the clues and request early access to Mythborn's first limited release.">
-  <meta name="twitter:image" content="https://mythborn.co/images/mythborn-main-logo.png">
+  <meta name="twitter:title" content="${SOCIAL_TITLE}">
+  <meta name="twitter:description" content="${SOCIAL_DESCRIPTION}">
+  <meta name="twitter:image" content="${SOCIAL_IMAGE}">
+  <meta name="twitter:image:alt" content="Mythborn — The First Artifact Is Coming">
   <script type="application/ld+json">${JSON.stringify(graph)}</script>`;
     html = html.replace('</head>', `${metadata}\n${marqueeStyles}\n</head>`);
     html = html.replace('    <footer>', `    ${marquee}\n\n    <footer>`);
