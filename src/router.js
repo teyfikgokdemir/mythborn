@@ -58,11 +58,12 @@ const graph = {
   ]
 };
 
-const emblem = `<svg class="mythborn-marquee__emblem" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-  <circle cx="32" cy="32" r="24" fill="none" stroke="currentColor" stroke-width="1"/>
-  <path d="M32 5l5.6 21.4L59 32l-21.4 5.6L32 59l-5.6-21.4L5 32l21.4-5.6L32 5Z" fill="none" stroke="currentColor" stroke-width="1"/>
-  <path d="M14 14l12.8 12.8M50 14L37.2 26.8M14 50l12.8-12.8M50 50L37.2 37.2" fill="none" stroke="currentColor" stroke-width="1"/>
-  <circle cx="32" cy="32" r="3" fill="currentColor"/>
+const emblem = `<svg class="mythborn-marquee__emblem" viewBox="0 0 72 72" aria-hidden="true" focusable="false">
+  <path d="M36 4L43 27L68 36L43 45L36 68L29 45L4 36L29 27L36 4Z" fill="none" stroke="currentColor" stroke-width="1.15"/>
+  <path d="M36 14L40.5 31.5L58 36L40.5 40.5L36 58L31.5 40.5L14 36L31.5 31.5L36 14Z" fill="none" stroke="currentColor" stroke-width="1"/>
+  <path d="M17 17L29.5 29.5M55 17L42.5 29.5M17 55L29.5 42.5M55 55L42.5 42.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+  <path d="M36 23L39.5 32.5L49 36L39.5 39.5L36 49L32.5 39.5L23 36L32.5 32.5L36 23Z" fill="currentColor" fill-opacity=".3" stroke="currentColor" stroke-width="1"/>
+  <circle cx="36" cy="36" r="2.7" fill="currentColor"/>
 </svg>`;
 
 const marqueeItem = `${emblem}<span>MYTHBORN</span>`;
@@ -76,7 +77,7 @@ const marqueeStyles = `<style>
     display: flex;
     align-items: center;
     overflow: hidden;
-    color: rgba(196, 176, 255, .13);
+    color: rgba(196, 176, 255, .15);
     pointer-events: none;
     user-select: none;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -102,16 +103,17 @@ const marqueeStyles = `<style>
     white-space: nowrap;
   }
   .mythborn-marquee__emblem {
-    width: clamp(2.8rem, 5vw, 5rem);
-    height: clamp(2.8rem, 5vw, 5rem);
+    width: clamp(3.5rem, 6vw, 6.2rem);
+    height: clamp(3.5rem, 6vw, 6.2rem);
     flex: 0 0 auto;
-    filter: drop-shadow(0 0 16px rgba(166, 137, 255, .07));
+    filter: drop-shadow(0 0 20px rgba(166, 137, 255, .09));
   }
   @keyframes mythbornMarquee { to { transform: translateX(calc(-25% - 1.4rem)); } }
   @media (max-width: 760px) {
     .mythborn-marquee { height: 5.5rem; margin-bottom: 2rem; }
     .mythborn-marquee__track { animation: none; transform: translateX(-7%); gap: 2rem; }
     .mythborn-marquee__track > span { font-size: clamp(2.4rem, 12vw, 4rem); }
+    .mythborn-marquee__emblem { width: 4.2rem; height: 4.2rem; }
   }
   @media (prefers-reduced-motion: reduce) {
     .mythborn-marquee__track { animation: none; transform: translateX(-7%); }
