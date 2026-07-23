@@ -3,7 +3,7 @@ import app from './index.js';
 const SITE = 'https://mythborn.co';
 const SOCIAL_TITLE = 'Mythborn — The First Artifact Is Coming';
 const SOCIAL_DESCRIPTION = 'A limited first release shaped by story, identity and collectibility. Follow the clues and enter early.';
-const SOCIAL_IMAGE = `${SITE}/og-image.png`;
+const SOCIAL_IMAGE = `${SITE}/og-image-v2.png?v=2`;
 const LEGACY_PREFIXES = ['/products/', '/collections/', '/blogs/', '/cart', '/account', '/search', '/pages/', '/policies/'];
 
 const llms = `# Mythborn
