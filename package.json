@@ -5,7 +5,8 @@
   "description": "Temporary launch page for mythborn.co on Cloudflare Workers",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "audit": "node scripts/audit.mjs",
+    "deploy": "npm run audit && wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
