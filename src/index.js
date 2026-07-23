@@ -7,7 +7,8 @@ const html = `<!doctype html>
   <meta name="robots" content="index,follow">
   <meta name="description" content="Mythborn is coming. Follow the clues, make your guess and request early access to the first release.">
   <link rel="canonical" href="https://mythborn.co/">
-  <link rel="icon" type="image/png" href="/images/mythborn-emblem.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="shortcut icon" href="/favicon.svg">
   <link rel="apple-touch-icon" href="/images/mythborn-emblem.png">
   <title>Mythborn — What is being born?</title>
   <style>
@@ -107,11 +108,55 @@ const html = `<!doctype html>
       text-align: center;
     }
     .hero { min-height: calc(100vh - 136px); display: grid; place-content: center; }
-    .hero-logo {
+    .hero-mark {
       width: min(74vw, 440px);
-      margin: 0 auto 24px;
+      margin: 0 auto 28px;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+    }
+    .hero-emblem-wrap {
+      width: min(38vw, 230px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+    .hero-emblem-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 12%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(166,137,255,.14), transparent 68%);
+      filter: blur(16px);
+    }
+    .hero-emblem {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 0 26px rgba(166,137,255,.2));
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 26px rgba(166,137,255,.24));
+      animation: heroSpin 26s linear infinite;
+      transform-origin: 50% 50%;
+      will-change: transform;
+    }
+    .hero-wordmark {
+      color: #ddd5e1;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: .12em;
+      text-shadow: 0 0 24px rgba(166,137,255,.12);
+    }
+    .hero-wordmark::after {
+      content: "";
+      width: 72%;
+      height: 1px;
+      margin: 10px auto 0;
+      display: block;
+      background: linear-gradient(90deg, transparent, rgba(196,176,255,.5), transparent);
     }
     .eyebrow,
     .section-label {
@@ -302,9 +347,11 @@ const html = `<!doctype html>
       filter: drop-shadow(0 0 14px rgba(166,137,255,.12));
     }
     @keyframes pulse { 50% { transform: scale(.7); opacity: .55; } }
+    @keyframes heroSpin { to { transform: rotate(360deg); } }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .signal::before { animation: none; }
+      .signal::before,
+      .hero-emblem { animation: none; }
       *,*::before,*::after { transition-duration: .01ms !important; }
     }
     @media (max-width: 760px) {
@@ -313,7 +360,8 @@ const html = `<!doctype html>
       .brand span { display: none; }
       main { padding: 38px 0 54px; }
       .hero { min-height: calc(100vh - 106px); }
-      .hero-logo { width: min(88vw,360px); margin-bottom: 18px; }
+      .hero-mark { width: min(88vw,360px); margin-bottom: 22px; }
+      .hero-emblem-wrap { width: min(54vw,190px); }
       .intro,.section-copy { line-height: 1.55; }
       .guess-grid { grid-template-columns: 1fr; }
       .guess-card { min-height: 138px; }
@@ -342,7 +390,12 @@ const html = `<!doctype html>
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div>
-          <img class="hero-logo" src="/images/mythborn-main-logo.png" alt="Mythborn" width="764" height="507">
+          <div class="hero-mark" aria-label="Mythborn">
+            <div class="hero-emblem-wrap">
+              <img class="hero-emblem" src="/images/mythborn-emblem.png" alt="" width="275" height="257">
+            </div>
+            <div class="hero-wordmark" aria-hidden="true">MYTHBORN</div>
+          </div>
           <p class="eyebrow">Something uncommon is taking form</p>
           <h1 id="hero-title">You will not need it.<em>You will want it.</em></h1>
           <p class="intro">Not fashion. Not art. Not merely an object. Somewhere between identity, ritual and obsession, Mythborn is preparing its first release.</p>
