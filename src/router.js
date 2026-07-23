@@ -35,7 +35,9 @@ const graph = {
       url: `${SITE}/`,
       description: 'An international brand venture in development, preparing a limited first release.',
       founder: { '@id': 'https://teyfikgokdemir.com/#person' },
-      email: 'info@mythborn.co'
+      email: 'info@mythborn.co',
+      logo: `${SITE}/images/mythborn-main-logo.png`,
+      image: `${SITE}/images/mythborn-main-logo.png`
     },
     {
       '@type': 'WebSite',
@@ -53,19 +55,13 @@ const graph = {
       description: 'Mythborn is coming. Follow the clues, make your guess and request early access to the first release.',
       isPartOf: { '@id': `${SITE}/#website` },
       about: { '@id': `${SITE}/#brand` },
+      primaryImageOfPage: `${SITE}/images/mythborn-main-logo.png`,
       inLanguage: 'en'
     }
   ]
 };
 
-const emblem = `<svg class="mythborn-marquee__emblem" viewBox="0 0 72 72" aria-hidden="true" focusable="false">
-  <circle cx="36" cy="36" r="25" fill="none" stroke="currentColor" stroke-width="1" opacity=".62"/>
-  <path d="M36 8L41 31L64 36L41 41L36 64L31 41L8 36L31 31L36 8Z" fill="none" stroke="currentColor" stroke-width="1.15"/>
-  <path d="M36 18L39 33L54 36L39 39L36 54L33 39L18 36L33 33L36 18Z" fill="none" stroke="currentColor" stroke-width="1" opacity=".8"/>
-  <circle cx="36" cy="36" r="3.2" fill="currentColor" opacity=".55"/>
-</svg>`;
-
-const marqueeItem = `${emblem}<span>MYTHBORN</span>`;
+const marqueeItem = `<img class="mythborn-marquee__emblem" src="/images/mythborn-footer-emblem.png" alt="" width="226" height="230"><span>MYTHBORN</span>`;
 const marquee = `<div class="mythborn-marquee" aria-hidden="true"><div class="mythborn-marquee__track">${marqueeItem}${marqueeItem}${marqueeItem}${marqueeItem}</div></div>`;
 
 const marqueeStyles = `<style>
@@ -105,7 +101,9 @@ const marqueeStyles = `<style>
     width: clamp(3.1rem, 5.2vw, 5.4rem);
     height: clamp(3.1rem, 5.2vw, 5.4rem);
     flex: 0 0 auto;
-    filter: drop-shadow(0 0 14px rgba(166, 137, 255, .055));
+    object-fit: contain;
+    opacity: .58;
+    filter: drop-shadow(0 0 14px rgba(166, 137, 255, .08));
   }
   @keyframes mythbornMarquee { to { transform: translateX(calc(-25% - 1.4rem)); } }
   @media (max-width: 760px) {
@@ -171,9 +169,12 @@ export default {
   <meta property="og:title" content="Mythborn — What is being born?">
   <meta property="og:description" content="Follow the clues and request early access to Mythborn's first limited release.">
   <meta property="og:url" content="https://mythborn.co/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://mythborn.co/images/mythborn-main-logo.png">
+  <meta property="og:image:alt" content="Mythborn celestial compass emblem and wordmark">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Mythborn — What is being born?">
   <meta name="twitter:description" content="Follow the clues and request early access to Mythborn's first limited release.">
+  <meta name="twitter:image" content="https://mythborn.co/images/mythborn-main-logo.png">
   <script type="application/ld+json">${JSON.stringify(graph)}</script>`;
     html = html.replace('</head>', `${metadata}\n${marqueeStyles}\n</head>`);
     html = html.replace('    <footer>', `    ${marquee}\n\n    <footer>`);
