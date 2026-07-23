@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mythborn",
-  "main": "src/index.js",
+  "main": "src/router.js",
   "compatibility_date": "2026-07-20",
   "workers_dev": true,
   "preview_urls": true,
