@@ -59,11 +59,10 @@ const graph = {
 };
 
 const emblem = `<svg class="mythborn-marquee__emblem" viewBox="0 0 72 72" aria-hidden="true" focusable="false">
-  <path d="M36 4L43 27L68 36L43 45L36 68L29 45L4 36L29 27L36 4Z" fill="none" stroke="currentColor" stroke-width="1.15"/>
-  <path d="M36 14L40.5 31.5L58 36L40.5 40.5L36 58L31.5 40.5L14 36L31.5 31.5L36 14Z" fill="none" stroke="currentColor" stroke-width="1"/>
-  <path d="M17 17L29.5 29.5M55 17L42.5 29.5M17 55L29.5 42.5M55 55L42.5 42.5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-  <path d="M36 23L39.5 32.5L49 36L39.5 39.5L36 49L32.5 39.5L23 36L32.5 32.5L36 23Z" fill="currentColor" fill-opacity=".3" stroke="currentColor" stroke-width="1"/>
-  <circle cx="36" cy="36" r="2.7" fill="currentColor"/>
+  <circle cx="36" cy="36" r="25" fill="none" stroke="currentColor" stroke-width="1" opacity=".62"/>
+  <path d="M36 8L41 31L64 36L41 41L36 64L31 41L8 36L31 31L36 8Z" fill="none" stroke="currentColor" stroke-width="1.15"/>
+  <path d="M36 18L39 33L54 36L39 39L36 54L33 39L18 36L33 33L36 18Z" fill="none" stroke="currentColor" stroke-width="1" opacity=".8"/>
+  <circle cx="36" cy="36" r="3.2" fill="currentColor" opacity=".55"/>
 </svg>`;
 
 const marqueeItem = `${emblem}<span>MYTHBORN</span>`;
@@ -72,12 +71,12 @@ const marquee = `<div class="mythborn-marquee" aria-hidden="true"><div class="my
 const marqueeStyles = `<style>
   .mythborn-marquee {
     width: min(1180px, 100%);
-    height: clamp(5.5rem, 8vw, 7rem);
-    margin: 0 auto clamp(2.2rem, 4vw, 3.5rem);
+    height: clamp(5rem, 7vw, 6.5rem);
+    margin: clamp(-6rem, -5vw, -4.5rem) auto clamp(1.8rem, 3vw, 2.6rem);
     display: flex;
     align-items: center;
     overflow: hidden;
-    color: rgba(196, 176, 255, .15);
+    color: rgba(196, 176, 255, .13);
     pointer-events: none;
     user-select: none;
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
@@ -94,7 +93,7 @@ const marqueeStyles = `<style>
   .mythborn-marquee__track > span {
     color: transparent;
     -webkit-text-stroke: 1px rgba(196, 176, 255, .16);
-    text-shadow: 0 0 24px rgba(166, 137, 255, .055);
+    text-shadow: 0 0 20px rgba(166, 137, 255, .045);
     font-family: Georgia, "Times New Roman", serif;
     font-size: clamp(2.8rem, 6vw, 5.8rem);
     font-weight: 400;
@@ -103,17 +102,17 @@ const marqueeStyles = `<style>
     white-space: nowrap;
   }
   .mythborn-marquee__emblem {
-    width: clamp(3.5rem, 6vw, 6.2rem);
-    height: clamp(3.5rem, 6vw, 6.2rem);
+    width: clamp(3.1rem, 5.2vw, 5.4rem);
+    height: clamp(3.1rem, 5.2vw, 5.4rem);
     flex: 0 0 auto;
-    filter: drop-shadow(0 0 20px rgba(166, 137, 255, .09));
+    filter: drop-shadow(0 0 14px rgba(166, 137, 255, .055));
   }
   @keyframes mythbornMarquee { to { transform: translateX(calc(-25% - 1.4rem)); } }
   @media (max-width: 760px) {
-    .mythborn-marquee { height: 5.5rem; margin-bottom: 2rem; }
+    .mythborn-marquee { height: 5rem; margin: -2rem auto 1.6rem; }
     .mythborn-marquee__track { animation: none; transform: translateX(-7%); gap: 2rem; }
     .mythborn-marquee__track > span { font-size: clamp(2.4rem, 12vw, 4rem); }
-    .mythborn-marquee__emblem { width: 4.2rem; height: 4.2rem; }
+    .mythborn-marquee__emblem { width: 3.7rem; height: 3.7rem; }
   }
   @media (prefers-reduced-motion: reduce) {
     .mythborn-marquee__track { animation: none; transform: translateX(-7%); }
