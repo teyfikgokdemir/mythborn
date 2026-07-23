@@ -3,7 +3,7 @@ import app from './index.js';
 const SITE = 'https://mythborn.co';
 const SOCIAL_TITLE = 'Mythborn — The First Artifact Is Coming';
 const SOCIAL_DESCRIPTION = 'A limited first release shaped by story, identity and collectibility. Follow the clues and enter early.';
-const SOCIAL_IMAGE = `${SITE}/og-image-v2.png?v=2`;
+const SOCIAL_IMAGE = `${SITE}/og-image-v2.svg?v=3`;
 const LEGACY_PREFIXES = ['/products/', '/collections/', '/blogs/', '/cart', '/account', '/search', '/pages/', '/policies/'];
 
 const llms = `# Mythborn
@@ -184,7 +184,7 @@ export default {
   <meta property="og:url" content="https://mythborn.co/">
   <meta property="og:image" content="${SOCIAL_IMAGE}">
   <meta property="og:image:secure_url" content="${SOCIAL_IMAGE}">
-  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:type" content="image/svg+xml">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="Mythborn — The First Artifact Is Coming">
