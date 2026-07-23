@@ -1,0 +1,29 @@
+# Mythborn
+
+> Mythborn is an emerging collectible universe built around numbered artifacts, wearable symbols, story fragments and limited releases.
+
+## Official Website
+
+- [Mythborn](https://mythborn.co/)
+
+## About Mythborn
+
+Mythborn is preparing its first artifact: a limited, numbered object positioned somewhere between a collectible, a wearable symbol and a physical fragment of a fictional world.
+
+The first release will have a name, a number and a story. It may be worn, displayed or preserved as part of a collection.
+
+## Current Status
+
+- Chapter 00 is live.
+- The first artifact has not yet been revealed.
+- Early-access registration is available.
+- Future releases may be limited and may not return in the same form.
+
+## Key Pages
+
+- [Homepage](https://mythborn.co/)
+- [Early Access](https://mythborn.co/#early-access)
+
+## Contact
+
+- Email: info@mythborn.co
