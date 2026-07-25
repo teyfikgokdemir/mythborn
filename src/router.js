@@ -40,12 +40,7 @@ const graph = {
       founder: { '@id': 'https://teyfikgokdemir.com/#person' },
       email: 'info@mythborn.co',
       logo: `${SITE}/images/mythborn-main-logo.png`,
-      image: {
-        '@type': 'ImageObject',
-        url: SOCIAL_IMAGE,
-        width: 1200,
-        height: 630
-      }
+      image: { '@type': 'ImageObject', url: SOCIAL_IMAGE, width: 1200, height: 630 }
     },
     {
       '@type': 'WebSite',
@@ -63,12 +58,7 @@ const graph = {
       description: SOCIAL_DESCRIPTION,
       isPartOf: { '@id': `${SITE}/#website` },
       about: { '@id': `${SITE}/#brand` },
-      primaryImageOfPage: {
-        '@type': 'ImageObject',
-        url: SOCIAL_IMAGE,
-        width: 1200,
-        height: 630
-      },
+      primaryImageOfPage: { '@type': 'ImageObject', url: SOCIAL_IMAGE, width: 1200, height: 630 },
       inLanguage: 'en'
     }
   ]
@@ -78,56 +68,18 @@ const marqueeItem = `<img class="mythborn-marquee__emblem" src="/images/mythborn
 const marquee = `<div class="mythborn-marquee" aria-hidden="true"><div class="mythborn-marquee__track">${marqueeItem}${marqueeItem}${marqueeItem}${marqueeItem}</div></div>`;
 
 const marqueeStyles = `<style>
-  .mythborn-marquee {
-    width: min(1180px, 100%);
-    height: clamp(5rem, 7vw, 6.5rem);
-    margin: clamp(-6rem, -5vw, -4.5rem) auto clamp(1.8rem, 3vw, 2.6rem);
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    color: rgba(196, 176, 255, .13);
-    pointer-events: none;
-    user-select: none;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  }
-  .mythborn-marquee__track {
-    display: flex;
-    width: max-content;
-    align-items: center;
-    gap: clamp(2.2rem, 5vw, 5.5rem);
-    animation: mythbornMarquee 50s linear infinite;
-    will-change: transform;
-  }
-  .mythborn-marquee__track > span {
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(196, 176, 255, .16);
-    text-shadow: 0 0 20px rgba(166, 137, 255, .045);
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(2.8rem, 6vw, 5.8rem);
-    font-weight: 400;
-    line-height: .9;
-    letter-spacing: .08em;
-    white-space: nowrap;
-  }
-  .mythborn-marquee__emblem {
-    width: clamp(3.1rem, 5.2vw, 5.4rem);
-    height: clamp(3.1rem, 5.2vw, 5.4rem);
-    flex: 0 0 auto;
-    object-fit: contain;
-    opacity: .58;
-    filter: drop-shadow(0 0 14px rgba(166, 137, 255, .08));
-  }
-  @keyframes mythbornMarquee { to { transform: translateX(calc(-25% - 1.4rem)); } }
-  @media (max-width: 760px) {
-    .mythborn-marquee { height: 5rem; margin: -2rem auto 1.6rem; }
-    .mythborn-marquee__track { animation: none; transform: translateX(-7%); gap: 2rem; }
-    .mythborn-marquee__track > span { font-size: clamp(2.4rem, 12vw, 4rem); }
-    .mythborn-marquee__emblem { width: 3.7rem; height: 3.7rem; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .mythborn-marquee__track { animation: none; transform: translateX(-7%); }
-  }
+  .mythborn-marquee{width:min(1180px,100%);height:clamp(5rem,7vw,6.5rem);margin:clamp(-6rem,-5vw,-4.5rem) auto clamp(1.8rem,3vw,2.6rem);display:flex;align-items:center;overflow:hidden;color:rgba(196,176,255,.13);pointer-events:none;user-select:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .mythborn-marquee__track{display:flex;width:max-content;align-items:center;gap:clamp(2.2rem,5vw,5.5rem);animation:mythbornMarquee 50s linear infinite;will-change:transform}
+  .mythborn-marquee__track>span{color:transparent;-webkit-text-stroke:1px rgba(196,176,255,.16);text-shadow:0 0 20px rgba(166,137,255,.045);font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.8rem,6vw,5.8rem);font-weight:400;line-height:.9;letter-spacing:.08em;white-space:nowrap}
+  .mythborn-marquee__emblem{width:clamp(3.1rem,5.2vw,5.4rem);height:clamp(3.1rem,5.2vw,5.4rem);flex:0 0 auto;object-fit:contain;opacity:.58;filter:drop-shadow(0 0 14px rgba(166,137,255,.08))}
+  @keyframes mythbornMarquee{to{transform:translateX(calc(-25% - 1.4rem))}}
+  @media(max-width:760px){.mythborn-marquee{height:5rem;margin:-2rem auto 1.6rem}.mythborn-marquee__track{animation:none;transform:translateX(-7%);gap:2rem}.mythborn-marquee__track>span{font-size:clamp(2.4rem,12vw,4rem)}.mythborn-marquee__emblem{width:3.7rem;height:3.7rem}}
+  @media(prefers-reduced-motion:reduce){.mythborn-marquee__track{animation:none;transform:translateX(-7%)}}
+</style>`;
+
+const consentMarkup = `<aside class="cookie-consent" data-cookie-consent hidden aria-label="Cookie preferences"><div><strong>Cookie preferences</strong><p>We store only your preference. Optional analytics will run only after consent if introduced.</p></div><div class="cookie-consent__actions"><button type="button" data-cookie-reject>Reject</button><button type="button" data-cookie-accept>Accept</button></div></aside><button class="cookie-settings" type="button" data-cookie-settings aria-label="Open cookie preferences">Cookies</button><script src="/consent.js" defer></script>`;
+const consentStyles = `<style>
+  .cookie-consent{position:fixed;z-index:9999;left:1rem;right:1rem;bottom:1rem;max-width:980px;margin:auto;padding:1rem 1.1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;border:1px solid rgba(166,137,255,.35);border-radius:16px;background:rgba(8,7,11,.97);color:#f4efe7;box-shadow:0 20px 60px rgba(0,0,0,.5)}.cookie-consent[hidden]{display:none}.cookie-consent p{margin:.25rem 0;color:#aaa2b0;font-size:.9rem}.cookie-consent__actions{display:flex;gap:.6rem;flex:0 0 auto}.cookie-consent button,.cookie-settings{min-height:44px;padding:.65rem 1rem;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:#15121b;color:#f4efe7;font-weight:800;cursor:pointer}.cookie-consent [data-cookie-accept]{background:#c4b0ff;color:#0b0910;border-color:#c4b0ff}.cookie-settings{position:fixed;z-index:9998;right:1rem;bottom:1rem;font-size:.75rem;opacity:.8}@media(max-width:700px){.cookie-consent{align-items:stretch;flex-direction:column}.cookie-consent__actions{width:100%}.cookie-consent__actions button{flex:1}}
 </style>`;
 
 function securityHeaders(headers = new Headers()) {
@@ -156,15 +108,13 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
-    if (url.pathname === '/llms.txt') {
-      return textResponse(llms, 200, 'text/plain; charset=UTF-8');
-    }
+    if (url.pathname === '/llms.txt') return textResponse(llms, 200, 'text/plain; charset=UTF-8');
 
     if (LEGACY_PREFIXES.some((prefix) => url.pathname === prefix || url.pathname.startsWith(prefix))) {
       return textResponse('This legacy resource has been permanently removed.\n', 410, 'text/plain; charset=UTF-8');
     }
 
-    const allowed = new Set(['/', '/robots.txt', '/sitemap.xml']);
+    const allowed = new Set(['/', '/robots.txt', '/sitemap.xml', '/consent.js']);
     if (!allowed.has(url.pathname)) {
       return textResponse('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,follow"><title>404 — Mythborn</title></head><body><main><h1>404</h1><p>This signal does not exist.</p><p><a href="/">Return to Mythborn</a></p></main></body></html>', 404, 'text/html; charset=UTF-8');
     }
@@ -194,8 +144,9 @@ export default {
   <meta name="twitter:image" content="${SOCIAL_IMAGE}">
   <meta name="twitter:image:alt" content="Mythborn — The First Artifact Is Coming">
   <script type="application/ld+json">${JSON.stringify(graph)}</script>`;
-    html = html.replace('</head>', `${metadata}\n${marqueeStyles}\n</head>`);
+    html = html.replace('</head>', `${metadata}\n${marqueeStyles}\n${consentStyles}\n</head>`);
     html = html.replace('    <footer>', `    ${marquee}\n\n    <footer>`);
+    html = html.replace('</body>', `${consentMarkup}\n</body>`);
 
     const headers = securityHeaders(new Headers(response.headers));
     headers.set('content-security-policy', "default-src 'self'; style-src 'unsafe-inline'; script-src 'self'; img-src 'self' data:; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");
