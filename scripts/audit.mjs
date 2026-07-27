@@ -28,7 +28,7 @@ await check('/uyelik',200,['MYTHBORN ÜYELİĞİ','115 TL','Tüm mevcut ve yeni 
 await check('/kayit',200,['data-auth-form="kayit"','KVKK','noindex,nofollow','turnstile-site-key','challenges.cloudflare.com/turnstile']);
 await check('/giris',200,['data-auth-form="giris"','noindex,nofollow','turnstile-site-key']);
 await check('/hesabim',200,['data-account','SONUÇ GEÇMİŞİ','platform.js','noindex,nofollow']);
-const admin=await check('/yonetim',200,['MYTHBORN YÖNETİM','Üyelik merkezi','admin.css','admin.js','noindex,nofollow']);
+const admin=await check('/yonetim',200,['MYTHBORN YÖNETİM','Üyelik merkezi','Sistem hazırlığı kontrol ediliyor','admin.css','admin.js','noindex,nofollow']);
 if(admin.response.headers.get('cache-control')!=='no-store')throw new Error('Admin page must not be cached');
 await check('/gizlilik',200,['Gizlilik Politikası','Toplanan bilgiler']);
 await check('/kvkk',200,['KVKK Aydınlatma Metni','İlgili kişi hakları']);
@@ -50,7 +50,8 @@ await check('/api/account/cancel-membership',503,['veritabanı'],{method:'POST'}
 await check('/api/account/delete',503,['veritabanı'],{method:'DELETE'});
 await check('/api/webhooks/payment',503,['veritabanı'],{method:'POST'});
 await check('/api/admin/overview',503,['veritabanı']);
+await check('/api/admin/readiness',503,['veritabanı']);
 await check('/api/admin/users',503,['veritabanı']);
 await check('/api/admin/subscription',503,['veritabanı'],{method:'POST'});
 await check('/not-a-real-page',404,['Bu kapı henüz açılmadı.']);
-console.log('Mythborn SEO, GEO, AEO, AIO, mobil, erişilebilirlik, güvenlik, kötüye kullanım koruması, üyelik, yönetim ve route audit’i geçti.');
+console.log('Mythborn SEO, GEO, AEO, AIO, mobil, erişilebilirlik, güvenlik, kötüye kullanım koruması, üyelik, yönetim, readiness ve route audit’i geçti.');
