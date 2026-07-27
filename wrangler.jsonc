@@ -6,7 +6,8 @@
   "workers_dev": true,
   "preview_urls": true,
   "vars": {
-    "ENVIRONMENT": "preview"
+    "ENVIRONMENT": "preview",
+    "ADMIN_EMAILS": "teyfikgokdemir@gmail.com"
   },
   "assets": {
     "directory": "./public"
@@ -24,7 +25,7 @@
   ]
 
   // Zorunlu secret/vars:
-  // ADMIN_EMAILS, PAYMENT_WEBHOOK_SECRET
+  // PAYMENT_WEBHOOK_SECRET
   //
   // Turnstile etkinleştirilecekse:
   // TURNSTILE_SITE_KEY, TURNSTILE_SECRET
