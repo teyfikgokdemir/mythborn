@@ -1,12 +1,18 @@
 import { currentUser } from './auth.js';
 
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}});
+const PREVIEW_ADMIN='teyfikgokdemir@gmail.com';
 const parseAdmins=env=>String(env.ADMIN_EMAILS||'').split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);
+const isAdmin=(user,env)=>{
+  const email=String(user?.email||'').toLowerCase();
+  if(env.ENVIRONMENT==='preview'&&email===PREVIEW_ADMIN)return true;
+  return parseAdmins(env).includes(email);
+};
 
 async function requireAdmin(request,env){
   const user=await currentUser(request,env);
   if(!user)return {response:json({error:'Giriş gerekli.'},401)};
-  if(!parseAdmins(env).includes(String(user.email).toLowerCase()))return {response:json({error:'Bu alan için yetkin yok.'},403)};
+  if(!isAdmin(user,env))return {response:json({error:'Bu alan için yetkin yok.'},403)};
   return {user};
 }
 
@@ -54,9 +60,10 @@ export async function adminReadiness(request,env){
     existing=(rows.results||[]).map(x=>x.name);
   }catch{}
   const missingTables=requiredTables.filter(name=>!existing.includes(name));
+  const adminReady=parseAdmins(env).length>0||env.ENVIRONMENT==='preview';
   const checks=[
     {key:'database',label:'D1 veritabanı',ready:!!env.DB&&missingTables.length===0,detail:missingTables.length?`Eksik tablolar: ${missingTables.join(', ')}`:'Tüm zorunlu tablolar hazır.'},
-    {key:'admin',label:'Yönetici yetkisi',ready:parseAdmins(env).length>0,detail:parseAdmins(env).length?'ADMIN_EMAILS yapılandırıldı.':'ADMIN_EMAILS eksik.'},
+    {key:'admin',label:'Yönetici yetkisi',ready:adminReady,detail:adminReady?'Yönetici erişimi yapılandırıldı.':'ADMIN_EMAILS eksik.'},
     {key:'payment',label:'Ödeme webhook güvenliği',ready:!!env.PAYMENT_WEBHOOK_SECRET,detail:env.PAYMENT_WEBHOOK_SECRET?'Webhook secret bağlı.':'PAYMENT_WEBHOOK_SECRET eksik.'},
     {key:'email',label:'E-posta gönderimi',ready:!!env.EMAIL?.send,detail:env.EMAIL?.send?'E-posta binding hazır.':'EMAIL sağlayıcısı henüz bağlı değil.'},
     {key:'turnstile',label:'Turnstile koruması',ready:!!env.TURNSTILE_SITE_KEY&&!!env.TURNSTILE_SECRET,detail:env.TURNSTILE_SITE_KEY&&env.TURNSTILE_SECRET?'Site ve secret anahtarları hazır.':'Turnstile anahtarlarından biri veya ikisi eksik.'}
