@@ -7,7 +7,13 @@
     "dev": "wrangler dev",
     "audit": "node scripts/audit.mjs",
     "check": "npm run audit",
-    "deploy": "npm run audit && wrangler deploy"
+    "preview": "npm run audit && wrangler deploy --name mythborn-preview",
+    "deploy": "npm run audit && wrangler deploy",
+    "db:create": "wrangler d1 create mythborn-membership",
+    "db:create:preview": "wrangler d1 create mythborn-membership-preview",
+    "db:migrate:local": "wrangler d1 migrations apply mythborn-membership --local",
+    "db:migrate:preview": "wrangler d1 migrations apply mythborn-membership-preview --remote",
+    "db:migrate:production": "wrangler d1 migrations apply mythborn-membership --remote"
   },
   "engines": {
     "node": ">=20"
