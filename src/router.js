@@ -38,7 +38,7 @@ export default{async fetch(request,env,ctx){
   else if(url.pathname==='/llms.txt')response=text(llms,200,'text/plain; charset=utf-8');
   else if(url.pathname==='/robots.txt')response=text(`User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`,200,'text/plain; charset=utf-8');
   else if(url.pathname==='/sitemap.xml')response=text(sitemap,200,'application/xml; charset=utf-8');
-  else if(url.pathname.startsWith('/images/')||['/app.css','/app.js','/favicon.svg','/consent.js'].includes(url.pathname))response=await env.ASSETS.fetch(request);
+  else if(url.pathname.startsWith('/images/')||['/app.css','/paywall.css','/app.js','/favicon.svg','/consent.js'].includes(url.pathname))response=await env.ASSETS.fetch(request);
   else if(!routes.has(url.pathname))response=text('<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="robots" content="noindex"><title>404 — Mythborn</title><body><h1>Bu kapı henüz açılmadı.</h1><a href="/">Mythborn’a dön</a></body></html>',404,'text/html; charset=utf-8');
   else response=await app.fetch(request,env,ctx);
   const headers=security(new Headers(response.headers));
