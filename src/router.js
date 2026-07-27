@@ -30,6 +30,10 @@ async function api(request,env,path){
   return text(JSON.stringify({error:'API yolu bulunamadı.'}),404,'application/json; charset=utf-8');
 }
 
+function injectPlatform(html){
+  return html.replace('</head>','<link rel="stylesheet" href="/platform.css"></head>').replace('</body>','<script src="/platform.js" defer></script></body>');
+}
+
 export default{async fetch(request,env,ctx){
   const url=new URL(request.url);
   if(url.hostname==='www.mythborn.co'){url.hostname='mythborn.co';return Response.redirect(url.toString(),301)}
@@ -38,9 +42,13 @@ export default{async fetch(request,env,ctx){
   else if(url.pathname==='/llms.txt')response=text(llms,200,'text/plain; charset=utf-8');
   else if(url.pathname==='/robots.txt')response=text(`User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`,200,'text/plain; charset=utf-8');
   else if(url.pathname==='/sitemap.xml')response=text(sitemap,200,'application/xml; charset=utf-8');
-  else if(url.pathname.startsWith('/images/')||['/app.css','/paywall.css','/legal.css','/app.js','/favicon.svg','/consent.js'].includes(url.pathname))response=await env.ASSETS.fetch(request);
+  else if(url.pathname.startsWith('/images/')||['/app.css','/paywall.css','/legal.css','/platform.css','/app.js','/platform.js','/favicon.svg','/consent.js'].includes(url.pathname))response=await env.ASSETS.fetch(request);
   else if(!routes.has(url.pathname))response=text('<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="robots" content="noindex"><title>404 — Mythborn</title><body><h1>Bu kapı henüz açılmadı.</h1><a href="/">Mythborn’a dön</a></body></html>',404,'text/html; charset=utf-8');
-  else response=await app.fetch(request,env,ctx);
+  else {
+    const page=await app.fetch(request,env,ctx);
+    const html=injectPlatform(await page.text());
+    response=new Response(html,{status:page.status,headers:page.headers});
+  }
   const headers=security(new Headers(response.headers));
   if(!url.pathname.startsWith('/api/'))headers.set('content-language','tr');
   return new Response(response.body,{status:response.status,headers});
