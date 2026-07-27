@@ -2,6 +2,7 @@
   "name": "mythborn",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Türkçe üyelikli arzu ve arketip deneyim platformu",
   "scripts": {
     "dev": "wrangler dev",
