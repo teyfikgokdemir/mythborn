@@ -6,7 +6,7 @@ const SITE='https://mythborn.co';
 const routes=new Set(['/','/deneyim','/uyelik','/giris','/kayit','/hesabim','/arketipler','/manifesto','/hakkinda','/gizlilik','/kvkk','/kullanim-kosullari','/cerezler','/mesafeli-satis','/on-bilgilendirme','/iptal-iade','/dogrula','/sifremi-unuttum','/sifre-yenile']);
 const llms=`# Mythborn\n\n> Mythborn, arzuları oynanabilir seçimlere, arketiplere ve kişisel sonuçlara dönüştüren Türkçe dijital deneyim platformudur.\n\n- Resmî site: ${SITE}/\n- Dil: Türkçe\n- Üyelik: Aylık 115 TL\n- İletişim: info@mythborn.co\n`;
 const sitemap=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...routes].filter(x=>!['/giris','/kayit','/hesabim','/dogrula','/sifremi-unuttum','/sifre-yenile'].includes(x)).map(x=>`<url><loc>${SITE}${x}</loc></url>`).join('')}</urlset>`;
-const security=(h=new Headers())=>{h.set('strict-transport-security','max-age=31536000');h.set('x-content-type-options','nosniff');h.set('referrer-policy','strict-origin-when-cross-origin');h.set('permissions-policy','camera=(), microphone=(), geolocation=()');h.set('content-security-policy',"default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");return h};
+const security=(h=new Headers())=>{h.set('strict-transport-security','max-age=31536000');h.set('x-content-type-options','nosniff');h.set('referrer-policy','strict-origin-when-cross-origin');h.set('permissions-policy','camera=(), microphone=(), geolocation=()');h.set('content-security-policy',"default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");return h};
 const text=(body,status,type)=>new Response(body,{status,headers:security(new Headers({'content-type':type,'cache-control':'public, max-age=300'}))});
 const methodNotAllowed=()=>text(JSON.stringify({error:'Bu yöntem desteklenmiyor.'}),405,'application/json; charset=utf-8');
 
@@ -38,7 +38,7 @@ export default{async fetch(request,env,ctx){
   else if(url.pathname==='/llms.txt')response=text(llms,200,'text/plain; charset=utf-8');
   else if(url.pathname==='/robots.txt')response=text(`User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`,200,'text/plain; charset=utf-8');
   else if(url.pathname==='/sitemap.xml')response=text(sitemap,200,'application/xml; charset=utf-8');
-  else if(url.pathname.startsWith('/images/')||['/app.css','/paywall.css','/app.js','/favicon.svg','/consent.js'].includes(url.pathname))response=await env.ASSETS.fetch(request);
+  else if(url.pathname.startsWith('/images/')||['/app.css','/paywall.css','/legal.css','/app.js','/favicon.svg','/consent.js'].includes(url.pathname))response=await env.ASSETS.fetch(request);
   else if(!routes.has(url.pathname))response=text('<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="robots" content="noindex"><title>404 — Mythborn</title><body><h1>Bu kapı henüz açılmadı.</h1><a href="/">Mythborn’a dön</a></body></html>',404,'text/html; charset=utf-8');
   else response=await app.fetch(request,env,ctx);
   const headers=security(new Headers(response.headers));
