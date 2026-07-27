@@ -60,13 +60,16 @@ jobs:
         run: |
           SAFE_REF="${PR_NUMBER:-manual}-${GITHUB_SHA::8}"
           WORKER_NAME="mythborn-preview-${SAFE_REF}"
-          npx wrangler deploy --name "$WORKER_NAME"
+          npx wrangler deploy \
+            --name "$WORKER_NAME" \
+            --var ENVIRONMENT:preview \
+            --var ADMIN_EMAILS:teyfikgokdemir@gmail.com
           {
             echo "## Mythborn preview deploy tamamlandı"
             echo
             echo "Worker adı: \`$WORKER_NAME\`"
             echo
-            echo "D1 migration'ları uygulandı ve DB binding etkinleştirildi."
+            echo "D1 migration'ları uygulandı, DB binding ve preview yönetici değişkenleri etkinleştirildi."
             echo
             echo "Cloudflare dashboard veya Wrangler çıktısındaki workers.dev adresini açarak kayıt, giriş ve hesap akışlarını test edin."
           } >> "$GITHUB_STEP_SUMMARY"
