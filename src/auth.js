@@ -45,6 +45,12 @@ function validEmail(value) {
   return typeof value === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= 254;
 }
 
+function registrationError(error, env) {
+  console.error('registration_failed', error);
+  const detail = env.ENVIRONMENT === 'preview' ? ` (${error?.message || 'bilinmeyen hata'})` : '';
+  return json({ error: `Hesap oluşturulamadı${detail}.`, code: 'REGISTER_FAILED' }, 500);
+}
+
 export async function register(request, env) {
   if (!env.DB) return json({ error: 'Üyelik veritabanı henüz bağlanmadı.' }, 503);
   const input = await body(request);
@@ -53,24 +59,38 @@ export async function register(request, env) {
   if (!validEmail(email) || typeof password !== 'string' || password.length < 10) {
     return json({ error: 'Geçerli bir e-posta ve en az 10 karakterli şifre gerekli.' }, 400);
   }
-  const exists = await env.DB.prepare('SELECT id FROM users WHERE email = ? AND deleted_at IS NULL').bind(email).first();
-  if (exists) return json({ error: 'Bu e-posta ile bir hesap zaten var.' }, 409);
 
-  const userId = crypto.randomUUID();
-  const salt = randomHex(16);
-  const passwordHash = await derivePassword(password, salt);
-  const sessionId = crypto.randomUUID();
-  const token = randomHex(32);
-  const tokenHash = await sha256(token);
-  const expiresAt = new Date(Date.now() + 30 * 86400000).toISOString();
+  try {
+    const exists = await env.DB.prepare('SELECT id FROM users WHERE email = ? AND deleted_at IS NULL').bind(email).first();
+    if (exists) return json({ error: 'Bu e-posta ile bir hesap zaten var.' }, 409);
 
-  await env.DB.batch([
-    env.DB.prepare('INSERT INTO users (id,email,password_hash,password_salt) VALUES (?,?,?,?)').bind(userId, email, passwordHash, salt),
-    env.DB.prepare("INSERT INTO subscriptions (id,user_id,status,plan_code,amount_kurus) VALUES (?,?,'inactive','mythborn_monthly_115',11500)").bind(crypto.randomUUID(), userId),
-    env.DB.prepare('INSERT INTO sessions (id,user_id,token_hash,expires_at,user_agent) VALUES (?,?,?,?,?)').bind(sessionId, userId, tokenHash, expiresAt, request.headers.get('user-agent') || '')
-  ]);
+    const userId = crypto.randomUUID();
+    const salt = randomHex(16);
+    const passwordHash = await derivePassword(password, salt);
+    const sessionId = crypto.randomUUID();
+    const token = randomHex(32);
+    const tokenHash = await sha256(token);
+    const expiresAt = new Date(Date.now() + 30 * 86400000).toISOString();
 
-  return json({ ok: true, user: { id: userId, email, membership: 'inactive' } }, 201, { 'set-cookie': sessionCookie(token) });
+    await env.DB.prepare('INSERT INTO users (id,email,password_hash,password_salt) VALUES (?,?,?,?)')
+      .bind(userId, email, passwordHash, salt).run();
+    try {
+      await env.DB.prepare("INSERT INTO subscriptions (id,user_id,status,plan_code,amount_kurus) VALUES (?,?,'inactive','mythborn_monthly_115',11500)")
+        .bind(crypto.randomUUID(), userId).run();
+      await env.DB.prepare('INSERT INTO sessions (id,user_id,token_hash,expires_at,user_agent) VALUES (?,?,?,?,?)')
+        .bind(sessionId, userId, tokenHash, expiresAt, request.headers.get('user-agent') || '').run();
+    } catch (error) {
+      await env.DB.prepare('DELETE FROM users WHERE id=?').bind(userId).run().catch(() => {});
+      throw error;
+    }
+
+    return json({ ok: true, user: { id: userId, email, membership: 'inactive' } }, 201, { 'set-cookie': sessionCookie(token) });
+  } catch (error) {
+    if (String(error?.message || '').includes('UNIQUE constraint failed: users.email')) {
+      return json({ error: 'Bu e-posta ile bir hesap zaten var.' }, 409);
+    }
+    return registrationError(error, env);
+  }
 }
 
 export async function login(request, env) {
