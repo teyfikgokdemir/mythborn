@@ -1,7 +1,7 @@
 import app from './index.js';
 import { register, login, logout, me, saveResult, resultHistory } from './auth.js';
 import { requestVerification, verifyEmail, requestPasswordReset, cancelMembership, deleteAccount, paymentWebhook } from './account.js';
-import { adminOverview, adminUsers, adminSetSubscription, adminPage } from './admin.js';
+import { adminOverview, adminUsers, adminSetSubscription, adminReadiness, adminPage } from './admin.js';
 import { rateLimit, verifyTurnstile } from './abuse.js';
 
 const SITE='https://mythborn.co';
@@ -31,6 +31,7 @@ const abusePolicies={
   '/api/results':{scope:'results',limit:60,windowSeconds:3600},
   '/api/webhooks/payment':{scope:'payment_webhook',limit:180,windowSeconds:60},
   '/api/admin/overview':{scope:'admin_overview',limit:120,windowSeconds:60},
+  '/api/admin/readiness':{scope:'admin_readiness',limit:60,windowSeconds:60},
   '/api/admin/users':{scope:'admin_users',limit:120,windowSeconds:60},
   '/api/admin/subscription':{scope:'admin_subscription',limit:30,windowSeconds:60}
 };
@@ -56,6 +57,7 @@ async function api(request,env,path){
   if(path==='/api/account/delete')return request.method==='DELETE'?deleteAccount(request,env):methodNotAllowed();
   if(path==='/api/webhooks/payment')return request.method==='POST'?paymentWebhook(request,env):methodNotAllowed();
   if(path==='/api/admin/overview')return request.method==='GET'?adminOverview(request,env):methodNotAllowed();
+  if(path==='/api/admin/readiness')return request.method==='GET'?adminReadiness(request,env):methodNotAllowed();
   if(path==='/api/admin/users')return request.method==='GET'?adminUsers(request,env):methodNotAllowed();
   if(path==='/api/admin/subscription')return request.method==='POST'?adminSetSubscription(request,env):methodNotAllowed();
   if(path==='/api/results'){
