@@ -32,11 +32,11 @@ const admin=await check('/yonetim',200,['MYTHBORN YÖNETİM','Üyelik merkezi','
 if(admin.response.headers.get('cache-control')!=='no-store')throw new Error('Admin page must not be cached');
 await check('/gizlilik',200,['Gizlilik Politikası','Toplanan bilgiler']);
 await check('/kvkk',200,['KVKK Aydınlatma Metni','Hakların']);
-await check('/kullanim-kosullari',200,['Kullanım Koşulları','Eğlence ve öz keşif']);
+await check('/kullanim-kosullari',200,['Kullanım Koşulları','Hizmetin niteliği']);
 await check('/cerezler',200,['Çerez Politikası','Zorunlu çerezler']);
-await check('/mesafeli-satis',200,['Mesafeli Satış Sözleşmesi','Dijital hizmet']);
-await check('/on-bilgilendirme',200,['Ön Bilgilendirme Formu','Aylık bedel']);
-await check('/iptal-iade',200,['İptal ve İade Politikası','Üyelik iptali']);
+await check('/mesafeli-satis',200,['Mesafeli Satış Sözleşmesi','Hizmet']);
+await check('/on-bilgilendirme',200,['Ön Bilgilendirme Formu','Ürün ve fiyat']);
+await check('/iptal-iade',200,['İptal ve İade Politikası','Yenilemeyi durdurma']);
 await check('/llms.txt',200,['# Mythborn','Dil: Türkçe','psikolojik teşhis','Hükümdar, Kaçak, Taç']);
 await check('/robots.txt',200,['Disallow: /api/','Disallow: /hesabim','Disallow: /yonetim','Sitemap: https://mythborn.co/sitemap.xml']);
 const sitemap=await check('/sitemap.xml',200,['<loc>https://mythborn.co/uyelik</loc>','<changefreq>','<priority>']);
