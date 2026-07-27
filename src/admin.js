@@ -2,17 +2,22 @@ import { currentUser } from './auth.js';
 
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}});
 const PREVIEW_ADMIN='teyfikgokdemir@gmail.com';
+const PRODUCTION_WORKER_HOST='mythborn.teyfikgokdemir.workers.dev';
 const parseAdmins=env=>String(env.ADMIN_EMAILS||'').split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);
-const isAdmin=(user,env)=>{
+const isPreviewRequest=request=>{
+  const host=new URL(request.url).hostname.toLowerCase();
+  return host.endsWith('.workers.dev')&&host!==PRODUCTION_WORKER_HOST;
+};
+const isAdmin=(user,env,request)=>{
   const email=String(user?.email||'').toLowerCase();
-  if(env.ENVIRONMENT==='preview'&&email===PREVIEW_ADMIN)return true;
+  if((env.ENVIRONMENT==='preview'||isPreviewRequest(request))&&email===PREVIEW_ADMIN)return true;
   return parseAdmins(env).includes(email);
 };
 
 async function requireAdmin(request,env){
   const user=await currentUser(request,env);
   if(!user)return {response:json({error:'Giriş gerekli.'},401)};
-  if(!isAdmin(user,env))return {response:json({error:'Bu alan için yetkin yok.'},403)};
+  if(!isAdmin(user,env,request))return {response:json({error:'Bu alan için yetkin yok.'},403)};
   return {user};
 }
 
@@ -60,7 +65,7 @@ export async function adminReadiness(request,env){
     existing=(rows.results||[]).map(x=>x.name);
   }catch{}
   const missingTables=requiredTables.filter(name=>!existing.includes(name));
-  const adminReady=parseAdmins(env).length>0||env.ENVIRONMENT==='preview';
+  const adminReady=parseAdmins(env).length>0||env.ENVIRONMENT==='preview'||isPreviewRequest(request);
   const checks=[
     {key:'database',label:'D1 veritabanı',ready:!!env.DB&&missingTables.length===0,detail:missingTables.length?`Eksik tablolar: ${missingTables.join(', ')}`:'Tüm zorunlu tablolar hazır.'},
     {key:'admin',label:'Yönetici yetkisi',ready:adminReady,detail:adminReady?'Yönetici erişimi yapılandırıldı.':'ADMIN_EMAILS eksik.'},
