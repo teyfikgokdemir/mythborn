@@ -29,7 +29,7 @@ for(const [path,title,type] of [
 
 await check('/ask',200,['İlişki durumun','Odaklandığın soru']);
 await check('/kariyer',200,['Odak alanın','İş değişikliği']);
-await check('/astroloji',200,['GERÇEK DOĞUM HARİTASI','Doğum tarihi','Doğum saati','Doğum yeri','data-member-reading="astroloji"','Güneş Burcu','Yükselen','Gezegenler','Açılar']);
+await check('/astroloji',200,['ÜCRETSİZ DOĞUM HARİTASI','Doğum tarihi','Doğum saati','Doğum yeri','data-member-reading="astroloji"','Güneş Burcu','Yükselen','Gezegenler','Açılar']);
 await check('/haftalik-burc',200,['12 BURÇ','data-weekly-zodiac','data-weekly-result']);
 await check('/kayit',200,['Ücretsiz hesap oluştur','noindex,nofollow']);
 await check('/giris',200,['Giriş yap','noindex,nofollow']);
