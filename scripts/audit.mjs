@@ -9,7 +9,7 @@ async function check(path, expectedStatus, includes = [], init = {}) {
 }
 
 await check('/', 200, ['lang="tr"', 'On soru. Kırk ihtimal. Sekiz arketip.', 'SİMYACI', '115 TL', 'og:title']);
-await check('/deneyim', 200, ['data-result', 'İÇGÜDÜSEL SEÇ', 'Doğru cevap yok']);
+await check('/deneyim', 200, ['id="experienceBody"', 'İÇGÜDÜSEL SEÇ', 'Doğru cevap yok']);
 await check('/arketipler', 200, ['Sekiz arzu. Sekiz gölge.', 'HÜKÜMDAR', 'KAÇAK', 'TAÇ', 'YANKI', 'MİMAR', 'GEZGİN', 'ATEŞ', 'SİMYACI']);
 await check('/manifesto', 200, ['İnsan istediği şeyi satın almaz.', 'Arzu bir kusur değildir.']);
 await check('/uyelik', 200, ['MYTHBORN ÜYELİĞİ', '115 TL', 'Tüm mevcut ve yeni deneyimler']);
