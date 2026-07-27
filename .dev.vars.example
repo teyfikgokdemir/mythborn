@@ -1,0 +1,5 @@
+# Bu dosyayı .dev.vars olarak kopyala. Gerçek değerleri repoya commit etme.
+ADMIN_EMAILS=teyfik@example.com
+PAYMENT_WEBHOOK_SECRET=replace-with-a-long-random-secret
+TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET=
