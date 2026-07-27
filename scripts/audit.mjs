@@ -8,24 +8,24 @@ async function check(path, expectedStatus, includes = [], init = {}) {
   return response;
 }
 
-await check('/', 200, ['lang="tr"', 'On soru. Kırk ihtimal. Sekiz arketip.', 'SİMYACI', '115 TL', 'og:title']);
+await check('/', 200, ['lang="tr"', 'On soru. Kırk ihtimal. Sekiz arketip.', 'SİMYACI', '115 TL', 'platform.css', 'platform.js', 'og:title']);
 await check('/deneyim', 200, ['id="experienceBody"', 'İÇGÜDÜSEL SEÇ', 'Doğru cevap yok']);
 await check('/arketipler', 200, ['Sekiz arzu. Sekiz gölge.', 'HÜKÜMDAR', 'KAÇAK', 'TAÇ', 'YANKI', 'MİMAR', 'GEZGİN', 'ATEŞ', 'SİMYACI']);
 await check('/manifesto', 200, ['İnsan istediği şeyi satın almaz.', 'Arzu bir kusur değildir.']);
 await check('/uyelik', 200, ['MYTHBORN ÜYELİĞİ', '115 TL', 'Tüm mevcut ve yeni deneyimler']);
 await check('/kayit', 200, ['data-auth-form="kayit"', 'KVKK']);
 await check('/giris', 200, ['data-auth-form="giris"']);
-await check('/hesabim', 200, ['data-account', 'SONUÇ GEÇMİŞİ']);
-await check('/gizlilik', 200, ['Gizlilik Politikası', 'Toplanan bilgiler', 'Kart bilgileri']);
-await check('/kvkk', 200, ['KVKK Aydınlatma Metni', 'Hukuki sebepler', 'Hakların']);
-await check('/kullanim-kosullari', 200, ['Kullanım Koşulları', 'Psikolojik değerlendirme']);
-await check('/mesafeli-satis', 200, ['Mesafeli Satış Sözleşmesi', 'Dijital erişim']);
-await check('/on-bilgilendirme', 200, ['Ön Bilgilendirme Formu', 'Otomatik yenileme']);
-await check('/iptal-iade', 200, ['İptal ve İade Politikası', 'Yenilemeyi durdurma']);
-await check('/legal.css', 200);
+await check('/hesabim', 200, ['data-account', 'SONUÇ GEÇMİŞİ', 'platform.js']);
+await check('/gizlilik', 200, ['Gizlilik Politikası', 'Toplanan bilgiler']);
+await check('/kvkk', 200, ['KVKK Aydınlatma Metni', 'İlgili kişi hakları']);
+await check('/kullanim-kosullari', 200, ['Kullanım Koşulları', 'Eğlence ve öz keşif']);
+await check('/cerezler', 200, ['Çerez Politikası', 'Zorunlu çerezler']);
+await check('/mesafeli-satis', 200, ['Mesafeli Satış Sözleşmesi', 'Dijital hizmet']);
+await check('/on-bilgilendirme', 200, ['Ön Bilgilendirme Formu', 'Aylık bedel']);
+await check('/iptal-iade', 200, ['İptal ve İade Politikası', 'Üyelik iptali']);
 await check('/llms.txt', 200, ['# Mythborn', 'Dil: Türkçe']);
 await check('/robots.txt', 200, ['Sitemap: https://mythborn.co/sitemap.xml']);
-await check('/sitemap.xml', 200, ['<loc>https://mythborn.co/uyelik</loc>', '<loc>https://mythborn.co/gizlilik</loc>']);
+await check('/sitemap.xml', 200, ['<loc>https://mythborn.co/uyelik</loc>']);
 await check('/api/auth/me', 503, ['veritabanı']);
 await check('/api/auth/register', 503, ['veritabanı'], { method: 'POST', headers: {'content-type':'application/json'}, body: JSON.stringify({email:'test@example.com',password:'guvenli-sifre-123'}) });
 await check('/api/auth/request-verification', 503, ['veritabanı'], { method: 'POST' });
@@ -35,4 +35,4 @@ await check('/api/account/delete', 503, ['veritabanı'], { method: 'DELETE' });
 await check('/api/webhooks/payment', 503, ['veritabanı'], { method: 'POST' });
 await check('/not-a-real-page', 404, ['Bu kapı henüz açılmadı.']);
 
-console.log('Mythborn Türkçe ürün, üyelik, yasal içerik ve API audit’i geçti.');
+console.log('Mythborn Türkçe platform, koleksiyon, üyelik, yasal ve API audit’i geçti.');
