@@ -45,6 +45,27 @@ export async function adminSetSubscription(request,env){
   return json({ok:true});
 }
 
+export async function adminReadiness(request,env){
+  const auth=await requireAdmin(request,env);if(auth.response)return auth.response;
+  const requiredTables=['users','sessions','subscriptions','results','consents','action_tokens','webhook_events','admin_audit_log','rate_limits','security_events'];
+  let existing=[];
+  try{
+    const rows=await env.DB.prepare("SELECT name FROM sqlite_master WHERE type='table'").all();
+    existing=(rows.results||[]).map(x=>x.name);
+  }catch{}
+  const missingTables=requiredTables.filter(name=>!existing.includes(name));
+  const checks=[
+    {key:'database',label:'D1 veritabanı',ready:!!env.DB&&missingTables.length===0,detail:missingTables.length?`Eksik tablolar: ${missingTables.join(', ')}`:'Tüm zorunlu tablolar hazır.'},
+    {key:'admin',label:'Yönetici yetkisi',ready:parseAdmins(env).length>0,detail:parseAdmins(env).length?'ADMIN_EMAILS yapılandırıldı.':'ADMIN_EMAILS eksik.'},
+    {key:'payment',label:'Ödeme webhook güvenliği',ready:!!env.PAYMENT_WEBHOOK_SECRET,detail:env.PAYMENT_WEBHOOK_SECRET?'Webhook secret bağlı.':'PAYMENT_WEBHOOK_SECRET eksik.'},
+    {key:'email',label:'E-posta gönderimi',ready:!!env.EMAIL?.send,detail:env.EMAIL?.send?'E-posta binding hazır.':'EMAIL sağlayıcısı henüz bağlı değil.'},
+    {key:'turnstile',label:'Turnstile koruması',ready:!!env.TURNSTILE_SITE_KEY&&!!env.TURNSTILE_SECRET,detail:env.TURNSTILE_SITE_KEY&&env.TURNSTILE_SECRET?'Site ve secret anahtarları hazır.':'Turnstile anahtarlarından biri veya ikisi eksik.'}
+  ];
+  const requiredForLaunch=['database','admin','payment','email'];
+  const blockers=checks.filter(x=>requiredForLaunch.includes(x.key)&&!x.ready).map(x=>x.label);
+  return json({ready:blockers.length===0,blockers,checks,checkedAt:new Date().toISOString()});
+}
+
 export function adminPage(){
-  return new Response(`<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Mythborn Yönetim</title><link rel="stylesheet" href="/app.css"><link rel="stylesheet" href="/admin.css"></head><body><main class="admin-shell"><header><div><p class="eyebrow">MYTHBORN YÖNETİM</p><h1>Üyelik merkezi</h1></div><a href="/hesabim">Hesabıma dön</a></header><section class="admin-metrics" data-admin-metrics><p>Veriler yükleniyor…</p></section><section class="admin-panel"><div class="admin-tools"><input type="search" placeholder="E-posta ile ara" data-admin-search><select data-admin-status><option value="">Tüm durumlar</option><option>active</option><option>trialing</option><option>past_due</option><option>paused</option><option>cancelled</option><option>inactive</option></select></div><div class="admin-table-wrap"><table><thead><tr><th>Üye</th><th>Durum</th><th>Sonuç</th><th>Kayıt</th><th>Yönet</th></tr></thead><tbody data-admin-users><tr><td colspan="5">Yükleniyor…</td></tr></tbody></table></div><p class="admin-message" data-admin-message></p></section></main><script src="/admin.js" defer></script></body></html>`,{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}});
+  return new Response(`<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Mythborn Yönetim</title><link rel="stylesheet" href="/app.css"><link rel="stylesheet" href="/admin.css"></head><body><main class="admin-shell"><header><div><p class="eyebrow">MYTHBORN YÖNETİM</p><h1>Üyelik merkezi</h1></div><a href="/hesabim">Hesabıma dön</a></header><section class="admin-readiness" data-admin-readiness><p>Sistem hazırlığı kontrol ediliyor…</p></section><section class="admin-metrics" data-admin-metrics><p>Veriler yükleniyor…</p></section><section class="admin-panel"><div class="admin-tools"><input type="search" placeholder="E-posta ile ara" data-admin-search><select data-admin-status><option value="">Tüm durumlar</option><option>active</option><option>trialing</option><option>past_due</option><option>paused</option><option>cancelled</option><option>inactive</option></select></div><div class="admin-table-wrap"><table><thead><tr><th>Üye</th><th>Durum</th><th>Sonuç</th><th>Kayıt</th><th>Yönet</th></tr></thead><tbody data-admin-users><tr><td colspan="5">Yükleniyor…</td></tr></tbody></table></div><p class="admin-message" data-admin-message></p></section></main><script src="/admin.js" defer></script></body></html>`,{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}});
 }
