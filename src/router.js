@@ -2,6 +2,7 @@ import app from './index.js';
 import { register, login, logout, me, saveResult, resultHistory } from './auth.js';
 import { requestVerification, verifyEmail, requestPasswordReset, cancelMembership, deleteAccount, paymentWebhook } from './account.js';
 import { adminOverview, adminUsers, adminSetSubscription, adminPage } from './admin.js';
+import { rateLimit, verifyTurnstile } from './abuse.js';
 
 const SITE='https://mythborn.co';
 const routes=new Set(['/','/deneyim','/uyelik','/giris','/kayit','/hesabim','/yonetim','/arketipler','/manifesto','/hakkinda','/gizlilik','/kvkk','/kullanim-kosullari','/cerezler','/mesafeli-satis','/on-bilgilendirme','/iptal-iade','/dogrula','/sifremi-unuttum','/sifre-yenile']);
@@ -17,12 +18,33 @@ const noindex=new Set(['/giris','/kayit','/hesabim','/yonetim','/dogrula','/sifr
 const llms=`# Mythborn\n\n> Mythborn, arzuları oynanabilir seçimlere, arketiplere ve kişisel sonuçlara dönüştüren Türkçe dijital deneyim platformudur.\n\n## Temel bilgiler\n- Resmî site: ${SITE}/\n- Dil: Türkçe\n- Ana deneyim: Arzu Motoru\n- Ücretsiz erişim: İlk 3 seçim ve gerçek ön iz\n- Tam deneyim: 10 seçim, 8 arketip, ikincil iz, gölge yön ve gerçek ihtiyaç\n- Üyelik: Aylık 115 TL olarak planlanmıştır\n- İletişim: info@mythborn.co\n\n## Arketipler\nHükümdar, Kaçak, Taç, Yankı, Mimar, Gezgin, Ateş ve Simyacı.\n\n## Önemli açıklama\nMythborn psikolojik teşhis, terapi, sağlık hizmeti veya klinik kişilik testi değildir. Eğlence, öz farkındalık ve dijital anlatı deneyimidir.\n`;
 const publicRoutes=[...routes].filter(x=>!noindex.has(x));
 const sitemap=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${publicRoutes.map(x=>`<url><loc>${SITE}${x}</loc><changefreq>${x==='/'?'weekly':'monthly'}</changefreq><priority>${x==='/'?'1.0':x==='/deneyim'?'0.9':'0.6'}</priority></url>`).join('')}</urlset>`;
-const security=(h=new Headers())=>{h.set('strict-transport-security','max-age=31536000; includeSubDomains; preload');h.set('x-content-type-options','nosniff');h.set('referrer-policy','strict-origin-when-cross-origin');h.set('permissions-policy','camera=(), microphone=(), geolocation=(), payment=(self)');h.set('cross-origin-opener-policy','same-origin');h.set('x-frame-options','DENY');h.set('content-security-policy',"default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests");return h};
+const security=(h=new Headers())=>{h.set('strict-transport-security','max-age=31536000; includeSubDomains; preload');h.set('x-content-type-options','nosniff');h.set('referrer-policy','strict-origin-when-cross-origin');h.set('permissions-policy','camera=(), microphone=(), geolocation=(), payment=(self)');h.set('cross-origin-opener-policy','same-origin');h.set('x-frame-options','DENY');h.set('content-security-policy',"default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests");return h};
 const text=(body,status,type)=>new Response(body,{status,headers:security(new Headers({'content-type':type,'cache-control':'public, max-age=300'}))});
 const methodNotAllowed=()=>text(JSON.stringify({error:'Bu yöntem desteklenmiyor.'}),405,'application/json; charset=utf-8');
 
+const abusePolicies={
+  '/api/auth/register':{scope:'register',limit:5,windowSeconds:3600,turnstile:true},
+  '/api/auth/login':{scope:'login',limit:12,windowSeconds:900,turnstile:true},
+  '/api/auth/request-password-reset':{scope:'password_reset',limit:5,windowSeconds:3600,turnstile:true},
+  '/api/auth/request-verification':{scope:'email_verification',limit:8,windowSeconds:3600},
+  '/api/auth/verify-email':{scope:'verify_email_token',limit:15,windowSeconds:3600},
+  '/api/results':{scope:'results',limit:60,windowSeconds:3600},
+  '/api/webhooks/payment':{scope:'payment_webhook',limit:180,windowSeconds:60},
+  '/api/admin/overview':{scope:'admin_overview',limit:120,windowSeconds:60},
+  '/api/admin/users':{scope:'admin_users',limit:120,windowSeconds:60},
+  '/api/admin/subscription':{scope:'admin_subscription',limit:30,windowSeconds:60}
+};
+
+async function protect(request,env,path){
+  const policy=abusePolicies[path];if(!policy)return null;
+  const limited=await rateLimit(request,env,policy);if(limited)return limited;
+  if(policy.turnstile){const challenged=await verifyTurnstile(request,env);if(challenged)return challenged}
+  return null;
+}
+
 async function api(request,env,path){
   if(!env.DB)return text(JSON.stringify({error:'Üyelik veritabanı henüz bağlanmadı.'}),503,'application/json; charset=utf-8');
+  const blocked=await protect(request,env,path);if(blocked)return blocked;
   if(path==='/api/auth/register')return request.method==='POST'?register(request,env):methodNotAllowed();
   if(path==='/api/auth/login')return request.method==='POST'?login(request,env):methodNotAllowed();
   if(path==='/api/auth/logout')return request.method==='POST'?logout(request,env):methodNotAllowed();
