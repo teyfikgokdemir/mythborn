@@ -50,6 +50,10 @@ jobs:
             } >> "$GITHUB_STEP_SUMMARY"
           fi
 
+      - name: Apply preview D1 migrations
+        if: steps.credentials.outputs.configured == 'true'
+        run: npx wrangler d1 migrations apply mythborn-membership-preview --remote
+
       - name: Deploy Cloudflare preview
         if: steps.credentials.outputs.configured == 'true'
         shell: bash
@@ -62,7 +66,7 @@ jobs:
             echo
             echo "Worker adı: \`$WORKER_NAME\`"
             echo
-            echo "Cloudflare dashboard veya Wrangler çıktısındaki workers.dev adresini açarak test edin."
+            echo "D1 migration'ları uygulandı ve DB binding etkinleştirildi."
             echo
-            echo "Bu preview D1 binding eklenene kadar yalnızca arayüz ve public rotaları gösterir; üyelik API'leri güvenli biçimde 503 döndürür."
+            echo "Cloudflare dashboard veya Wrangler çıktısındaki workers.dev adresini açarak kayıt, giriş ve hesap akışlarını test edin."
           } >> "$GITHUB_STEP_SUMMARY"
