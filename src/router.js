@@ -1,9 +1,10 @@
 import app from './index.js';
 import { register, login, logout, me, saveResult, resultHistory } from './auth.js';
 import { requestVerification, verifyEmail, requestPasswordReset, cancelMembership, deleteAccount, paymentWebhook } from './account.js';
+import { adminOverview, adminUsers, adminSetSubscription, adminPage } from './admin.js';
 
 const SITE='https://mythborn.co';
-const routes=new Set(['/','/deneyim','/uyelik','/giris','/kayit','/hesabim','/arketipler','/manifesto','/hakkinda','/gizlilik','/kvkk','/kullanim-kosullari','/cerezler','/mesafeli-satis','/on-bilgilendirme','/iptal-iade','/dogrula','/sifremi-unuttum','/sifre-yenile']);
+const routes=new Set(['/','/deneyim','/uyelik','/giris','/kayit','/hesabim','/yonetim','/arketipler','/manifesto','/hakkinda','/gizlilik','/kvkk','/kullanim-kosullari','/cerezler','/mesafeli-satis','/on-bilgilendirme','/iptal-iade','/dogrula','/sifremi-unuttum','/sifre-yenile']);
 const meta={
   '/':{title:'Mythborn — Türkçe Arzu ve Arketip Deneyimi',description:'Sembolik seçimlerle arzunun altındaki yönü keşfet. Üç ücretsiz seçim, sekiz arketip ve üyelikle açılan kişisel sonuç arşivi.'},
   '/deneyim':{title:'Arzu Motoru — Mythborn Deneyimi',description:'On sembolik seçimle baskın arketipini, ikincil izini, gölge yönünü ve gerçek ihtiyacını keşfet.'},
@@ -12,7 +13,7 @@ const meta={
   '/uyelik':{title:'Mythborn Üyeliği — Aylık 115 TL',description:'Tüm Mythborn deneyimleri, tam arketip sonuçları, kişisel arşiv ve paylaşılabilir sonuç kartları için tek üyelik.'},
   '/hakkinda':{title:'Mythborn Nedir?',description:'Mythborn, arzuları oynanabilir seçimlere ve sembolik arketiplere dönüştüren bağımsız Türkçe dijital deneyim platformudur.'}
 };
-const noindex=new Set(['/giris','/kayit','/hesabim','/dogrula','/sifremi-unuttum','/sifre-yenile']);
+const noindex=new Set(['/giris','/kayit','/hesabim','/yonetim','/dogrula','/sifremi-unuttum','/sifre-yenile']);
 const llms=`# Mythborn\n\n> Mythborn, arzuları oynanabilir seçimlere, arketiplere ve kişisel sonuçlara dönüştüren Türkçe dijital deneyim platformudur.\n\n## Temel bilgiler\n- Resmî site: ${SITE}/\n- Dil: Türkçe\n- Ana deneyim: Arzu Motoru\n- Ücretsiz erişim: İlk 3 seçim ve gerçek ön iz\n- Tam deneyim: 10 seçim, 8 arketip, ikincil iz, gölge yön ve gerçek ihtiyaç\n- Üyelik: Aylık 115 TL olarak planlanmıştır\n- İletişim: info@mythborn.co\n\n## Arketipler\nHükümdar, Kaçak, Taç, Yankı, Mimar, Gezgin, Ateş ve Simyacı.\n\n## Önemli açıklama\nMythborn psikolojik teşhis, terapi, sağlık hizmeti veya klinik kişilik testi değildir. Eğlence, öz farkındalık ve dijital anlatı deneyimidir.\n`;
 const publicRoutes=[...routes].filter(x=>!noindex.has(x));
 const sitemap=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${publicRoutes.map(x=>`<url><loc>${SITE}${x}</loc><changefreq>${x==='/'?'weekly':'monthly'}</changefreq><priority>${x==='/'?'1.0':x==='/deneyim'?'0.9':'0.6'}</priority></url>`).join('')}</urlset>`;
@@ -32,6 +33,9 @@ async function api(request,env,path){
   if(path==='/api/account/cancel-membership')return request.method==='POST'?cancelMembership(request,env):methodNotAllowed();
   if(path==='/api/account/delete')return request.method==='DELETE'?deleteAccount(request,env):methodNotAllowed();
   if(path==='/api/webhooks/payment')return request.method==='POST'?paymentWebhook(request,env):methodNotAllowed();
+  if(path==='/api/admin/overview')return request.method==='GET'?adminOverview(request,env):methodNotAllowed();
+  if(path==='/api/admin/users')return request.method==='GET'?adminUsers(request,env):methodNotAllowed();
+  if(path==='/api/admin/subscription')return request.method==='POST'?adminSetSubscription(request,env):methodNotAllowed();
   if(path==='/api/results'){
     if(request.method==='POST')return saveResult(request,env);
     if(request.method==='GET')return resultHistory(request,env);
@@ -71,13 +75,14 @@ export default{async fetch(request,env,ctx){
   let response;
   if(url.pathname.startsWith('/api/'))response=await api(request,env,url.pathname);
   else if(url.pathname==='/llms.txt')response=text(llms,200,'text/plain; charset=utf-8');
-  else if(url.pathname==='/robots.txt')response=text(`User-agent: *\nAllow: /\nDisallow: /giris\nDisallow: /kayit\nDisallow: /hesabim\nDisallow: /api/\nSitemap: ${SITE}/sitemap.xml\n`,200,'text/plain; charset=utf-8');
+  else if(url.pathname==='/robots.txt')response=text(`User-agent: *\nAllow: /\nDisallow: /giris\nDisallow: /kayit\nDisallow: /hesabim\nDisallow: /yonetim\nDisallow: /api/\nSitemap: ${SITE}/sitemap.xml\n`,200,'text/plain; charset=utf-8');
   else if(url.pathname==='/sitemap.xml')response=text(sitemap,200,'application/xml; charset=utf-8');
-  else if(url.pathname.startsWith('/images/')||['/app.css','/paywall.css','/legal.css','/platform.css','/platform.js','/final.css','/final.js','/app.js','/favicon.svg','/consent.js'].includes(url.pathname))response=await env.ASSETS.fetch(request);
+  else if(url.pathname.startsWith('/images/')||['/app.css','/paywall.css','/legal.css','/platform.css','/platform.js','/final.css','/final.js','/admin.css','/admin.js','/app.js','/favicon.svg','/consent.js'].includes(url.pathname))response=await env.ASSETS.fetch(request);
+  else if(url.pathname==='/yonetim')response=adminPage();
   else if(!routes.has(url.pathname))response=text('<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="robots" content="noindex"><title>404 — Mythborn</title><body><h1>Bu kapı henüz açılmadı.</h1><a href="/">Mythborn’a dön</a></body></html>',404,'text/html; charset=utf-8');
   else response=await enhanceHtml(await app.fetch(request,env,ctx),url.pathname);
   const headers=security(new Headers(response.headers));
   if(!url.pathname.startsWith('/api/'))headers.set('content-language','tr');
-  if(url.pathname.startsWith('/api/'))headers.set('cache-control','no-store');
+  if(url.pathname.startsWith('/api/')||url.pathname==='/yonetim')headers.set('cache-control','no-store');
   return new Response(response.body,{status:response.status,headers});
 }};
