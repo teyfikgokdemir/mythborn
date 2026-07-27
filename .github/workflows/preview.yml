@@ -63,7 +63,7 @@ jobs:
           npx wrangler deploy \
             --name "$WORKER_NAME" \
             --var ENVIRONMENT:preview \
-            --var ADMIN_EMAILS:teyfikgokdemir@gmail.com
+            --var ADMIN_EMAILS:tevfikgokdemir@gmail.com
           {
             echo "## Mythborn preview deploy tamamlandı"
             echo
