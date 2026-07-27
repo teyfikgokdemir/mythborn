@@ -1,6 +1,7 @@
+import { access } from 'node:fs/promises';
 import worker from '../src/router.js';
 
-const env={ASSETS:{fetch:()=>new Response('',{status:200})}};
+const env={ASSETS:{fetch:()=>new Response('',{status:200})},TURNSTILE_SITE_KEY:'1x00000000000000000000AA'};
 async function check(path,expectedStatus,includes=[],init={}){
   const response=await worker.fetch(new Request(`https://mythborn.co${path}`,init),env,{});
   if(response.status!==expectedStatus)throw new Error(`${path} returned ${response.status}; expected ${expectedStatus}`);
@@ -9,6 +10,8 @@ async function check(path,expectedStatus,includes=[],init={}){
   return{response,body};
 }
 function count(body,value){return body.split(value).length-1}
+
+for(const file of ['migrations/0001_membership.sql','migrations/0002_account_lifecycle.sql','migrations/0003_admin_operations.sql','migrations/0004_abuse_protection.sql','src/abuse.js'])await access(new URL(`../${file}`,import.meta.url));
 
 const home=await check('/',200,['lang="tr"','On soru. Kırk ihtimal. Sekiz arketip.','SİMYACI','115 TL','platform.css','platform.js','final.css','final.js','FAQPage','SoftwareApplication','canonical','max-image-preview:large']);
 if(count(home.body,'rel="canonical"')!==1)throw new Error('Home must contain exactly one canonical');
@@ -22,8 +25,8 @@ if(count(experience.body,'rel="canonical"')!==1)throw new Error('Experience must
 await check('/arketipler',200,['Sekiz arzu. Sekiz gölge.','HÜKÜMDAR','KAÇAK','TAÇ','YANKI','MİMAR','GEZGİN','ATEŞ','SİMYACI','https://mythborn.co/arketipler']);
 await check('/manifesto',200,['İnsan istediği şeyi satın almaz.','Arzu bir kusur değildir.','https://mythborn.co/manifesto']);
 await check('/uyelik',200,['MYTHBORN ÜYELİĞİ','115 TL','Tüm mevcut ve yeni deneyimler','https://mythborn.co/uyelik']);
-await check('/kayit',200,['data-auth-form="kayit"','KVKK','noindex,nofollow']);
-await check('/giris',200,['data-auth-form="giris"','noindex,nofollow']);
+await check('/kayit',200,['data-auth-form="kayit"','KVKK','noindex,nofollow','turnstile-site-key','challenges.cloudflare.com/turnstile']);
+await check('/giris',200,['data-auth-form="giris"','noindex,nofollow','turnstile-site-key']);
 await check('/hesabim',200,['data-account','SONUÇ GEÇMİŞİ','platform.js','noindex,nofollow']);
 const admin=await check('/yonetim',200,['MYTHBORN YÖNETİM','Üyelik merkezi','admin.css','admin.js','noindex,nofollow']);
 if(admin.response.headers.get('cache-control')!=='no-store')throw new Error('Admin page must not be cached');
@@ -50,4 +53,4 @@ await check('/api/admin/overview',503,['veritabanı']);
 await check('/api/admin/users',503,['veritabanı']);
 await check('/api/admin/subscription',503,['veritabanı'],{method:'POST'});
 await check('/not-a-real-page',404,['Bu kapı henüz açılmadı.']);
-console.log('Mythborn SEO, GEO, AEO, AIO, mobil, erişilebilirlik, güvenlik, üyelik, yönetim ve route audit’i geçti.');
+console.log('Mythborn SEO, GEO, AEO, AIO, mobil, erişilebilirlik, güvenlik, kötüye kullanım koruması, üyelik, yönetim ve route audit’i geçti.');
