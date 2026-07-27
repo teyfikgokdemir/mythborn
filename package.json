@@ -1,9 +1,9 @@
 {
   "name": "mythborn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
-  "description": "Türkçe üyelikli arzu ve arketip deneyim platformu",
+  "description": "Tarot, astroloji ve sembolik farkındalık platformu",
   "scripts": {
     "dev": "wrangler dev",
     "audit": "node scripts/audit.mjs",
@@ -18,6 +18,9 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "astronomy-engine": "^2.1.19"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
