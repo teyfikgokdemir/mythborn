@@ -10,19 +10,16 @@
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mythborn-membership-preview",
+      "database_id": "82d3d933-282d-4369-b68e-cee26b66349b",
+      "migrations_dir": "migrations"
+    }
+  ]
 
-  // D1 oluşturulduktan sonra aşağıdaki binding Cloudflare panelinden veya
-  // `wrangler d1 create` çıktısındaki database_id ile buraya eklenmelidir:
-  // "d1_databases": [
-  //   {
-  //     "binding": "DB",
-  //     "database_name": "mythborn-membership",
-  //     "database_id": "<D1_DATABASE_ID>",
-  //     "migrations_dir": "migrations"
-  //   }
-  // ]
-  //
   // Zorunlu secret/vars:
   // ADMIN_EMAILS, PAYMENT_WEBHOOK_SECRET
   //
