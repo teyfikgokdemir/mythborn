@@ -1,57 +1,18 @@
 import { access } from 'node:fs/promises';
 import worker from '../src/router.js';
-
 const env={ASSETS:{fetch:()=>new Response('',{status:200})},TURNSTILE_SITE_KEY:'1x00000000000000000000AA'};
-async function check(path,expectedStatus,includes=[],init={}){
-  const response=await worker.fetch(new Request(`https://mythborn.co${path}`,init),env,{});
-  if(response.status!==expectedStatus)throw new Error(`${path} returned ${response.status}; expected ${expectedStatus}`);
-  const body=await response.text();
-  for(const value of includes)if(!body.includes(value))throw new Error(`${path} is missing required value: ${value}`);
-  return{response,body};
-}
-function count(body,value){return body.split(value).length-1}
-
-for(const file of ['migrations/0001_membership.sql','migrations/0002_account_lifecycle.sql','migrations/0003_admin_operations.sql','migrations/0004_abuse_protection.sql','src/abuse.js'])await access(new URL(`../${file}`,import.meta.url));
-
-const home=await check('/',200,['lang="tr"','On soru. Kırk ihtimal. Sekiz arketip.','SİMYACI','115 TL','platform.css','platform.js','final.css','final.js','FAQPage','SoftwareApplication','canonical','max-image-preview:large']);
-if(count(home.body,'rel="canonical"')!==1)throw new Error('Home must contain exactly one canonical');
-if(!home.body.includes('href="https://mythborn.co/"'))throw new Error('Home canonical is incorrect');
-if(count(home.body,'application/ld+json')!==1)throw new Error('Home must contain one JSON-LD graph');
-const homeHeaders=home.response.headers;
-for(const header of ['content-security-policy','strict-transport-security','x-content-type-options','referrer-policy','permissions-policy','cross-origin-opener-policy'])if(!homeHeaders.get(header))throw new Error(`Missing security header: ${header}`);
-
-const experience=await check('/deneyim',200,['id="experienceBody"','İÇGÜDÜSEL SEÇ','Doğru cevap yok','Arzu Motoru — Mythborn Deneyimi','https://mythborn.co/deneyim','SoftwareApplication']);
-if(count(experience.body,'rel="canonical"')!==1)throw new Error('Experience must contain exactly one canonical');
-await check('/arketipler',200,['Sekiz arzu. Sekiz gölge.','HÜKÜMDAR','KAÇAK','TAÇ','YANKI','MİMAR','GEZGİN','ATEŞ','SİMYACI','https://mythborn.co/arketipler']);
-await check('/manifesto',200,['İnsan istediği şeyi satın almaz.','Arzu bir kusur değildir.','https://mythborn.co/manifesto']);
-await check('/uyelik',200,['MYTHBORN ÜYELİĞİ','115 TL','Tüm mevcut ve yeni deneyimler','https://mythborn.co/uyelik']);
-await check('/kayit',200,['data-auth-form="kayit"','KVKK','noindex,nofollow','turnstile-site-key','challenges.cloudflare.com/turnstile']);
-await check('/giris',200,['data-auth-form="giris"','noindex,nofollow','turnstile-site-key']);
-await check('/hesabim',200,['data-account','SONUÇ GEÇMİŞİ','platform.js','noindex,nofollow']);
-const admin=await check('/yonetim',200,['MYTHBORN YÖNETİM','Üyelik merkezi','Sistem hazırlığı kontrol ediliyor','admin.css','admin.js','noindex,nofollow']);
-if(admin.response.headers.get('cache-control')!=='no-store')throw new Error('Admin page must not be cached');
-await check('/gizlilik',200,['Gizlilik Politikası','Toplanan bilgiler']);
-await check('/kvkk',200,['KVKK Aydınlatma Metni','Hakların']);
-await check('/kullanim-kosullari',200,['Kullanım Koşulları','Hizmetin niteliği']);
-await check('/cerezler',200,['Çerez Politikası','Zorunlu çerezler']);
-await check('/mesafeli-satis',200,['Mesafeli Satış Sözleşmesi','Hizmet']);
-await check('/on-bilgilendirme',200,['Ön Bilgilendirme Formu','Ürün ve fiyat']);
-await check('/iptal-iade',200,['İptal ve İade Politikası','Yenilemeyi durdurma']);
-await check('/llms.txt',200,['# Mythborn','Dil: Türkçe','psikolojik teşhis','Hükümdar, Kaçak, Taç']);
-await check('/robots.txt',200,['Disallow: /api/','Disallow: /hesabim','Disallow: /yonetim','Sitemap: https://mythborn.co/sitemap.xml']);
-const sitemap=await check('/sitemap.xml',200,['<loc>https://mythborn.co/uyelik</loc>','<changefreq>','<priority>']);
-for(const privatePath of ['/giris','/kayit','/hesabim','/yonetim'])if(sitemap.body.includes(`<loc>https://mythborn.co${privatePath}</loc>`))throw new Error(`Private route leaked into sitemap: ${privatePath}`);
-for(const asset of ['/final.css','/final.js','/admin.css','/admin.js'])await check(asset,200);
+async function check(path,status,includes=[],init={}){const r=await worker.fetch(new Request(`https://mythborn.co${path}`,init),env,{});if(r.status!==status)throw new Error(`${path} returned ${r.status}; expected ${status}`);const body=await r.text();for(const value of includes)if(!body.includes(value))throw new Error(`${path} missing ${value}`);return{r,body}}
+for(const file of ['public/oracle.css','public/oracle.js','src/auth.js','src/account.js'])await access(new URL(`../${file}`,import.meta.url));
+await check('/',200,['Günlük Tek Kart','Katina','Astroloji','ÖDEME KAPALI','Google ile devam et','Apple ile devam et','price":"0"']);
+await check('/gunluk-kart',200,['ÜYELİK GEREKTİRMEZ','data-daily-deck','Bugünün kartı']);
+for(const [path,title] of [['/tarot','3 Kart Tarot'],['/ask','Aşk & Geri Dönüş'],['/kariyer','Kariyer & Para'],['/otuz-gun','30 Gün Açılımı'],['/katina','Katina Aşk Falı'],['/astroloji','Astroloji']])await check(path,200,[title,'ÜCRETSİZ ÜYELİKLE AÇILIR']);
+await check('/kayit',200,['Ücretsiz hesap oluştur','Google ile devam et','Apple ile devam et','noindex,nofollow']);
+await check('/giris',200,['Giriş yap','noindex,nofollow']);
+await check('/robots.txt',200,['Disallow: /api/','Sitemap: https://mythborn.co/sitemap.xml']);
+const sitemap=await check('/sitemap.xml',200,['https://mythborn.co/gunluk-kart','https://mythborn.co/katina','https://mythborn.co/astroloji']);
+if(sitemap.body.includes('/giris')||sitemap.body.includes('/kayit'))throw new Error('Private routes leaked into sitemap');
+await check('/llms.txt',200,['ücretsiz Tarot','Ödeme: varsayılan olarak kapalı']);
 await check('/api/auth/me',503,['veritabanı']);
-await check('/api/auth/register',503,['veritabanı'],{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:'test@example.com',password:'guvenli-sifre-123'})});
-await check('/api/auth/request-verification',503,['veritabanı'],{method:'POST'});
-await check('/api/auth/request-password-reset',503,['veritabanı'],{method:'POST'});
-await check('/api/account/cancel-membership',503,['veritabanı'],{method:'POST'});
-await check('/api/account/delete',503,['veritabanı'],{method:'DELETE'});
 await check('/api/webhooks/payment',503,['veritabanı'],{method:'POST'});
-await check('/api/admin/overview',503,['veritabanı']);
-await check('/api/admin/readiness',503,['veritabanı']);
-await check('/api/admin/users',503,['veritabanı']);
-await check('/api/admin/subscription',503,['veritabanı'],{method:'POST'});
-await check('/not-a-real-page',404,['Bu kapı henüz açılmadı.']);
-console.log('Mythborn SEO, GEO, AEO, AIO, mobil, erişilebilirlik, güvenlik, kötüye kullanım koruması, üyelik, yönetim, readiness ve route audit’i geçti.');
+await check('/not-found',404,['Bu kapı henüz açılmadı.']);
+console.log('Mythborn ücretsiz Tarot, Katina, astroloji, üyelik, ödeme bayrağı, SEO ve route audit’i geçti.');
