@@ -11,4 +11,8 @@
   "observability": {
     "enabled": true
   }
+  // Production bindings to add in Cloudflare after resource creation:
+  // "d1_databases": [{ "binding": "DB", "database_name": "mythborn-membership", "database_id": "<D1_DATABASE_ID>" }]
+  // Secrets: PAYMENT_WEBHOOK_SECRET
+  // Optional email service binding: EMAIL
 }
