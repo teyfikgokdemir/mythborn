@@ -2,11 +2,15 @@
   "name": "mythborn",
   "version": "1.0.0",
   "private": true,
-  "description": "Temporary launch page for mythborn.co on Cloudflare Workers",
+  "description": "Türkçe üyelikli arzu ve arketip deneyim platformu",
   "scripts": {
     "dev": "wrangler dev",
     "audit": "node scripts/audit.mjs",
+    "check": "npm run audit",
     "deploy": "npm run audit && wrangler deploy"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
