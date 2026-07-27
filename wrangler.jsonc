@@ -5,6 +5,9 @@
   "compatibility_date": "2026-07-20",
   "workers_dev": true,
   "preview_urls": true,
+  "vars": {
+    "ENVIRONMENT": "preview"
+  },
   "assets": {
     "directory": "./public"
   },
