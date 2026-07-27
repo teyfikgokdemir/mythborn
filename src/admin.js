@@ -1,7 +1,7 @@
 import { currentUser } from './auth.js';
 
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}});
-const PREVIEW_ADMIN='teyfikgokdemir@gmail.com';
+const PREVIEW_ADMIN='tevfikgokdemir@gmail.com';
 const PRODUCTION_WORKER_HOST='mythborn.teyfikgokdemir.workers.dev';
 const parseAdmins=env=>String(env.ADMIN_EMAILS||'').split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);
 const isPreviewRequest=request=>{
