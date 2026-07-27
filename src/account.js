@@ -20,7 +20,7 @@ async function issueToken(env,userId,purpose,ttlMinutes){
 export async function requestVerification(request,env){
   const user=await currentUser(request,env);if(!user)return json({error:'Giriş gerekli.'},401);
   if(user.email_verified_at)return json({ok:true,alreadyVerified:true});
-  const token=await issueToken(env,user.id,'verify_email',60*24);
+  const token=await issueToken(env,user.id,'verify_email',1440);
   if(env.EMAIL?.send)await env.EMAIL.send({to:user.email,subject:'Mythborn e-posta doğrulaması',text:`E-postanı doğrula: https://mythborn.co/dogrula?token=${token}`});
   return json({ok:true,delivery:env.EMAIL?.send?'sent':'pending_provider'});
 }
@@ -58,7 +58,7 @@ export async function deleteAccount(request,env){
     env.DB.prepare('DELETE FROM sessions WHERE user_id=?').bind(user.id),
     env.DB.prepare("UPDATE users SET email='deleted+'||id||'@mythborn.invalid',deleted_at=CURRENT_TIMESTAMP,updated_at=CURRENT_TIMESTAMP WHERE id=?").bind(user.id)
   ]);
-  return json({ok:true},{status:200,'set-cookie':'mythborn_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0'});
+  return json({ok:true},200,{'set-cookie':'mythborn_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0'});
 }
 
 export async function paymentWebhook(request,env){
