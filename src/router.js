@@ -1,19 +1,27 @@
 import app from './index.js';
 import { register, login, logout, me, saveResult, resultHistory } from './auth.js';
+import { requestVerification, verifyEmail, requestPasswordReset, cancelMembership, deleteAccount, paymentWebhook } from './account.js';
 
 const SITE='https://mythborn.co';
-const routes=new Set(['/','/deneyim','/uyelik','/giris','/kayit','/hesabim','/arketipler','/manifesto','/hakkinda','/gizlilik','/kvkk','/kullanim-kosullari','/cerezler','/mesafeli-satis','/on-bilgilendirme','/iptal-iade']);
+const routes=new Set(['/','/deneyim','/uyelik','/giris','/kayit','/hesabim','/arketipler','/manifesto','/hakkinda','/gizlilik','/kvkk','/kullanim-kosullari','/cerezler','/mesafeli-satis','/on-bilgilendirme','/iptal-iade','/dogrula','/sifremi-unuttum','/sifre-yenile']);
 const llms=`# Mythborn\n\n> Mythborn, arzuları oynanabilir seçimlere, arketiplere ve kişisel sonuçlara dönüştüren Türkçe dijital deneyim platformudur.\n\n- Resmî site: ${SITE}/\n- Dil: Türkçe\n- Üyelik: Aylık 115 TL\n- İletişim: info@mythborn.co\n`;
-const sitemap=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...routes].filter(x=>!['/giris','/kayit','/hesabim'].includes(x)).map(x=>`<url><loc>${SITE}${x}</loc></url>`).join('')}</urlset>`;
+const sitemap=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...routes].filter(x=>!['/giris','/kayit','/hesabim','/dogrula','/sifremi-unuttum','/sifre-yenile'].includes(x)).map(x=>`<url><loc>${SITE}${x}</loc></url>`).join('')}</urlset>`;
 const security=(h=new Headers())=>{h.set('strict-transport-security','max-age=31536000');h.set('x-content-type-options','nosniff');h.set('referrer-policy','strict-origin-when-cross-origin');h.set('permissions-policy','camera=(), microphone=(), geolocation=()');h.set('content-security-policy',"default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");return h};
 const text=(body,status,type)=>new Response(body,{status,headers:security(new Headers({'content-type':type,'cache-control':'public, max-age=300'}))});
 const methodNotAllowed=()=>text(JSON.stringify({error:'Bu yöntem desteklenmiyor.'}),405,'application/json; charset=utf-8');
 
 async function api(request,env,path){
+  if(!env.DB)return text(JSON.stringify({error:'Üyelik veritabanı henüz bağlanmadı.'}),503,'application/json; charset=utf-8');
   if(path==='/api/auth/register')return request.method==='POST'?register(request,env):methodNotAllowed();
   if(path==='/api/auth/login')return request.method==='POST'?login(request,env):methodNotAllowed();
   if(path==='/api/auth/logout')return request.method==='POST'?logout(request,env):methodNotAllowed();
   if(path==='/api/auth/me')return request.method==='GET'?me(request,env):methodNotAllowed();
+  if(path==='/api/auth/request-verification')return request.method==='POST'?requestVerification(request,env):methodNotAllowed();
+  if(path==='/api/auth/verify-email')return request.method==='POST'?verifyEmail(request,env):methodNotAllowed();
+  if(path==='/api/auth/request-password-reset')return request.method==='POST'?requestPasswordReset(request,env):methodNotAllowed();
+  if(path==='/api/account/cancel-membership')return request.method==='POST'?cancelMembership(request,env):methodNotAllowed();
+  if(path==='/api/account/delete')return request.method==='DELETE'?deleteAccount(request,env):methodNotAllowed();
+  if(path==='/api/webhooks/payment')return request.method==='POST'?paymentWebhook(request,env):methodNotAllowed();
   if(path==='/api/results'){
     if(request.method==='POST')return saveResult(request,env);
     if(request.method==='GET')return resultHistory(request,env);
