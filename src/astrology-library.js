@@ -23,6 +23,16 @@ const shell=(locale,title,description,body,canonical,schemas=[])=>`<!doctype htm
 const schemas=(locale,title,description,url,faq)=>[{'@context':'https://schema.org','@type':'Article',headline:title,description,inLanguage:locale==='tr'?'tr-TR':locale,url:`${SITE}${path(url,locale)}`,publisher:{'@type':'Organization',name:'Mythborn'}},{'@context':'https://schema.org','@type':'FAQPage',mainEntity:faq.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}}))},{'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Mythborn',item:SITE},{'@type':'ListItem',position:2,name:ui[locale].home,item:`${SITE}${path('/astroloji-kutuphanesi',locale)}`},{'@type':'ListItem',position:3,name:title,item:`${SITE}${path(url,locale)}`}]}];
 const genericFaq=(locale,name)=>locale==='tr'?[[`${name} tek başına yeterli mi?`,`Hayır. Yerleşim; burç, ev, açı ve haritanın bütünüyle birlikte okunmalıdır.`],[`${name} kesin kader gösterir mi?`,`Hayır. Astrolojik semboller olasılık, eğilim ve farkındalık dili sunar.`]]:locale==='en'?[[`Is ${name} enough on its own?`,`No. Read it with sign, house, aspects and the chart as a whole.`],[`Does ${name} describe fixed fate?`,`No. Astrological symbols describe tendencies and reflection themes, not certainty.`]]:[[`Αρκεί μόνο το ${name};`,`Όχι. Χρειάζεται να διαβαστεί μαζί με ζώδιο, οίκο, όψεις και ολόκληρο τον χάρτη.`],[`Δείχνει το ${name} σταθερή μοίρα;`,`Όχι. Τα σύμβολα δείχνουν τάσεις και θέματα στοχασμού, όχι βεβαιότητα.`]];
 export const libraryRoutes=['/astroloji-kutuphanesi',...signs.map(x=>`/burclar/${x[0]}`),...houses.map(x=>`/evler/${x[0]}`),...planets.map(x=>`/gezegenler/${x[0]}`),...aspects.map(x=>`/acilar/${x[0]}`),'/transitler','/retro-hareketler'];
+export const astrologySearchItems=locale=>{
+ const index=locale==='tr'?1:locale==='en'?2:3,description=locale==='tr'?'Doğum haritası ve astroloji rehberi.':locale==='en'?'Birth-chart and astrology guide.':'Οδηγός γενέθλιου χάρτη και αστρολογίας.';
+ return[
+  ...signs.map(item=>({title:item[index],description,category:'astrology',path:`/burclar/${item[0]}`})),
+  ...houses.map(item=>({title:`${item[0]}. ${locale==='tr'?'Ev':locale==='en'?'House':'Οίκος'} — ${item[index]}`,description,category:'astrology',path:`/evler/${item[0]}`})),
+  ...planets.map(item=>({title:item[index],description:item[index+3],category:'astrology',path:`/gezegenler/${item[0]}`})),
+  ...aspects.map(item=>({title:item[index],description:item[index+3],category:'astrology',path:`/acilar/${item[0]}`})),
+  {title:locale==='tr'?'Transitler':locale==='en'?'Transits':'Διελεύσεις',description,category:'astrology',path:'/transitler'},
+  {title:locale==='tr'?'Retro Hareketler':locale==='en'?'Retrograde Motion':'Ανάδρομη Κίνηση',description,category:'astrology',path:'/retro-hareketler'}
+ ]};
 export function libraryPage(route,locale='tr'){
  const t=ui[locale];
  if(route==='/astroloji-kutuphanesi'){
