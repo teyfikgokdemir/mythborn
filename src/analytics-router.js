@@ -25,10 +25,30 @@ const allowAnalyticsProviders=policy=>{
   return next;
 };
 
+const LEGACY_EXACT_REDIRECTS=new Map([
+  ['/search','/arama'],
+  ['/en/search','/en/arama'],
+  ['/gr/search','/gr/arama'],
+  ['/el/search','/gr/arama'],
+  ['/account/login','/giris'],
+  ['/account/register','/kayit'],
+  ['/account','/hesabim'],
+  ['/pages/privacy','/gizlilik'],
+  ['/pages/privacy-policy','/gizlilik'],
+  ['/pages/terms','/kullanim-kosullari'],
+  ['/pages/terms-of-service','/kullanim-kosullari'],
+  ['/pages/terms-and-conditions','/kullanim-kosullari'],
+  ['/pages/cookies','/cerezler'],
+  ['/pages/cookie-policy','/cerezler'],
+  ['/pages/kvkk','/kvkk'],
+  ['/pages/kvkk-aydinlatma-metni','/kvkk']
+]);
+
 const LEGACY_SHOPIFY_PREFIXES=[
   '/products/',
   '/collections/',
   '/blogs/',
+  '/pages/',
   '/web-pixels@',
   '/cdn/shop/',
   '/checkouts/',
@@ -43,6 +63,7 @@ const LEGACY_SHOPIFY_EXACT=new Set([
   '/products',
   '/collections',
   '/blogs',
+  '/pages',
   '/cart',
   '/password',
   '/checkout',
@@ -51,7 +72,7 @@ const LEGACY_SHOPIFY_EXACT=new Set([
   '/account/login/multipass'
 ]);
 
-const stripLegacyLocale=pathname=>pathname.replace(/^\/(?:de|fr)(?=\/|$)/,'')||'/';
+const stripLegacyLocale=pathname=>pathname.toLowerCase().replace(/^\/(?:de|fr|es|it)(?=\/|$)/,'')||'/';
 
 const isLegacyShopifyPath=pathname=>{
   const normalized=stripLegacyLocale(pathname.replace(/\/+$/,'')||'/');
@@ -66,7 +87,7 @@ const goneResponse=()=>new Response('Gone',{status:410,headers:{
   'referrer-policy':'no-referrer'
 }});
 
-const robotsResponse=()=>new Response('User-agent: *\nAllow: /\n\nSitemap: https://mythborn.co/sitemap.xml\n',{headers:{
+const robotsResponse=()=>new Response('User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /yonetim\nSitemap: https://mythborn.co/sitemap.xml\n',{headers:{
   'content-type':'text/plain; charset=utf-8',
   'cache-control':'public, max-age=3600'
 }});
@@ -74,7 +95,18 @@ const robotsResponse=()=>new Response('User-agent: *\nAllow: /\n\nSitemap: https
 export default {
   async fetch(request,env,ctx){
     const url=new URL(request.url);
+    if(url.hostname==='www.mythborn.co'){
+      url.hostname='mythborn.co';
+      return Response.redirect(url.toString(),301);
+    }
+    if(url.pathname.length>1&&url.pathname.endsWith('/')){
+      url.pathname=url.pathname.slice(0,-1);
+      return Response.redirect(url.toString(),301);
+    }
     if(url.pathname==='/robots.txt')return robotsResponse();
+    if(LEGACY_EXACT_REDIRECTS.has(url.pathname)){
+      return Response.redirect(`https://mythborn.co${LEGACY_EXACT_REDIRECTS.get(url.pathname)}`,301);
+    }
     if(isLegacyShopifyPath(url.pathname))return goneResponse();
 
     const response=await app.fetch(request,env,ctx);
@@ -85,3 +117,4 @@ export default {
     return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
   }
 };
+
