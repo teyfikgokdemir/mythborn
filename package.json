@@ -1,12 +1,12 @@
 {
   "name": "mythborn",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
-  "description": "Tarot, astroloji ve sembolik farkındalık platformu",
+  "description": "Üç dilli Tarot, astroloji ve sembolik farkındalık platformu",
   "scripts": {
     "dev": "wrangler dev",
-    "audit": "node scripts/audit.mjs",
+    "audit": "node scripts/audit.mjs && node scripts/premium-audit.mjs",
     "check": "npm run audit",
     "preview": "npm run audit && wrangler deploy --name mythborn-preview",
     "deploy": "npm run audit && wrangler deploy",
