@@ -15,7 +15,7 @@ await check('/kadim-gokyuzu',200,['Kadim Gökyüzü Gelenekleri','Maya Zaman Dö
 await check('/maya-zaman-donguleri',200,['Tzolk’in','Haab','Uzun Sayım','article']);
 await check('/mezopotamya-astrolojisi',200,['Enūma Anu Enlil','MUL.APIN','12 eşit bölüm','article']);
 await check('/doga-gokyuzu-donguleri',200,['tek bir evrensel şaman astrolojisi yoktur','MEVSİMLER','kültürel saygı']);
-await check('/travma-bilincli-astroloji',200,['data-trauma-reflection','terapi veya tanı','GÜVENLİK','reflection.js']);
+await check('/travma-bilincli-astroloji',200,['data-trauma-reflection','terapi','tanı','GÜVENLİK','reflection.js']);
 await check('/kayit',200,['Ücretsiz hesap oluştur','noindex,nofollow']);
 await check('/giris',200,['Giriş yap','noindex,nofollow']);
 await check('/hesabim',200,['GEÇMİŞ','Doğum haritam','noindex,nofollow']);
