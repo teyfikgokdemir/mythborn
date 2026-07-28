@@ -29,7 +29,6 @@ async function geocode(place){
   if(!result)throw new Error('Doğum yeri bulunamadı. Şehir ve ülke birlikte yazılmalı.');
   return{latitude:result.latitude,longitude:result.longitude,timezone:result.timezone,name:[result.name,result.admin1,result.country].filter(Boolean).join(', ')};
 }
-
 function zonedParts(date,timeZone){
   const parts=new Intl.DateTimeFormat('en-CA',{timeZone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(date);
   return Object.fromEntries(parts.filter(x=>x.type!=='literal').map(x=>[x.type,Number(x.value)]));
@@ -73,17 +72,39 @@ function buildAspects(planets){
   }
   return out.sort((a,b)=>a.orb-b.orb);
 }
-const planetInterpretation=(p)=>`${p.name} ${p.sign} burcunda ${p.degree.toFixed(2)}° ve ${p.house}. evde. ${p.sign} vurgusu ${p.element.toLowerCase()} elementinin ${p.mode.toLowerCase()} doğasını taşır.`;
+const planetInterpretation=p=>`${p.name} ${p.sign} burcunda ${p.degree.toFixed(2)}° ve ${p.house}. evde. ${p.sign} vurgusu ${p.element.toLowerCase()} elementinin ${p.mode.toLowerCase()} doğasını taşır.`;
+const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}});
+
+export async function calculateCurrentSky(){
+  try{
+    const instant=new Date();
+    const planets=bodies.map(([name,body])=>({name,...placement(planetLongitude(body,instant))}));
+    const currentAspects=buildAspects(planets).slice(0,8);
+    const counts=planets.reduce((out,p)=>(out[p.element]=(out[p.element]||0)+1,out),{});
+    const dominantElement=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0]?.[0]||'Dengeli';
+    const sun=planets.find(p=>p.name==='Güneş');
+    const moon=planets.find(p=>p.name==='Ay');
+    const mercury=planets.find(p=>p.name==='Merkür');
+    const headline=`Güneş ${sun.sign}, Ay ${moon.sign}: ${dominantElement.toLowerCase()} elementi bugün daha görünür.`;
+    const summary=`Günün ana zemini Güneş'in ${sun.sign} burcundaki ${sun.degree}° konumu ile Ay'ın ${moon.sign} burcundaki ${moon.degree}° hareketi arasında kuruluyor. Merkür ${mercury.sign} burcunda olduğu için düşünme ve iletişim biçiminde ${mercury.element.toLowerCase()} niteliği öne çıkabilir.`;
+    return json({
+      calculatedAt:instant.toISOString(),
+      engine:{name:'Astronomy Engine',method:'gerçek zamanlı jeosantrik ekliptik boylam'},
+      headline,summary,dominantElement,planets,aspects:currentAspects,
+      note:'Bu ekran astronomik konumları gösterir; yorumlar kişisel doğum haritası yerine güncel gökyüzünün genel sembolik temasını açıklar.'
+    });
+  }catch(error){return json({error:error.message||'Güncel gökyüzü hesaplanamadı.'},500)}
+}
 
 export async function calculateNatalChart(request){
   let input;
-  try{input=await request.json()}catch{return new Response(JSON.stringify({error:'Geçerli doğum bilgileri gönderilmedi.'}),{status:400,headers:{'content-type':'application/json; charset=utf-8'}})}
+  try{input=await request.json()}catch{return json({error:'Geçerli doğum bilgileri gönderilmedi.'},400)}
   const birthDate=String(input.birthDate||'');
   const birthTime=String(input.birthTime||'');
   const birthPlace=String(input.birthPlace||'').trim();
   const timeUnknown=Boolean(input.timeUnknown);
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(birthDate)||!birthPlace)return new Response(JSON.stringify({error:'Doğum tarihi ve doğum yeri zorunludur.'}),{status:400,headers:{'content-type':'application/json; charset=utf-8'}});
-  if(!timeUnknown&&!/^\d{2}:\d{2}$/.test(birthTime))return new Response(JSON.stringify({error:'Doğum saati girilmeli veya “saatimi bilmiyorum” seçilmelidir.'}),{status:400,headers:{'content-type':'application/json; charset=utf-8'}});
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(birthDate)||!birthPlace)return json({error:'Doğum tarihi ve doğum yeri zorunludur.'},400);
+  if(!timeUnknown&&!/^\d{2}:\d{2}$/.test(birthTime))return json({error:'Doğum saati girilmeli veya “saatimi bilmiyorum” seçilmelidir.'},400);
   try{
     const location=await geocode(birthPlace);
     const usedTime=timeUnknown?'12:00':birthTime;
@@ -102,11 +123,11 @@ export async function calculateNatalChart(request){
     const angles=asc===null?null:{ascendant:placement(asc),midheaven:placement(mc),descendant:placement(asc+180),imumCoeli:placement(mc+180),houseSystem:'Eşit Ev'};
     const sun=planets.find(x=>x.name==='Güneş'),moon=planets.find(x=>x.name==='Ay');
     const summary={sun:sun.sign,moon:moon.sign,rising:angles?.ascendant.sign||null,dominantElements:Object.entries(planets.reduce((a,p)=>(a[p.element]=(a[p.element]||0)+1,a),{})).sort((a,b)=>b[1]-a[1]).map(([element,count])=>({element,count}))};
-    return new Response(JSON.stringify({
+    return json({
       engine:{name:'Astronomy Engine',accuracy:'yaklaşık ±1 yay-dakikası gezegen konumu',houseSystem:angles?'Eşit Ev':null},
       birth:{date:birthDate,time:timeUnknown?null:birthTime,timeUnknown,utc:instant.toISOString(),location},
       summary,angles,houses,planets,aspects:buildAspects(planets),
       note:timeUnknown?'Doğum saati bilinmediği için yükselen, MC ve evler hesaplanmadı. Gezegen burçları öğlen referansıyla gösterildi.':'Yükselen, MC ve evler girilen doğum saati, koordinat ve tarihsel zaman dilimiyle hesaplandı.'
-    }),{headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}});
-  }catch(error){return new Response(JSON.stringify({error:error.message||'Doğum haritası hesaplanamadı.'}),{status:422,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}})}
+    });
+  }catch(error){return json({error:error.message||'Doğum haritası hesaplanamadı.'},422)}
 }
