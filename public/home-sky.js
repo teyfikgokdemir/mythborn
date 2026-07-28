@@ -24,12 +24,15 @@ if(root){
     el:{
       eye:'Ο ΣΗΜΕΡΙΝΟΣ ΟΥΡΑΝΟΣ',updated:'Ζωντανά δεδομένα',sun:'Ήλιος',moon:'Σελήνη',
       aspect:'Ισχυρότερη όψη',none:'Δεν υπάρχει κύρια όψη εντός του καθορισμένου ορίου',
-      summary:(sun,moon,aspect)=>`Στον σημερινό ουρανό, ο Ήλιος βρίσκεται στον ${sun} και η Σελήνη στον ${moon}. ${aspect}`,
-      aspectSummary:(from,to,type)=>`Η ισχυρότερη όψη είναι το ${type} μεταξύ ${from} και ${to}.`,
+      summary:(sun,moon,aspect)=>`Στον σημερινό ουρανό, ο Ήλιος βρίσκεται ${sun} και η Σελήνη ${moon}. ${aspect}`,
+      aspectSummary:(from,to,type)=>`Η ισχυρότερη όψη είναι ${type} μεταξύ ${from} και ${to}.`,
       all:'Προβολή όλων των θέσεων',retry:'Νέα προσπάθεια',
       error:'Ο σημερινός ουρανός δεν μπορεί να εμφανιστεί αυτή τη στιγμή. Οι υπόλοιπες εμπειρίες του Mythborn παραμένουν διαθέσιμες.'
     }
   };
+  const greekSignPhrase={'Koç':'στον Κριό','Boğa':'στον Ταύρο','İkizler':'στους Διδύμους','Yengeç':'στον Καρκίνο','Aslan':'στον Λέοντα','Başak':'στην Παρθένο','Terazi':'στον Ζυγό','Akrep':'στον Σκορπιό','Yay':'στον Τοξότη','Oğlak':'στον Αιγόκερω','Kova':'στον Υδροχόο','Balık':'στους Ιχθύες'};
+  const greekPlanetCase={'Güneş':'Ήλιου','Ay':'Σελήνης','Merkür':'Ερμή','Venüs':'Αφροδίτης','Mars':'Άρη','Jüpiter':'Δία','Satürn':'Κρόνου','Uranüs':'Ουρανού','Neptün':'Ποσειδώνα','Plüton':'Πλούτωνα'};
+  const greekAspectPhrase={conjunction:'η σύνοδος',opposition:'η αντίθεση',square:'το τετράγωνο',trine:'το τρίγωνο',sextile:'το εξάγωνο'};
   const names={
     en:{'Güneş':'Sun','Ay':'Moon','Merkür':'Mercury','Venüs':'Venus','Mars':'Mars','Jüpiter':'Jupiter','Satürn':'Saturn','Uranüs':'Uranus','Neptün':'Neptune','Plüton':'Pluto','Koç':'Aries','Boğa':'Taurus','İkizler':'Gemini','Yengeç':'Cancer','Aslan':'Leo','Başak':'Virgo','Terazi':'Libra','Akrep':'Scorpio','Yay':'Sagittarius','Oğlak':'Capricorn','Kova':'Aquarius','Balık':'Pisces',conjunction:'conjunction',opposition:'opposition',square:'square',trine:'trine',sextile:'sextile'},
     el:{'Güneş':'Ήλιος','Ay':'Σελήνη','Merkür':'Ερμής','Venüs':'Αφροδίτη','Mars':'Άρης','Jüpiter':'Δίας','Satürn':'Κρόνος','Uranüs':'Ουρανός','Neptün':'Ποσειδώνας','Plüton':'Πλούτωνας','Koç':'Κριός','Boğa':'Ταύρος','İkizler':'Δίδυμοι','Yengeç':'Καρκίνος','Aslan':'Λέων','Başak':'Παρθένος','Terazi':'Ζυγός','Akrep':'Σκορπιός','Yay':'Τοξότης','Oğlak':'Αιγόκερως','Kova':'Υδροχόος','Balık':'Ιχθύες',conjunction:'σύνοδο',opposition:'αντίθεση',square:'τετράγωνο',trine:'τρίγωνο',sextile:'εξάγωνο'}
@@ -51,8 +54,16 @@ if(root){
     const sun=planets.find(planet=>planet.name==='Güneş'),moon=planets.find(planet=>planet.name==='Ay');
     if(!sun||!moon)throw new Error('missing luminaries');
     const date=new Intl.DateTimeFormat(locale==='tr'?'tr-TR':locale==='en'?'en-GB':'el-GR',{dateStyle:'medium',timeStyle:'short',timeZone:'Europe/Istanbul'}).format(new Date(data.calculatedAt));
-    const aspectText=aspect?t.aspectSummary(term(aspect.from.name),term(aspect.to.name),term(aspect.key)):t.none;
-    const accessible=t.summary(term(sun.sign),term(moon.sign),aspectText);
+    const aspectText=aspect?t.aspectSummary(
+      locale==='el'?(greekPlanetCase[aspect.from.name]||term(aspect.from.name)):term(aspect.from.name),
+      locale==='el'?(greekPlanetCase[aspect.to.name]||term(aspect.to.name)):term(aspect.to.name),
+      locale==='el'?greekAspectPhrase[aspect.key]:term(aspect.key)
+    ):t.none;
+    const accessible=t.summary(
+      locale==='el'?(greekSignPhrase[sun.sign]||term(sun.sign)):term(sun.sign),
+      locale==='el'?(greekSignPhrase[moon.sign]||term(moon.sign)):term(moon.sign),
+      aspectText
+    );
     const aspectLine=aspect?(()=>{
       const from=longitudePoint(aspect.from.longitude,78),to=longitudePoint(aspect.to.longitude,78);
       return `<line class="sky-aspect-line sky-aspect-${aspect.key}" x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}"></line>`;
