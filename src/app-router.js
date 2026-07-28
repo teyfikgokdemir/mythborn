@@ -7,6 +7,7 @@ import {premiumGuideSearchItems} from './premium-guides.js';
 import {blogMeta} from './blog.js';
 import {corePage,coreMeta} from './core-pages.js';
 import {discoveryPage,discoveryMeta} from './discovery-core.js';
+import {earlyAccessBanner,paywallPage,premiumState,routeRequiresPremium} from './premium-access.js';
 
 const SITE='https://mythborn.co';
 const localeInfo={
@@ -169,14 +170,14 @@ function searchPage(locale){
   const schema=JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Mythborn',url:SITE,potentialAction:{'@type':'SearchAction',target:`${SITE}${href(locale,'/arama')}?q={search_term_string}`,'query-input':'required name=search_term_string'}});
   return `<!doctype html><html lang="${localeInfo[locale].html}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} — Mythborn</title><meta name="description" content="${t.knowledgeCopy}"><link rel="canonical" href="${SITE}${href(locale,'/arama')}"><link rel="stylesheet" href="/app.css"><link rel="stylesheet" href="/final.css"><link rel="stylesheet" href="/mobile-menu-clean.css"><script type="application/ld+json">${schema}</script></head><body><div class="shell"><header class="topbar"><a class="brand" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a>${desktopNav(locale)}${headerLanguage(locale,'/arama')}<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale,'/arama')}<main id="ana-icerik"><section class="section search-page"><p class="eyebrow">${t.knowledge}</p><h1>${title}</h1><form role="search" data-site-search><label>${title}<input type="search" name="q" autocomplete="off"></label><label>${t.exploreGroup}<select name="category"><option value="">${t.exploreGroup}</option><option value="tarot">${t.tarot}</option><option value="astrology">${t.astrology}</option><option value="dream">${t.dreams}</option><option value="journal">${t.blog}</option></select></label><button class="btn btn-primary" type="submit">${title}</button></form><div class="search-results" aria-live="polite" data-search-results></div></section></main>${footer(locale)}</div><script>window.MYTHBORN_LOCALE=${JSON.stringify(locale)}</script><script src="/search.js" defer></script><script src="/shell.js" defer></script></body></html>`;
 }
-function decorate(html,locale,path){
+function decorate(html,locale,path,accessState){
   const t=labels[locale];
   html=html.replace(/\/el(?=\/|["?#])/g,'/gr').replaceAll('>EL<','>GR<');
   html=html.replace(/<html lang="[^"]*"/,`<html lang="${localeInfo[locale].html}"`);
   html=html.replace(/<nav class="nav(?: [^"]*)?"[\s\S]*?<\/nav>/,desktopNav(locale));
   html=html.replace(/<footer\b[\s\S]*?<\/footer>/,footer(locale));
   const localizedMain=corePage(locale,path)||discoveryPage(locale,path);
-  if(localizedMain)html=html.replace(/<main\b[\s\S]*?<\/main>/,localizedMain);
+  if(localizedMain&&!html.includes('data-premium-paywall'))html=html.replace(/<main\b[\s\S]*?<\/main>/,localizedMain);
   if(['/gizlilik','/kvkk','/kullanim-kosullari','/cerezler'].includes(path))html=html.replace(/<main\b[\s\S]*?<\/main>/,legalMain(locale,path));
   if(!html.includes('<header')){
     const sharedHeader=`<div class="shell"><header class="topbar"><a class="brand" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a>${desktopNav(locale)}${headerLanguage(locale,path)}<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale,path)}`;
@@ -189,6 +190,8 @@ function decorate(html,locale,path){
   html=html.replace(/<nav class="(?:language-switcher|lang)"[\s\S]*?<\/nav>/g,'');
   if(!html.includes('skip-link'))html=html.replace(/<body([^>]*)>/,`<body$1><a class="skip-link" href="#ana-icerik">${locale==='tr'?'Ana içeriğe geç':locale==='en'?'Skip to main content':'Μετάβαση στο κύριο περιεχόμενο'}</a>`);
   html=html.replace(/<body([^>]*)>/,`<body$1 data-route="${path}">`);
+  const accessBanner=earlyAccessBanner(locale,accessState);
+  if(accessBanner&&!html.includes('data-early-access'))html=html.replace(/<body([^>]*)>/,`<body$1>${accessBanner}`);
   html=html.replace(/<main(?![^>]*\bid=)([^>]*)>/,`<main id="ana-icerik"$1>`);
   if(path==='/'&&!html.includes('knowledge-hub'))html=html.replace('</main>',`${knowledgeHub(locale)}</main>`);
   const canonical=`${SITE}${href(locale,path)}`;
@@ -207,7 +210,7 @@ function decorate(html,locale,path){
   html=html
     .replace(/<link rel="canonical" href="[^"]*">/g,'')
     .replace(/<meta (?:property|name)="(?:og:title|og:description|og:image(?::(?:width|height|alt))?|og:locale|twitter:image(?::alt)?|twitter:title|twitter:description)"[^>]*>/g,'')
-    .replace('</head>',`<link rel="canonical" href="${canonical}"><link rel="stylesheet" href="/mobile-menu-clean.css"><link rel="stylesheet" href="/cinematic.css">${heroPreload}<meta property="og:locale" content="${locale==='tr'?'tr_TR':locale==='en'?'en_US':'el_GR'}"><meta property="og:title" content="${pageTitle}"><meta property="og:description" content="${pageDescription}"><meta property="og:image" content="${socialImage}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${socialImageAlt[locale]}"><meta name="twitter:title" content="${pageTitle}"><meta name="twitter:description" content="${pageDescription}"><meta name="twitter:image" content="${socialImage}"><meta name="twitter:image:alt" content="${socialImageAlt[locale]}"></head>`);
+    .replace('</head>',`<link rel="canonical" href="${canonical}"><link rel="stylesheet" href="/mobile-menu-clean.css"><link rel="stylesheet" href="/cinematic.css"><link rel="stylesheet" href="/premium-access.css">${path==='/'?'<link rel="stylesheet" href="/home-experience.css">':''}${heroPreload}<meta property="og:locale" content="${locale==='tr'?'tr_TR':locale==='en'?'en_US':'el_GR'}"><meta property="og:title" content="${pageTitle}"><meta property="og:description" content="${pageDescription}"><meta property="og:image" content="${socialImage}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${socialImageAlt[locale]}"><meta name="twitter:title" content="${pageTitle}"><meta name="twitter:description" content="${pageDescription}"><meta name="twitter:image" content="${socialImage}"><meta name="twitter:image:alt" content="${socialImageAlt[locale]}"></head>`);
   if(!html.includes('SearchAction'))html=html.replace('</head>',`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Mythborn',url:SITE,potentialAction:{'@type':'SearchAction',target:`${SITE}${href(locale,'/arama')}?q={search_term_string}`,'query-input':'required name=search_term_string'}})}</script></head>`);
   html=html.replace('</head>',`<script>window.MYTHBORN_LOCALE=${JSON.stringify(locale)}</script></head>`);
   if(locale!=='tr'&&discoveryPage(locale,path)){
@@ -215,7 +218,8 @@ function decorate(html,locale,path){
     html=html.replace('</body>','<script src="/discovery-localized.js" defer></script></body>');
   }
   if(!html.includes('/shell.js'))html=html.replace('</body>','<script src="/shell.js" defer></script></body>');
-  if(path==='/'&&!html.includes('/home-sky.js'))html=html.replace('</body>','<script src="/home-sky.js" defer></script></body>');
+  if(path==='/'&&!html.includes('/home-sky.js'))html=html.replace('</body>','<script type="module" src="/home-sky.js"></script></body>');
+  if(!html.includes('/premium-access.js'))html=html.replace('</body>','<script src="/premium-access.js" defer></script></body>');
   if(!html.includes('/cinematic.js'))html=html.replace('</body>','<script src="/cinematic.js" defer></script></body>');
   if(!html.includes('/refinement.css'))html=html.replace('</head>','<style>@media(max-width:560px){.tarot-lib .tarot-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}</style><link rel="stylesheet" href="/refinement.css"></head>');
   if(!html.includes('/refinement.js'))html=html.replace('</body>','<script src="/refinement.js" defer></script></body>');
@@ -233,11 +237,12 @@ export default {
     if(incoming.pathname==='/llms.el.txt')return Response.redirect(`${SITE}/llms.gr.txt`,301);
     if(incoming.pathname==='/llms.en.txt')return new Response(llms.en,{headers:{'content-type':'text/plain; charset=utf-8'}});
     if(incoming.pathname==='/llms.gr.txt')return new Response(llms.el,{headers:{'content-type':'text/plain; charset=utf-8'}});
+    const accessState=premiumState(env,new Date());
     if(incoming.pathname==='/api/search-index'){
       const requested=incoming.searchParams.get('locale'),locale=requested==='en'?'en':requested==='el'||requested==='gr'?'el':'tr';
       return new Response(JSON.stringify({locale,count:searchItems(locale).length,items:searchItems(locale)}),{headers:{'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=3600'}});
     }
-    if(['/shell.js','/search.js','/home-sky.js','/discovery-localized.js','/mobile-menu-clean.css','/cinematic.js','/cinematic.css','/refinement.js','/refinement.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
+    if(['/shell.js','/search.js','/home-sky.js','/live-sky-model.js','/home-experience.css','/premium-access.js','/premium-access.css','/paywall.css','/discovery-localized.js','/mobile-menu-clean.css','/cinematic.js','/cinematic.css','/refinement.js','/refinement.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
     if(incoming.pathname==='/weekly.js'){
       const asset=await env.ASSETS.fetch(request);
       return new Response((await asset.text()).replaceAll("startsWith('/el')","startsWith('/gr')"),{status:asset.status,headers:asset.headers});
@@ -251,7 +256,8 @@ export default {
       return new Response(script,{status:asset.status,headers:asset.headers});
     }
     const locale=localeFrom(incoming.pathname),clean=cleanPath(incoming.pathname,locale);
-    if(clean==='/arama')return new Response(decorate(searchPage(locale),locale,clean),{headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html}});
+    if(clean==='/arama')return new Response(decorate(searchPage(locale),locale,clean,accessState),{headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html}});
+    if(await routeRequiresPremium(clean,accessState))return new Response(decorate(paywallPage(locale,clean),locale,clean,accessState),{status:200,headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html,'cache-control':'private, no-store'}});
     let forwarded=request;
     if(locale==='el'){
       const internal=new URL(request.url);
@@ -270,6 +276,6 @@ export default {
     const headers=new Headers(response.headers);
     headers.set('content-language',localeInfo[locale].html);
     const source=response.status===404?notFoundPage(locale):await response.text();
-    return new Response(decorate(source,locale,clean),{status:response.status,headers});
+    return new Response(decorate(source,locale,clean,accessState),{status:response.status,headers});
   }
 };
