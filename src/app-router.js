@@ -97,7 +97,7 @@ function desktopNav(locale){
 }
 function headerLanguage(locale,path){
   const t=locale==='tr'?'Dil':locale==='en'?'Language':'Γλώσσα';
-  return `<details class="header-language"><summary aria-label="${t}"><span aria-hidden="true">◎</span><strong>${locale==='el'?'GR':locale.toUpperCase()}</strong></summary><div class="header-language-panel">${['tr','en','el'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${code==='el'?'GR':code.toUpperCase()}</span><small>${code==='tr'?'Türkçe':code==='en'?'English':'Ελληνικά'}</small></a>`).join('')}</div></details>`;
+  return `<details class="header-language"><summary aria-label="${t}"><span aria-hidden="true">◎</span><strong>${locale==='el'?'GR':locale.toUpperCase()}</strong></summary><div class="header-language-panel">${['tr','en','el'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${code==='el'?'GR':code.toUpperCase()}</span> <small>${code==='tr'?'Türkçe':code==='en'?'English':'Ελληνικά'}</small></a>`).join('')}</div></details>`;
 }
 function group(title,links,locale,key){
   const id=`mobile-group-${key}`;
@@ -111,7 +111,7 @@ function mobileNav(locale,path='/'){
     ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/haftalik-burc',t.weeklyLong],['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale,'astrology')}
     ${group(t.exploreGroup,[['/kadim-gokyuzu',t.ancient],['/ruya-yorumlari',t.dreams],['/numeroloji',t.numerology],['/blog',t.blog],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/astroloji-sozlugu',t.glossary]],locale,'explore')}
     ${group(t.accountGroup,[['/giris',t.login],['/kayit',t.register],['/hesabim',t.account]],locale,'account')}
-    <section class="mobile-language" aria-label="${locale==='tr'?'Dil':locale==='en'?'Language':'Γλώσσα'}">${['tr','en','el'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${code==='el'?'GR':code.toUpperCase()}</span><small>${code==='tr'?'Türkçe':code==='en'?'English':'Ελληνικά'}</small></a>`).join('')}</section>
+    <section class="mobile-language" aria-label="${locale==='tr'?'Dil':locale==='en'?'Language':'Γλώσσα'}">${['tr','en','el'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${code==='el'?'GR':code.toUpperCase()}</span> <small>${code==='tr'?'Türkçe':code==='en'?'English':'Ελληνικά'}</small></a>`).join('')}</section>
   </nav>`;
 }
 function knowledgeHub(locale){

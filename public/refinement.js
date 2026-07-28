@@ -20,6 +20,20 @@
       message.textContent=locale==='tr'?'İstek şu anda gönderilemedi. Lütfen tekrar dene.':locale==='en'?'The request could not be sent. Please try again.':'Το αίτημα δεν στάλθηκε. Δοκίμασε ξανά.';
     }finally{button.disabled=false}
   }));
+  document.querySelectorAll('[data-password-toggle]').forEach(button=>button.addEventListener('click',()=>{
+    const input=button.closest('.password-field')?.querySelector('input');
+    if(!input)return;
+    const reveal=input.type==='password';
+    input.type=reveal?'text':'password';
+    button.setAttribute('aria-pressed',String(reveal));
+    button.setAttribute('aria-label',locale==='tr'?(reveal?'Şifreyi gizle':'Şifreyi göster'):locale==='en'?(reveal?'Hide password':'Show password'):(reveal?'Απόκρυψη κωδικού':'Εμφάνιση κωδικού'));
+    input.focus({preventScroll:true});
+  }));
+
+  document.querySelectorAll('[data-library-search]').forEach(input=>input.addEventListener('input',()=>{
+    const query=input.value.trim().toLocaleLowerCase(document.documentElement.lang);
+    document.querySelectorAll('[data-library-item]').forEach(card=>{card.hidden=query&&!card.textContent.toLocaleLowerCase(document.documentElement.lang).includes(query)});
+  }));
 
   const sky=document.querySelector('[data-current-sky]');
   if(sky&&/hesap|calculat|υπολογ/i.test(sky.textContent)){
@@ -45,22 +59,41 @@
   dialog.hidden=true;
   dialog.innerHTML=`<section class="consent-panel" role="dialog" aria-modal="true" aria-labelledby="consent-title"><p class="eyebrow">${copy.eye}</p><h2 id="consent-title">${copy.title}</h2><p>${copy.body}</p><p><strong>${copy.essential}</strong></p><label><span>${copy.analytics}</span><input type="checkbox" data-consent-analytics></label><div class="consent-actions"><button class="btn btn-primary" type="button" data-consent-accept>${copy.accept}</button><button class="btn btn-ghost" type="button" data-consent-reject>${copy.reject}</button><button class="btn btn-secondary" type="button" data-consent-save>${copy.save}</button></div></section>`;
   document.body.appendChild(dialog);
-  const read=()=>{try{return JSON.parse(localStorage.getItem(key)||'null')}catch{return null}};
+  const read=()=>{
+    try{const stored=JSON.parse(localStorage.getItem(key)||'null');if(stored)return stored}catch{}
+    const cookie=document.cookie.match(/(?:^|;\s*)mythborn_consent=(all|essential)(?:;|$)/)?.[1];
+    return cookie?{essential:true,analytics:cookie==='all'}:null;
+  };
+  let consentPreviousFocus=null;
+  const closeConsent=()=>{
+    dialog.hidden=true;
+    document.body.classList.remove('has-open-consent');
+    if(consentPreviousFocus instanceof HTMLElement)consentPreviousFocus.focus({preventScroll:true});
+  };
   const persist=analytics=>{
     const value={essential:true,analytics,updatedAt:new Date().toISOString()};
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
     document.cookie=`mythborn_consent=${analytics?'all':'essential'}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
-    dialog.hidden=true;
+    closeConsent();
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
   };
   const open=()=>{
+    consentPreviousFocus=document.activeElement;
     dialog.querySelector('[data-consent-analytics]').checked=Boolean(read()?.analytics);
     dialog.hidden=false;
+    document.body.classList.add('has-open-consent');
     requestAnimationFrame(()=>dialog.querySelector('button').focus());
   };
   dialog.querySelector('[data-consent-accept]').addEventListener('click',()=>persist(true));
   dialog.querySelector('[data-consent-reject]').addEventListener('click',()=>persist(false));
   dialog.querySelector('[data-consent-save]').addEventListener('click',()=>persist(dialog.querySelector('[data-consent-analytics]').checked));
   document.querySelectorAll('[data-consent-manage]').forEach(button=>button.addEventListener('click',open));
+  dialog.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&read()){event.preventDefault();closeConsent();return}
+    if(event.key!=='Tab')return;
+    const items=[...dialog.querySelectorAll('button,input')],first=items[0],last=items.at(-1);
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+  });
   if(!read())open();
 })();
