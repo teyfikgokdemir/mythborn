@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mythborn",
-  "main": "src/router.js",
+  "main": "src/app-router.js",
   "compatibility_date": "2026-07-20",
   "workers_dev": true,
   "preview_urls": true,
@@ -24,11 +24,8 @@
     }
   ]
 
-  // Zorunlu secret/vars:
+  // Required secrets/vars:
+  // GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET
   // PAYMENT_WEBHOOK_SECRET
-  //
-  // Turnstile etkinleştirilecekse:
   // TURNSTILE_SITE_KEY, TURNSTILE_SECRET
-  //
-  // E-posta sağlayıcısı bağlandığında EMAIL binding kullanılacaktır.
 }
