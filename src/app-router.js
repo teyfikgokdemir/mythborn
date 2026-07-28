@@ -6,6 +6,7 @@ import {localizedBlogSearchItems} from './localized-blog.js';
 import {premiumGuideSearchItems} from './premium-guides.js';
 import {blogMeta} from './blog.js';
 import {corePage,coreMeta} from './core-pages.js';
+import {discoveryPage,discoveryMeta} from './discovery-core.js';
 
 const SITE='https://mythborn.co';
 const localeInfo={
@@ -169,13 +170,13 @@ function decorate(html,locale,path){
   html=html.replace(/<html lang="[^"]*"/,`<html lang="${localeInfo[locale].html}"`);
   html=html.replace(/<nav class="nav">[\s\S]*?<\/nav>/,desktopNav(locale));
   html=html.replace(/<footer\b[\s\S]*?<\/footer>/,footer(locale));
-  const localizedMain=corePage(locale,path);
+  const localizedMain=corePage(locale,path)||discoveryPage(locale,path);
   if(localizedMain)html=html.replace(/<main\b[\s\S]*?<\/main>/,localizedMain);
   if(['/gizlilik','/kvkk','/kullanim-kosullari','/cerezler'].includes(path))html=html.replace(/<main\b[\s\S]*?<\/main>/,legalMain(locale,path));
   if(!html.includes('mobile-menu-button'))html=html.replace('</header>',`<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale)}`);
   if(path==='/'&&!html.includes('knowledge-hub'))html=html.replace('</main>',`${knowledgeHub(locale)}</main>`);
   const canonical=`${SITE}${href(locale,path)}`;
-  const localizedMeta=coreMeta(locale,path);
+  const localizedMeta=coreMeta(locale,path)||discoveryMeta(locale,path);
   if(localizedMeta){
     html=html.replace(/<title>[^<]*<\/title>/,`<title>${localizedMeta.title}</title>`);
     html=html.replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${localizedMeta.description}">`);
@@ -194,6 +195,10 @@ function decorate(html,locale,path){
   if(!html.includes('SearchAction'))html=html.replace('</head>',`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Mythborn',url:SITE,potentialAction:{'@type':'SearchAction',target:`${SITE}${href(locale,'/arama')}?q={search_term_string}`,'query-input':'required name=search_term_string'}})}</script></head>`);
   if(!html.includes('language-switcher'))html=html.replace('</body>',`${languageSwitcher(locale,path)}</body>`);
   html=html.replace('</head>',`<script>window.MYTHBORN_LOCALE=${JSON.stringify(locale)}</script></head>`);
+  if(locale!=='tr'&&discoveryPage(locale,path)){
+    html=html.replace(/<script src="\/(?:discover|sky|synastry)\.js" defer><\/script>/g,'');
+    html=html.replace('</body>','<script src="/discovery-localized.js" defer></script></body>');
+  }
   if(!html.includes('/shell.js'))html=html.replace('</body>','<script src="/shell.js" defer></script></body>');
   if(path==='/'&&!html.includes('/home-sky.js'))html=html.replace('</body>','<script src="/home-sky.js" defer></script></body>');
   if(!html.includes('/cinematic.js'))html=html.replace('</body>','<script src="/cinematic.js" defer></script></body>');
@@ -214,7 +219,7 @@ export default {
       const requested=incoming.searchParams.get('locale'),locale=requested==='en'?'en':requested==='el'||requested==='gr'?'el':'tr';
       return new Response(JSON.stringify({locale,count:searchItems(locale).length,items:searchItems(locale)}),{headers:{'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=3600'}});
     }
-    if(['/shell.js','/search.js','/home-sky.js','/mobile-menu-clean.css','/cinematic.js','/cinematic.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
+    if(['/shell.js','/search.js','/home-sky.js','/discovery-localized.js','/mobile-menu-clean.css','/cinematic.js','/cinematic.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
     if(incoming.pathname==='/weekly.js'){
       const asset=await env.ASSETS.fetch(request);
       return new Response((await asset.text()).replaceAll("startsWith('/el')","startsWith('/gr')"),{status:asset.status,headers:asset.headers});
