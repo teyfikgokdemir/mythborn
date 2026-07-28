@@ -3,3 +3,15 @@ ADMIN_EMAILS=teyfik@example.com
 PAYMENT_WEBHOOK_SECRET=replace-with-a-long-random-secret
 TURNSTILE_SITE_KEY=
 TURNSTILE_SECRET=
+
+# Google OAuth
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+
+# Apple Sign in
+# APPLE_CLIENT_ID, Apple Developer içindeki Services ID değeridir.
+APPLE_CLIENT_ID=
+APPLE_TEAM_ID=
+APPLE_KEY_ID=
+# .p8 içeriğini tek satırda \n kaçışlarıyla sakla veya Cloudflare secret olarak gir.
+APPLE_PRIVATE_KEY=
