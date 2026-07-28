@@ -5,8 +5,8 @@
   document.querySelectorAll('[data-tarot-filter]').forEach(button=>button.addEventListener('click',()=>{
     const group=button.dataset.tarotFilter;
     document.querySelectorAll('[data-tarot-filter]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-    document.querySelectorAll('[data-tarot-group]').forEach(card=>{card.hidden=group!=='all'&&card.dataset.tarotGroup!==group});
-    document.querySelectorAll('.tarot-section').forEach(section=>{section.hidden=![...section.querySelectorAll('[data-tarot-group]')].some(card=>!card.hidden)});
+    document.querySelectorAll('[data-tarot-group]').forEach(card=>{card.hidden=group!=='all'&&card.dataset.tarotGroup!==group;card.style.display=card.hidden?'none':''});
+    document.querySelectorAll('.tarot-section').forEach(section=>{section.hidden=![...section.querySelectorAll('[data-tarot-group]')].some(card=>!card.hidden);section.style.display=section.hidden?'none':''});
   }));
 
   document.querySelectorAll('[data-password-reset]').forEach(form=>form.addEventListener('submit',async event=>{

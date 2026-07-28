@@ -217,7 +217,7 @@ function decorate(html,locale,path){
   if(!html.includes('/shell.js'))html=html.replace('</body>','<script src="/shell.js" defer></script></body>');
   if(path==='/'&&!html.includes('/home-sky.js'))html=html.replace('</body>','<script src="/home-sky.js" defer></script></body>');
   if(!html.includes('/cinematic.js'))html=html.replace('</body>','<script src="/cinematic.js" defer></script></body>');
-  if(!html.includes('/refinement.css'))html=html.replace('</head>','<link rel="stylesheet" href="/refinement.css"></head>');
+  if(!html.includes('/refinement.css'))html=html.replace('</head>','<style>@media(max-width:560px){.tarot-lib .tarot-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}</style><link rel="stylesheet" href="/refinement.css"></head>');
   if(!html.includes('/refinement.js'))html=html.replace('</body>','<script src="/refinement.js" defer></script></body>');
   html=html.replace(/<img src="\/images\/mythborn-emblem\.png" alt=""(?:\s+[^>]*)?>/g,'<img src="/images/mythborn-emblem.png" alt="" width="275" height="257" decoding="async">');
   return html;

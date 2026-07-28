@@ -1,0 +1,6090 @@
+{
+  "schema": 1,
+  "method": "Original OpenAI image generation; 256-bit horizontal difference hash from the 1600x2800 master.",
+  "entries": [
+    {
+      "asset": "major/00-fool",
+      "master": {
+        "bytes": 1104802,
+        "dhash256": "64c9d0f0c60cd98493198f9286b79e3f9c3e9836d43cc43ccc3cd0f4e0f860c9",
+        "sha256": "34f05a36757d58720e09be8ee0f7614648d70de58bc6f5f38226ffeb91594652",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 58603,
+          "sha256": "131f1e83657ed2e014528be5b7bf61461ad5eef875bd6df0f03e267261eaa9a3",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 95174,
+          "sha256": "d6d77e937aecd9432dd73476989b267af4d2b48d40dd0d1c72d1239da9c87da3",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 181508,
+          "sha256": "9cd1e7278dcaba86637f46449da3861acf26471915297e6bb7cd07c463640bac",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 294376,
+          "sha256": "a0931a45f4127435323ba454cef40a872652edf4bdf4a6aef9a96b2ddbad9975",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 41519,
+          "sha256": "c6460199ff08078c15dcc8be31cc46ae360517acfb9e0e4a85abfc7c495a8266",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 72922,
+          "sha256": "a037cd705f24c22643d5e49d5ba5a22ffab55f9a4796cfb6c25880e8de5f0ba7",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 126358,
+          "sha256": "362786adfba075484961e4098e722a1baeb3f37655de9391bc974e7b33bf380f",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 203394,
+          "sha256": "af86b554039efb75b06134137bf5e0cb5d305f64a539b45ed5034b0a80472a3c",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/01-magician",
+      "master": {
+        "bytes": 1062042,
+        "dhash256": "c0e4c0c2a0f283368ab4cccccccc74d1acebe8e8ce8c8e8cd4cc92d4c2bcc0ec",
+        "sha256": "69aac516d59c8e20d950c2fc13654a7e81b2e2dbd375041c616465c3f9137853",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 64740,
+          "sha256": "57a08aa64a54b9a15c16848cd908235d138e1984356d58af62631b69a5337673",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 104528,
+          "sha256": "4af557aa042f62c07846d032b1e152bd0e0672cfd0ad81a114fea2dcb49e5323",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 180760,
+          "sha256": "fab9d0b9c4560d80ccb5055840c5db3c9a8d08a964a539c50be06235c4487864",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 287700,
+          "sha256": "c44c5b51ca47c7baf8f2d048f09f31ee989d75e42c44c8a36e8f40b3c7c3a421",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 45354,
+          "sha256": "6ed16d02e3ed4d8bd6b3054f75e354f38bfc711a7fcabfe7063c60fcbaacc229",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 79316,
+          "sha256": "cc2b31011710ed9f6109b5780e646fe853aac13e391ce060bdacccbb3c7c16cb",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 128028,
+          "sha256": "b7f1dbdb2283528d79add65a4084bfa437c48825a8ac8e1078f4b4c174d873c0",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 198742,
+          "sha256": "6f08a78d91646306b5b37fff5e97a26d96b4ec2dc47ab6ff96d4cd913ab0ab2b",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/02-high-priestess",
+      "master": {
+        "bytes": 1021490,
+        "dhash256": "60f9f0e8c0d4cccc90e472b39696cccc98c492b6b232b2f0c0f4c0f4e0f86169",
+        "sha256": "024a22908bf4b8d4267ac63688cc593fdddabab6b8a724779676a2b5a1e27b08",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 50212,
+          "sha256": "9c595dc6a448dbd1a2e922c36486c1cc91637d33a50c87678b71300edd1e2165",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 83820,
+          "sha256": "8f832c5c6136266eee26ad4b3eebbc252175e87435cbffb4987b44c0d7160065",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 166037,
+          "sha256": "2ec1cf947140ce0078d61bfbf62daf643f3f419fa40c17c2b449ac648c84e089",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 259896,
+          "sha256": "5368a5c7b9c5dc90dd14d9c664a176b22dcd9ad9fe264ecf8bcfb84db9aac2b4",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 34312,
+          "sha256": "362e5b56a106d01bc9528e1e999e19991e5f6083d72cba7d62f4093768bd402b",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 61810,
+          "sha256": "29eeb8825c38ccadf5b90040a869323679959e2ad3786218a3e4f5bb262226e8",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 112942,
+          "sha256": "137ef44f54d615def3dddc51dad6b2956f834cd733453f29940373d76118700d",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 176416,
+          "sha256": "f76a8712ec30e471bf8c47cc0b778ad00ea82d8a2f18c34b36ec5a422dcd75c2",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/03-empress",
+      "master": {
+        "bytes": 1068654,
+        "dhash256": "c4dc596463b936993e833cc1647164e964b144f8475c4adc46ecc4dcccdcc8dc",
+        "sha256": "87a81596bc64b5a654ab5a1248b6adb27e850f8c2df6fdce5f87141983ebfff4",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 66460,
+          "sha256": "5e3df930c9d37f346445ef4dfb75da81d89735dc44be9c9c8fbe9638c3cd831c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 112716,
+          "sha256": "d5002c7800ac0fded6dd307b3b8f8efd6d41ee37e925bcd1b598606214e52355",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 183748,
+          "sha256": "4f470222ce12d176eabb8729288ad21c139b757720b9eeaa1c02f07613030e2a",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 310066,
+          "sha256": "00c3563f9f66c01bccd66174870dd2c7d402277d0afb4793030e3634255cb6a4",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 48364,
+          "sha256": "6c805b0ca1ca6adda8db84d8249dc07c3cb18c52379628cfc6fba9ce3b33a795",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 88664,
+          "sha256": "fa181fe50d56d2e8a29f9b28fdc6d993b97148083018a5934d7e0ecbc257059f",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 131452,
+          "sha256": "ea8cdeeca1dbce29730b7a461db7e0baffed4f5fa262032ddb0a2eadcd9a7cf8",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 214844,
+          "sha256": "49657ee6abf181abe720caea96c799f9ae3578b5aad111b8a89633a3cd8f7b1b",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/04-emperor",
+      "master": {
+        "bytes": 1117048,
+        "dhash256": "64d9c0fcccc4d8f44ce453bd328f68c550ed62fec2f4c8d8c8eccce2c0f060f9",
+        "sha256": "8d67135520ec7b04dc8e856983aa795d11c0145798a6bb1dde75b8544ddb5abe",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 51812,
+          "sha256": "8bfc70de9cc08669c0bd2155c6ce9d608c94d173a312da72748b2ac553713089",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 85024,
+          "sha256": "9e60d74886f53a37ca2a926333a8ab124b61707cdb7602244ca73615efe6ab65",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 173688,
+          "sha256": "128eeb01bd9eaef57c59387f06b363924dada4afd0772c651db7ce3102917942",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 275510,
+          "sha256": "f9cfc8f3474b6a9503660663c5135a066ec57d83b00660e68b13dd6dd24d5349",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 36155,
+          "sha256": "e965023b6f24962b96d3490432b501087b33db8b9eeb04c70eb5e0f44d80dedc",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 62100,
+          "sha256": "65429cd9bf6414f641d972c7002a987a85cacd5cd784c950c1a50037858bbadc",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 119009,
+          "sha256": "205728196bdb76b9dc3cc4e0353b44532778c3d4e32e04fc6063cc53e0cc402f",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 186414,
+          "sha256": "7da5f02c6bd88091a16cd9d6aa97381554e705f748a4b2fa60df28b8441ed0d6",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/05-hierophant",
+      "master": {
+        "bytes": 1079218,
+        "dhash256": "6689c0f8d8fcd0fcb0cac17ca69a26cb68a9c0edd0fcc294db34d0a4e0f860e9",
+        "sha256": "f72d19199d7856130f2376b7ef762fe42e49968d49dce77b9d18cc6f75607fc8",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 56764,
+          "sha256": "cc514466a814490dd874ca4ad3a68f5a37bd5d0b0841f234cc45be3c7550c93d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 94270,
+          "sha256": "04057e06f9ce7f262f61d8e18bd4c097ad6f3ea9fba8413886859d1f43c799d9",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 176196,
+          "sha256": "7da9dbc25248037cc67be582e1a638aa7045824eb741a531f1e670599df7f9c5",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 286828,
+          "sha256": "ff78b6b95d8056d345a94ac9c9b84a3eb680e48da2fcae6685b27ba50583de3a",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40019,
+          "sha256": "15aa8a0d65a405d8dfb0ed5cb31f6d0a4f3f7cc42710cb01251d0b2185c71030",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 71430,
+          "sha256": "c04fd9e12ee89565b03b39a66398ca8efc014e5e8ad1a6a348ce420bb5603582",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 122803,
+          "sha256": "9503aae3c102298d40b53c0dde0ea4f33c2c4bb3c862c9ac6a86d456205b39e0",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 195960,
+          "sha256": "4c28d383cba01cf364989465d01a5c2f74c1d4e8ed80ede64eb4d03d7d28822b",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/06-lovers",
+      "master": {
+        "bytes": 990420,
+        "dhash256": "c96cc31cd6ace168b13294d6e4d8e0f1e0f4e0f6b0e8c0f8d0f8c0f898e6f0f6",
+        "sha256": "37cd947e5f06f563ffa2f53731d8353b17ce66eae276d194284acee30f0c967f",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 61428,
+          "sha256": "ee010e599395559915e83d3a8fab8f7c67838b648cc983a3b10ee356c9265759",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 95608,
+          "sha256": "0429602deff0dcb711d8b8ffde36673df3fff96251b3598716b06b61903f07b6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 178637,
+          "sha256": "c4ca07e07045423589b8f2dda897dab59b2f8b89668d1299c2dbc526c80e7ea2",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 265780,
+          "sha256": "a1a57aa63fd485e89ad079ff9c48298b38d974fc1b712514afb8e97cd456486b",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 42664,
+          "sha256": "90de48c0ea605b2c70917e42b01841758281f076ff5efa3ce8a0327f1aaf4f07",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 71542,
+          "sha256": "71752ed53d8337092bf57b0c1ad6c80a77b20fa8d441e82da31124c06927b358",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 125508,
+          "sha256": "45f29c69e65e73644b43e2fde0a8f3a030612c4fb8ea5d27e76fe53e6f91effa",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 180074,
+          "sha256": "1874f2b81b7842914ba0c94783d4a56291e7a78b0136e6224d51b0ef4e153262",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/07-chariot",
+      "master": {
+        "bytes": 1084466,
+        "dhash256": "34c518e55cc55ecd1b254e8d2ccb1cc649cd0ccd0e8c471dc69cc3bcc33cc17c",
+        "sha256": "be59509f212b78e0f693071f979f493ec89a7be51769ff8284153784732e9269",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 63198,
+          "sha256": "dba9df3b82586f583d59bb976c874e39f2833f8541fbcea2cad4235af72f0076",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 105654,
+          "sha256": "b70f3c36c653a73f38a809ae49d6e1f8bc6207e5c11f14775518269b74c57713",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 185357,
+          "sha256": "e0ddfd4233118cdad2ca9a0f0728e47b23f652f2bf5f5de956971f0570789aeb",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 293484,
+          "sha256": "ab3f64bb7d1ba239874d1aa82c89563bcd6b559511fc4aea5baf316ad2d402f6",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 44454,
+          "sha256": "c1a4959bbcc54f9ee49f50d14ed139623f33f1c000e63901ff789c562bbf7889",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 81710,
+          "sha256": "7604ba2a8afa2efd2166efe229ad623205514ae278fe348f80c9c8a8a11cbfe2",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 130713,
+          "sha256": "f30c7b2ae8e4f664483304e2c9b5366b6e4df3d2e2d3d4c35c9dc812f10e6d47",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 204196,
+          "sha256": "18ba307463b2b558b2964d8c5a9fe56bb471a3ca3caea0d92e28ba060fd4d7a5",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/08-strength",
+      "master": {
+        "bytes": 1144730,
+        "dhash256": "64c960f9c0bc40e5403d40cd4cb749f95c6d703570954407c88dd8cc44e960f1",
+        "sha256": "02caacb5bb44cee440920b3bb5220a379b57b06565d967847124cce8d2fbe15b",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 58571,
+          "sha256": "32f4046b055a8d0c0138a59a661b6ab1336b03389ec6a280456cf4e6623e16c8",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 99700,
+          "sha256": "7a7b70d0709962e217b1d673296d62996bbc49aa85380bfd54d2009f3c1263c5",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 184020,
+          "sha256": "3f1d8bfeba74c7738ce7fa4ee4226a1b26998bc456822d6565ca8895b75ca9c2",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 315096,
+          "sha256": "77b0e07026fb2d7c20236699db03c4424731ae688c4a8556001e5a9a20c62669",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 41823,
+          "sha256": "dec71dd9da919f92d0e353543b7a5510f4fa3638c287131ff444cb4d8bb61302",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 76990,
+          "sha256": "fa9ea0cf7adfd0f9c850a112fc86aaf2d7400c6cfb44061708754950e63611cc",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 128564,
+          "sha256": "f5e8b4a3561a32fabc6852a789dd3754c4ab655ba739becd524738a6b83921ce",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 217394,
+          "sha256": "503ef5323603a5dc78f5c036b3a426049fdbe0abd4375c09027f40e5326be2c1",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/09-hermit",
+      "master": {
+        "bytes": 905582,
+        "dhash256": "d10cd834cc3cc07ce078db38dab04ce49c689a4cd264f660cc66cc7cd278d26c",
+        "sha256": "95dfddaa8a6202df593a7cbb1185e039a8da06f8fb055cdfff0831e179ebd638",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 53130,
+          "sha256": "7fc20a0da889ac5e3a8d1419e63ade3e3b167ded12c2f1f57c2c8a42aa4b2af4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 76326,
+          "sha256": "6072982832382690d8ea57c704d7f63434e1630b0e788cee89934d69b8896851",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 156842,
+          "sha256": "8aefe504ca55931c633a7cbf5b44420f0699260315ce81e8c10460e047bfaa37",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 223934,
+          "sha256": "d90d7f4e8101573ce5ee7c229bde0556e2d6b1ce891c0df16f74e160e789eb64",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 37005,
+          "sha256": "22e74a878732e2224707c7a71364d62f6f88509f47a4c3e09f4841468e2f47a3",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 56404,
+          "sha256": "90a980b96942268ca53c0e64bf4018658480cbca6a740f27671f9aa4a76161f9",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 108902,
+          "sha256": "bd2c267119a7504fe64cec3dfb803ac6bf10b1dace1dca9868b983cbed040656",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 149338,
+          "sha256": "e82fc07ffdfbb02c547be5faa89e58e566711525e2d0d04ba5e6c74201e86043",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/10-wheel-of-fortune",
+      "master": {
+        "bytes": 1343186,
+        "dhash256": "64c9e8cc860e860f0e070f0719178cc78e470f078e079e078f03b603f0e02969",
+        "sha256": "757b2fef41bccef0f3e756f03f2dbb25341741b70a35954c767e6c37ba772a52",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 69128,
+          "sha256": "7d635648dd9593b6e0fa6c52b21ce06053eaf090acc407d5f96c230f0d02515a",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 124046,
+          "sha256": "6f5222cee27609102aa67455ed70262eabd63a0e90e0ab9b23d04a4c7c6e2f99",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 211435,
+          "sha256": "63027079c4c860be0952a83ffd2ca37bed998f8dfd6957316e0472d2fae3bb2e",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 384404,
+          "sha256": "360ce458c118357a53f039ca8a1a017aff944254618681d2933250adb9de4b10",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 49411,
+          "sha256": "b56a337d5fd70ec2f99b5d015d301ddfc512a1286b1a733cdbc946183239fc98",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 97304,
+          "sha256": "418db9358ea9b46b3627774095816a5bdcf9318760970be2d23ea772701513b0",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 149046,
+          "sha256": "6e5e04e4e3f7bfd0f31fa7a1ec24e24337a0ae6b3007eb49cffb0490c777b616",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 269216,
+          "sha256": "96c07cb7d13e5d7109145067fd9d063433c7ab1d819fa4480f64c27c11d4ada1",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/11-justice",
+      "master": {
+        "bytes": 1088314,
+        "dhash256": "6499e0f8c0b468e9b2f3d2a46cd9ce8e0c8f9cc6dcc5de849aa6c69cc69c18e5",
+        "sha256": "8a4b81f36a71a2211ac5a7d1be2d1f4e521246572c40a04a8dcf72d9ac35f2f1",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 57416,
+          "sha256": "0d66e4574eb58f86e11fb10d89b3e063306a7de727363f326f8da89bb98b74c0",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 90992,
+          "sha256": "3e99380fa2a209095758a78c954efe51b35d9ed1c5d058348910ed4a3f21e19f",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 178809,
+          "sha256": "1d63b8d0f711ae9163f148e29c2523fb9b0f4595b23086139a32aca2f820768d",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 289340,
+          "sha256": "b8e1c52f3c855b78d2455006d5c57bac3c08fb4457ed858798c2261d84be9e5a",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40488,
+          "sha256": "2baad04bc17b1347ce6945ab6c6c99e71967aa0acb2c39d68b6175fec17d6509",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 70138,
+          "sha256": "1a47f81711504ab6de5a9e66481294c318a1d707b595ceb1e7b66cd9e8fd67d2",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 125329,
+          "sha256": "11cad7a69c622880994a814652347359a3994596dcba3af93618617662e36674",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 197742,
+          "sha256": "4b752fa489dfd1aa301cf5b581e034951be074ec825e6242657af3e1f9e04376",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/12-hanged-man",
+      "master": {
+        "bytes": 1139458,
+        "dhash256": "60d9c4dcd574c94cd92495b2ab26d6a4d2bdc2b5caad216988ecc2bcd0e460f9",
+        "sha256": "42283964b002201f9e359efb293673c354797e9e0582e1c5332024a31a3d8138",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 64998,
+          "sha256": "844c01ba34eec53b33b47e9473793e070b8e6186bd674a59fed4068a057e21f6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 106238,
+          "sha256": "01792fbe7855b9802bd057cf6e0f708a07dce485b677ec2411c789a4676ad739",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 197959,
+          "sha256": "85fee2794c7ed10a204af819510144fc44ee64ba92fa3ca670c695a911203fc1",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 326870,
+          "sha256": "70d26a857dcad8cb928a63fdda6396a40f5ec1fed7c055a919ffdeb490f59802",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 46164,
+          "sha256": "a546b4cb23b915e914213983c887eee36a60f8079c12124fd7ef7deed697c0fd",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 83398,
+          "sha256": "9ba2a843a2a34928196d28e75d1a627da435f7261382af4da5a257eb49679bdf",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 139212,
+          "sha256": "42d5eee1e03cac3f6ff4ae76bac07a8db92b2ee8692c91b0dd433332e18a649b",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 223402,
+          "sha256": "6f11a07d12632ae613ecd9aa6342c7380a923bc5d9087333d0f9ce970d891822",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/13-death",
+      "master": {
+        "bytes": 1092490,
+        "dhash256": "68c9d8f0ee2238639643c663cb235d03de03fd07ec0fc70ec93cd87cc0d86069",
+        "sha256": "6a055e4ecbb436fe901e12e205c666fe14d3e0aba7fa95825ccc6e12321807b2",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 54716,
+          "sha256": "9e81045f1be81b365b4f649bede025b658d5b3ae71f3b43a40691a7f7540ecb0",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 89242,
+          "sha256": "88ea14a188be9eb3b5ec7b2e994fd5de5664952c68bd9ddd2be8fb81e261df21",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 176823,
+          "sha256": "775fca413ac86ccd906da90cbc6457507b95f2e758efa4eb41012f283f0c09c5",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 279240,
+          "sha256": "79c2d5178531a170ae7bb8cf78110bc359545a927fbb37edc740cd0269b05307",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 37876,
+          "sha256": "73b74a3b7663d6ff47cc1082ee25a4cc41c2005e82d997358f30232abcb3b614",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 67638,
+          "sha256": "6b2d45f462b00836a3982f6505a710edf9a8d7347d69a932fa6c6c769a7c8fb8",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 122172,
+          "sha256": "3b50f6dfc981bb1cff9c9cafd716679c01f983cb7e8f1024ceef84e07ec1130c",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 189120,
+          "sha256": "47f25a83c02aac657b34fa521d168f65ce8d889a830717e84ea810660921d7c7",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/14-temperance",
+      "master": {
+        "bytes": 1165908,
+        "dhash256": "60d1e0f8c0f4e37cd2a9de844ced4299453964d39466d4f4d234d32ce0fc78f1",
+        "sha256": "fdba17aabb00a445e413bac1080fee9bb879f2a78214aac01ccaea8558ae880e",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 63406,
+          "sha256": "d23fea3c5f506a65aeb9e4aff22ef82e194bc3e29689d1ee5cf69b72091e60d0",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 105762,
+          "sha256": "687f34d52072abb6ed33b424054e5d2a178598898c0b850965aac105de32da2c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 190321,
+          "sha256": "dc07dc6ae420e3ce1d8280d149c8a42a40e3133dde146f0645c0c42dd5bda552",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 319274,
+          "sha256": "f52826848dac9e11bb1850349df8d1467be31b2e2cb655c0479acfd8b9f03b8a",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 44484,
+          "sha256": "baa74258c163f0e71037949cc3b45c345a4d563721046c770bc98e3e95741a35",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 81322,
+          "sha256": "de4223c46ad549c72518d1f2143e8688c702f8cf02b5c9508232e1f930d71d5c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 133423,
+          "sha256": "f95fad977751089a1c7cc0e6bc3c2f154e3cf0c126ca92ba61d4609733775afd",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 221340,
+          "sha256": "efe820e610306265b961fb6be27fff2cb3da43f434e7513a631ddc0e458c0812",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/15-devil",
+      "master": {
+        "bytes": 835960,
+        "dhash256": "c2fcc6dcc4d4d8c4c0f166b9449cd93cc334d33cc2bce6fcc2c4c2fcc2bcc2bc",
+        "sha256": "0810b8bccd3b14f9457f6809a53bfd5550fd690a5d989fe0677da258324369cf",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 55499,
+          "sha256": "9c3bef26a4db2414005c3ea47aa66402ed0dde415b7b1d2080fcd0a46cc3f7ad",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 82744,
+          "sha256": "d6814216808f3b6d0b88c63b2d79ee8790ef2c1993c71709e5cce284e49e81d1",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 152652,
+          "sha256": "42fefb236d6064c220df93ddd74c64cb7d34d227b79dfa3ce861f2a561b800a0",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 227952,
+          "sha256": "689644a9f937ef8bab8c13aa092a36bf8dac781a1e53632a90545a5e5db932b7",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40001,
+          "sha256": "e2f90fe35a57f6c94a33f2a21dcd8e022c3d4a8f23cd42bf3eb94e77c5238012",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 62090,
+          "sha256": "04379008bc27f500d8054d74278c1cf6cf7af51f76d1d15b901329f9ba3277ed",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 108627,
+          "sha256": "f5424ee6e7a4e98f28aff950961185ba341bc6c66d0eadc71082ddae2a0c28bb",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 156544,
+          "sha256": "2b4d82a8d650823cd5d7ef130ff02810c5873f6ae4e3cf7c29c77b6a82911f96",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/16-tower",
+      "master": {
+        "bytes": 1101638,
+        "dhash256": "60cdd80c991ec01cc0bcc12cc26ca4698cd7d94dd84cd8f0cab2d12cc0dc60e9",
+        "sha256": "928e50786cf5da6e9f7d0a7def63c584da627084894f7478555d7fe30c15ce13",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 59058,
+          "sha256": "2d400557ef30ffb2d43247f79a73ea11dc65071ef0a3970bb94fdeea9a0b40df",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 97548,
+          "sha256": "0d7471fd6cdf56782b9f91e1e8021f04c86f0a6f465a3e1f2a74ee85321864f9",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 183062,
+          "sha256": "5b968b90ebc17e27e2e5229e593e73b54ce1451b0d014e556c2345317fcdf321",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 290240,
+          "sha256": "215e07eff4b6572a9000d7c700437e17f86f8b593c7e46eb986815e4e6ac8bb2",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 42099,
+          "sha256": "285285705fee3a049c6fced94ee3f890ae954f72450cd280469d9612bfa48eb4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 74864,
+          "sha256": "737894de8933bce7d9e3afff92bd518a0baf617a45f70366ebd85913a3ef2962",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 127053,
+          "sha256": "9fa908659949d9a8a39926a56a78efe7ffbf3b60168e647a8706a59bb4a333e4",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 202434,
+          "sha256": "a0b7aab27899cbbf02b277b4b637a0f06669724d9c4352d6e3bc6cffcd9dc0f3",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/17-star",
+      "master": {
+        "bytes": 925312,
+        "dhash256": "c0ecc0c4c0b4d304e24cecf0d5348c66892e913cf03cc832b436dc34c874d4e4",
+        "sha256": "0ad2ee87f548ec549943e4798e0c50b879d1a8eb317fbbedd9564c437a47f394",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 54832,
+          "sha256": "dc68253f25b18f2bf029a5a3538de683a574c31ba17461b00f78076305c14dc4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 84280,
+          "sha256": "7c00ac4c44aa8bbb8c23f9032e7b0817b0fff7ddce3ca7b1d1f61bcd01e8ff48",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 164884,
+          "sha256": "a717d8ff67718238dc0e49b78bd4b6ed32d0503fa30d965f5e9b412a366887b1",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 235864,
+          "sha256": "75ac7a07908eaf045133bfdd01392eac8bcf3beaa189b1038b2e79994588d1fa",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 37719,
+          "sha256": "e68a1f3171334ff6fa353a8fbd01aace40fc0c548ecaa75d523f49364914c3fe",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 63372,
+          "sha256": "ade1d836fa0a1ddd6ffafe31aabae164664dfb6e717c98b621b900e4896b7bb2",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 115502,
+          "sha256": "1c1c0ae648d2e4b6746f589beacfc264644f4aafc7840cff67778799bb01cbe9",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 160426,
+          "sha256": "9fdf100bcfa446e6730b11ab75161fb469eefc0e0162e363293297d6d89b79d4",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/18-moon",
+      "master": {
+        "bytes": 1082442,
+        "dhash256": "68c9cceccca4c4fc807ec07ec4ae84668b66863c277da17c8c7cc0fcc4f82ce9",
+        "sha256": "ece7fd993cf15ec0e3ac4fe39c5634c8fe84957498f55f7b80d2591c14b9551e",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 56585,
+          "sha256": "cc22dce58212123c499f77752548b2b08d793c25719c8bae26500ece5ebc1017",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 92142,
+          "sha256": "16c03ed3de8dd79568f5e37ea5ba17507af1cc5c733e131a461a5278dae08568",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 178829,
+          "sha256": "6f1224baee5328f34de60bf14339ba95b17e7e54d31d50ddd5bec8eaeaa0c127",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 280706,
+          "sha256": "a199cbb3bf511a4ac7f4a54ad202f3cd2865c59e92a20e14164988e502150763",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 39572,
+          "sha256": "d00f556aee1c9bb739409c5407d2d1d3887107861addc74551919779867d4939",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 71270,
+          "sha256": "72867bc50c1201805fd12e4f7cd8c5c50c3f07da41d50a4300ea6a7365f52643",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 123567,
+          "sha256": "b2befcb7e6410f3de52fb586ea19cff59f8071dd41262698e2e8280aa39d416a",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 194242,
+          "sha256": "80554dd55e6c860050f57ed5728d0fdcb4eb30314a0cde360c5b85bf19699989",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/19-sun",
+      "master": {
+        "bytes": 1324932,
+        "dhash256": "64d9c0fc40b5e0f8c0fc40fec0de84ce8cc684ce9cce84d4d0d4d8e4d4cc64d9",
+        "sha256": "273138d96675f1d2fd0cd4eb15ec46350c87989ecc51ae7cf3cb053ad5a54d87",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 68448,
+          "sha256": "b6f350bf3cfa5a8511ed34c366d9fae4f1d5017b8510b1bb19726fbdeb56dbea",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 122288,
+          "sha256": "773e4eb1e1c55e19d8f7b04f8e8dec40021a26e1d72688d6743932b82229d8e4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 209626,
+          "sha256": "a400a5147d471910c48140ec1b0bc96b970720657abd8e789a8aa4f6586ad442",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 373918,
+          "sha256": "390626803d4703a27d4bcdaf30b2866d1193098d4620e39bdae919a806aeb224",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 48442,
+          "sha256": "9ef5206066e9580adb312a11c4f507ecabe9b0add409c9464263dccf31e54a58",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 93656,
+          "sha256": "f68e2e1787191e1f0bfe3c09fbac790cc3e264614dd706bead1e0bc76d4561a9",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 147218,
+          "sha256": "7c59e9275a2cf6241a933e250e32cbac44f5320a8e443f1a6464e3680a2bbc33",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 258080,
+          "sha256": "5d2eaa69b71aad70c9d460985054745de79f71fb0ef43e128c2d2c2b6dafec3d",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/20-judgement",
+      "master": {
+        "bytes": 1213792,
+        "dhash256": "64e9d694d0f8d0f940f130e338c540ff40f968f9332d966c666cc6c4c8ec64e9",
+        "sha256": "d0341c5121eeddd52d8aac963ecda4c85a3929cb40099233c4f108c785b2e51f",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 60217,
+          "sha256": "3855f1e76a4695567bd5bff4cf79388c10b97ad657d60952138ff3d2975ada9e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 100354,
+          "sha256": "8d15409b6e82b328b4302be0122567decc5eeeff89e76fae9f1bd755c3420d08",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 194637,
+          "sha256": "55448c791cdb13f91a3a604f8a23bb5a3fad0181686522d77dbb871965956061",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 316104,
+          "sha256": "95dfbf2aac119d51ea52c58ade6531699ed4a2a23ae3232f6c3a92169485dc38",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 41919,
+          "sha256": "0bd35621d69be18c1afe2d2405234d6bcb76e8c486ccdc7dd348a909479234b8",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 75652,
+          "sha256": "31088cf2ca985065fa8f488f65c2cfbce96f35f4bbc8af9ed7074425bcf839da",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 134790,
+          "sha256": "af61815d411845ee8d98e8e49f26d59ec92e5f937bdd39e61c3c19fdbf266278",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 215720,
+          "sha256": "a0f9530ab0dcae218e9b1016863bdcdd4c257a10c17a8ebe84e7bed869dee4d9",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "major/21-world",
+      "master": {
+        "bytes": 1150400,
+        "dhash256": "68e9c0fcc0bcc87c8fce035f0376032c1b4f1e4d061dc194c09cc0bcc0fc6179",
+        "sha256": "9c0ba9a90f0903805500194a4426c612add35d9dae555bfbb9cc78a116a693a1",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 57163,
+          "sha256": "0e06766e83fe24591ba05a001a7ea6c5ea49a3581dda611ef8b47a8f6c7523b8",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 98260,
+          "sha256": "7d85f9891f7cda219a27f5664d927c04c81d253c45a2129f013069b7e9c7760c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 186638,
+          "sha256": "8b970d4c29ee6cb0a6ded27faf9b36394a35de1c359095896278030573da97bd",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 311896,
+          "sha256": "46694df4a028600cbf6033c9a39b69ba403424ece082f16407167bd41a063489",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 39845,
+          "sha256": "987df7d462a22b1bfa7b0fd287030480398f0353fe6265d2c8ecf61ff192cfb5",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 74132,
+          "sha256": "6ce08b2ace67112fdc26aee1609ad5884b2dfe76ca0ab34d744311c1c619a0ff",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 128318,
+          "sha256": "f08e103346652e784a7eb82844c0e386ae31666a27363398ac49c617bde5ae37",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 213318,
+          "sha256": "972e41b7d8377d509dcd4c27cc57186eb0a8a769667fc6771226f8d5b83e33a0",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/ace",
+      "master": {
+        "bytes": 1022184,
+        "dhash256": "60595cbd472d46b94e7526e558e940f941f950d540bd81b644c4ccec42b96689",
+        "sha256": "760c198130a7a859b3f59572f40b487950b11bef69a78a6a515c90770194e69b",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 55373,
+          "sha256": "1f83a42645ebb6bc868a2065ad43e82c09beb09970e2b433a7beeb8b76dc2448",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 91906,
+          "sha256": "9b1a3bdd9da36552c67c7aab37518029bf1a3f95f301287941f263813a7630e6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 167917,
+          "sha256": "8a72831281627f50f368dad370eee24c3d4097c99043a584fabe7120d99c79bb",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 274794,
+          "sha256": "2776e24ab1842bf924191adbdb7eb46c1a9cddab2bb0001673ea136c996a9b86",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 39274,
+          "sha256": "07d4324f5ea6a5cfdc483c48d9d2e958df6d1ea0bd9142b42f1787ab38056686",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 71864,
+          "sha256": "fc66285614755a99b23987f7967906cdedee4ab64626787c543d47addc5c905e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 118007,
+          "sha256": "f44e741e097b86ccd49acac20d4e43cb6b81b570a806e31aeb6b4773f06c90af",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 191638,
+          "sha256": "8bbc1a021692a033c1b876adc4b70948e13e7c28453c70dc1029fd6ea101f92b",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/eight",
+      "master": {
+        "bytes": 1030976,
+        "dhash256": "64d9c4f0c960cd9a5031cbbc0ec44ccccfcc4ecc4edc57948f86cfccc0dc60f9",
+        "sha256": "ad64e959da0864a53d505cbe3e9114811f70d62eb60fb2caf7551668b4cc6442",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 53809,
+          "sha256": "5273df6e965dd2eb4aa3a8724a02d2dd59aad19381e4f5b92705ae41419731c2",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 84968,
+          "sha256": "d108a6eae79641388ff33f3684364b5397ec53fc68cc7f688fa2971ec910bc9f",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 166910,
+          "sha256": "026f5f6cad2ba90f88be2f65e16e655b3c01933b9eccde6646c5e0d150f4ef3c",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 260858,
+          "sha256": "fc3f1c28f4357ab6f16a851e7956f07bb5b62c8517cb23265be0070a099f0b6e",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 38079,
+          "sha256": "c8c57bfa0b6a3379df0cc686f4883f3bb6c72ff16249e834731e87a2ec029a21",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 64012,
+          "sha256": "f56cef3c2c0878de601a9e30d58fe610b61948fd98a2e2e4908860046a67323b",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 117097,
+          "sha256": "5527b2ece0618d37915a519a57ff4f34697973e1e91f6ea11e50553dd59fc604",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 182740,
+          "sha256": "55d6b07ab59a8b2f31013dc28aeb7f79f45d2c51fb0d6a39d1d0ba2340136b6f",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/five",
+      "master": {
+        "bytes": 1132320,
+        "dhash256": "24dbe0f8e3e4d6e0cce38a63ca07580fda0fb60fcc0edc4ec314ccb8c2b430e3",
+        "sha256": "ed03efd5cd4bf4a17b545d7e8ee3ff440c1a98dba9a6cd20c86676446edb97a3",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 56941,
+          "sha256": "23a4043a156bad6cf773371c75a70f6bea2f424a31fff5b264a616c1819fe5b0",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 94748,
+          "sha256": "8ffe6b8e039079d7a2a323e120101123b617d5ca32e6e80adab65f0bacab187a",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 181689,
+          "sha256": "cf781d7946f129d4dbc71f68c937c4f91d0d2b698333b4a4a0ada3575d46beec",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 304310,
+          "sha256": "7c647ab5f8f8f414c943aa61a026af5bd148edf94373f0081ef08164ac0595c2",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 39846,
+          "sha256": "bb08649005bd347e692a077cb8d6582e6e74c9d564c87f5f89ac32b3d2dd327e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 73528,
+          "sha256": "40d51b17d8b3e74dca6281eef236b049e3e72be07f29e73d19203498fcebf01e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 126469,
+          "sha256": "5743cff767f8972e42ce9756c1c2c09c632fda1405c90359d6cdba6a8f0c2dda",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 212734,
+          "sha256": "3084e808446e26dd5860722ed86d68c96ff6d9ad903baa0df894907ef8d2670e",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/four",
+      "master": {
+        "bytes": 1063756,
+        "dhash256": "3aa970e94465c9a149d56a4d740f5497720df88de445c455c40dd44d788d28e1",
+        "sha256": "e0d1bda7c48a53713b6ba69de8887da4ad7eebd7e39e38fbf4fa91ec2731e3a0",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 57391,
+          "sha256": "d7deb64966fe60b614e8fc4e137f1e34d27c82ae6cdcb1d39f49b470c787db7e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 94216,
+          "sha256": "e18582e3b2e43d4989633706e94eb6581a5c4a480f6c63a1f8aa7703d4dd4e0b",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 179389,
+          "sha256": "29ec822f93c343663803eaff25e4de5498aa131c44382cd6c3fefa54a0689087",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 290656,
+          "sha256": "72ba6ba9991ba4e50ae6fdd94090073657739094eb7f9fd5d204b81ee7f85b78",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40223,
+          "sha256": "0a52f05bd6068bd2d4a89a9e9f68c78e7544181555540e1af68f3f4569375d11",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 72388,
+          "sha256": "bfbaf0ad0b810628326fc697a3cf40193ee2c0b287bcb2e54ee8831bc96ce4f4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 124665,
+          "sha256": "362f477f797696e2b17d974d532470bb9b92ef4127bd95bfa1b3687a489090b1",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 197796,
+          "sha256": "daeaca035e084c0b01191df5171f464089c0681cf3ecefb3a49222014b569ddd",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/king",
+      "master": {
+        "bytes": 1031000,
+        "dhash256": "60f9d0f8d8ecc8ecc2744e6c5c8f72c7666966e55a56cc19c730b4b2e49a46b9",
+        "sha256": "97a912a38ccf1068041313bf1cf0410645ffb3fb798a75f9b7209f4cb91bd14f",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 57600,
+          "sha256": "6d3c6a150ec8e0b607604d5028bf26ffe403b6346e93a6ab05e0143a392c9d1e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 94378,
+          "sha256": "2ae54f3f5acf75ec624b430516610294369429ed01ce2666502643c7d4c4ecc2",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 171107,
+          "sha256": "e37a3895575d08e352f841bcadde4ebf2f982d875f6831edb74313d91870d99e",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 280774,
+          "sha256": "62bf87537c83e277e0b05186b0415c05052d1d547696901e93c7254b98051cc6",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40735,
+          "sha256": "692f9504269ff6dcce67ffc88542d4edd6cc990eb2fff3f25c4acc8fd65d457d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 72676,
+          "sha256": "d0748e846244aae454057018effa6347aa1ef88a44a856e298d357bf85a5f2d5",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 119006,
+          "sha256": "649693c9e0748ffaa0ebe928cab111174fbcbd97a532639bc5d77edadff66453",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 191816,
+          "sha256": "b9682284847584597e60a188e3226d079d5763987408572c4794d331df0a9b75",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/knight",
+      "master": {
+        "bytes": 1064496,
+        "dhash256": "60a9e0e8c8cc606d227916779939c907922c8425a667d664c373c0f3c88d2ab9",
+        "sha256": "410cba532c9518d49b998cf01d57e0e5f6f20d8b4dc66b43933cfa8369a480a5",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 59805,
+          "sha256": "f832abbd8ba781df865a5394692ebcc129bd5d6a1b7e85f6c7c9a4fcf65aa5e2",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 98702,
+          "sha256": "54bfadf3d140560d561debc418c1fcaa121609457e217ae1cf8a25b842798df8",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 178249,
+          "sha256": "9c416ede1ff73a0d48706bed6af100ae8b5c077ba9965f094480dbf8e6e61746",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 292240,
+          "sha256": "ee11995e7a14f496242e65f817f0e362eb5908cf816dd87a215fde84fa545d96",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 42494,
+          "sha256": "e8e5dfe47102364c4fa9a465ec354a2f7a6f141093b770aaa708052c12443b08",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 76744,
+          "sha256": "9c1c88c55f76d8ac98d65ac691f70890f9e07c7ef0351ae57f935e0ecb752426",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 124999,
+          "sha256": "8d2648e8c0190d6c42a194b60e7092e6d341bd192510f513698ebbe99e8bd6f3",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 204282,
+          "sha256": "391eb8f6daae31e385577a3509c4cb43dfbc2ac450ca012fc1f3fafa57a0486a",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/nine",
+      "master": {
+        "bytes": 1026356,
+        "dhash256": "60d1ccd9cb6cd3acd33cd69ce9a4e490669ce49c249cc4dcccd9c4dce2b12239",
+        "sha256": "0327a5199a2ca00be2eff8c3d0e1d7fe27bd0f7e5a63cfa4715393ac8c0d21e2",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 55155,
+          "sha256": "b788b15c0461d10ca2d26380182fd8ec1def1780e145d26bdf82270232b92cd1",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 92298,
+          "sha256": "b74a8b09a9625c9f8f5e24e5530f762d2f9424c046a6103c797bbc773eb7622d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 171406,
+          "sha256": "1f829c185fa6ac483a0c4f0f9e936ee28ce33a32e2dab6d0884996309364e75c",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 280654,
+          "sha256": "e82d6e1efc2b6adcba7ecf68f75505ba90bb208d79810e9e39dc91480b8dd4f3",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 38705,
+          "sha256": "9d10e2488aa0342b2ac5b958af0b2391beb2c28e75d1b7e0f62ae4a9252c1d2f",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 71934,
+          "sha256": "572c29d124b991f1c022141090bf8a2a7322c306b5abed408f2401e4a44e6c43",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 119212,
+          "sha256": "b7b3c67063a590e43b8a1baac2064eef02b6f825ebd0fb627c2ddaec93692ddf",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 196362,
+          "sha256": "b5061abca7adba8ab5b9f817fcce847279b37deb77dd61adfb98106baafc0c67",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/page",
+      "master": {
+        "bytes": 941210,
+        "dhash256": "60f9c4f4c34846091d97e8ddca0cca1ed89ad82cdc2ece1cea1ccc1ce0ec22b9",
+        "sha256": "c2730d21a3b18f7db8cbdd86ef58dba7fb4268b5a51bdf57a7383c776c474a4a",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 53448,
+          "sha256": "677b9699702439595d3ab47c27b0a538100dfd6f0115e21fe1dffed67a14dd73",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 84018,
+          "sha256": "664c5ec7a0c8a8d7ef71e457d2522a4fc63a1eef5755002b27b4124c8413f628",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 158229,
+          "sha256": "bf1db74f2074d253270433b2b749af1a3d0a51192a02320e309abd1f24317898",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 240830,
+          "sha256": "47f6d1b1216eb074bec1a116b03f27f893b943f0ab689db281a6b759c4167c2c",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 37838,
+          "sha256": "a10da8e645b081674efb0fa5ece3f62f882f8a77e3c884f5ce3393e3e6adec9b",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 62988,
+          "sha256": "2c15a246ae6e58e652570a49bf7421b39a173e5fd4d3aeddd8d98467e24d69c9",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 111321,
+          "sha256": "80f91208f6fcc55daf81094a9bf07b2051a77dcd8680e9bad9584289df943b56",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 166692,
+          "sha256": "ebf7b2b1be7cd0af28d9c03516659a10a875925195077249de1cfaa8440d5812",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/queen",
+      "master": {
+        "bytes": 1116694,
+        "dhash256": "30f364e9d0f0cd64ce8d8c8e2c8eac67e2e5e6c5c704c1fcc0dcc0dc64d934d3",
+        "sha256": "0fe0c6c04ae8513254a742aacf860c9329477221e0bb3a59c28e4eb4272a9312",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 61156,
+          "sha256": "8fcfec5ed55c3d44bdc15379eb05635f13803eab9b2e0f80111e4d6cbffa6e96",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 101008,
+          "sha256": "900b0b5a94146f7fccd2cf1b2f4619ceea7ccd524e4c9c4f3364fbb06f464a4c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 186749,
+          "sha256": "5e9f49dc43cd9b3b5fd8f0463cf4b0af14592bd8d10a73605bf37be31ddbf8c6",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 304328,
+          "sha256": "f297df7147b84cf14f95f90db4b4cf9451b50f9e834515109d0400c210fddaca",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 42726,
+          "sha256": "509ecb71059dd654a50967919b779ca77cb1295081c86576fa1949c0ef1a014a",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 76916,
+          "sha256": "38b0a676642a69e1603acada0aa99d3a1cf5156190a8afef11839d6e120ef608",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 130636,
+          "sha256": "650707db6c27cc09cef27dbd9e97c8113ee00e56f10c0899728bab0fc06fb436",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 212762,
+          "sha256": "69c7a205c5ba79d75dd581481fdb4d65dae059430e64e847fb56d94900d18729",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/seven",
+      "master": {
+        "bytes": 1131540,
+        "dhash256": "6689d0f0c96ccecc64cc0ccf08e75cd7327b266b863c4d9c5b1fd69ce0d862f1",
+        "sha256": "79307ae3ad4a840adda7cea7b92276f18e7ab45c024f5360eb6b56f4f7b32d10",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 61640,
+          "sha256": "365d1ae152ca303be7f771930445203c7572b94de66c4ad10dc61d814362bfa7",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 106618,
+          "sha256": "e2bc17863f8a7fe2d35030406a4a5f67ede2c05b6e023bc39037a075312e73b4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 184755,
+          "sha256": "e32d374c71f3b9da5eeef71d6f4eea4cc87a5eb1159fde09bbd9277b93187821",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 319260,
+          "sha256": "391e5f50281b003b7f0d36a8536886aad12d052e0ef9844478d666ccccebf9e5",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 44065,
+          "sha256": "62399e8e14f09f0eaf146c8f24651fbd89df10b5958263ad979d896112235cbf",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 84888,
+          "sha256": "f0fe1a3e483bba3a06271e4521701e3ff1138f2c148adb032fa73dd2c3c400d6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 130951,
+          "sha256": "0d4d7f99b14322418907d5501f771429d9308224afd1901cdab0e72a138a24db",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 226482,
+          "sha256": "0f2d370da83b80d85fe513a41f367cf833fb6361154bb41b0aa213b73969d896",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/six",
+      "master": {
+        "bytes": 1150696,
+        "dhash256": "60d9d0ccd8c4c8dc48bd45b164d966f9c4dcc69c9d4c0ccfccccc2bce2b068c9",
+        "sha256": "abbaf8556391a77bc2203dcb71d3bbbec8bbffc2639a9f457233f97692cbea31",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 62901,
+          "sha256": "c8e27f529a79f65fe80171c24fbd450e81b400634528a72685afdb83a5bc3bdb",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 108326,
+          "sha256": "4697b0254994ce5627c67e867ff34bb30096dd32a618fad8551fa7e5fe0365b6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 187516,
+          "sha256": "6e59af86f986143197a9bbb6e24922d6bb8c706f62509567f3146e80a98c4879",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 319558,
+          "sha256": "a46212c24ffa0ea813d15250ea46fc1b7f32cb355de845fc21320b3b1d2dcd24",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 44885,
+          "sha256": "5cf8d397d5dc8554913b2d0d6fae698f771c1f38a573b6d1232afeb00a65af19",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 86296,
+          "sha256": "37e41f5c81cc2065714c4a66f10e532fb320382f4b06feebd6afffb2a8a892e5",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 132509,
+          "sha256": "f2d07f095759e87b56947f51325507b05ea67386203dd3802d188f3954bd6bc6",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 228384,
+          "sha256": "9ef927e0c7031d625041e11783094bb1467672b20cf10f6e9e2f0caa2ef17465",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/ten",
+      "master": {
+        "bytes": 1081612,
+        "dhash256": "60f9c8e4d0f4c69c5d8518a70ecf09b7193671717191d0f4c0f0d0f4c0bc60f9",
+        "sha256": "893a4f97c913be4813ec434bb5452d6309b46a1621ff6cdc1da0177bb1c5e76b",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 60661,
+          "sha256": "31ce0c0062791a63fd11627e3ae9b764e489c4a1e426d5398d8caee04b5ee6cb",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 102162,
+          "sha256": "248d61e989cd43e320d24a519da035595a4acd05c248df9ce493ff729ac8fa8b",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 187262,
+          "sha256": "1a67741c4d6881d13cf0de2dba2fceeb6262828fbb1132115650365699d62013",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 302266,
+          "sha256": "22412bc78e254e4e1d0b4a675e01667928bc376b6bad962da608681511d6c4c4",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 42958,
+          "sha256": "630a4344f061465c437d07912f3e3c2313e951622796744a01f9a421615076d3",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 78668,
+          "sha256": "00e6045c37e1236aed64e4fe1a4b379986f647ea3ea66e74b40cfb1fcf04b693",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 131292,
+          "sha256": "997648575d868d375be826d527e63d4a4d28940b554cccc377e03e498b983839",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 210140,
+          "sha256": "d6e0a448e8a7546d4e42a8a58428366807c9e658184b7ea66ff3c788ad33e4c5",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/three",
+      "master": {
+        "bytes": 871308,
+        "dhash256": "4e8d58c558c55ce55c65452d60ad53bd633d463d461d469953bd57b762dd40f5",
+        "sha256": "31f9549a407cf2936ff0c5f30646836c69a28ba1b58f4fe9029a74e8b5798f8c",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 51947,
+          "sha256": "1ce9766f66b954439681919d35fcc45aee33c6e4aeff5f6ab1dc1729cc9d24d4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 81478,
+          "sha256": "508a9def9fe8413da531c4838532a330b826a0a1f901dd89c19f3162790677f4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 149688,
+          "sha256": "c5692354c10b0f1059412b482858cca3bded5e4c506996c8e01c0033ef92b71f",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 220852,
+          "sha256": "b129674422b3bc4c5c035ecb166d700b76a872aed1d3a9d421624ce315866727",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 36353,
+          "sha256": "d1ee428a4301eb5082101e28a4b5ad8dfe89dfc98f474a0fe0893a5b0de97a62",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 62040,
+          "sha256": "9b5afe6a29951b656edcc184792c9998b7728f383770bab9d2f681d30f2e1d4c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 105117,
+          "sha256": "1a0918485fb231e171d6258c9559cb427cc7c525c873a560c2c0a8b06038a7ad",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 150920,
+          "sha256": "bd4ebe8b79ffda36f71903b943658c4b74d68ad251b547f4929cbfe19d13687f",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/cups/two",
+      "master": {
+        "bytes": 921564,
+        "dhash256": "30e3f8e0c14cc33cc4dcb4d831793169f0f8e0f8f0f8d0f0d0f4d8e4f2b450e5",
+        "sha256": "be3f0b210099eec9755852a1d66331759dbb34742b61949e750f18f8a15ef788",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 53659,
+          "sha256": "543bb1f63e77e12641416e797960dd081d1427540a6daca494c64f5167ac0489",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 85440,
+          "sha256": "fd9a44b56324602f6a5b6bde78d30bef45cd6616d8bd8ac0dae659b7c6c290ce",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 160156,
+          "sha256": "91027d322a60621ab8e0405bc1ef052c1ae15550818583ee82f2edbfabad7785",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 251178,
+          "sha256": "0f8a2f1c065d6615c4e84c0607449ce50347af1916a461e796407f30a3c9f1f0",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 37635,
+          "sha256": "fb80a0d2f41ae40bf7b97d2f6023d18059c4008a369ca3bd38136ad9e8be8350",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 64240,
+          "sha256": "e5b3f007fd55e7f218c476370d377cad09a768a2b10c0829198a379fd08a7dfc",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 112221,
+          "sha256": "f4eb4b493d6d191f04fa3131c21b062cc94b11ce8104c0b0e57b25c2b415a3ff",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 170874,
+          "sha256": "70a13545740f905904b02c8ea031b7ee11adaffe72b6e41ad0f74f2da2f20929",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/ace",
+      "master": {
+        "bytes": 1101102,
+        "dhash256": "60d9e0c8c0fce4f8e2986479625960f940fdc0fcc8dcc4ccc1ecc134f0f060e1",
+        "sha256": "97b9d21c957c6e62ab429cc712594945de2c7d47f1a16b2ff59fd778b227c6d3",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 58465,
+          "sha256": "e03b2af386b5f7c98a4aa639fc9074a31ee4039e21db423dfda3f18f112a49fe",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 99440,
+          "sha256": "508b62fc97c000bc9fd916f0989e4ae77879e30d6ec76b4bca6cd1774d3cfff6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 174309,
+          "sha256": "d6137a61ecccb470394b8a7dff7e0b04122d72644de5b5f565825b22a902909e",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 302334,
+          "sha256": "5a737bdb0e809fa39d154ee593e7d329ce4c96c611e8d51dfb90a4a755acc823",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 42129,
+          "sha256": "1d79fa6b6ff34a0b15b59311a3d234177fd1cf0300ccff328f7e6fddca42ff4a",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 76368,
+          "sha256": "c9aa2eecb0ca3ed24fe3f25b026deaa454cd4426265b37fa18b64cafcfbf67f4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 123081,
+          "sha256": "5bc91e39e46cb3801a05bfac264097bbeb877b47f73e2dd174063850f9c8f29e",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 208846,
+          "sha256": "e257682783ca22dccfb0fc10113466a27337b4843797f4b377b7f92a686afed2",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/eight",
+      "master": {
+        "bytes": 1040054,
+        "dhash256": "20d960f19d251ae5466d3475f8e37291d12540ad42fd4dfccb5cd97460e928e9",
+        "sha256": "ea7aac65f0b046593c7f4bd484a29872be3a0bd36a7142095effd41a0d0d40b1",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 55409,
+          "sha256": "6f1ddac83f1b5621d2ea9c499bff9e8d8c0fe691167a91294d128984778f625c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 90818,
+          "sha256": "b0f9317f258c798220f6412b0b67469fd95d0a7fd5f8d76101cbab1aa7fc2bfd",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 168039,
+          "sha256": "171fdbc8ac8806c7b02d437bb03c4adf77cc9ed6622773466497b79dd8fc1937",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 281164,
+          "sha256": "a819392a519d211d56cd9c6d32e7e6bb4f2a8c5e2c4518faa417fa0accaf1aad",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 39693,
+          "sha256": "707a1bc178a70fdbb61e62afbb2d46e37750dbbe4b6e10eded95a7b050b3e2f6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 70366,
+          "sha256": "3d0fa203fe465524f545d50a4fd6de29a553680ca309dd4c241e7d4bae9a0fe7",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 118650,
+          "sha256": "6f71b7eb827e059129c7a012c85785f7985b279ca59374d43fb5add963b43879",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 193598,
+          "sha256": "880407a509bdd57a491db67497bd7add4b185ddce7db419fda1e82b1d92f2b83",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/five",
+      "master": {
+        "bytes": 1122584,
+        "dhash256": "60d9e0f8a1cace28c8eccd949a3cba5ce81cc83efa7aa838c8ccc0fcc54c2961",
+        "sha256": "7003725bf50ad3b0bff48be0aadbd906d5655e673c3a71e46cdcc092fe3d7c02",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 64850,
+          "sha256": "4b2ff557f165887352f52c99418e69fb1be3fe6e5ec133a604be2c834207787f",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 111140,
+          "sha256": "7104340de4c8b62d99d2b25c0d7648c0e8f045c24add395d46d4b05d43892a00",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 188082,
+          "sha256": "bc52968a310fd9bc4efa6a0941185a3a0346bd020885a351202e6497b48c00a9",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 331546,
+          "sha256": "cbcf0a4bc872d9d2b18abdbf9d8d867b26d0c65d8b2c53286029a9e96b81d204",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 46448,
+          "sha256": "4a38f5a2732266737ca975d33d3926570e06b1396c8f7c63ea7496359438c133",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 87652,
+          "sha256": "e15b7aec299204afbda0b59373132b405b2ef289feb4d77cddf7fc1e39474c56",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 133126,
+          "sha256": "ec6b2b8682787e2f74c5171ae67b6bea569003007029b7685845e106ee040791",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 231518,
+          "sha256": "32c192ee979234e11e98286fe62f462d422f1d0899fd633c66426b3f753fda0e",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/four",
+      "master": {
+        "bytes": 1209682,
+        "dhash256": "60d9c4f4cb1ccaecc4cc58edd965cf4cccccc0dcccccccccc0fcc0bcd0ec64d9",
+        "sha256": "378bb03d86dd39eea3d5999bb7d1cc0a660e633801d6d8115e84772050579eea",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 63263,
+          "sha256": "e1a139842a5ba1edc5d88130456287a63aaafaef3f10c1eeba17094d6d5a9863",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 106504,
+          "sha256": "bd6cfd3d7d2fca624e44af0bf380a93008404f7b5ab15c7828b0960bbdbd312f",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 195857,
+          "sha256": "246e3aac76440ccf60794f3bcf30e07dec18a5d8c7a64afd85cff9c7993a447b",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 327980,
+          "sha256": "1a6bc2bc69e056abefb2fadeeba03fba95237fe77c6cb7885a8061ed0e34c1a0",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 44793,
+          "sha256": "75da64002082f92a209e2f847f5aa08ec4101928a176d7e983a8658045f3f28e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 82142,
+          "sha256": "8d4dd3345f0e8df8aeab9e574ff2bc44de358ca32a7a92f7b54c348e131aec7d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 137050,
+          "sha256": "2a8ff89b16232ee52a3d8cbb673727d046d0a2ac8844b9c99ad29e08aa4dd6ce",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 229942,
+          "sha256": "479157c4a784bef6503276902777a6b277a7b0c50c701eaa6b2abb7e50c8ef5d",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/king",
+      "master": {
+        "bytes": 1220530,
+        "dhash256": "64d9c4d8c0ec71ed06770677593d59a6e715e0ddc0ddc0ddf0f8d224d0ec24c9",
+        "sha256": "81c6df310832c0d83ecdc371dbffd3e9731d8d0811eb80f68d3988ffe7f1e931",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 66647,
+          "sha256": "d096be6aee3dd2a30f3effa940c741a60afd2ef8a913f2b1f64fa6e859462c42",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 114026,
+          "sha256": "707f7c21a96bb197f394b667a1246df383f0c7f033e3177a2ad78b08493c611b",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 201661,
+          "sha256": "2c0c16d7d95bf56989ceae7b8775a52e52893b57ab6b9a30ec1a298b5ea36982",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 353512,
+          "sha256": "bb9fc90de59d0af080c9f919c3e00bcbf0d8ad458ecf1d83b61f3897cab5f9e1",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 47718,
+          "sha256": "666dbad41434645bc5ea65736a8d9c5721a85cd060b2e916ed427f952e3e9293",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 89696,
+          "sha256": "3592fa85652508bd83cfa7177327bf8f696e0a5c54c84ff15248f2394b1d18f0",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 143075,
+          "sha256": "54034c9262f133f155c74452cb52e0ccf52d31a5a32b4c5de1e5ef16025c3ed5",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 246190,
+          "sha256": "f490d34014e82c32d8dc31c645bdbdb0f312b6fda4944833ccee82f243505afa",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/knight",
+      "master": {
+        "bytes": 1244254,
+        "dhash256": "68e9e0b9d9b4486d40b3112573656bd11b595a4179e46dbc5b99dab4e0ec6849",
+        "sha256": "f933e45d491d3f6fddb71c24d1b1011b18262380dbdca2f2daaa69a72bab4def",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 65469,
+          "sha256": "3fe4ab73be34b9b92538e9f6581ac1bed181bb2bb1f498a5dcb9f23c305ec23e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 109838,
+          "sha256": "1b3eafc442ccc2d551b93c5f45d16d675385ed0b2eefca5abad284419aa5e669",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 199791,
+          "sha256": "17f96c7b78209c12b4139b9eb3b9d154142c456fc7acbb62eea952ec8bf251a9",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 339362,
+          "sha256": "ca201fc7fd652fa27a0346013f0c047f52942d7383d9d0feb4e55ddd8acd53ef",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 46458,
+          "sha256": "489697aaa7ef8a3bd40ef0ec2967166ac2f3f3368fecf90d82d071825bd6de44",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 84502,
+          "sha256": "46994e4e3f5f0489ad40301078895a365494e98f12ff3800417a07322a32041b",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 139312,
+          "sha256": "17a4844d9df409c7c0d1ea24baaa44b556deefc76f9fee0c5e191cebb21cacfd",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 234734,
+          "sha256": "6b59f8aaf51a3ec3fad36fc0e8ee99fbf12a2f0647d0a91217858c5118c4f4a7",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/nine",
+      "master": {
+        "bytes": 1194478,
+        "dhash256": "60d9f0f8ce08d3388b789252960c9d2cdd36af133c19c8ccc8ccd0d4f0f864d9",
+        "sha256": "929ad388ce001dbecdd723c2eef02228219e3a9a8a307ecd2dbf70f1434190f8",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 66706,
+          "sha256": "686bf4432892f29164522f68e3b378cbb96ae0c9e4547bfd504539bc54c7de35",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 112178,
+          "sha256": "96e27a55c585da0ccd868db32e3340fe2e3dbd8a5aea6bbaf3744be331b209d4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 202545,
+          "sha256": "b8b266c63aae0130d34d88a314e266bee2d662b2da197b9ac03270ecd1bdae80",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 343798,
+          "sha256": "08712e4485ea72ea9ec4594b816b337d4db12c5c96cbd12b36f1e23c87165380",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 47466,
+          "sha256": "625402b2709eab98b03d50ceab9b25157947f906403226db728b803856750cd6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 87036,
+          "sha256": "7cd954049be533f97ca31c3756f9eeac27e30876aa2c38d0562c7a6e4c04ffad",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 142764,
+          "sha256": "c019ab41c1a88f88b40d867b11bcd85c7f6adb1e850264731b57ad2e3b030b8c",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 239986,
+          "sha256": "c796fbd611ed7f9eedba7d85c4115c60bf9caebfeef2a8866f4b2404caa98465",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/page",
+      "master": {
+        "bytes": 1095278,
+        "dhash256": "60f9d878993ca258e4ece15ce63cc934c874c660c6cec6cc80fc90e4c4dc60f9",
+        "sha256": "028c9e34171fd9af45cfa10212494b9f069ca661a01867be01d6a3aa38b711eb",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 60551,
+          "sha256": "ecf4e14b56785a3475c27be8c267eb07f7b17178e47dfe3993611347c550b2d4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 103144,
+          "sha256": "e782abc5cd33b6c715f29d2024abe8590af4133ed39485485fcd6a6f6f5014c6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 184588,
+          "sha256": "aa6d44eb8ae9eafc510e3caf8f98db26f3d0fa4c9407e19b9a73febb2f3a027e",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 304406,
+          "sha256": "88e8c46a2cc3598b1689316d27508601e8ed236acb9c8c18d5001386e446d50f",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 42791,
+          "sha256": "309a86dc25229ea180e7c2e280e962a92751107b2659f65a07789de21d9ba425",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 78694,
+          "sha256": "6bea159c3a78c4cbeb9717efaaf5d4b6a098c5500cf758428a544eaf240cd2f9",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 130261,
+          "sha256": "3e2b14d2da3b95e9f1308d717f02f1c673c9e6832a4fd99d5836078350e3de29",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 211046,
+          "sha256": "7fceb0eaecd9cc727bb19cead18a7cd65c889b20d995eaeb16e493547cc53e86",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/queen",
+      "master": {
+        "bytes": 1203956,
+        "dhash256": "64d964f9e4bc58b94673f6cc70cd5335721568cdc8e4c0ecc4dc60f963392691",
+        "sha256": "3ec2c7f56cdd4871d8f1d41f95b5cb1a39cd5b2810c93f07e0a054fb576f626b",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 61796,
+          "sha256": "b45d6491d8e8de4c02d4690385a6fe558a7dc954c4a4a13f7da8140695018797",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 107132,
+          "sha256": "66e6378642e0d06c845b1d4235f7ad0e2056c315645fe761525a3954da503421",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 195841,
+          "sha256": "ce6d40821c29e6765ea891f40afc9aad020c588f8fcffe1016c9fe4ba89a7a27",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 334414,
+          "sha256": "24deeb69f31bc5d0936d4eb18e272ed68b3c315be1becfcdb58a7f1dc9d31af6",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 43375,
+          "sha256": "8fd643554dfe4a2b23ffe3e299f98d504fb563ee38126cfe3524ef9029d13c2e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 83076,
+          "sha256": "f12104db3a30dd3c6a39411ba6cec2afd7358b2b64fbced7b5e7101a3a282688",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 136889,
+          "sha256": "e5eb0a0b24f3fc766d5651ab60edb3ab2c5112f109c55e74b510814fc202648b",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 234186,
+          "sha256": "b34b7b2d11b9bc936c2128952655fd8cc4c27c2a56dbc627f3d8210cbddc95c8",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/seven",
+      "master": {
+        "bytes": 1143216,
+        "dhash256": "60f9c4f4c6cc58cc499c0d9ccd0cc678ccec98cc9d4cd18ce394d4c4c4d864d9",
+        "sha256": "9dfc81f0f23f93e3d497da277a031e095a1a9cc7ddf69ab35fa8edc5824fdd7d",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 60901,
+          "sha256": "1408e1e38c50d7683edd709b1a3444e2c0442e1a22c6197792a6a60f2d550d30",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 102614,
+          "sha256": "5ceae4a427ee4320759502f6ffb2b3a63ae7ab78e8ce6b2bb4c939cedd96dd15",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 189932,
+          "sha256": "15ecc45b4f2aa4f2aabb1227a1d90065292c5eae0bda20eeaa3674a7ba93abcc",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 310516,
+          "sha256": "6b761434836463c3092a126c4ecbb05ebb3663c5cf05cb25468ca9b864e99f76",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 42400,
+          "sha256": "30dfb4a54a1948f42b3198d7215e5cc2c00d7b2f8570ee0a9298befcffe27893",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 78420,
+          "sha256": "4de6b058368bc3a93461a80445e40b218a06a3aa47b24d33e6720b77dc96dbd1",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 131778,
+          "sha256": "ed9e8969bd5fe97d841f5e0acfab638f7de468992703bdff3e6caffe167e3128",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 213668,
+          "sha256": "907500e71e6eccd40de99c85128d7471688ee63a44be27e5b887c02f9eb43b52",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/six",
+      "master": {
+        "bytes": 1122924,
+        "dhash256": "26d364d142e94b6d426d56b5469d469d4e1d432d431d53b540d541b544d930f3",
+        "sha256": "427037abbc2f4acfa9a068b31e747d7ef5d4100532189a61cfc430cc6ad0f0d9",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 56130,
+          "sha256": "02616b077002a4c4a2928439bb361c25ab655007c9d735ceb80e0c4b967de7ab",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 97604,
+          "sha256": "af239865347c937ef67afb8d997843920b830c4d327ce0c80d7f4968104074e1",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 181035,
+          "sha256": "fa04c1b7215aa5b77cad5734b7c65c62e102b2d331e3be6df5d5bc3d53a7a2b0",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 301620,
+          "sha256": "7d7a2ec335d3da8bad8c08680900038f46a2afbffac286a7f7fd51143f68891b",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 39149,
+          "sha256": "d1008df0dcb68a9fc55f6fbb9221ae38feeea98467045c6f0c1a799900e549ed",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 74184,
+          "sha256": "a505648b6c22a2abe87eca0730d0b8449e95d810636cb4d75bf743a7e65b5ffc",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 125226,
+          "sha256": "7a215fcfa2d75da5e4849d4cf1940e62eed53f21c59a6dd2ed6fc9a7196a582f",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 212040,
+          "sha256": "23d9133322068b6c28e4a243ddc6931235bf03a0d893bb43b93f56bd9d2450e8",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/ten",
+      "master": {
+        "bytes": 1321820,
+        "dhash256": "6689d0e8d4dc9698d4949ce6461d562d9c07840f962dc16c98a6d8c4f0f06ce9",
+        "sha256": "6a45719b7b220b3cd302af2c5ea03f9124219f9a0a6c056876b5dfe8e4ed0a97",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 69055,
+          "sha256": "b318cf03386f0bf6c75e78cce571a3a41157dadad1e157f1e9c68210d082a333",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 119786,
+          "sha256": "50b2e591a81b85e353489317d1180b0b0db8d390e49e94fe78285047ce3e1776",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 213590,
+          "sha256": "b2c76dda8ab85b86294472653902fcc081b7517eb13f2c4a08ac75ad5fc25509",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 379962,
+          "sha256": "c2f2b63fef51fdb04ad5b169c0f4a8812393a4317f8f9759325a27ec74662a1b",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 49491,
+          "sha256": "571b2e58aec652a3cfac5a2b7e025bf58254fc7db3993d249cc71b095c6d4193",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 92890,
+          "sha256": "5af3fc64bd5a7115751a2cf916e40a6b88120879fddd7a877ea7116274abd5c5",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 151232,
+          "sha256": "15cb7318bb32fb393df7e2ef7e94ab37d976ef08925da19e8807c399180f4f71",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 270184,
+          "sha256": "176749fc68f4cd993d3c32e570a0e5c3d54df689459262f96405b2935f9bbe2e",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/three",
+      "master": {
+        "bytes": 1226390,
+        "dhash256": "6699ecc8f1f0c0dc98c48cccc92cd79cc49cc4dcc33cccfce6f1ccc8ecc860a9",
+        "sha256": "6bf32f48042e19e730a9514dda6dfea4bb1bd3d41be8016b61ff2abd1025f09b",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 63298,
+          "sha256": "9244dd1fd6b31eaa04d38575356f7b20f9cf9d841ab99227cecb643febf76fe4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 109800,
+          "sha256": "91eb187201dbfa259c419819ec3e0c917a93ff5fe15e98db7794a573befbe76c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 199712,
+          "sha256": "782dce71cfa4074d0f2db5910d197dbf818d8bbc0e15fb580e1b9a85114bb874",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 345382,
+          "sha256": "2cf3492c3b6cca7303063fcf80a112ba3b53afe0a19d9e7a708c7a507efb492f",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 44665,
+          "sha256": "aa170c2e4f91fdea2e911898940edda567a59505f284baa4ded882f0541b4378",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 85472,
+          "sha256": "698b38a0a992f521d516b44926804d4d969c3628a8e753a3513a85bb768a2504",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 139649,
+          "sha256": "88d4f530c9d567abd61d9e4c81aa0fc2f74733d3cf0748491fc7dfeb5d3520ce",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 239596,
+          "sha256": "ec6da6feaaae4f3446e3cd9a61ae96fa13025ed5caa53d02d252b5550a40b42d",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/pentacles/two",
+      "master": {
+        "bytes": 1217192,
+        "dhash256": "64d9c0f8c304c106d18e8e85cf19678b1e878326812ea43ea07cca2cd0f060e9",
+        "sha256": "ca68efeba1ea18599b09e4e4d194d60ce632bbdc0c2c6f83dcb215660a5d19dc",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 64196,
+          "sha256": "5a8e3a82b60ad1fe22d269b387faa43595936b1f58a0bf83c788f157d58c3180",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 106358,
+          "sha256": "073bdf75072d8f24ded1c00dd338ab296c9d32abdc44fcef36819fe810dd3ef4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 197872,
+          "sha256": "24924a8310e12395dca042602b335326b873d9dedca047dbd6122bec464d7368",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 331352,
+          "sha256": "52ef83afcd76529f2de96e8153b23d1d668cf16cb8229a9982349c6e176e330c",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 45778,
+          "sha256": "641bc21afb4fb6d6287c13c27582cd5099d6f3d89c96a7248d8395c3346a63cc",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 83196,
+          "sha256": "e49ecd337a3f4d29462a444ba523d1013c64d42fc1918f9cc9488625fff1f16a",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 139428,
+          "sha256": "3758b1ec198b552c6b7ea398bc641d103bb91c0854f64abd1da8b3118affbe63",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 235422,
+          "sha256": "3a8414146cd8b0236134aa442de6a7a6da29afb0d6967625df38774e792ba117",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/ace",
+      "master": {
+        "bytes": 964798,
+        "dhash256": "6cc9e0ccd4dcc8fcd0f4f174916498f2ccc624cf98dec8fc80fe80fee0fc64c9",
+        "sha256": "6a5c0a8b5a4b74e35e0f53eab642bcaaa96ee0888ced170590a154861a105d51",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 47905,
+          "sha256": "86262ccd3f87ceadb4f7f5749850122b32c9298847c7586c960f6b27547e1a64",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 76778,
+          "sha256": "161c287d304165dbd45acc150b195ff183e90f482d48cbe546400dd8a7d5cf04",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 157361,
+          "sha256": "c15b4b256a5a2adf1ca5fcdb303e8422a9a6d695bc9cb39e11faeebca1a98b41",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 239980,
+          "sha256": "eec5ac002c5ae9f08a15057b313e7b4125d35da4247d59942f918c26d4fc8b60",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 33864,
+          "sha256": "b47a068515e6f7183fbed3dd13a2838319d75434d0ba9a496f2ef15299d5ad14",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 57452,
+          "sha256": "1fc042ebf05d67427fa55d78dd70e9a2300a693f420c8ce93899a7df21bff378",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 108298,
+          "sha256": "c855f866e0787f56b0a2fa1260c61fc9edc4b3e4c7f544f9d72a0ec24818bbe4",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 165660,
+          "sha256": "65d67d4552caf3f0f5698d15b926e29ebc3e5d023c1139cf014434ed6b5a31bd",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/eight",
+      "master": {
+        "bytes": 1100464,
+        "dhash256": "64c9c0fcd4dcc8e4c69cc8ec54755c755c654ccde4bcd0f4c4fcd8f4c0fc60c9",
+        "sha256": "0f9e23758c7851db59782dc18309c6a35f28de3a2348a7063c65c4553209c1ea",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 56913,
+          "sha256": "84b9ffed3e8710da5cd9ecd953ea0dc521b3c6f51e247e11415de6cf341f46d4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 92228,
+          "sha256": "3fc2f7550e27dfb5696939e4fd8ee911f05f283a9c3944cc18a9fc1713f88fbe",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 182745,
+          "sha256": "07525539e2edf9c4f22d0f81e158fabbc692232c4a3934d02f7473d098c866f1",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 297602,
+          "sha256": "154c86d67463bd3a21d2bfca6f8b9aba609e6c66a7657daabf2c0d7a144f5ed5",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 39816,
+          "sha256": "a321c737b98eb8846dcff5529b66240bc099aa7ca6851112d2593a74673e129e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 71108,
+          "sha256": "e27260f47cb714b5f7eee228482ac2caa54feccb660158555ee7817de0fb7fcd",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 125325,
+          "sha256": "b2755769232ad15eb6efce1ca656f6a10619cdeda01e453b3f314dc33c1cf7fb",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 206828,
+          "sha256": "669660122f203aab3d87219c5c80d7e387dbbf3603b3a52442f40c77b461c6f1",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/five",
+      "master": {
+        "bytes": 1078498,
+        "dhash256": "28cb74e5740158b3142722276473446564f141b542f54cd94e8d72b160f128cb",
+        "sha256": "facca898beeffeecd69384c551a8a4bdb7f89e1d7ae919e84514985f5545094f",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 54812,
+          "sha256": "034f0386436ea7a97b83025eb6a697b19e7c6427e0d0173ec9c506efd33580bc",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 86548,
+          "sha256": "a6f8f4c14ded9aa07fd1b241409f35e3aee9c858ca763ac6669d3601cca1fd45",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 174164,
+          "sha256": "1fa6360f946b1c42b1aaef650503fe05a1d7b5e405b1e98f6cc618da6c5a0b9a",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 273240,
+          "sha256": "0b36bdbee90c1ba31f76ede2ce731eeaa0ef7d88ca1df35dd13cc004e701a12c",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 38123,
+          "sha256": "153ed4e7e1580637f147b5403bc3d4ff8faf71dbdbda68086aa428626bfcf889",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 66084,
+          "sha256": "9da90b71b97158b7f7bda4c523de6d5b640e3583e8403f5925d7f390ed30ad26",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 120761,
+          "sha256": "f6e29f9b097cea0a306ae78259e4860a1e992e01b700bb520cd8d3ff7c509a71",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 188586,
+          "sha256": "1104071f672bcf3d619828f6849b4dd23e8fdc84e64f5660eeaa5b57ef1d385b",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/four",
+      "master": {
+        "bytes": 936882,
+        "dhash256": "6cc9c0fcd334d2b0d494d694d21630f310f67882ea48dab0cccac074e1e068a9",
+        "sha256": "6cbcdb6f0f42399bd4c47eded13b044471e24f207c587ce27f1d61db0d9000cd",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 50717,
+          "sha256": "4e38c89e79118bf09cd4fd09bd2a616121559d63ba65b8336b76f9c81445cc03",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 81972,
+          "sha256": "5521b83579afacd46619939b971d581c297d820cf7c3f10511f243ff5702bc0a",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 159242,
+          "sha256": "95b4b042b5baf52623b9e2fce3e47fc47d0c187600006e02c423bef71d6ae736",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 244774,
+          "sha256": "c974d740c364f30a825b42880bda3c1b62c84ed62435ffbaf7921d145cb15230",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 36061,
+          "sha256": "cdf895aa12a6b51931e46eaf7dd29eb5cabd8e6ee231e2b1d2313b12e0d3a08d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 61032,
+          "sha256": "388ae5005bbdec1a1ffd627a273d73d6cda289518119a1f8081299f9ec27d2c7",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 110235,
+          "sha256": "93bcabb0d16f87c00f9732d05a30b0219ca3e81fe1345ac30f8efae342996054",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 169800,
+          "sha256": "351887f3caa52a07ae05e19b32da8e981647170c85f576c01e30fe6e0e2f7a85",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/king",
+      "master": {
+        "bytes": 1048278,
+        "dhash256": "64d9c01c92264da62cd618321886348e328e389f9895f8ddf8c5e284e09d60a1",
+        "sha256": "070ae41e1caa81014f84fdcd2740596c269f51603ae6ba833a29feaf6b7b1115",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 55808,
+          "sha256": "0fb6a73a2243a63dd8db70e541ceb6c31ebdcc4156c97aa3d46e8ea5f1359fce",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 90954,
+          "sha256": "e6111d345eb07f48dfcbfac530739627cce9c971972a154fefe11c55ddbad146",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 173070,
+          "sha256": "7ce4a578b8dcd472eb8a138fee58c1654bb7d5d3599e0e8882baa585d2791931",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 284320,
+          "sha256": "8e076111bcfa4ee42a6ec942aaaeffb91594a040ce1b18e35f724789d72f3255",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 39687,
+          "sha256": "91a4bd419f5e8f2d6556d606835e62e2a4ee95b22b1673666957ddab72256cd3",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 69720,
+          "sha256": "396b5eab11286ddeb8754b97df467ca0a29a8af96173ea0a625b16a41bd9129c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 120980,
+          "sha256": "8b57ef227a2fcc53a1b9386406719e048f465e867595a801572c68e4179a7c11",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 197254,
+          "sha256": "7027c581bb6576629b2fd57c35e3d22f022024e25c182f3cf92a0cafe8c28f59",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/knight",
+      "master": {
+        "bytes": 1123648,
+        "dhash256": "60d9f8f87e903b7499fc67b07a1c7b0c32a41e0c8198c1cfac22dce130f23967",
+        "sha256": "a3b5f6790104e756170b409cb159786370ab069c76880bc17f61810cf6446fb9",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 58095,
+          "sha256": "74de92e281559b8fbca93bc2f85dce0cfc78dba64bbc593596e10bcbff80db9d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 91088,
+          "sha256": "125e533bbc5fe8b45dfe792f080f545a2dec47ee92475fa29d0fb3d7418faf49",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 180461,
+          "sha256": "420ce1ea8a7eb297b6d3fe3253230975ca84e3a7afd5389ac4d4b3f524e8b4fd",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 286742,
+          "sha256": "f040e9a119b356aa0457b98de91f2c294badb46b40ccd24b35a387ee4b772e94",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 41244,
+          "sha256": "c27176c382059f8ffe03f59207f62094516951495c8993072944bef44a78a5ad",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 69694,
+          "sha256": "f5a1a5899665eb48dc09961da5476a154b6b7b792b3642a82b08b8f50ecf7cba",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 124475,
+          "sha256": "8857f2eead729275429eef5de3901eba88a7008ff15f7193b1b579719ef557d8",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 196848,
+          "sha256": "0cb84a2201d374054fbcbe8a9ae17e90fe3656e1b836611dbbe36b3f630b05ea",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/nine",
+      "master": {
+        "bytes": 959934,
+        "dhash256": "60d960e1c45cca48d02ce024c4146d15c89694e6f43ee31ce29cc43860f920d9",
+        "sha256": "dccdd6819dfa58a9afb9250d549f853f85fdab946a6772ca929bf9d038bec448",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 50770,
+          "sha256": "c81a810a8bd2065fa9c901070f11a4008e2c501f73a8c15eadeea211a0f28333",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 83524,
+          "sha256": "c4b193b67de2789acf24e61f5e92ce801c54079c1ead692d1d371e8f1deddf8a",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 157017,
+          "sha256": "e020fb10bcf104e304952dd92918335282d3866897bd7ec30363f825d992356d",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 252386,
+          "sha256": "53ff873f3c9efa2da6c581269bd2f08d984393da5cb7fdf058ee264753fa4b45",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 36205,
+          "sha256": "12717536632924e791f02daa4fb6299a55464e99554c946e73c527cc2d282190",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 64272,
+          "sha256": "83420de904aeea7d2c26ec8ccb2c73b524f3f6aec84b82f583646e7386fedfd6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 109376,
+          "sha256": "b00d4cd2d8e5541647da365ba498170cda4ba74d6c093d825a9482eedfe7a780",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 172982,
+          "sha256": "a969f733a2f66aaa86169bfa7290bf345e7550869685284378e9039876bc2040",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/page",
+      "master": {
+        "bytes": 994730,
+        "dhash256": "229962d1c4ccc74cc31cc998c93654a5648d653d586d790dc835c29c60e968e1",
+        "sha256": "fb628fce903fbed06a1c69b455069f5b8f216aafed2bbfb0f4d0bd1a955c9c9c",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 52952,
+          "sha256": "db9d608dbd1fe21453a5e4a0351c5d4648db073c5e8b774ceae7b7610065ea65",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 84196,
+          "sha256": "bba32a4d9fe2731f14cc0a9342bfc8a9588f6ee1ec926616b791612f27110401",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 162208,
+          "sha256": "f5dae184b9bf88917d8b3b32c628bbe267955568237b4370bb415428e1949b05",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 260560,
+          "sha256": "55e35921276c3858970f2ec0e3e05d28b1b4acd6920ccb142d6bb030ce870861",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 37234,
+          "sha256": "a71e5c722227bf706da98d8352300b690f28f47d56e1c416bd4ee0e536f7852d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 64732,
+          "sha256": "941462b44d32dc7d6f75acc1b0d57a4fe55bcdaeb0109fe396aa04406d7d8e28",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 112543,
+          "sha256": "f36fff2828ef00ad1dac6b0a216e329d2fe0445db72e9f15ee67294ea033ee62",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 178332,
+          "sha256": "d0495fc3d5c86e8a23c6847bdb9ee129e9ba8ebcb437e9dcfae44d82baa58f2a",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/queen",
+      "master": {
+        "bytes": 940900,
+        "dhash256": "1ccd0e990e7283ccc198c834cc3c786cb045b4936586b4ac9c98883cd0fc60e9",
+        "sha256": "caa114cf643b0234e42bc4a39722fd0df90f765ad5791c8438faf87fea7f4297",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 46936,
+          "sha256": "a3ffb0cf6d27c9175bdf8a44db51736563f2fc1bd96c04607dfa3be74e13b6d2",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 76386,
+          "sha256": "16c310579a012963afb7fc3ee99a64958fa0dc0fa43130db7b87704a73dd7c48",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 150818,
+          "sha256": "98e2a017eff133c681a085d3a45cebf4cb9fa13bd5dfdba4f9cfe91d4efdb342",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 233634,
+          "sha256": "28334667d731f7a19c3f1afe4ee7df3f9844219f7079be5cccb24bc60a19ff4d",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 32378,
+          "sha256": "68cbc0fcd14428173b2d0de323fa1167ddad638a26bab7beceeb656c551b0310",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 56540,
+          "sha256": "50f3985d2e5eae6a4cc21f2f6219cef933c2d136148adc3db238a10bb6ad67da",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 103691,
+          "sha256": "dbcf5ac3bdbcc3500b09e752a6313f735d3bf7cb370fe32ad73589105461f7d1",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 159452,
+          "sha256": "e8dc18e676b9a1e4617df0e2769f27cfe790e16de75ba6eb99eab78f92bfa96b",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/seven",
+      "master": {
+        "bytes": 1048896,
+        "dhash256": "60d9e0d8d884d48c43234c2d748965556655516555c54499c4dcc8dcc8ec6159",
+        "sha256": "46fed9d80738f6d28b17942b7989041b4b8864d5a1cd51294dbae8ba48a94041",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 57229,
+          "sha256": "5d18e2c574b5ecd22b9937abc90b6544744c6ba9523b87c2d600fab8a51c3cd1",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 92374,
+          "sha256": "6def5578334a5a877b4295b05ad07f5df57de18e0ab49924da9cbec5d1265759",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 177624,
+          "sha256": "531ab59d06ee018dabe59fd6d008cb4ebfc0057f6d72806a97633c89bcbf485d",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 283358,
+          "sha256": "a8a758c1967db99d3101d97267fb7ff50576436fa078bd7e49f7f9996eeeb595",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40593,
+          "sha256": "771f0e546b8c5966ea167e3afa6240162c9f4c7723f802994d1f9ec535b39115",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 71162,
+          "sha256": "4ccad87bb48ddf3b9e93a276f13e12ce7afd7a0458658495db5a3d9019a9aca3",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 123675,
+          "sha256": "c7550b6954213901ad6b7c5a68b038b75b81f22708d3a4cde5fa363b728f4364",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 198442,
+          "sha256": "464832a60e6da3eff1a625cb64e979cc9da447555abe41daf5ba5613490d4cde",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/six",
+      "master": {
+        "bytes": 1060076,
+        "dhash256": "6cc9c8f896e49454895c8bc78ae7c93f500f720f31c389c7c307c0c6c0e46869",
+        "sha256": "8ad84b8c9dbc143d362aaa96b43e782912ade4900407e6fc1dd06a2eeee58516",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 53724,
+          "sha256": "b394967f72f04bb2f3dd54374a24dc85aaa2bab56e1f6e29d1e5bac4e081b270",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 87226,
+          "sha256": "5e6296cd164cb8b7c4bb6aab522e0577c6b46d224c1496c9b1cd8ebe563b2adf",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 175926,
+          "sha256": "eea0deb88cf586a33a596ea0bc24de3dd17ba36f7d9b98f79423f60c09957141",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 284560,
+          "sha256": "497377ed744363ed074d498fb3d248458f5de1c9d72e6c23cb4352241c00fa71",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 37789,
+          "sha256": "5ec33e7bfed8e964f6afeae466c14b115a336430659847090d7496ab4a0d9ffe",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 66108,
+          "sha256": "1b2809323a7fb88f6118395dcdccf730a5d765d41aa992a4e3d77c1a9fce4537",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 121491,
+          "sha256": "45b1db382fcef8850889c0cfd44e51cc014a29ddbd8d92b71f0139a5425fc3d0",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 195942,
+          "sha256": "f735c8aaa5af290abbc55565791b5b1554e2ea8a8d9b7976f7da7318d29ff764",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/ten",
+      "master": {
+        "bytes": 899948,
+        "dhash256": "24db58d9d29570e510dd1a834d07030f030fc81dc09dc825c68cce5c64e924d9",
+        "sha256": "a5ecf07f10a66d39d1fa833fd1d90869780543a36203119d41afb9ccb4008cf0",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 50635,
+          "sha256": "12bd16115651997a1cfae3577e71e8168b6174e312efb24ebb3fdd47575f4fce",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 80758,
+          "sha256": "0a9a288a9ee04d76a0bad28200c2a516ec4f87f9f772678fa934ed84a2a741a5",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 155999,
+          "sha256": "07da75d8085a8b52c3fbefb9caf9637f02c69cd590910e8f87763471bad74d12",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 238442,
+          "sha256": "1af4f6c007d2023c8532aed68521ab3aea97990381dfe2f387653c91fc0babf2",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 35821,
+          "sha256": "718f9ed569dd3995f949d8d755175a47ef3b7dbe02c57a9f9cb004824dc9e525",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 60590,
+          "sha256": "f429cbfaf31255fc562645c32179d136f4219c4ae9aa87f0f110e7ed753db5b8",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 108843,
+          "sha256": "9d3df43beda9366045fee4f672b651caa806f101d464679262bdebb0a49d3d9a",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 162566,
+          "sha256": "1644c393041bcc217c87e8a5552a1fadf02e5835216bae41fab6f6854d747003",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/three",
+      "master": {
+        "bytes": 952566,
+        "dhash256": "4689c17c1179cccdc69c769552b54aac733d1c61482f583dda0dd40c60f168e9",
+        "sha256": "d6dc1dddcbf4908f267b30cb1bf023e5a3f178182cc7b7cf6453259612ce0f28",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 48188,
+          "sha256": "89663b62655181c019a3969bb64f033b5af5e77d70f5bacf15043dd149e906e4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 74738,
+          "sha256": "a7caffedb00d8d156e19218c60f681b449279f2dc422ab97c9bef5b7159bba8e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 153308,
+          "sha256": "f219220a12fadb70dbe2cf6a3699987899f231df0abebaf7ad272d581d561fd9",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 231070,
+          "sha256": "7475af9fd8c45798b662e422f52bd2280d4f0aa83f6309daeeafb39c2f89739c",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 33271,
+          "sha256": "7d4ec899f1a46994eec62ffd05b5d2b58f423a79d1c16ae034aa16ee029f1fc5",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 55484,
+          "sha256": "1e5f3ea51b61600ad94d14633b0b4f310004fa24e5b14809ebf61bb31f961c26",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 106237,
+          "sha256": "d046112e1dbc18341427e60e893cb9889714d16bad6ab96bf450866ecf2e3da2",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 156364,
+          "sha256": "81ed63833d86d318b1ce74f383059c63debbf48d746b0727668f8018afce1b31",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/swords/two",
+      "master": {
+        "bytes": 995406,
+        "dhash256": "60d9c0f8d0f49c5694d6927616b67c857cc38ccfcc8ccc8cd884dcccc8cc6689",
+        "sha256": "78a0ebb2fd179c3aed595b809327d1515d5a489836d6b3333de3bb5db6866c62",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 50253,
+          "sha256": "b34bb5c5b391c8ff97adc736ca2106cfb0ce46c23e91cc00b5ad0ee2b1f7a06e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 78110,
+          "sha256": "9118c47b8d53f69b29e0e3002dc1bdf5f65f0e4f59636a11571db0848a230d3d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 159024,
+          "sha256": "7b74f371d1665525da6db52ddaed9f038e1454dee2405eda21abcb11c375dc8f",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 242348,
+          "sha256": "334bf621931622f6a61905744b0656c2b531cf7082ad62dbe3374a2ba7f650c2",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 34701,
+          "sha256": "6fee87afe0b1543555814d39006a2cba24e833b767e1e8e6e5c791d08f134040",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 58308,
+          "sha256": "3076b02c7cdbb6cbc4805dc0c8a930b5c714663db093056474dc8323d9254ce4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 109005,
+          "sha256": "a054dced36f994d57af9844aaa651fc3e2b17ed2ea2eda9a6d64a632ef3215b4",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 164418,
+          "sha256": "121b0ee7ea72139a4c17d4891f6c830b2cde82ede66d908a22bfe6268e37cddd",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/ace",
+      "master": {
+        "bytes": 1055782,
+        "dhash256": "64d9e0f8d4e4c0ecc0f4c16cc16c7161797319664b6d437f037f031fc4e064d9",
+        "sha256": "2a90ba33590fe36f71bfcacf55e4e0259d348a8b0b8748fbfb78b726e3032db3",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 57393,
+          "sha256": "0180820d2b65b6398c400573850def4f3e4c892b87a8d965f95870a2a3b086c9",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 94942,
+          "sha256": "7601c5a49414fc64e683d5c8b821b00433c894624d8c64a304c52d6eb105dbdf",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 174387,
+          "sha256": "1a05f6ebdf931b67d41fa3dae89e6291a54099235d5b735a0568bac08bce5630",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 280302,
+          "sha256": "af044beff6f7b9eccc44dc6f007188982918aa5f205568fb0b938470ce39e8e7",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40754,
+          "sha256": "0bf9ab42344be083438e92e7b796a826da3ecde30c5baab49b0842979cfe3ff0",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 71992,
+          "sha256": "d86c78a73ec3d62e50101b27109f8a357faac534d618584e495c4cf3ecbdd937",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 122885,
+          "sha256": "80aa1034c6dafdfaeee65b8819dc1f96b666862052f882a90a6652f9428d84cc",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 189316,
+          "sha256": "bf6748277e390c6d44e816c6fab36fad14c2062e1b0f540de755e897a3820c0c",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/eight",
+      "master": {
+        "bytes": 964908,
+        "dhash256": "609950f554cd58fd484d68651c6d4f25136749875887601f421d509540dd2969",
+        "sha256": "64dad56c7f242c98e0b732151ba40acd1a17afde8e526a0c6da6aadca0ce019d",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 52963,
+          "sha256": "2f4f70b29c5c4280eaaeccfff223859ee44895be1f778b98016c1b37a54e48b3",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 87580,
+          "sha256": "f4be19c4a5e7f0f4a929d4107a16e5eec8fb277240ec1556e0425e6b49d223ae",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 162770,
+          "sha256": "436b7febf2561046310fde959aa26c0bf821fff6523d4d0818b3aa2dfd31f8f1",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 263838,
+          "sha256": "c49be67d6dd8a27870611a4de22b0aec9534f8fa021b73d29ce613814de4de6d",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 37750,
+          "sha256": "3367c6a161c824bc12917fa08f038d7873c2acaaf63e07611fb984206ec85cb6",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 68184,
+          "sha256": "89037b81c395477c242145a7cd96d9cd8ddcf55023d4462864d013e2f369ba88",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 114570,
+          "sha256": "5de9aa181a427b365de5d3b996f4df836da5c94cb292c06cb4d3b59935b1a8c3",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 182284,
+          "sha256": "f656813d45b6a0a4d74e9bf8009c6ad225a56d33327532702a7757c6b4954f52",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/five",
+      "master": {
+        "bytes": 1082966,
+        "dhash256": "6cc9e4c84b1c5b495c31767264f143191337663962b9c2b4d0b4d0fcc0f860f9",
+        "sha256": "dc67f9710c8835cf7f159b076e57c9e6dce36e86753629a1e7f3a610c9d016eb",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 57388,
+          "sha256": "ab7c3dc0cf9429cfe46c6642b52a3239e209613a1a02e419aaae21aefa7fafa4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 90462,
+          "sha256": "df02121c7bb2b3182fb84d32eb5c649b84d9c80083d5931a2aa0d236626da948",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 179192,
+          "sha256": "25e51c6ea6580947c3e13a268e3cace2b69c09626e30b7c40348e7aa58ba7b29",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 281594,
+          "sha256": "eaa15130da69658c8640a22dc729f2898a2ed8b47b489bf65ad268ef4ec87c92",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40263,
+          "sha256": "cbbb9f30a9b37cd20c98af8849b90e015e855d02056b238df0693423bbd658cc",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 69464,
+          "sha256": "cd7ab341f00298ef13b3da900ec265a67c7f93363ada9d39856f8e6f0f5e5e08",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 124000,
+          "sha256": "dbdcb26e59bfd318e61f1b7d270a73aed91eee26fba23af0117bd88c963b1de0",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 189942,
+          "sha256": "cf3f9f8f3d63c96b9e57ddd92d4d5baee9b05e0e210e16dc1d0a75ef099dfb92",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/four",
+      "master": {
+        "bytes": 1063888,
+        "dhash256": "24cb50e55a854a8540555595597558d552b550f5516550e554cdc8ed60f124c1",
+        "sha256": "82db5b72df2e3456e61023b5bff808dbd6466dff76c063bb20e40c46360225c6",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 61572,
+          "sha256": "356785f6b37b7188bd830f396ca584e4e13f6d8d66f144608c025ccdab21058d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 104736,
+          "sha256": "c5067cfb5216af14de797a9b0494e66917f145b8e2f49d42a66ead012311fad3",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 185178,
+          "sha256": "f290d4914559341f35c0dbe56548208997e37be5251914d70446f7bd173e98be",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 306996,
+          "sha256": "762fa1e2e49af14547947064d970977df310564347b5c3e2f628c2c6f03fd594",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 44264,
+          "sha256": "d2d84493e85fea86239a360ca9196b38940aa2c7b6e251072415adc00c5d4cea",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 81822,
+          "sha256": "d8b36aaf507373d2635b2906b0769096fc0fa268e3d003f0dd7e4df5dd4c1389",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 131213,
+          "sha256": "949e8dc60fef68474ae0821c3f0b2ce68b2f4be3642ce2f92a90e3c1fdd7ecb9",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 217154,
+          "sha256": "333cbe8c16412efdb41c8f72d6364c046541bce686f93991c96c9dab7fb00875",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/king",
+      "master": {
+        "bytes": 979582,
+        "dhash256": "74f354d19b0495836cb728577337d399d1ccd105b431926dc254c43c792128c3",
+        "sha256": "5cb885fde10b3d19bbe977900f417d6225d29738dfea4654918681f58800071c",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 57230,
+          "sha256": "0312751c448d6053c334fce8c201cbd34ffd9e67d71e24f0ff24ca041dbfcd77",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 94390,
+          "sha256": "12032788f25ee50e6e000eb76c4128bb643f9515e614ad1dd813792754aa7acf",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 168573,
+          "sha256": "ef446e48824bdb7f9881322acaff7758983e32272319f44e21ea3c7333164fff",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 272192,
+          "sha256": "199db41add484974c6726810d6e60959d45d0c8aa0652bd43ffaa89732741299",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40367,
+          "sha256": "ec6c31b2c0f79e1d5a1e6aa07bb648573544a149d84a92a298e034350917e06a",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 72386,
+          "sha256": "8c8e55af70253772bc9c34651283fb0bf9c1069425932d3f89de40eecadb0013",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 118896,
+          "sha256": "46f08f584084ec4f5f61ed5ff565e5590230f52329eadac21f946b622052aac1",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 191746,
+          "sha256": "291593684c924c30014dea4edf0361026d9cc646f0ac3f08da029ced37219692",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/knight",
+      "master": {
+        "bytes": 1232244,
+        "dhash256": "24d9e8d89ce4dfaccc78490ccc367666796a3e4d7c876c4b3e1d938ce0c464d9",
+        "sha256": "f1e04aaa3a83db9fb2117a8b77365ddbf07a019ec85038aceed955ce51f0cb6c",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 65472,
+          "sha256": "e744f2de0a0560ac0f7db15c2c0b24d0ba96e4763526241f4b51457363556c60",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 112020,
+          "sha256": "48ce96ed2d17e154ac096bb6779b5b2582259f256db6bd3ed25fafe6410b30a5",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 198903,
+          "sha256": "ced897642103b6460de350a980dd7c3411ad23c1e3777f10b8b8ec2480f3242f",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 345222,
+          "sha256": "7335f82dff6404f41ac0230f79c25ba1e618c0475244e91b4c81e7ec40cd4579",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 46843,
+          "sha256": "0e3a1a6226d20fd8373562d17ca66c43aa4b6aa6ee367c30b56dd3828db5a5c4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 87532,
+          "sha256": "bcff1b8b25e02cbc2cb2af1343750b66182c6b770e98ec177d6ff9bfd01506a7",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 140542,
+          "sha256": "636e16b89ccc0ca15092a2691f1ee8f6ad41de241f48e01d5dc67e2c02f76a55",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 239802,
+          "sha256": "a9c390b4038c89acd8059c4b20de413661161aba915ed330f7f40aa5f22b8518",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/nine",
+      "master": {
+        "bytes": 999350,
+        "dhash256": "c0f4c078c072c32680dd8a55867d8c7a8e36c87cda5cde7c8e7c9834c8a4e052",
+        "sha256": "12d7a5283945ebe83662d995388c1df6cb2c99f83df2913c48fccfda050b05b1",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 61976,
+          "sha256": "bd70668faba37cdeea035ca06d2586ac804b584d631ccbdb220f88acd8e118f0",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 98018,
+          "sha256": "3c63124589b15b3bff6c39b41325a6629aa493f109589b26b1e81db95d092601",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 179138,
+          "sha256": "9e367cae63a5465aac758e58271fe5137956f4d23609a0d18ec6942380ec6a9d",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 276414,
+          "sha256": "1099c58225eeb97a980be7d7be311ad3051e050e996f506472b702c8034c1163",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 43235,
+          "sha256": "7973dc9139729a3d72da13f7aab7e05ffc0bf47d2fceeeb73745e9aef2cd0cc5",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 73034,
+          "sha256": "a629bd43ade9e77bff326548a93875f22c23b1ab81754e4e75e11afb530f736c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 125528,
+          "sha256": "4f059b8311cf0bbfe59033ee487069330a889c891dfc0cce42b38484296239c7",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 183962,
+          "sha256": "17db9c51a80d91b485e8ac1ca53884d67fa67efbfb4c8ecc96f51adeb9e9fc43",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/page",
+      "master": {
+        "bytes": 923198,
+        "dhash256": "60e9c6c0cc94caecc6998c9929270917cb07c937b73dcd1d8d39982dcccd48c5",
+        "sha256": "ebb562a6bb8eb12ab2d5bebc41789db29838849fc966e82021bb07814a968f29",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 47459,
+          "sha256": "371ae3688e6b624768515bfb6eebde94501c5db5f9b4b76470d2b5c8e36d728c",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 77306,
+          "sha256": "d61d601d4ef650a036f4ebe6f723bca5322475c81173fb27923341b62c55216d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 150257,
+          "sha256": "74076c1803346773124dbd7c130530c4de409fb404032286d1101a8897af325d",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 233874,
+          "sha256": "366a0be045b7726ff90901b810401a777b444f8413956a218c4b6860edc4fe76",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 33643,
+          "sha256": "051dc08463b69479d25af8868925e6bd588829bf35390f8264ed5621f7493fc8",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 58270,
+          "sha256": "378336f370536ff21ed89ae170b773535159d946576eafdd27282ad25ce6d2c4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 104752,
+          "sha256": "f3e6020f9c65a68323e0d8eb51b08f596bb47bee30be7f18c0c582e0dfd1fc91",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 160280,
+          "sha256": "49a12614a26c8a62f1cfb333db3228347808bb41b170a85a480a0f72547626f8",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/queen",
+      "master": {
+        "bytes": 1019212,
+        "dhash256": "60e9e0f8d984ca54ceecc594cd9ecccc9c84dd98190c951c9a1c9a6ce4e868ab",
+        "sha256": "7f45a75d5d84ba2805bfc589fdbce495409ffb5de696a88daddbc9d8794c6cef",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 57135,
+          "sha256": "c0cd0bb3081ee0b4cffa13540a9dc890bcd866a158fca1a9fcc5454fe4a2667e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 95408,
+          "sha256": "c0687c06803942da354dfb9a00c7bd9d7fe22adcc2705aef8db1711a8f1118bc",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 174309,
+          "sha256": "3bf51f242fe487e390ec5cc8fbe683ad89b43b36485ca653ad244590af5b6da7",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 285044,
+          "sha256": "0c0a3d827bd0fde53a9bde82772cc407ef6e2c2deec3824cef80f29c4f8d9bd0",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40638,
+          "sha256": "1a0fc72f69a3c8c9aa6a188d453f495d80bcb476a403af0c36cc028dd8bc6006",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 73706,
+          "sha256": "aa1e8a2fe52e967a0a5114ffbb71001d55e906da076df6ba0235c5aa3b7283a2",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 122110,
+          "sha256": "e1ae696c29843c7c0d3c0624e613a7e731bcf926a434dd4a90fd9169e31a1457",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 196890,
+          "sha256": "64fc5ae2cab94b33e7bc46b19637209500bd19f6629558cc453341dceaecd9fc",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/seven",
+      "master": {
+        "bytes": 1067928,
+        "dhash256": "68e958f954ed4cf14df546a55d8d0e8d0e1d564d432d459d5f0d592d48cd64e9",
+        "sha256": "27f542f6955b6792629c2cc265b8b669075eca2cc92dd58978515edbe6732329",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 54099,
+          "sha256": "7603293a03dfcec2fb1266dc8d7fe6cf158285e0bd13e1f9d7627ac6b81b58eb",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 90164,
+          "sha256": "9dc23723836b8aa2fef7bcc1fbccb860a297d24a7e52f34a94674462248ba4b3",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 174776,
+          "sha256": "b041f821c067001baab4975cf697d6b20dc8959647d0b92b824f41366a5fdab3",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 276242,
+          "sha256": "1673821a13f57875bd7b9003e8a53b17efbf2a94c3be87075a2dc75746a8ed08",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 37893,
+          "sha256": "87672a911567f7683ecbb871af72ea51da54a02ba0096e16b33a35032ef4092f",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 69086,
+          "sha256": "1dca88559effa00f69fdbc3b74a9ab8d10b2999667d7d895b876b411d1e359d9",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 121785,
+          "sha256": "479fa32cd39a2d5b238fa9ba7f092ba4df080b80bb8ff9df4c8a3326172770da",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 189284,
+          "sha256": "34563b034aa758689126aab49e4c7193494e402eda821ae6b37edb5d74afeb98",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/six",
+      "master": {
+        "bytes": 1127528,
+        "dhash256": "64d9f0e89d869c068f0e871d6235427587368d38cf30c274e278945ce8a82861",
+        "sha256": "104b58c7f211b60db542068c689ccbd355e269b54738daa242eeca420b881b7f",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 61734,
+          "sha256": "704e3f75ebf91aff79f604effd9d2b7a50137a57fced064dc73db73c3362d21a",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 106336,
+          "sha256": "157e4e9b1c9bbb920e7f88e17f80be3afc2bb66d91ec7a08085c304fb07bfda9",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 189498,
+          "sha256": "141fe67323a6b7648255613409b627bb5af439bf5b3484e1e30a9f6f7b7bf178",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 316488,
+          "sha256": "8be86744d1547ed4070bd8869fc1db83186a118c5ba2d27cfa1e64a0cccb5b07",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 43276,
+          "sha256": "cbddcc15512af65611a44d5e92373cd01cea6fdfc9ab2f9d2f1894912518e74d",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 82858,
+          "sha256": "e057fec887a978e274586298026efe07c7a711691a45627a42a5921a30d05b70",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 133165,
+          "sha256": "f3129157d482a50d932f627a6311d000c987d0ef8a69ddc467e97cbf8147e341",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 219332,
+          "sha256": "6cf80e5443b9a42028490c91257590e1a5180c729cd8613034503432a37c3d73",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/ten",
+      "master": {
+        "bytes": 1134618,
+        "dhash256": "64d9c49cd244d374d91226d26572d0b2c846c834d36ed27cd09cd4ccc0fc60f9",
+        "sha256": "8242b9ac3f231d41027ef4a309bfde1b72c83c4ab592d50b4f76aeb4867e17cb",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 61240,
+          "sha256": "31d690b2dd8e6600e1af761a73a246d4288bc82b5856d8b1821154677df12b3e",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 100078,
+          "sha256": "1bdbf14950f469deb4f83d214fe359e5c1da1ae5a70e83e40520a4b62bda6afc",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 188430,
+          "sha256": "b4c646fb0865f42c5ad270c91fadf4da443671b5741bedff2b7114569237fb76",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 314582,
+          "sha256": "c1afc6df0cc0ea44038564159ba60ccc73cb8574293c5b939f7c85058126b583",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 43410,
+          "sha256": "a23390918bcdc651c9584d59b3424c0ec93762208b690db8ad7978add1305734",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 77202,
+          "sha256": "89ec44c3a759ec8b2aaba76e806aaed85ace91b850ef4e5186f0b1b4ffdc688f",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 131359,
+          "sha256": "a3e4b91ececb7eb03f7dde35295a015017ffd61f76a4f7cca6105122fb2a655d",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 215936,
+          "sha256": "d9d6c160841ad342ab41ff995db8ef2891025a9ab2b6a8e7302d007285d1425a",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/three",
+      "master": {
+        "bytes": 995426,
+        "dhash256": "60d9e078c0b4c0dcc1e4cece0e2f6c7bcc2dd83cc47cc834e0b4c8cce8e86129",
+        "sha256": "fe1184923ff05795a0f97d099e0f8a08cc9d4f76dd7ca07f42b03bcd3b2e12b8",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 57034,
+          "sha256": "4bcd5bbe5ba1abcf60fe5aa41f7da9d8d8feb0dff692d048803e00a631703034",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 93066,
+          "sha256": "b4bee4c3f9f0c2dad7ad3c541fe38550bbf161169141a3af706f869cbfec2c70",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 169371,
+          "sha256": "832912b33c076e82c475a9f9da21ff1713f4767c0888b083a11a53118eb29767",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 269522,
+          "sha256": "23a3b85bdd4a713679b80b1291871043176824d4fd97fec07248a0c4084ae280",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 40274,
+          "sha256": "c7320aa659e97e2958d508564709cce24007c78a7b62ce0369b70b9d5a5d0d4f",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 72142,
+          "sha256": "0b78c87e77e5c70db2f2ec13766478b6802108a3a734fd2163419e30952487ce",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 119431,
+          "sha256": "43717b6cbaa8a9b7117f98eadac566822ee46342d33fddc8caae3981ac0136dd",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 185966,
+          "sha256": "8c866e2c069f614c49bc0ac9f5966417e6aff852a9acc2a7dd995c7d5d64f010",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    },
+    {
+      "asset": "minor/wands/two",
+      "master": {
+        "bytes": 1155320,
+        "dhash256": "64d9c0e8d104c0ec68c9360b08ef89669f0e9e8e4d199b3c8ebc86b4e0f860d9",
+        "sha256": "4f90bee7772e0d51a56bcc9a1176fbb57972f60fc24ad51adefd105b6d93a943",
+        "size": [
+          1600,
+          2800
+        ]
+      },
+      "derivatives": {
+        "detail-480.avif": {
+          "bytes": 61834,
+          "sha256": "70176ed7b807c89250d9317574b2c64a7c2cd9cc30c7526ed1cb11907a6b56b4",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-480.webp": {
+          "bytes": 106294,
+          "sha256": "4aced7a17d104643f1e14a23198be6568a5ad3a6e0bdbb3a37f3a240dd5b24c7",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "detail-960.avif": {
+          "bytes": 193158,
+          "sha256": "35b15beb70edcb231661dacf9dd0b94afbbff428b1397a2773216bfa899fe3fe",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "detail-960.webp": {
+          "bytes": 324232,
+          "sha256": "5441773370f624583bc2412527be28b8f860ea54c00be4424a628d998fe8c273",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-480.avif": {
+          "bytes": 43409,
+          "sha256": "ed4863a5943269e758eb1f0ce9d8aa874002a832b599a7471a7a861fecb37aed",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-480.webp": {
+          "bytes": 82278,
+          "sha256": "852b0bb0ac8a771d686a9b631fa37f9da465416820e61ebf4f9cc4312a51e165",
+          "size": [
+            480,
+            840
+          ]
+        },
+        "grid-960.avif": {
+          "bytes": 135166,
+          "sha256": "697aee56ecef509d710e186e242cd6603407e2f7e76341f05c8a6b94b8522eb9",
+          "size": [
+            960,
+            1680
+          ]
+        },
+        "grid-960.webp": {
+          "bytes": 222592,
+          "sha256": "de607619cf32355e65ace8bc6303941d3aea7e35bcd1e8e6993dbfdac2ef5013",
+          "size": [
+            960,
+            1680
+          ]
+        }
+      }
+    }
+  ]
+}
