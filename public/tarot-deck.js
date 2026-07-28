@@ -23,6 +23,9 @@ const major=[
 ['Mahkeme','uyanış, çağrı ve hesaplaşma','Eski bir konu yeniden önüne gelebilir. Bu kez daha bilinçli bir seçim yapma fırsatın var.','Geçmiş suçluluğuna takılı kalmak yenilenmeyi engeller.'],
 ['Dünya','tamamlanma, bütünlük ve yeni döngü','Uzun süredir emek verdiğin süreç olgunlaşıyor. Bir dönemi kapatmak yeni alan açar.','Bitmesi gereken şeye alışkanlık nedeniyle tutunma.']
 ].map((x,i)=>({id:`major-${i}`,name:x[0],arcana:'Büyük Arkana',number:i,keywords:x[1],meaning:x[2],shadow:x[3]}));
+const majorAssetSlugs=['00-fool','01-magician','02-high-priestess','03-empress','04-emperor','05-hierophant','06-lovers','07-chariot','08-strength','09-hermit','10-wheel-of-fortune','11-justice','12-hanged-man','13-death','14-temperance','15-devil','16-tower','17-star','18-moon','19-sun','20-judgement','21-world'];
+const rankAssetSlugs=['ace','two','three','four','five','six','seven','eight','nine','ten','page','knight','queen','king'];
+major.forEach((card,index)=>{card.assetPath=`major/${majorAssetSlugs[index]}`});
 const suits={
 'Değnekler':{element:'Ateş',theme:'eylem, tutku, cesaret ve yaratıcılık',love:'İlişkilerde çekim, hareket ve doğrudanlık öne çıkıyor.',work:'Kariyerde girişim, görünürlük ve cesur adımlar destekleniyor.'},
 'Kupalar':{element:'Su',theme:'duygu, ilişki, sezgi ve bağ kurma',love:'Duygusal yakınlık, empati ve karşılıklı hisler önem kazanıyor.',work:'İş yaşamında sezgisel kararlar ve ekip ilişkileri belirleyici olabilir.'},
@@ -45,6 +48,7 @@ const ranks=[
 ['Kraliçe','içsel ustalık, sezgi ve olgunluk','Bu enerjiyi içeriden, bilinçli ve kapsayıcı biçimde yönetme gücün var.','Aşırı koruyuculuk veya duygusal kontrol dengeyi bozabilir.'],
 ['Kral','dışsal ustalık, otorite ve sorumluluk','Deneyimini kararlı, adil ve sonuç odaklı biçimde kullanma zamanı.','Otoriteyi katılık veya baskıya dönüştürme.']
 ];
-const minor=[];for(const [suit,meta] of Object.entries(suits)){ranks.forEach((r,i)=>minor.push({id:`${suit.toLowerCase()}-${i+1}`,name:`${suit} ${r[0]}`,arcana:'Küçük Arkana',suit,element:meta.element,number:i+1,keywords:`${r[1]}; ${meta.theme}`,meaning:`${r[2]} ${meta.love} ${meta.work}`,shadow:r[3]}))}
+const suitAssetSlugs=['wands','cups','swords','pentacles'];
+const minor=[];Object.entries(suits).forEach(([suit,meta],suitIndex)=>{ranks.forEach((r,i)=>minor.push({id:`${suit.toLowerCase()}-${i+1}`,name:`${suit} ${r[0]}`,arcana:'Küçük Arkana',suit,element:meta.element,number:i+1,assetPath:`minor/${suitAssetSlugs[suitIndex]}/${rankAssetSlugs[i]}`,keywords:`${r[1]}; ${meta.theme}`,meaning:`${r[2]} ${meta.love} ${meta.work}`,shadow:r[3]}))});
 window.MYTHBORN_TAROT=[...major,...minor];
 })();

@@ -10,6 +10,10 @@
 - Avoid: commercial-deck compositions, Rider–Waite copying, neon, horror, pseudo-writing, random glyph clutter and repeated poses.
 - UI: localized card names stay as HTML. Every image uses the localized alt supplied by the manifest renderer.
 
+## Production status
+
+All 22 independently generated Major Arcana masters passed the completed-deck quality gate on 2026-07-28. Their manifest status is `final`; no Major Arcana fallback remains. The accepted review sheet is `docs/assets/mythborn-major-arcana-final-review.jpg`, and per-card hashes and derivative metadata are recorded in `docs/assets/tarot-asset-registry.json`.
+
 ## Card briefs
 
 | Asset | Composition and primary archetype | Symbols / light / safe-area notes | TR alt text |

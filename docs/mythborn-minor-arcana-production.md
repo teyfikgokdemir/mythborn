@@ -1,6 +1,10 @@
 # Mythborn Minor Arcana production plan
 
-Minor Arcana production starts only after all 22 Major Arcana masters pass the same-deck review.
+Minor Arcana production started after all 22 Major Arcana masters passed the same-deck review.
+
+## Production status
+
+All 56 independently generated Minor Arcana masters passed their suit and completed-deck quality gates on 2026-07-28: 14 Wands, 14 Cups, 14 Swords and 14 Pentacles. Every manifest entry is `final`; no Minor Arcana fallback remains. Group review sheets are stored under `docs/assets/`, and per-card hashes and derivative metadata are recorded in `docs/assets/tarot-asset-registry.json`.
 
 ## Shared suit direction
 
@@ -38,5 +42,5 @@ Apply every row independently to each suit, producing 56 unique scenes:
 - Names: `ace`, `two` … `ten`, `page`, `knight`, `queen`, `king`.
 - Master and derivatives: same 1600 × 2800, 480 × 840 and 960 × 1680 specification as Major Arcana.
 - Every final must pass unique-file hashing, decodability, matching AVIF/WebP dimensions, file-size budget, thumbnail legibility and TR/EN/GR alt review.
-- Until those gates pass, all 56 entries remain `artStatus: fallback`.
+- All gates passed; all 56 entries use `artStatus: final`.
 

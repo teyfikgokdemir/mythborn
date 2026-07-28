@@ -2,42 +2,48 @@
 
 Last updated: 2026-07-28
 
-## Production policy
+## Production record
 
-No commercial deck, scraped image, uncertain-license image, or Rider–Waite–Smith reproduction is accepted. A card is rendered as an image only when its manifest entry is `final` and its AVIF/WebP files pass the asset audit. Every other card uses the card-specific CSS fallback at the same reserved layout size.
+The production deck contains 78 independently generated, project-original masters:
 
-## Art-direction quality gate
+- 22 Major Arcana
+- 14 Wands
+- 14 Cups
+- 14 Swords
+- 14 Pentacles
+- 0 fallback cards
 
-`docs/assets/mythborn-major-arcana-quality-gate.png` was generated with OpenAI's built-in image generation tool on 2026-07-28 as an original Mythborn concept sheet. It contains exploratory compositions for The Fool, The High Priestess and The Tower. No external source was used; no third-party license applies. It is documentation-only and is not served by the production site.
+Every card was generated as its own complete vertical composition with OpenAI's built-in image generation tool. No external image, stock library, scraped asset, commercial deck, or Rider–Waite–Smith reproduction was used. No third-party URL or uncertain licence is present. The work is recorded as project-original AI-assisted visual production intended for Mythborn's commercial product use.
 
-The sheet demonstrated a viable palette and frame language, but it is not a set of separately generated, independently quality-controlled card masters. It therefore did not pass the 22-card production gate.
+The generated source for each accepted card was normalized to a high-quality 1600 × 2800 WebP master under `docs/assets/tarot-masters/<canonical-asset-path>/master.webp`. Production derivatives live at the matching path under `public/images/tarot/`.
 
-## Major Arcana register
+## Art-direction reference
 
-| Card | Intended asset directory | Method | External source | License | Edited | Production |
-|---|---|---|---|---|---|---|
-| 00 The Fool | `major/00-fool/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 01 The Magician | `major/01-magician/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 02 The High Priestess | `major/02-high-priestess/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 03 The Empress | `major/03-empress/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 04 The Emperor | `major/04-emperor/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 05 The Hierophant | `major/05-hierophant/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 06 The Lovers | `major/06-lovers/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 07 The Chariot | `major/07-chariot/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 08 Strength | `major/08-strength/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 09 The Hermit | `major/09-hermit/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 10 Wheel of Fortune | `major/10-wheel-of-fortune/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 11 Justice | `major/11-justice/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 12 The Hanged Man | `major/12-hanged-man/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 13 Death | `major/13-death/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 14 Temperance | `major/14-temperance/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 15 The Devil | `major/15-devil/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 16 The Tower | `major/16-tower/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 17 The Star | `major/17-star/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 18 The Moon | `major/18-moon/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 19 The Sun | `major/19-sun/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 20 Judgement | `major/20-judgement/` | Original generation brief | No | Project-original | No | CSS fallback |
-| 21 The World | `major/21-world/` | Original generation brief | No | Project-original | No | CSS fallback |
+`docs/assets/mythborn-major-arcana-quality-gate.png` was generated with OpenAI's built-in image generation tool on 2026-07-28 as an original Mythborn concept sheet. It was used only to establish palette, frame and material direction. No panel from that sheet was cropped or reused as a production card.
 
-Minor Arcana remains at CSS fallback status. Its production matrix is defined in `mythborn-minor-arcana-production.md`.
+All 78 production cards were generated independently after the quality gate. Group review sheets are documentation-only:
+
+- `docs/assets/mythborn-major-arcana-final-review.jpg`
+- `docs/assets/mythborn-wands-final-review.jpg`
+- `docs/assets/mythborn-cups-final-review.jpg`
+- `docs/assets/mythborn-swords-final-review.jpg`
+- `docs/assets/mythborn-pentacles-final-review.jpg`
+
+## Quality and provenance gates
+
+`docs/assets/tarot-asset-registry.json` records each canonical asset path, master SHA-256, 256-bit perceptual difference hash, dimensions, production derivative hashes and byte sizes. The automated audit fails unless:
+
+- all 78 canonical entries are `final`;
+- 78 unique 1600 × 2800 masters exist;
+- every card has 480 × 840 and 960 × 1680 AVIF and WebP grid/detail outputs;
+- no exact duplicate exists;
+- no perceptual pair falls below the configured 32/256 Hamming-distance floor;
+- every derivative matches its recorded hash, dimensions and 4:7 ratio;
+- daily card, library grid and detail renderer use canonical asset paths.
+
+The closest accepted pair in the completed deck is still separated by 63/256 perceptual-hash bits, comfortably above the rejection threshold.
+
+## Editorial review
+
+The five group review sheets were inspected for card count, canonical mapping, frame consistency, suit identity, rank narrative, unwanted text, visual quality and scene duplication. Wands Page and Wands King initially contained unwanted English title plaques; both were rejected, independently corrected with the built-in image editing workflow, reprocessed and reviewed again. The accepted 78-card set contains no embedded card titles, pseudo-writing, logos or watermarks.
 

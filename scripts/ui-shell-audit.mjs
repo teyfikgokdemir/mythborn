@@ -37,9 +37,9 @@ const auth=await (await fetchPath('/giris')).text();
 if(count(auth,/<h1\b/g)!==1||/<div class="membership-gate auth-gate"[\s\S]*?<h2>/.test(auth))failures.push({path:'/giris',failed:['authSingleHeading']});
 const tarot=await (await fetchPath('/tarot-kartlari')).text();
 const tarotSlugs=[...tarot.matchAll(/data-card-slug="([^"]+)"/g)].map(match=>match[1]);
-const tarotGlyphs=new Set([...tarot.matchAll(/<b[^>]*>([^<]+)<\/b>/g)].map(match=>match[1]));
-if(new Set(tarotSlugs).size!==78||tarotGlyphs.size<10)failures.push({path:'/tarot-kartlari',failed:['distinctTarotMiniatures']});
-if(count(tarot,/data-art-status="fallback"/g)!==78||count(tarot,/role="img" aria-label="[^"]+"/g)!==78)failures.push({path:'/tarot-kartlari',failed:['safeLocalizedTarotFallbacks']});
+const tarotArtPaths=new Set([...tarot.matchAll(/src="(\/images\/tarot\/[^"]+\/grid-480\.webp)"/g)].map(match=>match[1]));
+if(new Set(tarotSlugs).size!==78||tarotArtPaths.size!==78)failures.push({path:'/tarot-kartlari',failed:['distinctTarotArt']});
+if(count(tarot,/data-art-status="final"/g)!==78||count(tarot,/<img[^>]+alt="[^"]+"[^>]+width="480" height="840"/g)!==78||tarot.includes('data-art-status="fallback"'))failures.push({path:'/tarot-kartlari',failed:['completeAccessibleTarotArt']});
 
 const css=await readFile(new URL('../public/refinement.css',import.meta.url),'utf8');
 for(const token of ['prefers-reduced-motion','100dvh','safe-area-inset-top','safe-area-inset-bottom','.mobile-nav,.mobile-menu-backdrop,.mobile-menu-button{display:none!important}','.hero-sky-card>p:not(.eyebrow){display:block!important']){
