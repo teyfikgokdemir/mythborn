@@ -119,6 +119,7 @@
     if (path === '/tarot') mount(document.querySelector('[data-member-reading="tarot"]'), 'tarot');
     if (path === '/katina') mount(document.querySelector('[data-member-reading="katina"]'), 'katina');
     if (path === '/astroloji') mount(document.querySelector('.astrology-hero'), 'astrology');
+    if (path === '/advanced-astrology') mount(document.querySelector('.guide-centre > .blog-hero'), 'knowledge');
   };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', enhance, {once: true});
