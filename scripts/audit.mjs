@@ -27,6 +27,9 @@ await check('/llms.gr.txt',200,['Εγκυκλοπαίδεια 78 καρτών Τ
 await check('/arama',200,['data-site-search','SearchAction']);
 await check('/en/arama',200,['Search the site','data-site-search']);
 await check('/gr/arama',200,['Αναζήτηση στον ιστότοπο','data-site-search']);
+await check('/api/search-index?locale=tr',200,['"count":212','"title":"Deli"','"title":"Akrep"','"title":"Su"','"title":"Yükselen"']);
+await check('/api/search-index?locale=en',200,['"count":212','"title":"The Fool"','"title":"Scorpio"','"title":"Water"','"title":"Ascendant"']);
+await check('/api/search-index?locale=el',200,['"count":212','"title":"Ο Τρελός"','"title":"Σκορπιός"','"title":"Νερό"','"title":"Ωροσκόπος"']);
 await check('/api/astrology/chart',405,['Bu yöntem desteklenmiyor.']);
 await check('/api/auth/me',503,['veritabanı']);
 await check('/not-found',404,['Sayfa bulunamadı','Ana sayfaya dön']);

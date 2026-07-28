@@ -1,4 +1,10 @@
 import platform from './premium-router.js';
+import {tarotSearchItems} from './tarot-library.js';
+import {dreamSearchItems,glossarySearchItems} from './dream-glossary.js';
+import {astrologySearchItems} from './astrology-library.js';
+import {localizedBlogSearchItems} from './localized-blog.js';
+import {premiumGuideSearchItems} from './premium-guides.js';
+import {blogMeta} from './blog.js';
 
 const SITE='https://mythborn.co';
 const localeInfo={
@@ -51,6 +57,15 @@ const llms={
 const localeFrom=path=>path==='/en'||path.startsWith('/en/')?'en':path==='/gr'||path.startsWith('/gr/')?'el':'tr';
 const cleanPath=(path,locale)=>locale==='tr'?path:(path===localeInfo[locale].prefix?'/':path.slice(localeInfo[locale].prefix.length)||'/');
 const href=(locale,path)=>`${localeInfo[locale].prefix}${path==='/'?'':path}`||'/';
+const turkishBlogSearchItems=()=>Object.entries(blogMeta).filter(([path])=>path.startsWith('/blog/')).map(([path,[title,description]])=>({title,description,category:'journal',path}));
+const searchItems=locale=>[
+  ...tarotSearchItems(locale),
+  ...astrologySearchItems(locale),
+  ...dreamSearchItems(locale),
+  ...glossarySearchItems(locale),
+  ...(locale==='tr'?turkishBlogSearchItems():localizedBlogSearchItems(locale)),
+  ...premiumGuideSearchItems(locale)
+].map(item=>({...item,url:href(locale,item.path)}));
 
 function exploreLinks(locale){
   const t=labels[locale];
@@ -167,6 +182,10 @@ export default {
     if(incoming.pathname==='/llms.el.txt')return Response.redirect(`${SITE}/llms.gr.txt`,301);
     if(incoming.pathname==='/llms.en.txt')return new Response(llms.en,{headers:{'content-type':'text/plain; charset=utf-8'}});
     if(incoming.pathname==='/llms.gr.txt')return new Response(llms.el,{headers:{'content-type':'text/plain; charset=utf-8'}});
+    if(incoming.pathname==='/api/search-index'){
+      const requested=incoming.searchParams.get('locale'),locale=requested==='en'?'en':requested==='el'||requested==='gr'?'el':'tr';
+      return new Response(JSON.stringify({locale,count:searchItems(locale).length,items:searchItems(locale)}),{headers:{'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=3600'}});
+    }
     if(['/shell.js','/search.js','/mobile-menu-clean.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
     if(incoming.pathname==='/weekly.js'){
       const asset=await env.ASSETS.fetch(request);
