@@ -10,6 +10,10 @@ const slugs=['saturn-retrosu-2026','12-agustos-2026-gunes-tutulmasi','jupiter-as
 await check('/en/blog',['SKY JOURNAL','Saturn Retrograde 2026','AI Tarot Interpretation']);
 await check('/el/blog',['ΟΥΡΑΝΙΟ ΠΕΡΙΟΔΙΚΟ','Ανάδρομος Κρόνος 2026','Ερμηνεία Ταρώ με AI']);
 for(const slug of slugs){await check(`/en/blog/${slug}`,['FAQPage','Article','hreflang="tr"','FREQUENTLY ASKED QUESTIONS']);await check(`/el/blog/${slug}`,['FAQPage','Article','hreflang="tr"','ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ'])}
-const sitemap=await check('/sitemap.xml',['/advanced-astrology','/en/astrokartografi','/el/vedik-astroloji','/en/blog/saturn-retrosu-2026','/el/blog/yapay-zeka-tarot-etik','hreflang="x-default"']);
+await check('/tarot-kartlari',['Tarot Kartları Ansiklopedisi','Büyük Arkana','Küçük Arkana','Dünya','Tılsım Kral']);
+await check('/en/tarot-kartlari',['Tarot Card Encyclopedia','Major Arcana','Minor Arcana','The World','King of Pentacles']);
+await check('/el/tarot-kartlari',['Εγκυκλοπαίδεια Καρτών Ταρώ','Μεγάλη Αρκάνα','Μικρή Αρκάνα','Ο Κόσμος','Βασιλιάς των Πεντάκτινα']);
+for(const path of ['/tarot-kartlari/deli','/tarot-kartlari/kupa-on','/tarot-kartlari/kilic-kralice']){await check(path,['FAQPage','BreadcrumbList','Işık anlamı','Gölge anlamı']);await check(`/en${path}`,['FAQPage','BreadcrumbList','Light meaning','Shadow meaning']);await check(`/el${path}`,['FAQPage','BreadcrumbList','Φωτεινή έννοια','Σκιώδης έννοια'])}
+const sitemap=await check('/sitemap.xml',['/advanced-astrology','/en/astrokartografi','/el/vedik-astroloji','/en/blog/saturn-retrosu-2026','/el/blog/yapay-zeka-tarot-etik','/tarot-kartlari/dunya','/en/tarot-kartlari/kupa-as','/el/tarot-kartlari/kilic-kral','hreflang="x-default"']);
 if(!sitemap.includes('xmlns:xhtml'))throw new Error('Localized sitemap namespace missing');
-console.log(`Premium multilingual audit passed: ${1+routes.length} astrology centers and ${slugs.length} full editorial articles × 3 languages.`);
+console.log(`Premium multilingual audit passed: ${1+routes.length} astrology centers, ${slugs.length} full articles and 78 Tarot cards × 3 languages.`);
