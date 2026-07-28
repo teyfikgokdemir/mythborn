@@ -1,12 +1,18 @@
 (()=>{
-const locale=location.pathname==='/en'||location.pathname.startsWith('/en/')?'en':location.pathname==='/gr'||location.pathname.startsWith('/gr/')?'el':'tr';
-const dict={
-en:{
-'Gökyüzü':'Sky','Sinastri':'Synastry','Kadim':'Ancient Sky','Rüya':'Dreams','Numeroloji':'Numerology','Ay Takvimi':'Moon Calendar','Blog':'Journal','Hesabım':'My Account','Günlük Kart':'Daily Card','3 Kart Tarot':'3-Card Tarot','Katina':'Katina','Astroloji':'Astrology','Haftalık Burç':'Weekly Horoscope','Çerezler':'Cookies','Zorunlu çerezleri oturum ve güvenlik için kullanıyoruz.':'We use essential cookies for sessions and security.','Detaylar':'Details','Reddet':'Reject','Kabul et':'Accept','Gökyüzünü oku.':'Read the sky.','Kendini keşfet.':'Discover yourself.','Bugünün gökyüzünü gör':'See today’s sky','Doğum haritamı çıkar':'Calculate my birth chart','Günlük kartımı aç':'Draw my daily card','TÜM DENEYİMLER ÜCRETSİZ':'ALL EXPERIENCES ARE FREE','BUGÜNÜN GÖKYÜZÜ':'TODAY’S SKY','Gökyüzü hesaplanıyor…':'Calculating the sky…','Güneş, Ay ve günün belirgin açıları hazırlanıyor.':'Preparing the Sun, Moon and today’s major aspects.','Ücretsiz üyelik':'Free membership','Ücretsiz üye ol':'Join free','Zaten üyeyim':'I already have an account','Giriş Yap':'Sign In','Çıkış yap':'Sign Out','Kartını aç':'Reveal card','Bugünün kartı':'Today’s card','Genel mesaj':'Overall message','Gölge':'Shadow','Geçmiş':'Past','Şimdi':'Present','Yakın gelecek':'Near future','Koç':'Aries','Boğa':'Taurus','İkizler':'Gemini','Yengeç':'Cancer','Aslan':'Leo','Başak':'Virgo','Terazi':'Libra','Akrep':'Scorpio','Yay':'Sagittarius','Oğlak':'Capricorn','Kova':'Aquarius','Balık':'Pisces'},
-el:{
-'Gökyüzü':'Ουρανός','Sinastri':'Συναστρία','Kadim':'Αρχαίος Ουρανός','Rüya':'Όνειρα','Numeroloji':'Αριθμολογία','Ay Takvimi':'Σεληνιακό Ημερολόγιο','Blog':'Περιοδικό','Hesabım':'Ο Λογαριασμός μου','Günlük Kart':'Ημερήσια Κάρτα','3 Kart Tarot':'Ταρώ 3 Καρτών','Katina':'Κατίνα','Astroloji':'Αστρολογία','Haftalık Burç':'Εβδομαδιαίο Ωροσκόπιο','Çerezler':'Cookies','Zorunlu çerezleri oturum ve güvenlik için kullanıyoruz.':'Χρησιμοποιούμε απαραίτητα cookies για σύνδεση και ασφάλεια.','Detaylar':'Λεπτομέρειες','Reddet':'Απόρριψη','Kabul et':'Αποδοχή','Gökyüzünü oku.':'Διάβασε τον ουρανό.','Kendini keşfet.':'Ανακάλυψε τον εαυτό σου.','Bugünün gökyüzünü gör':'Δες τον σημερινό ουρανό','Doğum haritamı çıkar':'Υπολόγισε τον γενέθλιο χάρτη','Günlük kartımı aç':'Τράβηξε την ημερήσια κάρτα','TÜM DENEYİMLER ÜCRETSİZ':'ΟΛΕΣ ΟΙ ΕΜΠΕΙΡΙΕΣ ΕΙΝΑΙ ΔΩΡΕΑΝ','BUGÜNÜN GÖKYÜZÜ':'Ο ΣΗΜΕΡΙΝΟΣ ΟΥΡΑΝΟΣ','Gökyüzü hesaplanıyor…':'Υπολογισμός ουρανού…','Güneş, Ay ve günün belirgin açıları hazırlanıyor.':'Υπολογίζονται ο Ήλιος, η Σελήνη και οι κύριες όψεις της ημέρας.','Ücretsiz üyelik':'Δωρεάν μέλος','Ücretsiz üye ol':'Δωρεάν εγγραφή','Zaten üyeyim':'Έχω ήδη λογαριασμό','Giriş Yap':'Σύνδεση','Çıkış yap':'Αποσύνδεση','Kartını aç':'Αποκάλυψη κάρτας','Bugünün kartı':'Η σημερινή κάρτα','Genel mesaj':'Κεντρικό μήνυμα','Gölge':'Σκιά','Geçmiş':'Παρελθόν','Şimdi':'Παρόν','Yakın gelecek':'Κοντινό μέλλον','Koç':'Κριός','Boğa':'Ταύρος','İkizler':'Δίδυμοι','Yengeç':'Καρκίνος','Aslan':'Λέων','Başak':'Παρθένος','Terazi':'Ζυγός','Akrep':'Σκορπιός','Yay':'Τοξότης','Oğlak':'Αιγόκερως','Kova':'Υδροχόος','Balık':'Ιχθύες'}}[locale]||{};
-const translate=node=>{if(node.nodeType===Node.TEXT_NODE){const raw=node.nodeValue,trim=raw.trim();if(trim&&dict[trim])node.nodeValue=raw.replace(trim,dict[trim]);return}if(node.nodeType!==Node.ELEMENT_NODE)return;for(const attr of ['placeholder','aria-label','title']){const value=node.getAttribute?.(attr);if(value&&dict[value])node.setAttribute(attr,dict[value])}node.childNodes.forEach(translate)};
-if(locale!=='tr'){translate(document.body);document.querySelectorAll('[data-reading-result],[data-member-result],[data-weekly-result],[data-current-sky],[data-synastry-result]').forEach(root=>new MutationObserver(records=>records.forEach(r=>r.addedNodes.forEach(translate))).observe(root,{childList:true,subtree:true}))}
-document.querySelectorAll('.language-switcher a').forEach(a=>{if(a.textContent.trim()==='EL')a.textContent='GR'});
-document.addEventListener('click',event=>{const a=event.target.closest('a[href^="/"]');if(!a)return;const href=a.getAttribute('href');if(!href||href.startsWith('/api/')||href.startsWith('/images/')||href==='/en'||href.startsWith('/en/')||href==='/gr'||href.startsWith('/gr/'))return;if(a.closest('.language-switcher'))return;if(locale!=='tr')a.setAttribute('href','/'+(locale==='el'?'gr':locale)+(href==='/'?'':href))},true);
+  const locale=window.MYTHBORN_LOCALE||(location.pathname==='/en'||location.pathname.startsWith('/en/')?'en':location.pathname==='/gr'||location.pathname.startsWith('/gr/')?'el':'tr');
+  const prefix=locale==='tr'?'':locale==='en'?'/en':'/gr';
+  const localizeHref=href=>{
+    if(!prefix||!href||!href.startsWith('/')||href.startsWith('//')||href.startsWith('/api/')||href.startsWith('/images/')||href==='/en'||href.startsWith('/en/')||href==='/gr'||href.startsWith('/gr/'))return href;
+    return `${prefix}${href==='/'?'':href}`;
+  };
+  const localizeLinks=root=>{
+    root.querySelectorAll?.('a[href^="/"]').forEach(anchor=>{
+      if(anchor.closest('.language-switcher'))return;
+      anchor.setAttribute('href',localizeHref(anchor.getAttribute('href')));
+    });
+  };
+  localizeLinks(document);
+  new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{
+    if(node.nodeType===Node.ELEMENT_NODE)localizeLinks(node);
+  }))).observe(document.body,{childList:true,subtree:true});
 })();
