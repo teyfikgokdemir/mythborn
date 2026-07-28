@@ -47,6 +47,7 @@ for(const token of ['prefers-reduced-motion','100dvh','safe-area-inset-top','saf
 }
 const refinement=await readFile(new URL('../public/refinement.js',import.meta.url),'utf8');
 const legacyConsent=await readFile(new URL('../public/account-menu.js',import.meta.url),'utf8');
+if(!refinement.includes("card.style.display=card.hidden?'none':''"))failures.push({path:'public/refinement.js',failed:['tarotFilterVisualState']});
 for(const token of ["dialog.setAttribute('role','dialog')","dialog.setAttribute('aria-modal','true')","dialog.setAttribute('aria-labelledby','consent-title')","dialog.setAttribute('aria-describedby','consent-description')",'node.inert=true',"if(event.key==='Escape'&&read())"]){
   if(!refinement.includes(token))failures.push({path:'public/refinement.js',failed:[token]});
 }
