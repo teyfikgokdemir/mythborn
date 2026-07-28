@@ -1,6 +1,6 @@
 .premium-home-hero{grid-template-columns:minmax(0,.82fr) minmax(390px,1.18fr)!important;align-items:center!important}
 .premium-home-hero>div{max-width:680px}
-.hero-sky-card{min-width:0;padding:clamp(20px,3vw,32px);overflow:hidden}
+.premium-home-hero>.hero-sky-card{min-width:0;padding:clamp(20px,3vw,32px);overflow:hidden;align-self:start}
 .live-sky-heading{display:flex;align-items:start;justify-content:space-between;gap:18px}
 .live-sky-heading p{margin:0}.live-sky-heading>a{font-size:12px;font-weight:800;white-space:nowrap}
 .live-sky-time{margin-top:7px!important;color:#8f8795!important;font-size:11px;letter-spacing:.04em}
