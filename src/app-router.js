@@ -5,6 +5,7 @@ import {astrologySearchItems} from './astrology-library.js';
 import {localizedBlogSearchItems} from './localized-blog.js';
 import {premiumGuideSearchItems} from './premium-guides.js';
 import {blogMeta} from './blog.js';
+import {corePage,coreMeta} from './core-pages.js';
 
 const SITE='https://mythborn.co';
 const localeInfo={
@@ -89,21 +90,22 @@ function desktopNav(locale){
     <a href="${href(locale,'/tarot')}">${t.tarot}</a>
     <a href="${href(locale,'/astroloji')}">${t.astrology}</a>
     <a href="${href(locale,'/haftalik-burc')}">${t.weekly}</a>
-    <details class="desktop-explore"><summary aria-haspopup="true">${t.explore}</summary><div class="desktop-explore-panel">${exploreLinks(locale)}</div></details>
+    <details class="desktop-explore"><summary aria-haspopup="true" aria-expanded="false" aria-controls="desktop-explore-panel">${t.explore}<span class="nav-chevron" aria-hidden="true"></span></summary><div class="desktop-explore-panel" id="desktop-explore-panel" role="menu">${exploreLinks(locale)}</div></details>
     <a class="desktop-account" href="${href(locale,'/hesabim')}">${t.account}</a>
   </nav>`;
 }
-function group(title,links,locale){
-  return `<section class="mobile-nav-group"><h2>${title}</h2><div class="mobile-nav-grid">${links.map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('')}</div></section>`;
+function group(title,links,locale,key){
+  const id=`mobile-group-${key}`;
+  return `<section class="mobile-nav-group"><button class="mobile-group-toggle" type="button" aria-expanded="false" aria-controls="${id}">${title}<span aria-hidden="true">＋</span></button><div class="mobile-nav-grid" id="${id}" hidden>${links.map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('')}</div></section>`;
 }
 function mobileNav(locale){
   const t=labels[locale];
   return `<div class="mobile-menu-backdrop" data-mobile-backdrop hidden></div><nav class="mobile-nav" id="mobile-nav" aria-label="${t.menu}" aria-hidden="true"><a href="/bugunun-gokyuzu" hidden aria-hidden="true" tabindex="-1"></a>
     <div class="mobile-nav-head"><a class="brand" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a><button class="mobile-nav-close" type="button" aria-label="${t.close}" data-mobile-close><span aria-hidden="true">×</span></button></div>
-    ${group(t.tarotGroup,[['/gunluk-kart',t.daily],['/tarot',t.three],['/ask',t.love],['/kariyer',t.career],['/otuz-gun',t.month],['/katina',t.katina]],locale)}
-    ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/haftalik-burc',t.weeklyLong],['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale)}
-    ${group(t.exploreGroup,[['/kadim-gokyuzu',t.ancient],['/ruya-yorumlari',t.dreams],['/numeroloji',t.numerology],['/blog',t.blog],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/astroloji-sozlugu',t.glossary]],locale)}
-    ${group(t.accountGroup,[['/giris',t.login],['/kayit',t.register],['/hesabim',t.account]],locale)}
+    ${group(t.tarotGroup,[['/gunluk-kart',t.daily],['/tarot',t.three],['/ask',t.love],['/kariyer',t.career],['/otuz-gun',t.month],['/katina',t.katina]],locale,'tarot')}
+    ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/haftalik-burc',t.weeklyLong],['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale,'astrology')}
+    ${group(t.exploreGroup,[['/kadim-gokyuzu',t.ancient],['/ruya-yorumlari',t.dreams],['/numeroloji',t.numerology],['/blog',t.blog],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/astroloji-sozlugu',t.glossary]],locale,'explore')}
+    ${group(t.accountGroup,[['/giris',t.login],['/kayit',t.register],['/hesabim',t.account]],locale,'account')}
   </nav>`;
 }
 function knowledgeHub(locale){
@@ -167,10 +169,19 @@ function decorate(html,locale,path){
   html=html.replace(/<html lang="[^"]*"/,`<html lang="${localeInfo[locale].html}"`);
   html=html.replace(/<nav class="nav">[\s\S]*?<\/nav>/,desktopNav(locale));
   html=html.replace(/<footer\b[\s\S]*?<\/footer>/,footer(locale));
+  const localizedMain=corePage(locale,path);
+  if(localizedMain)html=html.replace(/<main\b[\s\S]*?<\/main>/,localizedMain);
   if(['/gizlilik','/kvkk','/kullanim-kosullari','/cerezler'].includes(path))html=html.replace(/<main\b[\s\S]*?<\/main>/,legalMain(locale,path));
   if(!html.includes('mobile-menu-button'))html=html.replace('</header>',`<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale)}`);
   if(path==='/'&&!html.includes('knowledge-hub'))html=html.replace('</main>',`${knowledgeHub(locale)}</main>`);
   const canonical=`${SITE}${href(locale,path)}`;
+  const localizedMeta=coreMeta(locale,path);
+  if(localizedMeta){
+    html=html.replace(/<title>[^<]*<\/title>/,`<title>${localizedMeta.title}</title>`);
+    html=html.replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${localizedMeta.description}">`);
+    const localizedSchema={'@context':'https://schema.org','@type':'WebPage',name:localizedMeta.title,headline:localizedMeta.title,description:localizedMeta.description,url:canonical,inLanguage:localeInfo[locale].html,isPartOf:{'@type':'WebSite',name:'Mythborn',url:SITE},...(path==='/haftalik-burc'?{dateModified:new Date().toISOString().slice(0,10)}:{})};
+    html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace('</head>',`<script type="application/ld+json">${JSON.stringify(localizedSchema)}</script></head>`);
+  }
   const documentTitle=html.match(/<title>([^<]*)<\/title>/)?.[1]||'Mythborn';
   const documentDescription=html.match(/<meta name="description" content="([^"]*)">/)?.[1]||labels[locale].knowledgeCopy;
   const pageTitle=locale==='tr'?(html.match(/<meta property="og:title" content="([^"]*)">/)?.[1]||documentTitle):documentTitle;
@@ -182,7 +193,9 @@ function decorate(html,locale,path){
     .replace('</head>',`<link rel="canonical" href="${canonical}"><link rel="stylesheet" href="/mobile-menu-clean.css"><link rel="stylesheet" href="/cinematic.css">${heroPreload}<meta property="og:locale" content="${locale==='tr'?'tr_TR':locale==='en'?'en_US':'el_GR'}"><meta property="og:title" content="${pageTitle}"><meta property="og:description" content="${pageDescription}"><meta property="og:image" content="${socialImage}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${socialImageAlt[locale]}"><meta name="twitter:title" content="${pageTitle}"><meta name="twitter:description" content="${pageDescription}"><meta name="twitter:image" content="${socialImage}"><meta name="twitter:image:alt" content="${socialImageAlt[locale]}"></head>`);
   if(!html.includes('SearchAction'))html=html.replace('</head>',`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Mythborn',url:SITE,potentialAction:{'@type':'SearchAction',target:`${SITE}${href(locale,'/arama')}?q={search_term_string}`,'query-input':'required name=search_term_string'}})}</script></head>`);
   if(!html.includes('language-switcher'))html=html.replace('</body>',`${languageSwitcher(locale,path)}</body>`);
+  html=html.replace('</head>',`<script>window.MYTHBORN_LOCALE=${JSON.stringify(locale)}</script></head>`);
   if(!html.includes('/shell.js'))html=html.replace('</body>','<script src="/shell.js" defer></script></body>');
+  if(path==='/'&&!html.includes('/home-sky.js'))html=html.replace('</body>','<script src="/home-sky.js" defer></script></body>');
   if(!html.includes('/cinematic.js'))html=html.replace('</body>','<script src="/cinematic.js" defer></script></body>');
   return html;
 }
@@ -201,7 +214,7 @@ export default {
       const requested=incoming.searchParams.get('locale'),locale=requested==='en'?'en':requested==='el'||requested==='gr'?'el':'tr';
       return new Response(JSON.stringify({locale,count:searchItems(locale).length,items:searchItems(locale)}),{headers:{'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=3600'}});
     }
-    if(['/shell.js','/search.js','/mobile-menu-clean.css','/cinematic.js','/cinematic.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
+    if(['/shell.js','/search.js','/home-sky.js','/mobile-menu-clean.css','/cinematic.js','/cinematic.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
     if(incoming.pathname==='/weekly.js'){
       const asset=await env.ASSETS.fetch(request);
       return new Response((await asset.text()).replaceAll("startsWith('/el')","startsWith('/gr')"),{status:asset.status,headers:asset.headers});
@@ -210,7 +223,8 @@ export default {
       const asset=await env.ASSETS.fetch(request);
       const script=(await asset.text())
         .replace("if(nav&&!nav.querySelector('[href=\"/bugunun-gokyuzu\"]'))","if(false&&nav&&!nav.querySelector('[href=\"/bugunun-gokyuzu\"]'))")
-        .replace("if(mobile&&!mobile.querySelector('[href=\"/bugunun-gokyuzu\"]'))","if(false&&mobile&&!mobile.querySelector('[href=\"/bugunun-gokyuzu\"]'))");
+        .replace("if(mobile&&!mobile.querySelector('[href=\"/bugunun-gokyuzu\"]'))","if(false&&mobile&&!mobile.querySelector('[href=\"/bugunun-gokyuzu\"]'))")
+        .replace("const home=document.querySelector('main.home');if(home){","const home=document.querySelector('main.home:not([data-server-home])');if(home){");
       return new Response(script,{status:asset.status,headers:asset.headers});
     }
     const locale=localeFrom(incoming.pathname),clean=cleanPath(incoming.pathname,locale);

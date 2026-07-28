@@ -42,10 +42,10 @@ for(const path of ['/','/en','/gr','/gunluk-kart','/en/tarot','/gr/katina','/ast
 }
 const english=await (await worker.fetch(new Request('https://mythborn.co/en'),env,{})).text();
 const greek=await (await worker.fetch(new Request('https://mythborn.co/gr'),env,{})).text();
-for(const token of ['Free Tarot, Birth Chart & Astrology','Free daily Tarot, real birth chart calculations']){
-  if(!english.includes(`<meta property="og:${token.startsWith('Free Tarot')?'title':'description'}" content="${token}`))throw new Error(`English social metadata missing ${token}`);
+for(const token of ['Mythborn — Tarot, Astrology and Symbolic Reflection','A free platform for real astronomical data, daily Tarot and weekly horoscope guidance.']){
+  if(!english.includes(`<meta property="og:${token.startsWith('Mythborn')?'title':'description'}" content="${token}`))throw new Error(`English social metadata missing ${token}`);
 }
-for(const token of ['Δωρεάν Ταρώ, Γενέθλιος Χάρτης & Αστρολογία','Δωρεάν ημερήσιο Ταρώ, πραγματικός γενέθλιος χάρτης']){
-  if(!greek.includes(`<meta property="og:${token.startsWith('Δωρεάν Ταρώ')?'title':'description'}" content="${token}`))throw new Error(`Greek social metadata missing ${token}`);
+for(const token of ['Mythborn — Ταρώ, Αστρολογία και Συμβολικός Στοχασμός','Δωρεάν πλατφόρμα με πραγματικά αστρονομικά δεδομένα, ημερήσιο Ταρώ και εβδομαδιαίες αστρολογικές τάσεις.']){
+  if(!greek.includes(`<meta property="og:${token.startsWith('Mythborn')?'title':'description'}" content="${token}`))throw new Error(`Greek social metadata missing ${token}`);
 }
 console.log('Cinematic assets, responsive sources, localized alternatives and social metadata audit passed.');

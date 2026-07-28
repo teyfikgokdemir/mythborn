@@ -3,7 +3,7 @@ import worker from '../src/app-router.js';
 const env={ASSETS:{fetch:()=>new Response('',{status:200})},TURNSTILE_SITE_KEY:'1x00000000000000000000AA'};
 async function check(path,status,includes=[],init={}){const response=await worker.fetch(new Request(`https://mythborn.co${path}`,init),env,{});if(response.status!==status)throw new Error(`${path} returned ${response.status}; expected ${status}`);const body=await response.text();for(const value of includes)if(!body.includes(value))throw new Error(`${path} missing ${value}`);return{response,body}}
 for(const file of ['public/oracle.css','public/oracle.js','public/tarot-deck.js','public/synastry.js','public/reflection.js','public/menu.js','public/account-menu.js','public/social-auth.js','public/i18n-client.js','public/shell.js','public/search.js','src/auth.js','src/account.js','src/astrology.js','src/oauth.js','src/blog.js','src/app-router.js','migrations/0005_oauth_identities.sql'])await access(new URL(`../${file}`,import.meta.url));
-await check('/',200,['Günlük Tek Kart','hreflang="en"','hreflang="el"','>TR<','>EN<','>GR<','desktop-explore']);
+await check('/',200,['Günlük Tarot','hreflang="en"','hreflang="el"','>TR<','>EN<','>GR<','desktop-explore']);
 await check('/en',200,['lang="en"','hreflang="tr"','hreflang="el"','Daily Card','KNOWLEDGE CENTRE']);
 await check('/gr',200,['lang="el"','hreflang="tr"','hreflang="en"','Ημερήσια Κάρτα','ΚΕΝΤΡΟ ΓΝΩΣΗΣ','https://mythborn.co/gr']);
 for(const path of ['/en/kayit','/gr/kayit','/en/astroloji','/gr/astroloji','/en/blog','/gr/blog','/en/sinastri','/gr/sinastri'])await check(path,200,['language-switcher']);

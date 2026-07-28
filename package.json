@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "wrangler dev",
     "build": "wrangler deploy --dry-run",
-    "audit": "node scripts/audit.mjs && node scripts/premium-audit.mjs && node scripts/final-audit.mjs && node scripts/visual-audit.mjs && node scripts/link-audit.mjs",
+    "typecheck": "node scripts/static-check.mjs",
+    "lint": "node scripts/static-check.mjs",
+    "audit": "node scripts/static-check.mjs && node scripts/audit.mjs && node scripts/premium-audit.mjs && node scripts/final-audit.mjs && node scripts/visual-audit.mjs && node scripts/link-audit.mjs && node scripts/locale-quality-audit.mjs",
     "check": "npm run audit",
     "preview": "npm run audit && wrangler deploy --name mythborn-preview",
     "deploy": "npm run audit && wrangler deploy",
