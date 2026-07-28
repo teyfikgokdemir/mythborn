@@ -1,4 +1,27 @@
 (()=>{
+const compactStyle=document.createElement('style');compactStyle.textContent=`
+.astrology-page .membership-gate{max-width:1120px;margin-inline:auto;padding:32px}
+.astrology-page .reading-result.is-open{margin-top:28px;padding-top:28px}
+.astrology-page .reading-result>h3{font-size:clamp(34px,4.2vw,56px);margin:10px 0}
+.astrology-page .big-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}
+.astrology-page .big-three article,.astrology-page .chart-grid article{padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025);text-align:left}
+.astrology-page .big-three small,.astrology-page .chart-grid small{display:block;margin-bottom:7px;color:var(--gold);font-size:10px;font-weight:800;letter-spacing:.12em}
+.astrology-page .big-three strong{font-family:Georgia,serif;font-size:clamp(26px,2.4vw,38px);font-weight:400}
+.astrology-page .chart-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 26px}
+.astrology-page .chart-angles{grid-template-columns:repeat(4,minmax(0,1fr))}
+.astrology-page .chart-grid h3{margin:0 0 7px;font-size:clamp(22px,2vw,31px);line-height:1.05}
+.astrology-page .chart-grid p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+.astrology-page .chart-heading{margin:30px 0 12px;font-family:Georgia,serif;font-size:28px;font-weight:400}
+.astrology-page .chart-details{margin-top:16px;padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02);text-align:left}
+.astrology-page .chart-details summary{cursor:pointer;font-weight:800}
+.astrology-page .house-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.astrology-page .house-list span{padding:10px;border-radius:10px;background:rgba(255,255,255,.03);font-size:12px}
+.astrology-page .aspect-list{columns:2;column-gap:28px;margin:14px 0 0;padding-left:18px}
+.astrology-page .aspect-list li{break-inside:avoid;margin:0 0 8px;font-size:12px;line-height:1.45}
+.astrology-page .reading-summary{margin-top:18px;padding:16px;font-size:12px;line-height:1.55}
+@media(max-width:900px){.astrology-page .chart-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.astrology-page .chart-angles{grid-template-columns:repeat(2,minmax(0,1fr))}.astrology-page .house-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.astrology-page .membership-gate{padding:22px 16px}.astrology-page .big-three,.astrology-page .chart-grid,.astrology-page .chart-angles,.astrology-page .house-list{grid-template-columns:1fr}.astrology-page .aspect-list{columns:1}.astrology-page .reading-result>h3{font-size:36px}}
+`;document.head.appendChild(compactStyle);
 if(!Array.isArray(window.MYTHBORN_TAROT)){const loader=document.createElement('script');loader.src='/tarot-deck.js';loader.async=false;document.head.appendChild(loader)}
 const typeNames={tarot:'3 Kart Tarot',ask:'Aşk & Geri Dönüş',kariyer:'Kariyer & Para','otuz-gun':'30 Gün Açılımı',katina:'Katina Aşk Falı'};
 const api=(...args)=>window.MythbornApi(...args);
@@ -22,7 +45,7 @@ const renderNatal=chart=>{
  const planets=`<div class="chart-grid chart-planets">${chart.planets.map(p=>`<article><small>${escape(p.name)}${p.house?` · ${p.house}. ev`:''}</small><h3>${escape(p.sign)} ${p.degree.toFixed(2)}°</h3><p>${escape(p.interpretation)}</p></article>`).join('')}</div>`;
  const houses=chart.houses?.length?`<details class="chart-details"><summary>12 ev başlangıçlarını göster</summary><div class="house-list">${chart.houses.map(h=>`<span><b>${h.house}. Ev</b> ${escape(h.cusp.sign)} ${h.cusp.degree.toFixed(2)}°</span>`).join('')}</div></details>`:'';
  const aspectList=chart.aspects.length?chart.aspects.slice(0,20).map(a=>`<li><strong>${escape(a.from)} ${escape(a.type)} ${escape(a.to)}</strong><span>${a.orb.toFixed(2)}° orb</span></li>`).join(''):'<li>Seçilen majör orb sınırlarında açı bulunmadı.</li>';
- result.innerHTML=`<p class="eyebrow">GERÇEK DOĞUM HARİTASI</p><h3>${escape(chart.birth.location.name)}</h3><p class="reading-context">${escape(chart.birth.date)}${chart.birth.time?` · ${escape(chart.birth.time)}`:''} · ${escape(chart.birth.location.timezone)}</p><div class="big-three">${big.map(([label,value])=>`<article><small>${label}</small><strong>${escape(value)}</strong></article>`).join('')}</div>${angleCards}<h4 class="chart-heading">Gezegen yerleşimleri</h4>${planets}${houses}<details class="chart-details" open><summary>Majör açılar</summary><ul class="aspect-list">${aspectList}</ul></details><p class="reading-summary"><strong>Hesaplama notu:</strong> ${escape(chart.note)} Gezegen motoru: ${escape(chart.engine.name)}; ${escape(chart.engine.accuracy)}. Ev sistemi: ${escape(chart.engine.houseSystem||'hesaplanmadı')}.</p>`;
+ result.innerHTML=`<p class="eyebrow">GERÇEK DOĞUM HARİTASI</p><h3>${escape(chart.birth.location.name)}</h3><p class="reading-context">${escape(chart.birth.date)}${chart.birth.time?` · ${escape(chart.birth.time)}`:''} · ${escape(chart.birth.location.timezone)}</p><div class="big-three">${big.map(([label,value])=>`<article><small>${label}</small><strong>${escape(value)}</strong></article>`).join('')}</div>${angleCards}<h4 class="chart-heading">Gezegen yerleşimleri</h4>${planets}${houses}<details class="chart-details"><summary>Majör açıları göster</summary><ul class="aspect-list">${aspectList}</ul></details><p class="reading-summary"><strong>Hesaplama notu:</strong> ${escape(chart.note)} Gezegen motoru: ${escape(chart.engine.name)}; ${escape(chart.engine.accuracy)}. Ev sistemi: ${escape(chart.engine.houseSystem||'hesaplanmadı')}.</p>`;
  result.classList.add('is-open');result.scrollIntoView({behavior:'smooth',block:'start'});
 };
 const labelsFor=()=>type==='otuz-gun'?['1. Hafta','2. Hafta','3. Hafta','4. Hafta']:type==='tarot'?['Geçmiş','Şimdi','Yakın Gelecek']:type==='ask'?['Senin Enerjin','Onun Enerjisi','İletişim İhtimali']:type==='katina'?['Bağın Kökü','Gizli Duygu','İlişkinin Yönü']:['Fırsat','Engel','İlk Adım'];
