@@ -70,7 +70,7 @@
       if(event.key==='ArrowDown'){event.preventDefault();open();details.querySelector('.desktop-explore-panel a')?.focus()}
     });
     document.addEventListener('click',event=>{if(!details.contains(event.target))close()});
-    document.addEventListener('keydown',event=>{if(event.key==='Escape'){close();details.querySelector('summary')?.focus()}});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&details.open){close();details.querySelector('summary')?.focus()}});
     sync();
   });
   document.querySelectorAll('.header-language').forEach(details=>{

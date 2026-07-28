@@ -47,7 +47,7 @@
     },8000);
   }
 
-  document.querySelectorAll('.consent-banner,[data-consent-banner]').forEach(node=>node.remove());
+  document.querySelectorAll('.consent-banner,[data-consent-banner],.cookie-banner').forEach(node=>node.remove());
   const key='mythborn-consent-v2';
   const copy={
     tr:{eye:'GİZLİLİK TERCİHLERİ',title:'Kontrol sende.',body:'Zorunlu çerezler güvenli oturum ve tercihlerin için gereklidir. İsteğe bağlı analitik yalnız izninle etkinleşir.',essential:'Zorunlu çerezler · her zaman açık',analytics:'Anonim kullanım analitiğine izin ver',accept:'Tümünü kabul et',reject:'Yalnız zorunlu',save:'Tercihi kaydet'},
@@ -57,7 +57,11 @@
   const dialog=document.createElement('div');
   dialog.className='consent-dialog';
   dialog.hidden=true;
-  dialog.innerHTML=`<section class="consent-panel" role="dialog" aria-modal="true" aria-labelledby="consent-title"><p class="eyebrow">${copy.eye}</p><h2 id="consent-title">${copy.title}</h2><p>${copy.body}</p><p><strong>${copy.essential}</strong></p><label><span>${copy.analytics}</span><input type="checkbox" data-consent-analytics></label><div class="consent-actions"><button class="btn btn-primary" type="button" data-consent-accept>${copy.accept}</button><button class="btn btn-ghost" type="button" data-consent-reject>${copy.reject}</button><button class="btn btn-secondary" type="button" data-consent-save>${copy.save}</button></div></section>`;
+  dialog.setAttribute('role','dialog');
+  dialog.setAttribute('aria-modal','true');
+  dialog.setAttribute('aria-labelledby','consent-title');
+  dialog.setAttribute('aria-describedby','consent-description');
+  dialog.innerHTML=`<div class="consent-panel"><p class="eyebrow">${copy.eye}</p><h2 id="consent-title">${copy.title}</h2><p id="consent-description">${copy.body}</p><p><strong>${copy.essential}</strong></p><label><span>${copy.analytics}</span><input type="checkbox" data-consent-analytics></label><div class="consent-actions"><button class="btn btn-primary" type="button" data-consent-accept>${copy.accept}</button><button class="btn btn-ghost" type="button" data-consent-reject>${copy.reject}</button><button class="btn btn-secondary" type="button" data-consent-save>${copy.save}</button></div></div>`;
   document.body.appendChild(dialog);
   const read=()=>{
     try{const stored=JSON.parse(localStorage.getItem(key)||'null');if(stored)return stored}catch{}
@@ -65,9 +69,20 @@
     return cookie?{essential:true,analytics:cookie==='all'}:null;
   };
   let consentPreviousFocus=null;
+  let backgroundState=[];
+  const restoreBackground=()=>{
+    backgroundState.forEach(({node,inert,inertAttribute,ariaHidden})=>{
+      node.inert=inert;
+      if(!inertAttribute)node.removeAttribute('inert');
+      if(ariaHidden===null)node.removeAttribute('aria-hidden');
+      else node.setAttribute('aria-hidden',ariaHidden);
+    });
+    backgroundState=[];
+  };
   const closeConsent=()=>{
     dialog.hidden=true;
     document.body.classList.remove('has-open-consent');
+    restoreBackground();
     if(consentPreviousFocus instanceof HTMLElement)consentPreviousFocus.focus({preventScroll:true});
   };
   const persist=analytics=>{
@@ -80,6 +95,8 @@
   const open=()=>{
     consentPreviousFocus=document.activeElement;
     dialog.querySelector('[data-consent-analytics]').checked=Boolean(read()?.analytics);
+    backgroundState=[...document.body.children].filter(node=>node!==dialog).map(node=>({node,inert:node.inert,inertAttribute:node.hasAttribute('inert'),ariaHidden:node.getAttribute('aria-hidden')}));
+    backgroundState.forEach(({node})=>{node.inert=true;node.setAttribute('inert','');node.setAttribute('aria-hidden','true')});
     dialog.hidden=false;
     document.body.classList.add('has-open-consent');
     requestAnimationFrame(()=>dialog.querySelector('button').focus());

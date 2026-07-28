@@ -52,7 +52,8 @@
     document.body.prepend(skip);
   }
   document.querySelectorAll('img').forEach(image=>{
-    if(!image.hasAttribute('loading'))image.loading='lazy';
+    if(image.closest('.brand'))image.loading='eager';
+    else if(!image.hasAttribute('loading'))image.loading='lazy';
     image.decoding='async';
   });
 })();
