@@ -31,6 +31,10 @@ const metadata={
 '/mezopotamya-astrolojisi':['Sümer ve Babil Astrolojisi — Mezopotamya Gökyüzü','Sümer, Babil ve Asur gökyüzü geleneklerini; Enūma Anu Enlil, MUL.APIN, zodyak ve erken horoskoplar üzerinden keşfet.'],
 '/doga-gokyuzu-donguleri':['Şaman Astrolojisi ve Doğa-Gökyüzü Döngüleri','Tek bir evrensel şaman astrolojisi iddiasından kaçınan; mevsim, yön, Ay ve yerel doğa ritimlerine dayalı kültürel açıdan saygılı rehber.'],
 '/travma-bilincli-astroloji':['Travma-Bilinçli Astrolojik Farkındalık','Terapi veya tanı yerine güvenlik, seçim hakkı ve sınırları önceleyen astrolojik öz-refleksiyon yaklaşımı.'],
+'/gizlilik':['Gizlilik Politikası — Mythborn','Mythborn gizlilik politikası ve kişisel verilerin korunması esasları.'],
+'/kvkk':['KVKK Aydınlatma Metni — Mythborn','6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamındaki aydınlatma metni.'],
+'/kullanim-kosullari':['Kullanım Koşulları — Mythborn','Mythborn platformu kullanım koşulları, sorumluluk reddi ve yasal bildirimler.'],
+'/cerezler':['Çerez Politikası — Mythborn','Mythborn çerez politikası, zorunlu çerezler ve analitik çerez tercihleri.'],
 ...blogMeta};
 const security=(h=new Headers())=>{h.set('strict-transport-security','max-age=31536000; includeSubDomains; preload');h.set('x-content-type-options','nosniff');h.set('x-frame-options','DENY');h.set('referrer-policy','strict-origin-when-cross-origin');h.set('permissions-policy','camera=(), microphone=(), geolocation=(), payment=()');h.set('content-security-policy',"default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'");return h};
 const response=(body,status=200,type='text/plain; charset=utf-8')=>new Response(body,{status,headers:security(new Headers({'content-type':type,'cache-control':status===200?'public, max-age=300':'no-store'}))});

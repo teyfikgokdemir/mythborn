@@ -31,8 +31,20 @@ const dictionaries={
 };
 
 const meta={
- en:{title:'Free Tarot, Birth Chart & Astrology — Mythborn',description:'Free daily Tarot, real birth chart calculations, synastry, weekly horoscopes, dream interpretation and ancient sky traditions.'},
- el:{title:'Δωρεάν Ταρώ, Γενέθλιος Χάρτης & Αστρολογία — Mythborn',description:'Δωρεάν ημερήσιο Ταρώ, πραγματικός γενέθλιος χάρτης, συναστρία, εβδομαδιαία ωροσκόπια, όνειρα και αρχαίες ουράνιες παραδόσεις.'}
+  en:{
+    '/':['Free Tarot, Birth Chart & Astrology — Mythborn','Free daily Tarot, real birth chart calculations, synastry, weekly horoscopes, dream interpretation and ancient sky traditions.'],
+    '/gizlilik':['Privacy Policy — Mythborn','Mythborn privacy policy and personal data protection principles.'],
+    '/kvkk':['Turkish Data Protection Notice — Mythborn','Processing governed by Turkey’s Personal Data Protection Law No. 6698 (KVKK).'],
+    '/kullanim-kosullari':['Terms of Use — Mythborn','Mythborn platform terms of use and legal disclaimers.'],
+    '/cerezler':['Cookie Policy — Mythborn','Mythborn cookie policy and essential cookie management.']
+  },
+  el:{
+    '/':['Δωρεάν Ταρώ, Γενέθλιος Χάρτης & Αστρολογία — Mythborn','Δωρεάν ημερήσιο Ταρώ, πραγματικός γενέθλιος χάρτης, συναστρία, εβδομαδιαία ωροσκόπια, όνειρα και αρχαίες ουράνιες παραδόσεις.'],
+    '/gizlilik':['Πολιτική Απορρήτου — Mythborn','Πολιτική απορρήτου Mythborn και προστασία προσωπικών δεδομένων.'],
+    '/kvkk':['Ενημέρωση Προστασίας Δεδομένων — Mythborn','Ενημέρωση βάσει του τουρκικού Νόμου 6698 (KVKK).'],
+    '/kullanim-kosullari':['Όροι Χρήσης — Mythborn','Όροι χρήσης της πλατφόρμας Mythborn.'],
+    '/cerezler':['Πολιτική Cookies — Mythborn','Πολιτική cookies και διαχείριση προτιμήσεων.']
+  }
 };
 
 function localeFrom(path){if(path==='/en'||path.startsWith('/en/'))return'en';if(path==='/el'||path.startsWith('/el/'))return'el';return'tr'}
@@ -40,7 +52,18 @@ function basePath(path,locale){if(locale==='tr')return path;if(path===`/${locale
 function localizedPath(path,locale){const clean=path==='/'?'':path;return locale==='tr'?(clean||'/'):`/${locale}${clean}`}
 function replaceAllSafe(html,map){for(const[from,to]of Object.entries(map||{}))html=html.split(from).join(to);return html}
 function prefixLinks(html,locale){if(locale==='tr')return html;return html.replace(/(href|action)="\/(?!\/|api\/|images\/|app\.|final\.|oracle\.|favicon|menu\.|content\.|account-menu\.|weekly\.|sky\.|synastry\.|reflection\.|social-auth\.|discover\.|tarot-deck\.)/g,`$1="/${locale}/`)}
-function localizeHtml(html,locale,path){if(locale==='tr')return injectLanguageUi(html,locale,path);html=replaceAllSafe(html,dictionaries[locale]);html=prefixLinks(html,locale);html=html.replace(/<html lang="[^"]*"/,'<html lang="'+locales[locale].html+'"');const m=meta[locale];html=html.replace(/<title>.*?<\/title>/,`<title>${m.title}</title>`).replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${m.description}">`);return injectLanguageUi(html,locale,path)}
+function localizeHtml(html,locale,path){
+  if(locale==='tr')return injectLanguageUi(html,locale,path);
+  html=replaceAllSafe(html,dictionaries[locale]);
+  html=prefixLinks(html,locale);
+  html=html.replace(/<html lang="[^"]*"/,'<html lang="'+locales[locale].html+'"');
+  const base=basePath(path,locale);
+  const m=meta[locale]?.[base]||meta[locale]?.['/'];
+  if(m){
+    html=html.replace(/<title>.*?<\/title>/,`<title>${m[0]}</title>`).replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${m[1]}">`);
+  }
+  return injectLanguageUi(html,locale,path);
+}
 function injectLanguageUi(html,locale,path){const base=basePath(path,locale);const alternates=`<link rel="alternate" hreflang="tr" href="${SITE}${localizedPath(base,'tr')}"><link rel="alternate" hreflang="en" href="${SITE}${localizedPath(base,'en')}"><link rel="alternate" hreflang="el" href="${SITE}${localizedPath(base,'el')}"><link rel="alternate" hreflang="x-default" href="${SITE}${localizedPath(base,'tr')}">`;
  const switcher=`<nav class="language-switcher" aria-label="Language"><a href="${localizedPath(base,'tr')}"${locale==='tr'?' aria-current="page"':''}>TR</a><a href="${localizedPath(base,'en')}"${locale==='en'?' aria-current="page"':''}>EN</a><a href="${localizedPath(base,'el')}"${locale==='el'?' aria-current="page"':''}>EL</a></nav><style>.language-switcher{position:fixed;z-index:90;right:14px;bottom:82px;display:flex;gap:4px;padding:5px;border:1px solid rgba(255,255,255,.13);border-radius:999px;background:rgba(9,7,13,.92);backdrop-filter:blur(14px)}.language-switcher a{display:grid;place-items:center;min-width:34px;min-height:34px;border-radius:999px;color:#aaa2b0;font:800 10px/1 system-ui;letter-spacing:.08em}.language-switcher a[aria-current=page]{background:#f4eee5;color:#09070c}@media(max-width:760px){.language-switcher{right:12px;bottom:76px}}</style>`;
  html=html.replace('</head>',`${alternates}</head>`);return html.replace('</body>',`${switcher}<script src="/i18n-client.js" defer></script></body>`)}
