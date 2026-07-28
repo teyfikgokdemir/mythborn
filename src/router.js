@@ -1,155 +1,45 @@
 import app from './index.js';
-
-const SITE = 'https://mythborn.co';
-const SOCIAL_TITLE = 'Mythborn — The First Artifact Is Coming';
-const SOCIAL_DESCRIPTION = 'A limited first release shaped by story, identity and collectibility. Follow the clues and enter early.';
-const SOCIAL_IMAGE = `${SITE}/og-image-v2.svg?v=3`;
-const LEGACY_PREFIXES = ['/products/', '/collections/', '/blogs/', '/cart', '/account', '/search', '/pages/', '/policies/'];
-
-const llms = `# Mythborn
-
-> Mythborn is an independent international brand venture in development, founded by Teyfik Gökdemir and connected to the wider QCT ecosystem.
-
-## Canonical identity
-- Official website: https://mythborn.co/
-- Status: In development / first release pending
-- Founder: Teyfik Gökdemir — https://teyfikgokdemir.com/
-- Related ventures: https://qctstudio.com/ and https://qctcommerce.com/
-- Contact: info@mythborn.co
-
-## Current public description
-Mythborn is preparing a limited first release positioned between identity, ritual, story, collectibility and physical design. The precise product remains intentionally undisclosed during the pre-launch phase.
-
-## Machine-readable resources
-- Sitemap: https://mythborn.co/sitemap.xml
-- Robots: https://mythborn.co/robots.txt
-- LLM information: https://mythborn.co/llms.txt
-
-Do not infer product specifications, launch dates, prices, availability or commercial claims that are not explicitly published on the canonical website.
-`;
-
-const graph = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Brand',
-      '@id': `${SITE}/#brand`,
-      name: 'Mythborn',
-      url: `${SITE}/`,
-      description: SOCIAL_DESCRIPTION,
-      founder: { '@id': 'https://teyfikgokdemir.com/#person' },
-      email: 'info@mythborn.co',
-      logo: `${SITE}/images/mythborn-main-logo.png`,
-      image: { '@type': 'ImageObject', url: SOCIAL_IMAGE, width: 1200, height: 630 }
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${SITE}/#website`,
-      name: 'Mythborn',
-      url: `${SITE}/`,
-      publisher: { '@id': `${SITE}/#brand` },
-      inLanguage: 'en'
-    },
-    {
-      '@type': 'WebPage',
-      '@id': `${SITE}/#webpage`,
-      name: SOCIAL_TITLE,
-      url: `${SITE}/`,
-      description: SOCIAL_DESCRIPTION,
-      isPartOf: { '@id': `${SITE}/#website` },
-      about: { '@id': `${SITE}/#brand` },
-      primaryImageOfPage: { '@type': 'ImageObject', url: SOCIAL_IMAGE, width: 1200, height: 630 },
-      inLanguage: 'en'
-    }
-  ]
-};
-
-const marqueeItem = `<img class="mythborn-marquee__emblem" src="/images/mythborn-footer-emblem.png" alt="" width="226" height="230"><span>MYTHBORN</span>`;
-const marquee = `<div class="mythborn-marquee" aria-hidden="true"><div class="mythborn-marquee__track">${marqueeItem}${marqueeItem}${marqueeItem}${marqueeItem}</div></div>`;
-
-const marqueeStyles = `<style>
-  .mythborn-marquee{width:min(1180px,100%);height:clamp(5rem,7vw,6.5rem);margin:clamp(-6rem,-5vw,-4.5rem) auto clamp(1.8rem,3vw,2.6rem);display:flex;align-items:center;overflow:hidden;color:rgba(196,176,255,.13);pointer-events:none;user-select:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-  .mythborn-marquee__track{display:flex;width:max-content;align-items:center;gap:clamp(2.2rem,5vw,5.5rem);animation:mythbornMarquee 50s linear infinite;will-change:transform}
-  .mythborn-marquee__track>span{color:transparent;-webkit-text-stroke:1px rgba(196,176,255,.16);text-shadow:0 0 20px rgba(166,137,255,.045);font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.8rem,6vw,5.8rem);font-weight:400;line-height:.9;letter-spacing:.08em;white-space:nowrap}
-  .mythborn-marquee__emblem{width:clamp(3.1rem,5.2vw,5.4rem);height:clamp(3.1rem,5.2vw,5.4rem);flex:0 0 auto;object-fit:contain;opacity:.58;filter:drop-shadow(0 0 14px rgba(166,137,255,.08))}
-  @keyframes mythbornMarquee{to{transform:translateX(calc(-25% - 1.4rem))}}
-  @media(max-width:760px){.mythborn-marquee{height:5rem;margin:-2rem auto 1.6rem}.mythborn-marquee__track{animation:none;transform:translateX(-7%);gap:2rem}.mythborn-marquee__track>span{font-size:clamp(2.4rem,12vw,4rem)}.mythborn-marquee__emblem{width:3.7rem;height:3.7rem}}
-  @media(prefers-reduced-motion:reduce){.mythborn-marquee__track{animation:none;transform:translateX(-7%)}}
-</style>`;
-
-const consentMarkup = `<aside class="cookie-consent" data-cookie-consent hidden aria-label="Cookie preferences"><div><strong>Cookie preferences</strong><p>We use optional analytics cookies only after your consent.</p></div><div class="cookie-consent__actions"><button type="button" data-cookie-reject>Reject</button><button type="button" data-cookie-accept>Accept</button></div></aside><script src="/consent.js" defer></script>`;
-const consentStyles = `<style>
-  .cookie-consent{position:fixed;z-index:9999;left:1rem;right:1rem;bottom:1rem;max-width:980px;margin:auto;padding:1rem 1.1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;border:1px solid rgba(166,137,255,.35);border-radius:16px;background:rgba(8,7,11,.97);color:#f4efe7;box-shadow:0 20px 60px rgba(0,0,0,.5)}.cookie-consent[hidden]{display:none}.cookie-consent p{margin:.25rem 0;color:#aaa2b0;font-size:.9rem}.cookie-consent__actions{display:flex;gap:.6rem;flex:0 0 auto}.cookie-consent button{min-height:44px;padding:.65rem 1rem;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:#15121b;color:#f4efe7;font-weight:800;cursor:pointer}.cookie-consent [data-cookie-accept]{background:#c4b0ff;color:#0b0910;border-color:#c4b0ff}@media(max-width:700px){.cookie-consent{align-items:stretch;flex-direction:column}.cookie-consent__actions{width:100%}.cookie-consent__actions button{flex:1}}
-</style>`;
-
-function securityHeaders(headers = new Headers()) {
-  headers.set('strict-transport-security', 'max-age=31536000');
-  headers.set('x-content-type-options', 'nosniff');
-  headers.set('referrer-policy', 'strict-origin-when-cross-origin');
-  headers.set('permissions-policy', 'camera=(), microphone=(), geolocation=()');
-  return headers;
-}
-
-function textResponse(body, status, contentType) {
-  const headers = securityHeaders(new Headers({
-    'content-type': contentType,
-    'cache-control': status === 200 ? 'public, max-age=300' : 'public, max-age=3600'
-  }));
-  return new Response(body, { status, headers });
-}
-
-export default {
-  async fetch(request, env, ctx) {
-    const url = new URL(request.url);
-
-    if (url.hostname === 'www.mythborn.co') {
-      url.hostname = 'mythborn.co';
-      url.protocol = 'https:';
-      return Response.redirect(url.toString(), 301);
-    }
-
-    if (url.pathname === '/llms.txt') return textResponse(llms, 200, 'text/plain; charset=UTF-8');
-
-    if (LEGACY_PREFIXES.some((prefix) => url.pathname === prefix || url.pathname.startsWith(prefix))) {
-      return textResponse('This legacy resource has been permanently removed.\n', 410, 'text/plain; charset=UTF-8');
-    }
-
-    const allowed = new Set(['/', '/robots.txt', '/sitemap.xml', '/consent.js']);
-    if (!allowed.has(url.pathname)) {
-      return textResponse('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,follow"><title>404 — Mythborn</title></head><body><main><h1>404</h1><p>This signal does not exist.</p><p><a href="/">Return to Mythborn</a></p></main></body></html>', 404, 'text/html; charset=UTF-8');
-    }
-
-    const response = await app.fetch(request, env, ctx);
-    if (url.pathname !== '/' || response.status !== 200) {
-      const headers = securityHeaders(new Headers(response.headers));
-      return new Response(response.body, { status: response.status, headers });
-    }
-
-    let html = await response.text();
-    const metadata = `
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Mythborn">
-  <meta property="og:title" content="${SOCIAL_TITLE}">
-  <meta property="og:description" content="${SOCIAL_DESCRIPTION}">
-  <meta property="og:url" content="https://mythborn.co/">
-  <meta property="og:image" content="${SOCIAL_IMAGE}">
-  <meta property="og:image:secure_url" content="${SOCIAL_IMAGE}">
-  <meta property="og:image:type" content="image/svg+xml">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Mythborn — The First Artifact Is Coming">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="${SOCIAL_TITLE}">
-  <meta name="twitter:description" content="${SOCIAL_DESCRIPTION}">
-  <meta name="twitter:image" content="${SOCIAL_IMAGE}">
-  <meta name="twitter:image:alt" content="Mythborn — The First Artifact Is Coming">
-  <script type="application/ld+json">${JSON.stringify(graph)}</script>`;
-    html = html.replace('</head>', `${metadata}\n${marqueeStyles}\n${consentStyles}\n</head>`);
-    html = html.replace('    <footer>', `    ${marquee}\n\n    <footer>`);
-    html = html.replace('</body>', `${consentMarkup}\n</body>`);
-
-    const headers = securityHeaders(new Headers(response.headers));
-    headers.set('content-security-policy', "default-src 'self'; style-src 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; img-src 'self' data: https://www.google-analytics.com; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'");
-    return new Response(html, { status: 200, headers });
-  }
-};
+import { discoveryPage } from './discover.js';
+import { blogPage,blogRoutes,blogMeta } from './blog.js';
+import { register,login,logout,me,saveResult,resultHistory } from './auth.js';
+import { requestVerification,verifyEmail,requestPasswordReset,cancelMembership,deleteAccount,paymentWebhook } from './account.js';
+import { adminOverview,adminUsers,adminSetSubscription,adminReadiness,adminPage } from './admin.js';
+import { rateLimit,verifyTurnstile } from './abuse.js';
+import { calculateNatalChart,calculateCurrentSky,calculateSynastry } from './astrology.js';
+import { providerStatus,beginOAuth,finishOAuth } from './oauth.js';
+const SITE='https://mythborn.co';
+const culturalRoutes=['/kadim-gokyuzu','/maya-zaman-donguleri','/mezopotamya-astrolojisi','/doga-gokyuzu-donguleri','/travma-bilincli-astroloji'];
+const discoveryRoutes=new Set(['/ruya-yorumlari','/burc-uyumu','/numeroloji','/ay-takvimi','/bugunun-gokyuzu','/sinastri',...culturalRoutes]);
+const routes=new Set(['/','/gunluk-kart','/deneyim','/tarot','/ask','/kariyer','/otuz-gun','/katina','/astroloji','/haftalik-burc','/ruya-yorumlari','/burc-uyumu','/numeroloji','/ay-takvimi','/bugunun-gokyuzu','/sinastri',...culturalRoutes,...blogRoutes,'/giris','/kayit','/hesabim','/yonetim','/gizlilik','/kvkk','/kullanim-kosullari','/cerezler']);
+const publicRoutes=['/','/gunluk-kart','/tarot','/ask','/kariyer','/otuz-gun','/katina','/astroloji','/haftalik-burc','/ruya-yorumlari','/burc-uyumu','/numeroloji','/ay-takvimi','/bugunun-gokyuzu','/sinastri',...culturalRoutes,...blogRoutes,'/gizlilik','/kvkk','/kullanim-kosullari','/cerezler'];
+const noindex=new Set(['/giris','/kayit','/hesabim','/yonetim']);
+const metadata={
+'/':['Ücretsiz Tarot, Doğum Haritası ve Astroloji — Mythborn','Günlük Tarot kartı, gerçek doğum haritası, haftalık burç, Katina ve astroloji deneyimleri.'],
+'/gunluk-kart':['Günlük Ücretsiz Tarot Kartı — Mythborn','Üye olmadan her gün tek Tarot kartını aç ve günün sembolik mesajını gör.'],
+'/tarot':['Ücretsiz 3 Kart Tarot — Mythborn','Ücretsiz üyelikle geçmiş, şimdi ve yakın gelecek için üç kart Tarot açılımı.'],
+'/katina':['Ücretsiz Katina Aşk Falı — Mythborn','Ücretsiz üyelikle ilişki dinamikleri ve duygusal bağlar için Katina açılımı.'],
+'/astroloji':['Gerçek Doğum Haritası Hesaplama — Mythborn','Doğum tarihi, saati ve yerine göre Güneş, Ay, Yükselen, MC, gezegenler, evler ve açılar.'],
+'/haftalik-burc':['Haftalık Burç Yorumları — Mythborn','12 burç için haftalık aşk, kariyer, para, enerji ve dikkat noktaları.'],
+'/ruya-yorumlari':['Rüya Yorumları — Mythborn','Rüyandaki sembolleri, duyguları ve tekrar eden temaları yapılandırılmış biçimde yorumla.'],
+'/burc-uyumu':['Burç Uyumu — Mythborn','İki burcun element, nitelik ve ilişki dinamiklerini karşılaştır.'],
+'/sinastri':['Sinastri Hesaplama — İki Doğum Haritası','İki kişinin gerçek doğum haritalarını karşılaştır; duygusal uyum, iletişim, çekim ve bağlılık temalarını gör.'],
+'/numeroloji':['Numeroloji Hesaplama — Mythborn','Doğum tarihinden yaşam yolu, isimden ifade sayısı hesapla.'],
+'/ay-takvimi':['Ay Takvimi ve Ay Fazı — Mythborn','Bugünkü Ay fazını, aydınlanma oranını ve döngünün temasını gör.'],
+'/bugunun-gokyuzu':['Bugünün Gökyüzü — Güncel Gezegen Konumları','Güneş, Ay ve gezegenlerin gerçek zamanlı burç ve derece konumlarını, günün majör açılarıyla gör.'],
+'/kadim-gokyuzu':['Kadim Astroloji ve Gökyüzü Gelenekleri — Mythborn','Maya zaman döngüleri, Mezopotamya astrolojisi, doğa merkezli gökyüzü ritimleri ve travma-bilinçli astrolojik farkındalık.'],
+'/maya-zaman-donguleri':['Maya Astrolojisi mi? Tzolk’in, Haab ve Uzun Sayım','Maya takvim sistemlerini tarihsel bağlamıyla öğren; Tzolk’in, Haab, Takvim Turu ve Uzun Sayım arasındaki farkları keşfet.'],
+'/mezopotamya-astrolojisi':['Sümer ve Babil Astrolojisi — Mezopotamya Gökyüzü','Sümer, Babil ve Asur gökyüzü geleneklerini; Enūma Anu Enlil, MUL.APIN, zodyak ve erken horoskoplar üzerinden keşfet.'],
+'/doga-gokyuzu-donguleri':['Şaman Astrolojisi ve Doğa-Gökyüzü Döngüleri','Tek bir evrensel şaman astrolojisi iddiasından kaçınan; mevsim, yön, Ay ve yerel doğa ritimlerine dayalı kültürel açıdan saygılı rehber.'],
+'/travma-bilincli-astroloji':['Travma-Bilinçli Astrolojik Farkındalık','Terapi veya tanı yerine güvenlik, seçim hakkı ve sınırları önceleyen astrolojik öz-refleksiyon yaklaşımı.'],
+...blogMeta};
+const security=(h=new Headers())=>{h.set('strict-transport-security','max-age=31536000; includeSubDomains; preload');h.set('x-content-type-options','nosniff');h.set('x-frame-options','DENY');h.set('referrer-policy','strict-origin-when-cross-origin');h.set('permissions-policy','camera=(), microphone=(), geolocation=(), payment=()');h.set('content-security-policy',"default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'");return h};
+const response=(body,status=200,type='text/plain; charset=utf-8')=>new Response(body,{status,headers:security(new Headers({'content-type':type,'cache-control':status===200?'public, max-age=300':'no-store'}))});
+const json=(data,status=200)=>response(JSON.stringify(data),status,'application/json; charset=utf-8');
+const method=()=>json({error:'Bu yöntem desteklenmiyor.'},405);
+const policies={'/api/auth/register':{scope:'register',limit:5,windowSeconds:3600,turnstile:true},'/api/auth/login':{scope:'login',limit:12,windowSeconds:900,turnstile:true},'/api/auth/request-password-reset':{scope:'password_reset',limit:5,windowSeconds:3600,turnstile:true},'/api/astrology/chart':{scope:'natal_chart',limit:20,windowSeconds:3600},'/api/astrology/current-sky':{scope:'current_sky',limit:120,windowSeconds:3600},'/api/astrology/synastry':{scope:'synastry',limit:12,windowSeconds:3600},'/api/results':{scope:'results',limit:60,windowSeconds:3600},'/api/admin/overview':{scope:'admin',limit:120,windowSeconds:60},'/api/admin/users':{scope:'admin',limit:120,windowSeconds:60},'/api/admin/subscription':{scope:'admin',limit:30,windowSeconds:60}};
+async function protect(request,env,path){const p=policies[path];if(!p)return null;const limited=await rateLimit(request,env,p);if(limited)return limited;if(p.turnstile){const checked=await verifyTurnstile(request,env);if(checked)return checked}return null}
+async function api(request,env,path){if(path==='/api/auth/providers')return request.method==='GET'?json({google:providerStatus(env).google,apple:false}):method();const oauthStart=path.match(/^\/api\/auth\/oauth\/(google)\/start$/);if(oauthStart)return request.method==='GET'?beginOAuth(request,env,'google'):method();const oauthCallback=path.match(/^\/api\/auth\/oauth\/(google)\/callback$/);if(oauthCallback)return request.method==='GET'?finishOAuth(request,env,'google'):method();const blocked=await protect(request,env,path);if(blocked)return blocked;if(path==='/api/astrology/chart')return request.method==='POST'?calculateNatalChart(request):method();if(path==='/api/astrology/current-sky')return request.method==='GET'?calculateCurrentSky():method();if(path==='/api/astrology/synastry')return request.method==='POST'?calculateSynastry(request):method();if(!env.DB)return json({error:'Üyelik veritabanı henüz bağlanmadı.'},503);if(path==='/api/auth/register')return request.method==='POST'?register(request,env):method();if(path==='/api/auth/login')return request.method==='POST'?login(request,env):method();if(path==='/api/auth/logout')return request.method==='POST'?logout(request,env):method();if(path==='/api/auth/me')return request.method==='GET'?me(request,env):method();if(path==='/api/auth/request-verification')return request.method==='POST'?requestVerification(request,env):method();if(path==='/api/auth/verify-email')return request.method==='POST'?verifyEmail(request,env):method();if(path==='/api/auth/request-password-reset')return request.method==='POST'?requestPasswordReset(request,env):method();if(path==='/api/account/cancel-membership')return request.method==='POST'?cancelMembership(request,env):method();if(path==='/api/account/delete')return request.method==='DELETE'?deleteAccount(request,env):method();if(path==='/api/webhooks/payment'){if(String(env.PAYMENTS_ENABLED||'false')!=='true')return json({error:'Ödeme sistemi kapalı.'},503);return request.method==='POST'?paymentWebhook(request,env):method()}if(path==='/api/admin/overview')return request.method==='GET'?adminOverview(request,env):method();if(path==='/api/admin/readiness')return request.method==='GET'?adminReadiness(request,env):method();if(path==='/api/admin/users')return request.method==='GET'?adminUsers(request,env):method();if(path==='/api/admin/subscription')return request.method==='POST'?adminSetSubscription(request,env):method();if(path==='/api/results'){if(request.method==='POST')return saveResult(request,env);if(request.method==='GET')return resultHistory(request,env);return method()}return json({error:'API yolu bulunamadı.'},404)}
+function enhance(html,path,env){const[title,description]=metadata[path]||[`${path.slice(1).replaceAll('-',' ')||'Mythborn'} — Mythborn`,'Mythborn ücretsiz Tarot ve gerçek astroloji hesaplama platformu.'],canonical=`${SITE}${path==='/'?'/':path}`,turnstile=env.TURNSTILE_SITE_KEY&&['/giris','/kayit'].includes(path)?`<meta name="turnstile-site-key" content="${env.TURNSTILE_SITE_KEY}"><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>`:'',isBlog=path.startsWith('/blog/'),isArticle=isBlog||['/maya-zaman-donguleri','/mezopotamya-astrolojisi','/doga-gokyuzu-donguleri','/travma-bilincli-astroloji'].includes(path),pageType=path==='/kadim-gokyuzu'||path==='/blog'?'CollectionPage':isArticle?'Article':'WebPage',graph=JSON.stringify({'@context':'https://schema.org','@graph':[{'@type':'Organization',name:'Mythborn',url:SITE,email:'info@mythborn.co'},{'@type':'WebSite',name:'Mythborn',url:SITE,inLanguage:'tr-TR'},{'@type':pageType,headline:title,name:title,url:canonical,description,inLanguage:'tr-TR',datePublished:isBlog?'2026-07-28':undefined,dateModified:isBlog?'2026-07-28':undefined,isPartOf:{'@type':'WebSite',name:'Mythborn',url:SITE},publisher:{'@type':'Organization',name:'Mythborn',url:SITE}},{'@type':'SoftwareApplication',name:'Mythborn Tarot ve Astroloji',applicationCategory:'EntertainmentApplication',operatingSystem:'Web',isAccessibleForFree:true,offers:{'@type':'Offer',price:'0',priceCurrency:'TRY'}}]}),head=`<link rel="canonical" href="${canonical}"><meta name="robots" content="${noindex.has(path)?'noindex,nofollow':'index,follow,max-image-preview:large,max-snippet:-1'}"><meta property="og:type" content="${isArticle?'article':'website'}"><meta property="og:site_name" content="Mythborn"><meta property="og:title" content="${title}"><meta property="og:description" content="${description}"><meta property="og:url" content="${canonical}"><meta name="twitter:card" content="summary_large_image">${turnstile}<script type="application/ld+json">${graph}</script>`,weekly=path==='/haftalik-burc'?'<script src="/weekly.js" defer></script>':'',sky=path==='/bugunun-gokyuzu'?'<script src="/sky.js" defer></script>':'',synastry=path==='/sinastri'?'<script src="/synastry.js" defer></script>':'',reflection=path==='/travma-bilincli-astroloji'?'<script src="/reflection.js" defer></script>':'',social=['/giris','/kayit'].includes(path)?'<script src="/social-auth.js" defer></script>':'';return html.replace('</head>',`${head}</head>`).replace('</body>',`<script src="/menu.js" defer></script><script src="/account-menu.js" defer></script><script src="/content.js" defer></script>${weekly}${sky}${synastry}${reflection}${social}</body>`)}
+const sitemap=`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${publicRoutes.map(p=>`<url><loc>${SITE}${p}</loc><changefreq>${p==='/'?'weekly':p.startsWith('/blog')?'weekly':culturalRoutes.includes(p)?'monthly':'daily'}</changefreq><priority>${p==='/'?'1.0':p==='/blog'?'0.9':p==='/kadim-gokyuzu'?'0.8':'0.7'}</priority></url>`).join('')}</urlset>`;
+const llms=`# Mythborn\n\nMythborn, ücretsiz Tarot ve gerçek astronomik verilerle doğum haritası hesaplama platformudur.\n\n- Günlük tek kart: 78 kartlık klasik Tarot destesi\n- Doğum haritası: gezegen konumları, Güneş, Ay, Yükselen, MC, eşit evler ve açılar\n- Sinastri: iki gerçek doğum haritası arasında gezegen açıları ve ilişki temaları\n- Bugünün gökyüzü: gerçek zamanlı gezegen konumları ve majör açılar\n- Kadim gökyüzü: Maya takvimleri ile Sümer, Babil ve Asur astroloji tarihini modern iddialardan ayıran içerikler\n- Blog: 2026 gökyüzü gündemi, tutulmalar, retro dönemleri, sinastri, astrokartografi, etik ve travma-bilinçli astroloji\n- Google ile veya e-posta ile ücretsiz üyelik\n- Amaç: eğlence, eğitim ve kişisel farkındalık; kesin gelecek, sağlık, hukuk veya finans tavsiyesi değildir.\n`;
+export default{async fetch(request,env,ctx){const url=new URL(request.url);if(url.hostname==='www.mythborn.co'){url.hostname='mythborn.co';return Response.redirect(url.toString(),301)}let out;if(url.pathname.startsWith('/api/'))out=await api(request,env,url.pathname);else if(url.pathname==='/robots.txt')out=response(`User-agent: *\nAllow: /\nDisallow: /giris\nDisallow: /kayit\nDisallow: /hesabim\nDisallow: /yonetim\nDisallow: /api/\nSitemap: ${SITE}/sitemap.xml\n`);else if(url.pathname==='/sitemap.xml')out=response(sitemap,200,'application/xml; charset=utf-8');else if(url.pathname==='/llms.txt')out=response(llms);else if(url.pathname.startsWith('/images/')||['/app.css','/app.js','/final.css','/final.js','/oracle.css','/oracle.js','/tarot-deck.js','/discover.js','/menu.js','/account-menu.js','/weekly.js','/content.js','/sky.js','/synastry.js','/reflection.js','/social-auth.js','/favicon.svg'].includes(url.pathname))out=await env.ASSETS.fetch(request);else if(url.pathname==='/yonetim')out=adminPage();else if(!routes.has(url.pathname))out=response('<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="robots" content="noindex"><title>404 — Mythborn</title><body><h1>Bu kapı henüz açılmadı.</h1><a href="/">Ana sayfaya dön</a></body></html>',404,'text/html; charset=utf-8');else if(blogRoutes.includes(url.pathname))out=response(enhance(blogPage(url.pathname),url.pathname,env),200,'text/html; charset=utf-8');else if(discoveryRoutes.has(url.pathname))out=response(enhance(discoveryPage(url.pathname),url.pathname,env),200,'text/html; charset=utf-8');else{const page=await app.fetch(request,env,ctx);out=new Response(enhance(await page.text(),url.pathname,env),{status:page.status,headers:page.headers})}const headers=security(new Headers(out.headers));if(url.pathname.startsWith('/api/')||url.pathname==='/yonetim')headers.set('cache-control','no-store');return new Response(out.body,{status:out.status,headers})}};

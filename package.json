@@ -1,12 +1,26 @@
 {
   "name": "mythborn",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
-  "description": "Temporary launch page for mythborn.co on Cloudflare Workers",
+  "type": "module",
+  "description": "Tarot, astroloji ve sembolik farkındalık platformu",
   "scripts": {
     "dev": "wrangler dev",
     "audit": "node scripts/audit.mjs",
-    "deploy": "npm run audit && wrangler deploy"
+    "check": "npm run audit",
+    "preview": "npm run audit && wrangler deploy --name mythborn-preview",
+    "deploy": "npm run audit && wrangler deploy",
+    "db:create": "wrangler d1 create mythborn-membership",
+    "db:create:preview": "wrangler d1 create mythborn-membership-preview",
+    "db:migrate:local": "wrangler d1 migrations apply mythborn-membership --local",
+    "db:migrate:preview": "wrangler d1 migrations apply mythborn-membership-preview --remote",
+    "db:migrate:production": "wrangler d1 migrations apply mythborn-membership --remote"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "astronomy-engine": "^2.1.19"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"

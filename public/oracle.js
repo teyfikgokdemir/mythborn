@@ -1,0 +1,68 @@
+(()=>{
+const compactStyle=document.createElement('style');compactStyle.textContent=`
+.astrology-page .membership-gate{max-width:1120px;margin-inline:auto;padding:32px}
+.astrology-page .reading-result.is-open{margin-top:28px;padding-top:28px}
+.astrology-page .reading-result>h3{font-size:clamp(34px,4.2vw,56px);margin:10px 0}
+.astrology-page .big-three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}
+.astrology-page .big-three article,.astrology-page .chart-grid article{padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.025);text-align:left}
+.astrology-page .big-three small,.astrology-page .chart-grid small{display:block;margin-bottom:7px;color:var(--gold);font-size:10px;font-weight:800;letter-spacing:.12em}
+.astrology-page .big-three strong{font-family:Georgia,serif;font-size:clamp(26px,2.4vw,38px);font-weight:400}
+.astrology-page .chart-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 26px}
+.astrology-page .chart-angles{grid-template-columns:repeat(4,minmax(0,1fr))}
+.astrology-page .chart-grid h3{margin:0 0 7px;font-size:clamp(22px,2vw,31px);line-height:1.05}
+.astrology-page .chart-grid p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}
+.astrology-page .chart-heading{margin:30px 0 12px;font-family:Georgia,serif;font-size:28px;font-weight:400}
+.astrology-page .chart-details{margin-top:16px;padding:16px 18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02);text-align:left}
+.astrology-page .chart-details summary{cursor:pointer;font-weight:800}
+.astrology-page .house-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.astrology-page .house-list span{padding:10px;border-radius:10px;background:rgba(255,255,255,.03);font-size:12px}
+.astrology-page .aspect-list{columns:2;column-gap:28px;margin:14px 0 0;padding-left:18px}
+.astrology-page .aspect-list li{break-inside:avoid;margin:0 0 8px;font-size:12px;line-height:1.45}
+.astrology-page .reading-summary{margin-top:18px;padding:16px;font-size:12px;line-height:1.55}
+@media(max-width:900px){.astrology-page .chart-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.astrology-page .chart-angles{grid-template-columns:repeat(2,minmax(0,1fr))}.astrology-page .house-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.astrology-page .membership-gate{padding:22px 16px}.astrology-page .big-three,.astrology-page .chart-grid,.astrology-page .chart-angles,.astrology-page .house-list{grid-template-columns:1fr}.astrology-page .aspect-list{columns:1}.astrology-page .reading-result>h3{font-size:36px}}
+`;document.head.appendChild(compactStyle);
+if(!Array.isArray(window.MYTHBORN_TAROT)){const loader=document.createElement('script');loader.src='/tarot-deck.js';loader.async=false;document.head.appendChild(loader)}
+const typeNames={tarot:'3 Kart Tarot',ask:'Aşk & Geri Dönüş',kariyer:'Kariyer & Para','otuz-gun':'30 Gün Açılımı',katina:'Katina Aşk Falı'};
+const api=(...args)=>window.MythbornApi(...args);
+const hash=s=>[...String(s)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7);
+const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const secureIndex=max=>{const values=new Uint32Array(1);crypto.getRandomValues(values);return values[0]%max};
+const getDeck=()=>Array.isArray(window.MYTHBORN_TAROT)&&window.MYTHBORN_TAROT.length===78?window.MYTHBORN_TAROT:[];
+const waitForDeck=()=>new Promise((resolve,reject)=>{let tries=0;const timer=setInterval(()=>{const deck=getDeck();if(deck.length===78){clearInterval(timer);resolve(deck)}else if(++tries>40){clearInterval(timer);reject(new Error('78 kartlık deste yüklenemedi.'))}},50)});
+const pick=(deck,count,seed=Date.now())=>{const pool=[...deck],out=[];let n=Math.abs(Number(seed)||1);while(out.length<count&&pool.length){n=(n*9301+49297)%233280;out.push(pool.splice(Math.floor(n/233280*pool.length),1)[0])}return out};
+const cardMeta=card=>`${card.arcana}${card.suit?` · ${card.suit}`:''}${card.element?` · ${card.element}`:''}`;
+const cardBody=card=>`<p class="card-meta">${cardMeta(card)}</p><p><strong>Ana tema:</strong> ${card.keywords}</p><p>${card.meaning}</p><p><strong>Gölge taraf:</strong> ${card.shadow}</p><p><strong>Bugünün önerisi:</strong> Bu kartın temasını düşüncede bırakma; bugün bununla ilgili tek ve somut bir adım at.</p>`;
+const dailyButton=document.querySelector('[data-daily-deck]'),dailyResult=document.querySelector('[data-reading-result]');
+if(dailyButton&&dailyResult)dailyButton.addEventListener('click',async()=>{try{const deck=await waitForDeck();const date=new Date().toISOString().slice(0,10),key=`mythborn_daily_v3_${date}`,stored=localStorage.getItem(key);let index=stored===null?NaN:Number(stored);if(!Number.isInteger(index)||index<0||index>=deck.length){index=secureIndex(deck.length);localStorage.setItem(key,String(index))}const card=deck[index];dailyResult.querySelector('[data-card-name]').textContent=card.name;dailyResult.querySelector('[data-card-text]').innerHTML=cardBody(card);dailyResult.classList.add('is-open');dailyButton.setAttribute('aria-expanded','true')}catch(error){dailyResult.classList.add('is-open');dailyResult.querySelector('[data-card-name]').textContent='Deste hazırlanamadı';dailyResult.querySelector('[data-card-text]').innerHTML=`<p>${escape(error.message)} Sayfayı yenileyip tekrar dene.</p>`}});
+const root=document.querySelector('[data-member-reading]');if(!root)return;
+const type=root.dataset.memberReading,message=root.querySelector('[data-reading-message]'),guest=root.querySelector('[data-guest-actions]'),workspace=root.querySelector('[data-reading-workspace]'),button=root.querySelector('[data-member-deck]'),result=root.querySelector('[data-member-result]'),inputs=root.querySelector('[data-reading-inputs]');let user=null;
+(async()=>{try{const data=await api('/api/auth/me');user=data.user;message.textContent=type==='astroloji'?'Üyeliğin doğrulandı. Gerçek doğum haritan için bilgilerini gir.':'Ücretsiz üyeliğin doğrulandı. Bilgilerini tamamlayıp açılımını başlat.';guest.hidden=true;workspace.hidden=false}catch{message.textContent='Bu alan ücretsiz üyelikle açılır. Kayıt ol veya hesabına giriş yap.';guest.hidden=false;workspace.hidden=true}})();
+const readInput=()=>{const data={};inputs?.querySelectorAll('input,select').forEach(el=>{data[el.name]=el.type==='checkbox'?el.checked:el.value.trim()});return data};
+const renderNatal=chart=>{
+ const big=[['Güneş',chart.summary.sun],['Ay',chart.summary.moon],['Yükselen',chart.summary.rising||'Saat gerekli']];
+ const angleCards=chart.angles?`<div class="chart-grid chart-angles">${[['Yükselen',chart.angles.ascendant],['MC',chart.angles.midheaven],['Alçalan',chart.angles.descendant],['IC',chart.angles.imumCoeli]].map(([name,p])=>`<article><small>${name}</small><h3>${escape(p.sign)}</h3><p>${p.degree.toFixed(2)}°</p></article>`).join('')}</div>`:'';
+ const planets=`<div class="chart-grid chart-planets">${chart.planets.map(p=>`<article><small>${escape(p.name)}${p.house?` · ${p.house}. ev`:''}</small><h3>${escape(p.sign)} ${p.degree.toFixed(2)}°</h3><p>${escape(p.interpretation)}</p></article>`).join('')}</div>`;
+ const houses=chart.houses?.length?`<details class="chart-details"><summary>12 ev başlangıçlarını göster</summary><div class="house-list">${chart.houses.map(h=>`<span><b>${h.house}. Ev</b> ${escape(h.cusp.sign)} ${h.cusp.degree.toFixed(2)}°</span>`).join('')}</div></details>`:'';
+ const aspectList=chart.aspects.length?chart.aspects.slice(0,20).map(a=>`<li><strong>${escape(a.from)} ${escape(a.type)} ${escape(a.to)}</strong><span>${a.orb.toFixed(2)}° orb</span></li>`).join(''):'<li>Seçilen majör orb sınırlarında açı bulunmadı.</li>';
+ result.innerHTML=`<p class="eyebrow">GERÇEK DOĞUM HARİTASI</p><h3>${escape(chart.birth.location.name)}</h3><p class="reading-context">${escape(chart.birth.date)}${chart.birth.time?` · ${escape(chart.birth.time)}`:''} · ${escape(chart.birth.location.timezone)}</p><div class="big-three">${big.map(([label,value])=>`<article><small>${label}</small><strong>${escape(value)}</strong></article>`).join('')}</div>${angleCards}<h4 class="chart-heading">Gezegen yerleşimleri</h4>${planets}${houses}<details class="chart-details"><summary>Majör açıları göster</summary><ul class="aspect-list">${aspectList}</ul></details><p class="reading-summary"><strong>Hesaplama notu:</strong> ${escape(chart.note)} Gezegen motoru: ${escape(chart.engine.name)}; ${escape(chart.engine.accuracy)}. Ev sistemi: ${escape(chart.engine.houseSystem||'hesaplanmadı')}.</p>`;
+ result.classList.add('is-open');result.scrollIntoView({behavior:'smooth',block:'start'});
+};
+const labelsFor=()=>type==='otuz-gun'?['1. Hafta','2. Hafta','3. Hafta','4. Hafta']:type==='tarot'?['Geçmiş','Şimdi','Yakın Gelecek']:type==='ask'?['Senin Enerjin','Onun Enerjisi','İletişim İhtimali']:type==='katina'?['Bağın Kökü','Gizli Duygu','İlişkinin Yönü']:['Fırsat','Engel','İlk Adım'];
+const contextLine=(data,labels)=>type==='ask'||type==='katina'?`${data.relationship||'belirsiz'} ilişki durumunda “${data.question||'bu bağın yönü'}” sorusuna odaklanan açılım.`:type==='kariyer'?`${data.focus||'iş'} alanındaki mevcut enerjiyi gösteren açılım.`:`${labels.join(', ')} pozisyonlarıyla hazırlanan açılım.`;
+button?.addEventListener('click',async()=>{
+ if(!user){location.href=`/giris?devam=/${type}`;return}
+ const data=readInput();
+ if(type==='astroloji'){
+   if(!data.birthDate||!data.birthPlace){message.textContent='Doğum tarihi ve doğum yeri zorunludur.';return}
+   if(!data.timeUnknown&&!data.birthTime){message.textContent='Doğum saatini gir veya “saatimi bilmiyorum” seçeneğini işaretle.';return}
+   button.disabled=true;button.textContent='Gökyüzü hesaplanıyor…';message.textContent='Koordinat, zaman dilimi ve gezegen konumları hesaplanıyor.';
+   try{const chart=await api('/api/astrology/chart',{method:'POST',body:JSON.stringify(data)});renderNatal(chart);message.textContent='Doğum haritan gerçek astronomik verilerle hesaplandı.'}catch(error){message.textContent=error.message||'Doğum haritası hesaplanamadı.'}finally{button.disabled=false;button.textContent='Doğum haritamı hesapla'}
+   return;
+ }
+ let deck;try{deck=await waitForDeck()}catch(error){message.textContent=error.message;return}
+ const count=type==='otuz-gun'?4:3,labels=labelsFor(),seed=Date.now()+hash(type+JSON.stringify(data)+user.email),chosen=pick(deck,count,seed),context=contextLine(data,labels);
+ result.innerHTML=`<p class="eyebrow">${typeNames[type]||'MYTHBORN AÇILIMI'}</p><p class="reading-context">${escape(context)}</p><div class="oracle-grid">${chosen.map((card,index)=>`<article class="oracle-card"><small>${labels[index]}</small><h3>${card.name}</h3><p class="card-meta">${cardMeta(card)}</p><p>${card.meaning}</p><p><strong>Gölge:</strong> ${card.shadow}</p></article>`).join('')}</div><p class="reading-summary"><strong>Genel mesaj:</strong> ${chosen.map(x=>x.name).join(', ')} birlikte; gördüğün işaretleri acele hüküm vermeden somut davranışlarla sınaman gerektiğini söylüyor.</p><p class="form-message" data-save-state></p><button class="btn btn-primary" data-save-reading>Açılımı hesabıma kaydet</button>`;
+ result.classList.add('is-open');button.setAttribute('aria-expanded','true');result.scrollIntoView({behavior:'smooth',block:'start'});
+ result.querySelector('[data-save-reading]').addEventListener('click',async event=>{const state=result.querySelector('[data-save-state]');event.currentTarget.disabled=true;try{await api('/api/results',{method:'POST',body:JSON.stringify({archetypeCode:type,archetypeName:typeNames[type]||type,desireValue:0,scores:{cards:chosen.map(x=>x.name),context:data},answers:chosen.map((x,i)=>({position:labels[i],card:x.name,message:x.meaning}))})});state.textContent='Açılım hesabına kaydedildi.';event.currentTarget.textContent='Kaydedildi'}catch(error){state.textContent=error.message;event.currentTarget.disabled=false}})
+})})();

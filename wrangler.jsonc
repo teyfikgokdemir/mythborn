@@ -5,10 +5,30 @@
   "compatibility_date": "2026-07-20",
   "workers_dev": true,
   "preview_urls": true,
+  "vars": {
+    "ENVIRONMENT": "preview",
+    "ADMIN_EMAILS": "tevfikgokdemir@gmail.com"
+  },
   "assets": {
     "directory": "./public"
   },
   "observability": {
     "enabled": true
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mythborn-membership-preview",
+      "database_id": "82d3d933-282d-4369-b68e-cee26b66349b",
+      "migrations_dir": "migrations"
+    }
+  ]
+
+  // Zorunlu secret/vars:
+  // PAYMENT_WEBHOOK_SECRET
+  //
+  // Turnstile etkinleştirilecekse:
+  // TURNSTILE_SITE_KEY, TURNSTILE_SECRET
+  //
+  // E-posta sağlayıcısı bağlandığında EMAIL binding kullanılacaktır.
 }
