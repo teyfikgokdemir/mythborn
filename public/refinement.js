@@ -49,6 +49,27 @@
 
   document.querySelectorAll('.consent-banner,[data-consent-banner],.cookie-banner').forEach(node=>node.remove());
   const key='mythborn-consent-v2';
+  const GA4_ID='G-RW928SX37X';
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
+  window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  let analyticsLoaded=false;
+  const setAnalyticsConsent=granted=>{
+    window[`ga-disable-${GA4_ID}`]=!granted;
+    window.gtag('consent','update',{analytics_storage:granted?'granted':'denied'});
+  };
+  const loadAnalytics=()=>{
+    if(analyticsLoaded||document.querySelector('script[data-mythborn-ga4]'))return;
+    analyticsLoaded=true;
+    setAnalyticsConsent(true);
+    const script=document.createElement('script');
+    script.async=true;
+    script.src=`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID)}`;
+    script.dataset.mythbornGa4='true';
+    document.head.appendChild(script);
+    window.gtag('js',new Date());
+    window.gtag('config',GA4_ID,{send_page_view:true,anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
+  };
   const copy={
     tr:{eye:'GİZLİLİK TERCİHLERİ',title:'Kontrol sende.',body:'Zorunlu çerezler güvenli oturum ve tercihlerin için gereklidir. İsteğe bağlı analitik yalnız izninle etkinleşir.',essential:'Zorunlu çerezler · her zaman açık',analytics:'Anonim kullanım analitiğine izin ver',accept:'Tümünü kabul et',reject:'Yalnız zorunlu',save:'Tercihi kaydet'},
     en:{eye:'PRIVACY PREFERENCES',title:'You are in control.',body:'Essential cookies support secure sessions and saved preferences. Optional analytics is enabled only with your permission.',essential:'Essential cookies · always on',analytics:'Allow anonymous usage analytics',accept:'Accept all',reject:'Essential only',save:'Save preference'},
@@ -89,6 +110,8 @@
     const value={essential:true,analytics,updatedAt:new Date().toISOString()};
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
     document.cookie=`mythborn_consent=${analytics?'all':'essential'}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
+    if(analytics)loadAnalytics();
+    else setAnalyticsConsent(false);
     closeConsent();
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
   };
@@ -112,5 +135,8 @@
     if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
     else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
   });
-  if(!read())open();
+  const currentConsent=read();
+  if(currentConsent?.analytics)loadAnalytics();
+  else setAnalyticsConsent(false);
+  if(!currentConsent)open();
 })();
