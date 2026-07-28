@@ -20,6 +20,7 @@ await check('/blog',200,['Satürn Retrosu 2026','Astrokartografi']);
 await check('/api/auth/providers',200,['"google":false','"apple":false']);
 const sitemap=await check('/sitemap.xml',200,['https://mythborn.co/en/astroloji','https://mythborn.co/gr/sinastri','hreflang="el"','hreflang="x-default"']);
 if(sitemap.body.includes('/el/')||sitemap.body.includes('/giris')||sitemap.body.includes('/kayit'))throw new Error('Legacy or private routes leaked into sitemap');
+if(!sitemap.body.includes('/astroloji-sozlugu/element')||sitemap.body.includes('/astroloji-sozlugu/grement'))throw new Error('Greek locale rewrite corrupted the element glossary route');
 await check('/robots.txt',200,['Disallow: /api/','Sitemap: https://mythborn.co/sitemap.xml']);
 await check('/llms.txt',200,['Sinastri','Maya takvimleri']);
 await check('/llms.en.txt',200,['78-card Tarot encyclopedia']);
