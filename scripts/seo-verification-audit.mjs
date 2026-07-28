@@ -1,19 +1,34 @@
 import worker from '../src/analytics-router.js';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const env = { ASSETS: { fetch: () => new Response('', { status: 200 }) } };
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const publicDir = join(__dirname, '../public');
+
+const mockAssetsFetch = async (req) => {
+  const url = new URL(req.url);
+  const localPath = join(publicDir, url.pathname);
+  if (existsSync(localPath)) {
+    return new Response('mock asset', { status: 200, headers: { 'content-type': 'text/plain' } });
+  }
+  return new Response('Asset Not Found', { status: 404 });
+};
+
+const env = { ASSETS: { fetch: mockAssetsFetch } };
 
 async function fetchPath(path, init = {}) {
   const req = new Request(`https://mythborn.co${path}`, init);
   const res = await worker.fetch(req, env, {});
   const body = await res.text();
-  return { status: res.status, headers: res.headers, body };
+  return { status: res.status, headers: res.headers, body, location: res.headers.get('location') };
 }
 
-console.log('Running SEO Verification Audit...');
+console.log('Running Strict SEO Verification Audit...');
 
 const errors = [];
 
-// 1. Audit Sitemap
+// 1. Audit Sitemap URLs
 const sitemapRes = await fetchPath('/sitemap.xml');
 if (sitemapRes.status !== 200) {
   errors.push(`/sitemap.xml returned status ${sitemapRes.status}`);
@@ -55,7 +70,7 @@ for (const urlStr of sitemapUrls) {
   }
 }
 
-// 2. Audit Legacy Shopify Paths (410 & 301)
+// 2. Audit Legacy Shopify Paths (410 & 301 with Target & Single-Step Validation)
 const legacy410Paths = [
   '/products/test-item',
   '/products',
@@ -97,7 +112,21 @@ const legacyRedirects = [
 for (const [fromPath, expectedToPath] of legacyRedirects) {
   const res = await fetchPath(fromPath);
   if (res.status !== 301) {
-    errors.push(`[Legacy 301] ${fromPath} returned HTTP ${res.status}, expected 301`);
+    errors.push(`[Legacy 301 Status] ${fromPath} returned HTTP ${res.status}, expected 301`);
+    continue;
+  }
+  const expectedLocation = `https://mythborn.co${expectedToPath}`;
+  if (res.location !== expectedLocation) {
+    errors.push(`[Legacy 301 Target Mismatch] ${fromPath} Location header was ${res.location}, expected ${expectedLocation}`);
+  }
+
+  // Fetch destination and verify HTTP 200 & no chain
+  const targetRes = await fetchPath(expectedToPath);
+  if (targetRes.status !== 200) {
+    errors.push(`[Legacy 301 Destination Failure] Target ${expectedToPath} for ${fromPath} returned HTTP ${targetRes.status}, expected 200 OK`);
+  }
+  if (targetRes.status >= 300 && targetRes.status < 400) {
+    errors.push(`[Legacy 301 Redirect Chain] Target ${expectedToPath} for ${fromPath} resulted in a redirect chain`);
   }
 }
 
@@ -106,7 +135,19 @@ const trailingSlashPaths = ['/astroloji/', '/en/astroloji/', '/blog/saturn-retro
 for (const path of trailingSlashPaths) {
   const res = await fetchPath(path);
   if (res.status !== 301) {
-    errors.push(`[Trailing Slash 301] ${path} returned HTTP ${res.status}, expected 301`);
+    errors.push(`[Trailing Slash 301 Status] ${path} returned HTTP ${res.status}, expected 301`);
+    continue;
+  }
+  const expectedTarget = path.slice(0, -1);
+  const expectedLocation = `https://mythborn.co${expectedTarget}`;
+  if (res.location !== expectedLocation) {
+    errors.push(`[Trailing Slash Target Mismatch] ${path} Location was ${res.location}, expected ${expectedLocation}`);
+  }
+
+  // Verify target status is 200 and no chain
+  const targetRes = await fetchPath(expectedTarget);
+  if (targetRes.status !== 200) {
+    errors.push(`[Trailing Slash Destination Failure] Target ${expectedTarget} returned HTTP ${targetRes.status}, expected 200 OK`);
   }
 }
 
@@ -140,4 +181,4 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log('✅ SEO Verification Audit passed cleanly!');
+console.log('✅ Strict SEO Verification Audit passed cleanly!');
