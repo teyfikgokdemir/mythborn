@@ -219,6 +219,7 @@ function decorate(html,locale,path){
   if(!html.includes('/cinematic.js'))html=html.replace('</body>','<script src="/cinematic.js" defer></script></body>');
   if(!html.includes('/refinement.css'))html=html.replace('</head>','<link rel="stylesheet" href="/refinement.css"></head>');
   if(!html.includes('/refinement.js'))html=html.replace('</body>','<script src="/refinement.js" defer></script></body>');
+  html=html.replace(/<img src="\/images\/mythborn-emblem\.png" alt=""(?:\s+[^>]*)?>/g,'<img src="/images/mythborn-emblem.png" alt="" width="275" height="257" decoding="async">');
   return html;
 }
 
