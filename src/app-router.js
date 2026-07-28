@@ -95,11 +95,15 @@ function desktopNav(locale){
     <a class="desktop-account" href="${href(locale,'/hesabim')}">${t.account}</a>
   </nav>`;
 }
+function headerLanguage(locale,path){
+  const t=locale==='tr'?'Dil':locale==='en'?'Language':'Γλώσσα';
+  return `<details class="header-language"><summary aria-label="${t}"><span aria-hidden="true">◎</span><strong>${locale==='el'?'GR':locale.toUpperCase()}</strong></summary><div class="header-language-panel">${['tr','en','el'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${code==='el'?'GR':code.toUpperCase()}</span><small>${code==='tr'?'Türkçe':code==='en'?'English':'Ελληνικά'}</small></a>`).join('')}</div></details>`;
+}
 function group(title,links,locale,key){
   const id=`mobile-group-${key}`;
   return `<section class="mobile-nav-group"><button class="mobile-group-toggle" type="button" aria-expanded="false" aria-controls="${id}">${title}<span aria-hidden="true">＋</span></button><div class="mobile-nav-grid" id="${id}" hidden>${links.map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('')}</div></section>`;
 }
-function mobileNav(locale){
+function mobileNav(locale,path='/'){
   const t=labels[locale];
   return `<div class="mobile-menu-backdrop" data-mobile-backdrop hidden></div><nav class="mobile-nav" id="mobile-nav" aria-label="${t.menu}" aria-hidden="true"><a href="/bugunun-gokyuzu" hidden aria-hidden="true" tabindex="-1"></a>
     <div class="mobile-nav-head"><a class="brand" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a><button class="mobile-nav-close" type="button" aria-label="${t.close}" data-mobile-close><span aria-hidden="true">×</span></button></div>
@@ -107,6 +111,7 @@ function mobileNav(locale){
     ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/haftalik-burc',t.weeklyLong],['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale,'astrology')}
     ${group(t.exploreGroup,[['/kadim-gokyuzu',t.ancient],['/ruya-yorumlari',t.dreams],['/numeroloji',t.numerology],['/blog',t.blog],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/astroloji-sozlugu',t.glossary]],locale,'explore')}
     ${group(t.accountGroup,[['/giris',t.login],['/kayit',t.register],['/hesabim',t.account]],locale,'account')}
+    <section class="mobile-language" aria-label="${locale==='tr'?'Dil':locale==='en'?'Language':'Γλώσσα'}">${['tr','en','el'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${code==='el'?'GR':code.toUpperCase()}</span><small>${code==='tr'?'Türkçe':code==='en'?'English':'Ελληνικά'}</small></a>`).join('')}</section>
   </nav>`;
 }
 function knowledgeHub(locale){
@@ -121,12 +126,12 @@ function languageSwitcher(locale,path){
 }
 function footer(locale){
   const copy={
-    tr:{tag:'Tarot, astroloji ve sembolik farkındalık için etik ve ücretsiz bir keşif alanı.',readings:'Açılımlar',learn:'Bilgi Merkezi',legal:'Yasal',privacy:'Gizlilik Politikası',terms:'Kullanım Koşulları',cookies:'Çerez Politikası',notice:'KVKK Aydınlatma Metni',rights:'Tüm hakları saklıdır.',note:'Eğlence, eğitim ve kişisel farkındalık amaçlıdır.'},
-    en:{tag:'An ethical, free space for Tarot, astrology and symbolic self-reflection.',readings:'Readings',learn:'Knowledge Centre',legal:'Legal',privacy:'Privacy Policy',terms:'Terms of Use',cookies:'Cookie Policy',notice:'Turkish Data Protection Notice',rights:'All rights reserved.',note:'For entertainment, education and personal reflection.'},
-    el:{tag:'Ένας δωρεάν και δεοντολογικός χώρος για Ταρώ, αστρολογία και συμβολικό αυτοστοχασμό.',readings:'Αναγνώσεις',learn:'Κέντρο Γνώσης',legal:'Νομικά',privacy:'Πολιτική Απορρήτου',terms:'Όροι Χρήσης',cookies:'Πολιτική Cookies',notice:'Ενημέρωση Προστασίας Δεδομένων Τουρκίας',rights:'Με επιφύλαξη παντός δικαιώματος.',note:'Για ψυχαγωγία, εκπαίδευση και προσωπικό στοχασμό.'}
+    tr:{tag:'Tarot, astroloji ve sembolik farkındalık için etik ve ücretsiz bir keşif alanı.',readings:'Açılımlar',learn:'Bilgi Merkezi',legal:'Yasal',privacy:'Gizlilik Politikası',terms:'Kullanım Koşulları',cookies:'Çerez Politikası',manage:'Çerez tercihlerini yönet',notice:'KVKK Aydınlatma Metni',rights:'Tüm hakları saklıdır.',note:'Eğlence, eğitim ve kişisel farkındalık amaçlıdır.'},
+    en:{tag:'An ethical, free space for Tarot, astrology and symbolic self-reflection.',readings:'Readings',learn:'Knowledge Centre',legal:'Legal',privacy:'Privacy Policy',terms:'Terms of Use',cookies:'Cookie Policy',manage:'Manage cookie preferences',notice:'Turkish Data Protection Notice',rights:'All rights reserved.',note:'For entertainment, education and personal reflection.'},
+    el:{tag:'Ένας δωρεάν και δεοντολογικός χώρος για Ταρώ, αστρολογία και συμβολικό αυτοστοχασμό.',readings:'Αναγνώσεις',learn:'Κέντρο Γνώσης',legal:'Νομικά',privacy:'Πολιτική Απορρήτου',terms:'Όροι Χρήσης',cookies:'Πολιτική Cookies',manage:'Διαχείριση προτιμήσεων cookies',notice:'Ενημέρωση Προστασίας Δεδομένων Τουρκίας',rights:'Με επιφύλαξη παντός δικαιώματος.',note:'Για ψυχαγωγία, εκπαίδευση και προσωπικό στοχασμό.'}
   }[locale],t=labels[locale];
   const links=(items)=>items.map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('');
-  return `<footer class="site-footer"><div class="site-footer-grid"><div class="site-footer-brand"><a class="site-footer-logo" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a><p>${copy.tag}</p><a href="mailto:info@mythborn.co">info@mythborn.co</a></div><div class="site-footer-column"><h3>${copy.readings}</h3><nav>${links([['/gunluk-kart',t.daily],['/tarot',t.three],['/ask',t.love],['/katina',t.katina]])}</nav></div><div class="site-footer-column"><h3>${copy.learn}</h3><nav>${links([['/astroloji-kutuphanesi',t.library],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/astroloji-sozlugu',t.glossary],['/blog',t.blog]])}</nav></div><div class="site-footer-column"><h3>${copy.legal}</h3><nav>${links([['/gizlilik',copy.privacy],['/kullanim-kosullari',copy.terms],['/cerezler',copy.cookies],['/kvkk',copy.notice]])}</nav></div></div><div class="site-footer-bottom"><span>© 2026 Mythborn. ${copy.rights}</span><span>${copy.note}</span></div></footer>`;
+  return `<footer class="site-footer"><div class="site-footer-grid"><div class="site-footer-brand"><a class="site-footer-logo" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a><p>${copy.tag}</p><a href="mailto:info@mythborn.co">info@mythborn.co</a></div><div class="site-footer-column"><h3>${copy.readings}</h3><nav>${links([['/gunluk-kart',t.daily],['/tarot',t.three],['/ask',t.love],['/katina',t.katina]])}</nav></div><div class="site-footer-column"><h3>${copy.learn}</h3><nav>${links([['/astroloji-kutuphanesi',t.library],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/astroloji-sozlugu',t.glossary],['/blog',t.blog]])}</nav></div><div class="site-footer-column"><h3>${copy.legal}</h3><nav>${links([['/gizlilik',copy.privacy],['/kullanim-kosullari',copy.terms],['/cerezler',copy.cookies],['/kvkk',copy.notice]])}<button type="button" data-consent-manage>${copy.manage}</button></nav></div></div><div class="site-footer-bottom"><span>© 2026 Mythborn. ${copy.rights}</span><span>${copy.note}</span></div></footer>`;
 }
 function legalMain(locale,path){
   const content={
@@ -162,18 +167,29 @@ function notFoundPage(locale){
 function searchPage(locale){
   const t=labels[locale],title=t.search;
   const schema=JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Mythborn',url:SITE,potentialAction:{'@type':'SearchAction',target:`${SITE}${href(locale,'/arama')}?q={search_term_string}`,'query-input':'required name=search_term_string'}});
-  return `<!doctype html><html lang="${localeInfo[locale].html}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} — Mythborn</title><meta name="description" content="${t.knowledgeCopy}"><link rel="canonical" href="${SITE}${href(locale,'/arama')}"><link rel="stylesheet" href="/app.css"><link rel="stylesheet" href="/final.css"><link rel="stylesheet" href="/mobile-menu-clean.css"><script type="application/ld+json">${schema}</script></head><body><div class="shell"><header class="topbar"><a class="brand" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a>${desktopNav(locale)}<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale)}<main id="ana-icerik"><section class="section search-page"><p class="eyebrow">${t.knowledge}</p><h1>${title}</h1><form role="search" data-site-search><label>${title}<input type="search" name="q" autocomplete="off"></label><label>${t.exploreGroup}<select name="category"><option value="">${t.exploreGroup}</option><option value="tarot">${t.tarot}</option><option value="astrology">${t.astrology}</option><option value="dream">${t.dreams}</option><option value="journal">${t.blog}</option></select></label><button class="btn btn-primary" type="submit">${title}</button></form><div class="search-results" aria-live="polite" data-search-results></div></section></main></div>${languageSwitcher(locale,'/arama')}<script>window.MYTHBORN_LOCALE=${JSON.stringify(locale)}</script><script src="/search.js" defer></script><script src="/shell.js" defer></script></body></html>`;
+  return `<!doctype html><html lang="${localeInfo[locale].html}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} — Mythborn</title><meta name="description" content="${t.knowledgeCopy}"><link rel="canonical" href="${SITE}${href(locale,'/arama')}"><link rel="stylesheet" href="/app.css"><link rel="stylesheet" href="/final.css"><link rel="stylesheet" href="/mobile-menu-clean.css"><script type="application/ld+json">${schema}</script></head><body><div class="shell"><header class="topbar"><a class="brand" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a>${desktopNav(locale)}${headerLanguage(locale,'/arama')}<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale,'/arama')}<main id="ana-icerik"><section class="section search-page"><p class="eyebrow">${t.knowledge}</p><h1>${title}</h1><form role="search" data-site-search><label>${title}<input type="search" name="q" autocomplete="off"></label><label>${t.exploreGroup}<select name="category"><option value="">${t.exploreGroup}</option><option value="tarot">${t.tarot}</option><option value="astrology">${t.astrology}</option><option value="dream">${t.dreams}</option><option value="journal">${t.blog}</option></select></label><button class="btn btn-primary" type="submit">${title}</button></form><div class="search-results" aria-live="polite" data-search-results></div></section></main>${footer(locale)}</div><script>window.MYTHBORN_LOCALE=${JSON.stringify(locale)}</script><script src="/search.js" defer></script><script src="/shell.js" defer></script></body></html>`;
 }
 function decorate(html,locale,path){
   const t=labels[locale];
   html=html.replace(/\/el(?=\/|["?#])/g,'/gr').replaceAll('>EL<','>GR<');
   html=html.replace(/<html lang="[^"]*"/,`<html lang="${localeInfo[locale].html}"`);
-  html=html.replace(/<nav class="nav">[\s\S]*?<\/nav>/,desktopNav(locale));
+  html=html.replace(/<nav class="nav(?: [^"]*)?"[\s\S]*?<\/nav>/,desktopNav(locale));
   html=html.replace(/<footer\b[\s\S]*?<\/footer>/,footer(locale));
   const localizedMain=corePage(locale,path)||discoveryPage(locale,path);
   if(localizedMain)html=html.replace(/<main\b[\s\S]*?<\/main>/,localizedMain);
   if(['/gizlilik','/kvkk','/kullanim-kosullari','/cerezler'].includes(path))html=html.replace(/<main\b[\s\S]*?<\/main>/,legalMain(locale,path));
-  if(!html.includes('mobile-menu-button'))html=html.replace('</header>',`<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale)}`);
+  if(!html.includes('<header')){
+    const sharedHeader=`<div class="shell"><header class="topbar"><a class="brand" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a>${desktopNav(locale)}${headerLanguage(locale,path)}<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale,path)}`;
+    html=html.replace(/<body([^>]*)>/,`<body$1>${sharedHeader}`).replace('</body>','</div></body>');
+  }
+  if(!html.includes('desktop-nav'))html=html.replace('</header>',`${desktopNav(locale)}</header>`);
+  if(!html.includes('header-language'))html=html.replace('</header>',`${headerLanguage(locale,path)}</header>`);
+  if(!html.includes('mobile-menu-button'))html=html.replace('</header>',`<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale,path)}`);
+  if(!html.includes('site-footer'))html=html.replace('</main>',`</main>${footer(locale)}`);
+  html=html.replace(/<nav class="(?:language-switcher|lang)"[\s\S]*?<\/nav>/g,'');
+  if(!html.includes('skip-link'))html=html.replace(/<body([^>]*)>/,`<body$1><a class="skip-link" href="#ana-icerik">${locale==='tr'?'Ana içeriğe geç':locale==='en'?'Skip to main content':'Μετάβαση στο κύριο περιεχόμενο'}</a>`);
+  html=html.replace(/<body([^>]*)>/,`<body$1 data-route="${path}">`);
+  html=html.replace(/<main(?![^>]*\bid=)([^>]*)>/,`<main id="ana-icerik"$1>`);
   if(path==='/'&&!html.includes('knowledge-hub'))html=html.replace('</main>',`${knowledgeHub(locale)}</main>`);
   const canonical=`${SITE}${href(locale,path)}`;
   const localizedMeta=coreMeta(locale,path)||discoveryMeta(locale,path);
@@ -193,7 +209,6 @@ function decorate(html,locale,path){
     .replace(/<meta (?:property|name)="(?:og:title|og:description|og:image(?::(?:width|height|alt))?|og:locale|twitter:image(?::alt)?|twitter:title|twitter:description)"[^>]*>/g,'')
     .replace('</head>',`<link rel="canonical" href="${canonical}"><link rel="stylesheet" href="/mobile-menu-clean.css"><link rel="stylesheet" href="/cinematic.css">${heroPreload}<meta property="og:locale" content="${locale==='tr'?'tr_TR':locale==='en'?'en_US':'el_GR'}"><meta property="og:title" content="${pageTitle}"><meta property="og:description" content="${pageDescription}"><meta property="og:image" content="${socialImage}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${socialImageAlt[locale]}"><meta name="twitter:title" content="${pageTitle}"><meta name="twitter:description" content="${pageDescription}"><meta name="twitter:image" content="${socialImage}"><meta name="twitter:image:alt" content="${socialImageAlt[locale]}"></head>`);
   if(!html.includes('SearchAction'))html=html.replace('</head>',`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Mythborn',url:SITE,potentialAction:{'@type':'SearchAction',target:`${SITE}${href(locale,'/arama')}?q={search_term_string}`,'query-input':'required name=search_term_string'}})}</script></head>`);
-  if(!html.includes('language-switcher'))html=html.replace('</body>',`${languageSwitcher(locale,path)}</body>`);
   html=html.replace('</head>',`<script>window.MYTHBORN_LOCALE=${JSON.stringify(locale)}</script></head>`);
   if(locale!=='tr'&&discoveryPage(locale,path)){
     html=html.replace(/<script src="\/(?:discover|sky|synastry)\.js" defer><\/script>/g,'');
@@ -202,6 +217,8 @@ function decorate(html,locale,path){
   if(!html.includes('/shell.js'))html=html.replace('</body>','<script src="/shell.js" defer></script></body>');
   if(path==='/'&&!html.includes('/home-sky.js'))html=html.replace('</body>','<script src="/home-sky.js" defer></script></body>');
   if(!html.includes('/cinematic.js'))html=html.replace('</body>','<script src="/cinematic.js" defer></script></body>');
+  if(!html.includes('/refinement.css'))html=html.replace('</head>','<link rel="stylesheet" href="/refinement.css"></head>');
+  if(!html.includes('/refinement.js'))html=html.replace('</body>','<script src="/refinement.js" defer></script></body>');
   return html;
 }
 
@@ -219,7 +236,7 @@ export default {
       const requested=incoming.searchParams.get('locale'),locale=requested==='en'?'en':requested==='el'||requested==='gr'?'el':'tr';
       return new Response(JSON.stringify({locale,count:searchItems(locale).length,items:searchItems(locale)}),{headers:{'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=3600'}});
     }
-    if(['/shell.js','/search.js','/home-sky.js','/discovery-localized.js','/mobile-menu-clean.css','/cinematic.js','/cinematic.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
+    if(['/shell.js','/search.js','/home-sky.js','/discovery-localized.js','/mobile-menu-clean.css','/cinematic.js','/cinematic.css','/refinement.js','/refinement.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
     if(incoming.pathname==='/weekly.js'){
       const asset=await env.ASSETS.fetch(request);
       return new Response((await asset.text()).replaceAll("startsWith('/el')","startsWith('/gr')"),{status:asset.status,headers:asset.headers});
@@ -233,7 +250,7 @@ export default {
       return new Response(script,{status:asset.status,headers:asset.headers});
     }
     const locale=localeFrom(incoming.pathname),clean=cleanPath(incoming.pathname,locale);
-    if(clean==='/arama')return new Response(searchPage(locale),{headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html}});
+    if(clean==='/arama')return new Response(decorate(searchPage(locale),locale,clean),{headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html}});
     let forwarded=request;
     if(locale==='el'){
       const internal=new URL(request.url);
