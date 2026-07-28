@@ -14,6 +14,11 @@ await check('/tarot-kartlari',['Tarot Kartları Ansiklopedisi','Büyük Arkana',
 await check('/en/tarot-kartlari',['Tarot Card Encyclopedia','Major Arcana','Minor Arcana','The World','King of Pentacles']);
 await check('/el/tarot-kartlari',['Εγκυκλοπαίδεια Καρτών Ταρώ','Μεγάλη Αρκάνα','Μικρή Αρκάνα','Ο Κόσμος','Βασιλιάς των Πεντάκτινα']);
 for(const path of ['/tarot-kartlari/deli','/tarot-kartlari/kupa-on','/tarot-kartlari/kilic-kralice']){await check(path,['FAQPage','BreadcrumbList','Işık anlamı','Gölge anlamı']);await check(`/en${path}`,['FAQPage','BreadcrumbList','Light meaning','Shadow meaning']);await check(`/el${path}`,['FAQPage','BreadcrumbList','Φωτεινή έννοια','Σκιώδης έννοια'])}
-const sitemap=await check('/sitemap.xml',['/advanced-astrology','/en/astrokartografi','/el/vedik-astroloji','/en/blog/saturn-retrosu-2026','/el/blog/yapay-zeka-tarot-etik','/tarot-kartlari/dunya','/en/tarot-kartlari/kupa-as','/el/tarot-kartlari/kilic-kral','hreflang="x-default"']);
+await check('/astroloji-kutuphanesi',['Doğum Haritası Kütüphanesi','12 Burç','12 Ev','Gezegenler','Açılar ve Zamanlama']);
+await check('/en/astroloji-kutuphanesi',['Birth Chart Library','12 Signs','12 Houses','Planets','Aspects and Timing']);
+await check('/el/astroloji-kutuphanesi',['Βιβλιοθήκη Γενέθλιου Χάρτη','12 Ζώδια','12 Οίκοι','Πλανήτες','Όψεις και Χρονισμός']);
+const librarySamples=['/burclar/akrep','/evler/10','/gezegenler/saturn','/acilar/kare','/transitler','/retro-hareketler'];
+for(const path of librarySamples){await check(path,['FAQPage','BreadcrumbList','Article','hreflang="en"','hreflang="el"']);await check(`/en${path}`,['FAQPage','BreadcrumbList','Article','lang="en"']);await check(`/el${path}`,['FAQPage','BreadcrumbList','Article','lang="el"'])}
+const sitemap=await check('/sitemap.xml',['/advanced-astrology','/en/astrokartografi','/el/vedik-astroloji','/en/blog/saturn-retrosu-2026','/el/blog/yapay-zeka-tarot-etik','/tarot-kartlari/dunya','/en/tarot-kartlari/kupa-as','/el/tarot-kartlari/kilic-kral','/astroloji-kutuphanesi','/en/burclar/koc','/el/evler/12','/gezegenler/pluton','/acilar/quincunx','hreflang="x-default"']);
 if(!sitemap.includes('xmlns:xhtml'))throw new Error('Localized sitemap namespace missing');
-console.log(`Premium multilingual audit passed: ${1+routes.length} astrology centers, ${slugs.length} full articles and 78 Tarot cards × 3 languages.`);
+console.log(`Premium multilingual audit passed: advanced centers, ${slugs.length} full articles, 78 Tarot cards and 42 birth-chart guides × 3 languages.`);
