@@ -1,0 +1,48 @@
+.cinematic-surface{position:relative;isolation:isolate;overflow:hidden}
+.cinematic-surface>:not(.cinematic-visual){position:relative;z-index:2}
+.cinematic-visual{position:absolute;z-index:0;inset:0;margin:0;pointer-events:none}
+.cinematic-visual picture,.cinematic-visual img{display:block;width:100%;height:100%}
+.cinematic-visual img{object-fit:cover}
+.cinematic-visual::after{position:absolute;inset:0;content:"";background:linear-gradient(90deg,rgba(7,8,20,.98) 0%,rgba(9,9,24,.9) 34%,rgba(10,9,24,.44) 66%,rgba(10,8,18,.22) 100%)}
+.premium-home-hero.cinematic-surface{min-height:clamp(610px,67vw,800px);padding:clamp(54px,8vw,100px) clamp(24px,5vw,68px);border:1px solid rgba(232,200,131,.16);border-radius:32px;background:#080914}
+.premium-home-hero .cinematic-visual img{object-position:center right;opacity:.76}
+.premium-home-hero .cinematic-visual::after{background:linear-gradient(90deg,#080914 0%,rgba(8,9,20,.96) 34%,rgba(8,9,20,.5) 66%,rgba(8,9,20,.22) 100%),linear-gradient(0deg,rgba(8,9,20,.72),transparent 55%)}
+.premium-home-hero>div{align-self:center;max-width:760px}
+.premium-home-hero .hero-sky-card{align-self:end;backdrop-filter:blur(16px);background:linear-gradient(135deg,rgba(17,18,38,.82),rgba(48,21,48,.58))}
+.daily-stage.cinematic-surface,.membership-gate.cinematic-surface{min-height:600px;border-color:rgba(232,200,131,.2);background:linear-gradient(135deg,rgba(8,10,25,.96),rgba(25,10,28,.88))}
+.daily-stage .cinematic-visual,.membership-gate .cinematic-visual{left:auto;width:min(44%,480px)}
+.daily-stage .cinematic-visual img,.membership-gate .cinematic-visual img{object-position:center}
+.daily-stage .cinematic-visual::after,.membership-gate .cinematic-visual::after{background:linear-gradient(90deg,#090919 0%,rgba(9,9,25,.22) 45%,rgba(9,9,25,.08) 100%),linear-gradient(0deg,rgba(9,9,25,.88),transparent 40%)}
+.daily-stage>:not(.cinematic-visual),.membership-gate>:not(.cinematic-visual){max-width:58%}
+.astrology-hero.cinematic-surface{min-height:600px;padding:clamp(58px,8vw,96px) clamp(24px,5vw,64px);border:1px solid rgba(232,200,131,.16);border-radius:30px;background:#080914}
+.astrology-hero .cinematic-visual img{object-position:center right;opacity:.74}
+.home-membership.cinematic-surface{min-height:420px;background:#080914}
+.home-membership .cinematic-visual img{object-position:center right;opacity:.68}
+.home-membership .cinematic-visual::after{background:linear-gradient(90deg,#080914 0%,rgba(8,9,20,.96) 45%,rgba(8,9,20,.28) 100%)}
+.home-showcase.cinematic-surface{min-height:620px;padding:clamp(40px,6vw,72px);border:1px solid rgba(232,200,131,.13);border-radius:30px;background:#080914}
+.home-showcase .cinematic-visual img{object-position:center right;opacity:.48}
+.home-showcase .cinematic-visual::after{background:linear-gradient(90deg,#080914 0%,rgba(8,9,20,.94) 48%,rgba(8,9,20,.52) 100%),linear-gradient(0deg,#080914 0%,transparent 48%,rgba(8,9,20,.45) 100%)}
+.home-showcase.cinematic-surface .showcase-card{background:rgba(11,11,26,.78);backdrop-filter:blur(12px)}
+@media(max-width:1100px){
+  .premium-home-hero.cinematic-surface{min-height:720px}
+  .premium-home-hero .cinematic-visual img{object-position:62% center}
+  .daily-stage .cinematic-visual,.membership-gate .cinematic-visual{width:52%}
+}
+@media(max-width:760px){
+  .premium-home-hero.cinematic-surface{min-height:680px;padding:46px 22px}
+  .premium-home-hero .cinematic-visual img{object-position:64% center;opacity:.62}
+  .premium-home-hero .cinematic-visual::after{background:linear-gradient(90deg,rgba(8,9,20,.96),rgba(8,9,20,.6)),linear-gradient(0deg,#080914 0%,transparent 54%,rgba(8,9,20,.7) 100%)}
+  .premium-home-hero .hero-sky-card{margin-top:26px}
+  .daily-stage.cinematic-surface,.membership-gate.cinematic-surface{min-height:620px}
+  .daily-stage .cinematic-visual,.membership-gate .cinematic-visual{inset:0;width:100%}
+  .daily-stage .cinematic-visual img,.membership-gate .cinematic-visual img{object-position:center 36%;opacity:.42}
+  .daily-stage .cinematic-visual::after,.membership-gate .cinematic-visual::after{background:linear-gradient(180deg,rgba(9,9,25,.55),rgba(9,9,25,.96) 72%),linear-gradient(90deg,rgba(9,9,25,.7),rgba(9,9,25,.32))}
+  .daily-stage>:not(.cinematic-visual),.membership-gate>:not(.cinematic-visual){max-width:none}
+  .astrology-hero.cinematic-surface{min-height:580px;padding:46px 22px}
+  .astrology-hero .cinematic-visual img{object-position:62% center;opacity:.54}
+  .home-membership.cinematic-surface{min-height:500px}
+  .home-membership .cinematic-visual img{object-position:62% center;opacity:.42}
+  .home-showcase.cinematic-surface{min-height:0;padding:34px 18px}
+  .home-showcase .cinematic-visual img{object-position:64% center;opacity:.34}
+}
+@media(prefers-reduced-motion:reduce){.cinematic-visual{transform:none!important}}

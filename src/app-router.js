@@ -12,6 +12,12 @@ const localeInfo={
   en:{prefix:'/en',html:'en',label:'EN'},
   el:{prefix:'/gr',html:'el',label:'GR'}
 };
+const socialImage=`${SITE}/images/cinematic/social/mythborn-social-celestial.jpg`;
+const socialImageAlt={
+  tr:'Altın göksel halkalar içindeki hilal ve gece ufkunda mor kristal',
+  en:'A crescent moon within golden celestial rings above a violet crystal on the night horizon',
+  el:'Ημισέληνος μέσα σε χρυσούς ουράνιους δακτυλίους πάνω από μωβ κρύσταλλο στον νυχτερινό ορίζοντα'
+};
 const labels={
   tr:{
     daily:'Günlük Kart',tarot:'Tarot',astrology:'Astroloji',weekly:'Haftalık',explore:'Keşfet',account:'Hesabım',
@@ -157,7 +163,7 @@ function searchPage(locale){
 }
 function decorate(html,locale,path){
   const t=labels[locale];
-  html=html.replaceAll('/el','/gr').replaceAll('>EL<','>GR<');
+  html=html.replace(/\/el(?=\/|["?#])/g,'/gr').replaceAll('>EL<','>GR<');
   html=html.replace(/<html lang="[^"]*"/,`<html lang="${localeInfo[locale].html}"`);
   html=html.replace(/<nav class="nav">[\s\S]*?<\/nav>/,desktopNav(locale));
   html=html.replace(/<footer\b[\s\S]*?<\/footer>/,footer(locale));
@@ -165,10 +171,19 @@ function decorate(html,locale,path){
   if(!html.includes('mobile-menu-button'))html=html.replace('</header>',`<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale)}`);
   if(path==='/'&&!html.includes('knowledge-hub'))html=html.replace('</main>',`${knowledgeHub(locale)}</main>`);
   const canonical=`${SITE}${href(locale,path)}`;
-  html=html.replace(/<link rel="canonical" href="[^"]*">/g,'').replace('</head>',`<link rel="canonical" href="${canonical}"><link rel="stylesheet" href="/mobile-menu-clean.css"></head>`);
+  const documentTitle=html.match(/<title>([^<]*)<\/title>/)?.[1]||'Mythborn';
+  const documentDescription=html.match(/<meta name="description" content="([^"]*)">/)?.[1]||labels[locale].knowledgeCopy;
+  const pageTitle=locale==='tr'?(html.match(/<meta property="og:title" content="([^"]*)">/)?.[1]||documentTitle):documentTitle;
+  const pageDescription=locale==='tr'?(html.match(/<meta property="og:description" content="([^"]*)">/)?.[1]||documentDescription):documentDescription;
+  const heroPreload=path==='/'?'<link rel="preload" as="image" type="image/avif" href="/images/cinematic/home/hero-celestial-1440.avif" imagesrcset="/images/cinematic/home/hero-celestial-640.avif 640w, /images/cinematic/home/hero-celestial-960.avif 960w, /images/cinematic/home/hero-celestial-1440.avif 1440w" imagesizes="100vw" fetchpriority="high">':'';
+  html=html
+    .replace(/<link rel="canonical" href="[^"]*">/g,'')
+    .replace(/<meta (?:property|name)="(?:og:title|og:description|og:image(?::(?:width|height|alt))?|og:locale|twitter:image(?::alt)?|twitter:title|twitter:description)"[^>]*>/g,'')
+    .replace('</head>',`<link rel="canonical" href="${canonical}"><link rel="stylesheet" href="/mobile-menu-clean.css"><link rel="stylesheet" href="/cinematic.css">${heroPreload}<meta property="og:locale" content="${locale==='tr'?'tr_TR':locale==='en'?'en_US':'el_GR'}"><meta property="og:title" content="${pageTitle}"><meta property="og:description" content="${pageDescription}"><meta property="og:image" content="${socialImage}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${socialImageAlt[locale]}"><meta name="twitter:title" content="${pageTitle}"><meta name="twitter:description" content="${pageDescription}"><meta name="twitter:image" content="${socialImage}"><meta name="twitter:image:alt" content="${socialImageAlt[locale]}"></head>`);
   if(!html.includes('SearchAction'))html=html.replace('</head>',`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Mythborn',url:SITE,potentialAction:{'@type':'SearchAction',target:`${SITE}${href(locale,'/arama')}?q={search_term_string}`,'query-input':'required name=search_term_string'}})}</script></head>`);
   if(!html.includes('language-switcher'))html=html.replace('</body>',`${languageSwitcher(locale,path)}</body>`);
   if(!html.includes('/shell.js'))html=html.replace('</body>','<script src="/shell.js" defer></script></body>');
+  if(!html.includes('/cinematic.js'))html=html.replace('</body>','<script src="/cinematic.js" defer></script></body>');
   return html;
 }
 
@@ -186,7 +201,7 @@ export default {
       const requested=incoming.searchParams.get('locale'),locale=requested==='en'?'en':requested==='el'||requested==='gr'?'el':'tr';
       return new Response(JSON.stringify({locale,count:searchItems(locale).length,items:searchItems(locale)}),{headers:{'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=3600'}});
     }
-    if(['/shell.js','/search.js','/mobile-menu-clean.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
+    if(['/shell.js','/search.js','/mobile-menu-clean.css','/cinematic.js','/cinematic.css'].includes(incoming.pathname))return env.ASSETS.fetch(request);
     if(incoming.pathname==='/weekly.js'){
       const asset=await env.ASSETS.fetch(request);
       return new Response((await asset.text()).replaceAll("startsWith('/el')","startsWith('/gr')"),{status:asset.status,headers:asset.headers});
@@ -210,7 +225,7 @@ export default {
     const type=response.headers.get('content-type')||'';
     if(!type.includes('text/html')){
       if(incoming.pathname==='/sitemap.xml'){
-        const xml=(await response.text()).replaceAll('/el','/gr');
+        const xml=(await response.text()).replace(/\/el(?=\/|["<])/g,'/gr');
         return new Response(xml,{status:response.status,headers:response.headers});
       }
       return response;
