@@ -2,8 +2,8 @@ import worker from '../src/app-router.js';
 import {readFile} from 'node:fs/promises';
 
 const env={ASSETS:{fetch:()=>new Response('',{status:200})}};
-const routes=['/','/gunluk-kart','/tarot','/ask','/kariyer','/otuz-gun','/katina','/astroloji','/haftalik-burc','/giris','/kayit','/hesabim'];
-const forbidden=/\b(?:Ücretsiz|Üyelik|Günlük|Doğum|Gökyüzü|Şifre|Hesabına|Burcunu|İlişki durumun|Odaklandığın)\b/;
+const routes=['/','/gunluk-kart','/tarot','/ask','/kariyer','/otuz-gun','/katina','/astroloji','/haftalik-burc','/bugunun-gokyuzu','/sinastri','/ay-takvimi','/ruya-yorumlari','/numeroloji','/burc-uyumu','/kadim-gokyuzu','/giris','/kayit','/hesabim'];
+const forbidden=/\b(?:Ücretsiz|Üyelik|Günlük|Doğum|Gökyüzü|Şifre|Hesabına|Burcunu|İlişki durumun|Odaklandığın|TARİH|Gelenekleri|Rüyanı|Hesapla|Yorumla)\b/;
 for(const locale of ['en','gr']){
   for(const route of routes){
     const response=await worker.fetch(new Request(`https://mythborn.co/${locale}${route==='/'?'':route}`),env,{});
