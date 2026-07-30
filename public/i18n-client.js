@@ -7,7 +7,7 @@
   };
   const localizeLinks=root=>{
     root.querySelectorAll?.('a[href^="/"]').forEach(anchor=>{
-      if(anchor.closest('.language-switcher'))return;
+      if(anchor.closest('.language-switcher, .header-language-panel, .mobile-language, [data-locale-link]'))return;
       anchor.setAttribute('href',localizeHref(anchor.getAttribute('href')));
     });
   };
