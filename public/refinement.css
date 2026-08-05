@@ -45,11 +45,22 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 .hero-sky-card>p:not(.eyebrow){display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .home-showcase,.home-membership,.knowledge-hub{padding-block:clamp(68px,8vw,100px)!important}
 .section{scroll-margin-top:92px}
-.membership-gate[data-member-reading="tarot"]{display:grid!important;grid-template-columns:minmax(0,1.05fr) minmax(270px,.7fr);column-gap:clamp(28px,5vw,70px);align-items:center;max-width:1020px!important;padding:clamp(30px,5vw,60px)!important}
-.membership-gate[data-member-reading="tarot"]>.cinematic-figure{grid-column:2;grid-row:1/8;margin:0!important}
-.membership-gate[data-member-reading="tarot"]>:not(.cinematic-figure){grid-column:1}
+.membership-gate[data-member-reading="tarot"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(220px,300px);column-gap:clamp(28px,4vw,60px);align-items:start;max-width:1160px!important;padding:clamp(30px,5vw,60px)!important}
+.membership-gate[data-member-reading="tarot"]>.cinematic-figure,.membership-gate[data-member-reading="tarot"]>.cinematic-visual{grid-column:2;grid-row:1/5;margin:0!important;max-height:360px!important;border-radius:20px;overflow:hidden}
+.membership-gate[data-member-reading="tarot"]>:not(.cinematic-figure):not(.cinematic-visual){grid-column:1}
 .membership-gate[data-member-reading="tarot"] .lead{margin-left:0}
 .membership-gate[data-member-reading="tarot"] .actions{justify-content:flex-start}
+.membership-gate[data-member-reading="tarot"] .reading-workspace,.membership-gate[data-member-reading="tarot"] .reading-result{grid-column:1/-1!important;width:100%!important}
+@media(min-width:821px){
+.membership-gate[data-member-reading="tarot"] .oracle-grid{display:flex!important;flex-direction:column!important;gap:28px!important;margin:36px 0!important;width:100%!important}
+.membership-gate[data-member-reading="tarot"] .oracle-card{display:grid!important;grid-template-columns:minmax(170px,200px) minmax(0,1fr)!important;column-gap:36px!important;row-gap:10px!important;align-items:start!important;padding:28px 32px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:24px!important;background:radial-gradient(circle at 10% 20%,rgba(156,124,255,.06),transparent 45%),rgba(255,255,255,.025)!important;text-align:left!important}
+.membership-gate[data-member-reading="tarot"] .oracle-card>small{grid-column:1!important;grid-row:1!important}
+.membership-gate[data-member-reading="tarot"] .oracle-card>.reading-card-art{grid-column:1!important;grid-row:2/6!important;width:100%!important;max-width:180px!important;margin:8px 0 0!important}
+.membership-gate[data-member-reading="tarot"] .oracle-card>h3{grid-column:2!important;grid-row:1!important;margin:0!important;font-family:Georgia,serif!important;font-size:clamp(26px,2.4vw,34px)!important;line-height:1.1!important}
+.membership-gate[data-member-reading="tarot"] .oracle-card>.card-meta{grid-column:2!important;grid-row:2!important;margin:2px 0 10px!important;color:var(--ref-gold)!important;font-size:13px!important}
+.membership-gate[data-member-reading="tarot"] .oracle-card>p:not(.card-meta){grid-column:2!important;max-width:72ch!important;font-size:16px!important;line-height:1.7!important;color:var(--ref-muted)!important;margin:0 0 8px!important}
+.membership-gate[data-member-reading="tarot"] .reading-summary{max-width:920px!important;margin:32px auto 0!important;font-size:16px!important;line-height:1.7!important}
+}
 .dream-depth-form{width:min(880px,100%);margin-inline:auto!important;padding:clamp(22px,4vw,42px)!important}
 .dream-depth-form textarea{min-height:190px!important;resize:vertical;line-height:1.65}
 .dream-depth-form textarea::placeholder,.dream-depth-form input::placeholder{color:#8e8595;opacity:1}
