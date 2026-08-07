@@ -51,15 +51,172 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 .membership-gate[data-member-reading="tarot"] .lead{margin-left:0}
 .membership-gate[data-member-reading="tarot"] .actions{justify-content:flex-start}
 .membership-gate[data-member-reading="tarot"] .reading-workspace,.membership-gate[data-member-reading="tarot"] .reading-result{grid-column:1/-1!important;width:100%!important}
-@media(min-width:821px){
-.membership-gate[data-member-reading="tarot"] .oracle-grid{display:flex!important;flex-direction:column!important;gap:28px!important;margin:36px 0!important;width:100%!important}
-.membership-gate[data-member-reading="tarot"] .oracle-card{display:grid!important;grid-template-columns:minmax(170px,200px) minmax(0,1fr)!important;column-gap:36px!important;row-gap:10px!important;align-items:start!important;padding:28px 32px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:24px!important;background:radial-gradient(circle at 10% 20%,rgba(156,124,255,.06),transparent 45%),rgba(255,255,255,.025)!important;text-align:left!important}
-.membership-gate[data-member-reading="tarot"] .oracle-card>small{grid-column:1!important;grid-row:1!important}
-.membership-gate[data-member-reading="tarot"] .oracle-card>.reading-card-art{grid-column:1!important;grid-row:2/6!important;width:100%!important;max-width:180px!important;margin:8px 0 0!important}
-.membership-gate[data-member-reading="tarot"] .oracle-card>h3{grid-column:2!important;grid-row:1!important;margin:0!important;font-family:Georgia,serif!important;font-size:clamp(26px,2.4vw,34px)!important;line-height:1.1!important}
-.membership-gate[data-member-reading="tarot"] .oracle-card>.card-meta{grid-column:2!important;grid-row:2!important;margin:2px 0 10px!important;color:var(--ref-gold)!important;font-size:13px!important}
-.membership-gate[data-member-reading="tarot"] .oracle-card>p:not(.card-meta){grid-column:2!important;max-width:72ch!important;font-size:16px!important;line-height:1.7!important;color:var(--ref-muted)!important;margin:0 0 8px!important}
-.membership-gate[data-member-reading="tarot"] .reading-summary{max-width:920px!important;margin:32px auto 0!important;font-size:16px!important;line-height:1.7!important}
+.reading-result .oracle-grid,
+.membership-gate .oracle-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+  margin: 36px 0 28px 0 !important;
+  align-items: stretch !important;
+}
+
+.reading-result .oracle-grid:has(> .oracle-card:nth-child(4)),
+.membership-gate .oracle-grid:has(> .oracle-card:nth-child(4)) {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+.reading-result .oracle-card,
+.membership-gate .oracle-card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 24px 20px !important;
+  border: 1px solid rgba(214, 184, 120, 0.25) !important;
+  border-radius: 22px !important;
+  background: radial-gradient(circle at 50% 0%, rgba(168, 139, 223, 0.12), transparent 55%), linear-gradient(180deg, rgba(20, 16, 32, 0.88) 0%, rgba(10, 8, 16, 0.96) 100%) !important;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+  text-align: left !important;
+  overflow: hidden !important;
+  min-height: 0 !important;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.reading-result .oracle-card:hover,
+.membership-gate .oracle-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(214, 184, 120, 0.48) !important;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.reading-result .oracle-card:after,
+.membership-gate .oracle-card:after {
+  content: '' !important;
+  display: none !important;
+}
+
+.reading-result .oracle-card>small,
+.membership-gate .oracle-card>small {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 26px !important;
+  padding: 4px 14px !important;
+  border-radius: 999px !important;
+  background: rgba(214, 184, 120, 0.12) !important;
+  border: 1px solid rgba(214, 184, 120, 0.3) !important;
+  color: #f3e5c8 !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  margin: 0 auto 12px auto !important;
+  width: fit-content !important;
+}
+
+.reading-result .oracle-card>.reading-card-art,
+.membership-gate .oracle-card>.reading-card-art {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  display: block !important;
+  width: min(150px, 68%) !important;
+  max-width: 170px !important;
+  aspect-ratio: 4/7 !important;
+  margin: 4px auto 14px auto !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(214, 184, 120, 0.32) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+  background: #090812 !important;
+}
+
+.reading-result .oracle-card>.reading-card-art img,
+.membership-gate .oracle-card>.reading-card-art img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
+.reading-result .oracle-card>h3,
+.membership-gate .oracle-card>h3 {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  font-family: Georgia, serif !important;
+  font-size: clamp(20px, 1.8vw, 24px) !important;
+  font-weight: 500 !important;
+  line-height: 1.25 !important;
+  color: #ffffff !important;
+  text-align: center !important;
+  margin: 6px 0 4px 0 !important;
+  width: 100% !important;
+}
+
+.reading-result .oracle-card>.card-meta,
+.membership-gate .oracle-card>.card-meta {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--ref-gold, #d6b878) !important;
+  text-align: center !important;
+  margin: 0 0 14px 0 !important;
+  opacity: 0.9 !important;
+  width: 100% !important;
+}
+
+.reading-result .oracle-card>p:not(.card-meta),
+.membership-gate .oracle-card>p:not(.card-meta) {
+  grid-column: auto !important;
+  max-width: none !important;
+  font-size: 13.5px !important;
+  line-height: 1.65 !important;
+  color: rgba(245, 239, 232, 0.85) !important;
+  margin: 0 0 10px 0 !important;
+  text-align: left !important;
+  width: 100% !important;
+}
+
+.reading-result .oracle-card>p:not(.card-meta) strong,
+.membership-gate .oracle-card>p:not(.card-meta) strong {
+  color: #f3e5c8 !important;
+  font-weight: 700 !important;
+}
+
+.reading-result .reading-summary,
+.membership-gate .reading-summary {
+  max-width: 920px !important;
+  margin: 32px auto 0 !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+}
+
+@media (max-width: 900px) {
+  .reading-result .oracle-grid,
+  .membership-gate .oracle-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .reading-result .oracle-grid,
+  .membership-gate .oracle-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .reading-result .oracle-card,
+  .membership-gate .oracle-card {
+    padding: 20px 16px !important;
+  }
+  .reading-result .oracle-card>.reading-card-art,
+  .membership-gate .oracle-card>.reading-card-art {
+    width: min(160px, 55%) !important;
+  }
 }
 .dream-depth-form{width:min(880px,100%);margin-inline:auto!important;padding:clamp(22px,4vw,42px)!important}
 .dream-depth-form textarea{min-height:190px!important;resize:vertical;line-height:1.65}
