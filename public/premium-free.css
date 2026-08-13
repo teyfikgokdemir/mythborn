@@ -148,3 +148,9 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 .tool-answer-links a:focus-visible,.tool-answer-grid summary:focus-visible{outline:2px solid var(--myth-copper);outline-offset:3px}
 @media(max-width:720px){.tool-answer-guide{margin-inline:-2px;padding:28px 20px;border-radius:22px}.tool-answer-grid{grid-template-columns:1fr}.tool-answer-grid summary{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.tool-answer-grid details,.tool-answer-grid summary::after,.tool-answer-links a{transition:none}.tool-answer-grid details:hover,.tool-answer-links a:hover{transform:none}}
+
+/* Footer guardian mark: quiet editorial signature, not a second hero. */
+.site-footer-guardian{display:flex;align-items:center;gap:10px;margin:22px 0 0;padding-top:16px;border-top:1px solid rgba(239,173,125,.16)}
+.site-footer-guardian img{width:54px;height:54px;object-fit:cover;object-position:center;border:1px solid rgba(239,173,125,.3);border-radius:50%;opacity:.88;filter:saturate(.72) sepia(.12);box-shadow:0 0 0 5px rgba(245,131,112,.06),0 12px 28px rgba(0,0,0,.2)}
+.site-footer-guardian figcaption{max-width:150px;color:var(--myth-copper);font-size:10px;font-weight:800;letter-spacing:.12em;line-height:1.4;text-transform:uppercase}
+@media(max-width:680px){.site-footer-guardian{margin-top:18px;padding-top:14px}.site-footer-guardian img{width:48px;height:48px}.site-footer-guardian figcaption{font-size:9px}}
