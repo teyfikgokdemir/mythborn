@@ -12,7 +12,8 @@
     "PREMIUM_GATE_ENABLED": "false"
   },
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "run_worker_first": ["/llms.txt", "/llms.en.txt", "/llms.gr.txt"]
   },
   "observability": {
     "enabled": true
