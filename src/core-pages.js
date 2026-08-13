@@ -71,10 +71,10 @@ function home(locale){
       <div><p class="eyebrow">${t.eyebrow}</p><h1>${t.title}<em>${t.em}</em></h1><p class="lead">${t.lead}</p><div class="actions">${link(locale,'/gunluk-kart',t.daily,'btn btn-primary')}${link(locale,'/bugunun-gokyuzu',t.sky,'btn btn-secondary')}${link(locale,'/astroloji',t.chart,'btn btn-tertiary')}</div></div>
       <aside class="hero-sky-card" data-home-sky aria-busy="true"><div class="sky-skeleton" aria-hidden="true"><div class="sky-skeleton-wheel"></div></div></aside>
     </section>
+    <section class="section home-partners" aria-labelledby="partner-projects-title"><div class="partners-intro"><p class="eyebrow">${t.partnersEye}</p><h2 id="partner-projects-title">${t.partnersTitle}</h2><p>${t.partnersLead}</p></div><div class="partner-project-grid">${partnerCards}</div></section>
     <section class="section home-today" aria-labelledby="home-today-title"><div class="home-today-layout"><a class="home-today-primary" href="${localePath(locale,'/gunluk-kart')}"><span class="today-symbol" aria-hidden="true">✦</span><p class="eyebrow">${today[0]}</p><h2 id="home-today-title">${todayItems[2][1]}</h2><p>${todayItems[2][2]}</p><span>${t.discover}</span></a><div class="home-today-rail">${todayRail}</div></div></section>
     <section class="section home-featured"><div class="featured-layout"><div class="featured-intro"><p class="eyebrow">${featured[0]}</p><h2>${featured[1]}</h2><p>${featured[2]}</p></div><nav class="featured-list" aria-label="${featured[0]}">${featuredList}</nav></div></section>
     <section class="section home-ancient"><div class="ancient-editorial"><div class="ancient-editorial-main"><span class="ancient-glyph" aria-hidden="true">☉</span><p class="eyebrow">${ancient[0]}</p><h2>${ancient[1]}</h2><p>${ancient[2]}</p><a class="btn btn-ghost" href="${localePath(locale,ancientItems[0][3])}">${ancientItems[0][1]} →</a></div><div class="ancient-notes">${ancientNotes}</div></div></section>
-    <section class="section home-partners" aria-labelledby="partner-projects-title"><div class="partners-intro"><p class="eyebrow">${t.partnersEye}</p><h2 id="partner-projects-title">${t.partnersTitle}</h2><p>${t.partnersLead}</p></div><div class="partner-project-grid">${partnerCards}</div></section>
   </main>`;
 }
 function daily(locale){
