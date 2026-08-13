@@ -131,6 +131,17 @@ function knowledgeHub(locale){
 function languageSwitcher(locale,path){
   return `<nav class="language-switcher" aria-label="Language"><a href="${href('tr',path)}"${locale==='tr'?' aria-current="page"':''}>TR</a><a href="${href('en',path)}"${locale==='en'?' aria-current="page"':''}>EN</a><a href="${href('el',path)}"${locale==='el'?' aria-current="page"':''}>GR</a></nav>`;
 }
+function sponsorBand(locale){
+  const copy={
+    tr:{label:'SPONSORLU BAĞLANTILAR',caption:'SEÇİLMİŞ MARKALAR · 2026',visit:'Ziyaret et',items:[['CTSEG','Uluslararası ticaret','https://ctseg.com.tr/'],['QCT STUDIO','Dijital tasarım ve teknoloji','https://qctstudio.com/'],['QCT COMMERCE','Ticaret operasyonları','https://qctcommerce.com/']]},
+    en:{label:'SPONSORED LINKS',caption:'SELECTED BRANDS · 2026',visit:'Visit',items:[['CTSEG','International trade','https://ctseg.com.tr/'],['QCT STUDIO','Digital design & technology','https://qctstudio.com/'],['QCT COMMERCE','Commerce operations','https://qctcommerce.com/']]},
+    el:{label:'ΧΟΡΗΓΟΥΜΕΝΟΙ ΣΥΝΔΕΣΜΟΙ',caption:'ΕΠΙΛΕΓΜΕΝΕΣ ΜΑΡΚΕΣ · 2026',visit:'Επίσκεψη',items:[['CTSEG','Διεθνές εμπόριο','https://ctseg.com.tr/'],['QCT STUDIO','Ψηφιακός σχεδιασμός και τεχνολογία','https://qctstudio.com/'],['QCT COMMERCE','Εμπορικές λειτουργίες','https://qctcommerce.com/']]}
+  }[locale];
+  const item=([name,category,url],clone=false)=>`<a class="sponsor-marquee-item sponsor-${name.toLowerCase().replaceAll(' ','-')}" href="${url}" target="_blank" rel="noopener noreferrer"${clone?' tabindex="-1"':''} aria-label="${name} — ${category}"><small>${category}</small><strong>${name}</strong><span>${copy.visit} <b aria-hidden="true">↗</b></span></a>`;
+  const items=copy.items.map(entry=>item(entry)).join('');
+  const clonedItems=copy.items.map(entry=>item(entry,true)).join('');
+  return `<aside class="sponsor-band" aria-label="${copy.label}"><div class="sponsor-band-caption"><span>${copy.label}</span><i aria-hidden="true"></i><small>${copy.caption}</small></div><div class="sponsor-marquee"><div class="sponsor-marquee-track"><div class="sponsor-marquee-group">${items}</div><div class="sponsor-marquee-group" aria-hidden="true">${clonedItems}</div></div></div></aside>`;
+}
 function footer(locale){
   const copy={
     tr:{tag:'Tarot, astroloji ve sembolik farkındalık için etik ve ücretsiz bir keşif alanı.',readings:'Açılımlar',learn:'Bilgi Merkezi',legal:'Yasal',privacy:'Gizlilik Politikası',terms:'Kullanım Koşulları',cookies:'Çerez Politikası',manage:'Çerez tercihlerini yönet',notice:'KVKK Aydınlatma Metni',rights:'Tüm hakları saklıdır.',note:'Eğlence, eğitim ve kişisel farkındalık amaçlıdır.'},
@@ -200,6 +211,7 @@ function decorate(html,locale,path,accessState){
   if(accessBanner&&!html.includes('data-early-access'))html=html.replace(/<body([^>]*)>/,`<body$1>${accessBanner}`);
   html=html.replace(/<main(?![^>]*\bid=)([^>]*)>/,`<main id="ana-icerik"$1>`);
   if(path==='/'&&!html.includes('knowledge-hub'))html=html.replace('</main>',`${knowledgeHub(locale)}</main>`);
+  if(!html.includes('sponsor-band'))html=html.replace('<footer class="site-footer">',`${sponsorBand(locale)}<footer class="site-footer">`);
   const canonical=`${SITE}${href(locale,path)}`;
   const localizedMeta=coreMeta(locale,path)||discoveryMeta(locale,path);
   if(localizedMeta){
