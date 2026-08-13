@@ -35,7 +35,7 @@
       const expanded=toggle.getAttribute('aria-expanded')==='true';
       toggle.setAttribute('aria-expanded',String(!expanded));
       if(panel)panel.hidden=expanded;
-      const icon=toggle.querySelector('span');
+      const icon=toggle.querySelector('.mobile-group-indicator');
       if(icon)icon.textContent=expanded?'＋':'−';
     }));
     document.addEventListener('keydown',event=>{
@@ -52,7 +52,7 @@
       activePanel.hidden=false;
       const toggle=menu.querySelector(`[aria-controls="${activePanel.id}"]`);
       toggle?.setAttribute('aria-expanded','true');
-      const icon=toggle?.querySelector('span');
+      const icon=toggle?.querySelector('.mobile-group-indicator');
       if(icon)icon.textContent='−';
     }
   }

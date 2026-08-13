@@ -153,18 +153,25 @@ function headerLanguage(locale,path){
   const codeLabel=code=>code==='el'?'GR':code.toUpperCase();
   return `<details class="header-language"><summary aria-label="${t}"><span aria-hidden="true">◎</span><strong>${codeLabel(locale)}</strong></summary><div class="header-language-panel">${['tr','en','el','es'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${codeLabel(code)}</span> <small>${languageName(code)}</small></a>`).join('')}</div></details>`;
 }
-function group(title,links,locale,key){
+function group(title,links,locale,key,order){
   const id=`mobile-group-${key}`;
-  return `<section class="mobile-nav-group"><button class="mobile-group-toggle" type="button" aria-expanded="false" aria-controls="${id}">${title}<span aria-hidden="true">＋</span></button><div class="mobile-nav-grid" id="${id}" hidden>${links.map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('')}</div></section>`;
+  return `<section class="mobile-nav-group"><button class="mobile-group-toggle" type="button" aria-expanded="true" aria-controls="${id}"><span class="mobile-group-title"><i aria-hidden="true">${order}</i>${title}</span><span class="mobile-group-indicator" aria-hidden="true">−</span></button><div class="mobile-nav-grid" id="${id}">${links.map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('')}</div></section>`;
+}
+function mobileLanguage(locale,path){
+  const languageLabel=locale==='tr'?'Dil':locale==='en'?'Language':locale==='el'?'Γλώσσα':'Idioma';
+  const languageName=code=>code==='tr'?'Türkçe':code==='en'?'English':code==='el'?'Ελληνικά':'Español';
+  const codeLabel=code=>code==='el'?'GR':code.toUpperCase();
+  return `<section class="mobile-language" aria-label="${languageLabel}"><div class="mobile-language-heading"><span aria-hidden="true">◎</span><strong>${languageLabel}</strong><small>MYTHBORN / GLOBAL</small></div><div class="mobile-language-grid">${['tr','en','el','es'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${codeLabel(code)}</span><small>${languageName(code)}</small></a>`).join('')}</div></section>`;
 }
 function mobileNav(locale,path='/'){
   const t=labels[locale];
   return `<div class="mobile-menu-backdrop" data-mobile-backdrop hidden></div><nav class="mobile-nav" id="mobile-nav" aria-label="${t.menu}" aria-hidden="true"><a href="/bugunun-gokyuzu" hidden aria-hidden="true" tabindex="-1"></a>
     <div class="mobile-nav-head"><a class="brand" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a><button class="mobile-nav-close" type="button" aria-label="${t.close}" data-mobile-close><span aria-hidden="true">×</span></button></div>
-    ${group(t.tarotGroup,[['/gunluk-kart',t.daily],['/tarot',t.three],['/ask',t.love],['/kariyer',t.career],['/otuz-gun',t.month],['/katina',t.katina]],locale,'tarot')}
-    ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/haftalik-burc',t.weeklyLong],['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale,'astrology')}
-    ${group(t.exploreGroup,[['/kadim-gokyuzu',t.ancient],['/ruya-yorumlari',t.dreams],['/numeroloji',t.numerology],['/blog',t.blog],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/astroloji-sozlugu',t.glossary]],locale,'explore')}
-    <section class="mobile-language" aria-label="${locale==='tr'?'Dil':locale==='en'?'Language':locale==='el'?'Γλώσσα':'Idioma'}">${['tr','en','el','es'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${code==='el'?'GR':code.toUpperCase()}</span> <small>${code==='tr'?'Türkçe':code==='en'?'English':code==='el'?'Ελληνικά':'Español'}</small></a>`).join('')}</section>
+    <p class="mobile-nav-kicker">MYTHBORN · ${t.menu}</p>
+    ${mobileLanguage(locale,path)}
+    ${group(t.tarotGroup,[['/gunluk-kart',t.daily],['/tarot',t.three],['/ask',t.love],['/kariyer',t.career],['/otuz-gun',t.month],['/katina',t.katina]],locale,'tarot','01')}
+    ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/haftalik-burc',t.weeklyLong],['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale,'astrology','02')}
+    ${group(t.exploreGroup,[['/kadim-gokyuzu',t.ancient],['/ruya-yorumlari',t.dreams],['/numeroloji',t.numerology],['/blog',t.blog],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/astroloji-sozlugu',t.glossary]],locale,'explore','03')}
   </nav>`;
 }
 function knowledgeHub(locale){
