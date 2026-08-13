@@ -100,7 +100,26 @@ for (const [path, expectedHeading] of toolAnswerRoutes) {
   }
 }
 
-// 3. Audit Legacy Shopify Paths (410 & 301 with Target & Single-Step Validation)
+// 3. Turkish blog answer-layer and editorial trust audit
+const blogArticleRoutes = sitemapUrls.map(urlStr => new URL(urlStr).pathname).filter(path => path.startsWith('/blog/'));
+for (const path of blogArticleRoutes) {
+  const res = await fetchPath(path);
+  if (res.status !== 200) {
+    errors.push(`[Blog Article Status] ${path} returned HTTP ${res.status}`);
+    continue;
+  }
+  if (!res.body.includes('class="article-meta"') || !res.body.includes('MYTHBORN EDITORIAL DESK')) {
+    errors.push(`[Blog Editorial Trust] ${path} is missing its visible editorial date/byline`);
+  }
+  if (!res.body.includes('class="article-faq"') || !res.body.includes('"@type":"FAQPage"')) {
+    errors.push(`[Blog FAQ Alignment] ${path} is missing visible FAQ or FAQPage markup`);
+  }
+  if (!res.body.includes('"@type":"Article"')) {
+    errors.push(`[Blog Article Schema] ${path} is missing Article markup`);
+  }
+}
+
+// 4. Audit Legacy Shopify Paths (410 & 301 with Target & Single-Step Validation)
 const legacy410Paths = [
   '/products/test-item',
   '/products',
@@ -160,7 +179,7 @@ for (const [fromPath, expectedToPath] of legacyRedirects) {
   }
 }
 
-// 4. Trailing Slash & Normalization Audit
+// 5. Trailing Slash & Normalization Audit
 const trailingSlashPaths = ['/astroloji/', '/en/astroloji/', '/blog/saturn-retrosu-2026/'];
 for (const path of trailingSlashPaths) {
   const res = await fetchPath(path);
@@ -181,7 +200,7 @@ for (const path of trailingSlashPaths) {
   }
 }
 
-// 5. Custom 404 Status Audit
+// 6. Custom 404 Status Audit
 const nonExistentRes = await fetchPath('/non-existent-random-page-12345');
 if (nonExistentRes.status !== 404) {
   errors.push(`[Custom 404 Status] /non-existent-page returned HTTP ${nonExistentRes.status}, expected 404`);
@@ -190,7 +209,7 @@ if (!nonExistentRes.body.includes('noindex')) {
   errors.push(`[Custom 404 Robots] 404 page missing noindex meta tag`);
 }
 
-// 6. robots.txt Audit
+// 7. robots.txt Audit
 const robotsRes = await fetchPath('/robots.txt');
 if (robotsRes.status !== 200) {
   errors.push(`[robots.txt Status] /robots.txt returned HTTP ${robotsRes.status}`);

@@ -5,9 +5,9 @@ import {tarotCardSlugs,tarotLibraryPage} from './tarot-library.js';
 import {libraryRoutes,libraryPage} from './astrology-library.js';
 import {dreamSlugs,glossarySlugs,dreamPage,glossaryPage} from './dream-glossary.js';
 const SITE='https://mythborn.co';
-const localeFrom=path=>path==='/en'||path.startsWith('/en/')?'en':path==='/el'||path.startsWith('/el/')?'el':'tr';
+const localeFrom=path=>path==='/en'||path.startsWith('/en/')?'en':path==='/gr'||path.startsWith('/gr/')||path==='/el'||path.startsWith('/el/')?'el':'tr';
 const cleanPath=(path,locale)=>locale==='tr'?path:(path===`/${locale}`?'/':path.slice(3)||'/');
-const localized=(path,locale)=>locale==='tr'?path:`/${locale}${path==='/'?'':path}`;
+const localized=(path,locale)=>locale==='tr'?path:`/${locale==='el'?'gr':locale}${path==='/'?'':path}`;
 function decorate(html,path,locale){
  const robotsTag=html.includes('name="robots"')?'':`<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">`;
  const alt=`${robotsTag}<link rel="alternate" hreflang="tr" href="${SITE}${localized(path,'tr')}"><link rel="alternate" hreflang="en" href="${SITE}${localized(path,'en')}"><link rel="alternate" hreflang="el" href="${SITE}${localized(path,'el')}"><link rel="alternate" hreflang="x-default" href="${SITE}${localized(path,'tr')}">`;

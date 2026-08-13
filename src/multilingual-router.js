@@ -4,7 +4,7 @@ const SITE='https://mythborn.co';
 const locales={
   tr:{prefix:'',html:'tr-TR',label:'TR'},
   en:{prefix:'/en',html:'en',label:'EN'},
-  el:{prefix:'/el',html:'el',label:'EL'}
+  el:{prefix:'/gr',html:'el',label:'GR'}
 };
 
 const dictionaries={
@@ -47,11 +47,11 @@ const meta={
   }
 };
 
-function localeFrom(path){if(path==='/en'||path.startsWith('/en/'))return'en';if(path==='/el'||path.startsWith('/el/'))return'el';return'tr'}
-function basePath(path,locale){if(locale==='tr')return path;if(path===`/${locale}`)return'/';return path.slice(3)||'/'}
-function localizedPath(path,locale){const clean=path==='/'?'':path;return locale==='tr'?(clean||'/'):`/${locale}${clean}`}
+function localeFrom(path){if(path==='/en'||path.startsWith('/en/'))return'en';if(path==='/gr'||path.startsWith('/gr/')||path==='/el'||path.startsWith('/el/'))return'el';return'tr'}
+function basePath(path,locale){if(locale==='tr')return path;const prefixes=locale==='el'?['/gr','/el']:[`/${locale}`];const prefix=prefixes.find(value=>path===value||path.startsWith(`${value}/`))||prefixes[0];if(path===prefix)return'/';return path.slice(prefix.length)||'/'}
+function localizedPath(path,locale){const clean=path==='/'?'':path;return locale==='tr'?(clean||'/'):`/${locale==='el'?'gr':locale}${clean}`}
 function replaceAllSafe(html,map){for(const[from,to]of Object.entries(map||{}))html=html.split(from).join(to);return html}
-function prefixLinks(html,locale){if(locale==='tr')return html;return html.replace(/(href|action)="\/(?!\/|api\/|images\/|app\.|final\.|oracle\.|favicon|menu\.|content\.|account-menu\.|weekly\.|sky\.|synastry\.|reflection\.|social-auth\.|discover\.|tarot-deck\.)/g,`$1="/${locale}/`)}
+function prefixLinks(html,locale){if(locale==='tr')return html;const prefix=locale==='el'?'gr':locale;return html.replace(/(href|action)="\/(?!\/|api\/|images\/|app\.|final\.|oracle\.|favicon|menu\.|content\.|account-menu\.|weekly\.|sky\.|synastry\.|reflection\.|social-auth\.|discover\.|tarot-deck\.)/g,`$1="/${prefix}/`)}
 function localizeHtml(html,locale,path){
   if(locale==='tr')return injectLanguageUi(html,locale,path);
   html=replaceAllSafe(html,dictionaries[locale]);
