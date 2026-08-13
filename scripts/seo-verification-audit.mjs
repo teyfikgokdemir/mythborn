@@ -70,7 +70,37 @@ for (const urlStr of sitemapUrls) {
   }
 }
 
-// 2. Audit Legacy Shopify Paths (410 & 301 with Target & Single-Step Validation)
+// 2. High-intent tool page answer-layer audit
+const toolAnswerRoutes = [
+  ['/astroloji', 'Doğum haritası hakkında kısa yanıtlar'],
+  ['/tarot', '3 kart Tarot açılımı hakkında kısa yanıtlar'],
+  ['/sinastri', 'Sinastri hakkında kısa yanıtlar'],
+  ['/en/astroloji', 'Birth chart: quick answers'],
+  ['/en/tarot', '3-card Tarot: quick answers'],
+  ['/en/sinastri', 'Synastry: quick answers'],
+  ['/gr/astroloji', 'Γενέθλιος χάρτης: σύντομες απαντήσεις'],
+  ['/gr/tarot', 'Ταρώ 3 καρτών: σύντομες απαντήσεις'],
+  ['/gr/sinastri', 'Συναστρία: σύντομες απαντήσεις']
+];
+
+for (const [path, expectedHeading] of toolAnswerRoutes) {
+  const res = await fetchPath(path);
+  if (res.status !== 200) {
+    errors.push(`[Tool Answer Status] ${path} returned HTTP ${res.status}`);
+    continue;
+  }
+  if (!res.body.includes('data-tool-answer-guide') || !res.body.includes(expectedHeading)) {
+    errors.push(`[Tool Answer Content] ${path} is missing its visible answer guide`);
+  }
+  if (!res.body.includes('"@type":"FAQPage"')) {
+    errors.push(`[Tool Answer Schema] ${path} is missing FAQPage markup`);
+  }
+  if (!res.body.includes('tool-answer-links')) {
+    errors.push(`[Tool Answer Links] ${path} is missing its internal guide links`);
+  }
+}
+
+// 3. Audit Legacy Shopify Paths (410 & 301 with Target & Single-Step Validation)
 const legacy410Paths = [
   '/products/test-item',
   '/products',
@@ -130,7 +160,7 @@ for (const [fromPath, expectedToPath] of legacyRedirects) {
   }
 }
 
-// 3. Trailing Slash & Normalization Audit
+// 4. Trailing Slash & Normalization Audit
 const trailingSlashPaths = ['/astroloji/', '/en/astroloji/', '/blog/saturn-retrosu-2026/'];
 for (const path of trailingSlashPaths) {
   const res = await fetchPath(path);
@@ -151,7 +181,7 @@ for (const path of trailingSlashPaths) {
   }
 }
 
-// 4. Custom 404 Status Audit
+// 5. Custom 404 Status Audit
 const nonExistentRes = await fetchPath('/non-existent-random-page-12345');
 if (nonExistentRes.status !== 404) {
   errors.push(`[Custom 404 Status] /non-existent-page returned HTTP ${nonExistentRes.status}, expected 404`);
@@ -160,7 +190,7 @@ if (!nonExistentRes.body.includes('noindex')) {
   errors.push(`[Custom 404 Robots] 404 page missing noindex meta tag`);
 }
 
-// 5. robots.txt Audit
+// 6. robots.txt Audit
 const robotsRes = await fetchPath('/robots.txt');
 if (robotsRes.status !== 200) {
   errors.push(`[robots.txt Status] /robots.txt returned HTTP ${robotsRes.status}`);
