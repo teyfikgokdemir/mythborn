@@ -1,3 +1,5 @@
+import {spanishContent} from './spanish-content-data.js';
+
 export const spanishContentRoutes=[
   '/',
   '/gunluk-kart',
@@ -29,16 +31,11 @@ export const spanishRouteSet=new Set(spanishRoutes);
 export const spanishAssetName=path=>path==='/'?'home':path.slice(1).replaceAll('/','--');
 export const spanishAssetPath=path=>`/es-content/${spanishAssetName(path)}.json`;
 
-export async function loadSpanishPage(assets,request,path){
+export function loadSpanishPage(path){
   if(!spanishRouteSet.has(path))return null;
   const staticPage=spanishStaticPages[path];
   if(staticPage)return {path,...staticPage,main:'<main></main>'};
-  const assetUrl=new URL(request.url);
-  assetUrl.pathname=spanishAssetPath(path);
-  assetUrl.search='';
-  const response=await assets.fetch(new Request(assetUrl.toString(),request));
-  if(!response.ok)return null;
-  const page=await response.json();
+  const page=spanishContent[path];
   if(page?.path!==path||typeof page.title!=='string'||typeof page.description!=='string'||typeof page.main!=='string'||!page.main.startsWith('<main')||!page.main.includes('</main>'))return null;
   return page;
 }
