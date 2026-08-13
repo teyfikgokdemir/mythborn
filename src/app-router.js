@@ -133,9 +133,9 @@ function languageSwitcher(locale,path){
 }
 function sponsorBand(locale){
   const copy={
-    tr:{label:'SPONSORLU BAĞLANTILAR',caption:'SEÇİLMİŞ MARKALAR · 2026',visit:'Ziyaret et',items:[['CTSEG','Uluslararası ticaret','https://ctseg.com.tr/'],['QCT STUDIO','Dijital tasarım ve teknoloji','https://qctstudio.com/'],['QCT COMMERCE','Ticaret operasyonları','https://qctcommerce.com/']]},
-    en:{label:'SPONSORED LINKS',caption:'SELECTED BRANDS · 2026',visit:'Visit',items:[['CTSEG','International trade','https://ctseg.com.tr/'],['QCT STUDIO','Digital design & technology','https://qctstudio.com/'],['QCT COMMERCE','Commerce operations','https://qctcommerce.com/']]},
-    el:{label:'ΧΟΡΗΓΟΥΜΕΝΟΙ ΣΥΝΔΕΣΜΟΙ',caption:'ΕΠΙΛΕΓΜΕΝΕΣ ΜΑΡΚΕΣ · 2026',visit:'Επίσκεψη',items:[['CTSEG','Διεθνές εμπόριο','https://ctseg.com.tr/'],['QCT STUDIO','Ψηφιακός σχεδιασμός και τεχνολογία','https://qctstudio.com/'],['QCT COMMERCE','Εμπορικές λειτουργίες','https://qctcommerce.com/']]}
+    tr:{label:'SPONSORLU BAĞLANTILAR',caption:'SEÇİLMİŞ MARKALAR · 2026',visit:'Ziyaret et',items:[['TEYFİK GÖKDEMİR','Uluslararası ticaret ve stratejik ortaklıklar','https://teyfikgokdemir.com/'],['CTSEG','Uluslararası ticaret','https://ctseg.com.tr/'],['QCT STUDIO','Dijital tasarım ve teknoloji','https://qctstudio.com/'],['QCT COMMERCE','Ticaret operasyonları','https://qctcommerce.com/']]},
+    en:{label:'SPONSORED LINKS',caption:'SELECTED BRANDS · 2026',visit:'Visit',items:[['TEYFİK GÖKDEMİR','International trade and strategic partnerships','https://teyfikgokdemir.com/'],['CTSEG','International trade','https://ctseg.com.tr/'],['QCT STUDIO','Digital design & technology','https://qctstudio.com/'],['QCT COMMERCE','Commerce operations','https://qctcommerce.com/']]},
+    el:{label:'ΧΟΡΗΓΟΥΜΕΝΟΙ ΣΥΝΔΕΣΜΟΙ',caption:'ΕΠΙΛΕΓΜΕΝΕΣ ΜΑΡΚΕΣ · 2026',visit:'Επίσκεψη',items:[['TEYFİK GÖKDEMİR','Διεθνές εμπόριο και στρατηγικές συνεργασίες','https://teyfikgokdemir.com/'],['CTSEG','Διεθνές εμπόριο','https://ctseg.com.tr/'],['QCT STUDIO','Ψηφιακός σχεδιασμός και τεχνολογία','https://qctstudio.com/'],['QCT COMMERCE','Εμπορικές λειτουργίες','https://qctcommerce.com/']]}
   }[locale];
   const item=([name,category,url],clone=false)=>`<a class="sponsor-marquee-item sponsor-${name.toLowerCase().replaceAll(' ','-')}" href="${url}" target="_blank" rel="noopener noreferrer"${clone?' tabindex="-1"':''} aria-label="${name} — ${category}"><small>${category}</small><strong>${name}</strong><span>${copy.visit} <b aria-hidden="true">↗</b></span></a>`;
   const items=copy.items.map(entry=>item(entry)).join('');
