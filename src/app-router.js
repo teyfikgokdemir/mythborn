@@ -368,7 +368,7 @@ export default {
     const headers=new Headers(response.headers);
     headers.set('content-language',localeInfo[locale].html);
     const source=response.status===404?notFoundPage(locale):await response.text();
-    const localizedPage=locale==='es'?await loadSpanishPage(env.ASSETS,incoming.origin,clean):null;
+    const localizedPage=locale==='es'?await loadSpanishPage(env.ASSETS,request,clean):null;
     return new Response(decorate(source,locale,clean,accessState,localizedPage),{status:response.status,headers});
   }
 };
