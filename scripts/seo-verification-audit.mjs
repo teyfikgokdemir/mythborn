@@ -1,5 +1,6 @@
 import worker from '../src/analytics-router.js';
 import { existsSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -10,7 +11,7 @@ const mockAssetsFetch = async (req) => {
   const url = new URL(req.url);
   const localPath = join(publicDir, url.pathname);
   if (existsSync(localPath)) {
-    return new Response('mock asset', { status: 200, headers: { 'content-type': 'text/plain' } });
+    return new Response(await readFile(localPath), { status: 200 });
   }
   return new Response('Asset Not Found', { status: 404 });
 };

@@ -1,13 +1,15 @@
 import { access, readFile } from 'node:fs/promises';
 import worker from '../src/app-router.js';
-const env={ASSETS:{fetch:()=>new Response('',{status:200})},TURNSTILE_SITE_KEY:'1x00000000000000000000AA'};
+const env={ASSETS:{fetch:async request=>{const pathname=new URL(request.url).pathname;try{return new Response(await readFile(new URL(`../public${pathname}`,import.meta.url)),{status:200})}catch{return new Response('',{status:200})}}},TURNSTILE_SITE_KEY:'1x00000000000000000000AA'};
 async function check(path,status,includes=[],init={}){const response=await worker.fetch(new Request(`https://mythborn.co${path}`,init),env,{});if(response.status!==status)throw new Error(`${path} returned ${response.status}; expected ${status}`);const body=await response.text();for(const value of includes)if(!body.includes(value))throw new Error(`${path} missing ${value}`);return{response,body}}
 const trLocaleHref=html=>html.match(/class="header-language-panel"[\s\S]*?<a href="([^"]*)"[^>]*>\s*<span>TR<\/span>/)?.[1];
 for(const file of ['public/oracle.css','public/oracle.js','public/tarot-deck.js','public/synastry.js','public/reflection.js','public/menu.js','public/account-menu.js','public/social-auth.js','public/i18n-client.js','public/shell.js','public/search.js','src/auth.js','src/account.js','src/astrology.js','src/oauth.js','src/blog.js','src/app-router.js','migrations/0005_oauth_identities.sql'])await access(new URL(`../${file}`,import.meta.url));
 await check('/',200,['Günlük Tarot','hreflang="en"','hreflang="el"','>TR<','>EN<','>GR<','desktop-explore']);
 await check('/en',200,['lang="en"','hreflang="tr"','hreflang="el"','Daily Card','KNOWLEDGE CENTRE']);
 await check('/gr',200,['lang="el"','hreflang="tr"','hreflang="en"','Ημερήσια Κάρτα','ΚΕΝΤΡΟ ΓΝΩΣΗΣ','https://mythborn.co/gr']);
+await check('/es',200,['lang="es"','hreflang="es"','site-footer-guardian','alt=""']);
 for(const path of ['/en/kayit','/gr/kayit','/en/astroloji','/gr/astroloji','/en/blog','/gr/blog','/en/sinastri','/gr/sinastri'])await check(path,200,['language-switcher']);
+for(const path of ['/es/astroloji','/es/sinastri','/es/tarot','/es/bugunun-gokyuzu'])await check(path,200,['lang="es"','hreflang="es"']);
 const oldGreek=await worker.fetch(new Request('https://mythborn.co/el/astroloji'),env,{});
 if(oldGreek.status!==301||oldGreek.headers.get('location')!=='https://mythborn.co/gr/astroloji')throw new Error('/el redirect is not a permanent /gr mapping');
 await check('/gunluk-kart',200,['data-daily-deck']);
@@ -19,16 +21,18 @@ await check('/bugunun-gokyuzu',200,['data-current-sky']);
 await check('/kadim-gokyuzu',200,['Maya Zaman Döngüleri','Mezopotamya']);
 await check('/blog',200,['Satürn Retrosu 2026','Astrokartografi']);
 await check('/api/auth/providers',200,['"google":false','"apple":false']);
-const sitemap=await check('/sitemap.xml',200,['https://mythborn.co/en/astroloji','https://mythborn.co/gr/sinastri','hreflang="el"','hreflang="x-default"']);
+const sitemap=await check('/sitemap.xml',200,['https://mythborn.co/en/astroloji','https://mythborn.co/gr/sinastri','https://mythborn.co/es/astroloji','hreflang="el"','hreflang="es"','hreflang="x-default"']);
 if(sitemap.body.includes('/el/')||sitemap.body.includes('/giris')||sitemap.body.includes('/kayit'))throw new Error('Legacy or private routes leaked into sitemap');
 if(!sitemap.body.includes('/astroloji-sozlugu/element')||sitemap.body.includes('/astroloji-sozlugu/grement'))throw new Error('Greek locale rewrite corrupted the element glossary route');
 await check('/robots.txt',200,['Disallow: /api/','Sitemap: https://mythborn.co/sitemap.xml']);
 await check('/llms.txt',200,['Sinastri','Maya takvimleri']);
 await check('/llms.en.txt',200,['78-card Tarot encyclopedia']);
 await check('/llms.gr.txt',200,['Εγκυκλοπαίδεια 78 καρτών Ταρώ']);
+await check('/llms.es.txt',200,['plataforma multilingüe gratuita']);
 await check('/arama',200,['data-site-search','SearchAction']);
 await check('/en/arama',200,['Search the site','data-site-search']);
 await check('/gr/arama',200,['Αναζήτηση στον ιστότοπο','data-site-search']);
+await check('/es/arama',200,['Buscar en el sitio','data-site-search']);
 await check('/api/search-index?locale=tr',200,['"count":212','"title":"Deli"','"title":"Akrep"','"title":"Su"','"title":"Yükselen"']);
 await check('/api/search-index?locale=en',200,['"count":212','"title":"The Fool"','"title":"Scorpio"','"title":"Water"','"title":"Ascendant"']);
 await check('/api/search-index?locale=el',200,['"count":212','"title":"Ο Τρελός"','"title":"Σκορπιός"','"title":"Νερό"','"title":"Ωροσκόπος"']);
@@ -37,10 +41,13 @@ await check('/api/auth/me',503,['veritabanı']);
 await check('/not-found',404,['Sayfa bulunamadı','Ana sayfaya dön']);
 await check('/en/not-found',404,['Page not found','Return home','lang="en"']);
 await check('/gr/not-found',404,['Η σελίδα δεν βρέθηκε','Επιστροφή στην αρχική','lang="el"']);
+await check('/es/not-found',302);
 await check('/en/gizlilik',200,['Privacy Policy','not sold for advertising']);
 await check('/gr/gizlilik',200,['Πολιτική Απορρήτου','Τα προσωπικά δεδομένα']);
 await check('/en/kvkk',200,['Turkish Data Protection Notice','Turkey’s Personal Data Protection Law']);
 await check('/gr/kvkk',200,['Ενημέρωση Προστασίας Δεδομένων Τουρκίας','τουρκικού Νόμου 6698']);
+await check('/es/gizlilik',200,['Política de privacidad','datos personales']);
+await check('/es/kvkk',200,['Aviso turco de protección de datos','Ley turca']);
 for(const path of ['/gr/en','/en/gr','/el/en']){const result=await worker.fetch(new Request(`https://mythborn.co${path}`),env,{});if(result.status===200)throw new Error(`Broken combined locale route exists: ${path}`)}
 for(const [path,expected] of [['/en','/'],['/gr','/'],['/en/tarot','/tarot'],['/gr/tarot','/tarot'],['/en/astroloji','/astroloji'],['/gr/astroloji','/astroloji'],['/en/blog','/blog'],['/gr/blog','/blog']]){
   const {body}=await check(path,200,['header-language-panel']);
@@ -49,4 +56,4 @@ for(const [path,expected] of [['/en','/'],['/gr','/'],['/en/tarot','/tarot'],['/
 }
 const i18nClient=await readFile(new URL('../public/i18n-client.js',import.meta.url),'utf8');
 if(!i18nClient.includes('.header-language-panel')||!i18nClient.includes('.mobile-language'))throw new Error('i18n-client.js must skip locale switcher links');
-console.log('Mythborn TR/EN/GR route, hreflang, sitemap, search and core platform audit passed.');
+console.log('Mythborn TR/EN/GR/ES route, hreflang, sitemap, search and core platform audit passed.');

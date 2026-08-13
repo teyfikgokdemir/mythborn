@@ -1,7 +1,8 @@
 import {readFile} from 'node:fs/promises';
 import worker from '../src/app-router.js';
+import {spanishRoutes} from '../src/spanish-edition.js';
 
-const env={ASSETS:{fetch:()=>new Response('',{status:200})}};
+const env={ASSETS:{fetch:async request=>{const pathname=new URL(request.url).pathname;try{return new Response(await readFile(new URL(`../public${pathname}`,import.meta.url)),{status:200})}catch{return new Response('',{status:200})}}}};
 const fetchPath=path=>worker.fetch(new Request(`https://mythborn.co${path}`),env,{});
 const sitemap=await (await fetchPath('/sitemap.xml')).text();
 const paths=[...new Set([...sitemap.matchAll(/<loc>https:\/\/mythborn\.co([^<]*)<\/loc>/g)].map(match=>match[1]||'/'))];
@@ -18,7 +19,8 @@ for(const path of paths){
     mobileNav:count(html,/<nav class="mobile-nav"/g)===1,
     mobileClosed:html.includes('class="mobile-nav" id="mobile-nav"')&&html.includes('aria-hidden="true"'),
     noLegacyLocale:!/<nav class="(?:language-switcher|lang)"/.test(html),
-    localeColumns:html.includes('<span>TR</span> <small>Türkçe</small>')&&html.includes('<span>EN</span> <small>English</small>')&&html.includes('<span>GR</span> <small>Ελληνικά</small>'),
+    localeColumns:html.includes('<span>TR</span> <small>Türkçe</small>')&&html.includes('<span>EN</span> <small>English</small>')&&html.includes('<span>GR</span> <small>Ελληνικά</small>')&&html.includes('<span>ES</span> <small>Español</small>'),
+    guardian:!html.includes('Mikael Angel')&&/<figure class="site-footer-guardian" aria-hidden="true"><img[^>]+alt=""/.test(html),
     refinement:html.includes('/refinement.css')&&html.includes('/refinement.js'),
     emblemRatio:[...html.matchAll(/<img src="\/images\/mythborn-emblem\.png"[^>]*>/g)].every(match=>match[0].includes('width="275"')&&match[0].includes('height="257"')&&!match[0].includes('loading="lazy"'))
   };
@@ -53,6 +55,6 @@ for(const token of ["dialog.setAttribute('role','dialog')","dialog.setAttribute(
 }
 if(/createElement\(['"]aside['"]\)|setAttribute\(['"]role['"],['"]dialog['"]\)/.test(legacyConsent))failures.push({path:'public/account-menu.js',failed:['legacyConsentDialog']});
 
-if(paths.length!==723)failures.push({path:'/sitemap.xml',failed:[`expected 723 unique URLs, received ${paths.length}`]});
+if(paths.length!==723+spanishRoutes.length)failures.push({path:'/sitemap.xml',failed:[`expected ${723+spanishRoutes.length} unique URLs, received ${paths.length}`]});
 if(failures.length)throw new Error(`UI shell audit failed:\n${JSON.stringify(failures.slice(0,30),null,2)}`);
 console.log(`UI shell audit passed for ${paths.length} public URLs with one header, footer and locale control.`);

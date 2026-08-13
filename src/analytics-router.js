@@ -46,6 +46,7 @@ const LEGACY_EXACT_REDIRECTS=new Map([
   ['/en/search','/en/arama'],
   ['/gr/search','/gr/arama'],
   ['/el/search','/gr/arama'],
+  ['/es/search','/es/arama'],
   ['/account/login','/'],
   ['/account/register','/'],
   ['/account','/'],
