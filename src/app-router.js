@@ -4,7 +4,7 @@ import {dreamSearchItems,glossarySearchItems} from './dream-glossary.js';
 import {astrologySearchItems} from './astrology-library.js';
 import {localizedBlogSearchItems} from './localized-blog.js';
 import {premiumGuideSearchItems} from './premium-guides.js';
-import {blogMeta} from './blog.js';
+import {blogMeta,blogDates} from './blog.js';
 import {corePage,coreMeta} from './core-pages.js';
 import {discoveryPage,discoveryMeta,discoverySchema} from './discovery-core.js';
 import {earlyAccessBanner,paywallPage,premiumState,routeRequiresPremium} from './premium-access.js';
@@ -290,7 +290,7 @@ function decorate(html,locale,path,accessState,localizedPage=null){
   if(pageMeta){
     html=html.replace(/<title>[^<]*<\/title>/,`<title>${pageMeta.title}</title>`);
     html=upsertMetaDescription(html,pageMeta.description);
-    const localizedSchema={'@context':'https://schema.org','@type':'WebPage',name:pageMeta.title,headline:pageMeta.title,description:pageMeta.description,url:canonical,inLanguage:localeInfo[locale].html,isPartOf:{'@type':'WebSite',name:'Mythborn',url:SITE},...(path==='/haftalik-burc'?{dateModified:new Date().toISOString().slice(0,10)}:{})};
+    const localizedSchema={'@context':'https://schema.org','@type':'WebPage',name:pageMeta.title,headline:pageMeta.title,description:pageMeta.description,url:canonical,inLanguage:localeInfo[locale].html,isPartOf:{'@type':'WebSite',name:'Mythborn',url:SITE}};
     const extraSchemas=[...(discoverySchema(locale,path)||[]),...toolGuideSchema(locale,path)];
     html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace('</head>',`<script type="application/ld+json">${JSON.stringify(localizedSchema)}</script>${extraSchemas.map(schema=>`<script type="application/ld+json">${JSON.stringify(schema)}</script>`).join('')}</head>`);
   }
@@ -367,7 +367,7 @@ export default {
     if(!type.includes('text/html')){
       if(incoming.pathname==='/sitemap.xml'){
         const xml=(await response.text()).replace(/\/el(?=\/|["<])/g,'/gr');
-        const spanishEntries=spanishRoutes.map(path=>`<url><loc>${SITE}${href('es',path)}</loc><xhtml:link rel="alternate" hreflang="tr" href="${SITE}${href('tr',path)}"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}${href('en',path)}"/><xhtml:link rel="alternate" hreflang="el" href="${SITE}${href('el',path)}"/><xhtml:link rel="alternate" hreflang="es" href="${SITE}${href('es',path)}"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${href('tr',path)}"/></url>`).join('');
+        const spanishEntries=spanishRoutes.map(path=>`<url><loc>${SITE}${href('es',path)}</loc>${blogDates[path]?`<lastmod>${blogDates[path]}</lastmod>`:''}<xhtml:link rel="alternate" hreflang="tr" href="${SITE}${href('tr',path)}"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}${href('en',path)}"/><xhtml:link rel="alternate" hreflang="el" href="${SITE}${href('el',path)}"/><xhtml:link rel="alternate" hreflang="es" href="${SITE}${href('es',path)}"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${href('tr',path)}"/></url>`).join('');
         return new Response(xml.replace('</urlset>',`${spanishEntries}</urlset>`),{status:response.status,headers:response.headers});
       }
       return response;

@@ -101,22 +101,35 @@ for (const [path, expectedHeading] of toolAnswerRoutes) {
   }
 }
 
-// 3. Turkish blog answer-layer and editorial trust audit
-const blogArticleRoutes = sitemapUrls.map(urlStr => new URL(urlStr).pathname).filter(path => path.startsWith('/blog/'));
-for (const path of blogArticleRoutes) {
+// 3. Multilingual blog answer-layer, editorial trust and freshness audit
+const sitemapBlogRoutes = sitemapUrls.map(urlStr => new URL(urlStr).pathname).filter(path => path.startsWith('/blog/'));
+for (const path of sitemapBlogRoutes) {
+  if (!sitemapRes.body.includes(`<loc>https://mythborn.co${path}</loc><lastmod>`)) {
+    errors.push(`[Blog Sitemap Freshness] ${path} is missing a real lastmod value`);
+  }
   const res = await fetchPath(path);
   if (res.status !== 200) {
     errors.push(`[Blog Article Status] ${path} returned HTTP ${res.status}`);
     continue;
   }
-  if (!res.body.includes('class="article-meta"') || !res.body.includes('MYTHBORN EDITORIAL DESK')) {
+  const isTurkish = !path.startsWith('/en/') && !path.startsWith('/gr/');
+  if (!res.body.includes('class="article-meta"')) {
     errors.push(`[Blog Editorial Trust] ${path} is missing its visible editorial date/byline`);
+  }
+  if (isTurkish && !res.body.includes('MYTHBORN EDITORIAL DESK')) {
+    errors.push(`[Blog Editorial Trust] ${path} is missing the Turkish editorial desk label`);
+  }
+  if (!isTurkish && !res.body.includes('MYTHBORN EDITORIAL DESK') && !res.body.includes('ΣΥΝΤΑΚΤΙΚΗ ΟΜΑΔΑ MYTHBORN')) {
+    errors.push(`[Blog Editorial Trust] ${path} is missing its localized editorial desk label`);
   }
   if (!res.body.includes('class="article-faq"') || !res.body.includes('"@type":"FAQPage"')) {
     errors.push(`[Blog FAQ Alignment] ${path} is missing visible FAQ or FAQPage markup`);
   }
-  if (!res.body.includes('"@type":"Article"')) {
-    errors.push(`[Blog Article Schema] ${path} is missing Article markup`);
+  if (!res.body.includes('"@type":"Article"') || !res.body.includes('"author":') || !res.body.includes('"datePublished":') || !res.body.includes('"dateModified":')) {
+    errors.push(`[Blog Article Schema] ${path} is missing Article author/date metadata`);
+  }
+  if (res.body.includes('href="/el/') || res.body.includes('href="https://mythborn.co/el/')) {
+    errors.push(`[Blog Locale Leakage] ${path} contains an obsolete /el public link`);
   }
 }
 
