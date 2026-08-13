@@ -1,0 +1,57 @@
+/* Mythborn free editorial system: midnight, ivory, champagne and restrained lilac. */
+:root{
+  --myth-ink:#0a0910;
+  --myth-night:#111020;
+  --myth-panel:#17152a;
+  --myth-panel-raised:#201b35;
+  --myth-ivory:#f8f2e8;
+  --myth-muted:#b8afc1;
+  --myth-gold:#e7c77f;
+  --myth-lilac:#b6a2f4;
+  --myth-coral:#d88d78;
+  --myth-line:rgba(231,199,127,.2);
+}
+
+body{background:var(--myth-ink);color:var(--myth-ivory)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle at 82% 5%,rgba(120,88,180,.12),transparent 30%),radial-gradient(circle at 10% 35%,rgba(216,141,120,.06),transparent 28%)}
+.localized-home .section{position:relative}
+.localized-home .oracle-hero{background:linear-gradient(135deg,rgba(23,21,42,.74),rgba(10,9,16,.1));border-bottom:1px solid var(--myth-line)}
+.localized-home .oracle-hero h1,.localized-home .home-featured h2,.localized-home .home-ancient h2,.localized-home .home-partners h2{letter-spacing:-.045em}
+.localized-home .oracle-hero h1 em{color:var(--myth-gold)}
+.localized-home .btn-primary{background:var(--myth-gold);color:var(--myth-ink);box-shadow:0 14px 34px rgba(231,199,127,.16)}
+.localized-home .btn-primary:hover{background:#f3d995;transform:translateY(-2px)}
+.localized-home .btn-secondary{border-color:rgba(182,162,244,.58);color:var(--myth-ivory);background:rgba(182,162,244,.08)}
+.localized-home .btn-secondary:hover{border-color:var(--myth-lilac);background:rgba(182,162,244,.16)}
+.localized-home .btn-tertiary{border-color:rgba(248,242,232,.25);color:var(--myth-ivory)}
+
+.free-reading{max-width:1160px;margin-inline:auto;padding:clamp(28px,5vw,64px);border:1px solid var(--myth-line);border-radius:28px;background:linear-gradient(145deg,rgba(32,27,53,.95),rgba(14,12,23,.96));box-shadow:0 28px 80px rgba(0,0,0,.24)}
+.free-reading .reading-workspace{display:block;margin-top:28px}
+.free-reading .form-message:empty{display:none}
+.free-reading .reading-inputs{margin-top:24px}
+.free-reading .tarot-deck{margin-block:28px}
+.reading-note{margin:20px 0 0;padding:14px 16px;border-left:2px solid var(--myth-gold);color:var(--myth-muted);font-size:13px;line-height:1.6}
+
+.astrology-method{background:linear-gradient(180deg,rgba(23,21,42,.28),rgba(23,21,42,.72));border-top:1px solid rgba(182,162,244,.12)}
+.astro-method-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.astro-method-grid article{min-height:230px;border-color:rgba(182,162,244,.18)!important;background:linear-gradient(160deg,rgba(32,27,53,.85),rgba(12,11,20,.8))!important}
+.astro-method-grid article>strong{color:var(--myth-gold)}
+.astro-method-grid article p{color:var(--myth-muted)}
+
+.home-partners{overflow:hidden;background:linear-gradient(160deg,rgba(23,21,42,.9),rgba(10,9,16,.98));border-top:1px solid var(--myth-line);border-bottom:1px solid var(--myth-line)}
+.home-partners:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:linear-gradient(rgba(231,199,127,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(231,199,127,.1) 1px,transparent 1px);background-size:72px 72px;mask-image:linear-gradient(to bottom,black,transparent 85%)}
+.partners-intro{position:relative;max-width:680px;margin-bottom:34px}
+.partners-intro p:not(.eyebrow){max-width:620px;color:var(--myth-muted);line-height:1.7}
+.partner-project-grid{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.partner-project-card{display:flex;min-height:250px;flex-direction:column;padding:26px;border:1px solid rgba(231,199,127,.2);border-radius:22px;background:linear-gradient(145deg,rgba(32,27,53,.88),rgba(15,13,24,.92));transition:transform .25s ease,border-color .25s ease,background .25s ease;box-shadow:0 18px 50px rgba(0,0,0,.16)}
+.partner-project-card:hover{transform:translateY(-6px);border-color:rgba(231,199,127,.6);background:linear-gradient(145deg,rgba(47,38,72,.92),rgba(18,15,30,.96))}
+.partner-project-card small{color:var(--myth-gold);font-size:10px;font-weight:900;letter-spacing:.16em}
+.partner-project-card h3{margin:34px 0 10px;font-family:Georgia,serif;font-size:clamp(24px,2.4vw,34px);font-weight:400;letter-spacing:-.03em}
+.partner-project-card p{margin:0;color:var(--myth-muted);font-size:14px;line-height:1.65}
+.partner-project-card span{margin-top:auto;padding-top:24px;color:var(--myth-ivory);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.partner-project-card:nth-child(2){border-color:rgba(182,162,244,.26)}
+.partner-project-card:nth-child(2) small,.partner-project-card:nth-child(2) span{color:var(--myth-lilac)}
+.partner-project-card:nth-child(3){border-color:rgba(216,141,120,.28)}
+.partner-project-card:nth-child(3) small,.partner-project-card:nth-child(3) span{color:var(--myth-coral)}
+
+@media(max-width:1050px){.astro-method-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.partner-project-grid{grid-template-columns:1fr 1fr}.partner-project-card:last-child{grid-column:1/-1}}
+@media(max-width:620px){.free-reading{padding:24px 16px;border-radius:20px}.astro-method-grid,.partner-project-grid{grid-template-columns:1fr!important}.partner-project-card:last-child{grid-column:auto}.partner-project-card{min-height:220px;padding:22px}.partner-project-card h3{margin-top:28px}.home-partners:before{background-size:48px 48px}}

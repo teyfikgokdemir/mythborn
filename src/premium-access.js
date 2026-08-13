@@ -5,10 +5,7 @@ export const ALWAYS_PUBLIC_ROUTES=new Set([
   '/','/gunluk-kart','/tarot-kartlari','/giris','/kayit','/hesabim',
   '/gizlilik','/kvkk','/kullanim-kosullari','/cerezler','/uyelik-yakinda'
 ]);
-export const PROTECTED_ROUTES=new Set([
-  '/sinastri','/ask','/kariyer','/otuz-gun','/katina','/advanced-astrology',
-  ...premiumGuideRoutes
-]);
+export const PROTECTED_ROUTES=new Set();
 
 const enabled=value=>String(value).toLowerCase()==='true';
 export function premiumState(env={},now=new Date()){
@@ -22,36 +19,33 @@ export function premiumState(env={},now=new Date()){
     requestTime:requestTime.toISOString(),
     isPremiumPeriodStarted,
     isPremiumGateEnabled,
-    isPremiumRequired:isPremiumPeriodStarted&&isPremiumGateEnabled,
-    showEarlyAccessBanner:Number.isFinite(startsAtMs)&&!isPremiumPeriodStarted,
+    isPremiumRequired:false,
+    showEarlyAccessBanner:false,
     dismissalExpiresAt:new Date(requestTime.getTime()+PREMIUM_DISMISSAL_DAYS*86400000).toISOString()
   };
 }
 
 export const isProtectedRoute=path=>PROTECTED_ROUTES.has(path);
 export const hasActivePremiumMembership=async()=>false;
-export async function routeRequiresPremium(path,state,user=null){
-  if(!state.isPremiumRequired||!isProtectedRoute(path))return false;
-  return !(await hasActivePremiumMembership(user));
-}
+export async function routeRequiresPremium(){return false;}
 
 const text={
   tr:{
-    banner:'Mythborn, 1 Eylül 2026’ya kadar erken erişim döneminde ücretsizdir. Bu tarihten sonra bazı gelişmiş özellikler ücretli üyelik kapsamında sunulacaktır.',
+    banner:'Mythborn’daki tüm astroloji, Tarot ve farkındalık deneyimleri ücretsiz ve üyelik gerektirmeden kullanılabilir.',
     close:'Erken erişim bildirimini 7 gün kapat',
     title:'Bu özellik ücretli üyelik kapsamında',
     body:'Gelişmiş Mythborn analizlerine erişim için ücretli üyelik gerekecek. Üyelik sistemi yakında açılacak.',
     cta:'Üyelik yakında'
   },
   en:{
-    banner:'Mythborn is free during early access until September 1, 2026. After this date, selected advanced features will become available through a paid membership.',
+    banner:'All Mythborn astrology, Tarot and reflection experiences are free and available without membership.',
     close:'Dismiss the early-access notice for 7 days',
     title:'This feature is part of paid membership',
     body:'Access to advanced Mythborn analyses will require a paid membership. Membership will be available soon.',
     cta:'Membership coming soon'
   },
   el:{
-    banner:'Το Mythborn διατίθεται δωρεάν κατά την περίοδο πρώιμης πρόσβασης έως την 1η Σεπτεμβρίου 2026. Μετά την ημερομηνία αυτή, επιλεγμένες προηγμένες λειτουργίες θα διατίθενται μέσω συνδρομής επί πληρωμή.',
+    banner:'Όλες οι αστρολογικές, Ταρώ και αναστοχαστικές εμπειρίες του Mythborn είναι δωρεάν και δεν απαιτούν εγγραφή.',
     close:'Απόκρυψη της ενημέρωσης πρώιμης πρόσβασης για 7 ημέρες',
     title:'Αυτή η λειτουργία περιλαμβάνεται στη συνδρομή επί πληρωμή',
     body:'Η πρόσβαση στις προηγμένες αναλύσεις του Mythborn θα απαιτεί συνδρομή επί πληρωμή. Η δυνατότητα συνδρομής θα είναι σύντομα διαθέσιμη.',

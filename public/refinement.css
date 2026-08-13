@@ -45,14 +45,14 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 .hero-sky-card>p:not(.eyebrow){display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .home-showcase,.home-membership,.knowledge-hub{padding-block:clamp(68px,8vw,100px)!important}
 .section{scroll-margin-top:92px}
-.membership-gate[data-member-reading="tarot"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(220px,300px);column-gap:clamp(28px,4vw,60px);align-items:start;max-width:1160px!important;padding:clamp(30px,5vw,60px)!important}
-.membership-gate[data-member-reading="tarot"]>.cinematic-figure,.membership-gate[data-member-reading="tarot"]>.cinematic-visual{grid-column:2;grid-row:1/5;margin:0!important;max-height:360px!important;border-radius:20px;overflow:hidden}
-.membership-gate[data-member-reading="tarot"]>:not(.cinematic-figure):not(.cinematic-visual){grid-column:1}
-.membership-gate[data-member-reading="tarot"] .lead{margin-left:0}
-.membership-gate[data-member-reading="tarot"] .actions{justify-content:flex-start}
-.membership-gate[data-member-reading="tarot"] .reading-workspace,.membership-gate[data-member-reading="tarot"] .reading-result{grid-column:1/-1!important;width:100%!important}
+.free-reading[data-member-reading="tarot"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(220px,300px);column-gap:clamp(28px,4vw,60px);align-items:start;max-width:1160px!important;padding:clamp(30px,5vw,60px)!important}
+.free-reading[data-member-reading="tarot"]>.cinematic-figure,.free-reading[data-member-reading="tarot"]>.cinematic-visual{grid-column:2;grid-row:1/5;margin:0!important;max-height:360px!important;border-radius:20px;overflow:hidden}
+.free-reading[data-member-reading="tarot"]>:not(.cinematic-figure):not(.cinematic-visual){grid-column:1}
+.free-reading[data-member-reading="tarot"] .lead{margin-left:0}
+.free-reading[data-member-reading="tarot"] .actions{justify-content:flex-start}
+.free-reading[data-member-reading="tarot"] .reading-workspace,.free-reading[data-member-reading="tarot"] .reading-result{grid-column:1/-1!important;width:100%!important}
 .reading-result .oracle-grid,
-.membership-gate .oracle-grid {
+.free-reading .oracle-grid {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: 20px !important;
@@ -61,12 +61,12 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 }
 
 .reading-result .oracle-grid:has(> .oracle-card:nth-child(4)),
-.membership-gate .oracle-grid:has(> .oracle-card:nth-child(4)) {
+.free-reading .oracle-grid:has(> .oracle-card:nth-child(4)) {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
 }
 
 .reading-result .oracle-card,
-.membership-gate .oracle-card {
+.free-reading .oracle-card {
   position: relative !important;
   display: flex !important;
   flex-direction: column !important;
@@ -83,20 +83,20 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 }
 
 .reading-result .oracle-card:hover,
-.membership-gate .oracle-card:hover {
+.free-reading .oracle-card:hover {
   transform: translateY(-4px) !important;
   border-color: rgba(214, 184, 120, 0.48) !important;
   box-shadow: 0 22px 55px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
 }
 
 .reading-result .oracle-card:after,
-.membership-gate .oracle-card:after {
+.free-reading .oracle-card:after {
   content: '' !important;
   display: none !important;
 }
 
 .reading-result .oracle-card>small,
-.membership-gate .oracle-card>small {
+.free-reading .oracle-card>small {
   grid-column: auto !important;
   grid-row: auto !important;
   display: inline-flex !important;
@@ -117,7 +117,7 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 }
 
 .reading-result .oracle-card>.reading-card-art,
-.membership-gate .oracle-card>.reading-card-art {
+.free-reading .oracle-card>.reading-card-art {
   grid-column: auto !important;
   grid-row: auto !important;
   display: block !important;
@@ -133,7 +133,7 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 }
 
 .reading-result .oracle-card>.reading-card-art img,
-.membership-gate .oracle-card>.reading-card-art img {
+.free-reading .oracle-card>.reading-card-art img {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
@@ -141,7 +141,7 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 }
 
 .reading-result .oracle-card>h3,
-.membership-gate .oracle-card>h3 {
+.free-reading .oracle-card>h3 {
   grid-column: auto !important;
   grid-row: auto !important;
   font-family: Georgia, serif !important;
@@ -155,7 +155,7 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 }
 
 .reading-result .oracle-card>.card-meta,
-.membership-gate .oracle-card>.card-meta {
+.free-reading .oracle-card>.card-meta {
   grid-column: auto !important;
   grid-row: auto !important;
   font-size: 11px !important;
@@ -170,7 +170,7 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 }
 
 .reading-result .oracle-card>p:not(.card-meta),
-.membership-gate .oracle-card>p:not(.card-meta) {
+.free-reading .oracle-card>p:not(.card-meta) {
   grid-column: auto !important;
   max-width: none !important;
   font-size: 13.5px !important;
@@ -182,13 +182,13 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 }
 
 .reading-result .oracle-card>p:not(.card-meta) strong,
-.membership-gate .oracle-card>p:not(.card-meta) strong {
+.free-reading .oracle-card>p:not(.card-meta) strong {
   color: #f3e5c8 !important;
   font-weight: 700 !important;
 }
 
 .reading-result .reading-summary,
-.membership-gate .reading-summary {
+.free-reading .reading-summary {
   max-width: 920px !important;
   margin: 32px auto 0 !important;
   font-size: 15px !important;
@@ -197,7 +197,7 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 
 @media (max-width: 900px) {
   .reading-result .oracle-grid,
-  .membership-gate .oracle-grid {
+  .free-reading .oracle-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 16px !important;
   }
@@ -205,16 +205,16 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 
 @media (max-width: 620px) {
   .reading-result .oracle-grid,
-  .membership-gate .oracle-grid {
+  .free-reading .oracle-grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
   }
   .reading-result .oracle-card,
-  .membership-gate .oracle-card {
+  .free-reading .oracle-card {
     padding: 20px 16px !important;
   }
   .reading-result .oracle-card>.reading-card-art,
-  .membership-gate .oracle-card>.reading-card-art {
+  .free-reading .oracle-card>.reading-card-art {
     width: min(160px, 55%) !important;
   }
 }
@@ -281,7 +281,7 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 .sky-skeleton p{margin:10px 0 0;color:var(--ref-muted);font-size:12px}
 @keyframes sky-shimmer{to{background-position:-220% 0}}
 @media(max-width:1080px){.desktop-nav{display:none!important}.header-language{margin-left:auto}.topbar .mobile-menu-button{display:grid!important}.tarot-lib .tarot-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
-@media(max-width:820px){.premium-home-hero{min-height:auto!important}.membership-gate[data-member-reading="tarot"]{grid-template-columns:1fr}.membership-gate[data-member-reading="tarot"]>.cinematic-figure{grid-column:1;grid-row:auto;max-width:420px;margin:28px auto 0!important}.membership-gate[data-member-reading="tarot"]>:not(.cinematic-figure){grid-column:1}.guide-centre-grid{grid-template-columns:1fr 1fr}.auth-layout{grid-template-columns:1fr}.auth-intro{min-height:290px}.auth-intro>span{font-size:220px}.tarot-lib .tarot-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:820px){.premium-home-hero{min-height:auto!important}.free-reading[data-member-reading="tarot"]{grid-template-columns:1fr}.free-reading[data-member-reading="tarot"]>.cinematic-figure{grid-column:1;grid-row:auto;max-width:420px;margin:28px auto 0!important}.free-reading[data-member-reading="tarot"]>:not(.cinematic-figure){grid-column:1}.guide-centre-grid{grid-template-columns:1fr 1fr}.auth-layout{grid-template-columns:1fr}.auth-intro{min-height:290px}.auth-intro>span{font-size:220px}.tarot-lib .tarot-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:560px){.topbar{min-height:64px}.header-language>summary{min-height:34px;padding-inline:9px}.header-language>summary span{display:none}body:not([data-route="/"]) h1{font-size:clamp(36px,11vw,50px)!important}.premium-home-hero h1{font-size:clamp(48px,14vw,66px)!important}.premium-home-hero .actions{align-items:stretch;flex-direction:column}.premium-home-hero .btn{width:100%}.guide-centre-heading{grid-template-columns:1fr}.guide-centre-grid{grid-template-columns:1fr}.guide-centre-card.is-featured{grid-template-columns:1fr}.guide-centre-card.is-featured .guide-card-mark{width:52px;height:70px;font-size:25px}.tarot-lib .tarot-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}.tarot-grid .tarot-gallery-card{min-height:300px;padding:8px!important}.tarot-gallery-card h3{font-size:19px}.tarot-gallery-card p{display:none}.auth-layout{border-radius:21px}.auth-intro{min-height:235px;padding:30px}.auth-gate{padding:28px!important}.consent-dialog{padding:8px}.consent-panel{border-radius:19px}.consent-actions{flex-direction:column}.consent-actions .btn{width:100%}}
 @media(max-width:370px){.brand span{letter-spacing:.12em}.header-language>summary strong{font-size:10px}.tarot-lib .tarot-grid{grid-template-columns:1fr!important}}
 @media(prefers-reduced-motion:reduce){.sky-skeleton span{animation:none}}

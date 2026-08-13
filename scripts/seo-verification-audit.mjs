@@ -101,9 +101,9 @@ const legacyRedirects = [
   ['/search', '/arama'],
   ['/en/search', '/en/arama'],
   ['/gr/search', '/gr/arama'],
-  ['/account/login', '/giris'],
-  ['/account/register', '/kayit'],
-  ['/account', '/hesabim'],
+  ['/account/login', '/'],
+  ['/account/register', '/'],
+  ['/account', '/'],
   ['/pages/privacy-policy', '/gizlilik'],
   ['/pages/terms-of-service', '/kullanim-kosullari'],
   ['/pages/cookie-policy', '/cerezler']
