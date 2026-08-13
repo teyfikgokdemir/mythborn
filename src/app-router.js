@@ -6,7 +6,7 @@ import {localizedBlogSearchItems} from './localized-blog.js';
 import {premiumGuideSearchItems} from './premium-guides.js';
 import {blogMeta} from './blog.js';
 import {corePage,coreMeta} from './core-pages.js';
-import {discoveryPage,discoveryMeta} from './discovery-core.js';
+import {discoveryPage,discoveryMeta,discoverySchema} from './discovery-core.js';
 import {earlyAccessBanner,paywallPage,premiumState,routeRequiresPremium} from './premium-access.js';
 
 const SITE='https://mythborn.co';
@@ -206,7 +206,8 @@ function decorate(html,locale,path,accessState){
     html=html.replace(/<title>[^<]*<\/title>/,`<title>${localizedMeta.title}</title>`);
     html=upsertMetaDescription(html,localizedMeta.description);
     const localizedSchema={'@context':'https://schema.org','@type':'WebPage',name:localizedMeta.title,headline:localizedMeta.title,description:localizedMeta.description,url:canonical,inLanguage:localeInfo[locale].html,isPartOf:{'@type':'WebSite',name:'Mythborn',url:SITE},...(path==='/haftalik-burc'?{dateModified:new Date().toISOString().slice(0,10)}:{})};
-    html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace('</head>',`<script type="application/ld+json">${JSON.stringify(localizedSchema)}</script></head>`);
+    const extraSchemas=discoverySchema(locale,path);
+    html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace('</head>',`<script type="application/ld+json">${JSON.stringify(localizedSchema)}</script>${extraSchemas.map(schema=>`<script type="application/ld+json">${JSON.stringify(schema)}</script>`).join('')}</head>`);
   }
   const documentTitle=html.match(/<title>([^<]*)<\/title>/)?.[1]||'Mythborn';
   const documentDescription=html.match(/<meta name="description" content="([^"]*)">/)?.[1]||labels[locale].knowledgeCopy;

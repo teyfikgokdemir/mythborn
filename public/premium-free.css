@@ -55,3 +55,26 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 
 @media(max-width:1050px){.astro-method-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.partner-project-grid{grid-template-columns:1fr 1fr}.partner-project-card:last-child{grid-column:1/-1}}
 @media(max-width:620px){.free-reading{padding:24px 16px;border-radius:20px}.astro-method-grid,.partner-project-grid{grid-template-columns:1fr!important}.partner-project-card:last-child{grid-column:auto}.partner-project-card{min-height:220px;padding:22px}.partner-project-card h3{margin-top:28px}.home-partners:before{background-size:48px 48px}}
+
+/* Ancient sky editorial depth */
+.ancient-guide-cards{margin-top:32px}
+.ancient-guide-cards .editorial-card{min-height:230px}
+.ancient-guide-cards .editorial-card h2{margin:22px 0 12px;font:400 clamp(25px,3vw,36px)/1.05 Georgia,serif;letter-spacing:-.025em}
+.guide-sections{display:grid;gap:0;margin-top:18px}
+.guide-sections .editorial-section{padding-block:34px}
+.guide-sections .editorial-head{align-items:start}
+.guide-sections .editorial-head>p{max-width:620px;color:var(--myth-muted);line-height:1.8}
+.guide-faq,.guide-sources{margin-top:12px}
+.guide-faq .faq-list{max-width:900px}
+.guide-faq details{padding:20px 0;border-top:1px solid var(--myth-line)}
+.guide-faq details:last-child{border-bottom:1px solid var(--myth-line)}
+.guide-faq summary{cursor:pointer;color:var(--myth-ivory);font-weight:800;line-height:1.5}
+.guide-faq details p{max-width:760px;margin:14px 0 0;color:var(--myth-muted);line-height:1.75}
+.guide-sources .editorial-links,.related-guides{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.guide-sources .editorial-links a,.related-guides a{display:flex;min-height:84px;flex-direction:column;justify-content:center;gap:8px;padding:18px;border:1px solid var(--myth-line);border-radius:16px;background:rgba(255,255,255,.025);transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.guide-sources .editorial-links a:hover,.related-guides a:hover{transform:translateY(-3px);border-color:rgba(231,199,127,.5);background:rgba(231,199,127,.06)}
+.guide-sources .editorial-links strong,.related-guides strong{color:var(--myth-ivory);font-size:14px;line-height:1.4}
+.guide-sources .editorial-links span,.related-guides span{color:var(--myth-muted);font-size:12px}
+.related-guides{margin-top:18px;padding:30px 0 64px;border-top:1px solid var(--myth-line)}
+.related-guides .eyebrow{grid-column:1/-1;margin:0}
+@media(max-width:680px){.ancient-guide-cards{grid-template-columns:1fr!important}.ancient-guide-cards .editorial-card{min-height:0}.guide-sources .editorial-links,.related-guides{grid-template-columns:1fr}.guide-sources .editorial-links a,.related-guides a{min-height:70px}}
