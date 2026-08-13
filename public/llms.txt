@@ -1,29 +1,24 @@
 # Mythborn
 
-> Mythborn is an emerging collectible universe built around numbered artifacts, wearable symbols, story fragments and limited releases.
+> Mythborn; Tarot, doğum haritası, sinastri ve sembolik öz-refleksiyon için ücretsiz, çok dilli bir astroloji platformudur.
 
-## Official Website
+## Ne sunar?
 
-- [Mythborn](https://mythborn.co/)
+- Gerçek astronomik gezegen konumlarıyla doğum haritası, güncel gökyüzü ve Sinastri hesaplamaları
+- Günlük Tarot, haftalık burç rehberleri ve ilişki/kişisel farkındalık açılımları
+- 78 kartlık Tarot ansiklopedisi, 42 başlıklı doğum haritası kütüphanesi, 51 rüya sembolü, 25 astroloji terimi ve Maya takvimleri dahil tarihsel gökyüzü rehberlerinden oluşan bilgi merkezi
 
-## About Mythborn
+## Hesaplama yaklaşımı
 
-Mythborn is preparing its first artifact: a limited, numbered object positioned somewhere between a collectible, a wearable symbol and a physical fragment of a fictional world.
+Gezegen konumları Astronomy Engine ile jeosantrik ekliptik boylamlardan hesaplanır. Doğum saati biliniyorsa koordinat ve tarihsel saat dilimi kullanılarak Yükselen, MC ve Eşit Ev sistemi gösterilir.
 
-The first release will have a name, a number and a story. It may be worn, displayed or preserved as part of a collection.
+## Yorum ilkesi
 
-## Current Status
+Mythborn astronomik hesaplamayı sembolik yorumdan açıkça ayırır. İçerikler eğlence, eğitim ve kişisel farkındalık içindir; tıbbi, hukuki, finansal tavsiye veya kesin gelecek öngörüsü değildir.
 
-- Chapter 00 is live.
-- The first artifact has not yet been revealed.
-- Early-access registration is available.
-- Future releases may be limited and may not return in the same form.
+## Başlangıç noktaları
 
-## Key Pages
-
-- [Homepage](https://mythborn.co/)
-- [Early Access](https://mythborn.co/#early-access)
-
-## Contact
-
-- Email: info@mythborn.co
+- [Doğum haritası](https://mythborn.co/astroloji)
+- [Bugünün gökyüzü](https://mythborn.co/bugunun-gokyuzu)
+- [Tarot Ansiklopedisi](https://mythborn.co/tarot-kartlari)
+- [Astroloji Kütüphanesi](https://mythborn.co/astroloji-kutuphanesi)

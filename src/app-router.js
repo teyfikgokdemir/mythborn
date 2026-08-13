@@ -60,8 +60,16 @@ const labels={
   }
 };
 const llms={
-  en:`# Mythborn\n\nMythborn is a free multilingual Tarot, birth-chart and symbolic self-reflection platform.\n\n## Knowledge libraries\n- 78-card Tarot encyclopedia\n- Birth-chart library\n- Dream-symbol encyclopedia\n- Astrology glossary\n\nContent supports entertainment, education and personal reflection. It is not medical, legal, financial or deterministic advice.\n`,
-  el:`# Mythborn\n\nΤο Mythborn είναι μια δωρεάν πολύγλωσση πλατφόρμα Ταρώ, γενέθλιου χάρτη και συμβολικού αυτοστοχασμού.\n\n## Βιβλιοθήκες γνώσης\n- Εγκυκλοπαίδεια 78 καρτών Ταρώ\n- Βιβλιοθήκη γενέθλιου χάρτη\n- Εγκυκλοπαίδεια συμβόλων ονείρων\n- Γλωσσάρι αστρολογίας\n\nΤο περιεχόμενο προορίζεται για ψυχαγωγία, εκπαίδευση και προσωπικό στοχασμό.\n`
+  tr:`# Mythborn\n\n> Mythborn; Tarot, doğum haritası, sinastri ve sembolik öz-refleksiyon için ücretsiz, çok dilli bir astroloji platformudur.\n\n## Ne sunar?\n- Gerçek astronomik gezegen konumlarıyla doğum haritası, güncel gökyüzü ve Sinastri hesaplamaları\n- Günlük Tarot, haftalık burç rehberleri ve ilişki/kişisel farkındalık açılımları\n- 78 kartlık Tarot ansiklopedisi, 42 başlıklı doğum haritası kütüphanesi, 51 rüya sembolü, 25 astroloji terimi ve Maya takvimleri dahil tarihsel gökyüzü rehberlerinden oluşan bilgi merkezi\n\n## Hesaplama yaklaşımı\nGezegen konumları Astronomy Engine ile jeosantrik ekliptik boylamlardan hesaplanır. Doğum saati biliniyorsa koordinat ve tarihsel saat dilimi kullanılarak Yükselen, MC ve Eşit Ev sistemi gösterilir.\n\n## Yorum ilkesi\nMythborn astronomik hesaplamayı sembolik yorumdan açıkça ayırır. İçerikler eğlence, eğitim ve kişisel farkındalık içindir; tıbbi, hukuki, finansal tavsiye veya kesin gelecek öngörüsü değildir.\n\n## Başlangıç noktaları\n- [Doğum haritası](https://mythborn.co/astroloji)\n- [Bugünün gökyüzü](https://mythborn.co/bugunun-gokyuzu)\n- [Tarot Ansiklopedisi](https://mythborn.co/tarot-kartlari)\n- [Astroloji Kütüphanesi](https://mythborn.co/astroloji-kutuphanesi)\n`,
+  en:`# Mythborn\n\n> Mythborn is a free multilingual platform for Tarot, birth charts, synastry, and symbolic self-reflection.\n\n## What Mythborn offers\n- Birth-chart, current-sky, and synastry calculations based on real astronomical planetary positions\n- Daily Tarot, weekly horoscope guidance, and relationship or personal-reflection readings\n- A knowledge centre with a 78-card Tarot encyclopedia, a 42-guide Birth-chart library, a 51-entry Dream-symbol encyclopedia, and 25 astrology terms\n\n## Calculation approach\nPlanetary positions are calculated with Astronomy Engine from geocentric ecliptic longitudes. When birth time is known, Mythborn uses coordinates and historical timezone resolution to show the Ascendant, MC, and Equal House system.\n\n## Interpretation principle\nMythborn clearly separates astronomical calculation from symbolic interpretation. Content supports entertainment, education, and personal reflection; it is not medical, legal, financial, or deterministic advice.\n\n## Start here\n- [Birth chart](https://mythborn.co/en/astroloji)\n- [Today’s sky](https://mythborn.co/en/bugunun-gokyuzu)\n- [Tarot encyclopedia](https://mythborn.co/en/tarot-kartlari)\n- [Birth-chart library](https://mythborn.co/en/astroloji-kutuphanesi)\n`,
+  el:`# Mythborn\n\n> Το Mythborn είναι μια δωρεάν πολύγλωσση πλατφόρμα για Ταρώ, γενέθλιους χάρτες, συναστρία και συμβολικό αυτοστοχασμό.\n\n## Τι προσφέρει\n- Υπολογισμούς γενέθλιου χάρτη, σημερινού ουρανού και συναστρίας με πραγματικές αστρονομικές θέσεις πλανητών\n- Ημερήσιο Ταρώ, εβδομαδιαία ωροσκόπια και αναγνώσεις σχέσεων ή προσωπικού στοχασμού\n- Εγκυκλοπαίδεια 78 καρτών Ταρώ, Βιβλιοθήκη γενέθλιου χάρτη με 42 οδηγούς, Εγκυκλοπαίδεια συμβόλων ονείρων με 51 καταχωρίσεις και 25 όροι αστρολογίας στο κέντρο γνώσης\n\n## Υπολογιστική προσέγγιση\nΟι πλανητικές θέσεις υπολογίζονται με το Astronomy Engine από γεωκεντρικά εκλειπτικά μήκη. Όταν η ώρα γέννησης είναι γνωστή, χρησιμοποιούνται συντεταγμένες και ιστορική ζώνη ώρας για Ωροσκόπο, Μεσουράνημα και σύστημα Ισων Οίκων.\n\n## Αρχή ερμηνείας\nΤο Mythborn διαχωρίζει ρητά τον αστρονομικό υπολογισμό από τη συμβολική ερμηνεία. Το περιεχόμενο προορίζεται για ψυχαγωγία, εκπαίδευση και προσωπικό στοχασμό· δεν αποτελεί ιατρική, νομική, οικονομική ή βέβαιη προγνωστική συμβουλή.\n\n## Ξεκίνα εδώ\n- [Γενέθλιος χάρτης](https://mythborn.co/gr/astroloji)\n- [Ο σημερινός ουρανός](https://mythborn.co/gr/bugunun-gokyuzu)\n- [Εγκυκλοπαίδεια Ταρώ](https://mythborn.co/gr/tarot-kartlari)\n- [Βιβλιοθήκη γενέθλιου χάρτη](https://mythborn.co/gr/astroloji-kutuphanesi)\n`
+};
+const escapeMetaContent=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+const upsertMetaDescription=(html,description)=>{
+  const tag=`<meta name="description" content="${escapeMetaContent(description)}">`;
+  return /<meta name="description" content="[^"]*">/.test(html)
+    ?html.replace(/<meta name="description" content="[^"]*">/,tag)
+    :html.replace('</head>',`${tag}</head>`);
 };
 const localeFrom=path=>path==='/en'||path.startsWith('/en/')?'en':path==='/gr'||path.startsWith('/gr/')?'el':'tr';
 const cleanPath=(path,locale)=>locale==='tr'?path:(path===localeInfo[locale].prefix?'/':path.slice(localeInfo[locale].prefix.length)||'/');
@@ -198,7 +206,7 @@ function decorate(html,locale,path,accessState){
   const localizedMeta=coreMeta(locale,path)||discoveryMeta(locale,path);
   if(localizedMeta){
     html=html.replace(/<title>[^<]*<\/title>/,`<title>${localizedMeta.title}</title>`);
-    html=html.replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${localizedMeta.description}">`);
+    html=upsertMetaDescription(html,localizedMeta.description);
     const localizedSchema={'@context':'https://schema.org','@type':'WebPage',name:localizedMeta.title,headline:localizedMeta.title,description:localizedMeta.description,url:canonical,inLanguage:localeInfo[locale].html,isPartOf:{'@type':'WebSite',name:'Mythborn',url:SITE},...(path==='/haftalik-burc'?{dateModified:new Date().toISOString().slice(0,10)}:{})};
     html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace('</head>',`<script type="application/ld+json">${JSON.stringify(localizedSchema)}</script></head>`);
   }
@@ -236,8 +244,9 @@ export default {
       return Response.redirect(incoming.toString(),301);
     }
     if(incoming.pathname==='/llms.el.txt')return Response.redirect(`${SITE}/llms.gr.txt`,301);
-    if(incoming.pathname==='/llms.en.txt')return new Response(llms.en,{headers:{'content-type':'text/plain; charset=utf-8'}});
-    if(incoming.pathname==='/llms.gr.txt')return new Response(llms.el,{headers:{'content-type':'text/plain; charset=utf-8'}});
+    if(incoming.pathname==='/llms.txt')return new Response(llms.tr,{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600','x-content-type-options':'nosniff'}});
+    if(incoming.pathname==='/llms.en.txt')return new Response(llms.en,{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600','x-content-type-options':'nosniff'}});
+    if(incoming.pathname==='/llms.gr.txt')return new Response(llms.el,{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600','x-content-type-options':'nosniff'}});
     const accessState=premiumState(env,new Date());
     if(incoming.pathname==='/api/search-index'){
       const requested=incoming.searchParams.get('locale'),locale=requested==='en'?'en':requested==='el'||requested==='gr'?'el':'tr';

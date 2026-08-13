@@ -9,6 +9,8 @@ const appendSources=(policy,directive,sources)=>{
   return policy.replace(pattern,`${match[1]}${directive} ${[...existing].join(' ')}`);
 };
 
+const BASE_CONTENT_SECURITY_POLICY="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'";
+
 const allowAnalyticsProviders=policy=>{
   let next=policy;
   next=appendSources(next,'script-src',[
@@ -23,6 +25,20 @@ const allowAnalyticsProviders=policy=>{
     'https://cloudflareinsights.com'
   ]);
   return next;
+};
+
+const secureHtmlResponse=response=>{
+  const contentType=response.headers.get('content-type')||'';
+  if(!contentType.includes('text/html'))return response;
+  const headers=new Headers(response.headers);
+  const policy=headers.get('content-security-policy')||BASE_CONTENT_SECURITY_POLICY;
+  headers.set('content-security-policy',allowAnalyticsProviders(policy));
+  headers.set('strict-transport-security','max-age=31536000; includeSubDomains; preload');
+  headers.set('x-content-type-options','nosniff');
+  headers.set('x-frame-options','DENY');
+  headers.set('referrer-policy','strict-origin-when-cross-origin');
+  headers.set('permissions-policy','camera=(), microphone=(), payment=(), geolocation=()');
+  return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
 };
 
 const LEGACY_EXACT_REDIRECTS=new Map([
@@ -110,11 +126,7 @@ export default {
     if(isLegacyShopifyPath(url.pathname))return goneResponse();
 
     const response=await app.fetch(request,env,ctx);
-    const policy=response.headers.get('content-security-policy');
-    if(!policy)return response;
-    const headers=new Headers(response.headers);
-    headers.set('content-security-policy',allowAnalyticsProviders(policy));
-    return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+    return secureHtmlResponse(response);
   }
 };
 
