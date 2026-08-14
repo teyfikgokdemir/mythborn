@@ -434,3 +434,57 @@ body.has-open-consent{overflow:hidden!important}
 @media(max-width:1000px){.vedic-nakshatra-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.vedic-dasha-reference{grid-template-columns:repeat(2,minmax(0,1fr))}.vedic-result-insights{grid-template-columns:1fr}}
 @media(max-width:620px){.vedic-nakshatra-grid,.vedic-dasha-reference,.vedic-core-insights{grid-template-columns:1fr}.vedic-nakshatra-grid article{min-height:0}.vedic-insight-heading{display:block}.vedic-insight-heading span{display:block;margin-top:7px}.vedic-result-insight{padding:18px}}
 @media(prefers-reduced-motion:reduce){.vedic-nakshatra-grid article,.vedic-dasha-reference article{transition:none!important;transform:none!important}}
+
+
+/* Vedic page composition repair — scoped so the shared Mythborn shell stays stable. */
+.vedic-page{--vedic-surface:#241216;--vedic-surface-raised:#321a20;--vedic-border:rgba(239,173,125,.22)}
+.vedic-page>.section{width:100%;max-width:none;margin-inline:0}
+.vedic-page>.section:not(.vedic-hero){padding-inline:clamp(28px,5vw,76px)}
+.vedic-hero{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);gap:clamp(28px,6vw,92px);align-items:center;min-height:520px;padding:clamp(76px,8vw,112px) clamp(28px,5vw,76px)!important;border:1px solid rgba(239,173,125,.18);border-radius:0 0 30px 30px;background:radial-gradient(circle at 82% 22%,rgba(245,131,112,.16),transparent 28%),radial-gradient(circle at 58% 90%,rgba(156,124,255,.12),transparent 35%),linear-gradient(135deg,rgba(52,24,29,.92),rgba(22,11,13,.98))!important;overflow:visible!important}
+.vedic-hero-copy{position:relative;z-index:1;max-width:760px;min-width:0}
+.vedic-hero h1{max-width:760px!important;margin:16px 0 22px!important;font-size:clamp(52px,6.6vw,92px)!important;line-height:.94!important;letter-spacing:-.055em!important;text-wrap:balance}
+.vedic-hero-copy .lead{max-width:650px!important;font-size:clamp(16px,1.55vw,20px)!important;line-height:1.65!important}
+.vedic-hero-side{display:grid;place-items:center;min-height:320px}
+.vedic-hero-mark{position:relative!important;inset:auto!important;right:auto!important;top:auto!important;width:min(320px,28vw);height:min(320px,28vw);min-width:220px;min-height:220px;margin:0!important;transform:rotate(-9deg);opacity:.88}
+.vedic-reading{width:min(1040px,100%);margin:0 auto!important;padding:clamp(30px,5vw,64px)!important;border-color:var(--vedic-border)!important;background:linear-gradient(145deg,rgba(56,28,33,.98),rgba(25,11,14,.99))!important}
+.vedic-reading h2{max-width:820px;font-size:clamp(36px,4.6vw,66px)!important;line-height:1!important}
+.vedic-reading>.lead{max-width:780px;margin:20px 0 0!important;font-size:clamp(15px,1.4vw,18px)!important}
+.vedic-reading .reading-inputs{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:14px!important;width:100%!important;max-width:none!important;margin:30px 0 0!important}
+.vedic-reading .reading-inputs label{display:grid;min-width:0;gap:9px;color:var(--myth-ivory);font-size:12px;font-weight:800;line-height:1.3}
+.vedic-reading .reading-inputs input{width:100%;min-height:52px;padding:0 14px;border:1px solid rgba(255,244,234,.17);border-radius:13px;background:rgba(20,8,11,.72);color:var(--myth-ivory)}
+.vedic-reading .reading-inputs .time-unknown{grid-column:1/-1;display:flex;align-items:center;justify-content:flex-start;gap:10px;margin-top:2px;color:var(--myth-muted);font-size:12px;font-weight:600}
+.vedic-reading .reading-inputs .time-unknown input{width:18px;min-height:18px;accent-color:var(--myth-ember)}
+.vedic-reading .astro-submit{min-width:220px;margin-top:24px}
+.vedic-feature-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important}
+.vedic-feature-grid article{min-height:190px!important;padding:22px!important;background:linear-gradient(145deg,rgba(56,28,33,.86),rgba(24,10,13,.9))!important}
+.vedic-method{background:linear-gradient(180deg,rgba(71,29,31,.18),rgba(36,15,18,.82))!important}
+.vedic-method .astro-method-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px!important}
+.vedic-method .astro-method-grid article{min-height:190px!important;padding:22px!important}
+.vedic-knowledge-layer{position:relative;isolation:isolate;overflow:visible!important;background:linear-gradient(180deg,#241216 0%,#160b0d 100%)!important;border-radius:28px 28px 0 0}
+.vedic-knowledge-layer::before,.vedic-knowledge-layer::after{display:none!important}
+.vedic-knowledge-layer .tool-answer-intro{max-width:820px}
+.vedic-knowledge-block{margin-top:34px;padding-top:26px;border-top:1px solid rgba(239,173,125,.2)}
+.vedic-nakshatra-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important}
+.vedic-dasha-reference{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+.vedic-nakshatra-grid article,.vedic-dasha-reference article{min-height:0!important;padding:18px!important;border-color:rgba(239,173,125,.16)!important;border-radius:14px;background:rgba(255,244,234,.045)!important}
+.vedic-nakshatra-grid strong,.vedic-dasha-reference strong{color:var(--myth-copper)!important;font-size:18px!important}
+.vedic-nakshatra-grid p,.vedic-dasha-reference p{color:var(--myth-muted)!important;font-size:13px!important;line-height:1.55!important}
+body:has(.vedic-page) .sponsor-band{margin-top:0;border-radius:20px 20px 0 0}
+body:has(.vedic-page) .site-footer{margin-top:0;padding:52px clamp(28px,5vw,76px) 26px!important;border-top:1px solid rgba(239,173,125,.25);background:#160b0d}
+body:has(.vedic-page) .site-footer-grid{display:grid!important;grid-template-columns:minmax(250px,1.45fr) repeat(3,minmax(130px,1fr)) minmax(150px,.8fr)!important;gap:28px!important;width:100%;max-width:1180px;margin-inline:auto}
+body:has(.vedic-page) .site-footer-brand{display:grid;align-content:start;gap:16px;min-width:0}
+body:has(.vedic-page) .site-footer-logo{display:inline-flex;align-items:center;gap:12px;color:var(--myth-ivory);font-weight:900;letter-spacing:.16em;text-decoration:none}
+body:has(.vedic-page) .site-footer-logo img{width:32px;height:30px;object-fit:contain}
+body:has(.vedic-page) .site-footer-brand p{max-width:390px;margin:0;color:var(--myth-muted);font-size:13px;line-height:1.7}
+body:has(.vedic-page) .site-footer-brand>a[href^="mailto:"]{color:var(--myth-copper);text-decoration:none}
+body:has(.vedic-page) .site-footer-column{min-width:0}
+body:has(.vedic-page) .site-footer h3{margin:0 0 18px;color:var(--myth-copper);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+body:has(.vedic-page) .site-footer nav{display:grid;gap:10px}
+body:has(.vedic-page) .site-footer nav a,body:has(.vedic-page) .site-footer nav button{display:block;color:var(--myth-muted);font:inherit;font-size:13px;line-height:1.45;text-decoration:none}
+body:has(.vedic-page) .site-footer nav a:hover,body:has(.vedic-page) .site-footer nav a:focus-visible,body:has(.vedic-page) .site-footer nav button:hover,body:has(.vedic-page) .site-footer nav button:focus-visible{color:var(--myth-ivory);text-decoration:none}
+body:has(.vedic-page) .site-footer-guardian{display:grid;place-items:center;align-self:center;min-height:150px;margin:0;padding:0}
+body:has(.vedic-page) .site-footer-guardian img{width:138px;height:138px;object-fit:contain;border:1px solid rgba(239,173,125,.38);border-radius:50%;opacity:.94;filter:saturate(.78) sepia(.1);box-shadow:0 0 0 9px rgba(245,131,112,.06),0 18px 42px rgba(0,0,0,.3)}
+body:has(.vedic-page) .site-footer-bottom{display:flex;justify-content:space-between;gap:20px;width:100%;max-width:1180px;margin:42px auto 0;padding-top:22px;border-top:1px solid rgba(239,173,125,.16);color:rgba(212,187,180,.7);font-size:11px;line-height:1.5}
+@media(max-width:1050px){.vedic-hero{grid-template-columns:minmax(0,1fr) minmax(260px,.7fr);gap:28px}.vedic-hero h1{font-size:clamp(48px,6vw,76px)!important}.vedic-hero-mark{width:240px;height:240px}.vedic-nakshatra-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.body:has(.vedic-page) .site-footer-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:820px){.vedic-page>.section:not(.vedic-hero){padding-inline:28px}.vedic-hero{grid-template-columns:1fr;min-height:auto;padding-block:68px 58px!important}.vedic-hero-side{min-height:210px;justify-content:start}.vedic-hero-mark{width:210px;height:210px;min-width:210px;min-height:210px;margin-inline:auto!important}.vedic-reading .reading-inputs{grid-template-columns:repeat(2,minmax(0,1fr))!important}.vedic-nakshatra-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.vedic-method .astro-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.site-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.site-footer-brand{grid-column:1/-1}.site-footer-guardian{grid-column:2;grid-row:2/4}}
+@media(max-width:620px){.vedic-page>.section:not(.vedic-hero){padding-inline:16px}.vedic-hero{padding:56px 20px 48px!important;border-radius:0 0 22px 22px}.vedic-hero h1{font-size:clamp(42px,13vw,66px)!important;line-height:.96!important}.vedic-hero-copy .lead{font-size:16px!important;line-height:1.6!important}.vedic-hero-side{min-height:170px}.vedic-hero-mark{width:150px;height:150px;min-width:150px;min-height:150px;margin-inline:auto!important}.vedic-hero-mark span{font-size:34px}.vedic-hero-mark b{bottom:28px}.vedic-reading{padding:26px 18px!important;border-radius:20px}.vedic-reading h2{font-size:clamp(34px,10vw,48px)!important}.vedic-reading .reading-inputs{grid-template-columns:1fr!important;gap:12px!important}.vedic-reading .reading-inputs .time-unknown{grid-column:auto}.vedic-reading .astro-submit{width:100%;min-width:0}.vedic-feature-grid,.vedic-method .astro-method-grid,.vedic-nakshatra-grid,.vedic-dasha-reference{grid-template-columns:1fr!important}.vedic-knowledge-layer{border-radius:22px 22px 0 0}.site-footer{padding-inline:16px!important}.site-footer-grid{grid-template-columns:1fr!important}.site-footer-brand,.site-footer-guardian{grid-column:auto;grid-row:auto}.site-footer-guardian{margin-top:8px}.site-footer-bottom{display:grid;gap:10px;margin-top:30px}.sponsor-band{border-radius:16px 16px 0 0}}
