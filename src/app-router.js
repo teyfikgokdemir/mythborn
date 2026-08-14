@@ -140,11 +140,11 @@ function exploreLinks(locale){
 function desktopNav(locale){
   const t=labels[locale];
   return `<nav class="nav desktop-nav" aria-label="${t.menu}">
-    <a href="${href(locale,'/gunluk-kart')}">${t.daily}</a>
-    <a href="${href(locale,'/tarot')}">${t.tarot}</a>
-    <a href="${href(locale,'/astroloji')}">${t.astrology}</a>
-    <a href="${href(locale,'/haftalik-burc')}">${t.weekly}</a>
-    <details class="desktop-explore"><summary aria-haspopup="true" aria-expanded="false" aria-controls="desktop-explore-panel">${t.explore}<span class="nav-chevron" aria-hidden="true"></span></summary><div class="desktop-explore-panel" id="desktop-explore-panel" role="menu">${exploreLinks(locale)}</div></details>
+    <a class="nav-layer nav-layer-reading" href="${href(locale,'/gunluk-kart')}"><small>01</small><span>${t.daily}</span></a>
+    <a class="nav-layer nav-layer-reading" href="${href(locale,'/tarot')}"><small>02</small><span>${t.tarot}</span></a>
+    <a class="nav-layer nav-layer-sky" href="${href(locale,'/astroloji')}"><small>03</small><span>${t.astrology}</span></a>
+    <a class="nav-layer nav-layer-sky" href="${href(locale,'/haftalik-burc')}"><small>04</small><span>${t.weekly}</span></a>
+    <details class="desktop-explore nav-layer nav-layer-archive"><summary aria-haspopup="true" aria-expanded="false" aria-controls="desktop-explore-panel"><small>05</small><span>${t.explore}</span><i class="nav-chevron" aria-hidden="true"></i></summary><div class="desktop-explore-panel" id="desktop-explore-panel" role="menu"><div class="desktop-explore-intro"><small>${t.knowledge}</small><strong>${t.knowledgeTitle}</strong></div><div class="desktop-explore-links">${exploreLinks(locale)}</div></div></details>
   </nav>`;
 }
 function headerLanguage(locale,path){
