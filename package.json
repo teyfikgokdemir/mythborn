@@ -11,6 +11,7 @@
     "lint": "node scripts/static-check.mjs",
     "test": "node scripts/astrology-regression-audit.mjs && node scripts/home-premium-audit.mjs",
     "seo:audit": "node scripts/seo-verification-audit.mjs",
+    "indexnow:submit": "node scripts/indexnow-submit.mjs",
     "spanish:build": "node scripts/build-spanish-runtime-data.mjs",
     "audit": "node scripts/static-check.mjs && node scripts/astrology-regression-audit.mjs && node scripts/home-premium-audit.mjs && node scripts/audit.mjs && node scripts/premium-audit.mjs && node scripts/final-audit.mjs && node scripts/visual-audit.mjs && node scripts/link-audit.mjs && node scripts/locale-quality-audit.mjs && node scripts/ui-shell-audit.mjs && node scripts/tarot-art-audit.mjs && node scripts/seo-verification-audit.mjs",
     "check": "npm run audit",
