@@ -6,7 +6,8 @@
   const text={
     tr:{error:'İşlem tamamlanamadı.',status:'Ücretsiz üye · Tüm açılımlar açık',empty:'Henüz kaydedilmiş açılımın yok.'},
     en:{error:'The request could not be completed.',status:'Free member · All readings unlocked',empty:'You do not have any saved readings yet.'},
-    el:{error:'Η ενέργεια δεν ολοκληρώθηκε.',status:'Δωρεάν μέλος · Όλες οι αναγνώσεις διαθέσιμες',empty:'Δεν έχεις ακόμη αποθηκευμένες αναγνώσεις.'}
+    el:{error:'Η ενέργεια δεν ολοκληρώθηκε.',status:'Δωρεάν μέλος · Όλες οι αναγνώσεις διαθέσιμες',empty:'Δεν έχεις ακόμη αποθηκευμένες αναγνώσεις.'},
+    es:{error:'No se pudo completar la solicitud.',status:'Miembro gratuito · Todas las lecturas están disponibles',empty:'Aún no tienes lecturas guardadas.'}
   }[locale];
   const api=async(path,options={})=>{
     const response=await fetch(path,{...options,headers:{'content-type':'application/json','x-mythborn-locale':locale,...(options.headers||{})}});

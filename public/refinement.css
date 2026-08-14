@@ -494,3 +494,8 @@ body:has(.vedic-page) .site-footer-bottom{display:flex;justify-content:space-bet
 body:has(.vedic-page) .site-footer-guardian{overflow:visible!important;min-height:176px!important}
 body:has(.vedic-page) .site-footer-guardian img{width:176px!important;height:176px!important;border:0!important;border-radius:0!important;opacity:1!important;filter:none!important;box-shadow:none!important;object-fit:contain!important}
 @media(max-width:620px){body:has(.vedic-page) .site-footer-guardian{min-height:154px!important}.site-footer-guardian img{width:154px!important;height:154px!important}}
+
+
+/* Keep the sticky mobile shell from visually covering the first line of the Vedic form. */
+body:has(.vedic-page) .vedic-page>.section{scroll-margin-top:86px}
+@media(max-width:620px){body:has(.vedic-page) .vedic-page>.section:not(.vedic-hero){padding-top:clamp(58px,11vw,76px)!important}.vedic-page .vedic-reading{scroll-margin-top:86px}.vedic-page .form-message:empty{display:none}}

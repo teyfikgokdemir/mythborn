@@ -74,7 +74,7 @@ const cardView=card=>{
  const rankTheme=locale==='en'?['potential','choice','collaboration','stability','change','support','assessment','focused progress','resilience','completion','curiosity','movement','inner mastery','responsible authority'][rankIndex]:['δυνατότητα','επιλογή','συνεργασία','σταθερότητα','αλλαγή','στήριξη','αξιολόγηση','εστιασμένη πρόοδο','αντοχή','ολοκλήρωση','περιέργεια','κίνηση','εσωτερική ωριμότητα','υπεύθυνη εξουσία'][rankIndex];
  return {...card,name,arcana:ui.minor,suit:names.suits[suitIndex],element:names.elements[suitIndex],keywords:rankTheme,meaning:locale==='en'?`${name} connects ${rankTheme} with the realm of ${names.suits[suitIndex].toLowerCase()}. Give the situation one practical form instead of leaving it as an intention.`:`Η κάρτα ${name} συνδέει το θέμα «${rankTheme}» με το πεδίο των ${names.suits[suitIndex]}. Δώσε στην κατάσταση μία πρακτική μορφή αντί να την αφήσεις ως πρόθεση.`,shadow:locale==='en'?'Avoid forcing a result before the situation has supplied enough information.':'Μην πιέζεις το αποτέλεσμα πριν η κατάσταση προσφέρει αρκετές πληροφορίες.'};
 };
-const api=(...args)=>window.MythbornApi(...args);
+	const api=async(...args)=>{const call=window.MythbornApi;if(typeof call==='function')return call(...args);const[path,options={}] = args,response=await fetch(path,{...options,headers:{'content-type':'application/json','x-mythborn-locale':locale,...(options.headers||{})}});let data={};try{data=await response.json()}catch{}if(!response.ok)throw new Error(data.error||(locale==='tr'?'İşlem tamamlanamadı.':locale==='en'?'The request could not be completed.':locale==='es'?'No se pudo completar la solicitud.':'Η ενέργεια δεν ολοκληρώθηκε.'));return data};
 const hash=s=>[...String(s)].reduce((a,c)=>(a*31+c.charCodeAt(0))>>>0,7);
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const secureIndex=max=>{const values=new Uint32Array(1);crypto.getRandomValues(values);return values[0]%max};
@@ -143,7 +143,7 @@ button?.addEventListener('click',async()=>{
 	   if(!data.birthDate||!data.birthPlace){message.textContent=vedicUi.required;return}
 	   if(!data.timeUnknown&&!data.birthTime){message.textContent=vedicUi.timeRequired;return}
 	   button.disabled=true;button.textContent=vedicUi.calculating;message.textContent=vedicUi.coordinates;
-	   try{const chart=await api('/api/astrology/vedic-chart',{method:'POST',body:JSON.stringify({...data,locale})});renderVedic(chart);message.textContent=vedicUi.success}catch(error){message.textContent=error.message||vedicUi.failed}finally{button.disabled=false;button.textContent=vedicUi.submit}
+	   try{const chart=await api('/api/astrology/vedic-chart',{method:'POST',body:JSON.stringify({...data,locale})});renderVedic(chart);message.textContent=vedicUi.success}catch(error){const detail=String(error?.message||'');message.textContent=/MythbornApi|not a function|undefined|is not defined/i.test(detail)?vedicUi.failed:(detail||vedicUi.failed)}finally{button.disabled=false;button.textContent=vedicUi.submit}
 	   return;
 	 }
 	if(type==='astroloji'){
