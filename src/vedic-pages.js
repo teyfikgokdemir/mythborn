@@ -31,7 +31,7 @@ export function vedicPage(locale){
 
 export function vedicDocument(locale,path='/vedik-astroloji'){
   const t=content[locale]||content.en;
-  return `<!doctype html><html lang="${locale==='el'?'el':locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${t.meta[0]}</title><meta name="description" content="${t.meta[1]}"></head><body>${vedicPage(locale)}</body></html>`;
+  return `<!doctype html><html lang="${locale==='el'?'el':locale}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${t.meta[0]}</title><meta name="description" content="${t.meta[1]}"><link rel="stylesheet" href="/app.css"><link rel="stylesheet" href="/final.css"></head><body>${vedicPage(locale)}</body></html>`;
 }
 
 export function vedicMeta(locale,path){
