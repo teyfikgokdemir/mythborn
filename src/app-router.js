@@ -260,6 +260,7 @@ function decorate(html,locale,path,accessState,localizedPage=null){
       .replace(/window\.MYTHBORN_LOCALE=[^;]*;/g,`window.MYTHBORN_LOCALE=${JSON.stringify(locale)};`);
   }
   html=html.replace(/\/el(?=\/|["?#])/g,'/gr').replaceAll('>EL<','>GR<');
+  html=html.replace(/<a\b([^>]*class="(?:brand|site-footer-logo)"[^>]*)>/g,(_match,attributes)=>`<a${attributes.replace(/href="[^"]*"/,`href="${href(locale,'/')}"`)}>`);
   html=html.replace(/<html lang="[^"]*"/,`<html lang="${localeInfo[locale].html}"`);
   html=html.replace(/<nav class="nav(?: [^"]*)?"[\s\S]*?<\/nav>/,desktopNav(locale));
   html=html.replace(/<footer\b[\s\S]*?<\/footer>/,footer(locale));
