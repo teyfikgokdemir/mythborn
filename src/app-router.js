@@ -71,7 +71,7 @@ const labels={
     career:'Carrera y dinero',month:'Lectura de 30 días',katina:'Katina',knowledge:'CENTRO DE CONOCIMIENTO',
     knowledgeTitle:'Explora los símbolos y el cielo en profundidad.',
     knowledgeCopy:'Guías completas sobre cartas del Tarot, cartas natales, símbolos de sueños y conceptos de astrología.',
-    search:'Buscar en el sitio'
+    search:'Buscar en el sitio',availableEnglish:'Disponible en inglés'
   }
 };
 const llms={
@@ -179,7 +179,7 @@ function knowledgeHub(locale){
     ['78',t.tarotLibrary,'/tarot-kartlari'],['42',t.library,'/astroloji-kutuphanesi'],['51',t.dreamSymbols,'/ruya-sembolleri'],
     ['25',t.glossary,'/astroloji-sozlugu'],['✦',t.advanced,'/advanced-astrology'],['⌕',t.search,'/arama']
   ];
-  return `<section class="section knowledge-hub"><p class="eyebrow">${t.knowledge}</p><h2>${t.knowledgeTitle}</h2><p class="lead left-lead">${t.knowledgeCopy}</p><div class="knowledge-hub-grid">${items.map(([tag,title,path])=>`<a class="knowledge-hub-card" href="${href(locale,path)}"><small>${tag}</small><h3>${title}</h3><span>${t.explore} →</span></a>`).join('')}</div></section>`;
+  return `<section class="section knowledge-hub" data-layer="archive"><p class="eyebrow">${t.knowledge}</p><h2>${t.knowledgeTitle}</h2><p class="lead left-lead">${t.knowledgeCopy}</p><div class="knowledge-hub-grid">${items.map(([tag,title,path])=>{const englishOnly=locale==='es'&&!spanishRouteSet.has(path);return `<a class="knowledge-hub-card" href="${href(locale,path)}"><small>${tag}</small><h3>${title}</h3>${englishOnly?`<em class="locale-note" lang="es">${t.availableEnglish}</em>`:''}<span>${t.explore} →</span></a>`}).join('')}</div></section>`;
 }
 function languageSwitcher(locale,path){
   return `<nav class="language-switcher" aria-label="Language"><a href="${href('tr',path)}"${locale==='tr'?' aria-current="page"':''}>TR</a><a href="${href('en',path)}"${locale==='en'?' aria-current="page"':''}>EN</a><a href="${href('el',path)}"${locale==='el'?' aria-current="page"':''}>GR</a><a href="${href('es',path)}"${locale==='es'?' aria-current="page"':''}>ES</a></nav>`;

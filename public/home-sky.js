@@ -10,7 +10,7 @@ if(root){
       aspect:'En güçlü açı',none:'Dar orb içinde majör açı yok',
       summary:(sun,moon,aspect)=>`Bugünün gökyüzünde Güneş ${sun}, Ay ${moon}. ${aspect}`,
       aspectSummary:(from,to,type)=>`En güçlü açı ${from} ile ${to} arasındaki ${type}.`,
-      all:'Tüm konumları gör',retry:'Yeniden dene',
+      all:'Tüm konumları gör',context:'BU GÖKYÜZÜNÜ KENDİ HARİTANLA BAĞLA',chart:'Doğum haritamda gör',weekly:'Bu haftanın ritmi',retry:'Yeniden dene',
       error:'Güncel gökyüzü şu anda görüntülenemiyor. Diğer Mythborn deneyimleri kullanılabilir.'
     },
     en:{
@@ -18,7 +18,7 @@ if(root){
       aspect:'Strongest aspect',none:'No major aspect within the defined orb',
       summary:(sun,moon,aspect)=>`In today’s sky, the Sun is in ${sun} and the Moon is in ${moon}. ${aspect}`,
       aspectSummary:(from,to,type)=>`The strongest aspect is the ${type} between ${from} and ${to}.`,
-      all:'View all positions',retry:'Try again',
+      all:'View all positions',context:'PLACE THIS SKY IN CONTEXT',chart:'See it in my birth chart',weekly:'Read the week ahead',retry:'Try again',
       error:'The current sky cannot be displayed right now. Other Mythborn experiences remain available.'
     },
     el:{
@@ -26,7 +26,7 @@ if(root){
       aspect:'Ισχυρότερη όψη',none:'Δεν υπάρχει κύρια όψη εντός του καθορισμένου ορίου',
       summary:(sun,moon,aspect)=>`Στον σημερινό ουρανό, ο Ήλιος βρίσκεται ${sun} και η Σελήνη ${moon}. ${aspect}`,
       aspectSummary:(from,to,type)=>`Η ισχυρότερη όψη είναι ${type} μεταξύ ${from} και ${to}.`,
-      all:'Προβολή όλων των θέσεων',retry:'Νέα προσπάθεια',
+      all:'Προβολή όλων των θέσεων',context:'ΒΑΛΕ ΤΟΝ ΟΥΡΑΝΟ ΣΤΟ ΠΡΟΣΩΠΙΚΟ ΣΟΥ ΠΛΑΙΣΙΟ',chart:'Δες τον στον γενέθλιο χάρτη μου',weekly:'Δες τον ρυθμό της εβδομάδας',retry:'Νέα προσπάθεια',
       error:'Ο σημερινός ουρανός δεν μπορεί να εμφανιστεί αυτή τη στιγμή. Οι υπόλοιπες εμπειρίες του Mythborn παραμένουν διαθέσιμες.'
     },
     es:{
@@ -34,7 +34,7 @@ if(root){
       aspect:'Aspecto más destacado',none:'No hay un aspecto mayor dentro del orbe definido',
       summary:(sun,moon,aspect)=>`En el cielo de hoy, el Sol está en ${sun} y la Luna en ${moon}. ${aspect}`,
       aspectSummary:(from,to,type)=>`El aspecto más destacado es ${type} entre ${from} y ${to}.`,
-      all:'Ver todas las posiciones',retry:'Intentarlo de nuevo',
+      all:'Ver todas las posiciones',context:'LLEVA ESTE CIELO A TU CONTEXTO',chart:'Verlo en mi carta natal',weekly:'Leer el ritmo de la semana',retry:'Intentarlo de nuevo',
       error:'El cielo actual no puede mostrarse en este momento. Las demás experiencias de Mythborn siguen disponibles.'
     }
   };
@@ -85,7 +85,7 @@ if(root){
       const point=longitudePoint(normalizeLongitude(planet.longitude),radii[index]);
       return `<g class="sky-planet"><circle cx="${point.x}" cy="${point.y}" r="11"></circle><text x="${point.x}" y="${point.y}">${symbols[planet.name]||'•'}</text></g>`;
     }).join('');
-    root.innerHTML=`<div class="live-sky-heading"><div><p class="eyebrow">${t.eye}</p><p class="live-sky-time">${escape(t.updated)} · <time datetime="${escape(data.calculatedAt)}">${escape(date)}</time></p></div><a href="${prefix}/bugunun-gokyuzu">${t.all} →</a></div><div class="live-sky-frame"><svg class="live-sky-wheel" viewBox="0 0 320 320" width="320" height="320" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><circle class="sky-orbit" cx="160" cy="160" r="142"></circle><g class="sky-sectors">${sectors}</g><circle class="sky-inner" cx="160" cy="160" r="111"></circle>${aspectLine}<g class="sky-planets">${points}</g><circle class="sky-core" cx="160" cy="160" r="54"></circle><text class="sky-core-sun" x="160" y="153">${symbols['Güneş']}</text><text class="sky-core-date" x="160" y="177">${escape(new Intl.DateTimeFormat(locale==='tr'?'tr-TR':locale==='en'?'en-GB':locale==='es'?'es-ES':'el-GR',{day:'2-digit',month:'short',timeZone:'Europe/Istanbul'}).format(new Date(data.calculatedAt)))}</text></svg></div><div class="live-sky-copy"><h2>${escape(term(sun.sign))} · ${escape(term(moon.sign))}</h2><p>${escape(accessible)}</p><p class="live-sky-aspect"><strong>${t.aspect}:</strong> ${escape(aspectText)}${aspect?` · orb ${aspect.exactOrb.toFixed(2)}°`:''}</p></div>`;
+    root.innerHTML=`<div class="live-sky-heading"><div><p class="eyebrow">${t.eye}</p><p class="live-sky-time">${escape(t.updated)} · <time datetime="${escape(data.calculatedAt)}">${escape(date)}</time></p></div><a href="${prefix}/bugunun-gokyuzu">${t.all} →</a></div><div class="live-sky-frame"><svg class="live-sky-wheel" viewBox="0 0 320 320" width="320" height="320" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><circle class="sky-orbit" cx="160" cy="160" r="142"></circle><g class="sky-sectors">${sectors}</g><circle class="sky-inner" cx="160" cy="160" r="111"></circle>${aspectLine}<g class="sky-planets">${points}</g><circle class="sky-core" cx="160" cy="160" r="54"></circle><text class="sky-core-sun" x="160" y="153">${symbols['Güneş']}</text><text class="sky-core-date" x="160" y="177">${escape(new Intl.DateTimeFormat(locale==='tr'?'tr-TR':locale==='en'?'en-GB':locale==='es'?'es-ES':'el-GR',{day:'2-digit',month:'short',timeZone:'Europe/Istanbul'}).format(new Date(data.calculatedAt)))}</text></svg></div><div class="live-sky-copy"><h2>${escape(term(sun.sign))} · ${escape(term(moon.sign))}</h2><p>${escape(accessible)}</p><p class="live-sky-aspect"><strong>${t.aspect}:</strong> ${escape(aspectText)}${aspect?` · orb ${aspect.exactOrb.toFixed(2)}°`:''}</p></div><div class="sky-context"><p>${t.context}</p><nav aria-label="${t.context}"><a href="${prefix}/astroloji">${t.chart}<span aria-hidden="true">→</span></a><a href="${prefix}/haftalik-burc">${t.weekly}<span aria-hidden="true">→</span></a></nav></div>`;
     root.setAttribute('aria-busy','false');
   };
   const showError=()=>{
