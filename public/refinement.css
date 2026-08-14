@@ -37,8 +37,8 @@ body:not([data-route="/"]) h1.is-long-title{font-size:clamp(36px,4.6vw,64px)!imp
 body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-width:760px;font-size:clamp(16px,1.6vw,19px)!important;line-height:1.65}
 .premium-home-hero{min-height:clamp(560px,72svh,720px)!important;padding-block:clamp(48px,7vw,86px)!important;align-items:center!important}
 .premium-home-hero>div{align-self:center}
-.premium-home-hero h1{font-size:clamp(54px,7.2vw,92px)!important;line-height:.92!important;max-width:850px}
-.premium-home-hero .lead{max-width:660px}
+.premium-home-hero h1{font-size:clamp(52px,6.4vw,84px)!important;line-height:.92!important;max-width:760px;letter-spacing:-.045em;text-wrap:balance}
+.premium-home-hero .lead{max-width:640px}
 .premium-home-hero .actions{gap:9px;margin-top:28px}
 .hero-sky-card{align-self:center;max-height:480px;overflow:hidden}
 .hero-sky-card h2{font-size:clamp(30px,3vw,44px)!important;line-height:1.04!important}

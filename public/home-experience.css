@@ -1,5 +1,5 @@
-.premium-home-hero{grid-template-columns:minmax(0,.82fr) minmax(390px,1.18fr)!important;align-items:center!important}
-.premium-home-hero>div{max-width:680px}
+.premium-home-hero{grid-template-columns:minmax(0,.96fr) minmax(390px,1.04fr)!important;align-items:center!important}
+.premium-home-hero>div{max-width:760px}
 .premium-home-hero>.hero-sky-card{min-width:0;padding:clamp(20px,3vw,32px);overflow:hidden;align-self:start}
 .live-sky-heading{display:flex;align-items:start;justify-content:space-between;gap:18px}
 .live-sky-heading p{margin:0}.live-sky-heading>a{font-size:12px;font-weight:800;white-space:nowrap}
@@ -35,7 +35,7 @@
 .ancient-editorial h2{margin:12px 0 18px;font-size:clamp(48px,6vw,82px);line-height:.92}.ancient-editorial-main>p{max-width:690px;color:#aaa2b0;line-height:1.75}.ancient-glyph{display:block;margin-bottom:20px;color:#e8c883;font:66px Georgia,serif}
 .ancient-notes{display:grid;align-content:center}.ancient-notes a{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:20px 0;border-top:1px solid rgba(255,255,255,.1)}.ancient-notes b{color:#e8c883;font:24px Georgia,serif}.ancient-notes strong{font:22px Georgia,serif}.ancient-notes span{display:block;margin-top:5px;color:#aaa2b0;font-size:12px;line-height:1.5}
 @media(max-width:1000px){.premium-home-hero{grid-template-columns:1fr!important}.home-today-layout,.featured-layout,.ancient-editorial{grid-template-columns:1fr}.featured-intro{position:static}.home-today-rail{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:1001px){.premium-home-hero>.hero-sky-card{min-height:744px}}
+@media(min-width:1001px){.premium-home-hero>.hero-sky-card{min-height:720px}}
 @media(max-width:640px){.premium-home-hero{padding-inline:16px!important}.hero-sky-card{padding:18px}.live-sky-heading{display:grid}.live-sky-heading>a{white-space:normal}.live-sky-frame{margin:0 auto}.sky-skeleton{min-height:420px}.home-today-primary{min-height:330px;padding:26px 22px}.home-today-rail{grid-template-columns:1fr}.home-today-rail a{min-height:0}.featured-list a{grid-template-columns:32px minmax(0,1fr) auto;gap:10px}.ancient-editorial{padding:30px 20px}}
 @media(prefers-reduced-motion:reduce){.sky-skeleton-wheel::before,.sky-skeleton-wheel::after{animation:none}}
 

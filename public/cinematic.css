@@ -6,7 +6,7 @@
 .cinematic-visual::after{position:absolute;inset:0;content:"";background:linear-gradient(90deg,rgba(7,8,20,.98) 0%,rgba(9,9,24,.9) 34%,rgba(10,9,24,.44) 66%,rgba(10,8,18,.22) 100%)}
 .premium-home-hero.cinematic-surface{min-height:clamp(610px,67vw,800px);padding:clamp(54px,8vw,100px) clamp(24px,5vw,68px);border:1px solid rgba(232,200,131,.16);border-radius:32px;background:#080914}
 .premium-home-hero .cinematic-visual img{object-position:center right;opacity:.76}
-.premium-home-hero .cinematic-visual::after{background:linear-gradient(90deg,#080914 0%,rgba(8,9,20,.96) 34%,rgba(8,9,20,.5) 66%,rgba(8,9,20,.22) 100%),linear-gradient(0deg,rgba(8,9,20,.72),transparent 55%)}
+.premium-home-hero .cinematic-visual::after{background:linear-gradient(90deg,#080914 0%,rgba(8,9,20,.97) 30%,rgba(8,9,20,.58) 58%,rgba(8,9,20,.16) 100%),linear-gradient(0deg,rgba(8,9,20,.72),transparent 56%)}
 .premium-home-hero>div{align-self:center;max-width:760px}
 .premium-home-hero .hero-sky-card{align-self:end;backdrop-filter:blur(16px);background:linear-gradient(135deg,rgba(17,18,38,.82),rgba(48,21,48,.58))}
 .daily-stage.cinematic-surface,.membership-gate.cinematic-surface{min-height:600px;border-color:rgba(232,200,131,.2);background:linear-gradient(135deg,rgba(8,10,25,.96),rgba(25,10,28,.88))}
@@ -31,7 +31,7 @@
 @media(max-width:760px){
   .premium-home-hero.cinematic-surface{min-height:680px;padding:46px 22px}
   .premium-home-hero .cinematic-visual img{object-position:64% center;opacity:.62}
-  .premium-home-hero .cinematic-visual::after{background:linear-gradient(90deg,rgba(8,9,20,.96),rgba(8,9,20,.6)),linear-gradient(0deg,#080914 0%,transparent 54%,rgba(8,9,20,.7) 100%)}
+  .premium-home-hero .cinematic-visual::after{background:linear-gradient(90deg,rgba(8,9,20,.96),rgba(8,9,20,.58)),linear-gradient(0deg,#080914 0%,transparent 54%,rgba(8,9,20,.72) 100%)}
   .premium-home-hero .hero-sky-card{margin-top:26px}
   .daily-stage.cinematic-surface,.membership-gate.cinematic-surface{min-height:620px}
   .daily-stage .cinematic-visual,.membership-gate .cinematic-visual{inset:0;width:100%}
