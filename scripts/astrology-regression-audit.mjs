@@ -5,7 +5,11 @@ import {
   localToUtc,
   normalizeLongitude,
   zodiacPlacement,
-  zonedParts
+  zonedParts,
+  lahiriAyanamsha,
+  siderealLongitude,
+  nakshatraPlacement,
+  vimshottariTimeline
 } from '../src/astrology.js';
 
 const circularDistance=(a,b)=>Math.min(Math.abs(a-b),360-Math.abs(a-b));
@@ -59,4 +63,36 @@ assert.equal(zodiacPlacement(360).sign,'Koç');
 assert.equal(zodiacPlacement(-0.1).degree,29.9);
 assert.equal(zodiacPlacement(360).degree,0);
 
-console.log(`Astrology regression audit passed: Istanbul 1975 ASC ${exactAngles.ascendant.toFixed(4)}°, DESC ${exactAngles.descendant.toFixed(4)}°, MC ${exactAngles.midheaven.toFixed(4)}°, IC ${exactAngles.imumCoeli.toFixed(4)}°.`);
+const vedicReferences=[
+  {label:'Istanbul 1990',date:new Date('1990-01-15T10:00:00.000Z'),ayanamsha:23.71795796,sun:271.27194203,moon:142.73751850,nakshatra:'Purva Phalguni',pada:3},
+  {label:'Berlin DST before jump',date:new Date('2024-03-31T00:30:00.000Z'),ayanamsha:24.19578721,sun:346.59143329,moon:230.88556308,nakshatra:'Jyeshtha',pada:2},
+  {label:'Sydney southern hemisphere',date:new Date('2026-07-28T13:58:00.000Z'),ayanamsha:24.22828206,sun:101.29081400,moon:269.81925100,nakshatra:'Uttara Ashadha',pada:1},
+  {label:'Time-unknown noon proxy',date:new Date('2000-01-01T10:00:00.000Z'),ayanamsha:23.85708917,sun:256.43074800,moon:198.46826800,nakshatra:'Swati',pada:4}
+];
+for(const reference of vedicReferences){
+  approx(lahiriAyanamsha(reference.date),reference.ayanamsha,0.0001,`${reference.label} Lahiri ayanamsha`);
+  approx(siderealLongitude(Body.Sun,reference.date),reference.sun,0.02,`${reference.label} sidereal Sun vs Swiss Ephemeris reference`);
+  approx(siderealLongitude(Body.Moon,reference.date),reference.moon,0.02,`${reference.label} sidereal Moon vs Swiss Ephemeris reference`);
+  const moonPlacement=nakshatraPlacement(siderealLongitude(Body.Moon,reference.date));
+  assert.equal(moonPlacement.name,reference.nakshatra,`${reference.label} Moon nakshatra`);
+  assert.equal(moonPlacement.pada,reference.pada,`${reference.label} Moon nakshatra pada`);
+}
+
+const nakshatraWidth=360/27;
+assert.deepEqual(nakshatraPlacement(0),{name:'Ashwini',index:1,pada:1,degree:0,longitude:0},'Nakshatra zero boundary');
+assert.equal(nakshatraPlacement(nakshatraWidth-1e-9).name,'Ashwini','Nakshatra upper epsilon stays in Ashwini');
+assert.equal(nakshatraPlacement(nakshatraWidth-1e-9).pada,4,'Nakshatra upper epsilon is pada 4');
+assert.equal(nakshatraPlacement(nakshatraWidth+1e-12).name,'Bharani','Nakshatra boundary plus epsilon advances to Bharani');
+assert.equal(nakshatraPlacement(nakshatraWidth+1e-12).pada,1,'Nakshatra boundary plus epsilon starts pada 1');
+assert.equal(nakshatraPlacement(360).name,'Ashwini','Nakshatra 360° normalizes to Ashwini');
+
+const dashaBirth=new Date('1990-01-15T10:00:00.000Z');
+const atAshwini=vimshottariTimeline(dashaBirth,0,new Date('1990-01-15T10:00:00.000Z'));
+assert.equal(atAshwini.periods[0].lord,'Ketu','Ashwini starts with Ketu mahadasha');
+assert.equal(atAshwini.periods[0].durationYears,7,'Ashwini at 0° receives the full Ketu period');
+const atBharani=vimshottariTimeline(dashaBirth,nakshatraWidth+1e-12,new Date('1990-01-15T10:00:00.000Z'));
+assert.equal(atBharani.periods[0].lord,'Venus','Bharani starts with Venus mahadasha');
+assert.equal(atBharani.periods[0].durationYears,20,'Bharani at 0° receives the full Venus period');
+assert.equal(atBharani.periods.slice(0,9).reduce((sum,period)=>sum+period.durationYears,0),120,'One Vimshottari cycle totals 120 years');
+
+console.log(`Astrology regression audit passed: Istanbul 1975 ASC ${exactAngles.ascendant.toFixed(4)}°, DESC ${exactAngles.descendant.toFixed(4)}°, MC ${exactAngles.midheaven.toFixed(4)}°, IC ${exactAngles.imumCoeli.toFixed(4)}°; Vedic references ${vedicReferences.length}.`);

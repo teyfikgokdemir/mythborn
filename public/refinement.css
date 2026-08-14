@@ -412,3 +412,25 @@ body.has-open-consent{overflow:hidden!important}
 @media(max-width:1000px){.vedic-hero-mark{right:5%;top:22%;transform:scale(.82) rotate(-9deg)}.vedic-feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.vedic-summary{grid-template-columns:repeat(3,minmax(0,1fr))}.vedic-dasha-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.vedic-hero{min-height:auto;padding-block:58px 50px}.vedic-hero h1{max-width:100%;font-size:clamp(46px,14vw,70px)}.vedic-hero-mark{position:relative;right:auto;top:auto;width:150px;height:150px;margin:34px 0 0 auto;transform:rotate(-9deg)}.vedic-hero-mark span{font-size:34px}.vedic-hero-mark b{bottom:28px}.vedic-feature-grid,.vedic-summary,.vedic-dasha-list{grid-template-columns:1fr}.vedic-current-dasha{grid-template-columns:1fr;gap:8px}.vedic-current-dasha strong{font-size:25px}.vedic-current-dasha span{font-size:12px}.vedic-page .astro-feature-grid article{min-height:auto}}
 @media(prefers-reduced-motion:reduce){.vedic-hero-mark{transform:none}}
+
+
+/* Vedic knowledge layer and reflective result insights */
+.vedic-knowledge-layer{background:linear-gradient(135deg,rgba(245,131,112,.035),transparent 44%),var(--panel)}
+.vedic-knowledge-block{margin-top:42px;padding-top:30px;border-top:1px solid rgba(255,255,255,.1)}
+.vedic-knowledge-block h3{margin:0 0 10px;font-family:Georgia,serif;font-size:clamp(25px,3vw,38px);font-weight:400}
+.knowledge-note{max-width:720px;color:var(--muted);line-height:1.7}
+.vedic-nakshatra-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}
+.vedic-nakshatra-grid article,.vedic-dasha-reference article{min-height:148px;padding:17px;border:1px solid rgba(255,255,255,.1);border-radius:15px;background:rgba(255,255,255,.025);transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.vedic-nakshatra-grid article:hover,.vedic-nakshatra-grid article:focus-within,.vedic-dasha-reference article:hover,.vedic-dasha-reference article:focus-within{transform:translateY(-3px);border-color:rgba(245,131,112,.38);background:rgba(245,131,112,.055)}
+.vedic-nakshatra-grid strong,.vedic-dasha-reference strong{display:block;color:var(--gold);font:400 19px/1.15 Georgia,serif}
+.vedic-nakshatra-grid p,.vedic-dasha-reference p{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.6}
+.vedic-dasha-reference{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}
+.vedic-dasha-reference article{min-height:120px}
+.vedic-result-insights{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;margin:24px 0}
+.vedic-result-insight{padding:22px;border:1px solid rgba(245,131,112,.23);border-radius:17px;background:linear-gradient(135deg,rgba(245,131,112,.07),transparent 62%),rgba(255,255,255,.02)}
+.vedic-result-insight h4{margin:0 0 14px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.vedic-insight-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px}.vedic-insight-heading strong{font:400 28px/1.1 Georgia,serif}.vedic-insight-heading span{color:var(--muted);font-size:12px}.vedic-result-insight>p{margin:14px 0 0;color:var(--muted);line-height:1.7}
+.vedic-core-insights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.vedic-core-insights article{padding:15px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.025)}.vedic-core-insights small{display:block;color:var(--gold);font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase}.vedic-core-insights strong{display:block;margin-top:9px;font:400 23px/1.1 Georgia,serif}.vedic-core-insights p{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.55}.vedic-insight-caution{margin:16px 0 0;color:var(--muted);font-size:12px;line-height:1.6}.vedic-dasha-interpretation{grid-column:1/-1;margin:0!important;color:var(--muted);font-size:13px;line-height:1.55}
+@media(max-width:1000px){.vedic-nakshatra-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.vedic-dasha-reference{grid-template-columns:repeat(2,minmax(0,1fr))}.vedic-result-insights{grid-template-columns:1fr}}
+@media(max-width:620px){.vedic-nakshatra-grid,.vedic-dasha-reference,.vedic-core-insights{grid-template-columns:1fr}.vedic-nakshatra-grid article{min-height:0}.vedic-insight-heading{display:block}.vedic-insight-heading span{display:block;margin-top:7px}.vedic-result-insight{padding:18px}}
+@media(prefers-reduced-motion:reduce){.vedic-nakshatra-grid article,.vedic-dasha-reference article{transition:none!important;transform:none!important}}
