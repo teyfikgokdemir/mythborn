@@ -6,6 +6,7 @@ await check('/advanced-astrology',['GELİŞMİŞ ASTROLOJİ','Astrokartografi','
 await check('/en/advanced-astrology',['ADVANCED ASTROLOGY','Astrocartography','Vedic Astrology','lang="en"']);
 await check('/gr/advanced-astrology',['ΠΡΟΧΩΡΗΜΕΝΗ ΑΣΤΡΟΛΟΓΙΑ','Αστροχαρτογραφία','Βεδική Αστρολογία','lang="el"']);
 for(const route of routes){await check(route,['FAQPage','BreadcrumbList','Article','hreflang="en"','hreflang="el"']);await check(`/en${route}`,['FAQPage','BreadcrumbList','Article','lang="en"']);await check(`/gr${route}`,['FAQPage','BreadcrumbList','Article','lang="el"'])}
+for(const route of ['/vedik-astroloji','/nakshatra-dasha']){await check(route,['ItemList','Ashwini','Ketu']);await check(`/en${route}`,['ItemList','Ashwini','Ketu']);await check(`/gr${route}`,['ItemList','Ασουίνι','Ketu'])}
 const slugs=['saturn-retrosu-2026','12-agustos-2026-gunes-tutulmasi','jupiter-aslanda-2026','uranus-ikizlerde-teknoloji-yapay-zeka','sinastri-nedir','saturn-donusu-rehberi','astrokartografi-nedir','travma-bilincli-astroloji','yapay-zeka-tarot-etik','tarot-ve-astrolojiyi-birlikte-okumak'];
 await check('/en/blog',['SKY JOURNAL','Saturn Retrograde 2026','AI Tarot Interpretation']);await check('/gr/blog',['ΟΥΡΑΝΙΟ ΠΕΡΙΟΔΙΚΟ','Ανάδρομος Κρόνος 2026','Ερμηνεία Ταρώ με AI']);
 for(const slug of slugs){await check(`/en/blog/${slug}`,['FAQPage','Article','hreflang="tr"']);await check(`/gr/blog/${slug}`,['FAQPage','Article','hreflang="tr"'])}
