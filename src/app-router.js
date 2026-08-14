@@ -141,10 +141,9 @@ const searchItems=locale=>{
 function exploreLinks(locale){
   const t=labels[locale];
   return [
-    ['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/kadim-gokyuzu',t.ancient],['/ruya-yorumlari',t.dreams],
-    ['/numeroloji',t.numerology],['/ay-takvimi',t.moon],['/blog',t.blog],['/tarot-kartlari',t.tarotLibrary],
-    ['/astroloji-kutuphanesi',t.library],['/vedik-astroloji',t.vedic],['/advanced-astrology',t.advanced],['/ruya-sembolleri',t.dreamSymbols],
-    ['/astroloji-sozlugu',t.glossary]
+    ['/vedik-astroloji',t.vedic],['/astroloji-kutuphanesi',t.library],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],
+    ['/ay-takvimi',t.moon],['/numeroloji',t.numerology],['/kadim-gokyuzu',t.ancient],['/advanced-astrology',t.advanced],
+    ['/astroloji-sozlugu',t.glossary],['/blog',t.blog]
   ].map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('')+'<a href="/bugunun-gokyuzu" hidden aria-hidden="true" tabindex="-1"></a>';
 }
 function desktopNav(locale){
@@ -154,6 +153,9 @@ function desktopNav(locale){
     <a class="nav-layer nav-layer-reading" href="${href(locale,'/tarot')}"><span>${t.tarot}</span></a>
     <a class="nav-layer nav-layer-sky" href="${href(locale,'/astroloji')}"><span>${t.astrology}</span></a>
     <a class="nav-layer nav-layer-sky" href="${href(locale,'/haftalik-burc')}"><span>${t.weekly}</span></a>
+    <a class="nav-layer nav-layer-sky nav-layer-secondary" href="${href(locale,'/bugunun-gokyuzu')}"><span>${t.sky}</span></a>
+    <a class="nav-layer nav-layer-sky nav-layer-secondary" href="${href(locale,'/sinastri')}"><span>${t.synastry}</span></a>
+    <a class="nav-layer nav-layer-reading nav-layer-secondary" href="${href(locale,'/ruya-yorumlari')}"><span>${t.dreams}</span></a>
     <details class="desktop-explore nav-layer nav-layer-archive"><summary aria-haspopup="true" aria-expanded="false" aria-controls="desktop-explore-panel"><span>${t.explore}</span><i class="nav-chevron" aria-hidden="true"></i></summary><div class="desktop-explore-panel" id="desktop-explore-panel" role="menu"><div class="desktop-explore-intro"><small>${t.knowledge}</small><strong>${t.exploreIntro}</strong></div><div class="desktop-explore-links">${exploreLinks(locale)}</div></div></details>
   </nav>`;
 }
@@ -180,8 +182,8 @@ function mobileNav(locale,path='/'){
     <p class="mobile-nav-kicker">MYTHBORN · ${t.menu}</p>
     ${mobileLanguage(locale,path)}
     ${group(t.tarotGroup,[['/gunluk-kart',t.daily],['/tarot',t.three],['/ask',t.love],['/kariyer',t.career],['/otuz-gun',t.month],['/katina',t.katina]],locale,'tarot','01')}
-    ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/vedik-astroloji',t.vedic],['/haftalik-burc',t.weeklyLong],['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale,'astrology','02')}
-    ${group(t.exploreGroup,[['/kadim-gokyuzu',t.ancient],['/ruya-yorumlari',t.dreams],['/numeroloji',t.numerology],['/blog',t.blog],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/astroloji-sozlugu',t.glossary]],locale,'explore','03')}
+    ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/vedik-astroloji',t.vedic],['/haftalik-burc',t.weeklyLong],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale,'astrology','02')}
+    ${group(t.exploreGroup,[['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/numeroloji',t.numerology],['/kadim-gokyuzu',t.ancient],['/advanced-astrology',t.advanced],['/astroloji-sozlugu',t.glossary],['/blog',t.blog]],locale,'explore','03')}
   </nav>`;
 }
 function knowledgeHub(locale){
