@@ -155,7 +155,7 @@ function headerLanguage(locale,path){
 }
 function group(title,links,locale,key,order){
   const id=`mobile-group-${key}`;
-  return `<section class="mobile-nav-group"><button class="mobile-group-toggle" type="button" aria-expanded="true" aria-controls="${id}"><span class="mobile-group-title"><i aria-hidden="true">${order}</i>${title}</span><span class="mobile-group-indicator" aria-hidden="true">−</span></button><div class="mobile-nav-grid" id="${id}">${links.map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('')}</div></section>`;
+  return `<section class="mobile-nav-group"><button class="mobile-group-toggle" type="button" aria-expanded="true" aria-controls="${id}"><span class="mobile-group-title">${title}</span><span class="mobile-group-indicator" aria-hidden="true">−</span></button><div class="mobile-nav-grid" id="${id}">${links.map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('')}</div></section>`;
 }
 function mobileLanguage(locale,path){
   const languageLabel=locale==='tr'?'Dil':locale==='en'?'Language':locale==='el'?'Γλώσσα':'Idioma';
