@@ -181,6 +181,16 @@ function knowledgeHub(locale){
   ];
   return `<section class="section knowledge-hub" data-layer="archive"><p class="eyebrow">${t.knowledge}</p><h2>${t.knowledgeTitle}</h2><p class="lead left-lead">${t.knowledgeCopy}</p><div class="knowledge-hub-grid">${items.map(([tag,title,path])=>{const englishOnly=locale==='es'&&!spanishRouteSet.has(path);return `<a class="knowledge-hub-card" href="${href(locale,path)}"><small>${tag}</small><h3>${title}</h3>${englishOnly?`<em class="locale-note" lang="es">${t.availableEnglish}</em>`:''}<span>${t.explore} →</span></a>`}).join('')}</div></section>`;
 }
+function homePathwaysSchema(locale){
+  const items={
+    tr:[['Bugünün Gökyüzü','Gerçek zamanlı gezegen konumları ve günün belirgin açıları.','/bugunun-gokyuzu'],['Doğum Haritası','Gerçek astronomik verilerle doğum haritası hesaplama.','/astroloji'],['3 Kart Tarot','Geçmiş, şimdi ve yakın gelecek için ücretsiz sembolik açılım.','/tarot'],['Haftalık Burç','On iki burç için haftalık enerji ve farkındalık rehberi.','/haftalik-burc']],
+    en:[['Today’s Sky','Real-time planetary positions and the day’s notable aspects.','/bugunun-gokyuzu'],['Birth Chart','Birth-chart calculation based on real astronomical data.','/astroloji'],['3-Card Tarot','A free symbolic reading for past, present and near future.','/tarot'],['Weekly Horoscope','Weekly energy and reflection guidance for all twelve signs.','/haftalik-burc']],
+    el:[['Ο Σημερινός Ουρανός','Θέσεις πλανητών σε πραγματικό χρόνο και οι κύριες όψεις της ημέρας.','/bugunun-gokyuzu'],['Γενέθλιος Χάρτης','Υπολογισμός γενέθλιου χάρτη με πραγματικά αστρονομικά δεδομένα.','/astroloji'],['Ταρώ 3 Καρτών','Δωρεάν συμβολική ανάγνωση για παρελθόν, παρόν και κοντινό μέλλον.','/tarot'],['Εβδομαδιαίο Ωροσκόπιο','Εβδομαδιαία καθοδήγηση ενέργειας και στοχασμού για τα δώδεκα ζώδια.','/haftalik-burc']],
+    es:[['El cielo de hoy','Posiciones planetarias en tiempo real y aspectos destacados del día.','/bugunun-gokyuzu'],['Carta natal','Cálculo de carta natal basado en datos astronómicos reales.','/astroloji'],['Tarot de 3 cartas','Lectura simbólica gratuita para pasado, presente y futuro cercano.','/tarot'],['Horóscopo semanal','Guía semanal de energía y reflexión para los doce signos.','/haftalik-burc']]
+  }[locale];
+  return {'@context':'https://schema.org','@type':'ItemList','@id':`${SITE}${href(locale,'/')}#essential-paths`,name:locale==='tr'?'Mythborn başlangıç yolları':locale==='en'?'Mythborn essential paths':locale==='el'?'Βασικές διαδρομές Mythborn':'Rutas esenciales de Mythborn',numberOfItems:items.length,itemListElement:items.map(([name,description,path],position)=>({'@type':'ListItem',position:position+1,item:{'@type':'Thing',name,description,url:`${SITE}${href(locale,path)}`}}))};
+}
+
 function languageSwitcher(locale,path){
   return `<nav class="language-switcher" aria-label="Language"><a href="${href('tr',path)}"${locale==='tr'?' aria-current="page"':''}>TR</a><a href="${href('en',path)}"${locale==='en'?' aria-current="page"':''}>EN</a><a href="${href('el',path)}"${locale==='el'?' aria-current="page"':''}>GR</a><a href="${href('es',path)}"${locale==='es'?' aria-current="page"':''}>ES</a></nav>`;
 }
@@ -292,7 +302,7 @@ function decorate(html,locale,path,accessState,localizedPage=null){
     html=html.replace(/<title>[^<]*<\/title>/,`<title>${pageMeta.title}</title>`);
     html=upsertMetaDescription(html,pageMeta.description);
     const localizedSchema={'@context':'https://schema.org','@type':'WebPage',name:pageMeta.title,headline:pageMeta.title,description:pageMeta.description,url:canonical,inLanguage:localeInfo[locale].html,isPartOf:{'@type':'WebSite',name:'Mythborn',url:SITE}};
-    const extraSchemas=[...(discoverySchema(locale,path)||[]),...toolGuideSchema(locale,path)];
+    const extraSchemas=[...(discoverySchema(locale,path)||[]),...toolGuideSchema(locale,path),...(path==='/'?[homePathwaysSchema(locale)]:[])];
     html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace('</head>',`<script type="application/ld+json">${JSON.stringify(localizedSchema)}</script>${extraSchemas.map(schema=>`<script type="application/ld+json">${JSON.stringify(schema)}</script>`).join('')}</head>`);
   }
   const documentTitle=html.match(/<title>([^<]*)<\/title>/)?.[1]||'Mythborn';

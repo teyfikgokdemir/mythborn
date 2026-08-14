@@ -71,7 +71,22 @@ for (const urlStr of sitemapUrls) {
   }
 }
 
-// 2. High-intent tool page answer-layer audit
+// 2. Home-page discovery architecture schema audit
+for (const path of ['/', '/en', '/gr', '/es']) {
+  const res = await fetchPath(path);
+  const canonical = `https://mythborn.co${path}`;
+  if (res.status !== 200) {
+    errors.push(`[Home ItemList Status] ${path} returned HTTP ${res.status}`);
+    continue;
+  }
+  if (!res.body.includes('"@type":"ItemList"') || !res.body.includes(`"@id":"${canonical}#essential-paths"`)) {
+    errors.push(`[Home ItemList Schema] ${path} is missing its essential discovery-path ItemList`);
+  }
+  const itemListCount = (res.body.match(/"@type":"ListItem"/g) || []).length;
+  if (itemListCount < 4) errors.push(`[Home ItemList Contents] ${path} exposes fewer than four essential paths`);
+}
+
+// 3. High-intent tool page answer-layer audit
 const toolAnswerRoutes = [
   ['/astroloji', 'Doğum haritası hakkında kısa yanıtlar'],
   ['/tarot', '3 kart Tarot açılımı hakkında kısa yanıtlar'],
@@ -101,7 +116,7 @@ for (const [path, expectedHeading] of toolAnswerRoutes) {
   }
 }
 
-// 3. Multilingual blog answer-layer, editorial trust and freshness audit
+// 4. Multilingual blog answer-layer, editorial trust and freshness audit
 const sitemapBlogRoutes = sitemapUrls.map(urlStr => new URL(urlStr).pathname).filter(path => path.startsWith('/blog/'));
 for (const path of sitemapBlogRoutes) {
   if (!sitemapRes.body.includes(`<loc>https://mythborn.co${path}</loc><lastmod>`)) {
