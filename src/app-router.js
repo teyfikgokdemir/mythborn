@@ -9,6 +9,7 @@ import {corePage,coreMeta} from './core-pages.js';
 import {discoveryPage,discoveryMeta,discoverySchema} from './discovery-core.js';
 import {earlyAccessBanner,paywallPage,premiumState,routeRequiresPremium} from './premium-access.js';
 import {spanishRouteSet,spanishRoutes,loadSpanishPage} from './spanish-edition.js';
+import {vedicPage,vedicDocument,vedicMeta,vedicSchema} from './vedic-pages.js';
 
 const SITE='https://mythborn.co';
 const localeInfo={
@@ -29,7 +30,7 @@ const labels={
     daily:'Günlük Kart',tarot:'Tarot',astrology:'Astroloji',weekly:'Haftalık',explore:'Keşfet',account:'Hesabım',
     close:'Menüyü kapat',open:'Menüyü aç',menu:'Ana menü',tarotGroup:'Tarot',astroGroup:'Astroloji',exploreGroup:'Keşfet',accountGroup:'Hesap',
     login:'Giriş Yap',register:'Üye Ol',astroCentre:'Astroloji Merkezi',weeklyLong:'Haftalık Burç',sky:'Bugünün Gökyüzü',
-    synastry:'Sinastri',moon:'Ay Takvimi',library:'Astroloji Kütüphanesi',ancient:'Kadim Gökyüzü',dreams:'Rüya Yorumları',
+    synastry:'Sinastri',moon:'Ay Takvimi',library:'Astroloji Kütüphanesi',vedic:'Vedik Astroloji',ancient:'Kadim Gökyüzü',dreams:'Rüya Yorumları',
     numerology:'Numeroloji',blog:'Blog',tarotLibrary:'Tarot Ansiklopedisi',advanced:'Gelişmiş Astroloji',
     dreamSymbols:'Rüya Sembolleri',glossary:'Astroloji Sözlüğü',three:'3 Kart Tarot',love:'Aşk & Geri Dönüş',
     career:'Kariyer & Para',month:'30 Gün',katina:'Katina',knowledge:'BİLGİ MERKEZİ',
@@ -41,7 +42,7 @@ const labels={
     daily:'Daily Card',tarot:'Tarot',astrology:'Astrology',weekly:'Weekly',explore:'Explore',account:'My Account',
     close:'Close menu',open:'Open menu',menu:'Main menu',tarotGroup:'Tarot',astroGroup:'Astrology',exploreGroup:'Explore',accountGroup:'Account',
     login:'Sign In',register:'Join Free',astroCentre:'Astrology Centre',weeklyLong:'Weekly Horoscope',sky:'Today’s Sky',
-    synastry:'Synastry',moon:'Moon Calendar',library:'Birth Chart Library',ancient:'Ancient Sky',dreams:'Dream Interpretation',
+    synastry:'Synastry',moon:'Moon Calendar',library:'Birth Chart Library',vedic:'Vedic Astrology',ancient:'Ancient Sky',dreams:'Dream Interpretation',
     numerology:'Numerology',blog:'Journal',tarotLibrary:'Tarot Encyclopedia',advanced:'Advanced Astrology',
     dreamSymbols:'Dream Symbols',glossary:'Astrology Glossary',three:'3-Card Tarot',love:'Love & Reconnection',
     career:'Career & Money',month:'30-Day Reading',katina:'Katina',knowledge:'KNOWLEDGE CENTRE',
@@ -53,7 +54,7 @@ const labels={
     daily:'Ημερήσια Κάρτα',tarot:'Ταρώ',astrology:'Αστρολογία',weekly:'Εβδομαδιαίο',explore:'Εξερεύνηση',account:'Ο Λογαριασμός μου',
     close:'Κλείσιμο μενού',open:'Άνοιγμα μενού',menu:'Κύριο μενού',tarotGroup:'Ταρώ',astroGroup:'Αστρολογία',exploreGroup:'Εξερεύνηση',accountGroup:'Λογαριασμός',
     login:'Σύνδεση',register:'Δωρεάν Εγγραφή',astroCentre:'Κέντρο Αστρολογίας',weeklyLong:'Εβδομαδιαίο Ωροσκόπιο',sky:'Ο Σημερινός Ουρανός',
-    synastry:'Συναστρία',moon:'Σεληνιακό Ημερολόγιο',library:'Βιβλιοθήκη Γενέθλιου Χάρτη',ancient:'Αρχαίος Ουρανός',dreams:'Ερμηνεία Ονείρων',
+    synastry:'Συναστρία',moon:'Σεληνιακό Ημερολόγιο',library:'Βιβλιοθήκη Γενέθλιου Χάρτη',vedic:'Βεδική Αστρολογία',ancient:'Αρχαίος Ουρανός',dreams:'Ερμηνεία Ονείρων',
     numerology:'Αριθμολογία',blog:'Περιοδικό',tarotLibrary:'Εγκυκλοπαίδεια Ταρώ',advanced:'Προχωρημένη Αστρολογία',
     dreamSymbols:'Σύμβολα Ονείρων',glossary:'Γλωσσάρι Αστρολογίας',three:'Ταρώ 3 Καρτών',love:'Αγάπη & Επανασύνδεση',
     career:'Καριέρα & Χρήματα',month:'Άνοιγμα 30 Ημερών',katina:'Κατίνα',knowledge:'ΚΕΝΤΡΟ ΓΝΩΣΗΣ',
@@ -65,7 +66,7 @@ const labels={
     daily:'Carta diaria',tarot:'Tarot',astrology:'Astrología',weekly:'Semanal',explore:'Explorar',account:'Mi cuenta',
     close:'Cerrar menú',open:'Abrir menú',menu:'Menú principal',tarotGroup:'Tarot',astroGroup:'Astrología',exploreGroup:'Explorar',accountGroup:'Cuenta',
     login:'Iniciar sesión',register:'Crear cuenta',astroCentre:'Centro de astrología',weeklyLong:'Horóscopo semanal',sky:'El cielo de hoy',
-    synastry:'Sinastría',moon:'Calendario lunar',library:'Biblioteca de carta natal',ancient:'Cielo antiguo',dreams:'Interpretación de sueños',
+    synastry:'Sinastría',moon:'Calendario lunar',library:'Biblioteca de carta natal',vedic:'Astrología védica',ancient:'Cielo antiguo',dreams:'Interpretación de sueños',
     numerology:'Numerología',blog:'Revista',tarotLibrary:'Enciclopedia del Tarot',advanced:'Astrología avanzada',
     dreamSymbols:'Símbolos de sueños',glossary:'Glosario de astrología',three:'Tarot de 3 cartas',love:'Amor y reconexión',
     career:'Carrera y dinero',month:'Lectura de 30 días',katina:'Katina',knowledge:'CENTRO DE CONOCIMIENTO',
@@ -75,10 +76,18 @@ const labels={
   }
 };
 const llms={
-  tr:`# Mythborn\n\n> Mythborn; Tarot, doğum haritası, sinastri ve sembolik öz-refleksiyon için ücretsiz, çok dilli bir astroloji platformudur.\n\n## Ne sunar?\n- Gerçek astronomik gezegen konumlarıyla doğum haritası, güncel gökyüzü ve Sinastri hesaplamaları\n- Günlük Tarot, haftalık burç rehberleri ve ilişki/kişisel farkındalık açılımları\n- 78 kartlık Tarot ansiklopedisi, 42 başlıklı doğum haritası kütüphanesi, 51 rüya sembolü, 25 astroloji terimi ve Maya takvimleri dahil tarihsel gökyüzü rehberlerinden oluşan bilgi merkezi\n\n## Hesaplama yaklaşımı\nGezegen konumları Astronomy Engine ile jeosantrik ekliptik boylamlardan hesaplanır. Doğum saati biliniyorsa koordinat ve tarihsel saat dilimi kullanılarak Yükselen, MC ve Eşit Ev sistemi gösterilir.\n\n## Yorum ilkesi\nMythborn astronomik hesaplamayı sembolik yorumdan açıkça ayırır. İçerikler eğlence, eğitim ve kişisel farkındalık içindir; tıbbi, hukuki, finansal tavsiye veya kesin gelecek öngörüsü değildir.\n\n## Başlangıç noktaları\n- [Doğum haritası](https://mythborn.co/astroloji)\n- [Bugünün gökyüzü](https://mythborn.co/bugunun-gokyuzu)\n- [Tarot Ansiklopedisi](https://mythborn.co/tarot-kartlari)\n- [Astroloji Kütüphanesi](https://mythborn.co/astroloji-kutuphanesi)\n`,
-  en:`# Mythborn\n\n> Mythborn is a free multilingual platform for Tarot, birth charts, synastry, and symbolic self-reflection.\n\n## What Mythborn offers\n- Birth-chart, current-sky, and synastry calculations based on real astronomical planetary positions\n- Daily Tarot, weekly horoscope guidance, and relationship or personal-reflection readings\n- A knowledge centre with a 78-card Tarot encyclopedia, a 42-guide Birth-chart library, a 51-entry Dream-symbol encyclopedia, and 25 astrology terms\n\n## Calculation approach\nPlanetary positions are calculated with Astronomy Engine from geocentric ecliptic longitudes. When birth time is known, Mythborn uses coordinates and historical timezone resolution to show the Ascendant, MC, and Equal House system.\n\n## Interpretation principle\nMythborn clearly separates astronomical calculation from symbolic interpretation. Content supports entertainment, education, and personal reflection; it is not medical, legal, financial, or deterministic advice.\n\n## Start here\n- [Birth chart](https://mythborn.co/en/astroloji)\n- [Today’s sky](https://mythborn.co/en/bugunun-gokyuzu)\n- [Tarot encyclopedia](https://mythborn.co/en/tarot-kartlari)\n- [Birth-chart library](https://mythborn.co/en/astroloji-kutuphanesi)\n`,
-  el:`# Mythborn\n\n> Το Mythborn είναι μια δωρεάν πολύγλωσση πλατφόρμα για Ταρώ, γενέθλιους χάρτες, συναστρία και συμβολικό αυτοστοχασμό.\n\n## Τι προσφέρει\n- Υπολογισμούς γενέθλιου χάρτη, σημερινού ουρανού και συναστρίας με πραγματικές αστρονομικές θέσεις πλανητών\n- Ημερήσιο Ταρώ, εβδομαδιαία ωροσκόπια και αναγνώσεις σχέσεων ή προσωπικού στοχασμού\n- Εγκυκλοπαίδεια 78 καρτών Ταρώ, Βιβλιοθήκη γενέθλιου χάρτη με 42 οδηγούς, Εγκυκλοπαίδεια συμβόλων ονείρων με 51 καταχωρίσεις και 25 όροι αστρολογίας στο κέντρο γνώσης\n\n## Υπολογιστική προσέγγιση\nΟι πλανητικές θέσεις υπολογίζονται με το Astronomy Engine από γεωκεντρικά εκλειπτικά μήκη. Όταν η ώρα γέννησης είναι γνωστή, χρησιμοποιούνται συντεταγμένες και ιστορική ζώνη ώρας για Ωροσκόπο, Μεσουράνημα και σύστημα Ισων Οίκων.\n\n## Αρχή ερμηνείας\nΤο Mythborn διαχωρίζει ρητά τον αστρονομικό υπολογισμό από τη συμβολική ερμηνεία. Το περιεχόμενο προορίζεται για ψυχαγωγία, εκπαίδευση και προσωπικό στοχασμό· δεν αποτελεί ιατρική, νομική, οικονομική ή βέβαιη προγνωστική συμβουλή.\n\n## Ξεκίνα εδώ\n- [Γενέθλιος χάρτης](https://mythborn.co/gr/astroloji)\n- [Ο σημερινός ουρανός](https://mythborn.co/gr/bugunun-gokyuzu)\n- [Εγκυκλοπαίδεια Ταρώ](https://mythborn.co/gr/tarot-kartlari)\n- [Βιβλιοθήκη γενέθλιου χάρτη](https://mythborn.co/gr/astroloji-kutuphanesi)\n`,
-  es:`# Mythborn\n\n> Mythborn es una plataforma multilingüe gratuita para Tarot, cartas natales, sinastría y reflexión simbólica.\n\n## Qué ofrece Mythborn\n- Cálculos de carta natal, cielo actual y sinastría basados en posiciones planetarias astronómicas reales\n- Tarot diario, guía de horóscopo semanal y lecturas de relaciones o reflexión personal\n- Un centro de conocimiento con una enciclopedia de Tarot de 78 cartas, una biblioteca de carta natal, símbolos de sueños y términos de astrología\n\n## Enfoque de cálculo\nLas posiciones planetarias se calculan con Astronomy Engine a partir de longitudes eclípticas geocéntricas. Cuando se conoce la hora de nacimiento, Mythborn utiliza coordenadas y resolución histórica de zona horaria para mostrar el Ascendente, el MC y el sistema de casas iguales.\n\n## Principio de interpretación\nMythborn distingue claramente el cálculo astronómico de la interpretación simbólica. El contenido sirve para entretenimiento, educación y reflexión personal; no constituye consejo médico, jurídico, financiero ni una predicción determinista.\n\n## Empieza aquí\n- [Carta natal](https://mythborn.co/es/astroloji)\n- [El cielo de hoy](https://mythborn.co/es/bugunun-gokyuzu)\n- [Enciclopedia del Tarot](https://mythborn.co/es/tarot-kartlari)\n- [Biblioteca de carta natal](https://mythborn.co/es/astroloji-kutuphanesi)\n`
+  tr:`# Mythborn\n\n> Mythborn; Tarot, doğum haritası, sinastri ve sembolik öz-refleksiyon için ücretsiz, çok dilli bir astroloji platformudur.\n\n## Ne sunar?\n- Gerçek astronomik gezegen konumlarıyla doğum haritası, güncel gökyüzü ve Sinastri hesaplamaları\n- Günlük Tarot, haftalık burç rehberleri ve ilişki/kişisel farkındalık açılımları\n- 78 kartlık Tarot ansiklopedisi, 42 başlıklı doğum haritası kütüphanesi, 51 rüya sembolü, 25 astroloji terimi ve Maya takvimleri dahil tarihsel gökyüzü rehberlerinden oluşan bilgi merkezi\n\n## Hesaplama yaklaşımı\nGezegen konumları Astronomy Engine ile jeosantrik ekliptik boylamlardan hesaplanır. Doğum saati biliniyorsa koordinat ve tarihsel saat dilimi kullanılarak Yükselen, MC ve Eşit Ev sistemi gösterilir.\n\n## Yorum ilkesi\nMythborn astronomik hesaplamayı sembolik yorumdan açıkça ayırır. İçerikler eğlence, eğitim ve kişisel farkındalık içindir; tıbbi, hukuki, finansal tavsiye veya kesin gelecek öngörüsü değildir.\n\n## Başlangıç noktaları\n- [Doğum haritası](https://mythborn.co/astroloji)\n- [Bugünün gökyüzü](https://mythborn.co/bugunun-gokyuzu)\n- [Tarot Ansiklopedisi](https://mythborn.co/tarot-kartlari)\n- [Astroloji Kütüphanesi](https://mythborn.co/astroloji-kutuphanesi)
+- [Vedik Astroloji](https://mythborn.co/vedik-astroloji): Lahiri sidereal harita, Ay nakshatra’sı ve Vimshottari dasha bağlamı
+`,
+  en:`# Mythborn\n\n> Mythborn is a free multilingual platform for Tarot, birth charts, synastry, and symbolic self-reflection.\n\n## What Mythborn offers\n- Birth-chart, current-sky, and synastry calculations based on real astronomical planetary positions\n- Daily Tarot, weekly horoscope guidance, and relationship or personal-reflection readings\n- A knowledge centre with a 78-card Tarot encyclopedia, a 42-guide Birth-chart library, a 51-entry Dream-symbol encyclopedia, and 25 astrology terms\n\n## Calculation approach\nPlanetary positions are calculated with Astronomy Engine from geocentric ecliptic longitudes. When birth time is known, Mythborn uses coordinates and historical timezone resolution to show the Ascendant, MC, and Equal House system.\n\n## Interpretation principle\nMythborn clearly separates astronomical calculation from symbolic interpretation. Content supports entertainment, education, and personal reflection; it is not medical, legal, financial, or deterministic advice.\n\n## Start here\n- [Birth chart](https://mythborn.co/en/astroloji)\n- [Today’s sky](https://mythborn.co/en/bugunun-gokyuzu)\n- [Tarot encyclopedia](https://mythborn.co/en/tarot-kartlari)\n- [Birth-chart library](https://mythborn.co/en/astroloji-kutuphanesi)
+- [Vedic Astrology](https://mythborn.co/en/vedik-astroloji): sidereal Lahiri chart, Moon nakshatra and Vimshottari dasha context
+`,
+  el:`# Mythborn\n\n> Το Mythborn είναι μια δωρεάν πολύγλωσση πλατφόρμα για Ταρώ, γενέθλιους χάρτες, συναστρία και συμβολικό αυτοστοχασμό.\n\n## Τι προσφέρει\n- Υπολογισμούς γενέθλιου χάρτη, σημερινού ουρανού και συναστρίας με πραγματικές αστρονομικές θέσεις πλανητών\n- Ημερήσιο Ταρώ, εβδομαδιαία ωροσκόπια και αναγνώσεις σχέσεων ή προσωπικού στοχασμού\n- Εγκυκλοπαίδεια 78 καρτών Ταρώ, Βιβλιοθήκη γενέθλιου χάρτη με 42 οδηγούς, Εγκυκλοπαίδεια συμβόλων ονείρων με 51 καταχωρίσεις και 25 όροι αστρολογίας στο κέντρο γνώσης\n\n## Υπολογιστική προσέγγιση\nΟι πλανητικές θέσεις υπολογίζονται με το Astronomy Engine από γεωκεντρικά εκλειπτικά μήκη. Όταν η ώρα γέννησης είναι γνωστή, χρησιμοποιούνται συντεταγμένες και ιστορική ζώνη ώρας για Ωροσκόπο, Μεσουράνημα και σύστημα Ισων Οίκων.\n\n## Αρχή ερμηνείας\nΤο Mythborn διαχωρίζει ρητά τον αστρονομικό υπολογισμό από τη συμβολική ερμηνεία. Το περιεχόμενο προορίζεται για ψυχαγωγία, εκπαίδευση και προσωπικό στοχασμό· δεν αποτελεί ιατρική, νομική, οικονομική ή βέβαιη προγνωστική συμβουλή.\n\n## Ξεκίνα εδώ\n- [Γενέθλιος χάρτης](https://mythborn.co/gr/astroloji)\n- [Ο σημερινός ουρανός](https://mythborn.co/gr/bugunun-gokyuzu)\n- [Εγκυκλοπαίδεια Ταρώ](https://mythborn.co/gr/tarot-kartlari)\n- [Βιβλιοθήκη γενέθλιου χάρτη](https://mythborn.co/gr/astroloji-kutuphanesi)
+- [Βεδική Αστρολογία](https://mythborn.co/gr/vedik-astroloji): αστρικός χάρτης Lahiri, nakshatra της Σελήνης και πλαίσιο Vimshottari dasha
+`,
+  es:`# Mythborn\n\n> Mythborn es una plataforma multilingüe gratuita para Tarot, cartas natales, sinastría y reflexión simbólica.\n\n## Qué ofrece Mythborn\n- Cálculos de carta natal, cielo actual y sinastría basados en posiciones planetarias astronómicas reales\n- Tarot diario, guía de horóscopo semanal y lecturas de relaciones o reflexión personal\n- Un centro de conocimiento con una enciclopedia de Tarot de 78 cartas, una biblioteca de carta natal, símbolos de sueños y términos de astrología\n\n## Enfoque de cálculo\nLas posiciones planetarias se calculan con Astronomy Engine a partir de longitudes eclípticas geocéntricas. Cuando se conoce la hora de nacimiento, Mythborn utiliza coordenadas y resolución histórica de zona horaria para mostrar el Ascendente, el MC y el sistema de casas iguales.\n\n## Principio de interpretación\nMythborn distingue claramente el cálculo astronómico de la interpretación simbólica. El contenido sirve para entretenimiento, educación y reflexión personal; no constituye consejo médico, jurídico, financiero ni una predicción determinista.\n\n## Empieza aquí\n- [Carta natal](https://mythborn.co/es/astroloji)\n- [El cielo de hoy](https://mythborn.co/es/bugunun-gokyuzu)\n- [Enciclopedia del Tarot](https://mythborn.co/es/tarot-kartlari)\n- [Biblioteca de carta natal](https://mythborn.co/es/astroloji-kutuphanesi)
+- [Astrología védica](https://mythborn.co/es/vedik-astroloji): carta sideral Lahiri, nakshatra lunar y contexto de Vimshottari dasha
+`
 };
 const toolGuides={
   tr:{
@@ -121,6 +130,7 @@ const searchItems=locale=>{
   return [
     ...tarotSearchItems(sourceLocale),
     ...astrologySearchItems(sourceLocale),
+    {title:labels[locale].vedic,description:locale==='tr'?'Lahiri ayanamsha, sidereal zodyak, nakshatra ve Vimshottari dasha ile Vedik doğum haritası.':locale==='en'?'Sidereal birth chart, Lahiri ayanamsa, nakshatra and Vimshottari dasha.':locale==='el'?'Αστρικός γενέθλιος χάρτης, Lahiri ayanamsa, nakshatra και Vimshottari dasha.':'Carta natal sideral, ayanamsha Lahiri, nakshatra y Vimshottari dasha.',category:'astrology',path:'/vedik-astroloji'},
     ...dreamSearchItems(sourceLocale),
     ...glossarySearchItems(sourceLocale),
     ...(sourceLocale==='tr'?turkishBlogSearchItems():localizedBlogSearchItems(sourceLocale)),
@@ -133,7 +143,7 @@ function exploreLinks(locale){
   return [
     ['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/kadim-gokyuzu',t.ancient],['/ruya-yorumlari',t.dreams],
     ['/numeroloji',t.numerology],['/ay-takvimi',t.moon],['/blog',t.blog],['/tarot-kartlari',t.tarotLibrary],
-    ['/astroloji-kutuphanesi',t.library],['/advanced-astrology',t.advanced],['/ruya-sembolleri',t.dreamSymbols],
+    ['/astroloji-kutuphanesi',t.library],['/vedik-astroloji',t.vedic],['/advanced-astrology',t.advanced],['/ruya-sembolleri',t.dreamSymbols],
     ['/astroloji-sozlugu',t.glossary]
   ].map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('')+'<a href="/bugunun-gokyuzu" hidden aria-hidden="true" tabindex="-1"></a>';
 }
@@ -170,14 +180,14 @@ function mobileNav(locale,path='/'){
     <p class="mobile-nav-kicker">MYTHBORN · ${t.menu}</p>
     ${mobileLanguage(locale,path)}
     ${group(t.tarotGroup,[['/gunluk-kart',t.daily],['/tarot',t.three],['/ask',t.love],['/kariyer',t.career],['/otuz-gun',t.month],['/katina',t.katina]],locale,'tarot','01')}
-    ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/haftalik-burc',t.weeklyLong],['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale,'astrology','02')}
+    ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/vedik-astroloji',t.vedic],['/haftalik-burc',t.weeklyLong],['/bugunun-gokyuzu',t.sky],['/sinastri',t.synastry],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale,'astrology','02')}
     ${group(t.exploreGroup,[['/kadim-gokyuzu',t.ancient],['/ruya-yorumlari',t.dreams],['/numeroloji',t.numerology],['/blog',t.blog],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/astroloji-sozlugu',t.glossary]],locale,'explore','03')}
   </nav>`;
 }
 function knowledgeHub(locale){
   const t=labels[locale],items=[
     ['78',t.tarotLibrary,'/tarot-kartlari'],['42',t.library,'/astroloji-kutuphanesi'],['51',t.dreamSymbols,'/ruya-sembolleri'],
-    ['25',t.glossary,'/astroloji-sozlugu'],['✦',t.advanced,'/advanced-astrology'],['⌕',t.search,'/arama']
+    ['25',t.glossary,'/astroloji-sozlugu'],['☽',t.vedic,'/vedik-astroloji'],['✦',t.advanced,'/advanced-astrology'],['⌕',t.search,'/arama']
   ];
   return `<section class="section knowledge-hub" data-layer="archive"><p class="eyebrow">${t.knowledge}</p><h2>${t.knowledgeTitle}</h2><p class="lead left-lead">${t.knowledgeCopy}</p><div class="knowledge-hub-grid">${items.map(([tag,title,path])=>{const englishOnly=locale==='es'&&!spanishRouteSet.has(path);return `<a class="knowledge-hub-card" href="${href(locale,path)}"><small>${tag}</small><h3>${title}</h3>${englishOnly?`<em class="locale-note" lang="es">${t.availableEnglish}</em>`:''}<span>${t.explore} →</span></a>`}).join('')}</div></section>`;
 }
@@ -297,12 +307,13 @@ function decorate(html,locale,path,accessState,localizedPage=null){
   if(!html.includes('sponsor-band'))html=html.replace('<footer class="site-footer">',`${sponsorBand(locale)}<footer class="site-footer">`);
   const canonical=`${SITE}${href(locale,path)}`;
   const localizedMeta=locale==='es'?null:(toolGuideMeta(locale,path)||coreMeta(locale,path)||discoveryMeta(locale,path));
-  const pageMeta=localizedMeta||(localizedPage?{title:localizedPage.title,description:localizedPage.description}:null);
+  const vedicPageMeta=vedicMeta(locale,path);
+  const pageMeta=vedicPageMeta||localizedMeta||(localizedPage?{title:localizedPage.title,description:localizedPage.description}:null);
   if(pageMeta){
     html=html.replace(/<title>[^<]*<\/title>/,`<title>${pageMeta.title}</title>`);
     html=upsertMetaDescription(html,pageMeta.description);
     const localizedSchema={'@context':'https://schema.org','@type':'WebPage',name:pageMeta.title,headline:pageMeta.title,description:pageMeta.description,url:canonical,inLanguage:localeInfo[locale].html,isPartOf:{'@type':'WebSite',name:'Mythborn',url:SITE}};
-    const extraSchemas=[...(discoverySchema(locale,path)||[]),...toolGuideSchema(locale,path),...(path==='/'?[homePathwaysSchema(locale)]:[])];
+    const extraSchemas=[...(discoverySchema(locale,path)||[]),...toolGuideSchema(locale,path),...(path==='/'?[homePathwaysSchema(locale)]:[]),...((path==='/vedik-astroloji'||path==='/nakshatra-dasha')?vedicSchema(locale):[])];
     html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace('</head>',`<script type="application/ld+json">${JSON.stringify(localizedSchema)}</script>${extraSchemas.map(schema=>`<script type="application/ld+json">${JSON.stringify(schema)}</script>`).join('')}</head>`);
   }
   const documentTitle=html.match(/<title>([^<]*)<\/title>/)?.[1]||'Mythborn';
@@ -369,6 +380,7 @@ export default {
     const locale=localeFrom(incoming.pathname),clean=cleanPath(incoming.pathname,locale);
     if(locale==='es'&&clean!=='/arama'&&!spanishRouteSet.has(clean))return Response.redirect(`${SITE}/en${clean}`,302);
     if(clean==='/arama')return new Response(decorate(searchPage(locale),locale,clean,accessState),{headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html}});
+    if(clean==='/vedik-astroloji'||clean==='/nakshatra-dasha')return new Response(decorate(vedicDocument(locale,clean),locale,clean,accessState),{headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html,'cache-control':'public, max-age=300'}});
     if(await routeRequiresPremium(clean,accessState))return new Response(decorate(paywallPage(locale,clean),locale,clean,accessState),{status:200,headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html,'cache-control':'private, no-store'}});
     let forwarded=request;
     if(locale==='el'||locale==='es'){

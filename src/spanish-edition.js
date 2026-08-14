@@ -2,6 +2,8 @@ import {spanishContent} from './spanish-content-data.js';
 
 export const spanishContentRoutes=[
   '/',
+  '/vedik-astroloji',
+  '/nakshatra-dasha',
   '/gunluk-kart',
   '/tarot',
   '/ask',
