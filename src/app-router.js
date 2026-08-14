@@ -33,7 +33,7 @@ const labels={
     numerology:'Numeroloji',blog:'Blog',tarotLibrary:'Tarot Ansiklopedisi',advanced:'Gelişmiş Astroloji',
     dreamSymbols:'Rüya Sembolleri',glossary:'Astroloji Sözlüğü',three:'3 Kart Tarot',love:'Aşk & Geri Dönüş',
     career:'Kariyer & Para',month:'30 Gün',katina:'Katina',knowledge:'BİLGİ MERKEZİ',
-    knowledgeTitle:'Sembolleri ve gökyüzünü derinlemesine keşfet.',
+    knowledgeTitle:'Sembolleri ve gökyüzünü derinlemesine keşfet.',exploreIntro:'Sembolleri ve gökyüzünü keşfet.',
     knowledgeCopy:'Tarot kartları, doğum haritası, rüya sembolleri ve astroloji kavramları için kapsamlı rehberler.',
     search:'Sitede ara'
   },
@@ -45,7 +45,7 @@ const labels={
     numerology:'Numerology',blog:'Journal',tarotLibrary:'Tarot Encyclopedia',advanced:'Advanced Astrology',
     dreamSymbols:'Dream Symbols',glossary:'Astrology Glossary',three:'3-Card Tarot',love:'Love & Reconnection',
     career:'Career & Money',month:'30-Day Reading',katina:'Katina',knowledge:'KNOWLEDGE CENTRE',
-    knowledgeTitle:'Explore symbols and the sky in depth.',
+    knowledgeTitle:'Explore symbols and the sky in depth.',exploreIntro:'Explore symbols and the sky.',
     knowledgeCopy:'Comprehensive guides to Tarot cards, birth charts, dream symbols and astrology concepts.',
     search:'Search the site'
   },
@@ -57,7 +57,7 @@ const labels={
     numerology:'Αριθμολογία',blog:'Περιοδικό',tarotLibrary:'Εγκυκλοπαίδεια Ταρώ',advanced:'Προχωρημένη Αστρολογία',
     dreamSymbols:'Σύμβολα Ονείρων',glossary:'Γλωσσάρι Αστρολογίας',three:'Ταρώ 3 Καρτών',love:'Αγάπη & Επανασύνδεση',
     career:'Καριέρα & Χρήματα',month:'Άνοιγμα 30 Ημερών',katina:'Κατίνα',knowledge:'ΚΕΝΤΡΟ ΓΝΩΣΗΣ',
-    knowledgeTitle:'Εξερεύνησε σε βάθος τα σύμβολα και τον ουρανό.',
+    knowledgeTitle:'Εξερεύνησε σε βάθος τα σύμβολα και τον ουρανό.',exploreIntro:'Εξερεύνησε τα σύμβολα και τον ουρανό.',
     knowledgeCopy:'Αναλυτικοί οδηγοί για κάρτες Ταρώ, γενέθλιους χάρτες, σύμβολα ονείρων και έννοιες αστρολογίας.',
     search:'Αναζήτηση στον ιστότοπο'
   },
@@ -69,7 +69,7 @@ const labels={
     numerology:'Numerología',blog:'Revista',tarotLibrary:'Enciclopedia del Tarot',advanced:'Astrología avanzada',
     dreamSymbols:'Símbolos de sueños',glossary:'Glosario de astrología',three:'Tarot de 3 cartas',love:'Amor y reconexión',
     career:'Carrera y dinero',month:'Lectura de 30 días',katina:'Katina',knowledge:'CENTRO DE CONOCIMIENTO',
-    knowledgeTitle:'Explora los símbolos y el cielo en profundidad.',
+    knowledgeTitle:'Explora los símbolos y el cielo en profundidad.',exploreIntro:'Explora los símbolos y el cielo.',
     knowledgeCopy:'Guías completas sobre cartas del Tarot, cartas natales, símbolos de sueños y conceptos de astrología.',
     search:'Buscar en el sitio',availableEnglish:'Disponible en inglés'
   }
@@ -140,11 +140,11 @@ function exploreLinks(locale){
 function desktopNav(locale){
   const t=labels[locale];
   return `<nav class="nav desktop-nav" aria-label="${t.menu}">
-    <a class="nav-layer nav-layer-reading" href="${href(locale,'/gunluk-kart')}"><small>01</small><span>${t.daily}</span></a>
-    <a class="nav-layer nav-layer-reading" href="${href(locale,'/tarot')}"><small>02</small><span>${t.tarot}</span></a>
-    <a class="nav-layer nav-layer-sky" href="${href(locale,'/astroloji')}"><small>03</small><span>${t.astrology}</span></a>
-    <a class="nav-layer nav-layer-sky" href="${href(locale,'/haftalik-burc')}"><small>04</small><span>${t.weekly}</span></a>
-    <details class="desktop-explore nav-layer nav-layer-archive"><summary aria-haspopup="true" aria-expanded="false" aria-controls="desktop-explore-panel"><small>05</small><span>${t.explore}</span><i class="nav-chevron" aria-hidden="true"></i></summary><div class="desktop-explore-panel" id="desktop-explore-panel" role="menu"><div class="desktop-explore-intro"><small>${t.knowledge}</small><strong>${t.knowledgeTitle}</strong></div><div class="desktop-explore-links">${exploreLinks(locale)}</div></div></details>
+    <a class="nav-layer nav-layer-reading" href="${href(locale,'/gunluk-kart')}"><span>${t.daily}</span></a>
+    <a class="nav-layer nav-layer-reading" href="${href(locale,'/tarot')}"><span>${t.tarot}</span></a>
+    <a class="nav-layer nav-layer-sky" href="${href(locale,'/astroloji')}"><span>${t.astrology}</span></a>
+    <a class="nav-layer nav-layer-sky" href="${href(locale,'/haftalik-burc')}"><span>${t.weekly}</span></a>
+    <details class="desktop-explore nav-layer nav-layer-archive"><summary aria-haspopup="true" aria-expanded="false" aria-controls="desktop-explore-panel"><span>${t.explore}</span><i class="nav-chevron" aria-hidden="true"></i></summary><div class="desktop-explore-panel" id="desktop-explore-panel" role="menu"><div class="desktop-explore-intro"><small>${t.knowledge}</small><strong>${t.exploreIntro}</strong></div><div class="desktop-explore-links">${exploreLinks(locale)}</div></div></details>
   </nav>`;
 }
 function headerLanguage(locale,path){
