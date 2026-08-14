@@ -40,13 +40,13 @@ const ui={
 }[locale];
 const typeNames=ui.types;
 const pathways={
- tr:{eye:'BURADAN DEVAM ET',sky:'Bugünün gökyüzünü gör',library:'Tarot sembollerini derinleştir',chartEye:'HARİTADAN DEVAM ET',chartSky:'Bugünün gökyüzüyle karşılaştır',synastry:'Bir ilişki haritasını karşılaştır'},
- en:{eye:'CONTINUE FROM HERE',sky:'See today’s sky',library:'Explore the Tarot symbols',chartEye:'CONTINUE FROM YOUR CHART',chartSky:'Place it beside today’s sky',synastry:'Compare a relationship chart'},
- el:{eye:'ΣΥΝΕΧΙΣΕ ΑΠΟ ΕΔΩ',sky:'Δες τον σημερινό ουρανό',library:'Εξερεύνησε τα σύμβολα του Ταρώ',chartEye:'ΣΥΝΕΧΙΣΕ ΑΠΟ ΤΟΝ ΧΑΡΤΗ ΣΟΥ',chartSky:'Σύνδεσέ τον με τον σημερινό ουρανό',synastry:'Σύγκρινε έναν χάρτη σχέσης'},
- es:{eye:'CONTINÚA DESDE AQUÍ',sky:'Ver el cielo de hoy',library:'Explorar los símbolos del Tarot · en inglés',chartEye:'CONTINÚA DESDE TU CARTA',chartSky:'Compárala con el cielo de hoy',synastry:'Comparar una carta de relación'}
+ tr:{eye:'BURADAN DEVAM ET',sky:'Bugünün gökyüzünü gör',library:'Tarot sembollerini derinleştir',chartEye:'HARİTADAN DEVAM ET',chartSky:'Bugünün gökyüzüyle karşılaştır',synastry:'Bir ilişki haritasını karşılaştır',vedic:'Vedik haritayla karşılaştır'},
+ en:{eye:'CONTINUE FROM HERE',sky:'See today’s sky',library:'Explore the Tarot symbols',chartEye:'CONTINUE FROM YOUR CHART',chartSky:'Place it beside today’s sky',synastry:'Compare a relationship chart',vedic:'Compare with a Vedic chart'},
+ el:{eye:'ΣΥΝΕΧΙΣΕ ΑΠΟ ΕΔΩ',sky:'Δες τον σημερινό ουρανό',library:'Εξερεύνησε τα σύμβολα του Ταρώ',chartEye:'ΣΥΝΕΧΙΣΕ ΑΠΟ ΤΟΝ ΧΑΡΤΗ ΣΟΥ',chartSky:'Σύνδεσέ τον με τον σημερινό ουρανό',synastry:'Σύγκρινε έναν χάρτη σχέσης',vedic:'Σύγκρινε με βεδικό χάρτη'},
+ es:{eye:'CONTINÚA DESDE AQUÍ',sky:'Ver el cielo de hoy',library:'Explorar los símbolos del Tarot · en inglés',chartEye:'CONTINÚA DESDE TU CARTA',chartSky:'Compárala con el cielo de hoy',synastry:'Comparar una carta de relación',vedic:'Comparar con una carta védica'}
 }[locale];
 const pathwayLinks=()=>`<aside class="reading-pathways"><p>${pathways.eye}</p><nav aria-label="${pathways.eye}"><a href="${prefix}/bugunun-gokyuzu">${pathways.sky}<span aria-hidden="true">→</span></a><a href="${locale==='es'?'/en/tarot-kartlari':`${prefix}/tarot-kartlari`}">${pathways.library}<span aria-hidden="true">→</span></a></nav></aside>`;
-const chartPathwayLinks=()=>`<aside class="reading-pathways"><p>${pathways.chartEye}</p><nav aria-label="${pathways.chartEye}"><a href="${prefix}/bugunun-gokyuzu">${pathways.chartSky}<span aria-hidden="true">→</span></a><a href="${prefix}/sinastri">${pathways.synastry}<span aria-hidden="true">→</span></a></nav></aside>`;
+const chartPathwayLinks=()=>`<aside class="reading-pathways"><p>${pathways.chartEye}</p><nav aria-label="${pathways.chartEye}"><a href="${prefix}/bugunun-gokyuzu">${pathways.chartSky}<span aria-hidden="true">→</span></a><a href="${prefix}/sinastri">${pathways.synastry}<span aria-hidden="true">→</span></a><a href="${prefix}/vedik-astroloji">${pathways.vedic}<span aria-hidden="true">→</span></a></nav></aside>`;
 const majorNames={
  en:['The Fool','The Magician','The High Priestess','The Empress','The Emperor','The Hierophant','The Lovers','The Chariot','Strength','The Hermit','Wheel of Fortune','Justice','The Hanged Man','Death','Temperance','The Devil','The Tower','The Star','The Moon','The Sun','Judgement','The World'],
  el:['Ο Τρελός','Ο Μάγος','Η Αρχιέρεια','Η Αυτοκράτειρα','Ο Αυτοκράτορας','Ο Ιεροφάντης','Οι Εραστές','Το Άρμα','Η Δύναμη','Ο Ερημίτης','Ο Τροχός της Τύχης','Η Δικαιοσύνη','Ο Κρεμασμένος','Ο Θάνατος','Η Εγκράτεια','Ο Διάβολος','Ο Πύργος','Το Άστρο','Η Σελήνη','Ο Ήλιος','Η Κρίση','Ο Κόσμος'],
