@@ -38,3 +38,16 @@
 @media(min-width:1001px){.premium-home-hero>.hero-sky-card{min-height:744px}}
 @media(max-width:640px){.premium-home-hero{padding-inline:16px!important}.hero-sky-card{padding:18px}.live-sky-heading{display:grid}.live-sky-heading>a{white-space:normal}.live-sky-frame{margin:0 auto}.sky-skeleton{min-height:420px}.home-today-primary{min-height:330px;padding:26px 22px}.home-today-rail{grid-template-columns:1fr}.home-today-rail a{min-height:0}.featured-list a{grid-template-columns:32px minmax(0,1fr) auto;gap:10px}.ancient-editorial{padding:30px 20px}}
 @media(prefers-reduced-motion:reduce){.sky-skeleton-wheel::before,.sky-skeleton-wheel::after{animation:none}}
+
+/* Mobile home sky: preserve a complete sky preview without the desktop card’s empty vertical silhouette. */
+@media(max-width:640px){
+  .premium-home-hero>.hero-sky-card{
+    width:100%!important;
+    min-height:0!important;
+    margin-top:10px!important;
+    padding:18px!important;
+    align-self:stretch!important;
+  }
+  .premium-home-hero .sky-skeleton{min-height:264px!important}
+  .premium-home-hero .live-sky-frame{width:min(100%,280px)!important}
+}

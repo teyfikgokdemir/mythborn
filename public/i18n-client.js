@@ -1,8 +1,8 @@
 (()=>{
-  const locale=window.MYTHBORN_LOCALE||(location.pathname==='/en'||location.pathname.startsWith('/en/')?'en':location.pathname==='/gr'||location.pathname.startsWith('/gr/')?'el':'tr');
-  const prefix=locale==='tr'?'':locale==='en'?'/en':'/gr';
+  const locale=window.MYTHBORN_LOCALE||(location.pathname==='/en'||location.pathname.startsWith('/en/')?'en':location.pathname==='/gr'||location.pathname.startsWith('/gr/')?'el':location.pathname==='/es'||location.pathname.startsWith('/es/')?'es':'tr');
+  const prefix=locale==='tr'?'':locale==='en'?'/en':locale==='es'?'/es':'/gr';
   const localizeHref=href=>{
-    if(!prefix||!href||!href.startsWith('/')||href.startsWith('//')||href.startsWith('/api/')||href.startsWith('/images/')||href==='/en'||href.startsWith('/en/')||href==='/gr'||href.startsWith('/gr/'))return href;
+    if(!prefix||!href||!href.startsWith('/')||href.startsWith('//')||href.startsWith('/api/')||href.startsWith('/images/')||href==='/en'||href.startsWith('/en/')||href==='/gr'||href.startsWith('/gr/')||href==='/es'||href.startsWith('/es/'))return href;
     return `${prefix}${href==='/'?'':href}`;
   };
   const localizeLinks=root=>{

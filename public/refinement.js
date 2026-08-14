@@ -1,5 +1,5 @@
 (()=>{
-  const locale=window.MYTHBORN_LOCALE||((location.pathname==='/en'||location.pathname.startsWith('/en/'))?'en':(location.pathname==='/gr'||location.pathname.startsWith('/gr/'))?'el':'tr');
+  const locale=window.MYTHBORN_LOCALE||((location.pathname==='/en'||location.pathname.startsWith('/en/'))?'en':(location.pathname==='/gr'||location.pathname.startsWith('/gr/'))?'el':(location.pathname==='/es'||location.pathname.startsWith('/es/'))?'es':'tr');
   document.querySelectorAll('h1').forEach(title=>{if(title.textContent.trim().length>46)title.classList.add('is-long-title')});
 
   document.querySelectorAll('[data-tarot-filter]').forEach(button=>button.addEventListener('click',()=>{
@@ -17,7 +17,7 @@
       await fetch('/api/auth/request-password-reset',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:new FormData(form).get('email')})});
       message.textContent=message.dataset.success;
     }catch{
-      message.textContent=locale==='tr'?'İstek şu anda gönderilemedi. Lütfen tekrar dene.':locale==='en'?'The request could not be sent. Please try again.':'Το αίτημα δεν στάλθηκε. Δοκίμασε ξανά.';
+      message.textContent=locale==='tr'?'İstek şu anda gönderilemedi. Lütfen tekrar dene.':locale==='en'?'The request could not be sent. Please try again.':locale==='es'?'La solicitud no se pudo enviar. Inténtalo de nuevo.':'Το αίτημα δεν στάλθηκε. Δοκίμασε ξανά.';
     }finally{button.disabled=false}
   }));
   document.querySelectorAll('[data-password-toggle]').forEach(button=>button.addEventListener('click',()=>{
@@ -26,7 +26,7 @@
     const reveal=input.type==='password';
     input.type=reveal?'text':'password';
     button.setAttribute('aria-pressed',String(reveal));
-    button.setAttribute('aria-label',locale==='tr'?(reveal?'Şifreyi gizle':'Şifreyi göster'):locale==='en'?(reveal?'Hide password':'Show password'):(reveal?'Απόκρυψη κωδικού':'Εμφάνιση κωδικού'));
+    button.setAttribute('aria-label',locale==='tr'?(reveal?'Şifreyi gizle':'Şifreyi göster'):locale==='en'?(reveal?'Hide password':'Show password'):locale==='es'?(reveal?'Ocultar contraseña':'Mostrar contraseña'):(reveal?'Απόκρυψη κωδικού':'Εμφάνιση κωδικού'));
     input.focus({preventScroll:true});
   }));
 
@@ -37,12 +37,12 @@
 
   const sky=document.querySelector('[data-current-sky]');
   if(sky&&/hesap|calculat|υπολογ/i.test(sky.textContent)){
-    const status=locale==='tr'?'Güncel gezegen konumları hesaplanıyor…':locale==='en'?'Calculating current planetary positions…':'Υπολογίζονται οι τρέχουσες πλανητικές θέσεις…';
+    const status=locale==='tr'?'Güncel gezegen konumları hesaplanıyor…':locale==='en'?'Calculating current planetary positions…':locale==='es'?'Calculando las posiciones planetarias actuales…':'Υπολογίζονται οι τρέχουσες πλανητικές θέσεις…';
     sky.innerHTML=`<div class="sky-skeleton" role="status"><span></span><span></span><span></span><span></span><p>${status}</p></div>`;
     setTimeout(()=>{
       if(!sky.querySelector('.sky-skeleton'))return;
-      const label=locale==='tr'?'Hesaplama uzun sürüyor. Yeniden dene':locale==='en'?'Calculation is taking longer. Try again':'Ο υπολογισμός καθυστερεί. Δοκίμασε ξανά';
-      sky.querySelector('p').innerHTML=`${label} <button class="btn btn-ghost" type="button" data-sky-retry>${locale==='tr'?'Yeniden dene':locale==='en'?'Retry':'Επανάληψη'}</button>`;
+      const label=locale==='tr'?'Hesaplama uzun sürüyor. Yeniden dene':locale==='en'?'Calculation is taking longer. Try again':locale==='es'?'El cálculo está tardando más. Inténtalo de nuevo':'Ο υπολογισμός καθυστερεί. Δοκίμασε ξανά';
+      sky.querySelector('p').innerHTML=`${label} <button class="btn btn-ghost" type="button" data-sky-retry>${locale==='tr'?'Yeniden dene':locale==='en'?'Retry':locale==='es'?'Reintentar':'Επανάληψη'}</button>`;
       sky.querySelector('[data-sky-retry]').addEventListener('click',()=>location.reload());
     },8000);
   }
@@ -73,7 +73,8 @@
   const copy={
     tr:{eye:'GİZLİLİK TERCİHLERİ',title:'Kontrol sende.',body:'Zorunlu çerezler güvenli oturum ve tercihlerin için gereklidir. İsteğe bağlı analitik yalnız izninle etkinleşir.',essential:'Zorunlu çerezler · her zaman açık',analytics:'Anonim kullanım analitiğine izin ver',accept:'Tümünü kabul et',reject:'Yalnız zorunlu',save:'Tercihi kaydet'},
     en:{eye:'PRIVACY PREFERENCES',title:'You are in control.',body:'Essential cookies support secure sessions and saved preferences. Optional analytics is enabled only with your permission.',essential:'Essential cookies · always on',analytics:'Allow anonymous usage analytics',accept:'Accept all',reject:'Essential only',save:'Save preference'},
-    el:{eye:'ΠΡΟΤΙΜΗΣΕΙΣ ΑΠΟΡΡΗΤΟΥ',title:'Εσύ έχεις τον έλεγχο.',body:'Τα απαραίτητα cookies υποστηρίζουν ασφαλείς συνεδρίες και αποθηκευμένες προτιμήσεις. Τα προαιρετικά analytics ενεργοποιούνται μόνο με άδεια.',essential:'Απαραίτητα cookies · πάντα ενεργά',analytics:'Να επιτρέπονται ανώνυμα analytics χρήσης',accept:'Αποδοχή όλων',reject:'Μόνο απαραίτητα',save:'Αποθήκευση προτίμησης'}
+    el:{eye:'ΠΡΟΤΙΜΗΣΕΙΣ ΑΠΟΡΡΗΤΟΥ',title:'Εσύ έχεις τον έλεγχο.',body:'Τα απαραίτητα cookies υποστηρίζουν ασφαλείς συνεδρίες και αποθηκευμένες προτιμήσεις. Τα προαιρετικά analytics ενεργοποιούνται μόνο με άδεια.',essential:'Απαραίτητα cookies · πάντα ενεργά',analytics:'Να επιτρέπονται ανώνυμα analytics χρήσης',accept:'Αποδοχή όλων',reject:'Μόνο απαραίτητα',save:'Αποθήκευση προτίμησης'},
+    es:{eye:'PREFERENCIAS DE PRIVACIDAD',title:'Tú tienes el control.',body:'Las cookies esenciales permiten sesiones seguras y preferencias guardadas. La analítica opcional solo se activa con tu permiso.',essential:'Cookies esenciales · siempre activas',analytics:'Permitir analítica de uso anónima',accept:'Aceptar todo',reject:'Solo esenciales',save:'Guardar preferencia'}
   }[locale];
   const dialog=document.createElement('div');
   dialog.className='consent-dialog';

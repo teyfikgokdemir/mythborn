@@ -1,6 +1,6 @@
 (()=>{
   const locale=window.MYTHBORN_LOCALE||'tr';
-  const a11y={tr:{show:'Şifreyi göster',hide:'Şifreyi gizle',skip:'Ana içeriğe geç'},en:{show:'Show password',hide:'Hide password',skip:'Skip to main content'},el:{show:'Εμφάνιση κωδικού',hide:'Απόκρυψη κωδικού',skip:'Μετάβαση στο κύριο περιεχόμενο'}}[locale];
+  const a11y={tr:{show:'Şifreyi göster',hide:'Şifreyi gizle',skip:'Ana içeriğe geç'},en:{show:'Show password',hide:'Hide password',skip:'Skip to main content'},el:{show:'Εμφάνιση κωδικού',hide:'Απόκρυψη κωδικού',skip:'Μετάβαση στο κύριο περιεχόμενο'},es:{show:'Mostrar contraseña',hide:'Ocultar contraseña',skip:'Saltar al contenido principal'}}[locale]||{show:'Show password',hide:'Hide password',skip:'Skip to main content'};
   const originalFetch=window.fetch.bind(window);
   window.fetch=(input,init={})=>{
     try{

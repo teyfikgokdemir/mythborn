@@ -3,7 +3,7 @@ import {longitudePoint,normalizeLongitude,strongestAspect,visualPlanetRadii} fro
 const root=document.querySelector('[data-home-sky]');
 if(root){
   const locale=window.MYTHBORN_LOCALE||'tr';
-  const prefix=locale==='tr'?'':locale==='en'?'/en':'/gr';
+  const prefix=locale==='tr'?'':locale==='en'?'/en':locale==='es'?'/es':'/gr';
   const translations={
     tr:{
       eye:'BUGÜNÜN GÖKYÜZÜ',updated:'Gerçek veri',sun:'Güneş',moon:'Ay',
@@ -28,6 +28,14 @@ if(root){
       aspectSummary:(from,to,type)=>`Η ισχυρότερη όψη είναι ${type} μεταξύ ${from} και ${to}.`,
       all:'Προβολή όλων των θέσεων',retry:'Νέα προσπάθεια',
       error:'Ο σημερινός ουρανός δεν μπορεί να εμφανιστεί αυτή τη στιγμή. Οι υπόλοιπες εμπειρίες του Mythborn παραμένουν διαθέσιμες.'
+    },
+    es:{
+      eye:'EL CIELO DE HOY',updated:'Datos en directo',sun:'Sol',moon:'Luna',
+      aspect:'Aspecto más destacado',none:'No hay un aspecto mayor dentro del orbe definido',
+      summary:(sun,moon,aspect)=>`En el cielo de hoy, el Sol está en ${sun} y la Luna en ${moon}. ${aspect}`,
+      aspectSummary:(from,to,type)=>`El aspecto más destacado es ${type} entre ${from} y ${to}.`,
+      all:'Ver todas las posiciones',retry:'Intentarlo de nuevo',
+      error:'El cielo actual no puede mostrarse en este momento. Las demás experiencias de Mythborn siguen disponibles.'
     }
   };
   const greekSignPhrase={'Koç':'στον Κριό','Boğa':'στον Ταύρο','İkizler':'στους Διδύμους','Yengeç':'στον Καρκίνο','Aslan':'στον Λέοντα','Başak':'στην Παρθένο','Terazi':'στον Ζυγό','Akrep':'στον Σκορπιό','Yay':'στον Τοξότη','Oğlak':'στον Αιγόκερω','Kova':'στον Υδροχόο','Balık':'στους Ιχθύες'};
@@ -35,7 +43,8 @@ if(root){
   const greekAspectPhrase={conjunction:'η σύνοδος',opposition:'η αντίθεση',square:'το τετράγωνο',trine:'το τρίγωνο',sextile:'το εξάγωνο'};
   const names={
     en:{'Güneş':'Sun','Ay':'Moon','Merkür':'Mercury','Venüs':'Venus','Mars':'Mars','Jüpiter':'Jupiter','Satürn':'Saturn','Uranüs':'Uranus','Neptün':'Neptune','Plüton':'Pluto','Koç':'Aries','Boğa':'Taurus','İkizler':'Gemini','Yengeç':'Cancer','Aslan':'Leo','Başak':'Virgo','Terazi':'Libra','Akrep':'Scorpio','Yay':'Sagittarius','Oğlak':'Capricorn','Kova':'Aquarius','Balık':'Pisces',conjunction:'conjunction',opposition:'opposition',square:'square',trine:'trine',sextile:'sextile'},
-    el:{'Güneş':'Ήλιος','Ay':'Σελήνη','Merkür':'Ερμής','Venüs':'Αφροδίτη','Mars':'Άρης','Jüpiter':'Δίας','Satürn':'Κρόνος','Uranüs':'Ουρανός','Neptün':'Ποσειδώνας','Plüton':'Πλούτωνας','Koç':'Κριός','Boğa':'Ταύρος','İkizler':'Δίδυμοι','Yengeç':'Καρκίνος','Aslan':'Λέων','Başak':'Παρθένος','Terazi':'Ζυγός','Akrep':'Σκορπιός','Yay':'Τοξότης','Oğlak':'Αιγόκερως','Kova':'Υδροχόος','Balık':'Ιχθύες',conjunction:'σύνοδο',opposition:'αντίθεση',square:'τετράγωνο',trine:'τρίγωνο',sextile:'εξάγωνο'}
+    el:{'Güneş':'Ήλιος','Ay':'Σελήνη','Merkür':'Ερμής','Venüs':'Αφροδίτη','Mars':'Άρης','Jüpiter':'Δίας','Satürn':'Κρόνος','Uranüs':'Ουρανός','Neptün':'Ποσειδώνας','Plüton':'Πλούτωνας','Koç':'Κριός','Boğa':'Ταύρος','İkizler':'Δίδυμοι','Yengeç':'Καρκίνος','Aslan':'Λέων','Başak':'Παρθένος','Terazi':'Ζυγός','Akrep':'Σκορπιός','Yay':'Τοξότης','Oğlak':'Αιγόκερως','Kova':'Υδροχόος','Balık':'Ιχθύες',conjunction:'σύνοδο',opposition:'αντίθεση',square:'τετράγωνο',trine:'τρίγωνο',sextile:'εξάγωνο'},
+    es:{'Güneş':'Sol','Ay':'Luna','Merkür':'Mercurio','Venüs':'Venus','Mars':'Marte','Jüpiter':'Júpiter','Satürn':'Saturno','Uranüs':'Urano','Neptün':'Neptuno','Plüton':'Plutón','Koç':'Aries','Boğa':'Tauro','İkizler':'Géminis','Yengeç':'Cáncer','Aslan':'Leo','Başak':'Virgo','Terazi':'Libra','Akrep':'Escorpio','Yay':'Sagitario','Oğlak':'Capricornio','Kova':'Acuario','Balık':'Piscis',conjunction:'conjunción',opposition:'oposición',square:'cuadratura',trine:'trígono',sextile:'sextil'}
   };
   const symbols={'Güneş':'☉','Ay':'☽','Merkür':'☿','Venüs':'♀','Mars':'♂','Jüpiter':'♃','Satürn':'♄','Uranüs':'♅','Neptün':'♆','Plüton':'♇'};
   const signs=['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
@@ -53,7 +62,7 @@ if(root){
     const aspect=strongestAspect(planets),radii=visualPlanetRadii(planets);
     const sun=planets.find(planet=>planet.name==='Güneş'),moon=planets.find(planet=>planet.name==='Ay');
     if(!sun||!moon)throw new Error('missing luminaries');
-    const date=new Intl.DateTimeFormat(locale==='tr'?'tr-TR':locale==='en'?'en-GB':'el-GR',{dateStyle:'medium',timeStyle:'short',timeZone:'Europe/Istanbul'}).format(new Date(data.calculatedAt));
+    const date=new Intl.DateTimeFormat(locale==='tr'?'tr-TR':locale==='en'?'en-GB':locale==='es'?'es-ES':'el-GR',{dateStyle:'medium',timeStyle:'short',timeZone:'Europe/Istanbul'}).format(new Date(data.calculatedAt));
     const aspectText=aspect?t.aspectSummary(
       locale==='el'?(greekPlanetCase[aspect.from.name]||term(aspect.from.name)):term(aspect.from.name),
       locale==='el'?(greekPlanetCase[aspect.to.name]||term(aspect.to.name)):term(aspect.to.name),
@@ -76,7 +85,7 @@ if(root){
       const point=longitudePoint(normalizeLongitude(planet.longitude),radii[index]);
       return `<g class="sky-planet"><circle cx="${point.x}" cy="${point.y}" r="11"></circle><text x="${point.x}" y="${point.y}">${symbols[planet.name]||'•'}</text></g>`;
     }).join('');
-    root.innerHTML=`<div class="live-sky-heading"><div><p class="eyebrow">${t.eye}</p><p class="live-sky-time">${escape(t.updated)} · <time datetime="${escape(data.calculatedAt)}">${escape(date)}</time></p></div><a href="${prefix}/bugunun-gokyuzu">${t.all} →</a></div><div class="live-sky-frame"><svg class="live-sky-wheel" viewBox="0 0 320 320" width="320" height="320" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><circle class="sky-orbit" cx="160" cy="160" r="142"></circle><g class="sky-sectors">${sectors}</g><circle class="sky-inner" cx="160" cy="160" r="111"></circle>${aspectLine}<g class="sky-planets">${points}</g><circle class="sky-core" cx="160" cy="160" r="54"></circle><text class="sky-core-sun" x="160" y="153">${symbols['Güneş']}</text><text class="sky-core-date" x="160" y="177">${escape(new Intl.DateTimeFormat(locale==='tr'?'tr-TR':locale==='en'?'en-GB':'el-GR',{day:'2-digit',month:'short',timeZone:'Europe/Istanbul'}).format(new Date(data.calculatedAt)))}</text></svg></div><div class="live-sky-copy"><h2>${escape(term(sun.sign))} · ${escape(term(moon.sign))}</h2><p>${escape(accessible)}</p><p class="live-sky-aspect"><strong>${t.aspect}:</strong> ${escape(aspectText)}${aspect?` · orb ${aspect.exactOrb.toFixed(2)}°`:''}</p></div>`;
+    root.innerHTML=`<div class="live-sky-heading"><div><p class="eyebrow">${t.eye}</p><p class="live-sky-time">${escape(t.updated)} · <time datetime="${escape(data.calculatedAt)}">${escape(date)}</time></p></div><a href="${prefix}/bugunun-gokyuzu">${t.all} →</a></div><div class="live-sky-frame"><svg class="live-sky-wheel" viewBox="0 0 320 320" width="320" height="320" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false"><circle class="sky-orbit" cx="160" cy="160" r="142"></circle><g class="sky-sectors">${sectors}</g><circle class="sky-inner" cx="160" cy="160" r="111"></circle>${aspectLine}<g class="sky-planets">${points}</g><circle class="sky-core" cx="160" cy="160" r="54"></circle><text class="sky-core-sun" x="160" y="153">${symbols['Güneş']}</text><text class="sky-core-date" x="160" y="177">${escape(new Intl.DateTimeFormat(locale==='tr'?'tr-TR':locale==='en'?'en-GB':locale==='es'?'es-ES':'el-GR',{day:'2-digit',month:'short',timeZone:'Europe/Istanbul'}).format(new Date(data.calculatedAt)))}</text></svg></div><div class="live-sky-copy"><h2>${escape(term(sun.sign))} · ${escape(term(moon.sign))}</h2><p>${escape(accessible)}</p><p class="live-sky-aspect"><strong>${t.aspect}:</strong> ${escape(aspectText)}${aspect?` · orb ${aspect.exactOrb.toFixed(2)}°`:''}</p></div>`;
     root.setAttribute('aria-busy','false');
   };
   const showError=()=>{

@@ -275,7 +275,7 @@ function decorate(html,locale,path,accessState,localizedPage=null){
   if(!html.includes('mobile-menu-button'))html=html.replace('</header>',`<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale,path)}`);
   if(!html.includes('site-footer'))html=html.replace('</main>',`</main>${footer(locale)}`);
   html=html.replace(/<nav class="(?:language-switcher|lang)"[\s\S]*?<\/nav>/g,'');
-  if(!html.includes('skip-link'))html=html.replace(/<body([^>]*)>/,`<body$1><a class="skip-link" href="#ana-icerik">${locale==='tr'?'Ana içeriğe geç':locale==='en'?'Skip to main content':'Μετάβαση στο κύριο περιεχόμενο'}</a>`);
+  if(!html.includes('skip-link'))html=html.replace(/<body([^>]*)>/,`<body$1><a class="skip-link" href="#ana-icerik">${locale==='tr'?'Ana içeriğe geç':locale==='en'?'Skip to main content':locale==='el'?'Μετάβαση στο κύριο περιεχόμενο':'Saltar al contenido principal'}</a>`);
   html=html.replace(/<body([^>]*)>/,`<body$1 data-route="${path}">`);
   const accessBanner=earlyAccessBanner(locale,accessState);
   if(accessBanner&&!html.includes('data-early-access'))html=html.replace(/<body([^>]*)>/,`<body$1>${accessBanner}`);
@@ -309,7 +309,10 @@ function decorate(html,locale,path,accessState,localizedPage=null){
     .replace('</head>',`${criticalAccessCss}<link rel="canonical" href="${canonical}">${alternateLinks}<link rel="stylesheet" href="/mobile-menu-clean.css"><link rel="stylesheet" href="/cinematic.css">${path==='/'?'<link rel="stylesheet" href="/home-experience.css">':''}${heroPreload}<meta property="og:locale" content="${locale==='tr'?'tr_TR':locale==='en'?'en_US':locale==='el'?'el_GR':'es_ES'}"><meta property="og:title" content="${pageTitle}"><meta property="og:description" content="${pageDescription}"><meta property="og:image" content="${socialImage}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="${socialImageAlt[locale]}"><meta name="twitter:title" content="${pageTitle}"><meta name="twitter:description" content="${pageDescription}"><meta name="twitter:image" content="${socialImage}"><meta name="twitter:image:alt" content="${socialImageAlt[locale]}"></head>`);
   if(!html.includes('SearchAction'))html=html.replace('</head>',`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Mythborn',url:SITE,potentialAction:{'@type':'SearchAction',target:`${SITE}${href(locale,'/arama')}?q={search_term_string}`,'query-input':'required name=search_term_string'}})}</script></head>`);
   html=html.replace('</head>',`<script>window.MYTHBORN_LOCALE=${JSON.stringify(locale)}</script></head>`);
-  if(locale!=='tr'&&locale!=='es'&&discoveryPage(locale,path)){
+  const needsDiscoveryClient=locale==='es'
+    ?['/bugunun-gokyuzu','/ay-takvimi','/sinastri'].includes(path)
+    :Boolean(discoveryPage(locale,path));
+  if(locale!=='tr'&&needsDiscoveryClient){
     html=html.replace(/<script src="\/(?:discover|sky|synastry)\.js" defer><\/script>/g,'');
     html=html.replace('</body>','<script src="/discovery-localized.js" defer></script></body>');
   }
