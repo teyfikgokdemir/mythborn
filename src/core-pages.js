@@ -68,7 +68,7 @@ function home(locale){
   return `<main class="localized-home" data-server-home>
     <section class="oracle-hero premium-home-hero">
       <div><p class="eyebrow">${t.eyebrow}</p><h1>${t.title}<em>${t.em}</em></h1><p class="lead">${t.lead}</p><div class="actions">${link(locale,'/gunluk-kart',t.daily,'btn btn-primary')}${link(locale,'/bugunun-gokyuzu',t.sky,'btn btn-secondary')}${link(locale,'/astroloji',t.chart,'btn btn-tertiary')}</div></div>
-      <aside class="hero-sky-card" data-home-sky aria-busy="true"><div class="sky-skeleton" aria-hidden="true"><div class="sky-skeleton-wheel"></div></div></aside>
+      <aside class="hero-sky-card" data-home-sky aria-busy="true" aria-live="polite"><div class="sky-skeleton" aria-hidden="true"><div class="sky-skeleton-wheel"></div></div></aside>
     </section>
     <section class="section home-today" data-layer="sky" aria-labelledby="home-today-title"><div class="home-today-layout"><a class="home-today-primary" href="${localePath(locale,todayItems[0][3])}"><span class="today-symbol" aria-hidden="true">☉</span><p class="eyebrow">${today[0]}</p><h2 id="home-today-title">${todayItems[0][1]}</h2><p>${todayItems[0][2]}</p><span>${t.discover}</span></a><div class="home-today-rail">${todayRail}</div></div></section>
     <section class="section home-featured" data-layer="symbolic"><div class="featured-layout"><div class="featured-intro"><p class="eyebrow">${featured[0]}</p><h2>${featured[1]}</h2><p>${featured[2]}</p></div><nav class="featured-list" aria-label="${featured[0]}">${featuredList}</nav></div></section>

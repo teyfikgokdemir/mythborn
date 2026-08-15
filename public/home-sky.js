@@ -10,7 +10,7 @@ if(root){
       aspect:'En güçlü açı',none:'Dar orb içinde majör açı yok',
       summary:(sun,moon,aspect)=>`Bugünün gökyüzünde Güneş ${sun}, Ay ${moon}. ${aspect}`,
       aspectSummary:(from,to,type)=>`En güçlü açı ${from} ile ${to} arasındaki ${type}.`,
-      all:'Tüm konumları gör',context:'BU GÖKYÜZÜNÜ KENDİ HARİTANLA BAĞLA',chart:'Doğum haritamda gör',weekly:'Bu haftanın ritmi',retry:'Yeniden dene',
+      all:'Tüm konumları gör',context:'BU GÖKYÜZÜNÜ KENDİ HARİTANLA BAĞLA',chart:'Doğum haritamda gör',weekly:'Bu haftanın ritmi',retry:'Yeniden dene',fallbackDaily:'Günlük kartı aç',fallbackChart:'Doğum haritasını çıkar',
       error:'Güncel gökyüzü şu anda görüntülenemiyor. Diğer Mythborn deneyimleri kullanılabilir.'
     },
     en:{
@@ -18,7 +18,7 @@ if(root){
       aspect:'Strongest aspect',none:'No major aspect within the defined orb',
       summary:(sun,moon,aspect)=>`In today’s sky, the Sun is in ${sun} and the Moon is in ${moon}. ${aspect}`,
       aspectSummary:(from,to,type)=>`The strongest aspect is the ${type} between ${from} and ${to}.`,
-      all:'View all positions',context:'PLACE THIS SKY IN CONTEXT',chart:'See it in my birth chart',weekly:'Read the week ahead',retry:'Try again',
+      all:'View all positions',context:'PLACE THIS SKY IN CONTEXT',chart:'See it in my birth chart',weekly:'Read the week ahead',retry:'Try again',fallbackDaily:'Draw today’s card',fallbackChart:'Calculate a birth chart',
       error:'The current sky cannot be displayed right now. Other Mythborn experiences remain available.'
     },
     el:{
@@ -26,7 +26,7 @@ if(root){
       aspect:'Ισχυρότερη όψη',none:'Δεν υπάρχει κύρια όψη εντός του καθορισμένου ορίου',
       summary:(sun,moon,aspect)=>`Στον σημερινό ουρανό, ο Ήλιος βρίσκεται ${sun} και η Σελήνη ${moon}. ${aspect}`,
       aspectSummary:(from,to,type)=>`Η ισχυρότερη όψη είναι ${type} μεταξύ ${from} και ${to}.`,
-      all:'Προβολή όλων των θέσεων',context:'ΒΑΛΕ ΤΟΝ ΟΥΡΑΝΟ ΣΤΟ ΠΡΟΣΩΠΙΚΟ ΣΟΥ ΠΛΑΙΣΙΟ',chart:'Δες τον στον γενέθλιο χάρτη μου',weekly:'Δες τον ρυθμό της εβδομάδας',retry:'Νέα προσπάθεια',
+      all:'Προβολή όλων των θέσεων',context:'ΒΑΛΕ ΤΟΝ ΟΥΡΑΝΟ ΣΤΟ ΠΡΟΣΩΠΙΚΟ ΣΟΥ ΠΛΑΙΣΙΟ',chart:'Δες τον στον γενέθλιο χάρτη μου',weekly:'Δες τον ρυθμό της εβδομάδας',retry:'Νέα προσπάθεια',fallbackDaily:'Τράβηξε την κάρτα της ημέρας',fallbackChart:'Υπολόγισε γενέθλιο χάρτη',
       error:'Ο σημερινός ουρανός δεν μπορεί να εμφανιστεί αυτή τη στιγμή. Οι υπόλοιπες εμπειρίες του Mythborn παραμένουν διαθέσιμες.'
     },
     es:{
@@ -34,7 +34,7 @@ if(root){
       aspect:'Aspecto más destacado',none:'No hay un aspecto mayor dentro del orbe definido',
       summary:(sun,moon,aspect)=>`En el cielo de hoy, el Sol está en ${sun} y la Luna en ${moon}. ${aspect}`,
       aspectSummary:(from,to,type)=>`El aspecto más destacado es ${type} entre ${from} y ${to}.`,
-      all:'Ver todas las posiciones',context:'LLEVA ESTE CIELO A TU CONTEXTO',chart:'Verlo en mi carta natal',weekly:'Leer el ritmo de la semana',retry:'Intentarlo de nuevo',
+      all:'Ver todas las posiciones',context:'LLEVA ESTE CIELO A TU CONTEXTO',chart:'Verlo en mi carta natal',weekly:'Leer el ritmo de la semana',retry:'Intentarlo de nuevo',fallbackDaily:'Sacar la carta del día',fallbackChart:'Calcular una carta natal',
       error:'El cielo actual no puede mostrarse en este momento. Las demás experiencias de Mythborn siguen disponibles.'
     }
   };
@@ -89,7 +89,7 @@ if(root){
     root.setAttribute('aria-busy','false');
   };
   const showError=()=>{
-    root.innerHTML=`<div class="live-sky-error" role="status"><p class="eyebrow">${t.eye}</p><h2>${t.error}</h2><button class="btn btn-ghost" type="button" data-sky-retry>${t.retry}</button></div>`;
+    root.innerHTML=`<div class="live-sky-error" role="status"><p class="eyebrow">${t.eye}</p><h2>${t.error}</h2><div class="actions"><button class="btn btn-ghost" type="button" data-sky-retry>${t.retry}</button><a class="btn btn-secondary" href="${prefix}/gunluk-kart">${t.fallbackDaily}</a><a class="btn btn-tertiary" href="${prefix}/astroloji">${t.fallbackChart}</a></div></div>`;
     root.setAttribute('aria-busy','false');
     root.querySelector('[data-sky-retry]')?.addEventListener('click',()=>location.reload(),{once:true});
   };
