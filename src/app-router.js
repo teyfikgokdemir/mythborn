@@ -36,7 +36,7 @@ const labels={
     career:'Kariyer & Para',month:'30 Gün',katina:'Katina',knowledge:'BİLGİ MERKEZİ',
     knowledgeTitle:'Sembolleri ve gökyüzünü derinlemesine keşfet.',exploreIntro:'Sembolleri ve gökyüzünü keşfet.',
     knowledgeCopy:'Tarot kartları, doğum haritası, rüya sembolleri ve astroloji kavramları için kapsamlı rehberler.',
-    search:'Sitede ara'
+    search:'Sitede ara',availableEnglish:'Bu sayfa İngilizce açılır'
   },
   en:{
     daily:'Daily Card',tarot:'Tarot',astrology:'Astrology',weekly:'Weekly',explore:'Explore',account:'My Account',
@@ -48,7 +48,7 @@ const labels={
     career:'Career & Money',month:'30-Day Reading',katina:'Katina',knowledge:'KNOWLEDGE CENTRE',
     knowledgeTitle:'Explore symbols and the sky in depth.',exploreIntro:'Explore symbols and the sky.',
     knowledgeCopy:'Comprehensive guides to Tarot cards, birth charts, dream symbols and astrology concepts.',
-    search:'Search the site'
+    search:'Search the site',availableEnglish:'This page opens in English'
   },
   el:{
     daily:'Ημερήσια Κάρτα',tarot:'Ταρώ',astrology:'Αστρολογία',weekly:'Εβδομαδιαίο',explore:'Εξερεύνηση',account:'Ο Λογαριασμός μου',
@@ -60,7 +60,7 @@ const labels={
     career:'Καριέρα & Χρήματα',month:'Άνοιγμα 30 Ημερών',katina:'Κατίνα',knowledge:'ΚΕΝΤΡΟ ΓΝΩΣΗΣ',
     knowledgeTitle:'Εξερεύνησε σε βάθος τα σύμβολα και τον ουρανό.',exploreIntro:'Εξερεύνησε τα σύμβολα και τον ουρανό.',
     knowledgeCopy:'Αναλυτικοί οδηγοί για κάρτες Ταρώ, γενέθλιους χάρτες, σύμβολα ονείρων και έννοιες αστρολογίας.',
-    search:'Αναζήτηση στον ιστότοπο'
+    search:'Αναζήτηση στον ιστότοπο',availableEnglish:'Αυτή η σελίδα ανοίγει στα αγγλικά'
   },
   es:{
     daily:'Carta diaria',tarot:'Tarot',astrology:'Astrología',weekly:'Semanal',explore:'Explorar',account:'Mi cuenta',
@@ -72,7 +72,7 @@ const labels={
     career:'Carrera y dinero',month:'Lectura de 30 días',katina:'Katina',knowledge:'CENTRO DE CONOCIMIENTO',
     knowledgeTitle:'Explora los símbolos y el cielo en profundidad.',exploreIntro:'Explora los símbolos y el cielo.',
     knowledgeCopy:'Guías completas sobre cartas del Tarot, cartas natales, símbolos de sueños y conceptos de astrología.',
-    search:'Buscar en el sitio',availableEnglish:'Disponible en inglés'
+    search:'Buscar en el sitio',availableEnglish:'Esta página se abre en inglés'
   }
 };
 const llms={
@@ -160,20 +160,24 @@ function desktopNav(locale){
   </nav>`;
 }
 function headerLanguage(locale,path){
-  const t=locale==='tr'?'Dil':locale==='en'?'Language':locale==='el'?'Γλώσσα':'Idioma';
+  const t=locale==='tr'?'Dil':locale==='en'?'Language':locale==='el'?'Γλώσσα':'Idioma',labelsForLocale=labels[locale];
   const languageName=code=>code==='tr'?'Türkçe':code==='en'?'English':code==='el'?'Ελληνικά':'Español';
   const codeLabel=code=>code==='el'?'GR':code.toUpperCase();
-  return `<details class="header-language"><summary aria-label="${t}"><span aria-hidden="true">◎</span><strong>${codeLabel(locale)}</strong></summary><div class="header-language-panel">${['tr','en','el','es'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${codeLabel(code)}</span> <small>${languageName(code)}</small></a>`).join('')}</div></details>`;
+  const linkFor=code=>code==='es'&&!spanishRouteSet.has(path)?href('en',path):href(code,path);
+  const suffix=code=>code==='es'&&!spanishRouteSet.has(path)?` · ${labelsForLocale.availableEnglish}`:'';
+  return `<details class="header-language"><summary aria-label="${t}"><span aria-hidden="true">◎</span><strong>${codeLabel(locale)}</strong></summary><div class="header-language-panel">${['tr','en','el','es'].map(code=>`<a href="${linkFor(code,path)}"${code===locale?' aria-current="page"':''}${code==='es'&&!spanishRouteSet.has(path)?` aria-label="${languageName(code)} — ${labelsForLocale.availableEnglish}"`:''}><span>${codeLabel(code)}</span> <small>${languageName(code)}</small>${suffix(code)?`<em class="language-note">${suffix(code)}</em>`:''}</a>`).join('')}</div></details>`;
 }
 function group(title,links,locale,key,order){
   const id=`mobile-group-${key}`;
   return `<section class="mobile-nav-group"><button class="mobile-group-toggle" type="button" aria-expanded="true" aria-controls="${id}"><span class="mobile-group-title">${title}</span><span class="mobile-group-indicator" aria-hidden="true">−</span></button><div class="mobile-nav-grid" id="${id}">${links.map(([path,text])=>`<a href="${href(locale,path)}">${text}</a>`).join('')}</div></section>`;
 }
 function mobileLanguage(locale,path){
-  const languageLabel=locale==='tr'?'Dil':locale==='en'?'Language':locale==='el'?'Γλώσσα':'Idioma';
+  const languageLabel=locale==='tr'?'Dil':locale==='en'?'Language':locale==='el'?'Γλώσσα':'Idioma',labelsForLocale=labels[locale];
   const languageName=code=>code==='tr'?'Türkçe':code==='en'?'English':code==='el'?'Ελληνικά':'Español';
   const codeLabel=code=>code==='el'?'GR':code.toUpperCase();
-  return `<section class="mobile-language" aria-label="${languageLabel}"><div class="mobile-language-heading"><span aria-hidden="true">◎</span><strong>${languageLabel}</strong><small>MYTHBORN / GLOBAL</small></div><div class="mobile-language-grid">${['tr','en','el','es'].map(code=>`<a href="${href(code,path)}"${code===locale?' aria-current="page"':''}><span>${codeLabel(code)}</span><small>${languageName(code)}</small></a>`).join('')}</div></section>`;
+  const linkFor=code=>code==='es'&&!spanishRouteSet.has(path)?href('en',path):href(code,path);
+  const suffix=code=>code==='es'&&!spanishRouteSet.has(path)?` · ${labelsForLocale.availableEnglish}`:'';
+  return `<section class="mobile-language" aria-label="${languageLabel}"><div class="mobile-language-heading"><span aria-hidden="true">◎</span><strong>${languageLabel}</strong><small>MYTHBORN / GLOBAL</small></div><div class="mobile-language-grid">${['tr','en','el','es'].map(code=>`<a href="${linkFor(code,path)}"${code===locale?' aria-current="page"':''}${code==='es'&&!spanishRouteSet.has(path)?` aria-label="${languageName(code)} — ${labelsForLocale.availableEnglish}"`:''}><span>${codeLabel(code)}</span><small>${languageName(code)}${suffix(code)}</small></a>`).join('')}</div></section>`;
 }
 function mobileNav(locale,path='/'){
   const t=labels[locale];
