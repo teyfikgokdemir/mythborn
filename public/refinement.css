@@ -478,7 +478,7 @@ body:has(.vedic-page) .site-footer-logo img{width:32px;height:30px;object-fit:co
 body:has(.vedic-page) .site-footer-brand p{max-width:390px;margin:0;color:var(--myth-muted);font-size:13px;line-height:1.7}
 body:has(.vedic-page) .site-footer-brand>a[href^="mailto:"]{color:var(--myth-copper);text-decoration:none}
 body:has(.vedic-page) .site-footer-column{min-width:0}
-body:has(.vedic-page) .site-footer h3{margin:0 0 18px;color:var(--myth-copper);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+body:has(.vedic-page) .site-footer h2{margin:0 0 18px;color:var(--myth-copper);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
 body:has(.vedic-page) .site-footer nav{display:grid;gap:10px}
 body:has(.vedic-page) .site-footer nav a,body:has(.vedic-page) .site-footer nav button{display:block;color:var(--myth-muted);font:inherit;font-size:13px;line-height:1.45;text-decoration:none}
 body:has(.vedic-page) .site-footer nav a:hover,body:has(.vedic-page) .site-footer nav a:focus-visible,body:has(.vedic-page) .site-footer nav button:hover,body:has(.vedic-page) .site-footer nav button:focus-visible{color:var(--myth-ivory);text-decoration:none}
