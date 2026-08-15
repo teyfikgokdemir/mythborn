@@ -1,4 +1,9 @@
 import {spanishContent} from './spanish-content-data.js';
+import {libraryRoutes} from './astrology-library.js';
+import {tarotCardSlugs} from './tarot-library.js';
+import {dreamSlugs,glossarySlugs} from './dream-glossary.js';
+import {localizedBlogSlugs} from './localized-blog.js';
+import {premiumGuideRoutes} from './premium-guides.js';
 
 export const spanishContentRoutes=[
   '/',
@@ -28,7 +33,16 @@ export const spanishStaticPages={
   '/cerezler':{title:'Política de cookies — Mythborn',description:'Uso de cookies esenciales y gestión de preferencias en Mythborn.'}
 };
 
-export const spanishRoutes=[...spanishContentRoutes,...Object.keys(spanishStaticPages)];
+export const spanishRoutes=[
+  ...spanishContentRoutes,
+  ...Object.keys(spanishStaticPages),
+  ...libraryRoutes,
+  '/tarot-kartlari',...tarotCardSlugs.map(slug=>`/tarot-kartlari/${slug}`),
+  '/ruya-sembolleri',...dreamSlugs.map(slug=>`/ruya-sembolleri/${slug}`),
+  '/astroloji-sozlugu',...glossarySlugs.map(slug=>`/astroloji-sozlugu/${slug}`),
+  '/blog',...localizedBlogSlugs.map(slug=>`/blog/${slug}`),
+  '/advanced-astrology',...premiumGuideRoutes
+];
 export const spanishRouteSet=new Set(spanishRoutes);
 export const spanishAssetName=path=>path==='/'?'home':path.slice(1).replaceAll('/','--');
 export const spanishAssetPath=path=>`/es-content/${spanishAssetName(path)}.json`;

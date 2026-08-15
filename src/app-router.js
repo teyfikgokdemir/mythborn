@@ -9,6 +9,11 @@ import {corePage,coreMeta} from './core-pages.js';
 import {discoveryPage,discoveryMeta,discoverySchema} from './discovery-core.js';
 import {earlyAccessBanner,paywallPage,premiumState,routeRequiresPremium} from './premium-access.js';
 import {spanishRouteSet,spanishRoutes,loadSpanishPage} from './spanish-edition.js';
+import {libraryRoutes,libraryPage} from './astrology-library.js';
+import {tarotCardSlugs,tarotLibraryPage} from './tarot-library.js';
+import {dreamSlugs,glossarySlugs,dreamPage,glossaryPage} from './dream-glossary.js';
+import {localizedBlogSlugs,localizedBlogPage} from './localized-blog.js';
+import {premiumGuideRoutes,premiumGuidePage,advancedAstrologyIndex} from './premium-guides.js';
 import {vedicPage,vedicDocument,vedicMeta,vedicSchema} from './vedic-pages.js';
 
 const SITE='https://mythborn.co';
@@ -107,6 +112,15 @@ const toolGuides={
   }
 };
 const toolGuide=(locale,path)=>toolGuides[locale]?.[path]||null;
+const spanishPageDocument=path=>{
+  if(libraryRoutes.includes(path))return libraryPage(path,'es');
+  if(path==='/tarot-kartlari'||tarotCardSlugs.some(slug=>path===`/tarot-kartlari/${slug}`))return tarotLibraryPage('es',path);
+  if(path==='/ruya-sembolleri'||dreamSlugs.some(slug=>path===`/ruya-sembolleri/${slug}`))return dreamPage('es',path);
+  if(path==='/astroloji-sozlugu'||glossarySlugs.some(slug=>path===`/astroloji-sozlugu/${slug}`))return glossaryPage('es',path);
+  if(path==='/blog'||localizedBlogSlugs.some(slug=>path===`/blog/${slug}`))return localizedBlogPage('es',path);
+  if(path==='/advanced-astrology'||premiumGuideRoutes.includes(path))return path==='/advanced-astrology'?advancedAstrologyIndex('es'):premiumGuidePage(path,'es');
+  return null;
+};
 const toolGuideMeta=(locale,path)=>{const guide=toolGuide(locale,path);return guide?{title:guide.meta[0],description:guide.meta[1]}:null};
 const toolGuideSchema=(locale,path)=>{const guide=toolGuide(locale,path);if(!guide)return [];return [{'@context':'https://schema.org','@type':'FAQPage',mainEntity:guide.faq.map(([name,text])=>({'@type':'Question',name,acceptedAnswer:{'@type':'Answer',text}}))}];};
 const toolGuideSection=(locale,path)=>{const guide=toolGuide(locale,path);if(!guide)return '';const label=locale==='tr'?'KISA YANITLAR':locale==='en'?'QUICK ANSWERS':'ΣΥΝΤΟΜΕΣ ΑΠΑΝΤΗΣΕΙΣ';const explore=locale==='tr'?'İlgili rehberleri keşfet':locale==='en'?'Explore related guides':'Εξερεύνησε σχετικούς οδηγούς';return `<section class="section tool-answer-guide" data-tool-answer-guide><div class="tool-answer-intro"><p class="eyebrow">${label}</p><h2>${guide.title}</h2><p class="lead left-lead">${guide.intro}</p></div><div class="tool-answer-grid">${guide.faq.map(([question,answer])=>`<details><summary>${question}</summary><p>${answer}</p></details>`).join('')}</div><nav class="tool-answer-links" aria-label="${explore}">${guide.links.map(([label,url])=>`<a href="${href(locale,url)}">${label} <span aria-hidden="true">→</span></a>`).join('')}</nav></section>`;};
@@ -386,7 +400,9 @@ export default {
       return new Response(script,{status:asset.status,headers:asset.headers});
     }
     const locale=localeFrom(incoming.pathname),clean=cleanPath(incoming.pathname,locale);
+    const spanishDocument=locale==='es'&&clean!=='/arama'?spanishPageDocument(clean):null;
     if(locale==='es'&&clean!=='/arama'&&!spanishRouteSet.has(clean))return Response.redirect(`${SITE}/en${clean}`,302);
+    if(spanishDocument)return new Response(spanishDocument,{status:200,headers:{'content-type':'text/html; charset=utf-8','content-language':'es','cache-control':'public, max-age=300'}});
     if(clean==='/arama')return new Response(decorate(searchPage(locale),locale,clean,accessState),{headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html}});
     if(clean==='/vedik-astroloji'||clean==='/nakshatra-dasha')return new Response(decorate(vedicDocument(locale,clean),locale,clean,accessState),{headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html,'cache-control':'public, max-age=300'}});
     if(await routeRequiresPremium(clean,accessState))return new Response(decorate(paywallPage(locale,clean),locale,clean,accessState),{status:200,headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html,'cache-control':'private, no-store'}});
