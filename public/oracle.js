@@ -1,4 +1,5 @@
 (()=>{
+const emitReadingEvent=(name,params={})=>{if(typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:window.MYTHBORN_LOCALE||'tr'})};
 const compactStyle=document.createElement('style');compactStyle.textContent=`
 .astrology-page .free-reading{max-width:1120px;margin-inline:auto;padding:32px}
 .astrology-page .reading-result.is-open{margin-top:28px;padding-top:28px}
@@ -91,7 +92,7 @@ const localDayKey=()=>{const now=new Date(),part=n=>String(n).padStart(2,'0');re
 const dailyStorageKey=()=>`mythborn_daily_v3_${localDayKey()}`;
 const readDailyIndex=length=>{try{const raw=localStorage.getItem(dailyStorageKey()),index=raw===null?NaN:Number(raw);return Number.isInteger(index)&&index>=0&&index<length?index:null}catch{return null}};
 const saveDailyIndex=index=>{try{localStorage.setItem(dailyStorageKey(),String(index))}catch{}};
-const revealDaily=async()=>{try{const deck=await waitForDeck();let index=readDailyIndex(deck.length);if(index===null){index=secureIndex(deck.length);saveDailyIndex(index)}const card=cardView(deck[index]);dailyResult.querySelector('[data-card-name]').textContent=card.name;dailyResult.querySelector('[data-card-text]').innerHTML=`${readingCardArt(card,{detail:true,eager:true})}${cardBody(card)}`;protectCardImages(dailyResult);dailyResult.classList.add('is-open');dailyButton.hidden=true;dailyButton.setAttribute('aria-hidden','true');dailyButton.setAttribute('aria-expanded','true')}catch(error){dailyResult.classList.add('is-open');dailyResult.querySelector('[data-card-name]').textContent=ui.failed;dailyResult.querySelector('[data-card-text]').innerHTML=`<p>${escape(error.message)} ${ui.retry}</p>`}};
+const revealDaily=async()=>{try{const deck=await waitForDeck();let index=readDailyIndex(deck.length);if(index===null){index=secureIndex(deck.length);saveDailyIndex(index)}const card=cardView(deck[index]);dailyResult.querySelector('[data-card-name]').textContent=card.name;dailyResult.querySelector('[data-card-text]').innerHTML=`${readingCardArt(card,{detail:true,eager:true})}${cardBody(card)}`;protectCardImages(dailyResult);dailyResult.classList.add('is-open');dailyButton.hidden=true;dailyButton.setAttribute('aria-hidden','true');dailyButton.setAttribute('aria-expanded','true');emitReadingEvent('daily_card_completed',{card_name:card.name})}catch(error){emitReadingEvent('daily_card_error');dailyResult.classList.add('is-open');dailyResult.querySelector('[data-card-name]').textContent=ui.failed;dailyResult.querySelector('[data-card-text]').innerHTML=`<p>${escape(error.message)} ${ui.retry}</p>`}};
 if(dailyButton&&dailyResult){dailyButton.addEventListener('click',revealDaily);try{if(localStorage.getItem(dailyStorageKey())!==null)revealDaily()}catch{}}
 const root=document.querySelector('[data-member-reading]');if(!root)return;
 const type=root.dataset.memberReading,message=root.querySelector('[data-reading-message]'),workspace=root.querySelector('[data-reading-workspace]'),button=root.querySelector('[data-member-deck]'),result=root.querySelector('[data-member-result]'),inputs=root.querySelector('[data-reading-inputs]');const user={email:'anonymous-free'};if(message)message.textContent='';if(workspace)workspace.hidden=false;
@@ -143,14 +144,14 @@ button?.addEventListener('click',async()=>{
 	   if(!data.birthDate||!data.birthPlace){message.textContent=vedicUi.required;return}
 	   if(!data.timeUnknown&&!data.birthTime){message.textContent=vedicUi.timeRequired;return}
 	   button.disabled=true;button.textContent=vedicUi.calculating;message.textContent=vedicUi.coordinates;
-	   try{const chart=await api('/api/astrology/vedic-chart',{method:'POST',body:JSON.stringify({...data,locale})});renderVedic(chart);message.textContent=vedicUi.success}catch(error){const detail=String(error?.message||'');message.textContent=/MythbornApi|not a function|undefined|is not defined/i.test(detail)?vedicUi.failed:(detail||vedicUi.failed)}finally{button.disabled=false;button.textContent=vedicUi.submit}
+	   try{const chart=await api('/api/astrology/vedic-chart',{method:'POST',body:JSON.stringify({...data,locale})});renderVedic(chart);message.textContent=vedicUi.success;emitReadingEvent('vedic_chart_completed')}catch(error){const detail=String(error?.message||'');emitReadingEvent('vedic_chart_error');message.textContent=/MythbornApi|not a function|undefined|is not defined/i.test(detail)?vedicUi.failed:(detail||vedicUi.failed)}finally{button.disabled=false;button.textContent=vedicUi.submit}
 	   return;
 	 }
 	if(type==='astroloji'){
    if(!data.birthDate||!data.birthPlace){message.textContent=astroUi.required;return}
    if(!data.timeUnknown&&!data.birthTime){message.textContent=astroUi.timeRequired;return}
    button.disabled=true;button.textContent=astroUi.calculating;message.textContent=astroUi.coordinates;
-   try{const chart=await api('/api/astrology/chart',{method:'POST',body:JSON.stringify({...data,locale})});renderNatal(chart);message.textContent=astroUi.success}catch(error){message.textContent=error.message||astroUi.failed}finally{button.disabled=false;button.textContent=astroUi.submit}
+   try{const chart=await api('/api/astrology/chart',{method:'POST',body:JSON.stringify({...data,locale})});renderNatal(chart);message.textContent=astroUi.success;emitReadingEvent('birth_chart_completed')}catch(error){emitReadingEvent('birth_chart_error');message.textContent=error.message||astroUi.failed}finally{button.disabled=false;button.textContent=astroUi.submit}
    return;
  }
  let deck;try{deck=await waitForDeck()}catch(error){message.textContent=error.message;return}
