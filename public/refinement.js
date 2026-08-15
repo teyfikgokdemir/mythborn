@@ -70,6 +70,8 @@
     window.gtag('js',new Date());
     window.gtag('config',GA4_ID,{send_page_view:true,anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
   };
+  const trackEvent=(name,params={})=>{if(typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
+  document.addEventListener('click',event=>{const target=event.target.closest?.('[data-track]');if(!target)return;trackEvent(target.dataset.track,{link_text:(target.textContent||'').trim().slice(0,80)})},{passive:true});
   const copy={
     tr:{eye:'GİZLİLİK TERCİHLERİ',title:'Kontrol sende.',body:'Zorunlu çerezler güvenli oturum ve tercihlerin için gereklidir. İsteğe bağlı analitik yalnız izninle etkinleşir.',essential:'Zorunlu çerezler · her zaman açık',analytics:'Anonim kullanım analitiğine izin ver',accept:'Tümünü kabul et',reject:'Yalnız zorunlu',save:'Tercihi kaydet'},
     en:{eye:'PRIVACY PREFERENCES',title:'You are in control.',body:'Essential cookies support secure sessions and saved preferences. Optional analytics is enabled only with your permission.',essential:'Essential cookies · always on',analytics:'Allow anonymous usage analytics',accept:'Accept all',reject:'Essential only',save:'Save preference'},
