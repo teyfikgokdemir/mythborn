@@ -70,6 +70,11 @@
     window.gtag('js',new Date());
     window.gtag('config',GA4_ID,{send_page_view:true,anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
   };
+  const scheduleAnalytics=()=>{
+    const run=()=>loadAnalytics();
+    if('requestIdleCallback' in window) window.requestIdleCallback(run,{timeout:3000});
+    else window.setTimeout(run,1800);
+  };
   const trackEvent=(name,params={})=>{if(typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
   document.addEventListener('click',event=>{const target=event.target.closest?.('[data-track]');if(!target)return;trackEvent(target.dataset.track,{link_text:(target.textContent||'').trim().slice(0,80)})},{passive:true});
   const copy={
@@ -113,7 +118,7 @@
     const value={essential:true,analytics,updatedAt:new Date().toISOString()};
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
     document.cookie=`mythborn_consent=${analytics?'all':'essential'}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
-    if(analytics)loadAnalytics();
+    if(analytics)scheduleAnalytics();
     else setAnalyticsConsent(false);
     closeConsent();
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
@@ -139,7 +144,7 @@
     else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
   });
   const currentConsent=read();
-  if(currentConsent?.analytics)loadAnalytics();
+  if(currentConsent?.analytics)scheduleAnalytics();
   else setAnalyticsConsent(false);
   if(!currentConsent)open();
 })();

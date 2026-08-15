@@ -122,6 +122,9 @@
     if (path === '/advanced-astrology') mount(document.querySelector('.guide-centre > .blog-hero'), 'knowledge');
   };
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', enhance, {once: true});
-  else enhance();
+  if (document.readyState === 'loading' && !document.querySelector('.premium-home-hero, .astrology-hero, .daily-stage, [data-member-reading="tarot"], [data-member-reading="katina"]')) {
+    document.addEventListener('DOMContentLoaded', enhance, {once: true});
+  } else {
+    enhance();
+  }
 })();
