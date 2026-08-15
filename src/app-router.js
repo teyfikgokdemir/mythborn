@@ -402,7 +402,12 @@ export default {
     const locale=localeFrom(incoming.pathname),clean=cleanPath(incoming.pathname,locale);
     const spanishDocument=locale==='es'&&clean!=='/arama'?spanishPageDocument(clean):null;
     if(locale==='es'&&clean!=='/arama'&&!spanishRouteSet.has(clean))return Response.redirect(`${SITE}/en${clean}`,302);
-    if(spanishDocument)return new Response(spanishDocument,{status:200,headers:{'content-type':'text/html; charset=utf-8','content-language':'es','cache-control':'public, max-age=300'}});
+    if(spanishDocument){
+      const spanishHtml=spanishDocument.includes('window.MYTHBORN_LOCALE')
+        ? spanishDocument
+        : spanishDocument.replace('</head>','<script>window.MYTHBORN_LOCALE="es"</script></head>');
+      return new Response(spanishHtml,{status:200,headers:{'content-type':'text/html; charset=utf-8','content-language':'es','cache-control':'public, max-age=300'}});
+    }
     if(clean==='/arama')return new Response(decorate(searchPage(locale),locale,clean,accessState),{headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html}});
     if(clean==='/vedik-astroloji'||clean==='/nakshatra-dasha')return new Response(decorate(vedicDocument(locale,clean),locale,clean,accessState),{headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html,'cache-control':'public, max-age=300'}});
     if(await routeRequiresPremium(clean,accessState))return new Response(decorate(paywallPage(locale,clean),locale,clean,accessState),{status:200,headers:{'content-type':'text/html; charset=utf-8','content-language':localeInfo[locale].html,'cache-control':'private, no-store'}});
@@ -424,6 +429,7 @@ export default {
     }
     const headers=new Headers(response.headers);
     headers.set('content-language',localeInfo[locale].html);
+    if(request.method==='GET'&&!['/hesabim','/giris','/kayit'].includes(clean)&&!headers.has('set-cookie')) headers.set('cache-control','public, max-age=300, stale-while-revalidate=86400');
     const source=response.status===404?notFoundPage(locale):await response.text();
     const localizedPage=locale==='es'?loadSpanishPage(clean):null;
     return new Response(decorate(source,locale,clean,accessState,localizedPage),{status:response.status,headers});
