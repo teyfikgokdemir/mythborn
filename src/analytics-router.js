@@ -41,6 +41,16 @@ const secureHtmlResponse=response=>{
   return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
 };
 
+const cacheStaticAssetResponse=response=>{
+  const contentType=response.headers.get('content-type')||'';
+  const isStaticAsset=response.ok&&(/^(text\/css|text\/javascript|application\/javascript|image\/|font\/|application\/font)/i.test(contentType));
+  if(!isStaticAsset)return response;
+  const headers=new Headers(response.headers);
+  headers.set('cache-control','public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
+  headers.set('x-content-type-options','nosniff');
+  return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+};
+
 const LEGACY_EXACT_REDIRECTS=new Map([
   ['/search','/arama'],
   ['/en/search','/en/arama'],
@@ -136,7 +146,7 @@ export default {
     if(isLegacyShopifyPath(url.pathname))return goneResponse();
 
     const response=await app.fetch(request,env,ctx);
-    return secureHtmlResponse(response);
+    return cacheStaticAssetResponse(secureHtmlResponse(response));
   }
 };
 
