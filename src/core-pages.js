@@ -77,7 +77,7 @@ function home(locale){
 }
 function daily(locale){
   const t=copy[locale].daily;
-  return `<main><section class="section"><div class="daily-stage"><p class="eyebrow">${t.eye}</p><h1>${t.title}</h1><p class="lead">${t.lead}</p><button class="tarot-deck" type="button" data-daily-deck data-track="daily_card_reveal" aria-expanded="false" aria-label="${t.aria}"><span class="tarot-card"></span></button><div class="reading-result" data-reading-result aria-live="polite"><p class="eyebrow">${t.result}</p><h3 data-card-name></h3><div data-card-text></div><div class="actions">${link(locale,'/astroloji',t.more,'btn btn-primary')}</div></div></div></section></main>`;
+  return `<main><section class="section"><div class="daily-stage"><p class="eyebrow">${t.eye}</p><h1>${t.title}</h1><p class="lead">${t.lead}</p><button class="tarot-deck" type="button" data-daily-deck data-track="daily_card_reveal" aria-expanded="false" aria-label="${t.aria}"><span class="tarot-card"></span></button><div class="reading-result" data-reading-result aria-live="polite"><p class="eyebrow">${t.result}</p><h3 data-card-name></h3><div data-card-text></div><div class="actions">${link(locale,'/astroloji',t.more,'btn btn-primary','daily_result_birth_chart')}</div></div></div></section></main>`;
 }
 const readingData={
   tarot:{tr:['3 Kart Tarot','Geçmiş, şimdi ve yakın geleceğin enerjisini üç kartla yorumla.'],en:['3-Card Tarot','Explore the energy of the past, present and near future through three cards.'],el:['Ταρώ 3 Καρτών','Εξερεύνησε την ενέργεια του παρελθόντος, του παρόντος και του κοντινού μέλλοντος με τρεις κάρτες.']},
@@ -129,7 +129,7 @@ function account(locale){
     en:{eye:'MEMBER AREA',title:'My Account',profile:'PROFILE',checking:'Checking…',status:'Free membership',chart:'My birth chart',logout:'Sign out',history:'HISTORY',empty:'Your saved readings will appear here.'},
     el:{eye:'ΧΩΡΟΣ ΜΕΛΩΝ',title:'Ο Λογαριασμός μου',profile:'ΠΡΟΦΙΛ',checking:'Έλεγχος…',status:'Δωρεάν εγγραφή',chart:'Ο γενέθλιος χάρτης μου',logout:'Αποσύνδεση',history:'ΙΣΤΟΡΙΚΟ',empty:'Οι αποθηκευμένες αναγνώσεις σου θα εμφανίζονται εδώ.'}
   }[locale];
-  return `<main><section class="section" data-account><p class="eyebrow">${t.eye}</p><h2>${t.title}</h2><div class="grid account-grid"><article class="card"><small>${t.profile}</small><h3 data-account-email>${t.checking}</h3><p data-account-status>${t.status}</p><div class="actions">${link(locale,'/astroloji',t.chart,'btn btn-primary')}<button class="btn btn-ghost" type="button" data-logout>${t.logout}</button></div></article><article class="card"><small>${t.history}</small><div data-result-history><p>${t.empty}</p></div></article></div></section></main>`;
+  return `<main><section class="section" data-account><p class="eyebrow">${t.eye}</p><h2>${t.title}</h2><div class="grid account-grid"><article class="card"><small>${t.profile}</small><h3 data-account-email>${t.checking}</h3><p data-account-status>${t.status}</p><div class="actions">${link(locale,'/astroloji',t.chart,'btn btn-primary','account_birth_chart')}<button class="btn btn-ghost" type="button" data-logout>${t.logout}</button></div></article><article class="card"><small>${t.history}</small><div data-result-history><p>${t.empty}</p></div></article></div></section></main>`;
 }
 
 export function corePage(locale,path){
