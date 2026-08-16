@@ -327,7 +327,7 @@ function decorate(html,locale,path,accessState,localizedPage=null){
   if(path==='/'&&!html.includes('knowledge-hub'))html=html.replace('</main>',`${knowledgeHub(locale)}</main>`);
   const answerGuide=toolGuideSection(locale,path);
   if(answerGuide&&!html.includes('data-tool-answer-guide'))html=html.replace('</main>',`${answerGuide}</main>`);
-  if(!html.includes('sponsor-band'))html=html.replace('<footer class="site-footer">',`${sponsorBand(locale)}<footer class="site-footer">`);
+  // Mythborn remains an independent consumer brand; cross-portfolio promotion is intentionally omitted from the global shell.
   const canonical=`${SITE}${href(locale,path)}`;
   const localizedMeta=locale==='es'?null:(toolGuideMeta(locale,path)||coreMeta(locale,path)||discoveryMeta(locale,path));
   const vedicPageMeta=vedicMeta(locale,path);
