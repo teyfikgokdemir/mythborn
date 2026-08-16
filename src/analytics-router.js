@@ -22,8 +22,10 @@ const allowAnalyticsProviders=policy=>{
     'https://analytics.google.com',
     'https://region1.google-analytics.com',
     'https://www.googletagmanager.com',
-    'https://cloudflareinsights.com'
+    'https://cloudflareinsights.com',
+    'https://pagead2.googlesyndication.com'
   ]);
+  next=appendSources(next,'img-src',['https://pagead2.googlesyndication.com']);
   return next;
 };
 
