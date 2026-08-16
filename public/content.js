@@ -3,7 +3,10 @@ const main=document.querySelector('main');if(!main)return;
 const path=location.pathname;
 const el=(html)=>{const wrap=document.createElement('div');wrap.innerHTML=html.trim();return wrap.firstElementChild};
 if(!document.querySelector('[data-content-styles]')){const style=document.createElement('style');style.dataset.contentStyles='';style.textContent=`
-.editorial-section{padding:clamp(64px,9vw,118px) 0;border-top:1px solid rgba(255,255,255,.09)}
+	.editorial-section{padding:clamp(64px,9vw,118px) 0;border-top:1px solid rgba(255,255,255,.09)}
+	.sky-tool{position:relative;isolation:isolate;overflow:hidden;padding:clamp(24px,4vw,48px);border:1px solid rgba(232,200,131,.22);border-radius:26px;background-image:linear-gradient(90deg,rgba(8,11,18,.96) 0%,rgba(8,11,18,.86) 48%,rgba(8,11,18,.36) 100%),linear-gradient(0deg,rgba(8,11,18,.92),rgba(8,11,18,.16)),url('/images/cinematic/home/home-today-observatory.webp');background-position:center;background-size:cover;box-shadow:inset 0 1px 0 rgba(255,244,234,.1),inset 0 -70px 90px rgba(8,11,18,.24)}
+	.sky-tool::before{content:"";position:absolute;inset:0;background:url('/images/cinematic/home/sky-map.svg') right center/68% auto no-repeat;opacity:.28;mix-blend-mode:screen;pointer-events:none;z-index:-1}.sky-tool>*{position:relative;z-index:1}.sky-tool .sky-columns{position:relative}.sky-tool .sky-columns>section{background:rgba(8,11,18,.54);backdrop-filter:blur(5px)}
+	@media(max-width:620px){.sky-tool{padding:22px 18px;background-position:64% center}.sky-tool::before{background-size:115% auto;background-position:72% center;opacity:.18}.sky-tool .sky-columns{grid-template-columns:1fr!important}}
 .editorial-head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:48px;align-items:end;margin-bottom:34px}
 .editorial-head h2{max-width:900px;margin:10px 0 0;font-family:Georgia,serif;font-size:clamp(42px,6vw,78px);font-weight:400;line-height:.98;letter-spacing:-.04em}
 .editorial-head p{margin:0;color:#aaa2b0;line-height:1.8}
@@ -18,8 +21,10 @@ if(!document.querySelector('[data-content-styles]')){const style=document.create
 .editorial-step:before{counter-increment:step;content:counter(step);position:absolute;left:22px;top:22px;width:34px;height:34px;border:1px solid rgba(232,200,131,.35);border-radius:50%;display:grid;place-items:center;color:#e8c883;font-weight:800}
 .editorial-step h3{margin:0 0 8px;font-size:16px}.editorial-step p{margin:0;color:#aaa2b0;line-height:1.65}
 .editorial-note{margin-top:18px;padding:22px 24px;border-left:2px solid #e8c883;background:rgba(232,200,131,.055);color:#bdb4c2;line-height:1.75}
-.editorial-links{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.editorial-links a{padding:18px;border:1px solid rgba(255,255,255,.11);border-radius:16px;background:rgba(255,255,255,.025)}.editorial-links strong{display:block;margin-bottom:6px}.editorial-links span{color:#8f8795;font-size:13px}
-@media(max-width:900px){.editorial-head{grid-template-columns:1fr}.editorial-grid,.editorial-steps{grid-template-columns:1fr 1fr}.editorial-links{grid-template-columns:1fr 1fr}}
+	.editorial-links{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.editorial-links a{padding:18px;border:1px solid rgba(255,255,255,.11);border-radius:16px;background:rgba(255,255,255,.025)}.editorial-links strong{display:block;margin-bottom:6px}.editorial-links span{color:#8f8795;font-size:13px}
+	.ancient-hub-grid .editorial-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.ancient-hub-grid .editorial-card{min-height:190px;padding:20px;border-radius:18px}.ancient-hub-grid .editorial-card h2,.ancient-hub-grid .editorial-card h3{margin:18px 0 10px;font-size:clamp(24px,2vw,30px);line-height:1.02}.ancient-hub-grid .editorial-card p{font-size:13px;line-height:1.55}.ancient-hub-grid .editorial-card a{margin-top:14px}
+	@media(max-width:1100px){.ancient-hub-grid .editorial-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ancient-hub-grid .editorial-card{min-height:180px;padding:18px}}
+	@media(max-width:900px){.editorial-head{grid-template-columns:1fr}.editorial-grid,.editorial-steps{grid-template-columns:1fr 1fr}.editorial-links{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.editorial-grid,.editorial-steps,.editorial-links{grid-template-columns:1fr}.editorial-section{padding:54px 0}.editorial-card{padding:22px}.editorial-head{gap:20px}}
 `;document.head.appendChild(style)}
 const sections={
