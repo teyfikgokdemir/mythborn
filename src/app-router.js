@@ -170,7 +170,7 @@ function desktopNav(locale){
     <a class="nav-layer nav-layer-sky nav-layer-secondary" href="${href(locale,'/bugunun-gokyuzu')}"><span>${t.sky}</span></a>
     <a class="nav-layer nav-layer-sky nav-layer-secondary" href="${href(locale,'/sinastri')}"><span>${t.synastry}</span></a>
     <a class="nav-layer nav-layer-reading nav-layer-secondary" href="${href(locale,'/ruya-yorumlari')}"><span>${t.dreams}</span></a>
-    <details class="desktop-explore nav-layer nav-layer-archive"><summary aria-haspopup="true" aria-expanded="false" aria-controls="desktop-explore-panel"><span>${t.explore}</span><i class="nav-chevron" aria-hidden="true"></i></summary><div class="desktop-explore-panel" id="desktop-explore-panel" role="menu"><div class="desktop-explore-intro"><small>${t.knowledge}</small><strong>${t.exploreIntro}</strong></div><div class="desktop-explore-links">${exploreLinks(locale)}</div></div></details>
+    <details class="desktop-explore nav-layer nav-layer-archive"><summary aria-haspopup="true" aria-expanded="false" aria-controls="desktop-explore-panel"><span>${t.explore}</span><i class="nav-chevron" aria-hidden="true"></i></summary><div class="desktop-explore-panel" id="desktop-explore-panel" role="menu"><div class="desktop-explore-intro"><small>${t.knowledge}</small><strong>${t.exploreIntro}</strong><img class="desktop-explore-emblem" src="/images/mythborn-emblem.png" alt="" width="96" height="90" loading="lazy" decoding="async"></div><div class="desktop-explore-links">${exploreLinks(locale)}</div></div></details>
   </nav>`;
 }
 function headerLanguage(locale,path){
