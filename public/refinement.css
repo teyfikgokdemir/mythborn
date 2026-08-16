@@ -43,7 +43,7 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 .hero-sky-card{align-self:center;max-height:480px;overflow:hidden}
 .hero-sky-card h2{font-size:clamp(30px,3vw,44px)!important;line-height:1.04!important}
 .hero-sky-card>p:not(.eyebrow){display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.home-showcase,.home-membership,.knowledge-hub{padding-block:clamp(68px,8vw,100px)!important}
+.home-showcase,.home-membership{padding-block:clamp(68px,8vw,100px)!important}.knowledge-hub{padding-block:clamp(48px,6vw,76px)!important}.knowledge-hub h2{max-width:860px;font-size:clamp(44px,5.4vw,76px)!important;line-height:.94!important}.knowledge-hub .lead{max-width:720px}.knowledge-hub-grid{gap:12px!important}.knowledge-hub-card{min-height:148px!important;padding:20px!important}.knowledge-hub-card h3{margin-block:12px!important}
 .section{scroll-margin-top:92px}
 .free-reading[data-member-reading="tarot"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(220px,300px);column-gap:clamp(28px,4vw,60px);align-items:start;max-width:1160px!important;padding:clamp(30px,5vw,60px)!important}
 .free-reading[data-member-reading="tarot"]>.cinematic-figure,.free-reading[data-member-reading="tarot"]>.cinematic-visual{grid-column:2;grid-row:1/5;margin:0!important;max-height:360px!important;border-radius:20px;overflow:hidden}

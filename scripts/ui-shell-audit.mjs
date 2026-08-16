@@ -56,6 +56,7 @@ for(const token of ["dialog.setAttribute('role','dialog')","dialog.setAttribute(
 if(/createElement\(['"]aside['"]\)|setAttribute\(['"]role['"],['"]dialog['"]\)/.test(legacyConsent))failures.push({path:'public/account-menu.js',failed:['legacyConsentDialog']});
 
 const expectedBaseSitemapRoutes=732;
-if(paths.length!==expectedBaseSitemapRoutes+spanishRoutes.length)failures.push({path:'/sitemap.xml',failed:[`expected ${expectedBaseSitemapRoutes+spanishRoutes.length} unique URLs, received ${paths.length}`]});
+const expectedSpanishSitemapRoutes=new Set(spanishRoutes).size;
+if(paths.length!==expectedBaseSitemapRoutes+expectedSpanishSitemapRoutes)failures.push({path:'/sitemap.xml',failed:[`expected ${expectedBaseSitemapRoutes+expectedSpanishSitemapRoutes} unique URLs, received ${paths.length}`]});
 if(failures.length)throw new Error(`UI shell audit failed:\n${JSON.stringify(failures.slice(0,30),null,2)}`);
 console.log(`UI shell audit passed for ${paths.length} public URLs with one header, footer and locale control.`);
