@@ -43,12 +43,13 @@ const secureHtmlResponse=response=>{
   return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
 };
 
-const cacheStaticAssetResponse=response=>{
+const cacheStaticAssetResponse=(response,url)=>{
   const contentType=response.headers.get('content-type')||'';
   const isStaticAsset=response.ok&&(/^(text\/css|text\/javascript|application\/javascript|image\/|font\/|application\/font)/i.test(contentType));
   if(!isStaticAsset)return response;
   const headers=new Headers(response.headers);
-  headers.set('cache-control','public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
+  const isAiReferenceFile=/^\/(?:llms\.txt|ai-fact-sheet\.txt)$/.test(url.pathname);
+  headers.set('cache-control',isAiReferenceFile?'public, max-age=60, s-maxage=60, must-revalidate':'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
   headers.set('x-content-type-options','nosniff');
   return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
 };
@@ -148,7 +149,7 @@ export default {
     if(isLegacyShopifyPath(url.pathname))return goneResponse();
 
     const response=await app.fetch(request,env,ctx);
-    return cacheStaticAssetResponse(secureHtmlResponse(response));
+    return cacheStaticAssetResponse(secureHtmlResponse(response),url);
   }
 };
 
