@@ -496,6 +496,13 @@ body:has(.vedic-page) .site-footer-guardian img{width:176px!important;height:176
 @media(max-width:620px){body:has(.vedic-page) .site-footer-guardian{min-height:154px!important}.site-footer-guardian img{width:154px!important;height:154px!important}}
 
 
-/* Keep the sticky mobile shell from visually covering the first line of the Vedic form. */
 body:has(.vedic-page) .vedic-page>.section{scroll-margin-top:86px}
 @media(max-width:620px){body:has(.vedic-page) .vedic-page>.section:not(.vedic-hero){padding-top:clamp(58px,11vw,76px)!important}.vedic-page .vedic-reading{scroll-margin-top:86px}.vedic-page .form-message:empty{display:none}}
+
+/* Scroll to top action */
+.mythborn-back-to-top{position:fixed;right:max(20px,env(safe-area-inset-right));bottom:calc(20px + env(safe-area-inset-bottom));width:46px;height:46px;min-width:46px;min-height:46px;border-radius:50%;background:rgba(18,16,28,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(212,175,55,.35);color:#e8d8b0;box-shadow:0 8px 24px rgba(0,0,0,.4);display:grid;place-items:center;padding:0;cursor:pointer;z-index:90;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(8px);transition:transform .2s ease,opacity .2s ease,visibility .2s ease,background .2s ease,border-color .2s ease,color .2s ease}
+.mythborn-back-to-top.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+.mythborn-back-to-top:hover{transform:translateY(-2px);background:rgba(30,26,44,.96);border-color:rgba(212,175,55,.8);color:#fff;box-shadow:0 12px 28px rgba(0,0,0,.5),0 0 12px rgba(212,175,55,.25)}
+.mythborn-back-to-top:focus-visible{outline:2px solid #d4af37;outline-offset:3px}
+body.has-open-menu .mythborn-back-to-top{display:none!important}
+@media(prefers-reduced-motion:reduce){.mythborn-back-to-top{transition:none!important}}

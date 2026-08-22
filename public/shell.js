@@ -87,4 +87,19 @@
     });
     summary?.addEventListener('keydown',event=>{if(event.key==='ArrowDown'){event.preventDefault();details.open=true;links[0]?.focus()}});
   });
+  const backToTop=document.querySelector('[data-back-to-top]');
+  if(backToTop){
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+    const update=()=>{
+      const visible=(window.scrollY||document.documentElement.scrollTop)>200;
+      backToTop.classList.toggle('is-visible',visible);
+      backToTop.setAttribute('aria-hidden',String(!visible));
+      backToTop.tabIndex=visible?0:-1;
+    };
+    update();
+    window.addEventListener('scroll',update,{passive:true});
+    backToTop.addEventListener('click',()=>{
+      window.scrollTo({top:0,behavior:reduced.matches?'auto':'smooth'});
+    });
+  }
 })();
