@@ -65,20 +65,11 @@ function home(locale){
   const todayRail=todayItems.slice(1).map(([tag,name,description,path])=>`<a href="${localePath(locale,path)}"><small>${tag}</small><strong>${name}</strong><span>${description}</span></a>`).join('');
   const featuredList=featuredItems.map(([,name,description,path])=>`<a href="${localePath(locale,path)}"><div><strong>${name}</strong><p>${description}</p></div><span aria-hidden="true">→</span></a>`).join('');
   const ancientNotes=ancientItems.slice(1).map(([tag,name,description,path],index)=>`<a href="${localePath(locale,path)}"><b aria-hidden="true">${['☿','☽','♄'][index]}</b><div><strong>${name}</strong><span>${description}</span></div></a>`).join('');
-  const partnerLinks=t.partners.map(([name,description,url])=>`<a href="${url}" target="_blank" rel="noreferrer"><span class="mythborn-partner-mark" aria-hidden="true">${name.charAt(0)}</span><span class="mythborn-partner-copy"><strong>${name}</strong><small>${description}</small></span><span class="mythborn-partner-arrow" aria-hidden="true">↗</span></a>`).join('');
   return `<main class="localized-home" data-server-home>
-    <section class="oracle-hero premium-home-hero mythborn-hero-banner" aria-labelledby="mythborn-hero-title">
-      <div class="mythborn-hero-copy">
-        <div class="mythborn-hero-badge"><span class="mythborn-hero-badge-dot" aria-hidden="true"></span><span>${t.free}</span></div>
-        <p class="eyebrow">${t.eyebrow}</p>
-        <h1 id="mythborn-hero-title">${t.title}<em>${t.em}</em></h1>
-        <p class="lead">${t.lead}</p>
-        <div class="actions">${link(locale,'/gunluk-kart',t.daily,'btn btn-primary','home_daily_card')}${link(locale,'/bugunun-gokyuzu',t.sky,'btn btn-secondary','home_current_sky')}${link(locale,'/astroloji',t.chart,'btn btn-tertiary','home_birth_chart')}</div>
-      </div>
-      <aside class="hero-sky-card mythborn-hero-sky" data-home-sky aria-busy="true" aria-live="polite"><div class="sky-skeleton" aria-hidden="true"><div class="sky-skeleton-wheel"></div></div></aside>
-      <div class="mythborn-hero-scroll-hint" aria-hidden="true"><span></span><small>MYTHBORN / 01</small></div>
+    <section class="oracle-hero premium-home-hero">
+      <div><p class="eyebrow">${t.eyebrow}</p><h1>${t.title}<em>${t.em}</em></h1><p class="lead">${t.lead}</p><div class="actions">${link(locale,'/gunluk-kart',t.daily,'btn btn-primary','home_daily_card')}${link(locale,'/bugunun-gokyuzu',t.sky,'btn btn-secondary','home_current_sky')}${link(locale,'/astroloji',t.chart,'btn btn-tertiary','home_birth_chart')}</div></div>
+      <aside class="hero-sky-card" data-home-sky aria-busy="true" aria-live="polite"><div class="sky-skeleton" aria-hidden="true"><div class="sky-skeleton-wheel"></div></div></aside>
     </section>
-    <section class="section mythborn-partner-strip" aria-labelledby="mythborn-partner-title"><div class="mythborn-partner-intro"><div><p class="eyebrow">${t.partnersEye}</p><h2 id="mythborn-partner-title">${t.partnersTitle}</h2></div><p>${t.partnersLead}</p></div><nav class="mythborn-partner-grid" aria-label="${t.partnersEye}">${partnerLinks}</nav></section>
     <section class="section home-today" data-layer="sky" aria-labelledby="home-today-title"><div class="home-today-layout"><a class="home-today-primary" href="${localePath(locale,todayItems[0][3])}"><span class="today-symbol" aria-hidden="true">☉</span><p class="eyebrow">${today[0]}</p><h2 id="home-today-title">${todayItems[0][1]}</h2><p>${todayItems[0][2]}</p><span>${t.discover}</span></a><div class="home-today-rail">${todayRail}</div></div></section>
     <section class="section home-featured" data-layer="symbolic"><div class="featured-layout"><div class="featured-intro"><p class="eyebrow">${featured[0]}</p><h2>${featured[1]}</h2><p>${featured[2]}</p></div><nav class="featured-list" aria-label="${featured[0]}">${featuredList}</nav></div></section>
     <section class="section home-ancient" data-layer="archive"><div class="ancient-editorial"><div class="ancient-editorial-main"><span class="ancient-glyph" aria-hidden="true">☉</span><p class="eyebrow">${ancient[0]}</p><h2>${ancient[1]}</h2><p>${ancient[2]}</p><a class="btn btn-ghost" href="${localePath(locale,ancientItems[0][3])}">${ancientItems[0][1]} →</a></div><div class="ancient-notes">${ancientNotes}</div></div></section>
