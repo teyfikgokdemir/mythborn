@@ -111,7 +111,7 @@ const LEGACY_SHOPIFY_EXACT=new Set([
   '/account/login/multipass'
 ]);
 
-const stripLegacyLocale=pathname=>pathname.toLowerCase().replace(/^\/(?:de|fr|es|it)(?=\/|$)/,'')||'/';
+const stripLegacyLocale=pathname=>pathname.toLowerCase().replace(/^\/(?:en|gr|el|de|fr|es|it)(?=\/|$)/,'')||'/';
 
 const isLegacyShopifyPath=pathname=>{
   const normalized=stripLegacyLocale(pathname.replace(/\/+$/,'')||'/');
