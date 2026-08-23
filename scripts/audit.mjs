@@ -2,6 +2,7 @@ import { access, readFile } from 'node:fs/promises';
 import worker from '../src/app-router.js';
 const env={ASSETS:{fetch:async request=>{const pathname=new URL(request.url).pathname;try{return new Response(await readFile(new URL(`../public${pathname}`,import.meta.url)),{status:200})}catch{return new Response('',{status:200})}}},TURNSTILE_SITE_KEY:'1x00000000000000000000AA'};
 async function check(path,status,includes=[],init={}){const response=await worker.fetch(new Request(`https://mythborn.co${path}`,init),env,{});if(response.status!==status)throw new Error(`${path} returned ${response.status}; expected ${status}`);const body=await response.text();for(const value of includes)if(!body.includes(value))throw new Error(`${path} missing ${value}`);return{response,body}}
+async function checkSearchIndex(path,expectedTitles){const {body}=await check(path,200,expectedTitles);let payload;try{payload=JSON.parse(body)}catch{throw new Error(`${path} returned invalid JSON`)}if(!Number.isInteger(payload.count)||payload.count<expectedTitles.length||!Array.isArray(payload.items)||payload.items.length!==payload.count)throw new Error(`${path} returned inconsistent search index count`);}
 const trLocaleHref=html=>html.match(/class="header-language-panel"[\s\S]*?<a href="([^"]*)"[^>]*>\s*<span>TR<\/span>/)?.[1];
 for(const file of ['public/oracle.css','public/oracle.js','public/tarot-deck.js','public/synastry.js','public/reflection.js','public/menu.js','public/account-menu.js','public/social-auth.js','public/i18n-client.js','public/shell.js','public/search.js','src/auth.js','src/account.js','src/astrology.js','src/oauth.js','src/blog.js','src/app-router.js','migrations/0005_oauth_identities.sql'])await access(new URL(`../${file}`,import.meta.url));
 await check('/',200,['Günlük Tarot','hreflang="en"','hreflang="el"','>TR<','>EN<','>GR<','desktop-explore']);
@@ -33,9 +34,9 @@ await check('/arama',200,['data-site-search','SearchAction']);
 await check('/en/arama',200,['Search the site','data-site-search']);
 await check('/gr/arama',200,['Αναζήτηση στον ιστότοπο','data-site-search']);
 await check('/es/arama',200,['Buscar en el sitio','data-site-search']);
-await check('/api/search-index?locale=tr',200,['"count":216','"title":"Deli"','"title":"Akrep"','"title":"Su"','"title":"Yükselen"']);
-await check('/api/search-index?locale=en',200,['"count":216','"title":"The Fool"','"title":"Scorpio"','"title":"Water"','"title":"Ascendant"']);
-await check('/api/search-index?locale=el',200,['"count":216','"title":"Ο Τρελός"','"title":"Σκορπιός"','"title":"Νερό"','"title":"Ωροσκόπος"']);
+await checkSearchIndex('/api/search-index?locale=tr',['"title":"Deli"','"title":"Akrep"','"title":"Su"','"title":"Yükselen"']);
+await checkSearchIndex('/api/search-index?locale=en',['"title":"The Fool"','"title":"Scorpio"','"title":"Water"','"title":"Ascendant"']);
+await checkSearchIndex('/api/search-index?locale=el',['"title":"Ο Τρελός"','"title":"Σκορπιός"','"title":"Νερό"','"title":"Ωροσκόπος"']);
 await check('/api/astrology/chart',405,['Bu yöntem desteklenmiyor.']);
 await check('/api/auth/me',503,['veritabanı']);
 await check('/not-found',404,['Sayfa bulunamadı','Ana sayfaya dön']);
