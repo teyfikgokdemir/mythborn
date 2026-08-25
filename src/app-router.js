@@ -312,7 +312,7 @@ function decorate(html,locale,path,accessState,localizedPage=null){
   if(['/gizlilik','/kvkk','/kullanim-kosullari','/cerezler'].includes(path))html=html.replace(/<main\b[\s\S]*?<\/main>/,legalMain(locale,path));
   if(!html.includes('<header')){
     const sharedHeader=`<div class="shell"><header class="topbar"><a class="brand" href="${href(locale,'/')}"><img src="/images/mythborn-emblem.png" alt=""><span>MYTHBORN</span></a>${desktopNav(locale)}${headerLanguage(locale,path)}<button class="mobile-menu-button" type="button" aria-label="${t.open}" aria-expanded="false" aria-controls="mobile-nav"><span></span></button></header>${mobileNav(locale,path)}`;
-    html=html.replace(/<body([^>]*)>/,`<body$1>${sharedHeader}`).replace('</body>','</div></body>');
+    html=html.replace(/<body([^>]*)>/,`<body$1>${sharedHeader}`).replace('</body>',`<script src="/cansu-source-beacon.js" data-site="mythborn" defer></script>`+'</div></body>');
   }
   if(!html.includes('desktop-nav'))html=html.replace('</header>',`${desktopNav(locale)}</header>`);
   if(!html.includes('header-language'))html=html.replace('</header>',`${headerLanguage(locale,path)}</header>`);
