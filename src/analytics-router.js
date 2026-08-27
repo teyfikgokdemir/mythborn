@@ -25,7 +25,7 @@ const allowAnalyticsProviders=policy=>{
     'https://cloudflareinsights.com',
     'https://pagead2.googlesyndication.com'
   ]);
-  next=appendSources(next,'img-src',['https://pagead2.googlesyndication.com']);
+  next=appendSources(next,'img-src',['https://pagead2.googlesyndication.com','https://teyfikgokdemir.com']);
   return next;
 };
 
