@@ -4,7 +4,6 @@ import worker from '../src/app-router.js';
 import {
   ALWAYS_PUBLIC_ROUTES,
   PROTECTED_ROUTES,
-  earlyAccessBanner,
   paywallPage,
   premiumState,
   routeRequiresPremium
@@ -14,7 +13,6 @@ import {angularDistance,longitudePoint,strongestAspect} from '../public/live-sky
 const before=premiumState({PREMIUM_STARTS_AT:'2026-09-01T00:00:00+03:00',PREMIUM_GATE_ENABLED:'false'},new Date('2026-08-01T00:00:00Z'));
 const afterOff=premiumState({PREMIUM_STARTS_AT:'2026-09-01T00:00:00+03:00',PREMIUM_GATE_ENABLED:'false'},new Date('2026-09-02T00:00:00Z'));
 const afterOn=premiumState({PREMIUM_STARTS_AT:'2026-09-01T00:00:00+03:00',PREMIUM_GATE_ENABLED:'true'},new Date('2026-09-02T00:00:00Z'));
-assert.equal(before.showEarlyAccessBanner,true);
 assert.equal(before.isPremiumRequired,false);
 assert.equal(afterOff.isPremiumRequired,false);
 assert.equal(afterOn.isPremiumRequired,true);
@@ -25,12 +23,10 @@ assert(PROTECTED_ROUTES.has('/sinastri'));
 assert(PROTECTED_ROUTES.has('/advanced-astrology'));
 
 for(const locale of ['tr','en','el']){
-  const banner=earlyAccessBanner(locale,before),paywall=paywallPage(locale,'/sinastri');
-  assert(banner.includes('data-dismiss-until'));
-  assert(!/₺|\$|€|£|aylık|monthly price/i.test(banner+paywall));
+  const paywall=paywallPage(locale,'/sinastri');
+  assert(!/₺|\$|€|£|aylık|monthly price/i.test(paywall));
   assert(paywall.includes('disabled'));
 }
-assert.equal(earlyAccessBanner('tr',afterOff),'');
 
 assert.equal(angularDistance(359,1),2);
 assert.deepEqual(longitudePoint(0),{x:160,y:60});
@@ -66,7 +62,6 @@ for(const [path,lang] of [['/','tr'],['/en','en'],['/gr','el']]){
   assert(html.includes('home-today-layout'));
   assert(html.includes('featured-list'));
   assert(html.includes('ancient-editorial'));
-  assert(html.includes('data-early-access'));
   assert(!html.includes('Gökyüzü hesaplanıyor'));
   assert(!html.includes('EN ÇOK İLGİ GÖRENLER'));
   assert(!html.includes('MOST EXPLORED'));

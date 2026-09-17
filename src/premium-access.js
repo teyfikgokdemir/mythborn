@@ -22,9 +22,7 @@ export function premiumState(env={},now=new Date()){
     requestTime:requestTime.toISOString(),
     isPremiumPeriodStarted,
     isPremiumGateEnabled,
-    isPremiumRequired:isPremiumPeriodStarted&&isPremiumGateEnabled,
-    showEarlyAccessBanner:Number.isFinite(startsAtMs)&&!isPremiumPeriodStarted,
-    dismissalExpiresAt:new Date(requestTime.getTime()+PREMIUM_DISMISSAL_DAYS*86400000).toISOString()
+    isPremiumRequired:isPremiumPeriodStarted&&isPremiumGateEnabled
   };
 }
 
@@ -59,11 +57,6 @@ const text={
   }
 };
 
-export function earlyAccessBanner(locale,state){
-  if(!state.showEarlyAccessBanner)return '';
-  const t=text[locale];
-  return `<aside class="early-access-banner" data-early-access data-dismiss-until="${state.dismissalExpiresAt}" aria-label="${t.banner}"><span aria-hidden="true">✦</span><p>${t.banner}</p><button type="button" data-early-access-close aria-label="${t.close}">×</button></aside>`;
-}
 
 export function paywallPage(locale,path){
   const t=text[locale],home=locale==='tr'?'/':locale==='en'?'/en':'/gr';

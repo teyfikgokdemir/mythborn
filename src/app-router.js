@@ -7,7 +7,7 @@ import {premiumGuideSearchItems} from './premium-guides.js';
 import {blogMeta} from './blog.js';
 import {corePage,coreMeta} from './core-pages.js';
 import {discoveryPage,discoveryMeta} from './discovery-core.js';
-import {earlyAccessBanner,paywallPage,premiumState,routeRequiresPremium} from './premium-access.js';
+import {paywallPage,premiumState,routeRequiresPremium} from './premium-access.js';
 
 const SITE='https://mythborn.co';
 const localeInfo={
@@ -190,8 +190,6 @@ function decorate(html,locale,path,accessState){
   html=html.replace(/<nav class="(?:language-switcher|lang)"[\s\S]*?<\/nav>/g,'');
   if(!html.includes('skip-link'))html=html.replace(/<body([^>]*)>/,`<body$1><a class="skip-link" href="#ana-icerik">${locale==='tr'?'Ana içeriğe geç':locale==='en'?'Skip to main content':'Μετάβαση στο κύριο περιεχόμενο'}</a>`);
   html=html.replace(/<body([^>]*)>/,`<body$1 data-route="${path}">`);
-  const accessBanner=earlyAccessBanner(locale,accessState);
-  if(accessBanner&&!html.includes('data-early-access'))html=html.replace(/<body([^>]*)>/,`<body$1>${accessBanner}`);
   html=html.replace(/<main(?![^>]*\bid=)([^>]*)>/,`<main id="ana-icerik"$1>`);
   if(path==='/'&&!html.includes('knowledge-hub'))html=html.replace('</main>',`${knowledgeHub(locale)}</main>`);
   const canonical=`${SITE}${href(locale,path)}`;
