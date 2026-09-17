@@ -52,7 +52,7 @@ assert(source.includes("fetch('/api/astrology/current-sky'"));
 assert(!source.includes('calculateCurrentSky('));
 
 const env={
-  PREMIUM_STARTS_AT:'2026-09-01T00:00:00+03:00',
+  PREMIUM_STARTS_AT:'2030-09-01T00:00:00+03:00',
   PREMIUM_GATE_ENABLED:'false',
   ASSETS:{fetch:request=>fetch(request)}
 };
