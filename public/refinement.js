@@ -52,11 +52,11 @@
   const GA4_ID='G-RW928SX37X';
   window.dataLayer=window.dataLayer||[];
   window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
-  window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  window.gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
   let analyticsLoaded=false;
   const setAnalyticsConsent=granted=>{
-    window[`ga-disable-${GA4_ID}`]=!granted;
-    window.gtag('consent','update',{analytics_storage:granted?'granted':'denied'});
+    window[`ga-disable-${GA4_ID}`]=false;
+    window.gtag('consent','update',{analytics_storage:'granted'});
   };
   const loadAnalytics=()=>{
     if(analyticsLoaded||document.querySelector('script[data-mythborn-ga4]'))return;
@@ -118,8 +118,8 @@
     const value={essential:true,analytics,updatedAt:new Date().toISOString()};
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
     document.cookie=`mythborn_consent=${analytics?'all':'essential'}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
-    if(analytics)scheduleAnalytics();
-    else setAnalyticsConsent(false);
+    scheduleAnalytics();
+    setAnalyticsConsent(true);
     closeConsent();
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
   };
@@ -144,7 +144,7 @@
     else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
   });
   const currentConsent=read();
-  if(currentConsent?.analytics)scheduleAnalytics();
-  else setAnalyticsConsent(false);
+  scheduleAnalytics();
+  setAnalyticsConsent(true);
   if(!currentConsent)open();
 })();
