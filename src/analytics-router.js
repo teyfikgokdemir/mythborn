@@ -9,6 +9,18 @@ const appendSources=(policy,directive,sources)=>{
   return policy.replace(pattern,`${match[1]}${directive} ${[...existing].join(' ')}`);
 };
 
+const GTM_ID='GTM-PKC69D3L';
+const GTM_HEAD=`<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');</script>
+<!-- End Google Tag Manager -->`;
+const GTM_BODY=`<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->`;
+
 const BASE_CONTENT_SECURITY_POLICY="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'";
 
 const allowAnalyticsProviders=policy=>{
@@ -17,6 +29,7 @@ const allowAnalyticsProviders=policy=>{
     'https://www.googletagmanager.com',
     'https://static.cloudflareinsights.com'
   ]);
+  next=appendSources(next,'frame-src',['https://www.googletagmanager.com']);
   next=appendSources(next,'connect-src',[
     'https://www.google-analytics.com',
     'https://analytics.google.com',
@@ -40,7 +53,11 @@ const secureHtmlResponse=response=>{
   headers.set('x-frame-options','DENY');
   headers.set('referrer-policy','strict-origin-when-cross-origin');
   headers.set('permissions-policy','camera=(), microphone=(), payment=(), geolocation=()');
-  return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+  const secured=new Response(response.body,{status:response.status,statusText:response.statusText,headers});
+  return new HTMLRewriter()
+    .on('head',{element(element){element.prepend(GTM_HEAD,{html:true});}})
+    .on('body',{element(element){element.prepend(GTM_BODY,{html:true});}})
+    .transform(secured);
 };
 
 const cacheStaticAssetResponse=(response,url)=>{
