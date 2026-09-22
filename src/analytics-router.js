@@ -38,7 +38,7 @@ const allowAnalyticsProviders=policy=>{
     'https://cloudflareinsights.com',
     'https://pagead2.googlesyndication.com'
   ]);
-  next=appendSources(next,'img-src',['https://pagead2.googlesyndication.com','https://teyfikgokdemir.com']);
+  next=appendSources(next,'img-src',['https://www.googletagmanager.com','https://www.google-analytics.com','https://pagead2.googlesyndication.com','https://teyfikgokdemir.com']);
   return next;
 };
 
