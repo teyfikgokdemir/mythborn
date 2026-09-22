@@ -1,5 +1,4 @@
 (()=>{
-  if(typeof window.gtag==='function')window.gtag('config','G-RW928SX37X');
   const locale=window.MYTHBORN_LOCALE||'tr';
   const prefix=locale==='tr'?'':locale==='en'?'/en':'/gr';
   const localPath=path=>`${prefix}${path}`;
