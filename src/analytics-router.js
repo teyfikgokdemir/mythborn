@@ -42,7 +42,7 @@ const allowAnalyticsProviders=policy=>{
   return next;
 };
 
-const secureHtmlResponse=response=>{
+const secureHtmlResponse=async response=>{
   const contentType=response.headers.get('content-type')||'';
   if(!contentType.includes('text/html'))return response;
   const headers=new Headers(response.headers);
@@ -53,11 +53,11 @@ const secureHtmlResponse=response=>{
   headers.set('x-frame-options','DENY');
   headers.set('referrer-policy','strict-origin-when-cross-origin');
   headers.set('permissions-policy','camera=(), microphone=(), payment=(), geolocation=()');
-  const secured=new Response(response.body,{status:response.status,statusText:response.statusText,headers});
-  return new HTMLRewriter()
-    .on('head',{element(element){element.prepend(GTM_HEAD,{html:true});}})
-    .on('body',{element(element){element.prepend(GTM_BODY,{html:true});}})
-    .transform(secured);
+  const html=await response.text();
+  const taggedHtml=html
+    .replace(/<head(\s[^>]*)?>/i,match=>`${match}${GTM_HEAD}`)
+    .replace(/<body(\s[^>]*)?>/i,match=>`${match}${GTM_BODY}`);
+  return new Response(taggedHtml,{status:response.status,statusText:response.statusText,headers});
 };
 
 const cacheStaticAssetResponse=(response,url)=>{
@@ -166,7 +166,7 @@ export default {
     if(isLegacyShopifyPath(url.pathname))return goneResponse();
 
     const response=await app.fetch(request,env,ctx);
-    return cacheStaticAssetResponse(secureHtmlResponse(response),url);
+    return cacheStaticAssetResponse(await secureHtmlResponse(response),url);
   }
 };
 
