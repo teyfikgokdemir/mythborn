@@ -23,6 +23,14 @@ for(const route of spanishRoutes){
   if(!html.includes('window.MYTHBORN_LOCALE="es"'))throw new Error(`/es${route} has no stable locale bootstrap`);
   if(!html.includes('"inLanguage":"es"'))throw new Error(`/es${route} has no localized structured-data language`);
 }
+for(const route of ['/astroloji-kutuphanesi','/retro-hareketler','/transitler','/evler/10','/burclar/akrep']){
+  const response=await worker.fetch(new Request('https://mythborn.co/es'+route),env,{});
+  if(response.status!==200)throw new Error('/es'+route+' returned '+response.status);
+  const html=await response.text();
+  const main=html.match(/<main\b[\s\S]*?<\/main>/)?.[0]||'';
+  if(/[Α-ωΆ-ώ]/u.test(main))throw new Error('/es'+route+' contains Greek fallback content');
+  if(!html.includes('lang="es"')||!html.includes('"inLanguage":"es"'))throw new Error('/es'+route+' is missing Spanish language metadata');
+}
 const weekly=await readFile(new URL('../public/weekly.js',import.meta.url),'utf8');
 for(const token of ["'aries'","'pisces'",'history.replaceState','aria-pressed','WEEKLY ADVICE','ΣΥΜΒΟΥΛΗ ΕΒΔΟΜΑΔΑΣ','HAFTANIN TAVSİYESİ'])if(!weekly.includes(token))throw new Error(`Weekly implementation missing ${token}`);
 const shell=await readFile(new URL('../public/shell.js',import.meta.url),'utf8');
