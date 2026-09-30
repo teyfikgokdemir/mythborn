@@ -90,6 +90,16 @@ const pageChecks = [
 
 const redirectChecks = [
   {
+    url: 'http://mythborn.co/astroloji',
+    expected: 'https://mythborn.co/astroloji',
+    label: 'HTTP to HTTPS canonical redirect',
+  },
+  {
+    url: 'https://www.mythborn.co/astroloji',
+    expected: 'https://mythborn.co/astroloji',
+    label: 'www to root canonical redirect',
+  },
+  {
     url: 'https://mythborn.co/search',
     expected: 'https://mythborn.co/arama',
     label: 'legacy search redirect',
