@@ -38,7 +38,7 @@ const href=(locale,path)=>{
 };
 const turkishBlogSearchItems=()=>Object.entries(blogMeta).filter(([path])=>path.startsWith('/blog/')).map(([path,[title,description]])=>({title,description,category:'journal',path}));
 const searchItems=locale=>{
-  const sourceLocale=locale==='es'?'en':locale;
+  const sourceLocale=locale;
   return [
     ...tarotSearchItems(sourceLocale),
     ...astrologySearchItems(sourceLocale),
