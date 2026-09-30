@@ -30,6 +30,10 @@ for(const [locale,prefix] of Object.entries(localePrefixes)){
     if(!body.includes('class="article-faq"'))throw new Error(`${locale}/burclar/${slug} missing visible FAQ accordion`);
   }
 }
+// Spanish homepage trend parity: keep the editorial growth surface aligned with TR/EN/GR.
+const esHome=await check('/es',['TENDENCIAS AHORA','Venus retrógrado 2026','Mercurio retrógrado 2026','Calendario astrológico 2027','Eclipse solar total','/es/blog/']);
+if(!esHome.includes('class="section home-trend"'))throw new Error('Spanish homepage trend parity missing');
+
 const trLibrary=await check('/astroloji-kutuphanesi',['id="library-group-1"','12 Burç']);
 if(!trLibrary.includes('/burclar/koc')||!trLibrary.includes('/burclar/balik'))throw new Error('Zodiac library index is incomplete');
 
