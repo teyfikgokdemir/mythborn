@@ -30,12 +30,13 @@ console.log('Running Strict SEO Verification Audit...');
 const errors = [];
 
 // 0. Canonical origin normalization audit
-for (const [url, expectedLocation] of [
+for (const [url, expectedLocation, headers] of [
   ['http://mythborn.co/astroloji', 'https://mythborn.co/astroloji'],
   ['http://www.mythborn.co/astroloji', 'https://mythborn.co/astroloji'],
-  ['https://www.mythborn.co/astroloji', 'https://mythborn.co/astroloji']
+  ['https://www.mythborn.co/astroloji', 'https://mythborn.co/astroloji'],
+  ['https://mythborn.co/astroloji', 'https://mythborn.co/astroloji', {'cf-visitor':'{"scheme":"http"}'}]
 ]) {
-  const response = await worker.fetch(new Request(url), env, {});
+  const response = await worker.fetch(new Request(url,{headers}), env, {});
   if (response.status !== 301) {
     errors.push(`[Canonical Origin Status] ${url} returned HTTP ${response.status}, expected 301`);
     continue;
