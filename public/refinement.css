@@ -506,3 +506,118 @@ body:has(.vedic-page) .vedic-page>.section{scroll-margin-top:86px}
 .mythborn-back-to-top:focus-visible{outline:2px solid #d4af37;outline-offset:3px}
 body.has-open-menu .mythborn-back-to-top{display:none!important}
 @media(prefers-reduced-motion:reduce){.mythborn-back-to-top{transition:none!important}}
+
+
+/* Zodiac detail refinement: denser editorial cards + premium FAQ. */
+.library-page.premium-detail{
+  width:min(980px,100%)!important;
+}
+.premium-detail-body{
+  gap:10px!important;
+}
+.premium-detail-body>section{
+  padding:17px 18px!important;
+  border-radius:14px!important;
+  background:linear-gradient(180deg,rgba(255,255,255,.022),rgba(255,255,255,.012))!important;
+  min-height:0!important;
+}
+.premium-detail-body>section h2{
+  margin:0 0 10px!important;
+  font-size:clamp(22px,2vw,30px)!important;
+  line-height:1.02!important;
+  letter-spacing:-.025em!important;
+}
+.premium-detail-body>section p{
+  margin:0!important;
+  font-size:13px!important;
+  line-height:1.65!important;
+}
+.premium-detail-body .sign-facts{
+  margin:0!important;
+  gap:6px!important;
+}
+.premium-detail-body .sign-facts span{
+  padding:6px 9px!important;
+  font-size:10px!important;
+}
+.premium-detail-body .sign-deep-links .article-links{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:7px!important;
+}
+.premium-detail-body .sign-deep-links .article-links a{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:34px!important;
+  padding:7px 10px!important;
+  border:1px solid rgba(199,217,91,.18)!important;
+  border-radius:999px!important;
+  background:rgba(199,217,91,.025)!important;
+  font-size:11px!important;
+  line-height:1.2!important;
+  text-decoration:none!important;
+}
+
+/* FAQ should read as a compact accordion, not another oversized card. */
+.premium-detail-body .article-faq{
+  padding:18px!important;
+  background:transparent!important;
+  border:1px solid rgba(255,255,255,.075)!important;
+}
+.premium-detail-body .article-faq>.eyebrow{
+  margin:0 0 8px!important;
+  font-size:10px!important;
+  letter-spacing:.22em!important;
+}
+.premium-detail-body .article-faq details{
+  margin:0!important;
+  border:0!important;
+  border-top:1px solid rgba(255,255,255,.07)!important;
+  border-radius:0!important;
+  background:transparent!important;
+}
+.premium-detail-body .article-faq details:first-of-type{
+  border-top:0!important;
+}
+.premium-detail-body .article-faq summary{
+  position:relative!important;
+  padding:12px 34px 12px 0!important;
+  color:#F2EBDD!important;
+  font-size:13px!important;
+  font-weight:650!important;
+  line-height:1.35!important;
+  cursor:pointer!important;
+  list-style:none!important;
+}
+.premium-detail-body .article-faq summary::-webkit-details-marker{display:none!important}
+.premium-detail-body .article-faq summary::after{
+  content:'+'!important;
+  position:absolute!important;
+  right:2px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  color:#C7D95B!important;
+  font-size:17px!important;
+  font-weight:400!important;
+}
+.premium-detail-body .article-faq details[open] summary::after{
+  content:'−'!important;
+}
+.premium-detail-body .article-faq details p{
+  padding:0 34px 13px 0!important;
+  color:#AFA7B2!important;
+  font-size:12px!important;
+  line-height:1.6!important;
+}
+.library>.premium-detail>p:last-child{
+  margin-top:14px!important;
+  font-size:11px!important;
+  opacity:.72!important;
+}
+@media(max-width:700px){
+  .library-page.premium-detail{width:100%!important}
+  .premium-detail-body{grid-template-columns:1fr!important}
+  .premium-detail-body>section{padding:16px!important}
+  .premium-detail-body>section h2{font-size:24px!important}
+  .premium-detail-body .article-faq{grid-column:auto!important}
+}
