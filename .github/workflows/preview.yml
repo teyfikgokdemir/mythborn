@@ -54,7 +54,7 @@ jobs:
         id: preview_d1
         if: steps.credentials.outputs.configured == 'true'
         continue-on-error: true
-        run: npx wrangler d1 migrations apply mythborn-membership-preview --remote
+        run: npx wrangler d1 migrations apply mythborn-membership-preview --remote --config wrangler.preview.jsonc
 
       - name: Note unavailable preview D1
         if: steps.credentials.outputs.configured == 'true' && steps.preview_d1.outcome != 'success'
@@ -73,9 +73,8 @@ jobs:
           SAFE_REF="${PR_NUMBER:-manual}-${GITHUB_SHA::8}"
           WORKER_NAME="mythborn-preview-${SAFE_REF}"
           npx wrangler deploy \
-            --name "$WORKER_NAME" \
-            --var ENVIRONMENT:preview \
-            --var ADMIN_EMAILS:tevfikgokdemir@gmail.com
+            --config wrangler.preview.jsonc \
+            --name "$WORKER_NAME"
           {
             echo "## Mythborn preview deploy tamamlandı"
             echo

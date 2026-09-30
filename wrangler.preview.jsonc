@@ -1,12 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "mythborn",
+  "name": "mythborn-preview",
   "main": "src/analytics-router.js",
   "compatibility_date": "2026-07-20",
   "workers_dev": true,
   "preview_urls": true,
   "vars": {
-    "ENVIRONMENT": "production",
+    "ENVIRONMENT": "preview",
     "ADMIN_EMAILS": "tevfikgokdemir@gmail.com",
     "PREMIUM_STARTS_AT": "2026-09-01T00:00:00+03:00",
     "PREMIUM_GATE_ENABLED": "false"
@@ -21,8 +21,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "mythborn-membership",
-      "database_id": "99490fbd-8f6c-4bf9-b5ed-bffdfdbd8771",
+      "database_name": "mythborn-membership-preview",
+      "database_id": "82d3d933-282d-4369-b68e-cee26b66349b",
       "migrations_dir": "migrations"
     }
   ]
