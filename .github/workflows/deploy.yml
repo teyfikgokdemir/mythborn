@@ -40,3 +40,7 @@ jobs:
 
       - name: Verify live production
         run: node scripts/verify-production.mjs
+
+      - name: Submit sitemap to IndexNow
+        continue-on-error: true
+        run: npm run indexnow:submit
