@@ -93,7 +93,7 @@ export function decorate(html,locale,path,accessState,localizedPage=null){
   if(!html.includes('SearchAction'))html=html.replace('</head>',`<script type="application/ld+json">${JSON.stringify({'@context':'https://schema.org','@type':'WebSite',name:'Mythborn',url:SITE,potentialAction:{'@type':'SearchAction',target:`${SITE}${href(locale,'/arama')}?q={search_term_string}`,'query-input':'required name=search_term_string'}})}</script></head>`);
   html=html.replace('</head>',`<script>window.MYTHBORN_LOCALE=${JSON.stringify(locale)}</script></head>`);
   const needsDiscoveryClient=locale==='es'
-    ?['/bugunun-gokyuzu','/ay-takvimi','/sinastri'].includes(path)
+    ?['/bugunun-gokyuzu','/ay-takvimi','/sinastri','/ruya-yorumlari','/numeroloji','/burc-uyumu'].includes(path)
     :Boolean(discoveryPage(locale,path));
   if(locale!=='tr'&&needsDiscoveryClient){
     html=html.replace(/<script src="\/(?:discover|sky|synastry)\.js" defer><\/script>/g,'');
