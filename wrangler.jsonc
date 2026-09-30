@@ -6,7 +6,7 @@
   "workers_dev": true,
   "preview_urls": true,
   "vars": {
-    "ENVIRONMENT": "preview",
+    "ENVIRONMENT": "production",
     "ADMIN_EMAILS": "tevfikgokdemir@gmail.com",
     "PREMIUM_STARTS_AT": "2026-09-01T00:00:00+03:00",
     "PREMIUM_GATE_ENABLED": "false"

@@ -3,7 +3,7 @@
   "version": "1.2.0",
   "private": true,
   "type": "module",
-  "description": "Üç dilli Tarot, astroloji ve sembolik farkındalık platformu",
+  "description": "Dört dilli Tarot, astroloji ve sembolik farkındalık platformu",
   "scripts": {
     "dev": "wrangler dev",
     "build": "wrangler deploy --dry-run",
