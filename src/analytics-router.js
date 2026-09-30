@@ -151,7 +151,8 @@ const robotsResponse=()=>new Response('User-agent: *\nAllow: /\nDisallow: /api/\
 export default {
   async fetch(request,env,ctx){
     const url=new URL(request.url);
-    if(url.hostname==='www.mythborn.co'){
+    if(url.protocol!=='https:'||url.hostname==='www.mythborn.co'){
+      url.protocol='https:';
       url.hostname='mythborn.co';
       return Response.redirect(url.toString(),301);
     }
