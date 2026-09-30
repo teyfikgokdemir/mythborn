@@ -151,7 +151,9 @@ const robotsResponse=()=>new Response('User-agent: *\nAllow: /\nDisallow: /api/\
 export default {
   async fetch(request,env,ctx){
     const url=new URL(request.url);
-    if(url.protocol!=='https:'||url.hostname==='www.mythborn.co'){
+    const cfVisitor=request.headers.get('cf-visitor')||'';
+    const originalSchemeIsHttp=url.protocol!=='https:'||/"scheme"\s*:\s*"http"/i.test(cfVisitor);
+    if(originalSchemeIsHttp||url.hostname==='www.mythborn.co'){
       url.protocol='https:';
       url.hostname='mythborn.co';
       return Response.redirect(url.toString(),301);
