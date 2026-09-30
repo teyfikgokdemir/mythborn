@@ -1,6 +1,7 @@
 import worker from '../src/app-router.js';
 import {readFile} from 'node:fs/promises';
 import {spanishRoutes,spanishRouteSet} from '../src/spanish-edition.js';
+import {localizedBlogMissingTranslations} from '../src/localized-blog.js';
 
 const env={ASSETS:{fetch:async request=>{const pathname=new URL(request.url).pathname;try{return new Response(await readFile(new URL(`../public${pathname}`,import.meta.url)),{status:200})}catch{return new Response('',{status:200})}}}};
 const routes=['/','/gunluk-kart','/tarot','/ask','/kariyer','/otuz-gun','/katina','/astroloji','/haftalik-burc','/bugunun-gokyuzu','/sinastri','/ay-takvimi','/ruya-yorumlari','/numeroloji','/burc-uyumu','/kadim-gokyuzu','/giris','/kayit','/hesabim'];
@@ -40,3 +41,38 @@ for(const token of ["'aries'","'pisces'",'history.replaceState','aria-pressed','
 const shell=await readFile(new URL('../public/shell.js',import.meta.url),'utf8');
 for(const token of ['aria-expanded','ArrowDown','mouseenter','mouseleave','mobile-group-toggle'])if(!shell.includes(token))throw new Error(`Navigation behaviour missing ${token}`);
 console.log('Core SSR locale isolation, Spanish content isolation, weekly state and accessible navigation audit passed.');
+
+
+// Blog translation parity: no silent English fallback is allowed for localized editions.
+for(const locale of ['en','el','es']){
+  const missing=localizedBlogMissingTranslations(locale);
+  if(missing.length)throw new Error('Blog translation parity failed for '+locale+': '+missing.join(', '));
+}
+
+// Core page structural parity across all public languages.
+const parity={
+  '/tarot':['data-member-reading="tarot"','data-reading-workspace','data-tool-answer-guide'],
+  '/astroloji':['data-member-reading="astroloji"','data-tool-answer-guide'],
+  '/sinastri':['data-synastry-form','data-tool-answer-guide'],
+  '/gunluk-kart':['data-daily-deck'],
+  '/haftalik-burc':['data-weekly-zodiac','data-weekly-result']
+};
+for(const [route,tokens] of Object.entries(parity)){
+  for(const prefix of ['', '/en', '/gr', '/es']){
+    const response=await worker.fetch(new Request('https://mythborn.co'+prefix+route),env,{});
+    if(response.status!==200)throw new Error((prefix||'/tr')+route+' returned '+response.status);
+    const html=await response.text();
+    for(const token of tokens)if(!html.includes(token))throw new Error((prefix||'/tr')+route+' missing parity token: '+token);
+  }
+}
+
+// Spanish pages must not advertise an English fallback when the Spanish target exists.
+const spanishNativeTargets=['/es/tarot-kartlari','/es/ruya-sembolleri','/es/astroloji-kutuphanesi','/es/astroloji-sozlugu','/es/advanced-astrology','/es/arama'];
+for(const route of ['/tarot','/astroloji','/sinastri','/']){
+  const response=await worker.fetch(new Request('https://mythborn.co/es'+(route==='/'?'':route)),env,{});
+  const html=await response.text();
+  for(const target of spanishNativeTargets){
+    const pos=html.indexOf('href="'+target+'"');
+    if(pos>=0&&html.slice(pos,pos+260).includes('Disponible en inglés'))throw new Error('/es'+route+' shows obsolete English fallback label for '+target);
+  }
+}
