@@ -2,18 +2,19 @@ name: Mythborn Preview
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, closed]
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: mythborn-preview-${{ github.event.pull_request.number || github.ref_name }}
+  group: mythborn-preview-${{ github.event.pull_request.number || 'manual' }}
   cancel-in-progress: true
 
 jobs:
   preview:
+    if: github.event_name == 'workflow_dispatch' || github.event.action != 'closed'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -70,17 +71,45 @@ jobs:
         if: steps.credentials.outputs.configured == 'true' && steps.preview_d1.outcome == 'success'
         shell: bash
         run: |
-          SAFE_REF="${PR_NUMBER:-manual}-${GITHUB_SHA::8}"
-          WORKER_NAME="mythborn-preview-${SAFE_REF}"
+          if [[ -n "$PR_NUMBER" ]]; then
+            WORKER_NAME="mythborn-preview-${PR_NUMBER}"
+          else
+            WORKER_NAME="mythborn-preview-manual"
+          fi
           npx wrangler deploy \
             --config wrangler.preview.jsonc \
             --name "$WORKER_NAME"
           {
             echo "## Mythborn preview deploy tamamlandı"
             echo
-            echo "Worker adı: \`$WORKER_NAME\`"
+            echo "Worker adı: `$WORKER_NAME`"
             echo
-            echo "D1 migration'ları uygulandı, DB binding ve preview yönetici değişkenleri etkinleştirildi."
-            echo
-            echo "Cloudflare dashboard veya Wrangler çıktısındaki workers.dev adresini açarak kayıt, giriş ve hesap akışlarını test edin."
+            echo "Aynı PR'deki yeni commitler bu Worker'ı günceller; yeni Worker oluşturmaz."
           } >> "$GITHUB_STEP_SUMMARY"
+
+  cleanup:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Delete closed PR preview Worker
+        shell: bash
+        run: |
+          WORKER_NAME="mythborn-preview-${PR_NUMBER}"
+          npx wrangler delete "$WORKER_NAME" --force || true
+          echo "Closed PR preview cleaned: $WORKER_NAME" >> "$GITHUB_STEP_SUMMARY"
