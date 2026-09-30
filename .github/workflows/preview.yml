@@ -111,5 +111,16 @@ jobs:
         shell: bash
         run: |
           WORKER_NAME="mythborn-preview-${PR_NUMBER}"
-          npx wrangler delete "$WORKER_NAME" --force || true
-          echo "Closed PR preview cleaned: $WORKER_NAME" >> "$GITHUB_STEP_SUMMARY"
+          RESPONSE="$(curl -sS -X DELETE \
+            "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/services/${WORKER_NAME}" \
+            -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+            -H "Content-Type: application/json")"
+          echo "$RESPONSE"
+          if echo "$RESPONSE" | grep -q '"success":true'; then
+            echo "Closed PR preview cleaned: $WORKER_NAME" >> "$GITHUB_STEP_SUMMARY"
+          elif echo "$RESPONSE" | grep -q '"code":10090'; then
+            echo "Preview already absent: $WORKER_NAME" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Preview cleanup failed: $WORKER_NAME" >&2
+            exit 1
+          fi
