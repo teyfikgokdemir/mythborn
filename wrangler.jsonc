@@ -21,8 +21,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "mythborn-membership-preview",
-      "database_id": "82d3d933-282d-4369-b68e-cee26b66349b",
+      "database_name": "mythborn-membership",
+      "database_id": "99490fbd-8f6c-4bf9-b5ed-bffdfdbd8771",
       "migrations_dir": "migrations"
     }
   ]
