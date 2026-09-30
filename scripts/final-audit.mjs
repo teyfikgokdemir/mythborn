@@ -16,10 +16,10 @@ await check('/llms.gr.txt',['Εγκυκλοπαίδεια 78 καρτών Ταρ
 const zodiacSlugs=['koc','boga','ikizler','yengec','aslan','basak','terazi','akrep','yay','oglak','kova','balik'];
 const localePrefixes={tr:'',en:'/en',el:'/gr',es:'/es'};
 const zodiacSectionTokens={
- tr:['Hızlı profil','Aşk ve ilişkiler','Kariyer ve çalışma biçimi','Para ve kaynak yönetimi','İletişim tarzı','Güneş, Ay ve Yükselen farkı','Doğum haritasında nasıl okunur?','Sık sorulanlar'],
- en:['Quick profile','Love and relationships','Career and work style','Money and resources','Communication style','Sun, Moon and Rising','How to read it in a birth chart','Frequently asked questions'],
- el:['Γρήγορο προφίλ','Αγάπη και σχέσεις','Καριέρα και τρόπος εργασίας','Χρήματα και πόροι','Τρόπος επικοινωνίας','Ήλιος, Σελήνη και Ωροσκόπος','Πώς διαβάζεται στον γενέθλιο χάρτη','Συχνές ερωτήσεις'],
- es:['Perfil rápido','Amor y relaciones','Carrera y estilo de trabajo','Dinero y recursos','Estilo de comunicación','Sol, Luna y Ascendente','Cómo leerlo en la carta natal','Preguntas frecuentes']
+ tr:['Hızlı profil','Aşk ve ilişkiler','Kariyer ve çalışma biçimi','Para ve kaynak yönetimi','İletişim tarzı','Güneş, Ay ve Yükselen farkı','Doğum haritasında nasıl okunur?'],
+ en:['Quick profile','Love and relationships','Career and work style','Money and resources','Communication style','Sun, Moon and Rising','How to read it in a birth chart'],
+ el:['Γρήγορο προφίλ','Αγάπη και σχέσεις','Καριέρα και τρόπος εργασίας','Χρήματα και πόροι','Τρόπος επικοινωνίας','Ήλιος, Σελήνη και Ωροσκόπος','Πώς διαβάζεται στον γενέθλιο χάρτη'],
+ es:['Perfil rápido','Amor y relaciones','Carrera y estilo de trabajo','Dinero y recursos','Estilo de comunicación','Sol, Luna y Ascendente','Cómo leerlo en la carta natal']
 };
 for(const [locale,prefix] of Object.entries(localePrefixes)){
   const home=await check(prefix||'/',[]);
