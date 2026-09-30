@@ -80,6 +80,31 @@ const pageChecks = [
       !body.includes('Disallow: /giris'),
   },
   {
+    url: 'https://mythborn.co/llms.es.txt',
+    label: 'Spanish llms discovery endpoint',
+    verify: (response, body) =>
+      response.ok &&
+      (response.headers.get('content-type') || '').includes('text/plain') &&
+      body.includes('plataforma multilingüe gratuita') &&
+      body.includes('https://mythborn.co/es/astroloji'),
+  },
+  {
+    url: 'https://mythborn.co/llms.en.txt',
+    label: 'English llms discovery endpoint',
+    verify: (response, body) =>
+      response.ok &&
+      body.includes('78-card Tarot encyclopedia') &&
+      body.includes('https://mythborn.co/en/astroloji'),
+  },
+  {
+    url: 'https://mythborn.co/llms.gr.txt',
+    label: 'Greek llms discovery endpoint',
+    verify: (response, body) =>
+      response.ok &&
+      body.includes('Εγκυκλοπαίδεια 78 καρτών Ταρώ') &&
+      body.includes('https://mythborn.co/gr/astroloji'),
+  },
+  {
     url: 'https://mythborn.co/non-existent-random-page-12345',
     label: 'custom 404 contract',
     verify: (response, body) =>
