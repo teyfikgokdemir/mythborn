@@ -931,3 +931,25 @@ body.has-open-menu .mythborn-back-to-top{display:none!important}
     width:100%;
   }
 }
+
+
+/* Footer maker credit */
+.site-footer-credit{
+  width:100%;
+  max-width:1180px;
+  margin:14px auto 0;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.05);
+  text-align:center;
+}
+.site-footer-credit a{
+  color:rgba(184,175,184,.58);
+  font-size:10px;
+  line-height:1.4;
+  letter-spacing:.04em;
+  text-decoration:none;
+}
+.site-footer-credit a:hover,
+.site-footer-credit a:focus-visible{
+  color:#C7D95B;
+}
