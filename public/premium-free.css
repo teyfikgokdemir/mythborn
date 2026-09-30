@@ -283,3 +283,29 @@ body:before{
 }
 
 .sponsor-band{background:#0A0A0A!important}
+
+
+/* Long-form editorial navigation. */
+.article-toc{
+  margin:28px 0 36px;
+  padding:22px 24px;
+  border:1px solid rgba(240,232,219,.09);
+  border-radius:20px;
+  background:linear-gradient(155deg,#21172A 0%,#18131F 100%);
+}
+.article-toc .eyebrow{margin:0 0 14px;color:#C7D95B!important}
+.article-toc ol{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px 22px;
+  margin:0;
+  padding-left:22px;
+}
+.article-toc li{color:#8f8790;font-size:13px;line-height:1.45}
+.article-toc a{color:#D8D0C7;text-decoration:none}
+.article-toc a:hover{color:#C7D95B}
+.article-body section[id]{scroll-margin-top:110px}
+@media(max-width:720px){
+  .article-toc{padding:20px 18px}
+  .article-toc ol{grid-template-columns:1fr}
+}
