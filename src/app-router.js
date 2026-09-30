@@ -17,10 +17,15 @@ import {SITE_ORIGIN,LOCALES,localeFromPath,cleanLocalePath} from './site-config.
 import {labels,llms} from './localized-shell-content.js';
 import {notFoundPage,searchPage} from './localized-static-pages.js';
 import {decorate} from './page-decorator.js';
-import {discoveryPage} from './discovery-core.js';
+import {discoveryPage,discoveryMeta} from './discovery-core.js';
 
 const SITE=SITE_ORIGIN;
 const localeInfo=LOCALES;
+const spanishDiscoveryDocument=path=>{
+  const main=discoveryPage('es',path);
+  const meta=discoveryMeta('es',path)||{title:'Mythborn',description:'Mythborn'};
+  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${meta.title}</title><meta name="description" content="${meta.description}"><link rel="stylesheet" href="/app.css"><link rel="stylesheet" href="/oracle.css"><link rel="stylesheet" href="/final.css"></head><body>${main}</body></html>`;
+};
 const spanishPageDocument=path=>{
   if(libraryRoutes.includes(path))return libraryPage(path,'es');
   if(path==='/tarot-kartlari'||tarotCardSlugs.some(slug=>path===`/tarot-kartlari/${slug}`))return tarotLibraryPage('es',path);
@@ -28,7 +33,7 @@ const spanishPageDocument=path=>{
   if(path==='/astroloji-sozlugu'||glossarySlugs.some(slug=>path===`/astroloji-sozlugu/${slug}`))return glossaryPage('es',path);
   if(path==='/blog'||localizedBlogSlugs.some(slug=>path===`/blog/${slug}`))return localizedBlogPage('es',path);
   if(path==='/advanced-astrology'||premiumGuideRoutes.includes(path))return path==='/advanced-astrology'?advancedAstrologyIndex('es'):premiumGuidePage(path,'es');
-  if(['/ruya-yorumlari','/numeroloji','/burc-uyumu'].includes(path))return discoveryPage('es',path);
+  if(['/ruya-yorumlari','/numeroloji','/burc-uyumu'].includes(path))return spanishDiscoveryDocument(path);
   return null;
 };
 const localeFrom=localeFromPath;
