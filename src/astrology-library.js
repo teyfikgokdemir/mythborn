@@ -46,36 +46,36 @@ const genericFaq=(locale,name)=>locale==='tr'?[[`${name} tek başına yeterli mi
 const signFaq=(locale,item,title)=>{
  const d=signDetails[item[0]],dates=detailField(d,locale,'dates'),ruler=detailField(d,locale,'ruler'),love=detailField(d,locale,'love'),career=detailField(d,locale,'career');
  if(locale==='tr')return[
-  ['${title} burcu hangi tarihler arasında?','Yaklaşık '+dates+'. Sınır günlerinde Güneş’in burç değişim anı doğum yılı ve saate göre farklılaşabilir.'],
-  ['${title} burcunun yönetici gezegeni nedir?',ruler+'. Yönetici gezegen burcun işleyişini anlamak için sembolik bir anahtar sunar.'],
-  ['${title} burcu aşkta nasıldır?','İlişkilerde '+love+' temaları belirgindir; Venüs, Ay, Mars ve 7. ev kişisel ilişki tarzını ayrıntılandırır.'],
-  ['${title} burcu hangi işlerde güçlü olabilir?','Kariyerde '+career+' öne çıkabilir. Meslek seçimi tek başına Güneş burcuna göre yapılmamalıdır.'],
-  ['${title} yükseleni ile ${title} Güneş burcu aynı şey mi?','Hayır. Güneş kimlik ve bilinçli yönü; yükselen dış dünyaya yaklaşım, ilk izlenim ve ev sisteminin başlangıcını anlatır.'],
-  ['${title} burcu tek başına kişiliği açıklar mı?','Hayır. Ay, yükselen, Merkür, Venüs, Mars, evler ve açılarla birlikte bütün harita değerlendirilmelidir.']
+  [title+' burcu hangi tarihler arasında?','Yaklaşık '+dates+'. Sınır günlerinde Güneş’in burç değişim anı doğum yılı ve saate göre farklılaşabilir.'],
+  [title+' burcunun yönetici gezegeni nedir?',ruler+'. Yönetici gezegen burcun işleyişini anlamak için sembolik bir anahtar sunar.'],
+  [title+' burcu aşkta nasıldır?','İlişkilerde '+love+' temaları belirgindir; Venüs, Ay, Mars ve 7. ev kişisel ilişki tarzını ayrıntılandırır.'],
+  [title+' burcu hangi işlerde güçlü olabilir?','Kariyerde '+career+' öne çıkabilir. Meslek seçimi tek başına Güneş burcuna göre yapılmamalıdır.'],
+  [title+' yükseleni ile '+title+' Güneş burcu aynı şey mi?','Hayır. Güneş kimlik ve bilinçli yönü; yükselen dış dünyaya yaklaşım, ilk izlenim ve ev sisteminin başlangıcını anlatır.'],
+  [title+' burcu tek başına kişiliği açıklar mı?','Hayır. Ay, yükselen, Merkür, Venüs, Mars, evler ve açılarla birlikte bütün harita değerlendirilmelidir.']
  ];
  if(locale==='en')return[
-  ['What are the approximate ${title} dates?','Approximately '+dates+'. On cusp dates, the exact Sun ingress can vary by year and birth time.'],
-  ['What planet rules ${title}?',ruler+'. The ruling planet is a symbolic key to how the sign operates.'],
-  ['What is ${title} like in relationships?','Themes include '+love+'; Venus, Moon, Mars and the 7th house add personal context.'],
-  ['What career strengths are associated with ${title}?',career+' can stand out, but career choice should not be reduced to the Sun sign alone.'],
-  ['Is ${title} rising the same as a ${title} Sun?','No. The Sun describes identity and conscious direction; the Ascendant describes approach, presentation and the starting point of the house system.'],
-  ['Does ${title} alone explain personality?','No. Read the Moon, Ascendant, Mercury, Venus, Mars, houses and aspects with the chart as a whole.']
+  ['What are the approximate '+title+' dates?','Approximately '+dates+'. On cusp dates, the exact Sun ingress can vary by year and birth time.'],
+  ['What planet rules '+title+'?',ruler+'. The ruling planet is a symbolic key to how the sign operates.'],
+  ['What is '+title+' like in relationships?','Themes include '+love+'; Venus, Moon, Mars and the 7th house add personal context.'],
+  ['What career strengths are associated with '+title+'?',career+' can stand out, but career choice should not be reduced to the Sun sign alone.'],
+  ['Is '+title+' rising the same as a '+title+' Sun?','No. The Sun describes identity and conscious direction; the Ascendant describes approach, presentation and the starting point of the house system.'],
+  ['Does '+title+' alone explain personality?','No. Read the Moon, Ascendant, Mercury, Venus, Mars, houses and aspects with the chart as a whole.']
  ];
  if(locale==='es')return[
-  ['¿Cuáles son las fechas aproximadas de ${title}?','Aproximadamente '+dates+'. En fechas límite, el ingreso exacto del Sol puede variar según el año y la hora.'],
-  ['¿Qué planeta rige ${title}?',ruler+'. El regente es una clave simbólica para comprender el signo.'],
-  ['¿Cómo es ${title} en el amor?','Destacan '+love+'; Venus, Luna, Marte y la casa 7 añaden contexto personal.'],
-  ['¿Qué fortalezas profesionales se asocian con ${title}?',career+' puede destacar, pero una profesión no debe elegirse solo por el signo solar.'],
-  ['¿Ascendente ${title} es igual a Sol en ${title}?','No. El Sol describe identidad y dirección consciente; el Ascendente describe enfoque, presentación e inicio de las casas.'],
-  ['¿${title} explica toda la personalidad?','No. Conviene leer Luna, Ascendente, Mercurio, Venus, Marte, casas y aspectos en conjunto.']
+  ['¿Cuáles son las fechas aproximadas de '+title+'?','Aproximadamente '+dates+'. En fechas límite, el ingreso exacto del Sol puede variar según el año y la hora.'],
+  ['¿Qué planeta rige '+title+'?',ruler+'. El regente es una clave simbólica para comprender el signo.'],
+  ['¿Cómo es '+title+' en el amor?','Destacan '+love+'; Venus, Luna, Marte y la casa 7 añaden contexto personal.'],
+  ['¿Qué fortalezas profesionales se asocian con '+title+'?',career+' puede destacar, pero una profesión no debe elegirse solo por el signo solar.'],
+  ['¿Ascendente '+title+' es igual a Sol en '+title+'?','No. El Sol describe identidad y dirección consciente; el Ascendente describe enfoque, presentación e inicio de las casas.'],
+  ['¿'+title+' explica toda la personalidad?','No. Conviene leer Luna, Ascendente, Mercurio, Venus, Marte, casas y aspectos en conjunto.']
  ];
  return[
-  ['Ποιες είναι περίπου οι ημερομηνίες του ${title};','Περίπου '+dates+'. Στις οριακές ημερομηνίες η ακριβής είσοδος του Ήλιου αλλάζει ανά έτος και ώρα γέννησης.'],
-  ['Ποιος πλανήτης κυβερνά το ${title};',ruler+'. Ο κυβερνήτης είναι συμβολικό κλειδί για τον τρόπο λειτουργίας του ζωδίου.'],
-  ['Πώς είναι το ${title} στις σχέσεις;','Κύρια θέματα: '+love+'. Αφροδίτη, Σελήνη, Άρης και 7ος οίκος προσθέτουν προσωπικό πλαίσιο.'],
-  ['Ποια επαγγελματικά δυνατά σημεία συνδέονται με το ${title};',career+' μπορεί να ξεχωρίζει, αλλά η καριέρα δεν βασίζεται μόνο στο ζώδιο του Ήλιου.'],
-  ['Είναι ίδιος ο Ωροσκόπος ${title} με Ήλιο στο ${title};','Όχι. Ο Ήλιος αφορά ταυτότητα και συνειδητή κατεύθυνση, ενώ ο Ωροσκόπος προσέγγιση και πρώτη εντύπωση.'],
-  ['Αρκεί το ${title} για να εξηγήσει την προσωπικότητα;','Όχι. Χρειάζονται Σελήνη, Ωροσκόπος, Ερμής, Αφροδίτη, Άρης, οίκοι και όψεις μαζί.']
+  ['Ποιες είναι περίπου οι ημερομηνίες του '+title+';','Περίπου '+dates+'. Στις οριακές ημερομηνίες η ακριβής είσοδος του Ήλιου αλλάζει ανά έτος και ώρα γέννησης.'],
+  ['Ποιος πλανήτης κυβερνά το '+title+';',ruler+'. Ο κυβερνήτης είναι συμβολικό κλειδί για τον τρόπο λειτουργίας του ζωδίου.'],
+  ['Πώς είναι το '+title+' στις σχέσεις;','Κύρια θέματα: '+love+'. Αφροδίτη, Σελήνη, Άρης και 7ος οίκος προσθέτουν προσωπικό πλαίσιο.'],
+  ['Ποια επαγγελματικά δυνατά σημεία συνδέονται με το '+title+';',career+' μπορεί να ξεχωρίζει, αλλά η καριέρα δεν βασίζεται μόνο στο ζώδιο του Ήλιου.'],
+  ['Είναι ίδιος ο Ωροσκόπος '+title+' με Ήλιο στο '+title+';','Όχι. Ο Ήλιος αφορά ταυτότητα και συνειδητή κατεύθυνση, ενώ ο Ωροσκόπος προσέγγιση και πρώτη εντύπωση.'],
+  ['Αρκεί το '+title+' για να εξηγήσει την προσωπικότητα;','Όχι. Χρειάζονται Σελήνη, Ωροσκόπος, Ερμής, Αφροδίτη, Άρης, οίκοι και όψεις μαζί.']
  ];
 };
 const signExtra=(locale,item,title,meta)=>{
