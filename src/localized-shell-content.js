@@ -8,7 +8,7 @@ export const socialImageAlt={
 
 export const labels={
   tr:{
-    daily:'Günlük Kart',tarot:'Tarot',astrology:'Astroloji',weekly:'Haftalık',explore:'Keşfet',account:'Hesabım',
+    daily:'Günlük Kart',tarot:'Tarot',astrology:'Astroloji',weekly:'Haftalık',signs:'Burçlar',trendingGroup:'Trend',explore:'Keşfet',account:'Hesabım',
     close:'Menüyü kapat',open:'Menüyü aç',menu:'Ana menü',tarotGroup:'Tarot',astroGroup:'Astroloji',exploreGroup:'Keşfet',accountGroup:'Hesap',
     login:'Giriş Yap',register:'Üye Ol',astroCentre:'Astroloji Merkezi',weeklyLong:'Haftalık Burç',sky:'Bugünün Gökyüzü',
     synastry:'Sinastri',moon:'Ay Takvimi',library:'Astroloji Kütüphanesi',vedic:'Vedik Astroloji',ancient:'Kadim Gökyüzü',dreams:'Rüya Yorumları',
@@ -20,7 +20,7 @@ export const labels={
     search:'Sitede ara',availableEnglish:'Bu sayfa İngilizce açılır'
   },
   en:{
-    daily:'Daily Card',tarot:'Tarot',astrology:'Astrology',weekly:'Weekly',explore:'Explore',account:'My Account',
+    daily:'Daily Card',tarot:'Tarot',astrology:'Astrology',weekly:'Weekly',signs:'Zodiac Signs',trendingGroup:'Trending',explore:'Explore',account:'My Account',
     close:'Close menu',open:'Open menu',menu:'Main menu',tarotGroup:'Tarot',astroGroup:'Astrology',exploreGroup:'Explore',accountGroup:'Account',
     login:'Sign In',register:'Join Free',astroCentre:'Astrology Centre',weeklyLong:'Weekly Horoscope',sky:'Today’s Sky',
     synastry:'Synastry',moon:'Moon Calendar',library:'Birth Chart Library',vedic:'Vedic Astrology',ancient:'Ancient Sky',dreams:'Dream Interpretation',
@@ -44,7 +44,7 @@ export const labels={
     search:'Αναζήτηση στον ιστότοπο',availableEnglish:'Αυτή η σελίδα ανοίγει στα αγγλικά'
   },
   es:{
-    daily:'Carta diaria',tarot:'Tarot',astrology:'Astrología',weekly:'Semanal',explore:'Explorar',account:'Mi cuenta',
+    daily:'Carta diaria',tarot:'Tarot',astrology:'Astrología',weekly:'Semanal',signs:'Signos',trendingGroup:'Tendencias',explore:'Explorar',account:'Mi cuenta',
     close:'Cerrar menú',open:'Abrir menú',menu:'Menú principal',tarotGroup:'Tarot',astroGroup:'Astrología',exploreGroup:'Explorar',accountGroup:'Cuenta',
     login:'Iniciar sesión',register:'Crear cuenta',astroCentre:'Centro de astrología',weeklyLong:'Horóscopo semanal',sky:'El cielo de hoy',
     synastry:'Sinastría',moon:'Calendario lunar',library:'Biblioteca de carta natal',vedic:'Astrología védica',ancient:'Cielo antiguo',dreams:'Interpretación de sueños',
