@@ -15,14 +15,10 @@ import {dreamSlugs,glossarySlugs,dreamPage,glossaryPage} from './dream-glossary.
 import {localizedBlogSlugs,localizedBlogPage} from './localized-blog.js';
 import {premiumGuideRoutes,premiumGuidePage,advancedAstrologyIndex} from './premium-guides.js';
 import {vedicPage,vedicDocument,vedicMeta,vedicSchema} from './vedic-pages.js';
+import {SITE_ORIGIN,LOCALES,localeFromPath,cleanLocalePath} from './site-config.js';
 
-const SITE='https://mythborn.co';
-const localeInfo={
-  tr:{prefix:'',html:'tr',label:'TR'},
-  en:{prefix:'/en',html:'en',label:'EN'},
-  el:{prefix:'/gr',html:'el',label:'GR'},
-  es:{prefix:'/es',html:'es',label:'ES'}
-};
+const SITE=SITE_ORIGIN;
+const localeInfo=LOCALES;
 const socialImage=`${SITE}/images/cinematic/social/mythborn-social-celestial.jpg`;
 const socialImageAlt={
   tr:'Altın göksel halkalar içindeki hilal ve gece ufkunda mor kristal',
@@ -131,8 +127,8 @@ const upsertMetaDescription=(html,description)=>{
     ?html.replace(/<meta name="description" content="[^"]*">/,tag)
     :html.replace('</head>',`${tag}</head>`);
 };
-const localeFrom=path=>path==='/en'||path.startsWith('/en/')?'en':path==='/gr'||path.startsWith('/gr/')?'el':path==='/es'||path.startsWith('/es/')?'es':'tr';
-const cleanPath=(path,locale)=>locale==='tr'?path:(path===localeInfo[locale].prefix?'/':path.slice(localeInfo[locale].prefix.length)||'/');
+const localeFrom=localeFromPath;
+const cleanPath=cleanLocalePath;
 const href=(locale,path)=>{
   const clean=path==='/'?'':path;
   if(locale==='es'&&path!=='/arama'&&!spanishRouteSet.has(path))return `/en${clean}`||'/en';
