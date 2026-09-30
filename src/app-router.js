@@ -17,6 +17,7 @@ import {SITE_ORIGIN,LOCALES,localeFromPath,cleanLocalePath} from './site-config.
 import {labels,llms} from './localized-shell-content.js';
 import {notFoundPage,searchPage} from './localized-static-pages.js';
 import {decorate} from './page-decorator.js';
+import {discoveryPage} from './discovery-core.js';
 
 const SITE=SITE_ORIGIN;
 const localeInfo=LOCALES;
