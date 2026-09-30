@@ -11,6 +11,8 @@ const href=(locale,path)=>{
 };
 
 const signsHref=locale=>href(locale,'/astroloji-kutuphanesi')+'#library-group-1';
+const zodiacLabel=locale=>labels[locale]?.signs||({tr:'Burçlar',en:'Zodiac Signs',el:'Ζώδια',es:'Signos'}[locale]||'Zodiac Signs');
+const trendingLabel=locale=>labels[locale]?.trendingGroup||({tr:'Trend',en:'Trending',el:'Τάσεις',es:'Tendencias'}[locale]||'Trending');
 function exploreLinks(locale){
   const t=labels[locale];
   return [
@@ -24,7 +26,7 @@ export function desktopNav(locale){
   return `<nav class="nav desktop-nav" aria-label="${t.menu}">
     <a class="nav-layer nav-layer-reading" href="${href(locale,'/gunluk-kart')}"><span>${t.daily}</span></a>
     <a class="nav-layer nav-layer-reading" href="${href(locale,'/tarot')}"><span>${t.tarot}</span></a>
-    <a class="nav-layer nav-layer-sky" href="${signsHref(locale)}"><span>${t.signs}</span></a>
+    <a class="nav-layer nav-layer-sky" href="${signsHref(locale)}"><span>${zodiacLabel(locale)}</span></a>
     <a class="nav-layer nav-layer-sky" href="${href(locale,'/haftalik-burc')}"><span>${t.weeklyLong}</span></a>
     <a class="nav-layer nav-layer-sky nav-layer-secondary" href="${href(locale,'/bugunun-gokyuzu')}"><span>${t.sky}</span></a>
     <a class="nav-layer nav-layer-sky nav-layer-secondary" href="${href(locale,'/sinastri')}"><span>${t.synastry}</span></a>
@@ -58,7 +60,7 @@ export function mobileNav(locale,path='/'){
     <p class="mobile-nav-kicker">MYTHBORN · ${t.menu}</p>
     ${mobileLanguage(locale,path)}
     ${group(t.tarotGroup,[['/gunluk-kart',t.daily],['/tarot',t.three],['/ask',t.love],['/kariyer',t.career],['/otuz-gun',t.month],['/katina',t.katina]],locale,'tarot','01')}
-    <section class="mobile-nav-group"><button class="mobile-group-toggle" type="button" aria-expanded="true" aria-controls="mobile-group-trending"><span class="mobile-group-title">${t.trendingGroup}</span><span class="mobile-group-indicator" aria-hidden="true">−</span></button><div class="mobile-nav-grid" id="mobile-group-trending"><a href="${href(locale,'/haftalik-burc')}">${t.weeklyLong}</a><a href="${signsHref(locale)}">${t.signs}</a><a href="${href(locale,'/bugunun-gokyuzu')}">${t.sky}</a><a href="${href(locale,'/sinastri')}">${t.synastry}</a></div></section>
+    <section class="mobile-nav-group"><button class="mobile-group-toggle" type="button" aria-expanded="true" aria-controls="mobile-group-trending"><span class="mobile-group-title">${trendingLabel(locale)}</span><span class="mobile-group-indicator" aria-hidden="true">−</span></button><div class="mobile-nav-grid" id="mobile-group-trending"><a href="${href(locale,'/haftalik-burc')}">${t.weeklyLong}</a><a href="${signsHref(locale)}">${zodiacLabel(locale)}</a><a href="${href(locale,'/bugunun-gokyuzu')}">${t.sky}</a><a href="${href(locale,'/sinastri')}">${t.synastry}</a></div></section>
     ${group(t.astroGroup,[['/astroloji',t.astroCentre],['/vedik-astroloji',t.vedic],['/ay-takvimi',t.moon],['/astroloji-kutuphanesi',t.library]],locale,'astrology','02')}
     ${group(t.exploreGroup,[['/ruya-yorumlari',t.dreams],['/tarot-kartlari',t.tarotLibrary],['/ruya-sembolleri',t.dreamSymbols],['/numeroloji',t.numerology],['/kadim-gokyuzu',t.ancient],['/advanced-astrology',t.advanced],['/astroloji-sozlugu',t.glossary],['/blog',t.blog]],locale,'explore','03')}
   </nav>`;
