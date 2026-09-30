@@ -309,3 +309,18 @@ body:before{
   .article-toc{padding:20px 18px}
   .article-toc ol{grid-template-columns:1fr}
 }
+
+
+/* Keep editorial disclaimer compact on desktop. */
+.article-note{
+  white-space:nowrap!important;
+  font-size:14px!important;
+  line-height:1.55!important;
+  letter-spacing:-.01em!important;
+}
+@media(max-width:760px){
+  .article-note{
+    white-space:normal!important;
+    font-size:13px!important;
+  }
+}
