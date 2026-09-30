@@ -51,11 +51,23 @@ jobs:
           fi
 
       - name: Apply preview D1 migrations
+        id: preview_d1
         if: steps.credentials.outputs.configured == 'true'
+        continue-on-error: true
         run: npx wrangler d1 migrations apply mythborn-membership-preview --remote
 
+      - name: Note unavailable preview D1
+        if: steps.credentials.outputs.configured == 'true' && steps.preview_d1.outcome != 'success'
+        shell: bash
+        run: |
+          {
+            echo "## Preview deploy atlandı"
+            echo
+            echo "Cloudflare kimlik bilgileri mevcut, ancak preview D1 kaynağına erişim doğrulanamadı. Kalite ve güvenlik kontrolleri çalışmaya devam etti; preview deploy yapılmadı."
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Deploy Cloudflare preview
-        if: steps.credentials.outputs.configured == 'true'
+        if: steps.credentials.outputs.configured == 'true' && steps.preview_d1.outcome == 'success'
         shell: bash
         run: |
           SAFE_REF="${PR_NUMBER:-manual}-${GITHUB_SHA::8}"

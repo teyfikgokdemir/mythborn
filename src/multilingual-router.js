@@ -1,6 +1,7 @@
 import base from './router.js';
+import {SITE_ORIGIN} from './site-config.js';
 
-const SITE='https://mythborn.co';
+const SITE=SITE_ORIGIN;
 const locales={
   tr:{prefix:'',html:'tr-TR',label:'TR'},
   en:{prefix:'/en',html:'en',label:'EN'},

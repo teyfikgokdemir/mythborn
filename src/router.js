@@ -7,7 +7,8 @@ import { adminOverview,adminUsers,adminSetSubscription,adminReadiness,adminPage 
 import { rateLimit,verifyTurnstile } from './abuse.js';
 import { calculateNatalChart,calculateCurrentSky,calculateSynastry,calculateVedicChart } from './astrology.js';
 import { providerStatus,beginOAuth,finishOAuth } from './oauth.js';
-const SITE='https://mythborn.co';
+import {SITE_ORIGIN} from './site-config.js';
+const SITE=SITE_ORIGIN;
 const culturalRoutes=['/kadim-gokyuzu','/maya-zaman-donguleri','/mezopotamya-astrolojisi','/doga-gokyuzu-donguleri','/travma-bilincli-astroloji'];
 const discoveryRoutes=new Set(['/ruya-yorumlari','/burc-uyumu','/numeroloji','/ay-takvimi','/bugunun-gokyuzu','/sinastri',...culturalRoutes]);
 const routes=new Set(['/','/gunluk-kart','/deneyim','/tarot','/ask','/kariyer','/otuz-gun','/katina','/astroloji','/vedik-astroloji','/nakshatra-dasha','/haftalik-burc','/ruya-yorumlari','/burc-uyumu','/numeroloji','/ay-takvimi','/bugunun-gokyuzu','/sinastri',...culturalRoutes,...blogRoutes,'/giris','/kayit','/hesabim','/yonetim','/gizlilik','/kvkk','/kullanim-kosullari','/cerezler']);

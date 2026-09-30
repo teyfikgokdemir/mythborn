@@ -29,6 +29,22 @@ console.log('Running Strict SEO Verification Audit...');
 
 const errors = [];
 
+// 0. Canonical origin normalization audit
+for (const [url, expectedLocation] of [
+  ['http://mythborn.co/astroloji', 'https://mythborn.co/astroloji'],
+  ['http://www.mythborn.co/astroloji', 'https://mythborn.co/astroloji'],
+  ['https://www.mythborn.co/astroloji', 'https://mythborn.co/astroloji']
+]) {
+  const response = await worker.fetch(new Request(url), env, {});
+  if (response.status !== 301) {
+    errors.push(`[Canonical Origin Status] ${url} returned HTTP ${response.status}, expected 301`);
+    continue;
+  }
+  if (response.headers.get('location') !== expectedLocation) {
+    errors.push(`[Canonical Origin Target] ${url} redirected to ${response.headers.get('location')}, expected ${expectedLocation}`);
+  }
+}
+
 // 1. Audit Sitemap URLs
 const sitemapRes = await fetchPath('/sitemap.xml');
 if (sitemapRes.status !== 200) {
