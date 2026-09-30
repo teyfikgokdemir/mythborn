@@ -16,6 +16,9 @@ console.log(`Static JavaScript syntax check passed for ${files.length} files.`);
 const wrangler=await readFile(new URL('../wrangler.jsonc',import.meta.url),'utf8');
 if(!/"ENVIRONMENT"\s*:\s*"production"/.test(wrangler))throw new Error('wrangler.jsonc must declare ENVIRONMENT=production at top level');
 if(/"ENVIRONMENT"\s*:\s*"preview"/.test(wrangler))throw new Error('wrangler.jsonc must not ship preview environment flags to production');
+for(const endpoint of ['/llms.txt','/llms.en.txt','/llms.gr.txt','/llms.es.txt','/llms.el.txt']){
+  if(!wrangler.includes(`"${endpoint}"`))throw new Error(`wrangler assets.run_worker_first missing ${endpoint}`);
+}
 
 const previewWorkflow=await readFile(new URL('../.github/workflows/preview.yml',import.meta.url),'utf8');
 if(!previewWorkflow.includes('--var ENVIRONMENT:preview'))throw new Error('Preview workflow must explicitly override ENVIRONMENT=preview');
