@@ -30,9 +30,9 @@
 }
 
 html{background:#0A0A0A}
-body{background:#0000FF!important;color:var(--myth-ivory)!important}
+body{background:#0A0A0A!important;color:var(--myth-ivory)!important}
 body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:#0A0A0A}
-.topbar{background:#0000FF!important;border-bottom-color:rgba(255,255,255,.14)!important;box-shadow:none!important;backdrop-filter:none!important}
+.topbar{background:#0A0A0A!important;border-bottom-color:rgba(255,255,255,.14)!important;box-shadow:none!important;backdrop-filter:none!important}
 .header-language>summary{border-color:rgba(255,244,234,.17)!important;color:var(--myth-muted)!important}
 .header-language[open]>summary,.header-language>summary:hover{border-color:rgba(255,111,97,.7)!important;color:var(--myth-ivory)!important}
 .header-language-panel{border-color:rgba(200,245,58,.28)!important;background:rgba(13,11,18,.98)!important}
@@ -130,7 +130,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 @media(prefers-reduced-motion:reduce){.sponsor-marquee{overflow-x:auto;mask-image:none;padding-inline:16px}.sponsor-marquee-track{width:max-content;animation:none}.sponsor-marquee-group[aria-hidden="true"]{display:none}.sponsor-marquee-group{padding-right:0}.sponsor-marquee::-webkit-scrollbar{height:5px}.sponsor-marquee::-webkit-scrollbar-thumb{background:rgba(255,111,97,.55);border-radius:999px}}
 
 /* Search answer guides: visible source of the FAQPage graph. */
-.tool-answer-guide{position:relative;margin-top:clamp(26px,4vw,56px);padding:clamp(28px,4vw,52px);overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:28px;background:#0A0A0A;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.tool-answer-guide{position:relative;margin-top:clamp(26px,4vw,56px);padding:clamp(28px,4vw,52px);overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:28px;background:#0000FF;box-shadow:0 24px 60px rgba(0,0,0,.28)}
 .tool-answer-guide::after{position:absolute;inset:auto -5% -72% auto;width:300px;aspect-ratio:1;content:"";border:1px solid rgba(255,244,234,.07);border-radius:50%;box-shadow:0 0 0 42px rgba(255,111,97,.035),0 0 0 84px rgba(191,220,79,.02);pointer-events:none}
 .tool-answer-intro{position:relative;z-index:1;max-width:760px}
 .tool-answer-intro h2{max-width:680px;margin:10px 0 14px;color:var(--myth-ivory);font-family:Georgia,serif;font-size:clamp(32px,4vw,54px);font-weight:400;line-height:.98;letter-spacing:-.035em}
@@ -158,3 +158,50 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 @media(max-width:1280px){.site-footer-grid{grid-template-columns:minmax(210px,1.25fr) repeat(3,minmax(110px,1fr)) minmax(142px,.7fr)!important}.site-footer-guardian{min-height:150px}.site-footer-guardian img{width:138px;height:138px}}
 @media(max-width:900px){.site-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.site-footer-brand{grid-column:1/-1}.site-footer-guardian{grid-column:2;grid-row:2/4;min-height:0}.site-footer-guardian img{width:124px;height:124px}}
 @media(max-width:620px){.site-footer-grid{grid-template-columns:1fr!important}.site-footer-guardian{grid-column:auto;grid-row:auto;min-height:0;margin-top:10px}.site-footer-guardian img{width:112px;height:112px}}
+
+
+/* Palette test override: black canvas + electric-blue content blocks. */
+html,body{background:#0A0A0A!important}
+body:before{background:#0A0A0A!important}
+.topbar,.mobile-nav{background:#0A0A0A!important}
+.localized-home .oracle-hero,
+.astrology-method,
+.home-featured,
+.home-ancient,
+.knowledge-hub,
+.home-membership{background:#0A0A0A!important}
+
+.free-reading,
+.tool-answer-guide,
+.card,
+.editorial-card,
+.editorial-step,
+.guide-centre-card,
+.library-card,
+.blog-card,
+.knowledge-hub-card,
+.home-today-primary,
+.hero-sky-card,
+.showcase-card,
+.astro-method-grid article,
+.oracle-card,
+.daily-stage,
+.membership-gate,
+.premium-home-hero.cinematic-surface,
+.astrology-hero.cinematic-surface,
+.home-showcase.cinematic-surface{
+  background:#0000FF!important;
+  border-color:rgba(255,255,255,.16)!important;
+  box-shadow:none!important;
+}
+
+.tool-answer-grid details{
+  background:#0000FF!important;
+  border-color:rgba(255,255,255,.16)!important;
+}
+.tool-answer-grid details[open],
+.tool-answer-grid details:hover{
+  background:#0000D8!important;
+}
+
+.sponsor-band{background:#0A0A0A!important}
