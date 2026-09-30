@@ -1,6 +1,6 @@
 import worker from '../src/app-router.js';
 import {readFile} from 'node:fs/promises';
-import {spanishRoutes} from '../src/spanish-edition.js';
+import {spanishRoutes,spanishRouteSet} from '../src/spanish-edition.js';
 
 const env={ASSETS:{fetch:async request=>{const pathname=new URL(request.url).pathname;try{return new Response(await readFile(new URL(`../public${pathname}`,import.meta.url)),{status:200})}catch{return new Response('',{status:200})}}}};
 const routes=['/','/gunluk-kart','/tarot','/ask','/kariyer','/otuz-gun','/katina','/astroloji','/haftalik-burc','/bugunun-gokyuzu','/sinastri','/ay-takvimi','/ruya-yorumlari','/numeroloji','/burc-uyumu','/kadim-gokyuzu','/giris','/kayit','/hesabim'];
@@ -22,6 +22,10 @@ for(const route of spanishRoutes){
   if(forbidden.test(main))throw new Error(`/es${route} contains a Turkish fallback: ${main.match(forbidden)?.[0]}`);
   if(!html.includes('window.MYTHBORN_LOCALE="es"'))throw new Error(`/es${route} has no stable locale bootstrap`);
   if(!html.includes('"inLanguage":"es"'))throw new Error(`/es${route} has no localized structured-data language`);
+  for(const match of main.matchAll(/href=["']\/en(\/[^"'?#]*)/g)){
+    const target=match[1]||'/';
+    if(spanishRouteSet.has(target)||target==='/arama')throw new Error(`/es${route} leaks to English even though a Spanish target exists: /en${target}`);
+  }
 }
 for(const route of ['/astroloji-kutuphanesi','/retro-hareketler','/transitler','/evler/10','/burclar/akrep']){
   const response=await worker.fetch(new Request('https://mythborn.co/es'+route),env,{});
