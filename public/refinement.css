@@ -264,7 +264,7 @@ body:not([data-route="/"]) .lead,body:not([data-route="/"]) .article-lead{max-wi
 .password-reset form{display:grid;gap:12px;margin-top:16px}
 .password-reset label{display:grid;gap:8px;color:var(--ref-muted);font-size:12px}
 .password-reset input{min-height:50px;padding:0 14px;border:1px solid rgba(255,255,255,.14);border-radius:12px;background:#0d0b12;color:var(--ref-ink)}
-.site-footer{margin-top:clamp(48px,7vw,90px);padding-top:52px!important}
+.site-footer{margin-top:0!important;padding-top:34px!important}
 .site-footer-column button{padding:0;border:0;background:none;color:inherit;font:inherit;text-align:left;cursor:pointer}
 .site-footer-column button:hover{color:var(--ref-ink)}
 .consent-dialog[hidden]{display:none}
@@ -952,4 +952,25 @@ body.has-open-menu .mythborn-back-to-top{display:none!important}
 .site-footer-credit a:hover,
 .site-footer-credit a:focus-visible{
   color:#C7D95B;
+}
+
+
+/* Remove dead space before the global footer */
+main > .knowledge-hub:last-child,
+main > .home-ancient:last-child,
+main > .home-trend:last-child,
+main > .guide-centre:last-child{
+  padding-bottom:clamp(28px,3.5vw,44px)!important;
+}
+.site-footer{
+  border-top:1px solid rgba(255,255,255,.07);
+}
+@media(max-width:620px){
+  .site-footer{padding-top:28px!important}
+  main > .knowledge-hub:last-child,
+  main > .home-ancient:last-child,
+  main > .home-trend:last-child,
+  main > .guide-centre:last-child{
+    padding-bottom:24px!important;
+  }
 }
