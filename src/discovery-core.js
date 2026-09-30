@@ -1,4 +1,4 @@
-const prefix=locale=>locale==='en'?'/en':locale==='el'?'/gr':'';
+const prefix=locale=>locale==='en'?'/en':locale==='el'?'/gr':locale==='es'?'/es':'';
 const path=(locale,value)=>`${prefix(locale)}${value}`;
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const locales={
@@ -21,6 +21,16 @@ const locales={
     compatibility:['RELATIONSHIP DYNAMICS','Zodiac Compatibility','Compare the elements and modalities of two signs as symbolic relationship dynamics.'],
     ancient:['HISTORY, CULTURE AND SYMBOL','Ancient Sky Traditions','Explore Maya time cycles, Mesopotamian sky traditions and nature-centred reflection without collapsing distinct cultures into one modern system.'],
     form:{date:'Date of birth',time:'Time of birth',place:'Place of birth',unknown:'Birth time unknown',first:'First person',second:'Second person',calculate:'Calculate synastry',name:'Full name',numbers:'Calculate my numbers',dream:'Describe your dream in detail',emotion:'Dominant feeling on waking',context:'What has occupied you recently?',interpret:'Explore my dream',yourSign:'Your sign',otherSign:'Other person’s sign',compare:'Explore compatibility'}
+  },
+  es:{
+    sky:['ASTROLOGÍA EN TIEMPO REAL','El cielo de hoy','Consulta las posiciones zodiacales actuales del Sol, la Luna y los planetas, junto con los aspectos mayores más destacados del día.','Calculando las posiciones planetarias actuales…'],
+    synastry:['DOS CARTAS NATALES REALES','Sinastría — Carta de relación','Compara las posiciones planetarias de dos personas mediante aspectos reales para explorar emoción, comunicación, atracción y compromiso.'],
+    moon:['EL CICLO LUNAR','Calendario lunar','Consulta la fase aproximada de la Luna hoy, su iluminación y el tema del ciclo actual.','Preparando los datos lunares…'],
+    dream:['MAPA SIMBÓLICO DEL SUEÑO','Interpretación de sueños','Explora el sueño teniendo en cuenta su tono emocional, las personas, el lugar, los patrones que se repiten y tu contexto actual de vida.'],
+    numerology:['NOMBRE Y FECHA DE NACIMIENTO','Numerología','Calcula tu número de camino de vida a partir de la fecha de nacimiento y tu número de expresión a partir del nombre.'],
+    compatibility:['DINÁMICA DE RELACIÓN','Compatibilidad zodiacal','Compara los elementos y las modalidades de dos signos como una forma simbólica de explorar la dinámica de una relación.'],
+    ancient:['HISTORIA, CULTURA Y SÍMBOLO','Tradiciones antiguas del cielo','Explora ciclos temporales mayas, tradiciones celestes mesopotámicas y reflexión vinculada a la naturaleza sin reducir culturas distintas a un único sistema moderno.'],
+    form:{date:'Fecha de nacimiento',time:'Hora de nacimiento',place:'Lugar de nacimiento',unknown:'No conozco la hora de nacimiento',first:'Primera persona',second:'Segunda persona',calculate:'Calcular la sinastría',name:'Nombre completo',numbers:'Calcular mis números',dream:'Describe tu sueño con detalle',emotion:'Emoción predominante al despertar',context:'¿Qué tema te ha ocupado últimamente?',interpret:'Interpretar mi sueño',yourSign:'Tu signo',otherSign:'Signo de la otra persona',compare:'Explorar la compatibilidad'}
   },
   el:{
     sky:['ΑΣΤΡΟΛΟΓΙΑ ΣΕ ΠΡΑΓΜΑΤΙΚΟ ΧΡΟΝΟ','Ο Σημερινός Ουρανός','Δες τις τρέχουσες ζωδιακές θέσεις Ήλιου, Σελήνης και πλανητών μαζί με τις ισχυρότερες κύριες όψεις της ημέρας.','Υπολογίζονται οι τρέχουσες πλανητικές θέσεις…'],
@@ -70,7 +80,7 @@ const sourceBlock=(locale,sources)=>`<section class="editorial-section guide-sou
 const faqBlock=(locale,faq)=>`<section class="editorial-section guide-faq"><p class="eyebrow">${locale==='tr'?'SIK SORULAN SORULAR':locale==='en'?'FREQUENT QUESTIONS':'ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ'}</p><div class="faq-list">${faq.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div></section>`;
 const guidePage=(locale,guide)=>wrap([guide.tag,guide.title,guide.description],`<div class="editorial-grid ancient-guide-cards">${guide.cards.map(([tag,title,text])=>`<article class="editorial-card"><small>${tag}</small><h2>${title}</h2><p>${text}</p></article>`).join('')}</div><div class="guide-sections">${guide.sections.map(([title,text])=>`<section class="editorial-section"><div class="editorial-head"><div><p class="eyebrow">${locale==='tr'?'MYTHBORN YAKLAŞIMI':locale==='en'?'MYTHBORN APPROACH':'ΠΡΟΣΕΓΓΙΣΗ MYTHBORN'}</p><h2>${title}</h2></div><p>${text}</p></div></section>`).join('')}</div>${faqBlock(locale,guide.faq)}${sourceBlock(locale,guide.sources)}<section class="editorial-links related-guides"><p class="eyebrow">${locale==='tr'?'İLGİLİ REHBERLER':locale==='en'?'RELATED GUIDES':'ΣΧΕΤΙΚΟΙ ΟΔΗΓΟΙ'}</p>${guide.related.map(([label,url])=>`<a href="${path(locale,url)}"><strong>${label}</strong><span>${locale==='tr'?'Keşfet →':locale==='en'?'Explore →':'Εξερεύνησε →'}</span></a>`).join('')}</section>`);
 export function discoveryPage(locale,route){
-  const t=locales[locale],f=t.form,place=locale==='tr'?'İstanbul, Türkiye':locale==='en'?'London, United Kingdom':'Αθήνα, Ελλάδα';
+  const t=locales[locale],f=t.form,place=locale==='tr'?'İstanbul, Türkiye':locale==='en'?'London, United Kingdom':locale==='es'?'Madrid, España':'Αθήνα, Ελλάδα';
   if(route==='/bugunun-gokyuzu')return wrap(t.sky,`<div class="discovery-tool sky-tool" data-current-sky><p>${t.sky[3]}</p></div>`);
   if(route==='/ay-takvimi')return wrap(t.moon,`<div class="discovery-tool moon-tool" data-moon-calendar><p>${t.moon[3]}</p></div>`);
   if(route==='/sinastri')return wrap(t.synastry,`<form class="discovery-tool synastry-tool" data-synastry-form>${person(f,place,'first',f.first)}${person(f,place,'second',f.second)}<button class="btn btn-primary" type="submit">${f.calculate}</button><p class="form-message" data-synastry-message aria-live="polite"></p></form><div class="discovery-result" data-synastry-result hidden aria-live="polite" tabindex="-1"></div>`);
