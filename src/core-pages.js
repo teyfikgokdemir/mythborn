@@ -55,6 +55,50 @@ const copy={
   }
 };
 
+
+const homeTrendContent={
+  tr:{
+    eye:'ŞİMDİ TREND',
+    title:'Yaklaşan gökyüzü gündemini erkenden oku.',
+    lead:'Retrolar, tutulmalar ve 2027 rehberleri için öne çıkan uzun form içerikler.',
+    items:[
+      ['3 EKİM 2026','Venüs Retrosu 2026','Aşk, para ve ilişki temalarını Akrep–Terazi hattında detaylı incele.','/blog/venus-retrosu-2026-akrep-terazi'],
+      ['24 EKİM 2026','Merkür Retrosu 2026','Akrep retrosu, gölge dönemi, iletişim ve karar kontrol listesi.','/blog/merkur-retrosu-2026-ekim-kasim-akrep'],
+      ['2027 TAKVİMİ','2027 Astroloji Takvimi','Retrolar, tutulmalar ve yıl boyunca takip edilecek önemli tarihler.','/blog/2027-astroloji-takvimi-retrolar-tutulmalar'],
+      ['2 AĞUSTOS 2027','Tam Güneş Tutulması','Türkiye görünürlüğü, 9°55′ Aslan ve yükselene göre etkiler.','/blog/2-agustos-2027-gunes-tutulmasi-aslan']
+    ],
+    all:'Tüm rehberleri gör'
+  },
+  en:{
+    eye:'TRENDING NOW',
+    title:'Read the next sky story before it peaks.',
+    lead:'Long-form guides to upcoming retrogrades, eclipses and the 2027 astrology calendar.',
+    items:[
+      ['3 OCT 2026','Venus Retrograde 2026','Scorpio–Libra themes for relationships, values, money and natal-chart context.','/blog/venus-retrosu-2026-akrep-terazi'],
+      ['24 OCT 2026','Mercury Retrograde 2026','Scorpio retrograde, shadow dates, communication and a practical checklist.','/blog/merkur-retrosu-2026-ekim-kasim-akrep'],
+      ['2027 CALENDAR','2027 Astrology Calendar','Retrogrades, eclipses and the major dates worth tracking throughout the year.','/blog/2027-astroloji-takvimi-retrolar-tutulmalar'],
+      ['2 AUG 2027','Total Solar Eclipse','Visibility, 9°55′ Leo and a practical rising-sign framework.','/blog/2-agustos-2027-gunes-tutulmasi-aslan']
+    ],
+    all:'Explore all guides'
+  },
+  el:{
+    eye:'ΤΑΣΕΙΣ ΤΩΡΑ',
+    title:'Διάβασε τα επόμενα ουράνια θέματα πριν κορυφωθούν.',
+    lead:'Αναλυτικοί οδηγοί για ανάδρομους, εκλείψεις και το αστρολογικό ημερολόγιο 2027.',
+    items:[
+      ['3 ΟΚΤ 2026','Ανάδρομη Αφροδίτη 2026','Σκορπιός–Ζυγός: σχέσεις, αξίες, χρήματα και γενέθλιος χάρτης.','/blog/venus-retrosu-2026-akrep-terazi'],
+      ['24 ΟΚΤ 2026','Ανάδρομος Ερμής 2026','Σκορπιός, περίοδος σκιάς, επικοινωνία και πρακτικός έλεγχος.','/blog/merkur-retrosu-2026-ekim-kasim-akrep'],
+      ['ΗΜΕΡΟΛΟΓΙΟ 2027','Αστρολογικό Ημερολόγιο 2027','Ανάδρομοι, εκλείψεις και βασικές ημερομηνίες της χρονιάς.','/blog/2027-astroloji-takvimi-retrolar-tutulmalar'],
+      ['2 ΑΥΓ 2027','Ολική Έκλειψη Ηλίου','Ορατότητα, 9°55′ Λέοντα και πλαίσιο ανά Ωροσκόπο.','/blog/2-agustos-2027-gunes-tutulmasi-aslan']
+    ],
+    all:'Όλοι οι οδηγοί'
+  }
+};
+const renderHomeTrend=(locale)=>{
+  const t=homeTrendContent[locale];
+  return `<section class="section home-trend" data-layer="trend"><div class="home-trend-head"><div><p class="eyebrow">${t.eye}</p><h2>${t.title}</h2><p>${t.lead}</p></div><a class="btn btn-ghost" href="${localePath(locale,'/blog')}">${t.all} →</a></div><div class="home-trend-grid">${t.items.map(([date,title,copy,path])=>`<a class="home-trend-card" href="${localePath(locale,path)}"><small>${date}</small><strong>${title}</strong><span>${copy}</span><b aria-hidden="true">→</b></a>`).join('')}</div></section>`;
+};
+
 function cards(locale,items,discover){
   return `<div class="showcase-grid">${items.map(([tag,name,text,path])=>`<a class="showcase-card" href="${localePath(locale,path)}"><small>${tag}</small><h3>${name}</h3><p>${text}</p><span>${discover}</span></a>`).join('')}</div>`;
 }
@@ -72,6 +116,7 @@ function home(locale){
     </section>
     <section class="section home-today" data-layer="sky" aria-labelledby="home-today-title"><div class="home-today-layout"><a class="home-today-primary" href="${localePath(locale,todayItems[0][3])}"><span class="today-symbol" aria-hidden="true">☉</span><p class="eyebrow">${today[0]}</p><h2 id="home-today-title">${todayItems[0][1]}</h2><p>${todayItems[0][2]}</p><span>${t.discover}</span></a><div class="home-today-rail">${todayRail}</div></div></section>
     <section class="section home-featured" data-layer="symbolic"><div class="featured-layout"><div class="featured-intro"><p class="eyebrow">${featured[0]}</p><h2>${featured[1]}</h2><p>${featured[2]}</p></div><nav class="featured-list" aria-label="${featured[0]}">${featuredList}</nav></div></section>
+    ${renderHomeTrend(locale)}
     <section class="section home-ancient" data-layer="archive"><div class="ancient-editorial"><div class="ancient-editorial-main"><span class="ancient-glyph" aria-hidden="true">☉</span><p class="eyebrow">${ancient[0]}</p><h2>${ancient[1]}</h2><p>${ancient[2]}</p><a class="btn btn-ghost" href="${localePath(locale,ancientItems[0][3])}">${ancientItems[0][1]} →</a></div><div class="ancient-notes">${ancientNotes}</div></div></section>
   </main>`;
 }
