@@ -32,7 +32,7 @@ export const labels={
     search:'Search the site',availableEnglish:'This page opens in English'
   },
   el:{
-    daily:'Ημερήσια Κάρτα',tarot:'Ταρώ',astrology:'Αστρολογία',weekly:'Εβδομαδιαίο',explore:'Εξερεύνηση',account:'Ο Λογαριασμός μου',
+    daily:'Ημερήσια Κάρτα',tarot:'Ταρώ',astrology:'Αστρολογία',weekly:'Εβδομαδιαίο',signs:'Ζώδια',trendingGroup:'Τάσεις',explore:'Εξερεύνηση',account:'Ο Λογαριασμός μου',
     close:'Κλείσιμο μενού',open:'Άνοιγμα μενού',menu:'Κύριο μενού',tarotGroup:'Ταρώ',astroGroup:'Αστρολογία',exploreGroup:'Εξερεύνηση',accountGroup:'Λογαριασμός',
     login:'Σύνδεση',register:'Δωρεάν Εγγραφή',astroCentre:'Κέντρο Αστρολογίας',weeklyLong:'Εβδομαδιαίο Ωροσκόπιο',sky:'Ο Σημερινός Ουρανός',
     synastry:'Συναστρία',moon:'Σεληνιακό Ημερολόγιο',library:'Βιβλιοθήκη Γενέθλιου Χάρτη',vedic:'Βεδική Αστρολογία',ancient:'Αρχαίος Ουρανός',dreams:'Ερμηνεία Ονείρων',
