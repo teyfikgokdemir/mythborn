@@ -125,12 +125,31 @@ const zodiac2027Articles=zodiac2027Profiles.map((z,index)=>({
 articles.push(...zodiac2027Articles);
 
 
+
+const blogHubGroups=[
+  ['2027 Rehberleri',a=>a.slug.includes('2027')],
+  ['Retrolar',a=>a.slug.includes('retro')],
+  ['Tutulmalar',a=>a.slug.includes('tutul')],
+  ['İlişki Astrolojisi',a=>a.slug.includes('sinastri')||a.slug.includes('venus')||a.tags.some(t=>/aşk|ilişki/i.test(t))]
+];
+const renderBlogHub=()=>{
+  const seen=new Set();
+  const groups=blogHubGroups.map(([title,test])=>{
+    const items=articles.filter(a=>test(a)&&!seen.has(a.slug)).slice(0,6);
+    items.forEach(a=>seen.add(a.slug));
+    if(!items.length)return '';
+    return `<section class="blog-topic-group"><div class="blog-topic-head"><p class="eyebrow">MYTHBORN · ${title.toUpperCase()}</p><h2>${title}</h2></div><div class="blog-topic-grid">${items.map(a=>`<a class="blog-topic-card" href="/blog/${a.slug}"><small>${a.tags.slice(0,2).join(' · ')}</small><strong>${esc(a.title)}</strong><span>Rehberi aç →</span></a>`).join('')}</div></section>`;
+  }).join('');
+  const latest=articles.filter(a=>!seen.has(a.slug)).slice(0,12);
+  return `<section class="blog-hub">${groups}<section class="blog-topic-group"><div class="blog-topic-head"><p class="eyebrow">SON EKLENENLER</p><h2>Diğer rehberler</h2></div><div class="blog-grid">${latest.map(a=>`<article class="blog-card"><small>${a.tags.join(' · ')}</small><h2>${esc(a.title)}</h2><p>${esc(a.dek)}</p><a href="/blog/${a.slug}">Yazıyı oku →</a></article>`).join('')}</div></section></section>`;
+};
+
 export const blogRoutes=['/blog',...articles.map(a=>`/blog/${a.slug}`)];
 export const blogMeta=Object.fromEntries([['/blog',['Astroloji, Tarot ve Gökyüzü Blogu','2027 astroloji takvimi, Mars ve Merkür retroları, tutulmalar, sinastri, doğum haritası ve Tarot rehberleri.']],...articles.map(a=>[`/blog/${a.slug}`,[a.title,a.dek]])]);
 export const blogDates=Object.fromEntries(articles.map(a=>[`/blog/${a.slug}`,a.date]));
 export const blogFaqs=Object.fromEntries(articles.map(a=>[`/blog/${a.slug}`,a.faq]));
 export function blogPage(path){
-  if(path==='/blog') return shell('Mythborn Blog','Astroloji ve Tarot rehberleri','<section class="blog-hero"><p class="eyebrow">GÖKYÜZÜ GÜNDEMİ · DERİN REHBERLER</p><h1>Bugünün merakını, yarının arşivine dönüştür.</h1><p class="lead left-lead">Güncel gökyüzü olayları, ilişki astrolojisi, etik ve kişisel farkındalık üzerine özgün uzun form içerikler.</p></section><section class="blog-grid">' + articles.map(a=>`<article class="blog-card"><small>${a.tags.join(' · ')}</small><h2>${esc(a.title)}</h2><p>${esc(a.dek)}</p><a href="/blog/${a.slug}">Yazıyı oku →</a></article>`).join('') + '</section>');
+  if(path==='/blog') return shell('Mythborn Blog','Astroloji ve Tarot rehberleri','<section class="blog-hero"><p class="eyebrow">GÖKYÜZÜ GÜNDEMİ · DERİN REHBERLER</p><h1>Bugünün merakını, yarının arşivine dönüştür.</h1><p class="lead left-lead">Güncel gökyüzü olayları, ilişki astrolojisi, etik ve kişisel farkındalık üzerine özgün uzun form içerikler.</p></section>'+renderBlogHub());
   const a=articles.find(x=>path==='/blog/'+x.slug);
   if(!a) return null;
   return shell(a.title,a.dek,'<article class="article"><a href="/blog">← Tüm yazılar</a><p class="article-tags">' + a.tags.join(' · ') + '</p><h1>' + esc(a.title) + '</h1><p class="article-meta">MYTHBORN EDITORIAL DESK · ' + a.date + '</p><p class="article-lead">' + esc(a.dek) + '</p><div class="article-body">' + a.sections.map(([h,p])=>`<section><h2>${esc(h)}</h2><p>${esc(p)}</p></section>`).join('') + '<section class="article-faq"><p class="eyebrow">SIK SORULANLAR</p><h2>Konuyla ilgili kısa yanıtlar.</h2>' + a.faq.map(([q,r])=>`<details><summary>${esc(q)}</summary><p>${esc(r)}</p></details>`).join('') + '</section><div class="article-links">' + a.links.map(([t,u])=>`<a href="${u}">${esc(t)} →</a>`).join('') + '</div><p class="article-note">Bu içerik eğlence, eğitim ve kişisel farkındalık amaçlıdır. Astroloji bilimsel bir tanı veya tedavi yerine geçmez.</p></article>');
