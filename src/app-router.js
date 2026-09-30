@@ -27,6 +27,7 @@ const spanishPageDocument=path=>{
   if(path==='/astroloji-sozlugu'||glossarySlugs.some(slug=>path===`/astroloji-sozlugu/${slug}`))return glossaryPage('es',path);
   if(path==='/blog'||localizedBlogSlugs.some(slug=>path===`/blog/${slug}`))return localizedBlogPage('es',path);
   if(path==='/advanced-astrology'||premiumGuideRoutes.includes(path))return path==='/advanced-astrology'?advancedAstrologyIndex('es'):premiumGuidePage(path,'es');
+  if(['/ruya-yorumlari','/numeroloji','/burc-uyumu'].includes(path))return discoveryPage('es',path);
   return null;
 };
 const localeFrom=localeFromPath;
