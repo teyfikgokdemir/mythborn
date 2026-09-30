@@ -130,18 +130,17 @@ const blogHubGroups=[
   ['2027 Rehberleri',a=>a.slug.includes('2027')],
   ['Retrolar',a=>a.slug.includes('retro')],
   ['Tutulmalar',a=>a.slug.includes('tutul')],
-  ['İlişki Astrolojisi',a=>a.slug.includes('sinastri')||a.slug.includes('venus')||a.tags.some(t=>/aşk|ilişki/i.test(t))]
+  ['İlişki Astrolojisi',a=>a.slug.includes('sinastri')||a.slug.includes('venus-retrosu')]
 ];
 const renderBlogHub=()=>{
-  const seen=new Set();
   const groups=blogHubGroups.map(([title,test])=>{
-    const items=articles.filter(a=>test(a)&&!seen.has(a.slug)).slice(0,6);
-    items.forEach(a=>seen.add(a.slug));
+    const items=articles.filter(a=>test(a)).slice(0,6);
     if(!items.length)return '';
     return `<section class="blog-topic-group"><div class="blog-topic-head"><p class="eyebrow">MYTHBORN · ${title.toUpperCase()}</p><h2>${title}</h2></div><div class="blog-topic-grid">${items.map(a=>`<a class="blog-topic-card" href="/blog/${a.slug}"><small>${a.tags.slice(0,2).join(' · ')}</small><strong>${esc(a.title)}</strong><span>Rehberi aç →</span></a>`).join('')}</div></section>`;
   }).join('');
-  const latest=articles.filter(a=>!seen.has(a.slug)).slice(0,12);
-  return `<section class="blog-hub">${groups}<section class="blog-topic-group"><div class="blog-topic-head"><p class="eyebrow">SON EKLENENLER</p><h2>Diğer rehberler</h2></div><div class="blog-grid">${latest.map(a=>`<article class="blog-card"><small>${a.tags.join(' · ')}</small><h2>${esc(a.title)}</h2><p>${esc(a.dek)}</p><a href="/blog/${a.slug}">Yazıyı oku →</a></article>`).join('')}</div></section></section>`;
+  const featuredSlugs=new Set(blogHubGroups.flatMap(([,test])=>articles.filter(test).slice(0,6).map(a=>a.slug)));
+  const latest=articles.filter(a=>!featuredSlugs.has(a.slug)).slice(0,9);
+  return `<section class="blog-hub">${groups}<section class="blog-topic-group blog-other-guides"><div class="blog-topic-head"><p class="eyebrow">MYTHBORN · ARŞİV</p><h2>Diğer rehberler</h2></div><div class="blog-grid">${latest.map(a=>`<article class="blog-card"><small>${a.tags.join(' · ')}</small><h2>${esc(a.title)}</h2><p>${esc(a.dek)}</p><a href="/blog/${a.slug}">Yazıyı oku →</a></article>`).join('')}</div></section></section>`;
 };
 
 export const blogRoutes=['/blog',...articles.map(a=>`/blog/${a.slug}`)];
