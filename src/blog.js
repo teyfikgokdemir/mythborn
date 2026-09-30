@@ -74,6 +74,57 @@ links:[['Venüs retrosu ana rehberi','/blog/venus-retrosu-2026-akrep-terazi'],['
 
 
 
+const zodiac2027Profiles=[
+  {slug:'koc',name:'Koç',focus:'inisiyatif, cesaret ve yön değiştirme',love:'ilişkide hız ile karşılıklılık arasındaki denge',career:'liderlik, yeni sorumluluklar ve görünürlük',money:'dürtüsel harcama yerine kaynak planı',eclipse:'yaratıcılık, aşk ve kişisel ifade',retro:'Mars retrosunda enerjiyi dağıtan işleri azaltmak'},
+  {slug:'boga',name:'Boğa',focus:'istikrar, değerler ve güvenli büyüme',love:'güven, sadakat ve ortak yaşam düzeni',career:'kalıcı yapı kurmak ve gelir modelini sağlamlaştırmak',money:'fiyatlandırma, birikim ve gereksiz sabit giderler',eclipse:'ev, aile ve yaşam alanı',retro:'esneklik gerektiren planlarda inadı azaltmak'},
+  {slug:'ikizler',name:'İkizler',focus:'iletişim, öğrenme ve çevik karar verme',love:'açık iletişim ve zihinsel yakınlık',career:'yazma, eğitim, satış, medya ve çoklu projeler',money:'gelir kanallarını çeşitlendirirken odağı korumak',eclipse:'iletişim, eğitim ve yakın çevre',retro:'aynı anda çok fazla projeye enerji dağıtmamak'},
+  {slug:'yengec',name:'Yengeç',focus:'güvenlik, aidiyet ve duygusal sınırlar',love:'duygusal güven ile aşırı korumacılığı ayırmak',career:'istikrarlı çalışma düzeni ve sürdürülebilir tempo',money:'özdeğer ile gelir kararlarını birbirinden ayırmak',eclipse:'para, özdeğer ve sahip oldukların',retro:'duygusal tepkiyle alınan kararları yeniden kontrol etmek'},
+  {slug:'aslan',name:'Aslan',focus:'görünürlük, yaratıcılık ve kişisel yön',love:'ilgi görmek ile gerçek yakınlığı ayırmak',career:'kişisel marka, liderlik ve sahneye çıkmak',money:'gösteriş harcamaları yerine yaratıcı yatırımlar',eclipse:'kimlik, beden algısı ve yeni kişisel dönem',retro:'performans baskısını azaltıp enerjiyi yeniden toplamak'},
+  {slug:'basak',name:'Başak',focus:'sistem, iyileştirme ve uygulanabilir düzen',love:'eleştiri yerine net ihtiyaç ifade etmek',career:'iş akışı, uzmanlık ve verimlilik',money:'küçük kayıpları, abonelikleri ve tekrar eden giderleri temizlemek',eclipse:'dinlenme, kapanış ve perde arkası hazırlık',retro:'mükemmeliyetçilik nedeniyle tükenmeyi önlemek'},
+  {slug:'terazi',name:'Terazi',focus:'denge, ortaklık ve stratejik seçim',love:'karşılıklılık, sınır ve ortak kararlar',career:'iş birlikleri, müşteri ilişkileri ve görünür ağlar',money:'ortak harcamalar ile kişisel bütçeyi ayırmak',eclipse:'arkadaşlıklar, topluluklar ve gelecek planları',retro:'herkesi memnun etmeye çalışırken enerjiyi kaybetmemek'},
+  {slug:'akrep',name:'Akrep',focus:'derinleşme, strateji ve dönüşüm',love:'güven, mahremiyet ve kontrol ihtiyacını ayırt etmek',career:'otorite, uzmanlık ve yüksek sorumluluk',money:'borç, ortak kaynak ve risk yönetimi',eclipse:'kariyer, statü ve kamusal görünürlük',retro:'gizli güç mücadelelerine enerji harcamamak'},
+  {slug:'yay',name:'Yay',focus:'büyüme, öğrenme ve ufku genişletme',love:'özgürlük ile bağlılığı aynı anda taşıyabilmek',career:'uluslararası işler, eğitim, yayıncılık ve yeni pazarlar',money:'büyüme hevesiyle kapasitenin önüne geçmemek',eclipse:'seyahat, yüksek öğrenim ve dünya görüşü',retro:'plansız riskleri ve aşırı dağınık hedefleri azaltmak'},
+  {slug:'oglak',name:'Oğlak',focus:'uzun vadeli yapı, sorumluluk ve sonuç',love:'duygusal mesafe ile sağlıklı sınırı ayırmak',career:'yetki, sistem kurma ve uzun vadeli pozisyon',money:'borç, yatırım ve ortak finansman',eclipse:'ortak para, mahremiyet ve psikolojik derinlik',retro:'sadece görev odaklı yaşarken motivasyonu tüketmemek'},
+  {slug:'kova',name:'Kova',focus:'yenilik, bağımsızlık ve topluluk',love:'özgür alan ile duygusal erişilebilirlik arasında denge',career:'teknoloji, ağlar ve farklılaşan fikirler',money:'yenilikçi gelir modellerini gerçekçi veriyle test etmek',eclipse:'ilişkiler, ortaklıklar ve sözleşmeler',retro:'entelektüel mesafeyi iletişim kopukluğuna çevirmemek'},
+  {slug:'balik',name:'Balık',focus:'sezgi, yaratıcılık ve sınır netliği',love:'idealizasyon ile gerçek davranışı ayırmak',career:'yaratıcı işler, hizmet ve anlam odaklı çalışma',money:'belirsiz harcamalara ve dağınık bütçeye sınır koymak',eclipse:'iş rutini, günlük düzen ve beden bakımı',retro:'enerji sızıntılarını fark edip ritmi sadeleştirmek'}
+];
+
+const zodiac2027Articles=zodiac2027Profiles.map((z,index)=>({
+  slug:`${z.slug}-burcu-2027-yillik-yorum`,
+  title:`${z.name} Burcu 2027: Aşk, Kariyer, Para, Retro ve Tutulma Rehberi`,
+  dek:`${z.name} burcu için 2027'yi tek cümlelik kehanetlerle değil; aşk, kariyer, para, retro dönemleri, tutulmalar ve uygulanabilir yıllık plan üzerinden detaylı incele.`,
+  date:'2026-09-30',
+  tags:[z.name,'2027 Burç Yorumu','Yıllık Astroloji','2027'],
+  sections:[
+    ['2027 ana teması',`2027’de ${z.name} için ana çalışma alanı ${z.focus}. Yılı “iyi” veya “kötü” diye etiketlemek yerine hangi alışkanlığın büyümeyi desteklediğini, hangisinin ise enerji tükettiğini görmek daha kullanışlıdır. Transitler tek başına olay yaratmaz; kişisel doğum haritası, yaşam koşulları ve alınan kararlar yorumu belirgin biçimde değiştirir.`],
+    ['Aşk ve ilişkiler',`${z.name} için ilişkilerde öne çıkan konu ${z.love}. Venüs retrosu 3 Ekim–14 Kasım 2026’da başlayan değerlendirme döngüsünün etkilerini 2027’nin ilk bölümüne taşıyabilir; geçmiş ilişki kalıplarını yeniden düşünmek mümkün olsa da belirli bir kişinin geri döneceğine veya bir ilişkinin biteceğine dair garanti yoktur. İlişkide davranış, açık iletişim ve sınırlar astrolojik sembollerden daha belirleyicidir.`],
+    ['Kariyer ve iş',`Kariyer tarafında ${z.career} öne çıkabilir. Mars’ın 10 Ocak–1 Nisan 2027 arasındaki retrosu, enerjiyi daha fazla harcamak yerine çalışma yöntemini yeniden düzenlemek için kullanılabilir. Özellikle görev dağılımı, zaman yönetimi ve sürdürülemeyen hedefler gözden geçirildiğinde yılın ikinci bölümünde daha net bir yön oluşabilir.`],
+    ['Para ve kaynaklar',`Finansal odakta ${z.money}. 2027’de astrolojik zamanlamayı yatırım sinyali gibi kullanmak yerine bütçe, nakit akışı, borç, sözleşme ve riskleri gerçek verilerle takip etmek gerekir. Retro dönemleri harcamaları ve taahhütleri ikinci kez kontrol etmek için yalnızca bir hatırlatıcı olarak kullanılabilir.`],
+    ['2 Ağustos 2027 Güneş tutulması',`2 Ağustos 2027’de yaklaşık 9°55′ Aslan’da gerçekleşen tam Güneş tutulması, ${z.name} için sembolik olarak ${z.eclipse} alanını öne çıkarabilir. Kişisel etkiyi anlamak için yalnız Güneş burcuna değil, haritada 7°–13° Aslan, Kova, Boğa ve Akrep civarında gezegen veya açı noktası olup olmadığına bakmak daha anlamlıdır.`],
+    ['Mars retrosunda dikkat',`Mars retrosunun ${z.name} açısından temel dersi ${z.retro}. 10 Ocak–1 Nisan döneminde çatışmayı büyütmek, aynı yöntemi daha fazla zorlamak veya kapasitenin üzerinde yük almak yerine stratejiyi yeniden kurmak daha verimli olabilir. Fiziksel sağlıkla ilgili kararlar için astroloji yerine tıbbi değerlendirme esas alınmalıdır.`],
+    ['Merkür retrosu dönemleri',`2027’de üç Merkür retrosu bulunuyor: Şubat–Mart, Haziran–Temmuz ve Ekim dönemleri. ${z.name} için bu zamanlarda iletişim, sözleşme, ödeme, seyahat planı ve dijital dosyalarda kontrol listesi kullanmak yararlı olabilir. “Hiçbir şey imzalanmaz” gibi kesin yasaklar yerine metinleri ikinci kez okumak, yedek almak ve varsayım yerine soru sormak daha rasyoneldir.`],
+    ['Yılın ilk yarısı',`Ocak–Nisan arası enerji yönetimi ve mevcut planların yeniden yapılandırılması öne çıkar. İlk yarıda hızdan çok dayanıklılığa odaklanmak, ${z.name} için yılın geri kalanını daha sağlam zemine oturtabilir. Mayıs ve Haziran, revize edilen planları test etmek için daha uygun bir geçiş alanı gibi kullanılabilir.`],
+    ['Yılın ikinci yarısı',`Temmuzdan sonra görünürlük ve dış dünyaya açılma isteği artabilir. Ağustos tutulması çevresinde büyük kararları tek bir güne bağlamak yerine birkaç haftalık gözlem alanı bırakmak yararlıdır. Ekim ve Kasımda iletişim ve planlama başlıkları tekrar gözden geçirilirken yıl sonunda hangi yapıların 2028’e taşınacağı daha net hale gelebilir.`],
+    ['2027 için uygulanabilir plan',`Yılın başında üç başlık seç: sürdürmek istediğin bir yapı, bırakmak istediğin bir yük ve büyütmek istediğin bir alan. Her çeyrek sonunda bunları gerçek sonuçlarla karşılaştır. Böylece ${z.name} 2027 yorumunu soyut bir tahmin yerine davranış, kaynak ve karar takibi için kullanılabilir bir çerçeveye dönüştürmüş olursun.`]
+  ],
+  faq:[
+    [`${z.name} burcu 2027’de nasıl bir yıl geçirecek?`,`Ana tema ${z.focus}; ancak kişisel deneyim doğum haritasındaki yükselen, evler ve natal açılara göre değişir.`],
+    [`${z.name} için 2027 aşk hayatı nasıl?`,`İlişki tarafında ${z.love} öne çıkan sembolik temadır. Kesin ilişki sonucu verilemez.`],
+    [`${z.name} için 2027 kariyer açısından nasıl?`,`${z.career} üzerinde çalışmak yıl boyunca daha anlamlı olabilir; iş kararlarında gerçek fırsat ve koşullar önceliklidir.`],
+    [`${z.name} 2027 Güneş tutulmasından nasıl etkilenir?`,`2 Ağustos tutulması sembolik olarak ${z.eclipse} alanını vurgulayabilir. Kişisel etki için doğum haritasındaki derece ve ev yerleşimleri gerekir.`],
+    [`2027’de ${z.name} için dikkat edilmesi gereken retro hangisi?`,`Mars retrosu enerji ve strateji açısından özellikle dikkat çekicidir; Merkür retroları ise iletişim ve planlama kontrolleri için kullanılabilir.`]
+  ],
+  links:[
+    ['2027 astroloji takvimi','/blog/2027-astroloji-takvimi-retrolar-tutulmalar'],
+    ['Doğum haritanı hesapla','/astroloji'],
+    ['2 Ağustos 2027 tutulması','/blog/2-agustos-2027-gunes-tutulmasi-aslan'],
+    ['Bugünün gökyüzü','/bugunun-gokyuzu']
+  ]
+}));
+
+articles.push(...zodiac2027Articles);
+
+
 export const blogRoutes=['/blog',...articles.map(a=>`/blog/${a.slug}`)];
 export const blogMeta=Object.fromEntries([['/blog',['Astroloji, Tarot ve Gökyüzü Blogu','2027 astroloji takvimi, Mars ve Merkür retroları, tutulmalar, sinastri, doğum haritası ve Tarot rehberleri.']],...articles.map(a=>[`/blog/${a.slug}`,[a.title,a.dek]])]);
 export const blogDates=Object.fromEntries(articles.map(a=>[`/blog/${a.slug}`,a.date]));
