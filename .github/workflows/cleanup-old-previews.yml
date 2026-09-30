@@ -1,0 +1,36 @@
+name: Cleanup legacy Mythborn previews
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - ".github/workflows/cleanup-old-previews.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Delete legacy preview Workers
+        shell: bash
+        run: |
+          set -euo pipefail
+          workers=(
+            "mythborn-preview-47-ab496435"
+            "mythborn-preview-46-ba0d5c89"
+            "mythborn-preview-45-6aac6c44"
+            "mythborn-preview-44-07a22ddc"
+          )
+          for worker in "${workers[@]}"; do
+            response="$(curl -sS -X DELETE \
+              "https://api.cloudflare.com/client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/workers/services/${worker}" \
+              -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
+              -H "Content-Type: application/json")"
+            echo "$worker -> $response"
+          done
