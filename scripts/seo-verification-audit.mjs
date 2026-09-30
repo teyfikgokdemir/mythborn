@@ -46,6 +46,19 @@ for (const [url, expectedLocation, headers] of [
   }
 }
 
+// 0b. Dormant membership APIs must stay off the production surface while preview retains them
+const productionEnv={...env,ENVIRONMENT:'production'};
+for(const path of ['/api/auth/providers','/api/auth/me','/api/admin/readiness','/api/results','/api/webhooks/payment']){
+  const response=await worker.fetch(new Request(`https://mythborn.co${path}`),productionEnv,{});
+  if(response.status!==404)errors.push(`[Dormant Production API] ${path} returned HTTP ${response.status}, expected 404`);
+}
+for(const path of ['/api/astrology/current-sky','/api/search-index?locale=en']){
+  const response=await worker.fetch(new Request(`https://mythborn.co${path}`),productionEnv,{});
+  if(response.status===404)errors.push(`[Public Production API] ${path} was blocked by membership isolation`);
+}
+const previewProvider=await worker.fetch(new Request('https://mythborn.co/api/auth/providers'),{...env,ENVIRONMENT:'preview'},{});
+if(previewProvider.status!==200)errors.push(`[Preview Membership API] /api/auth/providers returned HTTP ${previewProvider.status}, expected 200`);
+
 // 1. Audit Sitemap URLs
 const sitemapRes = await fetchPath('/sitemap.xml');
 if (sitemapRes.status !== 200) {

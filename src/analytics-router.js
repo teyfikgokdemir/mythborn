@@ -148,6 +148,22 @@ const robotsResponse=()=>new Response('User-agent: *\nAllow: /\nDisallow: /api/\
   'cache-control':'public, max-age=3600'
 }});
 
+const DORMANT_PRODUCTION_API_PREFIXES=['/api/auth/','/api/account/','/api/admin/'];
+const DORMANT_PRODUCTION_API_EXACT=new Set(['/api/results','/api/webhooks/payment']);
+const isDormantProductionApi=pathname=>
+  DORMANT_PRODUCTION_API_EXACT.has(pathname)||
+  DORMANT_PRODUCTION_API_PREFIXES.some(prefix=>pathname.startsWith(prefix));
+
+const dormantApiResponse=()=>new Response(JSON.stringify({error:'Not found'}),{
+  status:404,
+  headers:{
+    'content-type':'application/json; charset=utf-8',
+    'cache-control':'no-store',
+    'x-content-type-options':'nosniff',
+    'referrer-policy':'no-referrer'
+  }
+});
+
 export default {
   async fetch(request,env,ctx){
     const url=new URL(request.url);
@@ -163,6 +179,7 @@ export default {
       return Response.redirect(url.toString(),301);
     }
     if(url.pathname==='/robots.txt')return robotsResponse();
+    if(env.ENVIRONMENT==='production'&&isDormantProductionApi(url.pathname))return dormantApiResponse();
     if(LEGACY_EXACT_REDIRECTS.has(url.pathname)){
       return Response.redirect(`https://mythborn.co${LEGACY_EXACT_REDIRECTS.get(url.pathname)}`,301);
     }

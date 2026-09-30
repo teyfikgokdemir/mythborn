@@ -105,6 +105,28 @@ const pageChecks = [
       body.includes('https://mythborn.co/gr/astroloji'),
   },
   {
+    url: 'https://mythborn.co/api/auth/providers',
+    label: 'dormant auth API hidden in production',
+    verify: (response) => response.status === 404,
+  },
+  {
+    url: 'https://mythborn.co/api/admin/readiness',
+    label: 'dormant admin API hidden in production',
+    verify: (response) => response.status === 404,
+  },
+  {
+    url: 'https://mythborn.co/api/results',
+    label: 'dormant results API hidden in production',
+    verify: (response) => response.status === 404,
+  },
+  {
+    url: 'https://mythborn.co/api/astrology/current-sky',
+    label: 'public astrology API remains available',
+    verify: (response) =>
+      response.ok &&
+      (response.headers.get('content-type') || '').includes('application/json'),
+  },
+  {
     url: 'https://mythborn.co/non-existent-random-page-12345',
     label: 'custom 404 contract',
     verify: (response, body) =>
