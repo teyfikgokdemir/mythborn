@@ -20,8 +20,12 @@ for(const endpoint of ['/llms.txt','/llms.en.txt','/llms.gr.txt','/llms.es.txt',
   if(!wrangler.includes(`"${endpoint}"`))throw new Error(`wrangler assets.run_worker_first missing ${endpoint}`);
 }
 
+const previewConfig=await readFile(new URL('../wrangler.preview.jsonc',import.meta.url),'utf8');
+if(!/"ENVIRONMENT"\s*:\s*"preview"/.test(previewConfig))throw new Error('wrangler.preview.jsonc must declare ENVIRONMENT=preview');
+if(/"ENVIRONMENT"\s*:\s*"production"/.test(previewConfig))throw new Error('wrangler.preview.jsonc must not declare production environment flags');
+
 const previewWorkflow=await readFile(new URL('../.github/workflows/preview.yml',import.meta.url),'utf8');
-if(!previewWorkflow.includes('--var ENVIRONMENT:preview'))throw new Error('Preview workflow must explicitly override ENVIRONMENT=preview');
+if(!previewWorkflow.includes('--config wrangler.preview.jsonc'))throw new Error('Preview workflow must deploy with wrangler.preview.jsonc');
 
 const deployWorkflow=await readFile(new URL('../.github/workflows/deploy.yml',import.meta.url),'utf8');
 if(!deployWorkflow.includes('npx wrangler deploy'))throw new Error('Production workflow must deploy the canonical Worker config');
