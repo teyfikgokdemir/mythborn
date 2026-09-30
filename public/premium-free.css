@@ -205,3 +205,127 @@ body:before{background:#0A0A0A!important}
 }
 
 .sponsor-band{background:#0A0A0A!important}
+
+
+/* Lime surface typography: dark ink on #DFFF00, ivory on black canvas. */
+:root{
+  --lime-surface:#DFFF00;
+  --lime-ink:#090909;
+  --lime-muted:#343434;
+  --lime-line:rgba(9,9,9,.18);
+}
+
+.knowledge-hub-card,
+.card,
+.editorial-card,
+.editorial-step,
+.guide-centre-card,
+.library-card,
+.blog-card,
+.hero-sky-card,
+.astro-method-grid article,
+.oracle-card,
+.daily-stage,
+.membership-gate,
+.free-reading,
+.tool-answer-guide,
+.tool-answer-grid details{
+  color:var(--lime-ink)!important;
+}
+
+.knowledge-hub-card h2,
+.knowledge-hub-card h3,
+.knowledge-hub-card h4,
+.knowledge-hub-card strong,
+.card h2,.card h3,.card h4,.card strong,
+.editorial-card h2,.editorial-card h3,.editorial-card strong,
+.editorial-step h2,.editorial-step h3,.editorial-step strong,
+.guide-centre-card h2,.guide-centre-card h3,.guide-centre-card strong,
+.library-card h2,.library-card h3,.library-card strong,
+.blog-card h2,.blog-card h3,.blog-card strong,
+.hero-sky-card h2,.hero-sky-card h3,.hero-sky-card strong,
+.astro-method-grid article h2,.astro-method-grid article h3,.astro-method-grid article strong,
+.oracle-card h2,.oracle-card h3,.oracle-card strong,
+.daily-stage h2,.daily-stage h3,.daily-stage strong,
+.membership-gate h2,.membership-gate h3,.membership-gate strong,
+.free-reading h1,.free-reading h2,.free-reading h3,.free-reading strong,
+.tool-answer-guide h1,.tool-answer-guide h2,.tool-answer-guide h3,.tool-answer-guide strong,
+.tool-answer-grid summary{
+  color:var(--lime-ink)!important;
+}
+
+.knowledge-hub-card p,
+.knowledge-hub-card span,
+.card p,.card span,
+.editorial-card p,.editorial-card span,
+.editorial-step p,.editorial-step span,
+.guide-centre-card p,.guide-centre-card span,
+.library-card p,.library-card span,
+.blog-card p,.blog-card span,
+.hero-sky-card p,.hero-sky-card span,
+.astro-method-grid article p,.astro-method-grid article span,
+.oracle-card p,.oracle-card span,
+.daily-stage p,.daily-stage span,
+.membership-gate p,.membership-gate span,
+.free-reading p,.free-reading span,.free-reading label,
+.tool-answer-guide p,.tool-answer-guide span,
+.tool-answer-grid details p{
+  color:var(--lime-muted)!important;
+}
+
+.knowledge-hub-card small,
+.card small,
+.editorial-card small,
+.guide-centre-card small,
+.library-card small,
+.blog-card small,
+.hero-sky-card .eyebrow,
+.astro-method-grid article small,
+.oracle-card small,
+.daily-stage .eyebrow,
+.membership-gate .eyebrow,
+.free-reading .eyebrow,
+.tool-answer-guide .eyebrow{
+  color:#1a1a1a!important;
+}
+
+.knowledge-hub-card a,
+.card a,
+.editorial-card a,
+.guide-centre-card a,
+.library-card a,
+.blog-card a,
+.hero-sky-card a,
+.oracle-card a,
+.daily-stage a,
+.membership-gate a,
+.free-reading a,
+.tool-answer-guide a{
+  color:var(--lime-ink)!important;
+}
+
+.tool-answer-grid summary::after{
+  color:var(--lime-ink)!important;
+}
+
+.tool-answer-links a{
+  border-color:rgba(9,9,9,.32)!important;
+  background:rgba(9,9,9,.06)!important;
+  color:var(--lime-ink)!important;
+}
+.tool-answer-links a:hover,
+.tool-answer-links a:focus-visible{
+  border-color:#090909!important;
+  background:#090909!important;
+  color:#DFFF00!important;
+}
+
+/* Keep typography on the black canvas warm/ivory. */
+.localized-home > .section:not(.knowledge-hub):not(.home-membership) > h1,
+.localized-home > .section:not(.knowledge-hub):not(.home-membership) > h2,
+.home-featured h2,
+.home-ancient h2,
+.knowledge-hub > h2,
+.home-membership > h2{
+  color:var(--myth-ivory)!important;
+}
