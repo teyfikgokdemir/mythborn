@@ -36,7 +36,7 @@ for(const path of ['/','/en','/gr','/gunluk-kart','/en/tarot','/gr/katina','/ast
   const response=await worker.fetch(new Request(`https://mythborn.co${path}`),env,{});
   if(response.status!==200)throw new Error(`${path} returned ${response.status}`);
   const html=await response.text();
-  for(const token of ['/cinematic.css','/cinematic.js','mythborn-social-celestial.jpg','og:image:width','twitter:image:alt']){
+  for(const token of ['/cinematic.css','/cinematic.js','mythborn-social-celestial.jpg','og:image:width','twitter:image:alt','twitter:card','summary_large_image','og:url']){
     if(!html.includes(token))throw new Error(`${path} missing ${token}`);
   }
 }
