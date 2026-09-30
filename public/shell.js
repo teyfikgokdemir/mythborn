@@ -73,6 +73,31 @@
     document.addEventListener('keydown',event=>{if(event.key==='Escape'&&details.open){close();details.querySelector('summary')?.focus()}});
     sync();
   });
+  // Preserve page state when switching languages: same route, query/hash and scroll position.
+  const languageLinks=[...document.querySelectorAll('.header-language a,.mobile-language a')];
+  languageLinks.forEach(link=>{
+    try{
+      const target=new URL(link.href,location.origin);
+      // Keep stateful query params (for example weekly sign selection) and anchors.
+      if(location.search)target.search=location.search;
+      if(location.hash)target.hash=location.hash;
+      link.href=target.pathname+target.search+target.hash;
+      link.addEventListener('click',()=>{
+        sessionStorage.setItem('mythborn-language-scroll',JSON.stringify({
+          y:window.scrollY||document.documentElement.scrollTop||0,
+          at:Date.now()
+        }));
+      });
+    }catch{}
+  });
+  try{
+    const saved=JSON.parse(sessionStorage.getItem('mythborn-language-scroll')||'null');
+    if(saved&&Date.now()-Number(saved.at||0)<10000){
+      sessionStorage.removeItem('mythborn-language-scroll');
+      requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:Number(saved.y)||0,behavior:'auto'})));
+    }
+  }catch{sessionStorage.removeItem('mythborn-language-scroll')}
+
   document.querySelectorAll('.header-language').forEach(details=>{
     const summary=details.querySelector('summary');
     const links=[...details.querySelectorAll('a')];
