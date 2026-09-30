@@ -3,8 +3,10 @@
     ? 'en'
     : document.documentElement.lang.startsWith('el')
       ? 'el'
-      : 'tr';
-  const path = location.pathname.replace(/^\/(?:en|gr)(?=\/|$)/, '') || '/';
+      : document.documentElement.lang.startsWith('es')
+        ? 'es'
+        : 'tr';
+  const path = location.pathname.replace(/^\/(?:en|gr|es)(?=\/|$)/, '') || '/';
 
   const assets = {
     hero: {
@@ -15,7 +17,8 @@
       alt: {
         tr: 'Hilal, yıldız haritası ve antik usturlapla aydınlanan gece gözlemevi',
         en: 'Night observatory illuminated by a crescent moon, star map and antique astrolabe',
-        el: 'Νυχτερινό παρατηρητήριο φωτισμένο από ημισέληνο, αστρικό χάρτη και αρχαίο αστρολάβο'
+        el: 'Νυχτερινό παρατηρητήριο φωτισμένο από ημισέληνο, αστρικό χάρτη και αρχαίο αστρολάβο',
+        es: 'Observatorio nocturno iluminado por una luna creciente, un mapa estelar y un astrolabio antiguo'
       }
     },
     daily: {
@@ -26,7 +29,8 @@
       alt: {
         tr: 'Altın ay fazlarıyla işlenmiş tek Tarot kartı, dumanlı kuvars ve hilal',
         en: 'A single Tarot card embossed with golden moon phases beside smoky quartz and a crescent',
-        el: 'Μία κάρτα Ταρώ με χρυσές φάσεις της Σελήνης, καπνία χαλαζία και ημισέληνο'
+        el: 'Μία κάρτα Ταρώ με χρυσές φάσεις της Σελήνης, καπνία χαλαζία και ημισέληνο',
+        es: 'Una carta de Tarot con fases lunares doradas junto a cuarzo ahumado y una luna creciente'
       }
     },
     tarot: {
@@ -37,7 +41,8 @@
       alt: {
         tr: 'Lacivert kadife üzerinde göksel arketiplerle işlenmiş üç zarif Tarot kartı',
         en: 'Three elegant Tarot cards with celestial archetypes arranged on midnight-blue velvet',
-        el: 'Τρεις κομψές κάρτες Ταρώ με ουράνια αρχέτυπα πάνω σε βελούδο βαθύ μπλε'
+        el: 'Τρεις κομψές κάρτες Ταρώ με ουράνια αρχέτυπα πάνω σε βελούδο βαθύ μπλε',
+        es: 'Tres elegantes cartas de Tarot con arquetipos celestes dispuestas sobre terciopelo azul medianoche'
       }
     },
     katina: {
@@ -48,7 +53,8 @@
       alt: {
         tr: 'Altın ışık bağıyla birbirine bağlanan bordo ve gece mavisi iki Katina kartı',
         en: 'Two burgundy and midnight-blue Katina cards connected by a fine thread of golden light',
-        el: 'Δύο κάρτες Κατίνα σε μπορντό και βαθύ μπλε ενωμένες με λεπτή χρυσή ακτίνα'
+        el: 'Δύο κάρτες Κατίνα σε μπορντό και βαθύ μπλε ενωμένες με λεπτή χρυσή ακτίνα',
+        es: 'Dos cartas Katina en tonos burdeos y azul medianoche unidas por un fino hilo de luz dorada'
       }
     },
     astrology: {
@@ -59,7 +65,8 @@
       alt: {
         tr: 'Gece gözlemevinde altın çizgilerle aydınlanan saydam doğum haritası diski',
         en: 'A translucent birth-chart disc illuminated with fine gold lines in a night observatory',
-        el: 'Διαφανής γενέθλιος χάρτης με λεπτές χρυσές γραμμές σε νυχτερινό παρατηρητήριο'
+        el: 'Διαφανής γενέθλιος χάρτης με λεπτές χρυσές γραμμές σε νυχτερινό παρατηρητήριο',
+        es: 'Un disco translúcido de carta natal iluminado con finas líneas doradas en un observatorio nocturno'
       }
     },
     membership: {
@@ -70,7 +77,8 @@
       alt: {
         tr: 'Göksel günlükleri ve kristali koruyan dairesel kişisel arşiv',
         en: 'A circular personal archive safeguarding celestial journals and a crystal',
-        el: 'Κυκλικό προσωπικό αρχείο που φυλάσσει ουράνια ημερολόγια και έναν κρύσταλλο'
+        el: 'Κυκλικό προσωπικό αρχείο που φυλάσσει ουράνια ημερολόγια και έναν κρύσταλλο',
+        es: 'Un archivo personal circular que protege diarios celestes y un cristal'
       }
     },
     knowledge: {
@@ -81,7 +89,8 @@
       alt: {
         tr: 'Açık yıldız atlası, göksel çizimler ve mor kristalle sakin bilgi arşivi',
         en: 'A quiet knowledge archive with an open star atlas, celestial diagrams and a violet crystal',
-        el: 'Ήσυχο αρχείο γνώσης με ανοιχτό αστρικό άτλαντα, ουράνια διαγράμματα και μωβ κρύσταλλο'
+        el: 'Ήσυχο αρχείο γνώσης με ανοιχτό αστρικό άτλαντα, ουράνια διαγράμματα και μωβ κρύσταλλο',
+        es: 'Un archivo sereno de conocimiento con un atlas estelar abierto, diagramas celestes y un cristal violeta'
       }
     }
   };
