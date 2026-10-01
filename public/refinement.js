@@ -84,6 +84,17 @@
     if('requestIdleCallback' in window) window.requestIdleCallback(run,{timeout:3000});
     else window.setTimeout(run,1800);
   };
+  let sourceBeaconLoaded=false;
+  const loadSourceBeacon=()=>{
+    if(sourceBeaconLoaded||!read()?.analytics||document.querySelector('script[data-mythborn-source-beacon]'))return;
+    sourceBeaconLoaded=true;
+    const script=document.createElement('script');
+    script.src='/cansu-source-beacon.js';
+    script.defer=true;
+    script.dataset.site='mythborn';
+    script.dataset.mythbornSourceBeacon='true';
+    document.body.appendChild(script);
+  };
   const trackEvent=(name,params={})=>{if(!read()?.analytics||!analyticsLoaded||typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
   document.addEventListener('click',event=>{const target=event.target.closest?.('[data-track]');if(!target)return;trackEvent(target.dataset.track,{link_text:(target.textContent||'').trim().slice(0,80)})},{passive:true});
   const copy={
@@ -130,6 +141,7 @@
     if(analytics){
       setAnalyticsConsent(true);
       scheduleAnalytics();
+      loadSourceBeacon();
     }else{
       setAnalyticsConsent(false);
       clearAnalyticsCookies();
@@ -161,6 +173,7 @@
   if(currentConsent?.analytics){
     setAnalyticsConsent(true);
     scheduleAnalytics();
+    loadSourceBeacon();
   }else{
     setAnalyticsConsent(false);
     clearAnalyticsCookies();
