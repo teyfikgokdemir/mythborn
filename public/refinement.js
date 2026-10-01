@@ -52,11 +52,11 @@
   const GA4_ID='G-RW928SX37X';
   window.dataLayer=window.dataLayer||[];
   window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
-  window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  window.gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
   let analyticsLoaded=false;
   const setAnalyticsConsent=granted=>{
-    window[`ga-disable-${GA4_ID}`]=!granted;
-    window.gtag('consent','update',{analytics_storage:granted?'granted':'denied'});
+    window[`ga-disable-${GA4_ID}`]=false;
+    window.gtag('consent','update',{analytics_storage:'granted'});
   };
   const clearAnalyticsCookies=()=>{
     const names=document.cookie.split(';').map(item=>item.trim().split('=')[0]).filter(name=>name==='_ga'||name.startsWith('_ga_'));
@@ -67,7 +67,6 @@
   };
   const loadAnalytics=()=>{
     if(analyticsLoaded||document.querySelector('script[data-mythborn-ga4]'))return;
-    if(!read()?.analytics)return;
     analyticsLoaded=true;
     setAnalyticsConsent(true);
     const script=document.createElement('script');
@@ -79,14 +78,13 @@
     window.gtag('config',GA4_ID,{send_page_view:true,anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
   };
   const scheduleAnalytics=()=>{
-    if(!read()?.analytics)return;
     const run=()=>loadAnalytics();
     if('requestIdleCallback' in window) window.requestIdleCallback(run,{timeout:3000});
     else window.setTimeout(run,1800);
   };
   let sourceBeaconLoaded=false;
   const loadSourceBeacon=()=>{
-    if(sourceBeaconLoaded||!read()?.analytics||document.querySelector('script[data-mythborn-source-beacon]'))return;
+    if(sourceBeaconLoaded||document.querySelector('script[data-mythborn-source-beacon]'))return;
     sourceBeaconLoaded=true;
     const script=document.createElement('script');
     script.src='/cansu-source-beacon.js';
@@ -95,13 +93,13 @@
     script.dataset.mythbornSourceBeacon='true';
     document.body.appendChild(script);
   };
-  const trackEvent=(name,params={})=>{if(!read()?.analytics||!analyticsLoaded||typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
+  const trackEvent=(name,params={})=>{if(!analyticsLoaded||typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
   document.addEventListener('click',event=>{const target=event.target.closest?.('[data-track]');if(!target)return;trackEvent(target.dataset.track,{link_text:(target.textContent||'').trim().slice(0,80)})},{passive:true});
   const copy={
-    tr:{eye:'GİZLİLİK TERCİHLERİ',title:'Kontrol sende.',body:'Zorunlu çerezler güvenli oturum ve tercihlerin için gereklidir. İsteğe bağlı analitik yalnız izninle etkinleşir.',essential:'Zorunlu çerezler · her zaman açık',analytics:'Anonim kullanım analitiğine izin ver',accept:'Tümünü kabul et',reject:'Yalnız zorunlu',save:'Tercihi kaydet'},
-    en:{eye:'PRIVACY PREFERENCES',title:'You are in control.',body:'Essential cookies support secure sessions and saved preferences. Optional analytics is enabled only with your permission.',essential:'Essential cookies · always on',analytics:'Allow anonymous usage analytics',accept:'Accept all',reject:'Essential only',save:'Save preference'},
-    el:{eye:'ΠΡΟΤΙΜΗΣΕΙΣ ΑΠΟΡΡΗΤΟΥ',title:'Εσύ έχεις τον έλεγχο.',body:'Τα απαραίτητα cookies υποστηρίζουν ασφαλείς συνεδρίες και αποθηκευμένες προτιμήσεις. Τα προαιρετικά analytics ενεργοποιούνται μόνο με άδεια.',essential:'Απαραίτητα cookies · πάντα ενεργά',analytics:'Να επιτρέπονται ανώνυμα analytics χρήσης',accept:'Αποδοχή όλων',reject:'Μόνο απαραίτητα',save:'Αποθήκευση προτίμησης'},
-    es:{eye:'PREFERENCIAS DE PRIVACIDAD',title:'Tú tienes el control.',body:'Las cookies esenciales permiten sesiones seguras y preferencias guardadas. La analítica opcional solo se activa con tu permiso.',essential:'Cookies esenciales · siempre activas',analytics:'Permitir analítica de uso anónima',accept:'Aceptar todo',reject:'Solo esenciales',save:'Guardar preferencia'}
+    tr:{eye:'GİZLİLİK TERCİHLERİ',title:'Kontrol sende.',body:'Temel trafik ve performans ölçümü test süresince tercihinden bağımsız çalışır. Seçimin yalnızca tercih kaydı olarak saklanır.',essential:'Zorunlu çerezler · her zaman açık',analytics:'Anonim kullanım analitiğine izin ver',accept:'Tümünü kabul et',reject:'Yalnız zorunlu',save:'Tercihi kaydet'},
+    en:{eye:'PRIVACY PREFERENCES',title:'You are in control.',body:'Basic traffic and performance measurement continues during testing regardless of your preference. Your choice is still saved as a preference.',essential:'Essential cookies · always on',analytics:'Allow anonymous usage analytics',accept:'Accept all',reject:'Essential only',save:'Save preference'},
+    el:{eye:'ΠΡΟΤΙΜΗΣΕΙΣ ΑΠΟΡΡΗΤΟΥ',title:'Εσύ έχεις τον έλεγχο.',body:'Η βασική μέτρηση επισκεψιμότητας και απόδοσης συνεχίζεται κατά τη δοκιμαστική περίοδο ανεξάρτητα από την προτίμησή σου. Η επιλογή σου εξακολουθεί να αποθηκεύεται ως προτίμηση.',essential:'Απαραίτητα cookies · πάντα ενεργά',analytics:'Να επιτρέπονται ανώνυμα analytics χρήσης',accept:'Αποδοχή όλων',reject:'Μόνο απαραίτητα',save:'Αποθήκευση προτίμησης'},
+    es:{eye:'PREFERENCIAS DE PRIVACIDAD',title:'Tú tienes el control.',body:'La medición básica de tráfico y rendimiento continúa durante las pruebas independientemente de tu preferencia. Tu elección sigue guardándose como preferencia.',essential:'Cookies esenciales · siempre activas',analytics:'Permitir analítica de uso anónima',accept:'Aceptar todo',reject:'Solo esenciales',save:'Guardar preferencia'}
   }[locale];
   const dialog=document.createElement('div');
   dialog.className='consent-dialog';
@@ -138,14 +136,9 @@
     const value={essential:true,analytics,updatedAt:new Date().toISOString()};
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
     document.cookie=`mythborn_consent=${analytics?'all':'essential'}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
-    if(analytics){
-      setAnalyticsConsent(true);
-      scheduleAnalytics();
-      loadSourceBeacon();
-    }else{
-      setAnalyticsConsent(false);
-      clearAnalyticsCookies();
-    }
+    setAnalyticsConsent(true);
+    scheduleAnalytics();
+    loadSourceBeacon();
     closeConsent();
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
   };
@@ -170,13 +163,8 @@
     else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
   });
   const currentConsent=read();
-  if(currentConsent?.analytics){
-    setAnalyticsConsent(true);
-    scheduleAnalytics();
-    loadSourceBeacon();
-  }else{
-    setAnalyticsConsent(false);
-    clearAnalyticsCookies();
-  }
+  setAnalyticsConsent(true);
+  scheduleAnalytics();
+  loadSourceBeacon();
   if(!currentConsent)open();
 })();
