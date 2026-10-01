@@ -76,3 +76,15 @@
 
   window.CansuEvents = Object.freeze({ track: sendConversion });
 })();
+
+
+(() => {
+  const site = document.currentScript?.dataset.site || 'mythborn';
+  if (document.querySelector('script[data-cansu-umami-bootstrap="true"]')) return;
+  const script = document.createElement('script');
+  script.src = 'https://teyfikgokdemir.com/cansu-umami-loader.js';
+  script.defer = true;
+  script.dataset.site = site;
+  script.dataset.cansuUmamiBootstrap = 'true';
+  document.head.appendChild(script);
+})();
