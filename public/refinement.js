@@ -101,7 +101,7 @@
     el:{title:'Προτιμήσεις cookies',body:'Τα απαραίτητα cookies διατηρούν τη λειτουργία του ιστότοπου. Επίλεξε αν επιτρέπεις analytics.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
     es:{title:'Preferencias de cookies',body:'Las cookies esenciales mantienen el sitio en funcionamiento. Elige si permites medición analítica.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'}
   }[locale];
-  const policyHref=locale==='tr'?'/cerezler':`/${locale}/cerezler`;
+  const policyHref='/cerezler';
   const dialog=document.createElement('aside');
   dialog.className='consent-dialog';
   dialog.hidden=true;
