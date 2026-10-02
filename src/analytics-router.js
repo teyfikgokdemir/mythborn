@@ -9,7 +9,7 @@ const appendSources=(policy,directive,sources)=>{
   return policy.replace(pattern,`${match[1]}${directive} ${[...existing].join(' ')}`);
 };
 
-const BASE_CONTENT_SECURITY_POLICY="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'";
+const BASE_CONTENT_SECURITY_POLICY="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://teyfikgokdemir.com https://cansu-umami.onrender.com; connect-src 'self' https://challenges.cloudflare.com https://teyfikgokdemir.com https://cansu-umami.onrender.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'";
 
 const allowAnalyticsProviders=policy=>{
   let next=policy;
