@@ -1,6 +1,6 @@
 (() => {
-  const sourceEndpoint = 'https://teyfikgokdemir.com/api/sources';
-  const conversionEndpoint = 'https://teyfikgokdemir.com/api/conversions';
+  const sourceEndpoint = 'https://cansu.teyfikgokdemir.com/api/sources';
+  const conversionEndpoint = 'https://cansu.teyfikgokdemir.com/api/conversions';
   const site = document.currentScript?.dataset.site;
   if (!site) return;
 
@@ -82,7 +82,7 @@
   const site = document.currentScript?.dataset.site || 'mythborn';
   if (document.querySelector('script[data-cansu-umami-bootstrap="true"]')) return;
   const script = document.createElement('script');
-  script.src = 'https://teyfikgokdemir.com/cansu-umami-loader.js';
+  script.src = 'https://cansu.teyfikgokdemir.com/cansu-umami-loader.js';
   script.defer = true;
   script.dataset.site = site;
   script.dataset.cansuUmamiBootstrap = 'true';
