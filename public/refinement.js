@@ -96,42 +96,26 @@
   const trackEvent=(name,params={})=>{if(!analyticsLoaded||typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
   document.addEventListener('click',event=>{const target=event.target.closest?.('[data-track]');if(!target)return;trackEvent(target.dataset.track,{link_text:(target.textContent||'').trim().slice(0,80)})},{passive:true});
   const copy={
-    tr:{eye:'GİZLİLİK TERCİHLERİ',title:'Kontrol sende.',body:'Temel trafik ve performans ölçümü test süresince tercihinden bağımsız çalışır. Seçimin yalnızca tercih kaydı olarak saklanır.',essential:'Zorunlu çerezler · her zaman açık',analytics:'Anonim kullanım analitiğine izin ver',accept:'Tümünü kabul et',reject:'Yalnız zorunlu',save:'Tercihi kaydet'},
-    en:{eye:'PRIVACY PREFERENCES',title:'You are in control.',body:'Basic traffic and performance measurement continues during testing regardless of your preference. Your choice is still saved as a preference.',essential:'Essential cookies · always on',analytics:'Allow anonymous usage analytics',accept:'Accept all',reject:'Essential only',save:'Save preference'},
-    el:{eye:'ΠΡΟΤΙΜΗΣΕΙΣ ΑΠΟΡΡΗΤΟΥ',title:'Εσύ έχεις τον έλεγχο.',body:'Η βασική μέτρηση επισκεψιμότητας και απόδοσης συνεχίζεται κατά τη δοκιμαστική περίοδο ανεξάρτητα από την προτίμησή σου. Η επιλογή σου εξακολουθεί να αποθηκεύεται ως προτίμηση.',essential:'Απαραίτητα cookies · πάντα ενεργά',analytics:'Να επιτρέπονται ανώνυμα analytics χρήσης',accept:'Αποδοχή όλων',reject:'Μόνο απαραίτητα',save:'Αποθήκευση προτίμησης'},
-    es:{eye:'PREFERENCIAS DE PRIVACIDAD',title:'Tú tienes el control.',body:'La medición básica de tráfico y rendimiento continúa durante las pruebas independientemente de tu preferencia. Tu elección sigue guardándose como preferencia.',essential:'Cookies esenciales · siempre activas',analytics:'Permitir analítica de uso anónima',accept:'Aceptar todo',reject:'Solo esenciales',save:'Guardar preferencia'}
+    tr:{title:'Çerez tercihleri',body:'Zorunlu çerezler siteyi çalıştırır. Analitik ölçüm tercihini buradan seçebilirsin.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
+    en:{title:'Cookie preferences',body:'Essential cookies keep the site working. Choose whether to allow analytics measurement.',policy:'Cookie policy',accept:'Accept',reject:'Reject'},
+    el:{title:'Προτιμήσεις cookies',body:'Τα απαραίτητα cookies διατηρούν τη λειτουργία του ιστότοπου. Επίλεξε αν επιτρέπεις analytics.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
+    es:{title:'Preferencias de cookies',body:'Las cookies esenciales mantienen el sitio en funcionamiento. Elige si permites medición analítica.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'}
   }[locale];
-  const dialog=document.createElement('div');
+  const policyHref=locale==='tr'?'/cerezler':`/${locale}/cerezler`;
+  const dialog=document.createElement('aside');
   dialog.className='consent-dialog';
   dialog.hidden=true;
-  dialog.setAttribute('role','dialog');
-  dialog.setAttribute('aria-modal','true');
+  dialog.setAttribute('role','region');
   dialog.setAttribute('aria-labelledby','consent-title');
-  dialog.setAttribute('aria-describedby','consent-description');
-  dialog.innerHTML=`<div class="consent-panel"><p class="eyebrow">${copy.eye}</p><h2 id="consent-title">${copy.title}</h2><p id="consent-description">${copy.body}</p><p><strong>${copy.essential}</strong></p><label><span>${copy.analytics}</span><input type="checkbox" data-consent-analytics></label><div class="consent-actions"><button class="btn btn-primary" type="button" data-consent-accept>${copy.accept}</button><button class="btn btn-ghost" type="button" data-consent-reject>${copy.reject}</button><button class="btn btn-secondary" type="button" data-consent-save>${copy.save}</button></div></div>`;
+  dialog.setAttribute('aria-live','polite');
+  dialog.innerHTML=`<div class="consent-panel"><div class="consent-copy"><strong id="consent-title">${copy.title}</strong><p>${copy.body} <a href="${policyHref}">${copy.policy}</a></p></div><div class="consent-actions"><button class="btn btn-ghost" type="button" data-consent-reject>${copy.reject}</button><button class="btn btn-primary" type="button" data-consent-accept>${copy.accept}</button></div></div>`;
   document.body.appendChild(dialog);
   const read=()=>{
     try{const stored=JSON.parse(localStorage.getItem(key)||'null');if(stored)return stored}catch{}
     const cookie=document.cookie.match(/(?:^|;\s*)mythborn_consent=(all|essential)(?:;|$)/)?.[1];
     return cookie?{essential:true,analytics:cookie==='all'}:null;
   };
-  let consentPreviousFocus=null;
-  let backgroundState=[];
-  const restoreBackground=()=>{
-    backgroundState.forEach(({node,inert,inertAttribute,ariaHidden})=>{
-      node.inert=inert;
-      if(!inertAttribute)node.removeAttribute('inert');
-      if(ariaHidden===null)node.removeAttribute('aria-hidden');
-      else node.setAttribute('aria-hidden',ariaHidden);
-    });
-    backgroundState=[];
-  };
-  const closeConsent=()=>{
-    dialog.hidden=true;
-    document.body.classList.remove('has-open-consent');
-    restoreBackground();
-    if(consentPreviousFocus instanceof HTMLElement)consentPreviousFocus.focus({preventScroll:true});
-  };
+  const closeConsent=()=>{dialog.hidden=true};
   const persist=analytics=>{
     const value={essential:true,analytics,updatedAt:new Date().toISOString()};
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
@@ -143,24 +127,14 @@
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
   };
   const open=()=>{
-    consentPreviousFocus=document.activeElement;
-    dialog.querySelector('[data-consent-analytics]').checked=Boolean(read()?.analytics);
-    backgroundState=[...document.body.children].filter(node=>node!==dialog).map(node=>({node,inert:node.inert,inertAttribute:node.hasAttribute('inert'),ariaHidden:node.getAttribute('aria-hidden')}));
-    backgroundState.forEach(({node})=>{node.inert=true;node.setAttribute('inert','');node.setAttribute('aria-hidden','true')});
     dialog.hidden=false;
-    document.body.classList.add('has-open-consent');
-    requestAnimationFrame(()=>dialog.querySelector('button').focus());
+    requestAnimationFrame(()=>dialog.querySelector('button')?.focus());
   };
   dialog.querySelector('[data-consent-accept]').addEventListener('click',()=>persist(true));
   dialog.querySelector('[data-consent-reject]').addEventListener('click',()=>persist(false));
-  dialog.querySelector('[data-consent-save]').addEventListener('click',()=>persist(dialog.querySelector('[data-consent-analytics]').checked));
   document.querySelectorAll('[data-consent-manage]').forEach(button=>button.addEventListener('click',open));
   dialog.addEventListener('keydown',event=>{
-    if(event.key==='Escape'&&read()){event.preventDefault();closeConsent();return}
-    if(event.key!=='Tab')return;
-    const items=[...dialog.querySelectorAll('button,input')],first=items[0],last=items.at(-1);
-    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
-    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+    if(event.key==='Escape'&&read()){event.preventDefault();closeConsent()}
   });
   const currentConsent=read();
   setAnalyticsConsent(true);
