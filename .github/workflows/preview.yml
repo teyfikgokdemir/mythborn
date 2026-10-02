@@ -116,9 +116,9 @@ jobs:
             -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
             -H "Content-Type: application/json")"
           echo "$RESPONSE"
-          if echo "$RESPONSE" | grep -q '"success":true'; then
+          if echo "$RESPONSE" | grep -Eq '"success"[[:space:]]*:[[:space:]]*true'; then
             echo "Closed PR preview cleaned: $WORKER_NAME" >> "$GITHUB_STEP_SUMMARY"
-          elif echo "$RESPONSE" | grep -q '"code":10090'; then
+          elif echo "$RESPONSE" | grep -Eq '"code"[[:space:]]*:[[:space:]]*10090'; then
             echo "Preview already absent: $WORKER_NAME" >> "$GITHUB_STEP_SUMMARY"
           else
             echo "Preview cleanup failed: $WORKER_NAME" >&2
