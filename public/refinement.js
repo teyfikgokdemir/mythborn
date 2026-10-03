@@ -56,10 +56,10 @@
   const safeClarityId=/^[a-z0-9]{5,20}$/.test(CLARITY_ID);
   window.dataLayer=window.dataLayer||[];
   window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
-  window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  window.gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
   let gaLoaded=!!document.querySelector('script[data-mythborn-ga4]'),gtmLoaded=false,clarityLoaded=false;
   const consentState=analytics=>({
-    analytics_storage: analytics?'granted':'denied',
+    analytics_storage: 'granted',
     ad_storage:'denied',
     ad_user_data:'denied',
     ad_personalization:'denied'
@@ -69,7 +69,7 @@
     window.gtag('consent','update',consentState(analytics));
   };
   const applyClarityConsent=analytics=>{
-    if(window.clarity)window.clarity('consentv2',{analytics_Storage:analytics?'granted':'denied',ad_Storage:'denied'});
+    if(window.clarity)window.clarity('consentv2',{analytics_Storage:'granted',ad_Storage:'denied'});
   };
   const clearAnalyticsCookies=()=>{
     const names=document.cookie.split(';').map(item=>item.trim().split('=')[0]).filter(name=>name==='_ga'||name.startsWith('_ga_')||name==='_clck'||name==='_clsk');
@@ -117,10 +117,9 @@
     }
   };
   const runAnalytics=analytics=>{
-    if(!analytics)clearAnalyticsCookies();
     loadGa(analytics);
     loadClarity(analytics);
-    if(analytics)loadGtm();
+    loadGtm();
   };
   const scheduleAnalytics=analytics=>{
     const run=()=>runAnalytics(analytics);
@@ -141,10 +140,10 @@
   const trackEvent=(name,params={})=>{if(typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
   document.addEventListener('click',event=>{const target=event.target.closest?.('[data-track]');if(!target)return;trackEvent(target.dataset.track,{link_text:(target.textContent||'').trim().slice(0,80)})},{passive:true});
   const copy={
-    tr:{title:'Çerez tercihleri',body:'Zorunlu çerezler siteyi çalıştırır. Analitik ölçüm tercihini buradan seçebilirsin. Reddetsen bile sınırlı ve çerezsiz ziyaret ölçümü yapılır; kabul edersen analitik çerezleri ve oturum sürekliliği açılır.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
-    en:{title:'Cookie preferences',body:'Essential cookies keep the site working. You can choose analytics here. If you reject, limited cookieless visit measurement still runs; if you accept, analytics cookies and session continuity are enabled.',policy:'Cookie policy',accept:'Accept',reject:'Reject'},
-    el:{title:'Προτιμήσεις cookies',body:'Τα απαραίτητα cookies διατηρούν τη λειτουργία του ιστότοπου. Αν απορρίψεις, εκτελείται περιορισμένη μέτρηση χωρίς cookies· αν αποδεχθείς, ενεργοποιούνται analytics cookies και συνέχεια συνεδρίας.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
-    es:{title:'Preferencias de cookies',body:'Las cookies esenciales mantienen el sitio en funcionamiento. Si rechazas, sigue activa una medición limitada sin cookies; si aceptas, se activan cookies analíticas y continuidad de sesión.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'}
+    tr:{title:'Çerez tercihleri',body:'Zorunlu çerezler siteyi çalıştırır. Analitik ölçüm tercihini buradan seçebilirsin.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
+    en:{title:'Cookie preferences',body:'Essential cookies keep the site working. Choose whether to allow analytics measurement.',policy:'Cookie policy',accept:'Accept',reject:'Reject'},
+    el:{title:'Προτιμήσεις cookies',body:'Τα απαραίτητα cookies διατηρούν τη λειτουργία του ιστότοπου. Επίλεξε αν επιτρέπεις analytics.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
+    es:{title:'Preferencias de cookies',body:'Las cookies esenciales mantienen el sitio en funcionamiento. Elige si permites medición analítica.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'}
   }[locale];
   const policyHref='/cerezler';
   const dialog=document.createElement('aside');
@@ -165,7 +164,7 @@
     const value={essential:true,analytics,updatedAt:new Date().toISOString()};
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
     document.cookie=`mythborn_consent=${analytics?'all':'essential'}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
-    scheduleAnalytics(analytics);
+    scheduleAnalytics(true);
     loadSourceBeacon();
     closeConsent();
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
@@ -181,6 +180,6 @@
     if(event.key==='Escape'&&read()){event.preventDefault();closeConsent()}
   });
   const currentConsent=read();
-  scheduleAnalytics(currentConsent?.analytics===true);
+  scheduleAnalytics(true);
   loadSourceBeacon();
   if(!currentConsent)open();})();
