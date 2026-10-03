@@ -9,13 +9,16 @@ const appendSources=(policy,directive,sources)=>{
   return policy.replace(pattern,`${match[1]}${directive} ${[...existing].join(' ')}`);
 };
 
-const BASE_CONTENT_SECURITY_POLICY="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://teyfikgokdemir.com https://cansu-umami.onrender.com; connect-src 'self' https://challenges.cloudflare.com https://teyfikgokdemir.com https://cansu-umami.onrender.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'";
+const BASE_CONTENT_SECURITY_POLICY="default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://cansu.teyfikgokdemir.com https://teyfikgokdemir.com https://cansu-umami.onrender.com; connect-src 'self' https://challenges.cloudflare.com https://cansu.teyfikgokdemir.com https://teyfikgokdemir.com https://cansu-umami.onrender.com; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'";
 
 const allowAnalyticsProviders=policy=>{
   let next=policy;
   next=appendSources(next,'script-src',[
     'https://www.googletagmanager.com',
+    'https://www.clarity.ms',
+    'https://scripts.clarity.ms',
     'https://static.cloudflareinsights.com',
+    'https://cansu.teyfikgokdemir.com',
     'https://teyfikgokdemir.com',
     'https://cansu-umami.onrender.com'
   ]);
@@ -26,11 +29,13 @@ const allowAnalyticsProviders=policy=>{
     'https://region1.google-analytics.com',
     'https://www.googletagmanager.com',
     'https://cloudflareinsights.com',
+    'https://*.clarity.ms',
     'https://pagead2.googlesyndication.com',
+    'https://cansu.teyfikgokdemir.com',
     'https://teyfikgokdemir.com',
     'https://cansu-umami.onrender.com'
   ]);
-  next=appendSources(next,'img-src',['https://www.googletagmanager.com','https://www.google-analytics.com','https://pagead2.googlesyndication.com','https://teyfikgokdemir.com']);
+  next=appendSources(next,'img-src',['https://www.googletagmanager.com','https://www.google-analytics.com','https://pagead2.googlesyndication.com','https://www.clarity.ms','https://*.clarity.ms','https://cansu.teyfikgokdemir.com','https://teyfikgokdemir.com']);
   return next;
 };
 
@@ -178,4 +183,3 @@ export default {
     return cacheStaticAssetResponse(await secureHtmlResponse(response),url);
   }
 };
-

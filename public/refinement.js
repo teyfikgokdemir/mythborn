@@ -50,37 +50,82 @@
   document.querySelectorAll('.consent-banner,[data-consent-banner],.cookie-banner').forEach(node=>node.remove());
   const key='mythborn-consent-v2';
   const GA4_ID='G-RW928SX37X';
+  const GTM_ID='GTM-PKC69D3L';
+  const ADS_ID='AW-18090583790';
+  const CLARITY_ID='';
+  const safeClarityId=/^[a-z0-9]{5,20}$/.test(CLARITY_ID);
   window.dataLayer=window.dataLayer||[];
   window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
-  window.gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
-  let analyticsLoaded=false;
-  const setAnalyticsConsent=granted=>{
+  window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  let gaLoaded=!!document.querySelector('script[data-mythborn-ga4]'),gtmLoaded=false,clarityLoaded=false;
+  const consentState=analytics=>({
+    analytics_storage: analytics?'granted':'denied',
+    ad_storage:'denied',
+    ad_user_data:'denied',
+    ad_personalization:'denied'
+  });
+  const applyGoogleConsent=analytics=>{
     window[`ga-disable-${GA4_ID}`]=false;
-    window.gtag('consent','update',{analytics_storage:'granted'});
+    window.gtag('consent','update',consentState(analytics));
+  };
+  const applyClarityConsent=analytics=>{
+    if(window.clarity)window.clarity('consentv2',{analytics_Storage:analytics?'granted':'denied',ad_Storage:'denied'});
   };
   const clearAnalyticsCookies=()=>{
-    const names=document.cookie.split(';').map(item=>item.trim().split('=')[0]).filter(name=>name==='_ga'||name.startsWith('_ga_'));
+    const names=document.cookie.split(';').map(item=>item.trim().split('=')[0]).filter(name=>name==='_ga'||name.startsWith('_ga_')||name==='_clck'||name==='_clsk');
     for(const name of names){
       document.cookie=`${name}=; Path=/; Max-Age=0; SameSite=Lax; Secure`;
       document.cookie=`${name}=; Domain=.mythborn.co; Path=/; Max-Age=0; SameSite=Lax; Secure`;
     }
   };
-  const loadAnalytics=()=>{
-    if(analyticsLoaded||document.querySelector('script[data-mythborn-ga4]'))return;
-    analyticsLoaded=true;
-    setAnalyticsConsent(true);
+  const loadScript=(id,src,parent=document.head)=>{
+    if(document.getElementById(id))return;
     const script=document.createElement('script');
+    script.id=id;
     script.async=true;
-    script.src=`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID)}`;
-    script.dataset.mythbornGa4='true';
-    document.head.appendChild(script);
-    window.gtag('js',new Date());
-    window.gtag('config',GA4_ID,{send_page_view:true,anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
+    script.src=src;
+    parent.appendChild(script);
   };
-  const scheduleAnalytics=()=>{
-    const run=()=>loadAnalytics();
+  const loadGa=analytics=>{
+    applyGoogleConsent(analytics);
+    if(!gaLoaded&&!document.querySelector('script[data-mythborn-ga4]')){
+      gaLoaded=true;
+      const script=document.createElement('script');
+      script.async=true;
+      script.src=`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA4_ID)}`;
+      script.dataset.mythbornGa4='true';
+      document.head.appendChild(script);
+      window.gtag('js',new Date());
+    }
+    window.gtag('config',GA4_ID,{send_page_view:true,anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
+    window.gtag('config',ADS_ID,{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false});
+  };
+  const loadGtm=()=>{
+    if(gtmLoaded||!/^GTM-[A-Z0-9]+$/.test(GTM_ID))return;
+    gtmLoaded=true;
+    window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});
+    loadScript('mythborn-gtm',`https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(GTM_ID)}`);
+  };
+  const loadClarity=analytics=>{
+    if(!safeClarityId||location.search||location.hash)return;
+    window.clarity=window.clarity||function(){(window.clarity.q=window.clarity.q||[]).push(arguments)};
+    document.body.setAttribute('data-clarity-mask','true');
+    applyClarityConsent(analytics);
+    if(!clarityLoaded){
+      clarityLoaded=true;
+      loadScript('mythborn-clarity',`https://www.clarity.ms/tag/${CLARITY_ID}`,document.body);
+    }
+  };
+  const runAnalytics=analytics=>{
+    if(!analytics)clearAnalyticsCookies();
+    loadGa(analytics);
+    loadClarity(analytics);
+    if(analytics)loadGtm();
+  };
+  const scheduleAnalytics=analytics=>{
+    const run=()=>runAnalytics(analytics);
     if('requestIdleCallback' in window) window.requestIdleCallback(run,{timeout:3000});
-    else window.setTimeout(run,1800);
+    else window.setTimeout(run,1200);
   };
   let sourceBeaconLoaded=false;
   const loadSourceBeacon=()=>{
@@ -93,13 +138,13 @@
     script.dataset.mythbornSourceBeacon='true';
     document.body.appendChild(script);
   };
-  const trackEvent=(name,params={})=>{if(!analyticsLoaded||typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
+  const trackEvent=(name,params={})=>{if(typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
   document.addEventListener('click',event=>{const target=event.target.closest?.('[data-track]');if(!target)return;trackEvent(target.dataset.track,{link_text:(target.textContent||'').trim().slice(0,80)})},{passive:true});
   const copy={
-    tr:{title:'Çerez tercihleri',body:'Zorunlu çerezler siteyi çalıştırır. Analitik ölçüm tercihini buradan seçebilirsin.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
-    en:{title:'Cookie preferences',body:'Essential cookies keep the site working. Choose whether to allow analytics measurement.',policy:'Cookie policy',accept:'Accept',reject:'Reject'},
-    el:{title:'Προτιμήσεις cookies',body:'Τα απαραίτητα cookies διατηρούν τη λειτουργία του ιστότοπου. Επίλεξε αν επιτρέπεις analytics.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
-    es:{title:'Preferencias de cookies',body:'Las cookies esenciales mantienen el sitio en funcionamiento. Elige si permites medición analítica.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'}
+    tr:{title:'Çerez tercihleri',body:'Zorunlu çerezler siteyi çalıştırır. Analitik ölçüm tercihini buradan seçebilirsin. Reddetsen bile sınırlı ve çerezsiz ziyaret ölçümü yapılır; kabul edersen analitik çerezleri ve oturum sürekliliği açılır.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
+    en:{title:'Cookie preferences',body:'Essential cookies keep the site working. You can choose analytics here. If you reject, limited cookieless visit measurement still runs; if you accept, analytics cookies and session continuity are enabled.',policy:'Cookie policy',accept:'Accept',reject:'Reject'},
+    el:{title:'Προτιμήσεις cookies',body:'Τα απαραίτητα cookies διατηρούν τη λειτουργία του ιστότοπου. Αν απορρίψεις, εκτελείται περιορισμένη μέτρηση χωρίς cookies· αν αποδεχθείς, ενεργοποιούνται analytics cookies και συνέχεια συνεδρίας.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
+    es:{title:'Preferencias de cookies',body:'Las cookies esenciales mantienen el sitio en funcionamiento. Si rechazas, sigue activa una medición limitada sin cookies; si aceptas, se activan cookies analíticas y continuidad de sesión.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'}
   }[locale];
   const policyHref='/cerezler';
   const dialog=document.createElement('aside');
@@ -120,8 +165,7 @@
     const value={essential:true,analytics,updatedAt:new Date().toISOString()};
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
     document.cookie=`mythborn_consent=${analytics?'all':'essential'}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
-    setAnalyticsConsent(true);
-    scheduleAnalytics();
+    scheduleAnalytics(analytics);
     loadSourceBeacon();
     closeConsent();
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
@@ -137,8 +181,6 @@
     if(event.key==='Escape'&&read()){event.preventDefault();closeConsent()}
   });
   const currentConsent=read();
-  setAnalyticsConsent(true);
-  scheduleAnalytics();
+  scheduleAnalytics(currentConsent?.analytics===true);
   loadSourceBeacon();
-  if(!currentConsent)open();
-})();
+  if(!currentConsent)open();})();
