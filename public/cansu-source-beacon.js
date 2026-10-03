@@ -63,7 +63,8 @@
     const value = String(href || '').trim().toLowerCase();
     if (value.startsWith('tel:')) return 'phone_click';
     if (value.startsWith('mailto:')) return 'email_click';
-    if (value.includes('wa.me/') || value.includes('api.whatsapp.com/') || value.includes('whatsapp.com/send')) return 'whatsapp_click';
+    if (value.includes('wa.me/') || value.includes('api.whatsapp.com/') || value.includes('web.whatsapp.com/') || value.includes('whatsapp.com/send')) return 'whatsapp_click';
+    if (value.includes('t.me/') || value.includes('telegram.me/') || value.startsWith('tg://')) return 'telegram_click';
     return null;
   };
 
@@ -72,6 +73,24 @@
     if (!anchor) return;
     const eventType = classify(anchor.getAttribute('href'));
     if (eventType) sendConversion(eventType);
+  }, { capture: true });
+
+  document.addEventListener('submit', (event) => {
+    const form = event.target instanceof HTMLFormElement ? event.target : null;
+    if (!form) return;
+    if (form.dataset.cansuTracked === 'true') return;
+    form.dataset.cansuTracked = 'true';
+    const signature = [
+      form.getAttribute('action') || '',
+      form.getAttribute('id') || '',
+      form.getAttribute('name') || '',
+      form.getAttribute('class') || '',
+      form.getAttribute('data-form-type') || '',
+    ].join(' ').toLowerCase();
+    sendConversion(/(rfq|quote|quotation|teklif|talep|request)/i.test(signature) ? 'rfq_submit' : 'form_submit', {
+      form_name: (form.getAttribute('name') || form.getAttribute('id') || '').slice(0, 80),
+    });
+    setTimeout(() => { try { delete form.dataset.cansuTracked; } catch {} }, 3000);
   }, { capture: true });
 
   window.CansuEvents = Object.freeze({ track: sendConversion });
