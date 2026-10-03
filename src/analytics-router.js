@@ -15,7 +15,9 @@ const allowAnalyticsProviders=policy=>{
   let next=policy;
   next=appendSources(next,'script-src',[
     'https://www.googletagmanager.com',
-    'https://static.cloudflareinsights.com'
+    'https://static.cloudflareinsights.com',
+    'https://teyfikgokdemir.com',
+    'https://cansu-umami.onrender.com'
   ]);
   next=appendSources(next,'frame-src',['https://www.googletagmanager.com']);
   next=appendSources(next,'connect-src',[
@@ -24,7 +26,9 @@ const allowAnalyticsProviders=policy=>{
     'https://region1.google-analytics.com',
     'https://www.googletagmanager.com',
     'https://cloudflareinsights.com',
-    'https://pagead2.googlesyndication.com'
+    'https://pagead2.googlesyndication.com',
+    'https://teyfikgokdemir.com',
+    'https://cansu-umami.onrender.com'
   ]);
   next=appendSources(next,'img-src',['https://www.googletagmanager.com','https://www.google-analytics.com','https://pagead2.googlesyndication.com','https://teyfikgokdemir.com']);
   return next;
