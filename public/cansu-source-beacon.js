@@ -4,6 +4,13 @@
   const site = document.currentScript?.dataset.site;
   if (!site) return;
 
+  const allowedHosts = ['mythborn.co', 'www.mythborn.co'];
+  const ua = navigator.userAgent || '';
+  const automated =
+    navigator.webdriver === true ||
+    /headlesschrome|playwright|lighthouse|pagespeed|googlebot|bingbot|crawler|spider|bot\b/i.test(ua);
+  const productionTraffic = allowedHosts.includes(location.hostname) && !automated;
+
   const context = () => {
     const query = new URLSearchParams(location.search);
     let referrerHost = '';
@@ -19,21 +26,47 @@
     };
   };
 
-  if (!sessionStorage.getItem('cansu-source-sent-v1')) {
-    try {
-      const payload = context();
-      const params = new URLSearchParams({
-        event_site: payload.site,
-        landing_path: payload.landing_path,
-        referrer_host: payload.referrer_host,
-        utm_source: payload.utm_source,
-        utm_medium: payload.utm_medium,
-        utm_campaign: payload.utm_campaign,
+  if (productionTraffic) {
+    const sessionIdKey = 'cansu-source-session-v3:' + site;
+    const sentKey = 'cansu-source-sent-v3:' + site;
+    const getSessionId = () => {
+      try {
+        let value = sessionStorage.getItem(sessionIdKey);
+        if (value) return value;
+        value = (crypto?.randomUUID?.() || (Date.now().toString(36) + Math.random().toString(36).slice(2))).replace(/[^a-zA-Z0-9_-]/g, '');
+        sessionStorage.setItem(sessionIdKey, value);
+        return value;
+      } catch {
+        return (Date.now().toString(36) + Math.random().toString(36).slice(2)).replace(/[^a-zA-Z0-9_-]/g, '');
+      }
+    };
+    const sendSource = async () => {
+      try {
+        const response = await fetch(sourceEndpoint, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ collector_version: '3', session_id: getSessionId(), ...context() }),
+          keepalive: true,
+          mode: 'cors',
+          credentials: 'omit',
+          cache: 'no-store',
+        });
+        if (response.ok) {
+          try { sessionStorage.setItem(sentKey, '1'); } catch {}
+          return true;
+        }
+      } catch {}
+      return false;
+    };
+    let already = false;
+    try { already = sessionStorage.getItem(sentKey) === '1'; } catch {}
+    if (!already) {
+      sendSource().then(async (ok) => {
+        if (ok) return;
+        await new Promise((resolve) => setTimeout(resolve, 1200));
+        await sendSource();
       });
-      const beacon = new Image();
-      beacon.src = `${sourceEndpoint}?${params.toString()}`;
-      sessionStorage.setItem('cansu-source-sent-v1', '1');
-    } catch {}
+    }
   }
 
   const sendConversion = (eventType, extra = {}) => {
