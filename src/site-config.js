@@ -31,3 +31,7 @@ export const localizedPath=(pathname,locale)=>{
   const clean=pathname==='/'?'':pathname;
   return `${LOCALES[locale].prefix}${clean}`||'/';
 };
+
+// Search exists in every public locale even though it is not a Spanish editorial route.
+export const searchRoute=locale=>localizedPath('/arama',locale);
+export const searchAlternates=()=>PUBLIC_LOCALE_CODES.map(locale=>({locale,href:`${SITE_ORIGIN}${searchRoute(locale)}`}));

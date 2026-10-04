@@ -13,7 +13,7 @@ import {dreamSlugs,glossarySlugs,dreamPage,glossaryPage} from './dream-glossary.
 import {localizedBlogSlugs,localizedBlogPage} from './localized-blog.js';
 import {premiumGuideRoutes,premiumGuidePage,advancedAstrologyIndex} from './premium-guides.js';
 import {vedicPage,vedicDocument} from './vedic-pages.js';
-import {SITE_ORIGIN,LOCALES,localeFromPath,cleanLocalePath} from './site-config.js';
+import {SITE_ORIGIN,LOCALES,localeFromPath,cleanLocalePath,searchRoute} from './site-config.js';
 import {labels,llms} from './localized-shell-content.js';
 import {notFoundPage,searchPage} from './localized-static-pages.js';
 import {decorate} from './page-decorator.js';
@@ -39,6 +39,7 @@ const spanishPageDocument=path=>{
 const localeFrom=localeFromPath;
 const cleanPath=cleanLocalePath;
 const href=(locale,path)=>{
+  if(path==='/arama')return searchRoute(locale);
   const clean=path==='/'?'':path;
   if(locale==='es'&&path!=='/arama'&&!spanishRouteSet.has(path))return `/en${clean}`||'/en';
   return `${localeInfo[locale].prefix}${clean}`||'/';

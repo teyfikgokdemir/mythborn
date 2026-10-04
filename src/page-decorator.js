@@ -3,16 +3,18 @@ import {discoveryPage,discoveryMeta,discoverySchema} from './discovery-core.js';
 import {earlyAccessBanner} from './premium-access.js';
 import {spanishRouteSet} from './spanish-edition.js';
 import {vedicMeta,vedicSchema} from './vedic-pages.js';
-import {SITE_ORIGIN,LOCALES} from './site-config.js';
+import {SITE_ORIGIN,LOCALES,searchRoute,searchAlternates} from './site-config.js';
 import {socialImageAlt,labels} from './localized-shell-content.js';
 import {toolGuides} from './tool-guides.js';
 import {desktopNav,headerLanguage,mobileNav,knowledgeHub,homePathwaysSchema,footer} from './localized-navigation.js';
 import {legalMain} from './localized-static-pages.js';
+import {intentMetadata} from './intent-metadata.js';
 
 const SITE=SITE_ORIGIN;
 const localeInfo=LOCALES;
 const socialImage=`${SITE}/images/cinematic/social/mythborn-social-celestial.jpg`;
 const href=(locale,path)=>{
+  if(path==='/arama')return searchRoute(locale);
   const clean=path==='/'?'':path;
   if(locale==='es'&&path!=='/arama'&&!spanishRouteSet.has(path))return `/en${clean}`||'/en';
   return `${localeInfo[locale].prefix}${clean}`||'/';
@@ -69,7 +71,9 @@ export function decorate(html,locale,path,accessState,localizedPage=null){
   const canonical=`${SITE}${href(locale,path)}`;
   const localizedMeta=locale==='es'?null:(toolGuideMeta(locale,path)||coreMeta(locale,path)||discoveryMeta(locale,path));
   const vedicPageMeta=vedicMeta(locale,path);
-  const pageMeta=vedicPageMeta||localizedMeta||(localizedPage?{title:localizedPage.title,description:localizedPage.description}:null);
+  const existingMeta=vedicPageMeta||localizedMeta||(localizedPage?{title:localizedPage.title,description:localizedPage.description}:null);
+  const intentMeta=intentMetadata(locale,path,existingMeta?.title||html.match(/<title>([^<]*)<\/title>/)?.[1]||'Mythborn',existingMeta?.description||html.match(/<meta name="description" content="([^"]*)">/)?.[1]||labels[locale].knowledgeCopy);
+  const pageMeta=existingMeta;
   if(pageMeta){
     html=html.replace(/<title>[^<]*<\/title>/,`<title>${pageMeta.title}</title>`);
     html=upsertMetaDescription(html,pageMeta.description);
@@ -77,14 +81,18 @@ export function decorate(html,locale,path,accessState,localizedPage=null){
     const extraSchemas=[...(discoverySchema(locale,path)||[]),...toolGuideSchema(locale,path),...(path==='/'?[homePathwaysSchema(locale)]:[]),...((path==='/vedik-astroloji'||path==='/nakshatra-dasha')?vedicSchema(locale):[])];
     html=html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g,'').replace('</head>',`<script type="application/ld+json">${JSON.stringify(localizedSchema)}</script>${extraSchemas.map(schema=>`<script type="application/ld+json">${JSON.stringify(schema)}</script>`).join('')}</head>`);
   }
+  if(intentMeta){
+    html=html.replace(/<title>[^<]*<\/title>/,`<title>${escapeMetaContent(intentMeta.title)}</title>`);
+    html=upsertMetaDescription(html,intentMeta.description);
+  }
   const documentTitle=html.match(/<title>([^<]*)<\/title>/)?.[1]||'Mythborn';
   const documentDescription=html.match(/<meta name="description" content="([^"]*)">/)?.[1]||labels[locale].knowledgeCopy;
-  const pageTitle=locale==='tr'?(html.match(/<meta property="og:title" content="([^"]*)">/)?.[1]||documentTitle):documentTitle;
-  const pageDescription=locale==='tr'?(html.match(/<meta property="og:description" content="([^"]*)">/)?.[1]||documentDescription):documentDescription;
+  const pageTitle=locale==='tr'&&!intentMeta?(html.match(/<meta property="og:title" content="([^"]*)">/)?.[1]||documentTitle):documentTitle;
+  const pageDescription=locale==='tr'&&!intentMeta?(html.match(/<meta property="og:description" content="([^"]*)">/)?.[1]||documentDescription):documentDescription;
   const heroPreload=path==='/'?'<link rel="preload" as="image" type="image/avif" href="/images/cinematic/home/hero-celestial-1440.avif" imagesrcset="/images/cinematic/home/hero-celestial-640.avif 640w, /images/cinematic/home/hero-celestial-960.avif 960w, /images/cinematic/home/hero-celestial-1440.avif 1440w" imagesizes="100vw" fetchpriority="high">':'';
   const criticalAccessCss=`<style>html{scrollbar-gutter:stable}${path==='/'?'.premium-home-hero{display:grid!important;grid-template-columns:minmax(0,.82fr) minmax(390px,1.18fr)!important;gap:34px;align-items:center!important}.premium-home-hero>.hero-sky-card{min-height:744px;align-self:start}@media(max-width:1000px){.premium-home-hero{grid-template-columns:1fr!important}.premium-home-hero>.hero-sky-card{min-height:0}}':''}</style>`;
-  const hasSpanish=spanishRouteSet.has(path);
-  const alternateLinks=`<link rel="alternate" hreflang="tr" href="${SITE}${href('tr',path)}"><link rel="alternate" hreflang="en" href="${SITE}${href('en',path)}"><link rel="alternate" hreflang="el" href="${SITE}${href('el',path)}">${hasSpanish?`<link rel="alternate" hreflang="es" href="${SITE}${href('es',path)}">`:''}<link rel="alternate" hreflang="x-default" href="${SITE}${href('tr',path)}">`;
+  const hasSpanish=path==='/arama'||spanishRouteSet.has(path);
+  const alternateLinks=path==='/arama'?`${searchAlternates().map(alt=>`<link rel="alternate" hreflang="${alt.locale}" href="${alt.href}">`).join('')}<link rel="alternate" hreflang="x-default" href="${SITE}${searchRoute('tr')}">`:`<link rel="alternate" hreflang="tr" href="${SITE}${href('tr',path)}"><link rel="alternate" hreflang="en" href="${SITE}${href('en',path)}"><link rel="alternate" hreflang="el" href="${SITE}${href('el',path)}">${hasSpanish?`<link rel="alternate" hreflang="es" href="${SITE}${href('es',path)}">`:''}<link rel="alternate" hreflang="x-default" href="${SITE}${href('tr',path)}">`;
   html=html
     .replace(/<link rel="canonical" href="[^"]*">/g,'')
     .replace(/<link rel="alternate" hreflang="[^"]+" href="[^"]*">/g,'')

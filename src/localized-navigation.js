@@ -1,10 +1,11 @@
 import {labels} from './localized-shell-content.js';
 import {spanishRouteSet} from './spanish-edition.js';
-import {SITE_ORIGIN,LOCALES} from './site-config.js';
+import {SITE_ORIGIN,LOCALES,searchRoute} from './site-config.js';
 
 const SITE=SITE_ORIGIN;
 const localeInfo=LOCALES;
 const href=(locale,path)=>{
+  if(path==='/arama')return searchRoute(locale);
   const clean=path==='/'?'':path;
   if(locale==='es'&&path!=='/arama'&&!spanishRouteSet.has(path))return `/en${clean}`||'/en';
   return `${localeInfo[locale].prefix}${clean}`||'/';
