@@ -52,7 +52,7 @@
   const GA4_ID='G-RW928SX37X';
   const GTM_ID='GTM-PKC69D3L';
   const ADS_ID='AW-18090583790';
-  const CLARITY_ID='';
+  const CLARITY_ID='ysacbtdz22';
   const safeClarityId=/^[a-z0-9]{5,20}$/.test(CLARITY_ID);
   window.dataLayer=window.dataLayer||[];
   window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
