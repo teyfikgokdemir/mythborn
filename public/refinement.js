@@ -57,7 +57,7 @@
   window.dataLayer=window.dataLayer||[];
   window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
   window.gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
-  let gaLoaded=!!document.querySelector('script[data-mythborn-ga4]'),gtmLoaded=false,clarityLoaded=false;
+  let gaLoaded=!!document.querySelector('script[data-mythborn-ga4]'),gaConfigured=false,gtmLoaded=false,clarityLoaded=false;
   const consentState=analytics=>({
     analytics_storage: 'granted',
     ad_storage:'denied',
@@ -97,8 +97,11 @@
       document.head.appendChild(script);
       window.gtag('js',new Date());
     }
-    window.gtag('config',GA4_ID,{send_page_view:true,anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
-    window.gtag('config',ADS_ID,{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false});
+    if(!gaConfigured){
+      gaConfigured=true;
+      window.gtag('config',GA4_ID,{send_page_view:true,anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
+      window.gtag('config',ADS_ID,{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false});
+    }
   };
   const loadGtm=()=>{
     if(gtmLoaded||!/^GTM-[A-Z0-9]+$/.test(GTM_ID))return;
