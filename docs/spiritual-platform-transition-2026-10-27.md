@@ -52,3 +52,9 @@ Bakanlık duyurusu: https://ticaret.gov.tr/haberler/ticaret-bakanligindan-yasa-d
 - Hasta iyileştirme, doğaüstü kesin sonuç veya üçüncü kişi irade kontrolü vaadi yok.
 - Mevcut üretim verileri, kimlik doğrulaması ve yönlendirmeler korunur.
 - Hukuk onayı öncesi ticari hizmet reklamı yayımlanmaz.
+
+## Ek kararlar — 2026-10-27
+- Uygulayıcı tarot yorumlaması da yapabiliyor. Tarot, önerilen hizmet envanterine **hukuki incelemeye tabi** kategori olarak eklenecek. Tarot hizmetini tanıtmak veya seans talebine yönlendirmek, Türkiye'deki falcı/medyum/astrolog benzeri hizmet reklamı yasağı sebebiyle özellikle yüksek risklidir; yazılı hukuk görüşü olmadan aktif hizmet CTA'sı yayımlanmaz.
+- **Arapça (ar)** yeni hedef dil olarak tasarıma dahil. RTL (dir=rtl, lang=ar), menü hizalamaları, ikon yönü, Arapça tipografi, içerik kalite kontrolü, form alanları, canonical/hreflang/sitemap ve mobil testler birlikte ele alınmalı.
+- Dil taslağı: Türkçe, İngilizce, Yunanca, İspanyolca, Arapça (toplam 5).
+- Kullanıcı Codex kullanım limitinin dolduğunu belirtti. Codex ile uygulama yapıldığı iddia edilmez; bu kayıt sadece kapsam kararıdır.
