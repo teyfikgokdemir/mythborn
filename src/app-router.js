@@ -1,4 +1,5 @@
 import platform from './premium-router.js';
+import {comingSoonPage,comingSoonLocale} from './coming-soon.js';
 import {tarotSearchItems} from './tarot-library.js';
 import {dreamSearchItems,glossarySearchItems} from './dream-glossary.js';
 import {astrologySearchItems} from './astrology-library.js';
@@ -62,6 +63,12 @@ const searchItems=locale=>{
 export default {
   async fetch(request,env,ctx){
     const incoming=new URL(request.url);
+    if(env.COMING_SOON_ENABLED==='true' && (request.method==='GET'||request.method==='HEAD')){
+      const pathname=incoming.pathname;
+      if(pathname==='/robots.txt')return new Response('User-agent: *\\nDisallow: /\\n',{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store'}});
+      if(pathname==='/sitemap.xml')return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>',{headers:{'content-type':'application/xml; charset=utf-8','cache-control':'no-store'}});
+      if(!pathname.startsWith('/api/') && !/\\.[a-z0-9]{2,8}$/i.test(pathname) && !pathname.startsWith('/cdn-cgi/'))return new Response(request.method==='HEAD'?null:comingSoonPage(pathname),{headers:{'content-type':'text/html; charset=utf-8','content-language':comingSoonLocale(pathname),'cache-control':'no-store'}});
+    }
     if(isCulturalPath(incoming.pathname))return new Response(culturalPage(incoming.pathname),{headers:{'content-type':'text/html; charset=utf-8','content-language':culturalLocale(incoming.pathname),'cache-control':'public, max-age=300'}});
     if(incoming.pathname==='/el'||incoming.pathname.startsWith('/el/')){
       incoming.pathname='/gr'+incoming.pathname.slice(3);
