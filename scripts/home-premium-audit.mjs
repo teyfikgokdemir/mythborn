@@ -48,21 +48,19 @@ const env={
   PREMIUM_GATE_ENABLED:'false',
   ASSETS:{fetch:request=>fetch(request)}
 };
-for(const [path,lang] of [['/','tr'],['/en','en'],['/gr','el']]){
+for(const [path,lang] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/ar','ar']]){
   const response=await worker.fetch(new Request(`https://mythborn.co${path}`),env,{});
   assert.equal(response.status,200);
   const html=await response.text();
   assert(html.includes(`lang="${lang}"`));
-  assert(html.includes('data-home-sky'));
-  assert(html.includes('sky-skeleton-wheel'));
-  assert(html.includes('home-today-layout'));
-  assert(html.includes('featured-list'));
-  assert(html.includes('ancient-editorial'));
+  assert(html.includes('MYTHBORN'));
+  assert(html.includes('Maya Vanga'));
+  assert(html.includes('hreflang="ar"'));
   assert(!html.includes('data-early-access'));
-  assert(!html.includes('Gökyüzü hesaplanıyor'));
-  assert(!html.includes('EN ÇOK İLGİ GÖRENLER'));
-  assert(!html.includes('MOST EXPLORED'));
-  assert(!html.includes('ΔΗΜΟΦΙΛΕΙΣ ΕΜΠΕΙΡΙΕΣ'));
+  assert(!html.includes('mailto:'));
+  assert(!html.includes('wa.me'));
+  assert(!/(?:checkout|payment|reservation|booking)/i.test(html));
+  if(lang==='ar')assert(html.includes('dir="rtl"'));
 }
 
-console.log('Live sky, asymmetric home and premium-access audit passed.');
+console.log('Cultural home, language, RTL, and commercial-gate audit passed.');
