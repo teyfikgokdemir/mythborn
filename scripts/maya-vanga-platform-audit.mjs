@@ -28,6 +28,9 @@ for(const [prefix,lang,rtl] of locales){
 for(const route of ['/hakkinda','/kutuphane','/iletisim','/en/about','/gr/about','/es/about','/ar/about']){
   const response=await worker.fetch(new Request(`https://mythborn.co${route}`),env,{});
   assert.equal(response.status,200,`${route} should be public`);
+  const html=await response.text();
+  assert((html.match(/class="topic"/g)||[]).length >= 3,`${route} should contain substantive editorial sections`);
+  assert(html.includes('class="topic-grid"'),`${route} should have a structured inner page`);
 }
 
 const responsiveHtml=culturalPage('/ar');
