@@ -45,7 +45,7 @@ for(const route of ['/tarot-sembolizm','/bioenerji-kulturu','/nazar-ritueller','
 }
 
 const responsiveHtml=culturalPage('/ar');
-assert(responsiveHtml.includes('@media(max-width:760px)'), 'cultural shell must include a mobile layout');
+assert(responsiveHtml.includes('@media(max-width:700px)'), 'cultural shell must include a mobile layout');
 assert(responsiveHtml.includes('aria-label='), 'representative visual must have an accessible text alternative');
 assert(responsiveHtml.includes('<details class="mobile-nav">'), 'cultural shell must include keyboard-accessible mobile navigation');
 assert(responsiveHtml.includes('prefers-reduced-motion'), 'cultural shell must respect reduced-motion preferences');
