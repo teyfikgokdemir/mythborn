@@ -4,12 +4,12 @@ Durum: Tasarım/ürün kapsamı; **yayın onayı verilmedi**. 2026-10-27.
 
 ## Kullanıcı tarafından onaylanan kapsam
 - Mevcut Mythborn deneyiminin tamamen yeni bir iş modeline dönüştürülmesi.
-- Tek uzman ve uzman profili; ortaklık modeli ayrıca sözleşmeye bağlanacak.
+- Tek kadın uygulayıcıyla ortaklık modeli; gerçek ismi sitede tanıtılmayacak. Kamuya açık uzman ismi yerine Mythborn markası veya profesyonel takma ad kullanılabilir; gerçek kişi/ticari kimlik ve yasal bilgilendirme saklanamaz.
 - Hizmet başlıkları (hukuki inceleme bekliyor): bioenerji, tılsım, nazar, enerji çalışmaları, ritüel danışmanlığı.
 - Uluslararası çok dilli erişim ve çevrimiçi görüşme.
-- Rezervasyon takvimi, randevu ve uygunluk yönetimi.
-- Müşteri paneli: randevu geçmişi, mesajlaşma, hizmet takibi.
-- **Açık ücret, checkout ve çevrimiçi tahsilat yapılmayacak.** Ücret yerine "Bilgi al" iletişim akışı olacak; WhatsApp ve e-posta kanalları üzerinden talep. Bu yaklaşım hizmet reklamına ilişkin yasağı kaldırmaz.
+- **Müşteriler sitede seans/randevu oluşturmayacak.** Her türlü seans ve bilgi talebi yalnızca WhatsApp veya e-posta üzerinden alınacak; site içi rezervasyon takvimi kaldırıldı.
+- **Müşteri paneli, site içi mesajlaşma ve hizmet takibi yok.** Talepler dış kanallardan yönetilecek.
+- **Açık ücret, checkout ve çevrimiçi tahsilat yapılmayacak.** Hukuken izin verilen iletişim bağlamlarında "Bilgi al" ile WhatsApp veya e-posta yönlendirmesi tasarlanacak. Bu yaklaşım hizmet reklamına ilişkin yasağı kaldırmaz.
 - Gelecekte ödeme altyapısı ancak ayrı hukuk/sağlayıcı incelemesiyle karara bağlanacak.
 
 ## Mevcut teknik mimariye dayalı notlar
@@ -32,23 +32,23 @@ Bakanlık duyurusu: https://ticaret.gov.tr/haberler/ticaret-bakanligindan-yasa-d
 
 ## Önerilen teslimat sırası (yeni karar değil, uygulama planı)
 1. **Hukuki kapsam kapısı:** Uzmanın gerçek hizmet listesi, faaliyet ülkesi, ticari unvanı ve reklamın mümkün olup olmadığı konusunda yazılı görüş.
-2. **Tasarım prototipi:** Mevcut premium Mythborn görsel diliyle yeni ana sayfa, uzman profili, hizmet kategorileri, rezervasyon arayüzü; hukuki onay verilmeden pazarlama CTA yayımlama.
-3. **Teknik model:** D1 üzerinde hizmetler, uzman uygunluğu, randevu, müşteri mesajı; rol tabanlı erişim, abuse/rate limit, audit trail.
-4. **İletişim akışı:** İzin verilen hizmetlerde fiyat listesi yerine `Bilgi al`; doğrulanmış WhatsApp numarası ve `info@mythborn.co`. Kişisel/hassas veri WhatsApp URL parametrelerine aktarılmasın.
+2. **Tasarım prototipi:** Yeni ana sayfa, kurumsal marka anlatısı, izinli hizmet kategorileri ve kimliği açıklamayan sembolik kadın silüeti veya arkadan portre. Görsel gerçek uygulayıcının fotoğrafı diye gösterilmez. Hukuki onay verilmeden pazarlama CTA yayımlama.
+3. **Teknik model:** Kamuya açık kurumsal/çok dilli vitrin; ödeme, müşteri paneli, üyelik veya seans rezervasyon motoru geliştirme. Mevcut üyelik verileri silinmeden ve üretim bozulmadan eski özelliklerin kaldırılma planını yap.
+4. **İletişim akışı:** Hukuki onaylı iletişim sayfalarında `Bilgi al` ile doğrulanmış WhatsApp numarası veya doğrulanmış Mythborn e-posta adresine yönlendirme. **`info@mythborn.co` henüz çalıştığı doğrulanmış adres değil.** Kişisel/hassas veri WhatsApp URL parametrelerine aktarılmasın.
 5. **Çok dilli içerik:** TR/EN/GR/ES eşitlik, canonical, hreflang, sitemap, mobil/a11y testleri.
 6. **QA:** Birim/entegrasyon testleri, veri migrasyonu, yetkilendirme ve gizlilik, statik kontroller, CI, preview.
 7. **Ayrı üretim geçişi:** Risk incelemesi + manuel onay sonrası merge/deploy/production doğrulama.
 
 ## Bekleyen veriler
-- Uzmanın adı/profil bilgileri ve izinli tanıtım metni.
+- Profesyonel sahne adı (henüz seçilmedi); gerçek isim kamuya açık profilde kullanılmayacak. Silüet/arkadan kadın görseli kullanılabilir, gerçek kişiyi temsil ediyormuş gibi sunulmaz.
 - Mythborn için kullanılacak kurumsal WhatsApp numarası (mevcut diğer proje numaralarından **varsayma**).
 - Ortaklık sözleşmesi: alan adı, kod, veri, gelir ve ayrılma hakları.
 - Hizmet bazında Türkiye ve hedef ülkeler için hukuk değerlendirmesi.
-- Randevu saat dilimi, görüşme platformu, mesaj saklama süresi, KVKK/GDPR temeli.
+- WhatsApp/e-posta dışındaki platform modülleri kapsam dışı. Veri saklama ve KVKK/GDPR temeli yine değerlendirilir.
 
 ## Kabul kriterleri
 - Açık fiyat, ödeme, havale talimatı veya checkout yok.
-- Bilgi al akışı yalnızca hukuken izinli ve doğrulanmış iletişim kanalına gider.
+- Bilgi al akışı yalnızca hukuken izinli ve doğrulanmış iletişim kanalına gider; müşteri paneli, rezervasyon, ödeme ya da sahte referans/kadın kimliği oluşturulmaz.
 - Hasta iyileştirme, doğaüstü kesin sonuç veya üçüncü kişi irade kontrolü vaadi yok.
 - Mevcut üretim verileri, kimlik doğrulaması ve yönlendirmeler korunur.
 - Hukuk onayı öncesi ticari hizmet reklamı yayımlanmaz.
