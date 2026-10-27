@@ -58,3 +58,10 @@ Bakanlık duyurusu: https://ticaret.gov.tr/haberler/ticaret-bakanligindan-yasa-d
 - **Arapça (ar)** yeni hedef dil olarak tasarıma dahil. RTL (dir=rtl, lang=ar), menü hizalamaları, ikon yönü, Arapça tipografi, içerik kalite kontrolü, form alanları, canonical/hreflang/sitemap ve mobil testler birlikte ele alınmalı.
 - Dil taslağı: Türkçe, İngilizce, Yunanca, İspanyolca, Arapça (toplam 5).
 - Kullanıcı Codex kullanım limitinin dolduğunu belirtti. Codex ile uygulama yapıldığı iddia edilmez; bu kayıt sadece kapsam kararıdır.
+
+## Kesinleşen marka kararı — 2026-10-27
+- Profesyonel takma ad: **Maya Vanga**. Ana marka **MYTHBORN**.
+- Gerçek uygulayıcının adı ve yüzü kamuya açık uzman sunumunda kullanılmayacak; arkası dönük/silüet halinde **temsili** kadın görseli kullanılacak. Fotoğraf gerçek uygulayıcıya aitmiş gibi sunulmayacak; yanıltıcı biyografi, geçmiş, sertifika veya Baba Vanga bağlantısı uydurulmayacak.
+- Maya Vanga kullanıcı adı / marka tescil uygunluğu henüz doğrulanmadı. Bu adı Baba Vanga'nın akrabası, varisi veya devamı gibi sunma.
+- Talep: **tam dönüşüm**, mevcut tarot merkezli web arayüzü yerine spiritüel miras, semboller, genel farkındalık ve hukuken izin verilen bilgilendirme yapısı. Eski içerikler ve kullanıcı verileri için SEO/veri geçiş planı çıkar; körlemesine silme yapma.
+- Codex kotası dolu olduğu bildirildiği için uygulanmaya başlandığı iddia edilmez; hazır görev kapsamı olarak kaydedilir.
