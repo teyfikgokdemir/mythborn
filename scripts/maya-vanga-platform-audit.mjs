@@ -54,3 +54,17 @@ const sitemap=await worker.fetch(new Request('https://mythborn.co/sitemap.xml'),
 const xml=await sitemap.text();
 for(const path of ['/ar','/hakkinda','/en/about','/gr/about','/es/about','/ar/about','/tarot-sembolizm','/ar/meditation-mindfulness'])assert(xml.includes(`https://mythborn.co${path}`),`sitemap missing ${path}`);
 console.log('Maya Vanga five-locale, SEO, RTL, and legal-gate audit passed.');
+
+// Temporary public splash gate is reversible and keeps all five locales.
+for (const [path, lang] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/ar','ar'],['/iletisim','tr'],['/tarot-sembolizm','tr']]) {
+  const response=await worker.fetch(new Request('https://mythborn.co'+path), {...env,COMING_SOON_ENABLED:'true'}, {});
+  assert.equal(response.status,200);
+  assert.equal(response.headers.get('cache-control'),'no-store');
+  const html=await response.text();
+  assert(html.includes('MYTHBORN'));
+  assert(html.includes('name="robots" content="noindex,follow"'));
+  assert(html.includes('lang="'+lang+'"'));
+  assert(!html.includes('class="topic-grid"'));
+  if(lang==='ar')assert(html.includes('dir="rtl"'));
+}
+console.log('Coming-soon gated public surface checks passed.');
