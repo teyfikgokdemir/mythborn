@@ -18,6 +18,7 @@ import {labels,llms} from './localized-shell-content.js';
 import {notFoundPage,searchPage} from './localized-static-pages.js';
 import {decorate} from './page-decorator.js';
 import {discoveryPage,discoveryMeta} from './discovery-core.js';
+import {culturalLocale,culturalPage,culturalSitemapEntries,isCulturalPath} from './cultural-platform.js';
 
 const SITE=SITE_ORIGIN;
 const localeInfo=LOCALES;
@@ -61,6 +62,7 @@ const searchItems=locale=>{
 export default {
   async fetch(request,env,ctx){
     const incoming=new URL(request.url);
+    if(isCulturalPath(incoming.pathname))return new Response(culturalPage(incoming.pathname),{headers:{'content-type':'text/html; charset=utf-8','content-language':culturalLocale(incoming.pathname),'cache-control':'public, max-age=300'}});
     if(incoming.pathname==='/el'||incoming.pathname.startsWith('/el/')){
       incoming.pathname='/gr'+incoming.pathname.slice(3);
       return Response.redirect(incoming.toString(),301);
@@ -115,7 +117,7 @@ export default {
       if(incoming.pathname==='/sitemap.xml'){
         const xml=(await response.text()).replace(/\/el(?=\/|["<])/g,'/gr');
         const spanishEntries=spanishRoutes.filter(path=>!['/vedik-astroloji','/nakshatra-dasha'].includes(path)).map(path=>`<url><loc>${SITE}${href('es',path)}</loc>${blogDates[path]?`<lastmod>${blogDates[path]}</lastmod>`:''}<xhtml:link rel="alternate" hreflang="tr" href="${SITE}${href('tr',path)}"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}${href('en',path)}"/><xhtml:link rel="alternate" hreflang="el" href="${SITE}${href('el',path)}"/><xhtml:link rel="alternate" hreflang="es" href="${SITE}${href('es',path)}"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${href('tr',path)}"/></url>`).join('');
-        return new Response(xml.replace('</urlset>',`${spanishEntries}</urlset>`),{status:response.status,headers:response.headers});
+        return new Response(xml.replace('</urlset>',`${spanishEntries}${culturalSitemapEntries()}</urlset>`),{status:response.status,headers:response.headers});
       }
       return response;
     }
