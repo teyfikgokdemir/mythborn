@@ -1,5 +1,5 @@
 (()=>{
-  const locale=window.MYTHBORN_LOCALE||((location.pathname==='/en'||location.pathname.startsWith('/en/'))?'en':(location.pathname==='/gr'||location.pathname.startsWith('/gr/'))?'el':(location.pathname==='/es'||location.pathname.startsWith('/es/'))?'es':'tr');
+  const locale=window.MYTHBORN_LOCALE||((location.pathname==='/en'||location.pathname.startsWith('/en/'))?'en':(location.pathname==='/gr'||location.pathname.startsWith('/gr/'))?'el':(location.pathname==='/es'||location.pathname.startsWith('/es/'))?'es':(location.pathname==='/ar'||location.pathname.startsWith('/ar/'))?'ar':'tr');
   document.querySelectorAll('h1').forEach(title=>{if(title.textContent.trim().length>46)title.classList.add('is-long-title')});
 
   document.querySelectorAll('[data-tarot-filter]').forEach(button=>button.addEventListener('click',()=>{
@@ -56,10 +56,10 @@
   const safeClarityId=/^[a-z0-9]{5,20}$/.test(CLARITY_ID);
   window.dataLayer=window.dataLayer||[];
   window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
-  window.gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+  window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
   let gaLoaded=!!document.querySelector('script[data-mythborn-ga4]'),gaConfigured=window.__mythbornGaConfigured===true,gtmLoaded=false,clarityLoaded=false;
   const consentState=analytics=>({
-    analytics_storage: 'granted',
+    analytics_storage: analytics?'granted':'denied',
     ad_storage:'denied',
     ad_user_data:'denied',
     ad_personalization:'denied'
@@ -147,7 +147,8 @@
     tr:{title:'Çerez tercihleri',body:'Zorunlu çerezler siteyi çalıştırır. Analitik ölçüm tercihini buradan seçebilirsin.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
     en:{title:'Cookie preferences',body:'Essential cookies keep the site working. Choose whether to allow analytics measurement.',policy:'Cookie policy',accept:'Accept',reject:'Reject'},
     el:{title:'Προτιμήσεις cookies',body:'Τα απαραίτητα cookies διατηρούν τη λειτουργία του ιστότοπου. Επίλεξε αν επιτρέπεις analytics.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
-    es:{title:'Preferencias de cookies',body:'Las cookies esenciales mantienen el sitio en funcionamiento. Elige si permites medición analítica.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'}
+    es:{title:'Preferencias de cookies',body:'Las cookies esenciales mantienen el sitio en funcionamiento. Elige si permites medición analítica.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'},
+    ar:{title:'تفضيلات ملفات الارتباط',body:'تحافظ ملفات الارتباط الأساسية على عمل الموقع. اختر ما إذا كنت تسمح بالقياس التحليلي.',policy:'سياسة ملفات الارتباط',accept:'قبول',reject:'رفض'}
   }[locale];
   const policyHref='/cerezler';
   const dialog=document.createElement('aside');
@@ -168,8 +169,7 @@
     const value={essential:true,analytics,updatedAt:new Date().toISOString()};
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
     document.cookie=`mythborn_consent=${analytics?'all':'essential'}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
-    scheduleAnalytics(true);
-    loadSourceBeacon();
+    if(analytics){scheduleAnalytics(true);loadSourceBeacon();}else{applyGoogleConsent(false);clearAnalyticsCookies();}
     closeConsent();
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
   };
@@ -184,6 +184,5 @@
     if(event.key==='Escape'&&read()){event.preventDefault();closeConsent()}
   });
   const currentConsent=read();
-  scheduleAnalytics(true);
-  loadSourceBeacon();
+  if(currentConsent?.analytics){scheduleAnalytics(true);loadSourceBeacon();}
   if(!currentConsent)open();})();

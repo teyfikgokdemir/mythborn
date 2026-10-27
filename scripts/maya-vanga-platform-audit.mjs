@@ -28,13 +28,29 @@ for(const [prefix,lang,rtl] of locales){
 for(const route of ['/hakkinda','/kutuphane','/iletisim','/en/about','/gr/about','/es/about','/ar/about']){
   const response=await worker.fetch(new Request(`https://mythborn.co${route}`),env,{});
   assert.equal(response.status,200,`${route} should be public`);
+  const html=await response.text();
+  assert((html.match(/class="topic"/g)||[]).length >= 3,`${route} should contain substantive editorial sections`);
+  assert(html.includes('class="topic-grid"'),`${route} should have a structured inner page`);
+}
+
+for(const route of ['/tarot-sembolizm','/bioenerji-kulturu','/nazar-ritueller','/tilsimlar-semboller','/meditasyon-farkindalik',...['/en','/gr','/es','/ar'].flatMap(prefix=>['/tarot-symbolism','/bioenergy-culture','/evil-eye-rituals','/talismans-symbols','/meditation-mindfulness'].map(path=>`${prefix}${path}`))]){
+  const response=await worker.fetch(new Request(`https://mythborn.co${route}`),env,{});
+  assert.equal(response.status,200,`${route} should be a public editorial route`);
+  const html=await response.text();
+  assert(html.includes('article-body'),`${route} should contain long-form editorial content`);
+  assert(!html.includes('mailto:')&&!html.includes('wa.me'),`${route} must not add contact sales CTAs`);
+  assert(html.includes('application/ld+json')&&html.includes('"inLanguage"'),`${route} must include language-aware structured data`);
+  assert(html.includes('og:image')&&html.includes('maya-vanga-hero.webp'),`${route} must provide a representative social image`);
+  assert(html.includes('/refinement.js')&&html.includes('window.MYTHBORN_LOCALE'),`${route} must retain consent and locale infrastructure`);
 }
 
 const responsiveHtml=culturalPage('/ar');
 assert(responsiveHtml.includes('@media(max-width:760px)'), 'cultural shell must include a mobile layout');
 assert(responsiveHtml.includes('aria-label='), 'representative visual must have an accessible text alternative');
+assert(responsiveHtml.includes('<details class="mobile-nav">'), 'cultural shell must include keyboard-accessible mobile navigation');
+assert(responsiveHtml.includes('prefers-reduced-motion'), 'cultural shell must respect reduced-motion preferences');
 
 const sitemap=await worker.fetch(new Request('https://mythborn.co/sitemap.xml'),env,{});
 const xml=await sitemap.text();
-for(const path of ['/ar','/hakkinda','/en/about','/gr/about','/es/about','/ar/about'])assert(xml.includes(`https://mythborn.co${path}`),`sitemap missing ${path}`);
+for(const path of ['/ar','/hakkinda','/en/about','/gr/about','/es/about','/ar/about','/tarot-sembolizm','/ar/meditation-mindfulness'])assert(xml.includes(`https://mythborn.co${path}`),`sitemap missing ${path}`);
 console.log('Maya Vanga five-locale, SEO, RTL, and legal-gate audit passed.');
