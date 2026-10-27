@@ -29,9 +29,9 @@
     "astronomy-engine": "^2.1.19"
   },
   "devDependencies": {
-    "wrangler": "^4.0.0"
+    "wrangler": "^4.153.0"
   },
   "overrides": {
-    "undici": "7.29.1"
+    "undici": "7.30.1"
   }
 }
