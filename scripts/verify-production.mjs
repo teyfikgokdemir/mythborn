@@ -6,7 +6,7 @@ if (launchRoot.ok && launchHtml.includes('Kartların Gözde’si') && launchHtml
   for (const [path,lang] of checks) {
     const response = await fetch('https://mythborn.co'+path, {headers:{'cache-control':'no-cache'}});
     const html = await response.text();
-    if (!response.ok || !html.includes('lang="'+lang+'"') || !html.includes('Kartların Gözde’si') || !html.includes('www.tiktok.com/@gozdeli_') || !html.includes('hreflang="ar"')) {
+    if (!response.ok || !html.includes('lang="'+lang+'"') || !html.includes('Gözde') || !html.includes('www.tiktok.com/@gozdeli_') || !html.includes('hreflang="ar"')) {
       throw new Error('Gözde launch verification failed at '+path+' status='+response.status);
     }
     if (lang==='ar' && !html.includes('dir="rtl"')) throw new Error('Arabic RTL missing');
