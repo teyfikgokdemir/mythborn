@@ -68,3 +68,17 @@ for (const [path, lang] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['
   if(lang==='ar')assert(html.includes('dir="rtl"'));
 }
 console.log('Coming-soon gated public surface checks passed.');
+
+// Reversible Gözde launch screen: full editorial routes remain available when switch is off.
+for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/ar','ar'],['/iletisim','tr']]) {
+ const response=await worker.fetch(new Request('https://mythborn.co'+path),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+ assert.equal(response.status,200);
+ assert.equal(response.headers.get('content-language'),language);
+ const html=await response.text();
+ assert(html.includes('Kartların Gözde’si'));
+ assert(html.includes('/images/gozde-launch.webp'));
+ assert(html.includes('gozdeli_'));
+ assert(!html.includes('Maya Vanga'));
+ if(language==='ar') assert(html.includes('dir="rtl"'));
+}
+console.log('Gözde coming-soon 5-language mode passed.');
