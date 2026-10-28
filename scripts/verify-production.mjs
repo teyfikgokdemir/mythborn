@@ -1,3 +1,24 @@
+// The single-page launch has a different public contract than the legacy editorial app.
+const launchRoot = await fetch('https://mythborn.co/', {headers: {'cache-control':'no-cache','user-agent':'Mythborn-Production-QA/2.0'}});
+const launchHtml = await launchRoot.text();
+if (launchRoot.ok && launchHtml.includes('Kartların Gözde’si') && launchHtml.includes('gozde-landing') === false) {
+  const checks = [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/ar','ar']];
+  for (const [path,lang] of checks) {
+    const response = await fetch('https://mythborn.co'+path, {headers:{'cache-control':'no-cache'}});
+    const html = await response.text();
+    if (!response.ok || !html.includes('lang="'+lang+'"') || !html.includes('Kartların Gözde’si') || !html.includes('www.tiktok.com/@gozdeli_') || !html.includes('hreflang="ar"')) {
+      throw new Error('Gözde launch verification failed at '+path+' status='+response.status);
+    }
+    if (lang==='ar' && !html.includes('dir="rtl"')) throw new Error('Arabic RTL missing');
+    console.log('PASS: Gözde launch '+path);
+  }
+  const imageUrl='https://mythborn.co/images/Mistik%20Mum%20I%C5%9F%C4%B1%C4%9F%C4%B1nda%20Tarot%20Ak%C5%9Fam%C4%B1.webp';
+  const imageResponse=await fetch(imageUrl);
+  if (!imageResponse.ok || !(imageResponse.headers.get('content-type')||'').includes('image/')) {
+    throw new Error('Gözde launch background image unavailable: '+imageResponse.status);
+  }
+  console.log('PASS: Gözde launch background asset');
+} else {
 const pageChecks = [
   {
     url: 'https://mythborn.co/',
@@ -213,4 +234,6 @@ for (const check of goneChecks) {
     throw new Error(`Production verification failed: ${check.label}. status=${response.status}`);
   }
   console.log(`PASS: ${check.label}`);
+}
+
 }
