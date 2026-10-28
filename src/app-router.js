@@ -1,4 +1,5 @@
 import platform from './premium-router.js';
+import {gozdeLanding} from './gozde-landing.js';
 import {comingSoonPage,comingSoonLocale} from './coming-soon.js';
 import {tarotSearchItems} from './tarot-library.js';
 import {dreamSearchItems,glossarySearchItems} from './dream-glossary.js';
@@ -63,6 +64,11 @@ const searchItems=locale=>{
 export default {
   async fetch(request,env,ctx){
     const incoming=new URL(request.url);
+    if(env.GOZDE_LAUNCH_ENABLED==='true' && (request.method==='GET'||request.method==='HEAD') && !incoming.pathname.startsWith('/api/') && !incoming.pathname.startsWith('/cdn-cgi/') && !/\\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
+      const pathname=incoming.pathname;
+      const normalized=pathname.startsWith('/ar')?'ar':pathname.startsWith('/es')?'es':pathname.startsWith('/gr')||pathname.startsWith('/el')?'el':pathname.startsWith('/en')?'en':'tr';
+      return new Response(request.method==='HEAD'?null:gozdeLanding(pathname),{headers:{'content-type':'text/html; charset=utf-8','content-language':normalized,'cache-control':'public, max-age=90'}});
+    }
     if(env.COMING_SOON_ENABLED==='true' && (request.method==='GET'||request.method==='HEAD')){
       const pathname=incoming.pathname;
       if(pathname==='/robots.txt')return new Response('User-agent: *\\nDisallow: /\\n',{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store'}});
