@@ -76,7 +76,7 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert.equal(response.headers.get('content-language'),language);
  const html=await response.text();
  assert(html.includes('Kartların Gözde’si'));
- assert(html.includes('/images/Mistik%20Mum%20I%C5%9F%C4%B1%C4%9F%C4%B1nda%20Tarot%20Ak%C5%9Fam%C4%B1.webp'));
+ assert(html.includes('/images/gozde-tarot-hero.webp'));
  assert(html.includes('gozdeli_'));
  assert(!html.includes('Maya Vanga'));
  if(language==='ar') assert(html.includes('dir="rtl"'));
