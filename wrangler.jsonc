@@ -10,7 +10,7 @@
     "ADMIN_EMAILS": "tevfikgokdemir@gmail.com",
     "PREMIUM_STARTS_AT": "2026-09-01T00:00:00+03:00",
     "PREMIUM_GATE_ENABLED": "false",
-    "COMING_SOON_ENABLED": "true"
+    "COMING_SOON_ENABLED": "false"
   },
   "assets": {
     "directory": "./public",
