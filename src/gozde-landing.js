@@ -14,7 +14,7 @@ const C = {
     badge: 'GÖZDE AKTİF · BİREBİR & KİŞİYE ÖZEL SEMBOL OKUMASI',
     heading: 'Semboller her zaman konuşur.',
     headingEm: 'Klişe cümleler değil; sana özel, net bir yol haritası.',
-    sub: 'Kartların, kahve sembollerinin ve gökyüzü anlatılarının izinde; bizzat Gözde’nin derinlikli, gizlilik esaslı ve güçlendirici yorumlarıyla tanışın.',
+    sub: 'Gözde ile kartların, kahve sembollerinin ve gökyüzü anlatılarının izinde yeni bir keşif alanı. Yüzlerce rastgele profil arasında kaybolmadan; bizzat Gözde’nin derinlikli, gizlilik esaslı ve güçlendirici yorumlarıyla tanışın.',
     keywords: 'Mythborn, Kartların Gözdesi, Gözde tarot, kahve falı yorumu, katina aşk açılımı, duru görü, yıldızname, doğum haritası analizi, numeroloji, sembolik danışmanlık',
     ctaPrimary: 'Alanını Seç & Gözde’ye İlet',
     social: 'TikTok’ta Gözde’yi keşfet',
@@ -139,7 +139,7 @@ const C = {
     badge: 'GÖZDE IS ACTIVE · ONE-ON-ONE PERSONAL SYMBOLIC READING',
     heading: 'Symbols always have a story to tell.',
     headingEm: 'Not generic clichés—a clear, personal roadmap crafted for you.',
-    sub: 'A considered world of cards, symbolic traditions and the language of the stars, guided personally by Gözde with complete confidentiality and depth.',
+    sub: 'Step into a considered world of cards, symbolic traditions and the language of the stars. Without getting lost among hundreds of random profiles, connect directly with Gözde’s personal, confidential and empowering interpretations.',
     keywords: 'Mythborn, Gözde of the Cards, Tarot reading, Turkish coffee reading, Katina love reading, intuitive insight, traditional astrology, birth chart analysis, numerology',
     ctaPrimary: 'Choose Your Area & Connect',
     social: 'Discover Gözde on TikTok',
@@ -264,7 +264,7 @@ const C = {
     badge: 'Η GÖZDE ΕΙΝΑΙ ΕΝΕΡΓΗ · ΠΡΟΣΩΠΙΚΗ ΑΝΑΓΝΩΣΗ ΣΥΜΒΟΛΩΝ',
     heading: 'Τα σύμβολα έχουν πάντα κάτι να πουν.',
     headingEm: 'Όχι έτοιμα κλισέ· ένας καθαρός, προσωπικός χάρτης προσανατολισμού.',
-    sub: 'Ένας ξεχωριστός κόσμος συμβόλων, καρτών και ουράνιων αφηγήσεων με την Gözde, με απόλυτη εχεμύθεια και ουσιαστικό βάθος.',
+    sub: 'Ένας ξεχωριστός κόσμος συμβόλων, καρτών και ουράνιων αφηγήσεων με την Gözde. Χωρίς να χάνεστε ανάμεσα σε εκατοντάδες τυχαία προφίλ, γνωρίστε μια εμπιστευτική, βαθιά και ουσιαστική προσέγγιση.',
     keywords: 'Mythborn, Η Gözde των Καρτών, Ταρώ, Καφές, Κατίνα, Διαισθητική Ανάγνωση, Αστρολογία, Γενέθλιος Χάρτης, Αριθμολογία',
     ctaPrimary: 'Επιλέξτε Θεματική & Επικοινωνήστε',
     social: 'Ανακαλύψτε την Gözde στο TikTok',
@@ -389,7 +389,7 @@ const C = {
     badge: 'GÖZDE ACTIVA · LECTURA SIMBÓLICA PERSONALIZADA',
     heading: 'Los símbolos siempre tienen algo que contar.',
     headingEm: 'Sin frases hechas: una hoja de ruta clara y personal para ti.',
-    sub: 'Un universo de símbolos, cartas y relatos celestes de la mano de Gözde, con absoluta confidencialidad, profundidad y claridad.',
+    sub: 'Un nuevo espacio de símbolos, cartas y relatos celestes de la mano de Gözde. Sin perderte entre cientos de perfiles al azar, conecta con interpretaciones profundas, confidenciales y enriquecedoras.',
     keywords: 'Mythborn, Gözde la voz de las cartas, lectura de Tarot, lectura de café, Katina, intuición, astrología tradicional, carta astral, numerología',
     ctaPrimary: 'Elige tu Área y Conecta',
     social: 'Descubre a Gözde en TikTok',
@@ -514,7 +514,7 @@ const C = {
     badge: 'GÖZDE متاحة الآن · قراءة رمزية فردية ومخصصة',
     heading: 'للرموز دائماً حكاية ترويها.',
     headingEm: 'ليست عبارات مكررة؛ بل خارطة طريق واضحة ومخصصة لك.',
-    sub: 'عالم من الرموز والبطاقات وحكايات النجوم برفقة Gözde؛ قراءة رمزية عميقة، سرية، وملهمة تركز على سؤالك الخاص.',
+    sub: 'عالم متأنٍّ من الرموز والبطاقات وحكايات النجوم برفقة Gözde. بعيداً عن التشتت بين مئات الحسابات العشوائية، تعرّف على قراءة رمزية عميقة، سرية، وملهمة.',
     keywords: 'Mythborn, Gözde قارئة البطاقات, التاروت, قراءة القهوة, كاتينا, البصيرة, الحب والعلاقات, التنجيم التقليدي, خارطة الميلاد, علم الأرقام',
     ctaPrimary: 'اختر مجالك وتواصل مع Gözde',
     social: 'اكتشف Gözde على تيك توك',
@@ -679,13 +679,13 @@ body{margin:0;color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",
 .langs a{color:#c9bcb1;text-decoration:none;font:600 11px system-ui,sans-serif;letter-spacing:.14em;padding:6px 4px}
 .langs a[aria-current=page],.langs a:hover{color:var(--gold)}
 .main{width:min(1450px,calc(100% - 72px));margin:0 auto;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:30px;padding:clamp(24px,5vh,76px) 0 32px;position:relative;z-index:2}
-.copy{max-width:860px;position:relative;z-index:1}
+.copy{max-width:650px;position:relative;z-index:1}
 .live-pill{display:inline-flex;align-items:center;gap:10px;background:rgba(16,14,18,.82);border:1px solid #d4ae7559;border-radius:999px;padding:7px 15px;font-size:11px;font-weight:700;letter-spacing:.14em;color:#f0d5a8;margin:0 0 16px;backdrop-filter:blur(8px)}
 .live-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
 .eyebrow{font-size:11px;font-weight:600;letter-spacing:.3em;color:#d8b57f;margin:0 0 10px;text-transform:uppercase}
-.title{font:400 clamp(38px,4.2vw,66px)/1.06 Georgia,"Times New Roman",serif;letter-spacing:-.03em;margin:0 0 10px}
-.title-em{display:block;font:italic 400 clamp(18px,1.75vw,26px)/1.3 Georgia,"Times New Roman",serif;color:var(--gold-bright);margin:0 0 16px}
-.sub{color:#e2dad3;font:400 15.5px/1.65 system-ui,sans-serif;max-width:780px;margin:0 0 24px}
+.title{font:400 clamp(42px,4.8vw,74px)/1.05 Georgia,"Times New Roman",serif;letter-spacing:-.035em;margin:0 0 14px;text-wrap:balance}
+.title-em{display:block;font:italic 400 clamp(21px,2.2vw,31px)/1.3 Georgia,"Times New Roman",serif;color:var(--gold-bright);margin:0 0 20px}
+.sub{color:#e2dad3;font:400 16.5px/1.75 system-ui,sans-serif;max-width:580px;margin:0 0 26px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:8px}
 .cta{display:inline-flex;gap:12px;align-items:center;justify-content:center;text-decoration:none;color:#160f08;background:#dbb980;border:1px solid #dbb980;border-radius:999px;padding:14px 25px;font-size:12.5px;letter-spacing:.08em;font-weight:700;cursor:pointer;transition:background .2s,transform .2s;white-space:nowrap}
 .cta:hover{background:#f0cd93;transform:translateY(-2px)}
@@ -772,7 +772,7 @@ body{margin:0;color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",
 [dir=rtl] .title{letter-spacing:normal}
 [dir=rtl] .photo:after{background:linear-gradient(270deg,#050508f5 0%,#050508cc 35%,transparent 78%),linear-gradient(0deg,#08080a,transparent 45%)}
 @media(min-width:980px){
-  .section-head h2,.section-head p,.recruit-banner h3,.recruit-banner p,.title-em{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .section-head h2,.section-head p,.recruit-banner h3,.recruit-banner p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 }
 @media(max-width:1100px){
   .areas-grid,.aeo-dl{grid-template-columns:repeat(2,minmax(0,1fr))}
