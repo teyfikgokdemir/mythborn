@@ -855,12 +855,25 @@ body.drawer-open{overflow:hidden}
 .article-sec p{font-size:15.5px;line-height:1.78;color:#dad0c4;margin:0 0 14px}
 .legal-nav-pills{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 24px}
 .admin-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
-.bottom{width:min(1450px,calc(100% - 64px));margin:0 auto;padding:28px 0 38px;display:flex;justify-content:space-between;gap:20px;align-items:flex-start;flex-wrap:wrap;font-size:12px;color:#b8a797}
-.bottom-brand{display:flex;flex-direction:column;gap:6px}
-.bottom strong{font-weight:600;letter-spacing:.16em;color:#dcc39c}
-.bottom-links{display:flex;gap:14px 18px;flex-wrap:wrap;align-items:center}
-.bottom-links a{color:#d4ae75;text-decoration:none}
-.bottom-links a:hover{color:var(--gold-bright);text-decoration:underline}
+.bottom{width:min(1450px,calc(100% - 64px));margin:0 auto;padding:28px 0 42px;font-size:12.5px;color:#b8a797}
+.footer-card{background:linear-gradient(180deg,#131018 0%,#0b090f 100%);border:1px solid #d4ae7544;border-radius:24px;padding:30px 32px;display:flex;flex-direction:column;gap:26px;box-shadow:0 18px 44px rgba(0,0,0,.45)}
+.footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding-bottom:22px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.bottom-brand{display:flex;flex-direction:column;gap:6px;max-width:520px}
+.footer-lead{margin:2px 0 0;font:600 13px/1.3 Georgia,serif;color:var(--gold-bright);letter-spacing:.12em;text-transform:uppercase}
+.bottom-brand span{color:#c5b8ab;font-size:13px;line-height:1.5}
+.footer-cta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.footer-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.footer-col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.footer-col h4{margin:0 0 2px;font-size:10.5px;font-weight:700;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;border-radius:12px;background:#16131d;border:1px solid #be9d6b29;color:#efe4d6;text-decoration:none;font-size:13px;font-weight:500;transition:border-color .2s,background .2s}
+.footer-col nav a:hover{border-color:var(--gold);background:#1f1924;color:var(--gold-bright)}
+.footer-col nav a small{color:var(--gold);font-size:13px;flex-shrink:0}
+.footer-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:18px;border-top:1px solid var(--border);flex-wrap:wrap}
+.footer-meta strong{font-weight:600;letter-spacing:.14em;color:#dcc39c;font-size:11.5px}
+.footer-langs{display:flex;gap:8px;align-items:center}
+.footer-langs a{padding:6px 11px;border-radius:999px;border:1px solid #be9d6b38;background:#120f17;color:#d2c5b8;text-decoration:none;font:600 11px/1 system-ui,sans-serif;letter-spacing:.1em}
+.footer-langs a[aria-current=page],.footer-langs a:hover{border-color:var(--gold);background:#241b11;color:var(--gold-bright)}
 [dir=rtl] .title{letter-spacing:normal}
 [dir=rtl] .photo:after{background:linear-gradient(270deg,#050508f5 0%,#050508cc 35%,transparent 78%),linear-gradient(0deg,#08080a,transparent 45%)}
 @media(min-width:1100px){
@@ -899,6 +912,15 @@ body.drawer-open{overflow:hidden}
   .areas-grid,.specialty-grid,.aeo-dl,.blog-grid-preview,.form-row-2{grid-template-columns:1fr!important}
   .section-block{padding:42px 0}
   .recruit-banner{padding:20px 18px}
+  .footer-card{padding:22px 18px;border-radius:20px;gap:20px}
+  .footer-top{flex-direction:column;align-items:stretch;gap:16px;padding-bottom:18px}
+  .footer-cta-row{display:grid;grid-template-columns:1fr;gap:10px;width:100%}
+  .footer-cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .footer-col-legal{grid-column:1 / -1;padding-top:6px}
+  .footer-col nav a{padding:10px 12px;font-size:12.5px}
+  .footer-meta{flex-direction:column;align-items:stretch;gap:12px}
+  .footer-langs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;width:100%}
+  .footer-langs a{text-align:center;padding:8px 4px}
 }
 @media(max-width:390px){
   .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
