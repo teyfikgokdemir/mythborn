@@ -83,6 +83,7 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert(html.includes('class="trust-bar"'));
  assert((html.match(/class="area-card"/g)||[]).length===8, `${path} must render all 8 service area cards`);
  assert(html.includes('id="blog-onizleme"'), `${path} must render blog preview section`);
+ assert(html.includes('id="video-vitrin"'), `${path} must render homepage video spotlight section`);
  assert(html.includes('id="gozde-inquiry-form"'));
  assert(html.includes('id="cookie-consent-banner"'), `${path} must include KVKK/GDPR cookie consent banner`);
  assert(html.includes('data-cookie-choice="accepted"') && html.includes('data-cookie-choice="essential"'), `${path} must include both Accept All and Essential Only options`);
@@ -101,9 +102,9 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
 
 // Standalone menu pages, legal pages (KVKK, Gizlilik, Kullanım Koşulları), and 10 blog articles:
 for (const subPath of [
-  '/kesif-alanlari','/yaklasim','/blog','/iletisim','/kvkk','/gizlilik','/kullanim-kosullari',
-  '/en/areas','/en/approach','/en/blog','/en/contact','/en/kvkk','/en/privacy','/en/terms',
-  '/gr/areas','/es/blog','/ar/kvkk',
+  '/kesif-alanlari','/yaklasim','/videolar','/blog','/iletisim','/kvkk','/gizlilik','/kullanim-kosullari',
+  '/en/areas','/en/approach','/en/videos','/en/blog','/en/contact','/en/kvkk','/en/privacy','/en/terms',
+  '/gr/areas','/gr/videos','/es/videos','/es/blog','/ar/videos','/ar/kvkk',
   '/blog/merkur-ve-gezegen-retrolari-rehberi',
   '/blog/tutulma-mevsimi-ve-kader-kavsagi',
   '/blog/katina-ask-acilimi-ve-iliski-dinamikleri',
@@ -124,6 +125,12 @@ for (const subPath of [
     assert(html.includes('"@type":"Article"'), `${subPath} must include Article schema`);
     assert(html.includes('"@type":"FAQPage"'), `${subPath} must include FAQPage schema`);
     assert(html.includes('class="article-meta"'), `${subPath} must include editorial meta`);
+  }
+  if(subPath.endsWith('/videolar')||subPath.endsWith('/videos')){
+    assert(html.includes('"@type":"VideoObject"'), `${subPath} must include VideoObject schema`);
+    assert(html.includes('/videos/28-ekim-5-kasim-tarot.mp4'), `${subPath} must reference the featured weekly tarot video`);
+    assert(html.includes('preload="none"') && html.includes('width="1280" height="720"'), `${subPath} must use on-demand preload="none" and explicit dimensions`);
+    assert((html.match(/class="zodiac-week-card"/g)||[]).length===12, `${subPath} must render all 12 zodiac sign weekly cards`);
   }
 }
 

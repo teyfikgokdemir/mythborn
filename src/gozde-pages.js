@@ -8,6 +8,7 @@ export const ROUTE_MAP = {
     home: '/',
     areas: '/kesif-alanlari',
     approach: '/yaklasim',
+    videos: '/videolar',
     blog: '/blog',
     contact: '/iletisim',
     apply: '/yorumcu-basvuru',
@@ -19,6 +20,7 @@ export const ROUTE_MAP = {
     home: '/en',
     areas: '/en/areas',
     approach: '/en/approach',
+    videos: '/en/videos',
     blog: '/en/blog',
     contact: '/en/contact',
     apply: '/en/apply',
@@ -30,6 +32,7 @@ export const ROUTE_MAP = {
     home: '/gr',
     areas: '/gr/areas',
     approach: '/gr/approach',
+    videos: '/gr/videos',
     blog: '/gr/blog',
     contact: '/gr/contact',
     apply: '/gr/apply',
@@ -41,6 +44,7 @@ export const ROUTE_MAP = {
     home: '/es',
     areas: '/es/areas',
     approach: '/es/approach',
+    videos: '/es/videos',
     blog: '/es/blog',
     contact: '/es/contact',
     apply: '/es/apply',
@@ -52,6 +56,7 @@ export const ROUTE_MAP = {
     home: '/ar',
     areas: '/ar/areas',
     approach: '/ar/approach',
+    videos: '/ar/videos',
     blog: '/ar/blog',
     contact: '/ar/contact',
     apply: '/ar/apply',
@@ -209,6 +214,7 @@ export const detectGozdeSubpage = (pathname = '/') => {
     if (post) return { type: 'blog-post', locale, post };
   }
 
+  if (/^(?:\/(en|gr|el|es|ar))?\/(?:videolar|videos)$/i.test(clean)) return { type: 'videos' };
   if (/^(?:\/(en|gr|el|es|ar))?\/blog$/i.test(clean)) return { type: 'blog-index' };
   if (/^(?:\/(en|gr|el|es|ar))?\/(?:kesif-alanlari|areas)$/i.test(clean)) return { type: 'areas' };
   if (/^(?:\/(en|gr|el|es|ar))?\/(?:yaklasim|approach)$/i.test(clean)) return { type: 'approach' };
@@ -223,10 +229,12 @@ export const detectGozdeSubpage = (pathname = '/') => {
 export const renderHeaderAndDrawer = ({ locale, t, langs, activeType = 'home', langHrefFn }) => {
   const r = ROUTE_MAP[locale];
   const u = EXTRA_UI[locale];
+  const navVideosLabel =
+    locale === 'tr' ? 'Video Açılımlar' : locale === 'en' ? 'Video Readings' : locale === 'el' ? 'Βίντεο' : locale === 'es' ? 'Videos' : 'فيديوهات القراءة';
   const getLangHref = langHrefFn || ((k) => ROUTE_MAP[k][activeType] || ROUTE_MAP[k].home);
-  return `<header class="top-shell"><div class="top"><a class="logo" href="${r.home}">MYTHBORN</a><nav class="top-nav desktop-nav" aria-label="Primary"><a href="${r.areas}" ${activeType === 'areas' ? 'aria-current="page"' : ''}>${safe(t.navAreas)}</a><a href="${r.approach}" ${activeType === 'approach' ? 'aria-current="page"' : ''}>${safe(t.navProcess)}</a><a href="${r.blog}" ${activeType === 'blog' || activeType === 'blog-post' ? 'aria-current="page"' : ''}>${safe(u.navBlog)}</a><a href="${r.contact}" ${activeType === 'contact' ? 'aria-current="page"' : ''}>${safe(t.navInquiry)}</a><a class="apply-pill" href="${r.apply}" ${activeType === 'apply' ? 'aria-current="page"' : ''}>${safe(t.applyNav)}</a><div class="langs" aria-label="Languages">${Object.entries(langs)
+  return `<header class="top-shell"><div class="top"><a class="logo" href="${r.home}">MYTHBORN</a><nav class="top-nav desktop-nav" aria-label="Primary"><a href="${r.areas}" ${activeType === 'areas' ? 'aria-current="page"' : ''}>${safe(t.navAreas)}</a><a href="${r.approach}" ${activeType === 'approach' ? 'aria-current="page"' : ''}>${safe(t.navProcess)}</a><a href="${r.videos}" ${activeType === 'videos' ? 'aria-current="page"' : ''}>${safe(navVideosLabel)}</a><a href="${r.blog}" ${activeType === 'blog' || activeType === 'blog-post' ? 'aria-current="page"' : ''}>${safe(u.navBlog)}</a><a href="${r.contact}" ${activeType === 'contact' ? 'aria-current="page"' : ''}>${safe(t.navInquiry)}</a><a class="apply-pill" href="${r.apply}" ${activeType === 'apply' ? 'aria-current="page"' : ''}>${safe(t.applyNav)}</a><div class="langs" aria-label="Languages">${Object.entries(langs)
     .map(([k, v]) => `<a href="${getLangHref(k)}" lang="${v[1]}" ${locale === k ? 'aria-current="page"' : ''}>${k.toUpperCase()}</a>`)
-    .join('')}</div></nav><div class="mobile-bar-actions"><a class="mobile-quick-cta" href="${r.contact}">${safe(t.navInquiry)}</a><button type="button" class="menu-toggle" data-open-drawer aria-expanded="false" aria-controls="mobile-drawer"><span aria-hidden="true">☰</span> <span>${safe(u.menuBtn)}</span></button></div></div></header><aside id="mobile-drawer" class="mobile-drawer" aria-hidden="true"><div class="drawer-backdrop" data-close-drawer></div><div class="drawer-panel"><div class="drawer-head"><a class="logo" href="${r.home}">MYTHBORN</a><button type="button" class="drawer-close" data-close-drawer aria-label="${safe(u.closeBtn)}">✕ ${safe(u.closeBtn)}</button></div><div class="drawer-badge"><span class="live-dot" aria-hidden="true"></span><span>${safe(t.lead)}</span></div><nav class="drawer-links" aria-label="Mobile Navigation"><a href="${r.home}"><span>✦ ${safe(u.navHome)}</span><small>→</small></a><a href="${r.areas}"><span>☼ ${safe(t.navAreas)}</span><small>→</small></a><a href="${r.approach}"><span>☾ ${safe(t.navProcess)}</span><small>→</small></a><a href="${r.blog}"><span>✧ ${safe(u.navBlog)} (10)</span><small>→</small></a><a href="${r.contact}"><span>♡ ${safe(t.navInquiry)} & ${safe(t.navFaq)}</span><small>→</small></a><a href="${r.apply}" class="drawer-highlight"><span>✶ ${safe(t.applyNav)}</span><small>→</small></a></nav><div class="drawer-legal"><p class="eyebrow" style="margin-bottom:8px">${safe(u.legalTitle)}</p><div class="drawer-legal-links"><a href="${r.kvkk}">${safe(u.kvkkNav)}</a><a href="${r.privacy}">${safe(u.privacyNav)}</a><a href="${r.terms}">${safe(u.termsNav)}</a></div></div><div class="drawer-langs">${Object.entries(langs)
+    .join('')}</div></nav><div class="mobile-bar-actions"><a class="mobile-quick-cta" href="${r.contact}">${safe(t.navInquiry)}</a><button type="button" class="menu-toggle" data-open-drawer aria-expanded="false" aria-controls="mobile-drawer"><span aria-hidden="true">☰</span> <span>${safe(u.menuBtn)}</span></button></div></div></header><aside id="mobile-drawer" class="mobile-drawer" aria-hidden="true"><div class="drawer-backdrop" data-close-drawer></div><div class="drawer-panel"><div class="drawer-head"><a class="logo" href="${r.home}">MYTHBORN</a><button type="button" class="drawer-close" data-close-drawer aria-label="${safe(u.closeBtn)}">✕ ${safe(u.closeBtn)}</button></div><div class="drawer-badge"><span class="live-dot" aria-hidden="true"></span><span>${safe(t.lead)}</span></div><nav class="drawer-links" aria-label="Mobile Navigation"><a href="${r.home}"><span>✦ ${safe(u.navHome)}</span><small>→</small></a><a href="${r.areas}"><span>☼ ${safe(t.navAreas)}</span><small>→</small></a><a href="${r.approach}"><span>☾ ${safe(t.navProcess)}</span><small>→</small></a><a href="${r.videos}"><span>▶ ${safe(navVideosLabel)}</span><small>→</small></a><a href="${r.blog}"><span>✧ ${safe(u.navBlog)} (10)</span><small>→</small></a><a href="${r.contact}"><span>♡ ${safe(t.navInquiry)} & ${safe(t.navFaq)}</span><small>→</small></a><a href="${r.apply}" class="drawer-highlight"><span>✶ ${safe(t.applyNav)}</span><small>→</small></a></nav><div class="drawer-legal"><p class="eyebrow" style="margin-bottom:8px">${safe(u.legalTitle)}</p><div class="drawer-legal-links"><a href="${r.kvkk}">${safe(u.kvkkNav)}</a><a href="${r.privacy}">${safe(u.privacyNav)}</a><a href="${r.terms}">${safe(u.termsNav)}</a></div></div><div class="drawer-langs">${Object.entries(langs)
     .map(([k, v]) => `<a href="${getLangHref(k)}" lang="${v[1]}" ${locale === k ? 'aria-current="page"' : ''}>${k.toUpperCase()}</a>`)
     .join('')}</div><div class="drawer-foot"><a class="cta" href="${r.contact}" style="width:100%">${safe(t.ctaPrimary)} →</a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer" style="width:100%">${safe(t.social)} ↗</a></div></div></aside>`;
 };
@@ -289,9 +297,159 @@ export const renderFooter = ({ locale, t }) => {
     essentialOnly: 'Sadece Zorunlu Çerezler',
     manageLabel: 'Çerez Tercihleri'
   };
-  return `<footer class="bottom"><div class="footer-card"><div class="footer-top"><div class="bottom-brand"><a class="logo" href="${r.home}">MYTHBORN</a><p class="footer-lead">${safe(t.lead)}</p><span>${safe(t.note)}</span></div><div class="footer-cta-row"><a class="cta" href="${r.contact}">${safe(t.navInquiry)} →</a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">TikTok · @gozdeli_ ↗</a></div></div><div class="footer-cols"><div class="footer-col"><h4>${safe(colExplore)}</h4><nav aria-label="${safe(colExplore)}"><a href="${r.home}"><span>${safe(u.navHome)}</span><small>→</small></a><a href="${r.areas}"><span>${safe(t.navAreas)}</span><small>→</small></a><a href="${r.approach}"><span>${safe(t.navProcess)}</span><small>→</small></a><a href="${r.blog}"><span>${safe(u.navBlog)}</span><small>→</small></a></nav></div><div class="footer-col"><h4>${safe(colConnect)}</h4><nav aria-label="${safe(colConnect)}"><a href="${r.contact}"><span>${safe(t.navInquiry)}</span><small>→</small></a><a href="${r.home}#sss"><span>${safe(t.navFaq)}</span><small>→</small></a><a href="${r.apply}"><span>${safe(t.applyNav)}</span><small>→</small></a><a href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer"><span>TikTok</span><small>↗</small></a></nav></div><div class="footer-col footer-col-legal"><h4>${safe(u.legalTitle)}</h4><nav aria-label="${safe(u.legalTitle)}"><a href="${r.kvkk}"><span>${safe(u.kvkkNav)}</span><small>→</small></a><a href="${r.privacy}"><span>${safe(u.privacyNav)}</span><small>→</small></a><a href="${r.terms}"><span>${safe(u.termsNav)}</span><small>→</small></a><button type="button" class="cookie-pref-trigger" data-open-cookie-banner><span>${safe(cookieCopy.manageLabel)}</span><small>⚙</small></button></nav></div></div><div class="footer-meta"><strong>© 2026 MYTHBORN · ${safe(t.lead)}</strong><div class="footer-langs">${Object.keys(ROUTE_MAP)
+  const navVideosLabel =
+    locale === 'tr' ? 'Video Açılımlar' : locale === 'en' ? 'Video Readings' : locale === 'el' ? 'Βίντεο' : locale === 'es' ? 'Videos' : 'فيديوهات القراءة';
+  return `<footer class="bottom"><div class="footer-card"><div class="footer-top"><div class="bottom-brand"><a class="logo" href="${r.home}">MYTHBORN</a><p class="footer-lead">${safe(t.lead)}</p><span>${safe(t.note)}</span></div><div class="footer-cta-row"><a class="cta" href="${r.contact}">${safe(t.navInquiry)} →</a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">TikTok · @gozdeli_ ↗</a></div></div><div class="footer-cols"><div class="footer-col"><h4>${safe(colExplore)}</h4><nav aria-label="${safe(colExplore)}"><a href="${r.home}"><span>${safe(u.navHome)}</span><small>→</small></a><a href="${r.areas}"><span>${safe(t.navAreas)}</span><small>→</small></a><a href="${r.approach}"><span>${safe(t.navProcess)}</span><small>→</small></a><a href="${r.videos}"><span>${safe(navVideosLabel)}</span><small>▶</small></a><a href="${r.blog}"><span>${safe(u.navBlog)}</span><small>→</small></a></nav></div><div class="footer-col"><h4>${safe(colConnect)}</h4><nav aria-label="${safe(colConnect)}"><a href="${r.contact}"><span>${safe(t.navInquiry)}</span><small>→</small></a><a href="${r.home}#sss"><span>${safe(t.navFaq)}</span><small>→</small></a><a href="${r.apply}"><span>${safe(t.applyNav)}</span><small>→</small></a><a href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer"><span>TikTok</span><small>↗</small></a></nav></div><div class="footer-col footer-col-legal"><h4>${safe(u.legalTitle)}</h4><nav aria-label="${safe(u.legalTitle)}"><a href="${r.kvkk}"><span>${safe(u.kvkkNav)}</span><small>→</small></a><a href="${r.privacy}"><span>${safe(u.privacyNav)}</span><small>→</small></a><a href="${r.terms}"><span>${safe(u.termsNav)}</span><small>→</small></a><button type="button" class="cookie-pref-trigger" data-open-cookie-banner><span>${safe(cookieCopy.manageLabel)}</span><small>⚙</small></button></nav></div></div><div class="footer-meta"><strong>© 2026 MYTHBORN · ${safe(t.lead)}</strong><div class="footer-langs">${Object.keys(ROUTE_MAP)
     .map((k) => `<a href="${ROUTE_MAP[k].home}" ${locale === k ? 'aria-current="page"' : ''}>${k.toUpperCase()}</a>`)
     .join('')}</div></div></div></footer><aside id="cookie-consent-banner" class="cookie-banner" role="region" aria-label="${safe(cookieCopy.region)}" hidden><div class="cookie-banner-inner"><div class="cookie-banner-copy"><strong>🍪 ${safe(cookieCopy.title)}</strong><p>${safe(cookieCopy.desc)} <a href="${r.privacy}">${safe(u.privacyNav)}</a> · <a href="${r.kvkk}">${safe(u.kvkkNav)}</a>.</p></div><div class="cookie-banner-actions"><button type="button" class="cta-ghost cookie-btn" data-cookie-choice="essential">${safe(cookieCopy.essentialOnly)}</button><button type="button" class="cta cookie-btn" data-cookie-choice="accepted">${safe(cookieCopy.acceptAll)}</button></div></div></aside><button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="${safe(topLabel)}" title="${safe(topLabel)}"><span aria-hidden="true">↑</span></button>`;
+};
+
+const ZODIAC_WEEKLY_DATA = [
+  { sign: 'Koç', en: 'Aries', el: 'Κριός', es: 'Aries', ar: 'الحمل', element: 'fire', card: 'İmparator & Değnek Ası', coffee: 'Kanatlı Anahtar', note: '28 Ekim – 5 Kasım haftasında ertelenen bir girişim hız kazanıyor; acele karar yerine stratejik sınır çizmek kazandıracak.' },
+  { sign: 'Boğa', en: 'Taurus', el: 'Ταύρος', es: 'Tauro', ar: 'الثور', element: 'earth', card: 'Azize & Tılsım Dokuzlusu', coffee: 'Köklü Ağaç', note: 'Maddi güven ve uzun vadeli planlarda iç sesiniz çok berrak; sabırla koruduğunuz alanda somut bir netlik doğuyor.' },
+  { sign: 'İkizler', en: 'Gemini', el: 'Δίδυμοι', es: 'Géminis', ar: 'الجوزاء', element: 'air', card: 'Büyücü & Kılıç İkilisi', coffee: 'Çifte Kuş', note: 'İkili görüşmeler ve beklenen bir haber gündemde; zihinsel ikilemi bitirmek için tek bir önceliğe odaklanın.' },
+  { sign: 'Yengeç', en: 'Cancer', el: 'Καρκίνος', es: 'Cáncer', ar: 'السرطان', element: 'water', card: 'Ay & Kupa Yıldızı', coffee: 'Deniz Kabuğu', note: 'Duygusal sezgileriniz zirvede; hane içi ve yakın ilişkilerde geçmişten kalan bir düğüm tatlılıkla çözülüyor.' },
+  { sign: 'Aslan', en: 'Leo', el: 'Λέων', es: 'Leo', ar: 'الأسد', element: 'fire', card: 'Güneş & Güç', coffee: 'Taç ve Yol', note: 'Yaratıcı enerjiniz ve görünürlüğünüz parlıyor; gurur kaynaklı gerilimleri yumuşak bir liderlikle aşacaksınız.' },
+  { sign: 'Başak', en: 'Virgo', el: 'Παρθένος', es: 'Virgo', ar: 'العذراء', element: 'earth', card: 'Ermiş & Tılsım Sekizlisi', coffee: 'Kum Saati', note: 'Detayları sadeleştirme ve zihinsel detoks haftası; iş ve düzen konularında attığınız disiplinli adım karşılık buluyor.' },
+  { sign: 'Terazi', en: 'Libra', el: 'Ζυγός', es: 'Libra', ar: 'الميزان', element: 'air', card: 'Adalet & Aşıklar', coffee: 'Terazi ve Halka', note: 'İlişki ve ortaklıklarda denge yeniden kuruluyor; açık iletişim kurduğunuzda karşı taraftan güçlü bir adım geliyor.' },
+  { sign: 'Akrep', en: 'Scorpio', el: 'Σκορπιός', es: 'Escorpio', ar: 'العقرب', element: 'water', card: 'Dönüşüm & Kader Çarkı', coffee: 'Zümrüdüanka', note: 'Sizin döneminizde güçlü bir yenilenme kapısı açılıyor; eski yükleri bıraktıkça yeni bir döngü hızla başlıyor.' },
+  { sign: 'Yay', en: 'Sagittarius', el: 'Τοξότης', es: 'Sagitario', ar: 'القوس', element: 'fire', card: 'Denge & Değnek Üçlüsü', coffee: 'Uzak Ufuk / Yelken', note: 'Yeni ufuklar, eğitim veya uzak bağlantılı konular hareketleniyor; vizyonunuzu genişleten bir teklif doğabilir.' },
+  { sign: 'Oğlak', en: 'Capricorn', el: 'Αιγόκερως', es: 'Capricornio', ar: 'الجدي', element: 'earth', card: 'Dünya & Tılsım Kralı', coffee: 'Dağ Zirvesi', note: 'Uzun süredir emek verdiğiniz bir süreç tamamlanma aşamasında; otorite ve kariyer alanında sağlam bir zemin oluşuyor.' },
+  { sign: 'Kova', en: 'Aquarius', el: 'Υδροχόος', es: 'Acuario', ar: 'الدلو', element: 'air', card: 'Yıldız & Kılıç Ası', coffee: 'Parlayan Yıldız', note: 'Özgün bir fikir ve sosyal çevreden gelen ilham verici destekle zihninizdeki sis perdesi tamamen dağılıyor.' },
+  { sign: 'Balık', en: 'Pisces', el: 'Ιχθύες', es: 'Piscis', ar: 'الحوت', element: 'water', card: 'Kupa Kraliçesi & Asılan Adam', coffee: 'Yunus ve Ay', note: 'Rüyalarınız ve duru görünüz bu hafta çok konuşkan; olaylara farklı açıdan baktığınızda aradığınız huzuru bulacaksınız.' }
+];
+
+export const renderVideoSpotlightSection = ({ locale }) => {
+  const r = ROUTE_MAP[locale];
+  const copy = {
+    tr: {
+      eyebrow: 'HAFTALIK VİDEO AÇILIMLAR & BURÇ REHBERİ',
+      title: '28 Ekim – 5 Kasım Haftalık Tarot ve Sembol Açılımı Yayında',
+      sub: 'Site hızını düşürmeyen özel video kütüphanemizde Gözde’nin haftalık Tarot, Kahve Falı ve 12 burç enerji okumalarını izleyin; geçmiş haftaların arşivini keşfedin.',
+      badge: 'YENİ VİDEO · 28 EKİM – 5 KASIM TAROT AÇILIMI',
+      cardTitle: '28 Ekim – 5 Kasım: Akrep Yeniayı ve Kasım Geçişinde Kartlar Ne Söylüyor?',
+      cardDesc: 'Gözde bu haftanın kolektif Tarot enerjisini, ilişkilerdeki kırılma noktalarını ve 12 burcun dikkat etmesi gereken sembolleri adım adım yorumluyor.',
+      watchBtn: 'Videoyu Aç & İzle ▶',
+      zodiacBtn: '12 Burç Haftalık Özeti →'
+    },
+    en: {
+      eyebrow: 'WEEKLY VIDEO READINGS & ZODIAC ARCHIVE',
+      title: 'Oct 28 – Nov 5 Weekly Tarot & Symbolic Reading Is Live',
+      sub: 'Watch Gözde’s weekly Tarot, Coffee Symbol, and 12-sign horoscope readings in our lightweight video library without slowing down your browsing.',
+      badge: 'NEW VIDEO · OCT 28 – NOV 5 TAROT SPREAD',
+      cardTitle: 'Oct 28 – Nov 5: What Do the Cards Reveal for the Scorpio Season Corridor?',
+      cardDesc: 'Gözde explores this week’s collective Tarot archetypes, relationship dynamics, and key symbolic messages across all 12 zodiac signs.',
+      watchBtn: 'Watch Video Reading ▶',
+      zodiacBtn: '12 Zodiac Sign Highlights →'
+    },
+    el: {
+      eyebrow: 'ΕΒΔΟΜΑΔΙΑΙΑ ΒΙΝΤΕΟ ΤΑΡΩ & ΖΩΔΙΑ',
+      title: 'Εβδομαδιαία Ανάγνωση Ταρώ 28 Οκτωβρίου – 5 Νοεμβρίου',
+      sub: 'Παρακολουθήστε τις εβδομαδιαίες αναγνώσεις Ταρώ, Καφέ και των 12 ζωδίων της Gözde στην ειδική βιβλιοθήκη βίντεο.',
+      badge: 'ΝΕΟ ΒΙΝΤΕΟ · 28 ΟΚΤ – 5 ΝΟΕ',
+      cardTitle: '28 Οκτωβρίου – 5 Νοεμβρίου: Τι Αποκαλύπτουν οι Κάρτες Ταρώ;',
+      cardDesc: 'Η Gözde αναλύει την ενέργεια της εβδομάδας, τις σχέσεις και τα μηνύματα για τα 12 ζώδια.',
+      watchBtn: 'Δείτε το Βίντεο ▶',
+      zodiacBtn: 'Τα 12 Ζώδια της Εβδομάδας →'
+    },
+    es: {
+      eyebrow: 'LECTURAS EN VIDEO SEMANALES Y HORÓSCOPO',
+      title: 'Lectura Semanal de Tarot del 28 de Octubre al 5 de Noviembre',
+      sub: 'Mira las lecturas semanales de Tarot, Café y los 12 signos del zodiaco de Gözde en nuestra videoteca optimizada.',
+      badge: 'NUEVO VIDEO · 28 OCT – 5 NOV TAROT',
+      cardTitle: '28 de Octubre – 5 de Noviembre: ¿Qué Revelan las Cartas esta Semana?',
+      cardDesc: 'Gözde interpreta la energía colectiva del Tarot, los vínculos afectivos y las claves simbólicas para los 12 signos.',
+      watchBtn: 'Ver Lectura en Video ▶',
+      zodiacBtn: 'Resumen de los 12 Signos →'
+    },
+    ar: {
+      eyebrow: 'قراءات الفيديو الأسبوعية والأبراج',
+      title: 'قراءة التاروت الأسبوعية من 28 أكتوبر إلى 5 نوفمبر متاحة الآن',
+      sub: 'شاهد قراءات Gözde الأسبوعية للتاروت وفنجان القهوة وتوقعات الأبراج الـ 12 في مكتبة الفيديو السريعة لدينا.',
+      badge: 'فيديو جديد · قراءة تاروت 28 أكتوبر – 5 نوفمبر',
+      cardTitle: '28 أكتوبر – 5 نوفمبر: ماذا تقول أوراق التاروت والرموز هذا الأسبوع؟',
+      cardDesc: 'تستعرض Gözde طاقة الأسبوع العاطفية والمهنية والرسائل الرمزية لجميع الأبراج الاثني عشر.',
+      watchBtn: 'شاهد الفيديو الآن ▶',
+      zodiacBtn: 'ملخص الأبراج الـ 12 ←'
+    }
+  }[locale];
+
+  return `<section id="video-vitrin" class="section-block"><div class="section-head"><p class="eyebrow">${safe(copy.eyebrow)}</p><h2>${safe(copy.title)}</h2><p>${safe(copy.sub)}</p></div><div class="video-spotlight-card"><a class="video-spotlight-Poster" href="${r.videos}" aria-label="${safe(copy.watchBtn)}"><img src="/images/gozde-salon-portrait.jpg" width="900" height="600" loading="lazy" alt="${safe(copy.cardTitle)}"><span class="video-play-orb" aria-hidden="true">▶</span><span class="video-duration-pill">HD MP4 · 28 EKİM – 5 KASIM</span></a><div class="video-spotlight-body"><div class="live-pill" style="margin-bottom:4px"><span class="live-dot" aria-hidden="true"></span><span>${safe(copy.badge)}</span></div><h3><a href="${r.videos}" style="color:inherit;text-decoration:none">${safe(copy.cardTitle)}</a></h3><p>${safe(copy.cardDesc)}</p><div class="zodiac-mini-strip">${ZODIAC_WEEKLY_DATA.map((z) => `<a href="${r.videos}#burclar" class="zodiac-mini-pill">${safe(locale === 'tr' ? z.sign : z[locale] || z.sign)}</a>`).join('')}</div><div class="hero-actions" style="margin-top:16px"><a class="cta" href="${r.videos}">${safe(copy.watchBtn)}</a><a class="cta-ghost" href="${r.videos}#burclar">${safe(copy.zodiacBtn)}</a></div></div></div></section>`;
+};
+
+export const renderVideosSubpage = (ctx) => {
+  const { locale, t, langs } = ctx;
+  const r = ROUTE_MAP[locale];
+  const u = EXTRA_UI[locale];
+  const [, lang] = langs[locale];
+  const canonicalPath = r.videos;
+  const canonicalUrl = `https://mythborn.co${canonicalPath}`;
+
+  const pageTitle =
+    locale === 'tr'
+      ? 'Haftalık Tarot & Kahve Falı Video Açılımları ve Burç Arşivi'
+      : locale === 'en'
+      ? 'Weekly Tarot & Coffee Reading Videos and Zodiac Archive'
+      : locale === 'el'
+      ? 'Εβδομαδιαία Βίντεο Ταρώ, Καφέ & Αρχείο Ζωδίων'
+      : locale === 'es'
+      ? 'Videos Semanales de Tarot, Café y Archivo Zodiacal'
+      : 'فيديوهات التاروت وقراءة القهوة الأسبوعية وأرشيف الأبراج';
+
+  const pageDesc =
+    locale === 'tr'
+      ? 'Gözde’nin 28 Ekim – 5 Kasım haftalık Tarot açılımı videosu, 12 burç için haftalık kart ve kahve sembolü yorumları ile geçmiş haftaların akıllı video arşivi.'
+      : 'Watch Gözde’s Oct 28 – Nov 5 weekly Tarot video reading, 12 zodiac sign symbolic highlights, and weekly reading archive.';
+
+  const schemaGraph = [
+    {
+      '@type': 'VideoObject',
+      '@id': `${canonicalUrl}#featured-video`,
+      name: '28 Ekim – 5 Kasım Haftalık Tarot ve Sembol Açılımı — Gözde (MYTHBORN)',
+      description: pageDesc,
+      thumbnailUrl: ['https://mythborn.co/images/gozde-salon-portrait.jpg', 'https://mythborn.co/images/gozde-tarot-hero.webp'],
+      uploadDate: '2026-10-28T12:00:00+03:00',
+      contentUrl: 'https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4',
+      embedUrl: canonicalUrl,
+      inLanguage: lang,
+      publisher: {
+        '@type': 'Organization',
+        '@id': 'https://mythborn.co/#organization',
+        name: 'MYTHBORN',
+        logo: { '@type': 'ImageObject', url: 'https://mythborn.co/images/gozde-tarot-hero.webp' }
+      }
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: `MYTHBORN | ${pageTitle}`,
+      description: pageDesc,
+      inLanguage: lang
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalUrl}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'MYTHBORN', item: `https://mythborn.co${r.home}` },
+        { '@type': 'ListItem', position: 2, name: pageTitle, item: canonicalUrl }
+      ]
+    }
+  ];
+
+  const bodyHtml = `<section class="section-block" style="padding-top:28px"><div class="section-head"><div class="live-pill" style="margin-bottom:10px"><span class="live-dot" aria-hidden="true"></span><span>BU HAFTANIN ÖZEL AÇILIMI · 28 EKİM – 5 KASIM</span></div><p class="eyebrow">MYTHBORN VİDEO KÜTÜPHANESİ & HAFTALIK BURÇ ENERJİLERİ</p><h1 class="title" style="font-size:clamp(28px,3.4vw,46px);max-width:26ch">${safe(pageTitle)}</h1><p>${safe(pageDesc)}</p></div><div class="video-theater-grid"><div class="video-player-box"><video id="featured-tarot-video" class="featured-video-player" controls playsinline preload="none" width="1280" height="720" poster="/images/gozde-salon-portrait.jpg"><source src="/videos/28-ekim-5-kasim-tarot.mp4" type="video/mp4">Tarayıcınız HTML5 video oynatmayı desteklemiyor.</video></div><aside class="video-meta-panel"><p class="eyebrow">AKTİF HAFTA · 28 EKİM – 5 KASIM</p><h2>28 Ekim – 5 Kasım Tarot Açılımı: Dönüşüm, İlişkiler ve Karar Eşikleri</h2><p>Gözde bu videoda 28 Ekim – 5 Kasım koridorunun kolektif Tarot enerjisini, yakın ilişkilerdeki gizli gündemleri ve yeni haftada dikkat edilmesi gereken sembolik işaretleri yorumluyor.</p><ul class="video-highlights-list"><li>✦ <strong>Odak Disiplin:</strong> Tarot Arkana & Kolektif Enerji Okuması</li><li>✦ <strong>Akıllı Yükleme:</strong> Video yalnızca siz <em>Oynat (▶)</em> tuşuna bastığınızda yüklenir; kotanızı ve sayfa hızını yormaz.</li><li>✦ <strong>Kişisel Danışmanlık:</strong> Genel burç yorumunun ötesinde kendi doğum verinize özel açılım için ön iletişim formunu kullanabilirsiniz.</li></ul><div style="display:flex;flex-direction:column;gap:10px;margin-top:auto"><a class="cta" href="${r.contact}?topic=Tarot">${safe(u.askGozdeCta)}</a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">TikTok’ta Günlük Kısa Açılımlar (@gozdeli_) ↗</a></div></aside></div></section><section id="burclar" class="section-block"><div class="section-head"><p class="eyebrow">12 BURÇ HAFTALIK TAROT & KAHVE SEMBOLÜ ÖZETİ (28 EKİM – 5 KASIM)</p><h2>Burcunuza Göre Bu Haftanın Kartı ve Sembol Mesajı</h2><p>Her hafta 12 burç için güncellenen Tarot arketipi, fincan sembolü ve haftalık odak notları. Elementinize göre filtreleyebilir veya doğrudan kendi burcunuzu seçebilirsiniz.</p></div><div class="zodiac-filter-bar" role="tablist" aria-label="Element Filtresi"><button type="button" class="zodiac-filter-btn is-active" data-zodiac-filter="all">Tüm Burçlar (12)</button><button type="button" class="zodiac-filter-btn" data-zodiac-filter="fire">🔥 Ateş (Koç, Aslan, Yay)</button><button type="button" class="zodiac-filter-btn" data-zodiac-filter="earth">🌿 Toprak (Boğa, Başak, Oğlak)</button><button type="button" class="zodiac-filter-btn" data-zodiac-filter="air">💨 Hava (İkizler, Terazi, Kova)</button><button type="button" class="zodiac-filter-btn" data-zodiac-filter="water">💧 Su (Yengeç, Akrep, Balık)</button></div><div class="zodiac-cards-grid">${ZODIAC_WEEKLY_DATA.map(
+    (z) => `<article class="zodiac-week-card" data-zodiac-element="${z.element}"><div class="zodiac-card-top"><h3>${safe(locale === 'tr' ? z.sign : `${z[locale]} (${z.sign})`)}</h3><span class="area-tag">28 EKİM – 5 KASIM</span></div><div class="zodiac-symbols-row"><small>🃏 <strong>Kart:</strong> ${safe(z.card)}</small><small>☕ <strong>Sembol:</strong> ${safe(z.coffee)}</small></div><p>${safe(z.note)}</p><a class="blog-read-link" href="${r.contact}?topic=${encodeURIComponent(z.sign + ' Burcu Özel Açılım')}">${safe(z.sign)} Burcu İçin Kişisel Açılım İste →</a></article>`
+  ).join('')}</div></section><section id="video-arsiv" class="section-block"><div class="section-head"><p class="eyebrow">AKILLI HAFTALIK VİDEO & SEMBOL ARŞİVİ</p><h2>Haftalık Açılım Arşivi ve Yayın Takvimi</h2><p>Arama motorları (Google & Yapay Zeka) için her haftanın açılım özeti burada kalıcı olarak arşivlenir; medya dosyaları ise isteğe bağlı (on-demand) yüklendiği için site hızı her zaman ilk günkü gibi yüksek kalır.</p></div><div class="process-grid"><article class="pillar-card"><span class="area-tag" style="display:inline-block;margin-bottom:8px">YAYINDA · AKTİF HAFTA</span><h3>28 Ekim – 5 Kasım 2026: Haftalık Tarot & 12 Burç Enerji Açılımı</h3><p>Akrep döngüsü, ilişkilerde yüzleşme cesareti, finansal sınırlar ve 12 burcun haftalık Tarot arketipleri.</p><p style="margin-top:10px"><a href="#featured-tarot-video" style="color:var(--gold);font-size:13px">▲ Yukarıdaki Oynatıcıda İzle</a></p></article><article class="pillar-card"><span class="area-tag" style="display:inline-block;margin-bottom:8px">GELECEK HAFTA · HAZIRLANIYOR</span><h3>6 Kasım – 13 Kasım 2026: 12 Burç Kahve Falı & Katina Aşk Açılımı</h3><p>Her burç için fincan sembolleri, Katina destesinde ilişki gündemi ve Kasım ortası gökyüzü kavuşumları.</p><p style="margin-top:10px"><a href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-size:13px">TikTok Bildirimlerini Aç (@gozdeli_) ↗</a></p></article><article class="pillar-card"><span class="area-tag" style="display:inline-block;margin-bottom:8px">ARŞİV MİMARİSİ · SIFIR ŞİŞKİNLİK</span><h3>Haftalık Arşiv Nasıl Çalışır?</h3><p>Güncel haftanın videosu doğrudan HD oynatıcıda yer alır; geçmiş haftaların yazılı burç ve kart özetleri SEO arşivi olarak korunurken ağır video dosyaları sayfa yükünü artırmaz.</p><p style="margin-top:10px"><a href="${r.blog}" style="color:var(--gold);font-size:13px">${safe(u.allBlogsCta)}</a></p></article></div></section>`;
+
+  return renderSubpageDocument({
+    ...ctx,
+    pageType: 'videos',
+    canonicalPath,
+    title: pageTitle,
+    description: pageDesc,
+    bodyHtml,
+    schemaGraph
+  });
 };
 
 export const renderBlogPreviewSection = ({ locale }) => {
