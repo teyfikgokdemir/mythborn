@@ -69,7 +69,7 @@ for (const [path, lang] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['
 }
 console.log('Coming-soon gated public surface checks passed.');
 
-// Reversible Gözde launch screen: full editorial routes remain available when switch is off.
+// Reversible Gözde full platform & 5-language reader application pages:
 for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/ar','ar'],['/iletisim','tr']]) {
  const response=await worker.fetch(new Request('https://mythborn.co'+path),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
  assert.equal(response.status,200);
@@ -78,7 +78,72 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert(html.includes(({tr:'Kartların Gözde’si',en:'Gözde of the Cards',el:'Η Gözde των Καρτών',es:'Gözde, la voz de las cartas',ar:'Gözde قارئة البطاقات'})[language]));
  assert(html.includes('/images/gozde-tarot-hero.webp'));
  assert(html.includes('gozdeli_'));
+ assert(html.includes('class="trust-bar"'));
+ assert((html.match(/class="area-card"/g)||[]).length===8, `${path} must render all 8 service area cards`);
+ assert(html.includes('id="gozde-inquiry-form"'));
+ assert(html.includes('name="mythborn-faq"'));
  assert(!html.includes('Maya Vanga'));
+ assert(!html.includes('gozde-landing'));
+ assert(!/(?:price|fiyat|checkout|reservation|booking|payment|ödeme|mailto:|wa\.me)/i.test(html), `${path} must remain free of commercial/prohibited terms`);
  if(language==='ar') assert(html.includes('dir="rtl"'));
 }
-console.log('Gözde coming-soon 5-language mode passed.');
+
+for (const [applyPath,language] of [['/yorumcu-basvuru','tr'],['/en/apply','en'],['/gr/apply','el'],['/es/apply','es'],['/ar/apply','ar']]) {
+ const response=await worker.fetch(new Request('https://mythborn.co'+applyPath),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+ assert.equal(response.status,200);
+ assert.equal(response.headers.get('content-language'),language);
+ const html=await response.text();
+ assert(html.includes(`lang="${language}"`));
+ assert(html.includes('id="gozde-apply-form"'));
+ assert(html.includes('hreflang="ar"'));
+ assert((html.match(/name="specialties"/g)||[]).length===8, `${applyPath} must include 8 specialty checkboxes`);
+ assert(!/(?:price|fiyat|checkout|reservation|booking|payment|ödeme|mailto:|wa\.me)/i.test(html));
+ if(language==='ar') assert(html.includes('dir="rtl"'));
+}
+
+// Verify API validation and submission handling for both inquiry and application forms
+const badInquiry=await worker.fetch(new Request('https://mythborn.co/api/gozde-inquiry',{
+  method:'POST',
+  headers:{'content-type':'application/json'},
+  body:JSON.stringify({locale:'tr',name:'A',contact:'',message:'short',consent:false})
+}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(badInquiry.status,400);
+
+const goodInquiry=await worker.fetch(new Request('https://mythborn.co/api/gozde-inquiry',{
+  method:'POST',
+  headers:{'content-type':'application/json'},
+  body:JSON.stringify({locale:'tr',name:'Ayşe K.',contact:'ayse@example.com',topic:'Katina',format:'Sesli Kayıt & Analiz',message:'İlişki dinamiğimiz ve önümüzdeki süreç hakkında bilgi almak istiyorum.',consent:'yes'})
+}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(goodInquiry.status,200);
+const goodInquiryData=await goodInquiry.json();
+assert.equal(goodInquiryData.ok,true);
+
+const badApply=await worker.fetch(new Request('https://mythborn.co/api/gozde-apply',{
+  method:'POST',
+  headers:{'content-type':'application/json'},
+  body:JSON.stringify({locale:'en',fullName:'J',email:'invalid',phone:'123',specialties:[],bio:'too short',consent:false})
+}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(badApply.status,400);
+
+const goodApply=await worker.fetch(new Request('https://mythborn.co/api/gozde-apply',{
+  method:'POST',
+  headers:{'content-type':'application/json'},
+  body:JSON.stringify({
+    locale:'ar',
+    fullName:'Nour Al-Huda',
+    email:'nour@example.com',
+    phone:'+905551234567',
+    specialties:['التاروت','قراءة القهوة'],
+    experience:'5–10 سنوات',
+    modality:'تسجيل صوتي',
+    languages:'العربية، التركية، الإنجليزية',
+    social:'https://tiktok.com/@nour',
+    bio:'أقدم قراءات رمزية عميقة تركز على الوضوح والوعي الذاتي مع احترام كامل للخصوصية.',
+    consent:'yes'
+  })
+}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(goodApply.status,200);
+const goodApplyData=await goodApply.json();
+assert.equal(goodApplyData.ok,true);
+
+console.log('Gözde 5-language platform, reader application pages, and API audits passed.');
