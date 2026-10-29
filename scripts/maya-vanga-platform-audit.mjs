@@ -98,6 +98,7 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  const visibleHtml=html.replace(/<script[\s\S]*?<\/script>/gi,'');
  assert(!/>[^<]*@gozdeli_[^<]*</i.test(visibleHtml), `${path} must not show @gozdeli_ username in visible text`);
  assert(html.includes('data-lang-switch='), `${path} must include scroll-preserving language switch attributes`);
+ assert(html.includes('overflow-x:clip') && html.includes('container-type:scroll-state'), `${path} must keep sticky header active with overflow-x:clip and scroll-state query`);
  assert(html.includes('id="exit-intent-dialog"') && html.includes('closedby="any"'), `${path} must include exit-intent retention dialog`);
  assert(html.includes('name="mythborn-faq"'));
  assert(html.includes('class="aeo-dl"'));

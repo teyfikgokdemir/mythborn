@@ -686,10 +686,12 @@ const sharedStyles = `
 :root{color-scheme:dark;--cream:#f4eadc;--gold:#d4ae75;--gold-bright:#edd09e;--muted:#c7bab0;--bg:#08080a;--card:#121017;--border:#be9d6b38;--ok:#37b87c;--err:#e56b60}
 *{box-sizing:border-box}
 html{min-height:100%;background:var(--bg);scroll-behavior:smooth}
-body{margin:0;color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);line-height:1.55;overflow-x:hidden}
+body{margin:0;color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);line-height:1.55;overflow-x:clip}
 body.drawer-open{overflow:hidden}
-.wrap{position:relative;isolation:isolate;min-height:100svh;display:flex;flex-direction:column;background:#0d0a0b;overflow-x:hidden}
-.top-shell{position:sticky;top:0;z-index:40;background:rgba(8,8,11,.84);backdrop-filter:blur(14px);border-bottom:1px solid #be9d6b26}
+.wrap{position:relative;isolation:isolate;min-height:100svh;display:flex;flex-direction:column;background:#0d0a0b;overflow-x:clip;overflow-anchor:none}
+.top-shell{position:sticky;top:0;z-index:90;container-type:scroll-state;container-name:site-header;background:rgba(8,8,11,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid #be9d6b2e;transition:background-color .24s ease,box-shadow .24s ease,border-color .24s ease}
+.top-shell.is-stuck{background:rgba(7,7,11,.96);border-bottom-color:#d8b78059;box-shadow:0 12px 34px rgba(0,0,0,.72)}
+@container site-header scroll-state(stuck: top){.top{padding-block:12px;box-shadow:0 8px 24px rgba(0,0,0,.35)}}
 .hero-stage{position:relative;isolation:isolate;min-height:90svh;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;border-bottom:1px solid var(--border)}
 .photo{position:absolute;inset:0;z-index:-2;margin:0}
 .photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 32%;filter:brightness(.86) saturate(.94)}
@@ -1079,9 +1081,12 @@ const clientInteractiveScript = `
   let scrollIdleTimer = null;
   const getScrollY = () => window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
   const handleScrollActivity = () => {
+    const sy = getScrollY();
+    const topShell = document.querySelector('.top-shell');
+    if (topShell) topShell.classList.toggle('is-stuck', sy > 12);
     const scrollTopBtn = document.getElementById('scroll-top-btn');
     if (!scrollTopBtn) return;
-    if (getScrollY() > 110) {
+    if (sy > 110) {
       scrollTopBtn.classList.add('is-visible');
       if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
       scrollIdleTimer = setTimeout(() => {
