@@ -924,7 +924,23 @@ body.drawer-open{overflow:hidden}
   .footer-meta{flex-direction:column;align-items:stretch;gap:12px}
   .footer-langs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;width:100%}
   .footer-langs a{text-align:center;padding:8px 4px}
+  .cookie-banner{left:12px;right:12px;bottom:12px;padding:16px}
+  .cookie-banner-inner{flex-direction:column;align-items:stretch;gap:14px}
+  .cookie-banner-actions{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .cookie-btn{width:100%;padding:11px 12px;font-size:12.5px}
 }
+.cookie-pref-trigger{display:flex;align-items:center;justify-content:space-between;width:100%;padding:9px 12px;border-radius:11px;background:#ffffff06;border:1px solid #ffffff0d;color:#d8cdc0;font:inherit;font-size:13px;cursor:pointer;text-align:start;transition:border-color .2s,background .2s,color .2s}
+.cookie-pref-trigger:hover{border-color:#d8b78059;background:#d8b78012;color:#f7ead5}
+.cookie-pref-trigger small{color:#c9a66b;font-size:11px}
+.cookie-banner{position:fixed;left:max(18px,env(safe-area-inset-left));right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:115;max-width:1120px;margin:0 auto;padding:18px 22px;border-radius:20px;background:linear-gradient(165deg,#13141df5,#0b0c12fa);border:1px solid #d8b78059;box-shadow:0 22px 54px #000000d9;backdrop-filter:blur(16px)}
+.cookie-banner[hidden]{display:none!important}
+.cookie-banner-inner{display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap}
+.cookie-banner-copy{flex:1 1 460px}
+.cookie-banner-copy strong{display:block;color:#f6ecdc;font-size:14.5px;margin-bottom:4px;letter-spacing:.02em}
+.cookie-banner-copy p{margin:0;color:#c9beb0;font-size:13px;line-height:1.55}
+.cookie-banner-copy a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+.cookie-banner-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.cookie-btn{min-height:42px;padding:10px 18px;font-size:13px;cursor:pointer}
 @media(max-width:390px){
   .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mobile-quick-cta{display:none}
@@ -973,6 +989,38 @@ const clientInteractiveScript = `
     scrollTopBtn.addEventListener('click', () => {
       scrollTopBtn.classList.remove('is-visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  const cookieBanner = document.getElementById('cookie-consent-banner');
+  const COOKIE_KEY = 'mythborn_cookie_consent';
+  if (cookieBanner) {
+    let savedChoice = null;
+    try {
+      savedChoice = localStorage.getItem(COOKIE_KEY);
+    } catch {}
+    if (!savedChoice && document.cookie.includes('mythborn_cookie_consent=')) {
+      savedChoice = 'accepted';
+    }
+    if (!savedChoice) {
+      cookieBanner.hidden = false;
+    }
+    const saveCookieChoice = (choice) => {
+      try {
+        localStorage.setItem(COOKIE_KEY, choice);
+      } catch {}
+      document.cookie = 'mythborn_cookie_consent=' + encodeURIComponent(choice) + '; Path=/; Max-Age=31536000; SameSite=Lax; Secure';
+      cookieBanner.hidden = true;
+    };
+    cookieBanner.querySelectorAll('[data-cookie-choice]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        saveCookieChoice(btn.getAttribute('data-cookie-choice') || 'essential');
+      });
+    });
+    document.querySelectorAll('[data-open-cookie-banner]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        cookieBanner.hidden = false;
+      });
     });
   }
 

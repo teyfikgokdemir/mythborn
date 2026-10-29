@@ -84,6 +84,9 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert((html.match(/class="area-card"/g)||[]).length===8, `${path} must render all 8 service area cards`);
  assert(html.includes('id="blog-onizleme"'), `${path} must render blog preview section`);
  assert(html.includes('id="gozde-inquiry-form"'));
+ assert(html.includes('id="cookie-consent-banner"'), `${path} must include KVKK/GDPR cookie consent banner`);
+ assert(html.includes('data-cookie-choice="accepted"') && html.includes('data-cookie-choice="essential"'), `${path} must include both Accept All and Essential Only options`);
+ assert(html.includes('data-open-cookie-banner'), `${path} must include footer trigger to reopen cookie preferences`);
  assert(html.includes('name="mythborn-faq"'));
  assert(html.includes('class="aeo-dl"'));
  assert(html.includes('SpeakableSpecification'));

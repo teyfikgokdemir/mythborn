@@ -240,9 +240,58 @@ export const renderFooter = ({ locale, t }) => {
     locale === 'tr' ? 'İLETİŞİM & AĞ' : locale === 'en' ? 'CONNECT & NETWORK' : locale === 'el' ? 'ΕΠΙΚΟΙΝΩΝΙΑ' : locale === 'es' ? 'CONTACTO Y RED' : 'التواصل والشبكة';
   const topLabel =
     locale === 'tr' ? 'Yukarı çık' : locale === 'en' ? 'Back to top' : locale === 'el' ? 'Πάνω' : locale === 'es' ? 'Subir' : 'إلى الأعلى';
-  return `<footer class="bottom"><div class="footer-card"><div class="footer-top"><div class="bottom-brand"><a class="logo" href="${r.home}">MYTHBORN</a><p class="footer-lead">${safe(t.lead)}</p><span>${safe(t.note)}</span></div><div class="footer-cta-row"><a class="cta" href="${r.contact}">${safe(t.navInquiry)} →</a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">TikTok · @gozdeli_ ↗</a></div></div><div class="footer-cols"><div class="footer-col"><h4>${safe(colExplore)}</h4><nav aria-label="${safe(colExplore)}"><a href="${r.home}"><span>${safe(u.navHome)}</span><small>→</small></a><a href="${r.areas}"><span>${safe(t.navAreas)}</span><small>→</small></a><a href="${r.approach}"><span>${safe(t.navProcess)}</span><small>→</small></a><a href="${r.blog}"><span>${safe(u.navBlog)}</span><small>→</small></a></nav></div><div class="footer-col"><h4>${safe(colConnect)}</h4><nav aria-label="${safe(colConnect)}"><a href="${r.contact}"><span>${safe(t.navInquiry)}</span><small>→</small></a><a href="${r.home}#sss"><span>${safe(t.navFaq)}</span><small>→</small></a><a href="${r.apply}"><span>${safe(t.applyNav)}</span><small>→</small></a><a href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer"><span>TikTok</span><small>↗</small></a></nav></div><div class="footer-col footer-col-legal"><h4>${safe(u.legalTitle)}</h4><nav aria-label="${safe(u.legalTitle)}"><a href="${r.kvkk}"><span>${safe(u.kvkkNav)}</span><small>→</small></a><a href="${r.privacy}"><span>${safe(u.privacyNav)}</span><small>→</small></a><a href="${r.terms}"><span>${safe(u.termsNav)}</span><small>→</small></a></nav></div></div><div class="footer-meta"><strong>© 2026 MYTHBORN · ${safe(t.lead)}</strong><div class="footer-langs">${Object.keys(ROUTE_MAP)
+  const cookieCopy = {
+    tr: {
+      region: 'Çerez ve Gizlilik Bildirimi',
+      title: 'Çerez (Cookie) ve Gizlilik Tercihleriniz',
+      desc: 'Deneyiminizi güvenli kılmak, dil tercihlerinizi hatırlamak ve 6698 sayılı KVKK ile GDPR standartlarına uygun hizmet sunmak için zorunlu ve işlevsel çerezler kullanıyoruz. Detaylar için',
+      acceptAll: 'Tümünü Kabul Et',
+      essentialOnly: 'Sadece Zorunlu Çerezler',
+      manageLabel: 'Çerez Tercihleri'
+    },
+    en: {
+      region: 'Cookie and Privacy Notice',
+      title: 'Your Cookie & Privacy Preferences',
+      desc: 'We use strictly necessary and functional cookies to keep your session secure, remember language preferences, and comply with KVKK & GDPR standards. Read our',
+      acceptAll: 'Accept All',
+      essentialOnly: 'Essential Only',
+      manageLabel: 'Cookie Preferences'
+    },
+    el: {
+      region: 'Ειδοποίηση Cookies και Απορρήτου',
+      title: 'Προτιμήσεις Cookies & Απορρήτου',
+      desc: 'Χρησιμοποιούμε απαραίτητα και λειτουργικά cookies για την ασφάλεια της περιήγησής σας και την απομνημόνευση της γλώσσας σύμφωνα με το GDPR/KVKK. Δείτε την',
+      acceptAll: 'Αποδοχή Όλων',
+      essentialOnly: 'Μόνο Απαραίτητα',
+      manageLabel: 'Ρυθμίσεις Cookies'
+    },
+    es: {
+      region: 'Aviso de Cookies y Privacidad',
+      title: 'Preferencias de Cookies y Privacidad',
+      desc: 'Utilizamos cookies estrictamente necesarias y funcionales para garantizar una navegación segura y recordar su idioma conforme al RGPD/KVKK. Consulte nuestra',
+      acceptAll: 'Aceptar Todo',
+      essentialOnly: 'Solo Necesarias',
+      manageLabel: 'Preferencias de Cookies'
+    },
+    ar: {
+      region: 'إشعار ملفات تعريف الارتباط والخصوصية',
+      title: 'تفضيلات ملفات تعريف الارتباط (Cookies) والخصوصية',
+      desc: 'نستخدم ملفات تعريف الارتباط الضرورية والوظيفية لضمان أمان التصفح وتذكر لغتك المفضلة وفقاً لمعايير KVKK وGDPR. للاطلاع على التفاصيل راجع',
+      acceptAll: 'قبول الكل',
+      essentialOnly: 'الضرورية فقط',
+      manageLabel: 'إعدادات ملفات الارتباط'
+    }
+  }[locale] || {
+    region: 'Çerez ve Gizlilik Bildirimi',
+    title: 'Çerez (Cookie) ve Gizlilik Tercihleriniz',
+    desc: 'Deneyiminizi güvenli kılmak için çerezler kullanıyoruz.',
+    acceptAll: 'Tümünü Kabul Et',
+    essentialOnly: 'Sadece Zorunlu Çerezler',
+    manageLabel: 'Çerez Tercihleri'
+  };
+  return `<footer class="bottom"><div class="footer-card"><div class="footer-top"><div class="bottom-brand"><a class="logo" href="${r.home}">MYTHBORN</a><p class="footer-lead">${safe(t.lead)}</p><span>${safe(t.note)}</span></div><div class="footer-cta-row"><a class="cta" href="${r.contact}">${safe(t.navInquiry)} →</a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">TikTok · @gozdeli_ ↗</a></div></div><div class="footer-cols"><div class="footer-col"><h4>${safe(colExplore)}</h4><nav aria-label="${safe(colExplore)}"><a href="${r.home}"><span>${safe(u.navHome)}</span><small>→</small></a><a href="${r.areas}"><span>${safe(t.navAreas)}</span><small>→</small></a><a href="${r.approach}"><span>${safe(t.navProcess)}</span><small>→</small></a><a href="${r.blog}"><span>${safe(u.navBlog)}</span><small>→</small></a></nav></div><div class="footer-col"><h4>${safe(colConnect)}</h4><nav aria-label="${safe(colConnect)}"><a href="${r.contact}"><span>${safe(t.navInquiry)}</span><small>→</small></a><a href="${r.home}#sss"><span>${safe(t.navFaq)}</span><small>→</small></a><a href="${r.apply}"><span>${safe(t.applyNav)}</span><small>→</small></a><a href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer"><span>TikTok</span><small>↗</small></a></nav></div><div class="footer-col footer-col-legal"><h4>${safe(u.legalTitle)}</h4><nav aria-label="${safe(u.legalTitle)}"><a href="${r.kvkk}"><span>${safe(u.kvkkNav)}</span><small>→</small></a><a href="${r.privacy}"><span>${safe(u.privacyNav)}</span><small>→</small></a><a href="${r.terms}"><span>${safe(u.termsNav)}</span><small>→</small></a><button type="button" class="cookie-pref-trigger" data-open-cookie-banner><span>${safe(cookieCopy.manageLabel)}</span><small>⚙</small></button></nav></div></div><div class="footer-meta"><strong>© 2026 MYTHBORN · ${safe(t.lead)}</strong><div class="footer-langs">${Object.keys(ROUTE_MAP)
     .map((k) => `<a href="${ROUTE_MAP[k].home}" ${locale === k ? 'aria-current="page"' : ''}>${k.toUpperCase()}</a>`)
-    .join('')}</div></div></div></footer><button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="${safe(topLabel)}" title="${safe(topLabel)}"><span aria-hidden="true">↑</span></button>`;
+    .join('')}</div></div></div></footer><aside id="cookie-consent-banner" class="cookie-banner" role="region" aria-label="${safe(cookieCopy.region)}" hidden><div class="cookie-banner-inner"><div class="cookie-banner-copy"><strong>🍪 ${safe(cookieCopy.title)}</strong><p>${safe(cookieCopy.desc)} <a href="${r.privacy}">${safe(u.privacyNav)}</a> · <a href="${r.kvkk}">${safe(u.kvkkNav)}</a>.</p></div><div class="cookie-banner-actions"><button type="button" class="cta-ghost cookie-btn" data-cookie-choice="essential">${safe(cookieCopy.essentialOnly)}</button><button type="button" class="cta cookie-btn" data-cookie-choice="accepted">${safe(cookieCopy.acceptAll)}</button></div></div></aside><button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="${safe(topLabel)}" title="${safe(topLabel)}"><span aria-hidden="true">↑</span></button>`;
 };
 
 export const renderBlogPreviewSection = ({ locale }) => {
