@@ -876,9 +876,10 @@ body.drawer-open{overflow:hidden}
 .footer-langs{display:flex;gap:8px;align-items:center}
 .footer-langs a{padding:6px 11px;border-radius:999px;border:1px solid #be9d6b38;background:#120f17;color:#d2c5b8;text-decoration:none;font:600 11px/1 system-ui,sans-serif;letter-spacing:.1em}
 .footer-langs a[aria-current=page],.footer-langs a:hover{border-color:var(--gold);background:#241b11;color:var(--gold-bright)}
-.scroll-top-btn{position:fixed;bottom:22px;inset-inline-end:22px;z-index:85;width:48px;height:48px;border-radius:50%;border:1px solid #d4ae75aa;background:rgba(18,14,22,.88);backdrop-filter:blur(10px);color:var(--gold-bright);display:grid;place-items:center;font:600 20px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 10px 28px rgba(0,0,0,.6);opacity:0;pointer-events:none;transform:translateY(10px) scale(.92);transition:opacity .26s ease,transform .26s ease,background .2s,border-color .2s}
-.scroll-top-btn.is-visible{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
-.scroll-top-btn:hover{background:var(--gold);color:#140e07;border-color:var(--gold-bright)}
+.scroll-top-btn{position:fixed;bottom:max(24px,calc(env(safe-area-inset-bottom) + 14px));inset-inline-end:18px;z-index:130;width:48px;height:48px;border-radius:999px;border:1.5px solid #e5c388;background:linear-gradient(145deg,#231d2cf5,#110e17fc);backdrop-filter:blur(12px);color:#f9e4c2;display:inline-flex;align-items:center;justify-content:center;font:700 21px/1 system-ui,-apple-system,sans-serif;cursor:pointer;box-shadow:0 12px 30px #000000d9,0 0 0 4px #d8b78029;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(12px) scale(.92);transition:opacity .28s ease,transform .28s ease,visibility .28s ease,bottom .25s ease,background .2s}
+.scroll-top-btn.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
+.scroll-top-btn:hover,.scroll-top-btn:active{background:linear-gradient(135deg,#f0d4a4,#c89c57);color:#140e07;border-color:#fff2d6}
+body:has(#cookie-consent-banner:not([hidden])) .scroll-top-btn{bottom:108px}
 [dir=rtl] .title{letter-spacing:normal}
 [dir=rtl] .photo:after{background:linear-gradient(270deg,#050508f5 0%,#050508cc 35%,transparent 78%),linear-gradient(0deg,#08080a,transparent 45%)}
 @media(min-width:1100px){
@@ -997,6 +998,8 @@ body.drawer-open{overflow:hidden}
   .video-toast-inner{grid-template-columns:56px 1fr auto;padding:11px 12px;gap:10px}
   .video-toast-thumb{width:56px;height:56px}
   .video-toast-title{font-size:12.4px}
+  .scroll-top-btn{width:46px;height:46px;inset-inline-end:14px;bottom:max(20px,calc(env(safe-area-inset-bottom) + 12px))}
+  body:has(#cookie-consent-banner:not([hidden])) .scroll-top-btn{bottom:max(166px,calc(env(safe-area-inset-bottom) + 156px))}
 }
 @media(max-width:390px){
   .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1027,23 +1030,25 @@ const clientInteractiveScript = `
   const scrollTopBtn = document.getElementById('scroll-top-btn');
   if (scrollTopBtn) {
     let scrollIdleTimer = null;
+    const getScrollY = () => window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
     const handleScrollActivity = () => {
-      if (window.scrollY > 220) {
+      if (getScrollY() > 110) {
         scrollTopBtn.classList.add('is-visible');
         if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
         scrollIdleTimer = setTimeout(() => {
-          if (!scrollTopBtn.matches(':hover, :focus')) {
-            scrollTopBtn.classList.remove('is-visible');
-          }
-        }, 900);
+          scrollTopBtn.classList.remove('is-visible');
+        }, 1800);
       } else {
         scrollTopBtn.classList.remove('is-visible');
         if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
       }
     };
     window.addEventListener('scroll', handleScrollActivity, { passive: true });
+    document.addEventListener('scroll', handleScrollActivity, { passive: true });
     window.addEventListener('touchmove', handleScrollActivity, { passive: true });
+    window.addEventListener('touchend', handleScrollActivity, { passive: true });
     scrollTopBtn.addEventListener('click', () => {
+      if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
       scrollTopBtn.classList.remove('is-visible');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
