@@ -1000,7 +1000,7 @@ body:has(#cookie-consent-banner:not([hidden])) .scroll-top-btn{bottom:108px}
   .video-toast-thumb{width:56px;height:56px}
   .video-toast-title{font-size:12.4px}
   .scroll-top-btn{width:46px;height:46px;inset-inline-end:14px;bottom:max(20px,calc(env(safe-area-inset-bottom) + 12px))}
-  body:has(#cookie-consent-banner:not([hidden])) .scroll-top-btn{bottom:max(166px,calc(env(safe-area-inset-bottom) + 156px))}
+  body:has(#cookie-consent-banner:not([hidden])) .scroll-top-btn{bottom:max(184px,calc(env(safe-area-inset-bottom) + 174px))}
 }
 @media(max-width:390px){
   .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
