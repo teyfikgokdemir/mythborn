@@ -876,6 +876,13 @@ body.drawer-open{overflow:hidden}
 .footer-langs{display:flex;gap:8px;align-items:center}
 .footer-langs a{padding:6px 11px;border-radius:999px;border:1px solid #be9d6b38;background:#120f17;color:#d2c5b8;text-decoration:none;font:600 11px/1 system-ui,sans-serif;letter-spacing:.1em}
 .footer-langs a[aria-current=page],.footer-langs a:hover{border-color:var(--gold);background:#241b11;color:var(--gold-bright)}
+.footer-credit{display:flex;justify-content:center;padding-top:16px;border-top:1px solid #be9d6b1f}
+.qct-signature{display:inline-flex;align-items:center;gap:9px;padding:8px 18px;border-radius:999px;background:linear-gradient(135deg,#16131ee6,#0e0c14f2);border:1px solid #d8b7803d;color:#bfb2a3;text-decoration:none;font:500 11.5px/1.2 system-ui,-apple-system,sans-serif;letter-spacing:.08em;box-shadow:0 8px 22px #00000066;transition:border-color .22s ease,transform .22s ease,box-shadow .22s ease,color .22s ease}
+.qct-signature strong{color:#f3d9a8;font-weight:700;letter-spacing:.1em}
+.qct-gem{color:var(--gold);font-size:11px}
+.qct-arrow{color:var(--gold);font-size:11px;opacity:.85;transition:transform .2s ease}
+.qct-signature:hover{border-color:var(--gold);color:#f7ecdc;transform:translateY(-1px);box-shadow:0 10px 26px #00000099,0 0 20px #d8b78026}
+.qct-signature:hover .qct-arrow{transform:translate(2px,-2px);opacity:1}
 .scroll-top-btn{position:fixed;bottom:max(24px,calc(env(safe-area-inset-bottom) + 14px));inset-inline-end:18px;z-index:130;width:48px;height:48px;border-radius:999px;border:1.5px solid #e5c388;background:linear-gradient(145deg,#231d2cf5,#110e17fc);backdrop-filter:blur(12px);color:#f9e4c2;display:inline-flex;align-items:center;justify-content:center;font:700 21px/1 system-ui,-apple-system,sans-serif;cursor:pointer;box-shadow:0 12px 30px #000000d9,0 0 0 4px #d8b78029;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(12px) scale(.92);transition:opacity .28s ease,transform .28s ease,visibility .28s ease,bottom .25s ease,background .2s}
 .scroll-top-btn.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
 .scroll-top-btn:hover,.scroll-top-btn:active{background:linear-gradient(135deg,#f0d4a4,#c89c57);color:#140e07;border-color:#fff2d6}
