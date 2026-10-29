@@ -93,6 +93,11 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert(html.includes('data-cookie-choice="accepted"') && html.includes('data-cookie-choice="essential"'), `${path} must include both Accept All and Essential Only options`);
  assert(html.includes('data-open-cookie-banner'), `${path} must include footer trigger to reopen cookie preferences`);
  assert(html.includes('href="https://qctcommerce.com/"') && html.includes('QCT Commerce'), `${path} must include QCT Commerce footer signature`);
+ if(language!=='tr') assert(!html.includes('tarafından yapılmıştır'), `${path} must localize QCT Commerce signature`);
+ assert(html.includes('class="tiktok-real-logo"'), `${path} must render real TikTok SVG logo`);
+ const visibleHtml=html.replace(/<script[\s\S]*?<\/script>/gi,'');
+ assert(!/>[^<]*@gozdeli_[^<]*</i.test(visibleHtml), `${path} must not show @gozdeli_ username in visible text`);
+ assert(html.includes('data-lang-switch='), `${path} must include scroll-preserving language switch attributes`);
  assert(html.includes('id="exit-intent-dialog"') && html.includes('closedby="any"'), `${path} must include exit-intent retention dialog`);
  assert(html.includes('name="mythborn-faq"'));
  assert(html.includes('class="aeo-dl"'));

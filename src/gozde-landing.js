@@ -1,6 +1,7 @@
 import {
   ROUTE_MAP,
   EXTRA_UI,
+  TIKTOK_LOGO_SVG,
   detectGozdeSubpage,
   renderHeaderAndDrawer,
   renderFooter,
@@ -882,6 +883,12 @@ body.drawer-open{overflow:hidden}
 .qct-arrow{color:var(--gold);font-size:11px;opacity:.85;transition:transform .2s ease}
 .qct-signature:hover{border-color:var(--gold);color:#f7ecdc;transform:translateY(-1px);box-shadow:0 10px 26px #00000099,0 0 20px #d8b78026}
 .qct-signature:hover .qct-arrow{transform:translate(2px,-2px);opacity:1}
+.tiktok-real-logo{width:20px;height:20px;flex-shrink:0;display:inline-block;vertical-align:middle;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45))}
+.tiktok-logo-btn{padding:10px 18px;min-width:52px;min-height:46px;display:inline-flex;align-items:center;justify-content:center}
+.tiktok-logo-btn .tiktok-real-logo{width:22px;height:22px}
+.tiktok-link{display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.tiktok-inline{display:inline-flex;align-items:center;gap:8px}
+.tiktok-inline-link{display:inline-flex;align-items:center;gap:7px;text-decoration:none}
 dialog:modal{overscroll-behavior:contain}
 dialog::backdrop{overflow:hidden;overscroll-behavior:contain;background:rgba(5,5,9,.78);backdrop-filter:blur(8px)}
 .exit-dialog{border:0;padding:0;background:transparent;color:#f6ecdc;max-width:580px;width:calc(100vw - 28px);margin:auto;overflow:visible}
@@ -1038,190 +1045,100 @@ body:has(#cookie-consent-banner:not([hidden])) .scroll-top-btn{bottom:108px}
 
 const clientInteractiveScript = `
 (() => {
-  const drawer = document.getElementById('mobile-drawer');
-  const openBtn = document.querySelector('[data-open-drawer]');
+  const LANG_SCROLL_KEY = 'mythborn_lang_scroll';
+  let restoredFromLangNav = false;
+  try {
+    const raw = sessionStorage.getItem(LANG_SCROLL_KEY);
+    if (raw) {
+      sessionStorage.removeItem(LANG_SCROLL_KEY);
+      const saved = JSON.parse(raw);
+      if (saved && Date.now() - (saved.ts || 0) < 12000) {
+        restoredFromLangNav = true;
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        const applySavedScroll = () => {
+          document.documentElement.style.scrollBehavior = 'auto';
+          if (saved.inFooter && typeof saved.footerTop === 'number') {
+            const fm = document.querySelector('.footer-meta');
+            if (fm) {
+              const curY = window.pageYOffset || document.documentElement.scrollTop || 0;
+              window.scrollTo(0, Math.max(0, curY + (fm.getBoundingClientRect().top - saved.footerTop)));
+              return;
+            }
+          }
+          window.scrollTo(0, saved.y || 0);
+        };
+        applySavedScroll();
+        requestAnimationFrame(() => {
+          applySavedScroll();
+          document.documentElement.style.scrollBehavior = '';
+        });
+      }
+    }
+  } catch {}
+
+  let scrollIdleTimer = null;
+  const getScrollY = () => window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  const handleScrollActivity = () => {
+    const scrollTopBtn = document.getElementById('scroll-top-btn');
+    if (!scrollTopBtn) return;
+    if (getScrollY() > 110) {
+      scrollTopBtn.classList.add('is-visible');
+      if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
+      scrollIdleTimer = setTimeout(() => {
+        scrollTopBtn.classList.remove('is-visible');
+      }, 1800);
+    } else {
+      scrollTopBtn.classList.remove('is-visible');
+      if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
+    }
+  };
+  window.addEventListener('scroll', handleScrollActivity, { passive: true });
+  document.addEventListener('scroll', handleScrollActivity, { passive: true });
+  window.addEventListener('touchmove', handleScrollActivity, { passive: true });
+  window.addEventListener('touchend', handleScrollActivity, { passive: true });
+
   const setDrawer = (open) => {
+    const drawer = document.getElementById('mobile-drawer');
+    const openBtn = document.querySelector('[data-open-drawer]');
     if (!drawer) return;
     drawer.classList.toggle('is-open', open);
     drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
     document.body.classList.toggle('drawer-open', open);
     if (openBtn) openBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
   };
-  if (openBtn) openBtn.addEventListener('click', () => setDrawer(true));
-  document.querySelectorAll('[data-close-drawer]').forEach((el) => el.addEventListener('click', () => setDrawer(false)));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setDrawer(false);
   });
 
-  const scrollTopBtn = document.getElementById('scroll-top-btn');
-  if (scrollTopBtn) {
-    let scrollIdleTimer = null;
-    const getScrollY = () => window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    const handleScrollActivity = () => {
-      if (getScrollY() > 110) {
-        scrollTopBtn.classList.add('is-visible');
-        if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
-        scrollIdleTimer = setTimeout(() => {
-          scrollTopBtn.classList.remove('is-visible');
-        }, 1800);
-      } else {
-        scrollTopBtn.classList.remove('is-visible');
-        if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
-      }
-    };
-    window.addEventListener('scroll', handleScrollActivity, { passive: true });
-    document.addEventListener('scroll', handleScrollActivity, { passive: true });
-    window.addEventListener('touchmove', handleScrollActivity, { passive: true });
-    window.addEventListener('touchend', handleScrollActivity, { passive: true });
-    scrollTopBtn.addEventListener('click', () => {
-      if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
-      scrollTopBtn.classList.remove('is-visible');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  const cookieBanner = document.getElementById('cookie-consent-banner');
-  const COOKIE_KEY = 'mythborn_cookie_consent_v2';
-  if (cookieBanner) {
-    let savedChoice = null;
+  const EXIT_KEY = 'mythborn_exit_intent_shown';
+  let exitReady = false;
+  setTimeout(() => {
+    exitReady = true;
+  }, 4500);
+  const openExitDialog = () => {
+    const exitDialog = document.getElementById('exit-intent-dialog');
+    if (!exitReady || !exitDialog || exitDialog.open || typeof exitDialog.showModal !== 'function') return;
     try {
-      savedChoice = localStorage.getItem(COOKIE_KEY);
+      if (sessionStorage.getItem(EXIT_KEY) === '1') return;
+      sessionStorage.setItem(EXIT_KEY, '1');
     } catch {}
-    if (!savedChoice && document.cookie.includes('mythborn_cookie_consent_v2=')) {
-      savedChoice = 'accepted';
+    try {
+      exitDialog.showModal();
+    } catch {}
+  };
+  document.addEventListener('mouseout', (e) => {
+    if (e.clientY <= 10 && !e.relatedTarget) {
+      openExitDialog();
     }
-    if (!savedChoice) {
-      cookieBanner.hidden = false;
+  });
+  let lastTouchScrollY = getScrollY();
+  window.addEventListener('scroll', () => {
+    const currentY = getScrollY();
+    if (lastTouchScrollY > 480 && lastTouchScrollY - currentY > 115) {
+      openExitDialog();
     }
-    const saveCookieChoice = (choice) => {
-      try {
-        localStorage.setItem(COOKIE_KEY, choice);
-      } catch {}
-      document.cookie = 'mythborn_cookie_consent_v2=' + encodeURIComponent(choice) + '; Path=/; Max-Age=31536000; SameSite=Lax; Secure';
-      cookieBanner.hidden = true;
-    };
-    cookieBanner.querySelectorAll('[data-cookie-choice]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        saveCookieChoice(btn.getAttribute('data-cookie-choice') || 'essential');
-      });
-    });
-    document.querySelectorAll('[data-open-cookie-banner]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        cookieBanner.hidden = false;
-      });
-    });
-  }
-
-  const videoToast = document.getElementById('video-promo-toast');
-  const currentPath = (window.location.pathname || '').toLowerCase();
-  if (videoToast && !currentPath.includes('/videolar') && !currentPath.includes('/videos')) {
-    const hideVideoToast = () => {
-      videoToast.classList.remove('is-active');
-      if (typeof videoToast.hidePopover === 'function') {
-        try {
-          videoToast.hidePopover();
-        } catch {}
-      }
-      setTimeout(() => {
-        videoToast.hidden = true;
-      }, 340);
-    };
-    setTimeout(() => {
-      videoToast.hidden = false;
-      if (typeof videoToast.showPopover === 'function') {
-        try {
-          videoToast.showPopover();
-        } catch {}
-      }
-      requestAnimationFrame(() => videoToast.classList.add('is-active'));
-      setTimeout(hideVideoToast, 8500);
-    }, 1000);
-    videoToast.querySelectorAll('[data-close-video-toast], a').forEach((el) => {
-      el.addEventListener('click', hideVideoToast);
-    });
-  }
-
-  const exitDialog = document.getElementById('exit-intent-dialog');
-  if (exitDialog && typeof exitDialog.showModal === 'function') {
-    const EXIT_KEY = 'mythborn_exit_intent_shown';
-    let exitReady = false;
-    setTimeout(() => {
-      exitReady = true;
-    }, 4500);
-
-    if (!('closedBy' in HTMLDialogElement.prototype)) {
-      const outside = (e, dlg) => {
-        const r = dlg.getBoundingClientRect();
-        return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
-      };
-      let pressedOutside = false;
-      exitDialog.addEventListener('pointerdown', (e) => {
-        pressedOutside = outside(e, exitDialog);
-      });
-      exitDialog.addEventListener('pointerup', (e) => {
-        if (pressedOutside && outside(e, exitDialog)) exitDialog.close();
-      });
-    }
-
-    const openExitDialog = () => {
-      if (!exitReady || exitDialog.open) return;
-      try {
-        if (sessionStorage.getItem(EXIT_KEY) === '1') return;
-        sessionStorage.setItem(EXIT_KEY, '1');
-      } catch {}
-      try {
-        exitDialog.showModal();
-      } catch {}
-    };
-
-    document.addEventListener('mouseout', (e) => {
-      if (e.clientY <= 10 && !e.relatedTarget) {
-        openExitDialog();
-      }
-    });
-
-    let lastTouchScrollY = window.pageYOffset || 0;
-    window.addEventListener('scroll', () => {
-      const currentY = window.pageYOffset || document.documentElement.scrollTop || 0;
-      if (lastTouchScrollY > 480 && lastTouchScrollY - currentY > 115) {
-        openExitDialog();
-      }
-      lastTouchScrollY = currentY;
-    }, { passive: true });
-
-    exitDialog.querySelectorAll('[data-exit-action]').forEach((el) => {
-      el.addEventListener('click', () => {
-        try {
-          exitDialog.close();
-        } catch {}
-      });
-    });
-  }
-
-  const zodiacFilterBtns = document.querySelectorAll('[data-zodiac-filter]');
-  if (zodiacFilterBtns.length) {
-    zodiacFilterBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-zodiac-filter') || 'all';
-        zodiacFilterBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
-        document.querySelectorAll('[data-zodiac-element]').forEach((card) => {
-          const el = card.getAttribute('data-zodiac-element');
-          card.hidden = !(filter === 'all' || el === filter);
-        });
-      });
-    });
-  }
-
-  try {
-    const params = new URLSearchParams(window.location.search);
-    const preTopic = params.get('topic');
-    const select = document.querySelector('#inquiry-topic');
-    if (preTopic && select) {
-      Array.from(select.options).forEach((opt) => {
-        if (opt.value.toLowerCase() === preTopic.toLowerCase()) select.value = opt.value;
-      });
-    }
-  } catch {}
+    lastTouchScrollY = currentY;
+  }, { passive: true });
 
   const dirtyState = new WeakMap();
   const syncAria = (el) => {
@@ -1244,95 +1161,284 @@ const clientInteractiveScript = `
     if (t.hasAttribute('aria-invalid')) syncAria(t);
   });
 
-  document.querySelectorAll('[data-select-topic]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const topic = btn.getAttribute('data-select-topic');
-      const select = document.querySelector('#inquiry-topic');
-      if (select && topic) select.value = topic;
-      document.querySelectorAll('.area-card').forEach((c) => c.classList.remove('is-selected'));
-      const card = btn.closest('.area-card');
-      if (card) card.classList.add('is-selected');
-      const formSection = document.querySelector('#iletisim');
-      if (formSection) formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      const nameInput = document.querySelector('#inquiry-name');
-      if (nameInput) setTimeout(() => nameInput.focus({ preventScroll: true }), 350);
-    });
-  });
+  const initPageElements = (isLangSwap) => {
+    const openBtn = document.querySelector('[data-open-drawer]');
+    if (openBtn) openBtn.addEventListener('click', () => setDrawer(true));
+    document.querySelectorAll('[data-close-drawer]').forEach((el) => el.addEventListener('click', () => setDrawer(false)));
 
-  const bindForm = (formId, endpoint) => {
-    const form = document.getElementById(formId);
-    if (!form) return;
-    const statusEl = form.querySelector('[data-form-status]');
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const defaultLabel = submitBtn ? submitBtn.textContent : '';
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!form.checkValidity()) {
-        Array.from(form.elements).forEach((el) => syncAria(el));
-        if (statusEl) {
-          statusEl.setAttribute('data-state', 'err');
-          statusEl.textContent = form.getAttribute('data-err-msg') || 'Error';
-        }
-        return;
+    const scrollTopBtn = document.getElementById('scroll-top-btn');
+    if (scrollTopBtn) {
+      scrollTopBtn.addEventListener('click', () => {
+        if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
+        scrollTopBtn.classList.remove('is-visible');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    const cookieBanner = document.getElementById('cookie-consent-banner');
+    const COOKIE_KEY = 'mythborn_cookie_consent_v2';
+    if (cookieBanner) {
+      let savedChoice = null;
+      try {
+        savedChoice = localStorage.getItem(COOKIE_KEY);
+      } catch {}
+      if (!savedChoice && document.cookie.includes('mythborn_cookie_consent_v2=')) {
+        savedChoice = 'accepted';
       }
-      const fd = new FormData(form);
-      const payload = Object.fromEntries(fd.entries());
-      if (formId === 'gozde-apply-form') {
-        payload.specialties = fd.getAll('specialties');
-        if (!payload.specialties.length) {
+      if (!savedChoice) {
+        cookieBanner.hidden = false;
+      }
+      const saveCookieChoice = (choice) => {
+        try {
+          localStorage.setItem(COOKIE_KEY, choice);
+        } catch {}
+        document.cookie = 'mythborn_cookie_consent_v2=' + encodeURIComponent(choice) + '; Path=/; Max-Age=31536000; SameSite=Lax; Secure';
+        cookieBanner.hidden = true;
+      };
+      cookieBanner.querySelectorAll('[data-cookie-choice]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          saveCookieChoice(btn.getAttribute('data-cookie-choice') || 'essential');
+        });
+      });
+      document.querySelectorAll('[data-open-cookie-banner]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          cookieBanner.hidden = false;
+        });
+      });
+    }
+
+    const videoToast = document.getElementById('video-promo-toast');
+    const currentPath = (window.location.pathname || '').toLowerCase();
+    if (videoToast && !isLangSwap && !restoredFromLangNav && !currentPath.includes('/videolar') && !currentPath.includes('/videos')) {
+      const hideVideoToast = () => {
+        videoToast.classList.remove('is-active');
+        if (typeof videoToast.hidePopover === 'function') {
+          try {
+            videoToast.hidePopover();
+          } catch {}
+        }
+        setTimeout(() => {
+          videoToast.hidden = true;
+        }, 340);
+      };
+      setTimeout(() => {
+        videoToast.hidden = false;
+        if (typeof videoToast.showPopover === 'function') {
+          try {
+            videoToast.showPopover();
+          } catch {}
+        }
+        requestAnimationFrame(() => videoToast.classList.add('is-active'));
+        setTimeout(hideVideoToast, 8500);
+      }, 1000);
+      videoToast.querySelectorAll('[data-close-video-toast], a').forEach((el) => {
+        el.addEventListener('click', hideVideoToast);
+      });
+    }
+
+    const exitDialog = document.getElementById('exit-intent-dialog');
+    if (exitDialog && typeof exitDialog.showModal === 'function') {
+      if (!('closedBy' in HTMLDialogElement.prototype)) {
+        const outside = (e, dlg) => {
+          const r = dlg.getBoundingClientRect();
+          return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+        };
+        let pressedOutside = false;
+        exitDialog.addEventListener('pointerdown', (e) => {
+          pressedOutside = outside(e, exitDialog);
+        });
+        exitDialog.addEventListener('pointerup', (e) => {
+          if (pressedOutside && outside(e, exitDialog)) exitDialog.close();
+        });
+      }
+      exitDialog.querySelectorAll('[data-exit-action]').forEach((el) => {
+        el.addEventListener('click', () => {
+          try {
+            exitDialog.close();
+          } catch {}
+        });
+      });
+    }
+
+    const zodiacFilterBtns = document.querySelectorAll('[data-zodiac-filter]');
+    if (zodiacFilterBtns.length) {
+      zodiacFilterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-zodiac-filter') || 'all';
+          zodiacFilterBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+          document.querySelectorAll('[data-zodiac-element]').forEach((card) => {
+            const el = card.getAttribute('data-zodiac-element');
+            card.hidden = !(filter === 'all' || el === filter);
+          });
+        });
+      });
+    }
+
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const preTopic = params.get('topic');
+      const select = document.querySelector('#inquiry-topic');
+      if (preTopic && select) {
+        Array.from(select.options).forEach((opt) => {
+          if (opt.value.toLowerCase() === preTopic.toLowerCase()) select.value = opt.value;
+        });
+      }
+    } catch {}
+
+    document.querySelectorAll('[data-select-topic]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const topic = btn.getAttribute('data-select-topic');
+        const select = document.querySelector('#inquiry-topic');
+        if (select && topic) select.value = topic;
+        document.querySelectorAll('.area-card').forEach((c) => c.classList.remove('is-selected'));
+        const card = btn.closest('.area-card');
+        if (card) card.classList.add('is-selected');
+        const formSection = document.querySelector('#iletisim');
+        if (formSection) formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const nameInput = document.querySelector('#inquiry-name');
+        if (nameInput) setTimeout(() => nameInput.focus({ preventScroll: true }), 350);
+      });
+    });
+
+    const bindForm = (formId, endpoint) => {
+      const form = document.getElementById(formId);
+      if (!form) return;
+      const statusEl = form.querySelector('[data-form-status]');
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const defaultLabel = submitBtn ? submitBtn.textContent : '';
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          Array.from(form.elements).forEach((el) => syncAria(el));
           if (statusEl) {
             statusEl.setAttribute('data-state', 'err');
             statusEl.textContent = form.getAttribute('data-err-msg') || 'Error';
           }
           return;
         }
-      }
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.textContent = form.getAttribute('data-sending-msg') || '...';
-      }
-      try {
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const data = await res.json().catch(() => ({}));
-        if (res.ok && data.ok) {
-          if (statusEl) {
-            statusEl.setAttribute('data-state', 'ok');
-            statusEl.textContent = form.getAttribute('data-ok-msg') || 'OK';
+        const fd = new FormData(form);
+        const payload = Object.fromEntries(fd.entries());
+        if (formId === 'gozde-apply-form') {
+          payload.specialties = fd.getAll('specialties');
+          if (!payload.specialties.length) {
+            if (statusEl) {
+              statusEl.setAttribute('data-state', 'err');
+              statusEl.textContent = form.getAttribute('data-err-msg') || 'Error';
+            }
+            return;
           }
-          form.reset();
-        } else {
+        }
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = form.getAttribute('data-sending-msg') || '...';
+        }
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.ok) {
+            if (statusEl) {
+              statusEl.setAttribute('data-state', 'ok');
+              statusEl.textContent = form.getAttribute('data-ok-msg') || 'OK';
+            }
+            form.reset();
+          } else {
+            if (statusEl) {
+              statusEl.setAttribute('data-state', 'err');
+              statusEl.textContent = data.error || form.getAttribute('data-err-msg') || 'Error';
+            }
+          }
+        } catch {
           if (statusEl) {
             statusEl.setAttribute('data-state', 'err');
-            statusEl.textContent = data.error || form.getAttribute('data-err-msg') || 'Error';
+            statusEl.textContent = form.getAttribute('data-err-msg') || 'Error';
+          }
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = defaultLabel;
           }
         }
-      } catch {
-        if (statusEl) {
-          statusEl.setAttribute('data-state', 'err');
-          statusEl.textContent = form.getAttribute('data-err-msg') || 'Error';
-        }
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = defaultLabel;
-        }
-      }
-    });
+      });
+    };
+
+    bindForm('gozde-inquiry-form', '/api/gozde-inquiry');
+    bindForm('gozde-apply-form', '/api/gozde-apply');
   };
 
-  bindForm('gozde-inquiry-form', '/api/gozde-inquiry');
-  bindForm('gozde-apply-form', '/api/gozde-apply');
+  document.addEventListener('click', async (e) => {
+    const langLink = e.target && e.target.closest ? e.target.closest('[data-lang-switch], .langs a, .drawer-langs a, .footer-langs a') : null;
+    if (!langLink || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const href = langLink.getAttribute('href');
+    if (!href) return;
+    e.preventDefault();
+    if (langLink.getAttribute('aria-current') === 'page') {
+      setDrawer(false);
+      return;
+    }
+    const savedY = getScrollY();
+    const inFooter = Boolean(langLink.closest('.footer-langs'));
+    const footerEl = document.querySelector('.footer-meta');
+    const footerTop = footerEl ? footerEl.getBoundingClientRect().top : null;
+    try {
+      sessionStorage.setItem(LANG_SCROLL_KEY, JSON.stringify({ y: savedY, inFooter, footerTop, ts: Date.now() }));
+    } catch {}
+    try {
+      const res = await fetch(href, { credentials: 'same-origin' });
+      if (!res.ok) {
+        window.location.href = href;
+        return;
+      }
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const newWrap = doc.querySelector('.wrap');
+      const curWrap = document.querySelector('.wrap');
+      if (!newWrap || !curWrap) {
+        window.location.href = href;
+        return;
+      }
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.documentElement.lang = doc.documentElement.lang || 'tr';
+      document.documentElement.dir = doc.documentElement.dir || 'ltr';
+      document.title = doc.title;
+      document.body.classList.remove('drawer-open');
+      curWrap.innerHTML = newWrap.innerHTML;
+      history.pushState({ langSwap: true }, '', href);
+      if (inFooter && typeof footerTop === 'number') {
+        const newFooter = document.querySelector('.footer-meta');
+        if (newFooter) {
+          const curY = getScrollY();
+          window.scrollTo(0, Math.max(0, curY + (newFooter.getBoundingClientRect().top - footerTop)));
+        } else {
+          window.scrollTo(0, savedY);
+        }
+      } else {
+        window.scrollTo(0, savedY);
+      }
+      lastTouchScrollY = getScrollY();
+      requestAnimationFrame(() => {
+        document.documentElement.style.scrollBehavior = '';
+      });
+      try {
+        sessionStorage.removeItem(LANG_SCROLL_KEY);
+      } catch {}
+      initPageElements(true);
+    } catch {
+      window.location.href = href;
+    }
+  });
+
+  initPageElements(false);
 })();
 `;
 
 const buildInquirySectionHtml = (locale, t) => {
   const r = ROUTE_MAP[locale];
   const u = EXTRA_UI[locale];
-  return `<section id="iletisim" class="section-block"><div class="inquiry-shell"><div class="copy"><p class="eyebrow">${safe(t.formEyebrow)}</p><h2 style="font:400 clamp(24px,2.4vw,34px)/1.18 Georgia,serif;margin:0 0 10px;color:#f8efe2">${safe(t.formTitle)}</h2><p class="sub" style="margin-bottom:18px">${safe(t.formSub)}</p><div class="pillar-card" style="margin-top:16px"><h3>${safe(t.lead)}</h3><p>${safe(u.deliveryText)}</p><div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px"><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${safe(t.social)} ↗</a><a class="cta-ghost" href="${r.kvkk}">${safe(u.kvkkNav)}</a></div></div></div><form id="gozde-inquiry-form" class="form-card" method="post" action="/api/gozde-inquiry" novalidate data-ok-msg="${safe(t.inquirySuccess)}" data-err-msg="${safe(t.inquiryError)}" data-sending-msg="${safe(t.submitting)}"><input type="hidden" name="locale" value="${locale}"><div class="form-row-2"><div class="field"><label for="inquiry-topic">${safe(t.labelTopic)}</label><select id="inquiry-topic" name="topic">${t.cats.map((c) => `<option value="${safe(c)}">${safe(c)}</option>`).join('')}</select></div><div class="field"><label for="inquiry-format">${safe(t.labelFormat)}</label><select id="inquiry-format" name="format">${t.formatOptions.map((f) => `<option value="${safe(f)}">${safe(f)}</option>`).join('')}</select></div></div><div class="field"><label for="inquiry-name">${safe(t.labelName)}</label><span id="inquiry-name-hint" class="hint">${safe(t.hintName)}</span><input id="inquiry-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name" aria-describedby="inquiry-name-hint"></div><div class="field"><label for="inquiry-contact">${safe(t.labelContact)}</label><span id="inquiry-contact-hint" class="hint">${safe(t.hintContact)}</span><input id="inquiry-contact" name="contact" type="text" required minlength="3" maxlength="140" aria-describedby="inquiry-contact-hint"></div><div class="field"><label for="inquiry-message">${safe(t.labelMessage)}</label><span id="inquiry-message-hint" class="hint">${safe(t.hintMessage)}</span><textarea id="inquiry-message" name="message" required minlength="10" maxlength="1200" aria-describedby="inquiry-message-hint"></textarea></div><label class="consent-row"><input type="checkbox" name="consent" value="yes" required><span>${safe(t.labelConsent)} (<a href="${r.kvkk}" style="color:var(--gold)">${safe(u.kvkkNav)}</a> · <a href="${r.privacy}" style="color:var(--gold)">${safe(u.privacyNav)}</a>)</span></label><p class="form-status" data-form-status role="status" aria-live="polite"></p><button type="submit" class="cta">${safe(t.submitInquiry)}</button></form></div></section>`;
+  return `<section id="iletisim" class="section-block"><div class="inquiry-shell"><div class="copy"><p class="eyebrow">${safe(t.formEyebrow)}</p><h2 style="font:400 clamp(24px,2.4vw,34px)/1.18 Georgia,serif;margin:0 0 10px;color:#f8efe2">${safe(t.formTitle)}</h2><p class="sub" style="margin-bottom:18px">${safe(t.formSub)}</p><div class="pillar-card" style="margin-top:16px"><h3>${safe(t.lead)}</h3><p>${safe(u.deliveryText)}</p><div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:10px"><a class="cta-ghost tiktok-link" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${TIKTOK_LOGO_SVG}<span>${safe(t.social)}</span><span aria-hidden="true">↗</span></a><a class="cta-ghost" href="${r.kvkk}">${safe(u.kvkkNav)}</a></div></div></div><form id="gozde-inquiry-form" class="form-card" method="post" action="/api/gozde-inquiry" novalidate data-ok-msg="${safe(t.inquirySuccess)}" data-err-msg="${safe(t.inquiryError)}" data-sending-msg="${safe(t.submitting)}"><input type="hidden" name="locale" value="${locale}"><div class="form-row-2"><div class="field"><label for="inquiry-topic">${safe(t.labelTopic)}</label><select id="inquiry-topic" name="topic">${t.cats.map((c) => `<option value="${safe(c)}">${safe(c)}</option>`).join('')}</select></div><div class="field"><label for="inquiry-format">${safe(t.labelFormat)}</label><select id="inquiry-format" name="format">${t.formatOptions.map((f) => `<option value="${safe(f)}">${safe(f)}</option>`).join('')}</select></div></div><div class="field"><label for="inquiry-name">${safe(t.labelName)}</label><span id="inquiry-name-hint" class="hint">${safe(t.hintName)}</span><input id="inquiry-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name" aria-describedby="inquiry-name-hint"></div><div class="field"><label for="inquiry-contact">${safe(t.labelContact)}</label><span id="inquiry-contact-hint" class="hint">${safe(t.hintContact)}</span><input id="inquiry-contact" name="contact" type="text" required minlength="3" maxlength="140" aria-describedby="inquiry-contact-hint"></div><div class="field"><label for="inquiry-message">${safe(t.labelMessage)}</label><span id="inquiry-message-hint" class="hint">${safe(t.hintMessage)}</span><textarea id="inquiry-message" name="message" required minlength="10" maxlength="1200" aria-describedby="inquiry-message-hint"></textarea></div><label class="consent-row"><input type="checkbox" name="consent" value="yes" required><span>${safe(t.labelConsent)} (<a href="${r.kvkk}" style="color:var(--gold)">${safe(u.kvkkNav)}</a> · <a href="${r.privacy}" style="color:var(--gold)">${safe(u.privacyNav)}</a>)</span></label><p class="form-status" data-form-status role="status" aria-live="polite"></p><button type="submit" class="cta">${safe(t.submitInquiry)}</button></form></div></section>`;
 };
 
 export const gozdeApplyPage = (pathname = '/yorumcu-basvuru') => {
@@ -1375,7 +1481,7 @@ export const gozdeApplyPage = (pathname = '/yorumcu-basvuru') => {
       }
     ]
   };
-  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="author" content="Gözde — MYTHBORN"><meta name="keywords" content="${safe(t.keywords)}"><meta name="description" content="${safe(a.sub)}"><title>MYTHBORN | ${safe(a.title)} — ${safe(t.lead)}</title><link rel="canonical" href="${canonicalUrl}">${Object.entries(langs).map(([, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${v[3]}">`).join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co/yorumcu-basvuru"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsHref}" title="LLM Context"><link rel="help" href="https://mythborn.co/ai-fact-sheet.txt"><meta property="og:type" content="website"><meta property="og:site_name" content="MYTHBORN"><meta property="og:locale" content="${ogLocale}"><meta property="og:url" content="${canonicalUrl}"><meta property="og:title" content="MYTHBORN · ${safe(a.title)}"><meta property="og:description" content="${safe(a.sub)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:secure_url" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:type" content="image/webp"><meta property="og:image:width" content="1536"><meta property="og:image:height" content="1024"><meta property="og:image:alt" content="${safe(t.lead)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MYTHBORN · ${safe(a.title)}"><meta name="twitter:description" content="${safe(a.sub)}"><meta name="twitter:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap">${renderHeaderAndDrawer({ locale, t, langs, activeType: 'apply', langHrefFn: (k) => langs[k][3] })}<main><section class="section-block" style="padding-top:28px"><div class="inquiry-shell"><div class="copy"><span class="live-pill"><span class="live-dot" aria-hidden="true"></span><span>${safe(t.lead)}</span></span><p class="eyebrow">${safe(a.eyebrow)}</p><h1 class="title" style="font-size:clamp(30px,3.4vw,46px)">${safe(a.title)}</h1><p class="sub">${safe(a.sub)}</p><figure style="margin:20px 0;border-radius:18px;overflow:hidden;border:1px solid var(--border);max-height:290px"><img src="/images/gozde-salon-portrait.jpg" width="1200" height="800" alt="${safe(t.lead)}" fetchpriority="high" style="width:100%;height:290px;object-fit:cover;object-position:center 28%;display:block"></figure><div style="display:flex;flex-direction:column;gap:12px">${a.criteria.map(([ct, cd]) => `<div class="pillar-card" style="padding:16px 18px"><h3>${safe(ct)}</h3><p>${safe(cd)}</p></div>`).join('')}</div></div><form id="gozde-apply-form" class="form-card" method="post" action="/api/gozde-apply" novalidate data-ok-msg="${safe(a.success)}" data-err-msg="${safe(a.error)}" data-sending-msg="${safe(t.submitting)}"><input type="hidden" name="locale" value="${locale}"><div><h2 style="font:400 26px/1.2 Georgia,serif;margin:0 0 6px;color:#f8efe2">${safe(a.formTitle)}</h2><p style="margin:0;color:var(--muted);font-size:13.5px">${safe(a.formSub)}</p></div><div class="field"><label for="apply-name">${safe(a.fullName)}</label><span id="apply-name-hint" class="hint">${safe(a.hintFullName)}</span><input id="apply-name" name="fullName" type="text" required minlength="2" maxlength="120" autocomplete="name" aria-describedby="apply-name-hint"></div><div class="field"><label for="apply-email">${safe(a.email)}</label><span id="apply-email-hint" class="hint">${safe(a.hintEmail)}</span><input id="apply-email" name="email" type="email" required autocomplete="email" aria-describedby="apply-email-hint" aria-errormessage="apply-email-err"><div id="apply-email-err" class="error-msg">${safe(a.errEmail)}</div></div><div class="field"><label for="apply-phone">${safe(a.phone)}</label><span id="apply-phone-hint" class="hint">${safe(a.hintPhone)}</span><input id="apply-phone" name="phone" type="tel" inputmode="tel" required minlength="7" maxlength="40" autocomplete="tel" aria-describedby="apply-phone-hint" aria-errormessage="apply-phone-err"><div id="apply-phone-err" class="error-msg">${safe(a.errPhone)}</div></div><fieldset class="field" style="border:0;padding:0;margin:0"><legend>${safe(a.specialties)}</legend><div class="specialty-grid">${t.cats.map((c) => `<label class="check-pill"><input type="checkbox" name="specialties" value="${safe(c)}"><span>${safe(c)}</span></label>`).join('')}</div></fieldset><div class="form-row-2"><div class="field"><label for="apply-exp">${safe(a.experience)}</label><select id="apply-exp" name="experience">${a.expOptions.map((o) => `<option value="${safe(o)}">${safe(o)}</option>`).join('')}</select></div><div class="field"><label for="apply-mod">${safe(a.modality)}</label><select id="apply-mod" name="modality">${a.modOptions.map((o) => `<option value="${safe(o)}">${safe(o)}</option>`).join('')}</select></div></div><div class="field"><label for="apply-langs">${safe(a.languages)}</label><span id="apply-langs-hint" class="hint">${safe(a.hintLanguages)}</span><input id="apply-langs" name="languages" type="text" required minlength="2" maxlength="120" aria-describedby="apply-langs-hint"></div><div class="field"><label for="apply-social">${safe(a.social)}</label><span id="apply-social-hint" class="hint">${safe(a.hintSocial)}</span><input id="apply-social" name="social" type="text" maxlength="180" aria-describedby="apply-social-hint"></div><div class="field"><label for="apply-bio">${safe(a.bio)}</label><span id="apply-bio-hint" class="hint">${safe(a.hintBio)}</span><textarea id="apply-bio" name="bio" required minlength="25" maxlength="1500" aria-describedby="apply-bio-hint" aria-errormessage="apply-bio-err"></textarea><div id="apply-bio-err" class="error-msg">${safe(a.errBio)}</div></div><label class="consent-row"><input type="checkbox" name="consent" value="yes" required><span>${safe(a.consent)} (<a href="${r.kvkk}" style="color:var(--gold)">${safe(u.kvkkNav)}</a>)</span></label><p class="form-status" data-form-status role="status" aria-live="polite"></p><button type="submit" class="cta">${safe(a.submit)}</button></form></div></section></main>${renderFooter({ locale, t })}</div><script>${clientInteractiveScript}</script></body></html>`;
+  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="author" content="Gözde — MYTHBORN"><meta name="keywords" content="${safe(t.keywords)}"><meta name="description" content="${safe(a.sub)}"><title>MYTHBORN | ${safe(a.title)} — ${safe(t.lead)}</title><link rel="canonical" href="${canonicalUrl}">${Object.entries(langs).map(([, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${v[3]}">`).join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co/yorumcu-basvuru"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsHref}" title="LLM Context"><link rel="help" href="https://mythborn.co/ai-fact-sheet.txt"><meta property="og:type" content="website"><meta property="og:site_name" content="MYTHBORN"><meta property="og:locale" content="${ogLocale}"><meta property="og:url" content="${canonicalUrl}"><meta property="og:title" content="MYTHBORN · ${safe(a.title)}"><meta property="og:description" content="${safe(a.sub)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:secure_url" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:type" content="image/webp"><meta property="og:image:width" content="1536"><meta property="og:image:height" content="1024"><meta property="og:image:alt" content="${safe(t.lead)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MYTHBORN · ${safe(a.title)}"><meta name="twitter:description" content="${safe(a.sub)}"><meta name="twitter:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap">${renderHeaderAndDrawer({ locale, t, langs, activeType: 'apply', langHrefFn: (k) => langs[k][3] })}<main><section class="section-block" style="padding-top:28px"><div class="inquiry-shell"><div class="copy"><span class="live-pill"><span class="live-dot" aria-hidden="true"></span><span>${safe(t.lead)}</span></span><p class="eyebrow">${safe(a.eyebrow)}</p><h1 class="title" style="font-size:clamp(30px,3.4vw,46px)">${safe(a.title)}</h1><p class="sub">${safe(a.sub)}</p><figure style="margin:20px 0;border-radius:18px;overflow:hidden;border:1px solid var(--border);max-height:290px"><img src="/images/gozde-salon-portrait.jpg" width="1200" height="800" alt="${safe(t.lead)}" fetchpriority="high" style="width:100%;height:290px;object-fit:cover;object-position:center 28%;display:block"></figure><div style="display:flex;flex-direction:column;gap:12px">${a.criteria.map(([ct, cd]) => `<div class="pillar-card" style="padding:16px 18px"><h3>${safe(ct)}</h3><p>${safe(cd)}</p></div>`).join('')}</div></div><form id="gozde-apply-form" class="form-card" method="post" action="/api/gozde-apply" novalidate data-ok-msg="${safe(a.success)}" data-err-msg="${safe(a.error)}" data-sending-msg="${safe(t.submitting)}"><input type="hidden" name="locale" value="${locale}"><div><h2 style="font:400 26px/1.2 Georgia,serif;margin:0 0 6px;color:#f8efe2">${safe(a.formTitle)}</h2><p style="margin:0;color:var(--muted);font-size:13.5px">${safe(a.formSub)}</p></div><div class="field"><label for="apply-name">${safe(a.fullName)}</label><span id="apply-name-hint" class="hint">${safe(a.hintFullName)}</span><input id="apply-name" name="fullName" type="text" required minlength="2" maxlength="120" autocomplete="name" aria-describedby="apply-name-hint"></div><div class="field"><label for="apply-email">${safe(a.email)}</label><span id="apply-email-hint" class="hint">${safe(a.hintEmail)}</span><input id="apply-email" name="email" type="email" required autocomplete="email" aria-describedby="apply-email-hint" aria-errormessage="apply-email-err"><div id="apply-email-err" class="error-msg">${safe(a.errEmail)}</div></div><div class="field"><label for="apply-phone">${safe(a.phone)}</label><span id="apply-phone-hint" class="hint">${safe(a.hintPhone)}</span><input id="apply-phone" name="phone" type="tel" inputmode="tel" required minlength="7" maxlength="40" autocomplete="tel" aria-describedby="apply-phone-hint" aria-errormessage="apply-phone-err"><div id="apply-phone-err" class="error-msg">${safe(a.errPhone)}</div></div><fieldset class="field" style="border:0;padding:0;margin:0"><legend>${safe(a.specialties)}</legend><div class="specialty-grid">${t.cats.map((c) => `<label class="check-pill"><input type="checkbox" name="specialties" value="${safe(c)}"><span>${safe(c)}</span></label>`).join('')}</div></fieldset><div class="form-row-2"><div class="field"><label for="apply-exp">${safe(a.experience)}</label><select id="apply-exp" name="experience">${a.expOptions.map((o) => `<option value="${safe(o)}">${safe(o)}</option>`).join('')}</select></div><div class="field"><label for="apply-mod">${safe(a.modality)}</label><select id="apply-mod" name="modality">${a.modOptions.map((o) => `<option value="${safe(o)}">${safe(o)}</option>`).join('')}</select></div></div><div class="field"><label for="apply-langs">${safe(a.languages)}</label><span id="apply-langs-hint" class="hint">${safe(a.hintLanguages)}</span><input id="apply-langs" name="languages" type="text" required minlength="2" maxlength="120" aria-describedby="apply-langs-hint"></div><div class="field"><label for="apply-social">${safe(a.social)}</label><span id="apply-social-hint" class="hint">${safe(a.hintSocial)}</span><input id="apply-social" name="social" type="text" maxlength="180" aria-describedby="apply-social-hint"></div><div class="field"><label for="apply-bio">${safe(a.bio)}</label><span id="apply-bio-hint" class="hint">${safe(a.hintBio)}</span><textarea id="apply-bio" name="bio" required minlength="25" maxlength="1500" aria-describedby="apply-bio-hint" aria-errormessage="apply-bio-err"></textarea><div id="apply-bio-err" class="error-msg">${safe(a.errBio)}</div></div><label class="consent-row"><input type="checkbox" name="consent" value="yes" required><span>${safe(a.consent)} (<a href="${r.kvkk}" style="color:var(--gold)">${safe(u.kvkkNav)}</a>)</span></label><p class="form-status" data-form-status role="status" aria-live="polite"></p><button type="submit" class="cta">${safe(a.submit)}</button></form></div></section></main>${renderFooter({ locale, t, activeType: 'apply', langHrefFn: (k) => langs[k][3] })}</div><script>${clientInteractiveScript}</script></body></html>`;
 };
 
 export const gozdeLanding = (pathname = '/') => {
@@ -1473,7 +1579,7 @@ export const gozdeLanding = (pathname = '/') => {
       }
     ]
   };
-  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="author" content="Gözde — MYTHBORN"><meta name="keywords" content="${safe(t.keywords)}"><meta name="description" content="${safe(t.sub)}"><title>MYTHBORN | ${safe(t.lead)} — ${safe(t.heading)}</title><link rel="canonical" href="${canonicalUrl}">${Object.entries(langs).map(([, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${v[0]}">`).join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co/"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsHref}" title="LLM Context"><link rel="help" href="https://mythborn.co/ai-fact-sheet.txt"><meta property="og:type" content="website"><meta property="og:site_name" content="MYTHBORN"><meta property="og:locale" content="${ogLocale}"><meta property="og:url" content="${canonicalUrl}"><meta property="og:title" content="MYTHBORN · ${safe(t.lead)}"><meta property="og:description" content="${safe(t.sub)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:secure_url" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:type" content="image/webp"><meta property="og:image:width" content="1536"><meta property="og:image:height" content="1024"><meta property="og:image:alt" content="${safe(t.lead)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MYTHBORN · ${safe(t.lead)}"><meta name="twitter:description" content="${safe(t.sub)}"><meta name="twitter:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap">${renderHeaderAndDrawer({ locale, t, langs, activeType: 'home', langHrefFn: (k) => langs[k][0] })}<div class="hero-stage"><main class="main"><figure class="photo"><img src="/images/gozde-tarot-hero.webp" width="1536" height="1024" alt="${safe(t.lead)}" fetchpriority="high"><figcaption>GÖZDE</figcaption></figure><section class="copy"><div class="live-pill"><span class="live-dot" aria-hidden="true"></span><span>${safe(t.badge)}</span></div><p class="eyebrow">${safe(t.lead)}</p><h1 class="title">${safe(t.heading)}</h1><span class="title-em">${safe(t.headingEm)}</span><p class="sub">${safe(t.sub)}</p><div class="hero-actions"><a class="cta" href="#alanlar">${safe(t.ctaPrimary)} <span aria-hidden="true">→</span></a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${safe(t.social)} <span aria-hidden="true">↗</span></a></div></section><div class="trust-bar">${t.trustStrip.map(([title, desc]) => `<div class="trust-item"><strong>${safe(title)}</strong><span>${safe(desc)}</span></div>`).join('')}</div><div class="chips" aria-label="${safe(categoryLabels[locale])}">${t.cats.map((c) => `<a href="#alanlar">${safe(c)}</a>`).join('')}</div></main></div>${renderVideoSpotlightSection({ locale })}<section id="alanlar" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.areasEyebrow)}</p><h2>${safe(t.areasTitle)}</h2><p>${safe(t.areasSub)}</p></div><div class="areas-grid">${t.catDetails.map(([tag, name, desc], idx) => `<article class="area-card"><div><div class="area-top"><span class="area-icon" aria-hidden="true">${ICONS[idx] || '✧'}</span><span class="area-tag">${safe(tag)}</span></div><h3>${safe(name)}</h3><p>${safe(desc)}</p><div class="area-formats">${t.formats.map((f) => `<small>${safe(f)}</small>`).join('')}</div></div><button type="button" class="area-btn" data-select-topic="${safe(name)}">${safe(t.selectBtn)}</button></article>`).join('')}</div></section><section id="yaklasim" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.processEyebrow)}</p><h2>${safe(t.processTitle)}</h2><p>${safe(t.processSub)}</p></div><div class="process-grid">${t.steps.map(([title, desc]) => `<article class="step-card"><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div><div class="process-grid">${t.pillars.map(([title, desc]) => `<article class="pillar-card"><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div></section>${renderBlogPreviewSection({ locale })}${buildInquirySectionHtml(locale, t)}<section id="sss" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.faqEyebrow)}</p><h2>${safe(t.faqTitle)}</h2><p>${safe(t.faqSub)}</p></div><dl class="aeo-dl">${t.aeoFacts.map(([dt, dd]) => `<div class="aeo-fact"><dt>✦ ${safe(dt)}</dt><dd>${safe(dd)}</dd></div>`).join('')}</dl><div class="faq-list">${t.faqs.map(([q, ans], idx) => `<details class="faq-item" name="mythborn-faq"${idx === 0 ? ' open' : ''}><summary>${safe(q)}</summary><p>${safe(ans)}</p></details>`).join('')}</div><div class="recruit-banner"><div class="recruit-copy"><p class="eyebrow" style="margin-bottom:4px">${safe(t.recruitEyebrow)}</p><h3>${safe(t.recruitTitle)}</h3><p>${safe(t.recruitSub)}</p></div><a class="cta" href="${applyHref}">${safe(t.recruitCta)}</a></div></section>${renderFooter({ locale, t })}</div><script>${clientInteractiveScript}</script></body></html>`;
+  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="author" content="Gözde — MYTHBORN"><meta name="keywords" content="${safe(t.keywords)}"><meta name="description" content="${safe(t.sub)}"><title>MYTHBORN | ${safe(t.lead)} — ${safe(t.heading)}</title><link rel="canonical" href="${canonicalUrl}">${Object.entries(langs).map(([, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${v[0]}">`).join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co/"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsHref}" title="LLM Context"><link rel="help" href="https://mythborn.co/ai-fact-sheet.txt"><meta property="og:type" content="website"><meta property="og:site_name" content="MYTHBORN"><meta property="og:locale" content="${ogLocale}"><meta property="og:url" content="${canonicalUrl}"><meta property="og:title" content="MYTHBORN · ${safe(t.lead)}"><meta property="og:description" content="${safe(t.sub)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:secure_url" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:type" content="image/webp"><meta property="og:image:width" content="1536"><meta property="og:image:height" content="1024"><meta property="og:image:alt" content="${safe(t.lead)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MYTHBORN · ${safe(t.lead)}"><meta name="twitter:description" content="${safe(t.sub)}"><meta name="twitter:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap">${renderHeaderAndDrawer({ locale, t, langs, activeType: 'home', langHrefFn: (k) => langs[k][0] })}<div class="hero-stage"><main class="main"><figure class="photo"><img src="/images/gozde-tarot-hero.webp" width="1536" height="1024" alt="${safe(t.lead)}" fetchpriority="high"><figcaption>GÖZDE</figcaption></figure><section class="copy"><div class="live-pill"><span class="live-dot" aria-hidden="true"></span><span>${safe(t.badge)}</span></div><p class="eyebrow">${safe(t.lead)}</p><h1 class="title">${safe(t.heading)}</h1><span class="title-em">${safe(t.headingEm)}</span><p class="sub">${safe(t.sub)}</p><div class="hero-actions"><a class="cta" href="#alanlar">${safe(t.ctaPrimary)} <span aria-hidden="true">→</span></a><a class="cta-ghost tiktok-link" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${TIKTOK_LOGO_SVG}<span>${safe(t.social)}</span> <span aria-hidden="true">↗</span></a></div></section><div class="trust-bar">${t.trustStrip.map(([title, desc]) => `<div class="trust-item"><strong>${safe(title)}</strong><span>${safe(desc)}</span></div>`).join('')}</div><div class="chips" aria-label="${safe(categoryLabels[locale])}">${t.cats.map((c) => `<a href="#alanlar">${safe(c)}</a>`).join('')}</div></main></div>${renderVideoSpotlightSection({ locale })}<section id="alanlar" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.areasEyebrow)}</p><h2>${safe(t.areasTitle)}</h2><p>${safe(t.areasSub)}</p></div><div class="areas-grid">${t.catDetails.map(([tag, name, desc], idx) => `<article class="area-card"><div><div class="area-top"><span class="area-icon" aria-hidden="true">${ICONS[idx] || '✧'}</span><span class="area-tag">${safe(tag)}</span></div><h3>${safe(name)}</h3><p>${safe(desc)}</p><div class="area-formats">${t.formats.map((f) => `<small>${safe(f)}</small>`).join('')}</div></div><button type="button" class="area-btn" data-select-topic="${safe(name)}">${safe(t.selectBtn)}</button></article>`).join('')}</div></section><section id="yaklasim" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.processEyebrow)}</p><h2>${safe(t.processTitle)}</h2><p>${safe(t.processSub)}</p></div><div class="process-grid">${t.steps.map(([title, desc]) => `<article class="step-card"><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div><div class="process-grid">${t.pillars.map(([title, desc]) => `<article class="pillar-card"><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div></section>${renderBlogPreviewSection({ locale })}${buildInquirySectionHtml(locale, t)}<section id="sss" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.faqEyebrow)}</p><h2>${safe(t.faqTitle)}</h2><p>${safe(t.faqSub)}</p></div><dl class="aeo-dl">${t.aeoFacts.map(([dt, dd]) => `<div class="aeo-fact"><dt>✦ ${safe(dt)}</dt><dd>${safe(dd)}</dd></div>`).join('')}</dl><div class="faq-list">${t.faqs.map(([q, ans], idx) => `<details class="faq-item" name="mythborn-faq"${idx === 0 ? ' open' : ''}><summary>${safe(q)}</summary><p>${safe(ans)}</p></details>`).join('')}</div><div class="recruit-banner"><div class="recruit-copy"><p class="eyebrow" style="margin-bottom:4px">${safe(t.recruitEyebrow)}</p><h3>${safe(t.recruitTitle)}</h3><p>${safe(t.recruitSub)}</p></div><a class="cta" href="${applyHref}">${safe(t.recruitCta)}</a></div></section>${renderFooter({ locale, t, activeType: 'home', langHrefFn: (k) => langs[k][0] })}</div><script>${clientInteractiveScript}</script></body></html>`;
 };
 
 export const handleGozdeApi = async (request, env) => {
