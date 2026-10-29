@@ -874,6 +874,9 @@ body.drawer-open{overflow:hidden}
 .footer-langs{display:flex;gap:8px;align-items:center}
 .footer-langs a{padding:6px 11px;border-radius:999px;border:1px solid #be9d6b38;background:#120f17;color:#d2c5b8;text-decoration:none;font:600 11px/1 system-ui,sans-serif;letter-spacing:.1em}
 .footer-langs a[aria-current=page],.footer-langs a:hover{border-color:var(--gold);background:#241b11;color:var(--gold-bright)}
+.scroll-top-btn{position:fixed;bottom:22px;inset-inline-end:22px;z-index:85;width:48px;height:48px;border-radius:50%;border:1px solid #d4ae75aa;background:rgba(18,14,22,.88);backdrop-filter:blur(10px);color:var(--gold-bright);display:grid;place-items:center;font:600 20px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 10px 28px rgba(0,0,0,.6);opacity:0;pointer-events:none;transform:translateY(10px) scale(.92);transition:opacity .26s ease,transform .26s ease,background .2s,border-color .2s}
+.scroll-top-btn.is-visible{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
+.scroll-top-btn:hover{background:var(--gold);color:#140e07;border-color:var(--gold-bright)}
 [dir=rtl] .title{letter-spacing:normal}
 [dir=rtl] .photo:after{background:linear-gradient(270deg,#050508f5 0%,#050508cc 35%,transparent 78%),linear-gradient(0deg,#08080a,transparent 45%)}
 @media(min-width:1100px){
@@ -947,6 +950,31 @@ const clientInteractiveScript = `
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setDrawer(false);
   });
+
+  const scrollTopBtn = document.getElementById('scroll-top-btn');
+  if (scrollTopBtn) {
+    let scrollIdleTimer = null;
+    const handleScrollActivity = () => {
+      if (window.scrollY > 220) {
+        scrollTopBtn.classList.add('is-visible');
+        if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
+        scrollIdleTimer = setTimeout(() => {
+          if (!scrollTopBtn.matches(':hover, :focus')) {
+            scrollTopBtn.classList.remove('is-visible');
+          }
+        }, 900);
+      } else {
+        scrollTopBtn.classList.remove('is-visible');
+        if (scrollIdleTimer) clearTimeout(scrollIdleTimer);
+      }
+    };
+    window.addEventListener('scroll', handleScrollActivity, { passive: true });
+    window.addEventListener('touchmove', handleScrollActivity, { passive: true });
+    scrollTopBtn.addEventListener('click', () => {
+      scrollTopBtn.classList.remove('is-visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   try {
     const params = new URLSearchParams(window.location.search);
