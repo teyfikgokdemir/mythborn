@@ -500,26 +500,92 @@ export const renderLegalSubpage = (ctx, legalKey) => {
 
 export const renderAdminFormsSubpage = (ctx) => {
   const { t, sharedStyles, clientInteractiveScript } = ctx;
-  const bodyHtml = `<section class="section-block" style="padding-top:32px"><div class="section-head"><p class="eyebrow">MYTHBORN · GELEN KUTUSU & YÖNETİM EKRANI</p><h1>Siteden Gelen Mesajlar ve Yorumcu Başvuruları</h1><p>Ziyaretçiler sitedeki <strong>Ön İletişim Formunu</strong> veya <strong>Yorumcu Başvuru Formunu</strong> doldurup gönderdiğinde tüm bilgiler otomatik olarak buraya düşer.</p></div><div id="admin-submissions-root" class="admin-grid"><div class="pillar-card"><h3>1. Danışan Ön İletişim & Randevu Talepleri</h3><div id="inquiries-list"><p>Yükleniyor…</p></div></div><div class="pillar-card"><h3>2. Falcı / Yorumcu Başvuruları</h3><div id="applications-list"><p>Yükleniyor…</p></div></div></div></section><script>
-  (async () => {
-    try {
-      const res = await fetch('/api/gozde-submissions');
-      const data = await res.json();
-      const inqEl = document.getElementById('inquiries-list');
-      const appEl = document.getElementById('applications-list');
-      const esc = (s) => String(s || '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-      if (inqEl) {
-        inqEl.innerHTML = (data.inquiries && data.inquiries.length)
-          ? data.inquiries.map(r => '<div style="padding:14px 0;border-bottom:1px solid #be9d6b38"><strong>' + esc(r.name) + '</strong> · <span style="color:#edd09e">' + esc(r.topic) + ' (' + esc(r.format) + ')</span><br><small style="color:#b5a799">İletişim: ' + esc(r.contact) + ' · ' + esc(r.created_at) + '</small><p style="margin:6px 0 0;color:#e2dad3">' + esc(r.message) + '</p></div>').join('')
-          : '<p>Henüz kayıtlı ön iletişim mesajı bulunmuyor.</p>';
+  const bodyHtml = `<section class="section-block" style="padding-top:32px"><div class="section-head"><p class="eyebrow">MYTHBORN · ŞİFRELİ YÖNETİM PANELİ</p><h1>Siteden Gelen Mesajlar ve Yorumcu Başvuruları</h1><p>Ziyaretçiler sitedeki <strong>Ön İletişim Formunu</strong> veya <strong>Yorumcu Başvuru Formunu</strong> doldurup gönderdiğinde tüm kayıtlar şifreli olarak burada listelenir.</p></div><div id="admin-login-card" class="form-card" style="max-width:480px;margin:0 auto 24px"><form id="admin-login-form" class="gozde-form" style="grid-template-columns:1fr"><div class="field full"><label for="admin-password">Yönetim Paneli Şifresi</label><input type="password" id="admin-password" name="password" autocomplete="current-password" enterkeyhint="done" placeholder="Şifrenizi girin…" required></div><div class="field full" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button type="submit" class="submit-btn">Panele Giriş Yap →</button><p id="admin-login-status" class="form-status" aria-live="polite" style="margin:0"></p></div></form></div><div id="admin-panel-wrapper" style="display:none"><div style="display:flex;justify-content:flex-end;gap:10px;margin-bottom:16px;flex-wrap:wrap"><button type="button" id="admin-refresh-btn" class="cta-ghost" style="min-height:40px;padding:8px 16px;cursor:pointer">Listeyi Yenile ↻</button><button type="button" id="admin-logout-btn" class="cta-ghost" style="min-height:40px;padding:8px 16px;cursor:pointer">Paneli Kilitle / Çıkış Yap</button></div><div id="admin-submissions-root" class="admin-grid"><div class="pillar-card"><h3>1. Danışan Ön İletişim & Randevu Talepleri</h3><div id="inquiries-list"><p>Yükleniyor…</p></div></div><div class="pillar-card"><h3>2. Falcı / Yorumcu Başvuruları</h3><div id="applications-list"><p>Yükleniyor…</p></div></div></div></div></section><script>
+  (() => {
+    const STORAGE_KEY = 'mythborn_admin_pass';
+    const loginCard = document.getElementById('admin-login-card');
+    const loginForm = document.getElementById('admin-login-form');
+    const passInput = document.getElementById('admin-password');
+    const statusEl = document.getElementById('admin-login-status');
+    const panelWrapper = document.getElementById('admin-panel-wrapper');
+    const refreshBtn = document.getElementById('admin-refresh-btn');
+    const logoutBtn = document.getElementById('admin-logout-btn');
+    const inqEl = document.getElementById('inquiries-list');
+    const appEl = document.getElementById('applications-list');
+    const esc = (s) => String(s || '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+    const loadSubmissions = async (password) => {
+      if (statusEl) {
+        statusEl.className = 'form-status';
+        statusEl.textContent = 'Kontrol ediliyor…';
       }
-      if (appEl) {
-        appEl.innerHTML = (data.applications && data.applications.length)
-          ? data.applications.map(r => '<div style="padding:14px 0;border-bottom:1px solid #be9d6b38"><strong>' + esc(r.full_name) + '</strong> · <span style="color:#edd09e">' + esc(r.experience) + ' · ' + esc(r.modality) + '</span><br><small style="color:#b5a799">' + esc(r.email) + ' · ' + esc(r.phone) + ' · Diller: ' + esc(r.languages) + '</small><p style="margin:6px 0 0;color:#e2dad3">' + esc(r.bio) + '</p></div>').join('')
-          : '<p>Henüz kayıtlı yorumcu başvurusu bulunmuyor.</p>';
+      try {
+        const res = await fetch('/api/gozde-submissions', {
+          headers: { 'x-admin-password': password }
+        });
+        const data = await res.json();
+        if (!res.ok || !data.ok) {
+          sessionStorage.removeItem(STORAGE_KEY);
+          if (statusEl) {
+            statusEl.className = 'form-status err';
+            statusEl.textContent = data.error || 'Hatalı şifre girdiniz.';
+          }
+          if (panelWrapper) panelWrapper.style.display = 'none';
+          if (loginCard) loginCard.style.display = 'block';
+          return false;
+        }
+        sessionStorage.setItem(STORAGE_KEY, password);
+        if (loginCard) loginCard.style.display = 'none';
+        if (panelWrapper) panelWrapper.style.display = 'block';
+        if (statusEl) statusEl.textContent = '';
+        if (inqEl) {
+          inqEl.innerHTML = (data.inquiries && data.inquiries.length)
+            ? data.inquiries.map(r => '<div style="padding:14px 0;border-bottom:1px solid #be9d6b38"><strong>' + esc(r.name) + '</strong> · <span style="color:#edd09e">' + esc(r.topic) + ' (' + esc(r.format) + ')</span><br><small style="color:#b5a799">İletişim: ' + esc(r.contact) + ' · ' + esc(r.created_at) + '</small><p style="margin:6px 0 0;color:#e2dad3">' + esc(r.message) + '</p></div>').join('')
+            : '<p>Henüz kayıtlı ön iletişim mesajı bulunmuyor.</p>';
+        }
+        if (appEl) {
+          appEl.innerHTML = (data.applications && data.applications.length)
+            ? data.applications.map(r => '<div style="padding:14px 0;border-bottom:1px solid #be9d6b38"><strong>' + esc(r.full_name) + '</strong> · <span style="color:#edd09e">' + esc(r.experience) + ' · ' + esc(r.modality) + '</span><br><small style="color:#b5a799">' + esc(r.email) + ' · ' + esc(r.phone) + ' · Diller: ' + esc(r.languages) + '</small><p style="margin:6px 0 0;color:#e2dad3">' + esc(r.bio) + '</p></div>').join('')
+            : '<p>Henüz kayıtlı yorumcu başvurusu bulunmuyor.</p>';
+        }
+        return true;
+      } catch {
+        if (statusEl) {
+          statusEl.className = 'form-status err';
+          statusEl.textContent = 'Bağlantı hatası oluştu, lütfen tekrar deneyin.';
+        }
+        return false;
       }
-    } catch {
-      // ignore
+    };
+
+    if (loginForm) {
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const pass = (passInput && passInput.value ? passInput.value : '').trim();
+        if (!pass) return;
+        await loadSubmissions(pass);
+      });
+    }
+
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', () => {
+        const saved = sessionStorage.getItem(STORAGE_KEY) || '';
+        if (saved) loadSubmissions(saved);
+      });
+    }
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        sessionStorage.removeItem(STORAGE_KEY);
+        if (passInput) passInput.value = '';
+        if (panelWrapper) panelWrapper.style.display = 'none';
+        if (loginCard) loginCard.style.display = 'block';
+      });
+    }
+
+    const savedPass = sessionStorage.getItem(STORAGE_KEY);
+    if (savedPass) {
+      loadSubmissions(savedPass);
     }
   })();
   </script>`;

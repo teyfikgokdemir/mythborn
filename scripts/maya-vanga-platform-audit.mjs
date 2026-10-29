@@ -183,4 +183,26 @@ assert.equal(goodApply.status,200);
 const goodApplyData=await goodApply.json();
 assert.equal(goodApplyData.ok,true);
 
+// Verify password protection on /yonetim/formlar and /api/gozde-submissions
+const adminPageRes=await worker.fetch(new Request('https://mythborn.co/yonetim/formlar'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(adminPageRes.status,200);
+const adminPageHtml=await adminPageRes.text();
+assert(adminPageHtml.includes('id="admin-login-form"'),'Admin page must include password login form');
+assert(adminPageHtml.includes('autocomplete="current-password"'),'Admin password input must use autocomplete="current-password"');
+
+const unauthSubRes=await worker.fetch(new Request('https://mythborn.co/api/gozde-submissions'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(unauthSubRes.status,401,'Unauthenticated /api/gozde-submissions must return 401');
+
+const wrongPassSubRes=await worker.fetch(new Request('https://mythborn.co/api/gozde-submissions',{
+  headers:{'x-admin-password':'wrong-password'}
+}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(wrongPassSubRes.status,401,'Wrong password on /api/gozde-submissions must return 401');
+
+const authSubRes=await worker.fetch(new Request('https://mythborn.co/api/gozde-submissions',{
+  headers:{'x-admin-password':'teyfikgokdemir'}
+}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(authSubRes.status,200,'Authenticated /api/gozde-submissions must return 200');
+const authSubData=await authSubRes.json();
+assert.equal(authSubData.ok,true);
+
 console.log('Gözde 5-language platform, reader application pages, and API audits passed.');

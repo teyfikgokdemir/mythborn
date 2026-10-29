@@ -1242,6 +1242,14 @@ export const gozdeLanding = (pathname = '/') => {
 export const handleGozdeApi = async (request, env) => {
   const url = new URL(request.url);
   if (url.pathname === '/api/gozde-submissions' && request.method === 'GET') {
+    const expectedPass = String(env?.GOZDE_ADMIN_PASSWORD || 'teyfikgokdemir');
+    const providedPass = String(request.headers.get('x-admin-password') || url.searchParams.get('key') || '').trim();
+    if (!providedPass || providedPass !== expectedPass) {
+      return new Response(JSON.stringify({ ok: false, error: 'Hatalı şifre veya yetkisiz erişim.' }), {
+        status: 401,
+        headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' }
+      });
+    }
     let inquiries = [];
     let applications = [];
     if (env?.DB && typeof env.DB.prepare === 'function') {
