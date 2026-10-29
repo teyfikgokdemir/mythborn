@@ -52,7 +52,7 @@ assert(responsiveHtml.includes('prefers-reduced-motion'), 'cultural shell must r
 
 const sitemap=await worker.fetch(new Request('https://mythborn.co/sitemap.xml'),env,{});
 const xml=await sitemap.text();
-for(const path of ['/ar','/hakkinda','/en/about','/gr/about','/es/about','/ar/about','/tarot-sembolizm','/ar/meditation-mindfulness'])assert(xml.includes(`https://mythborn.co${path}`),`sitemap missing ${path}`);
+for(const path of ['/ar','/hakkinda','/en/about','/gr/about','/es/about','/ar/about','/tarot-sembolizm','/ar/meditation-mindfulness','/yorumcu-basvuru','/en/apply','/gr/apply','/es/apply','/ar/apply'])assert(xml.includes(`https://mythborn.co${path}`),`sitemap missing ${path}`);
 console.log('Maya Vanga five-locale, SEO, RTL, and legal-gate audit passed.');
 
 // Temporary public splash gate is reversible and keeps all five locales.
@@ -82,6 +82,11 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert((html.match(/class="area-card"/g)||[]).length===8, `${path} must render all 8 service area cards`);
  assert(html.includes('id="gozde-inquiry-form"'));
  assert(html.includes('name="mythborn-faq"'));
+ assert(html.includes('class="aeo-dl"'));
+ assert(html.includes('SpeakableSpecification'));
+ assert(html.includes('#essential-paths'));
+ assert(html.includes('ai-fact-sheet.txt'));
+ assert(!html.includes('step-num'), `${path} must not render card numbers`);
  assert(!html.includes('Maya Vanga'));
  assert(!html.includes('gozde-landing'));
  assert(!/(?:price|fiyat|checkout|reservation|booking|payment|ödeme|mailto:|wa\.me)/i.test(html), `${path} must remain free of commercial/prohibited terms`);
@@ -96,6 +101,7 @@ for (const [applyPath,language] of [['/yorumcu-basvuru','tr'],['/en/apply','en']
  assert(html.includes(`lang="${language}"`));
  assert(html.includes('id="gozde-apply-form"'));
  assert(html.includes('hreflang="ar"'));
+ assert(html.includes('BreadcrumbList'));
  assert((html.match(/name="specialties"/g)||[]).length===8, `${applyPath} must include 8 specialty checkboxes`);
  assert(!/(?:price|fiyat|checkout|reservation|booking|payment|ödeme|mailto:|wa\.me)/i.test(html));
  if(language==='ar') assert(html.includes('dir="rtl"'));

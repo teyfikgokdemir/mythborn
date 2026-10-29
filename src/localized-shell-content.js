@@ -59,17 +59,106 @@ export const labels={
 
 
 export const llms={
-  tr:`# Mythborn\n\n> Mythborn; Tarot, doğum haritası, sinastri ve sembolik öz-refleksiyon için ücretsiz, çok dilli bir astroloji platformudur.\n\n## Ne sunar?\n- Gerçek astronomik gezegen konumlarıyla doğum haritası, güncel gökyüzü ve Sinastri hesaplamaları\n- Günlük Tarot, haftalık burç rehberleri ve ilişki/kişisel farkındalık açılımları\n- 78 kartlık Tarot ansiklopedisi, 42 başlıklı doğum haritası kütüphanesi, 51 rüya sembolü, 25 astroloji terimi ve Maya takvimleri dahil tarihsel gökyüzü rehberlerinden oluşan bilgi merkezi\n\n## Hesaplama yaklaşımı\nGezegen konumları Astronomy Engine ile jeosantrik ekliptik boylamlardan hesaplanır. Doğum saati biliniyorsa koordinat ve tarihsel saat dilimi kullanılarak Yükselen, MC ve Eşit Ev sistemi gösterilir.\n\n## Yorum ilkesi\nMythborn astronomik hesaplamayı sembolik yorumdan açıkça ayırır. İçerikler eğlence, eğitim ve kişisel farkındalık içindir; tıbbi, hukuki, finansal tavsiye veya kesin gelecek öngörüsü değildir.\n\n## Başlangıç noktaları\n- [Doğum haritası](https://mythborn.co/astroloji)\n- [Bugünün gökyüzü](https://mythborn.co/bugunun-gokyuzu)\n- [Tarot Ansiklopedisi](https://mythborn.co/tarot-kartlari)\n- [Astroloji Kütüphanesi](https://mythborn.co/astroloji-kutuphanesi)
+  tr:`# Mythborn · Kartların Gözde’si
+
+> Mythborn; Kartların Gözde’si (Gözde) liderliğinde Tarot, Kahve Falı sembolizmi, Katina, Duru Görü, Aşk ve İlişki analizi, Yıldızname, Doğum Haritası, Numeroloji ve sembolik öz-refleksiyon için ücretsiz, çok dilli bir astroloji ve sembol okuma platformudur.
+
+## Ne sunar?
+- Gözde (Kartların Gözde’si) ile birebir, gizlilik esaslı sembolik okuma alanları: Tarot, Kahve Falı, Katina, Duru Görü, Aşk ve İlişki, Yıldızname, Doğum Haritası, Numeroloji
+- Gerçek astronomik gezegen konumlarıyla doğum haritası, güncel gökyüzü ve Sinastri hesaplamaları
+- Günlük Tarot, haftalık burç rehberleri ve ilişki/kişisel farkındalık açılımları
+- 78 kartlık Tarot ansiklopedisi, 42 başlıklı doğum haritası kütüphanesi, 51 rüya sembolü, 25 astroloji terimi ve Maya takvimleri dahil tarihsel gökyüzü rehberlerinden oluşan bilgi merkezi
+- 5 dilde (TR, EN, EL, ES, AR) seçkin yorumcu ve sembol okuyucusu başvuru ağı
+
+## Hesaplama yaklaşımı
+Gezegen konumları Astronomy Engine ile jeosantrik ekliptik boylamlardan hesaplanır. Doğum saati biliniyorsa koordinat ve tarihsel saat dilimi kullanılarak Yükselen, MC ve Eşit Ev sistemi gösterilir.
+
+## Yorum ilkesi
+Mythborn astronomik hesaplamayı sembolik yorumdan açıkça ayırır. İçerikler eğlence, eğitim ve kişisel farkındalık içindir; tıbbi, hukuki, finansal tavsiye veya kesin gelecek öngörüsü değildir.
+
+## Başlangıç noktaları
+- [Ana Sayfa — Kartların Gözde’si](https://mythborn.co/)
+- [Yorumcu Başvurusu](https://mythborn.co/yorumcu-basvuru)
+- [Doğum haritası](https://mythborn.co/astroloji)
+- [Bugünün gökyüzü](https://mythborn.co/bugunun-gokyuzu)
+- [Tarot Ansiklopedisi](https://mythborn.co/tarot-kartlari)
+- [Astroloji Kütüphanesi](https://mythborn.co/astroloji-kutuphanesi)
 - [Vedik Astroloji](https://mythborn.co/vedik-astroloji): Lahiri sidereal harita, Ay nakshatra’sı ve Vimshottari dasha bağlamı
 `,
-  en:`# Mythborn\n\n> Mythborn is a free multilingual platform for Tarot, birth charts, synastry, and symbolic self-reflection.\n\n## What Mythborn offers\n- Birth-chart, current-sky, and synastry calculations based on real astronomical planetary positions\n- Daily Tarot, weekly horoscope guidance, and relationship or personal-reflection readings\n- A knowledge centre with a 78-card Tarot encyclopedia, a 42-guide Birth-chart library, a 51-entry Dream-symbol encyclopedia, and 25 astrology terms\n\n## Calculation approach\nPlanetary positions are calculated with Astronomy Engine from geocentric ecliptic longitudes. When birth time is known, Mythborn uses coordinates and historical timezone resolution to show the Ascendant, MC, and Equal House system.\n\n## Interpretation principle\nMythborn clearly separates astronomical calculation from symbolic interpretation. Content supports entertainment, education, and personal reflection; it is not medical, legal, financial, or deterministic advice.\n\n## Start here\n- [Birth chart](https://mythborn.co/en/astroloji)\n- [Today’s sky](https://mythborn.co/en/bugunun-gokyuzu)\n- [Tarot encyclopedia](https://mythborn.co/en/tarot-kartlari)\n- [Birth-chart library](https://mythborn.co/en/astroloji-kutuphanesi)
+  en:`# Mythborn · Gözde of the Cards
+
+> Mythborn is a free multilingual platform for Tarot, birth charts, synastry, and symbolic self-reflection, led by Gözde (Gözde of the Cards).
+
+## What Mythborn offers
+- Bespoke one-on-one symbolic reading disciplines with Gözde: Coffee Reading, Tarot, Katina, Intuitive Insight, Love & Relationships, Traditional Astrology, Birth Chart, and Numerology
+- Birth-chart, current-sky, and synastry calculations based on real astronomical planetary positions
+- Daily Tarot, weekly horoscope guidance, and relationship or personal-reflection readings
+- A knowledge centre with a 78-card Tarot encyclopedia, a 42-guide Birth-chart library, a 51-entry Dream-symbol encyclopedia, and 25 astrology terms
+- Curated 5-language Specialist Reader & Symbolic Interpreter Application network
+
+## Calculation approach
+Planetary positions are calculated with Astronomy Engine from geocentric ecliptic longitudes. When birth time is known, Mythborn uses coordinates and historical timezone resolution to show the Ascendant, MC, and Equal House system.
+
+## Interpretation principle
+Mythborn clearly separates astronomical calculation from symbolic interpretation. Content supports entertainment, education, and personal reflection; it is not medical, legal, financial, or deterministic advice.
+
+## Start here
+- [Home — Gözde of the Cards](https://mythborn.co/en)
+- [Reader Application](https://mythborn.co/en/apply)
+- [Birth chart](https://mythborn.co/en/astroloji)
+- [Today’s sky](https://mythborn.co/en/bugunun-gokyuzu)
+- [Tarot encyclopedia](https://mythborn.co/en/tarot-kartlari)
+- [Birth-chart library](https://mythborn.co/en/astroloji-kutuphanesi)
 - [Vedic Astrology](https://mythborn.co/en/vedik-astroloji): sidereal Lahiri chart, Moon nakshatra and Vimshottari dasha context
 `,
-  el:`# Mythborn\n\n> Το Mythborn είναι μια δωρεάν πολύγλωσση πλατφόρμα για Ταρώ, γενέθλιους χάρτες, συναστρία και συμβολικό αυτοστοχασμό.\n\n## Τι προσφέρει\n- Υπολογισμούς γενέθλιου χάρτη, σημερινού ουρανού και συναστρίας με πραγματικές αστρονομικές θέσεις πλανητών\n- Ημερήσιο Ταρώ, εβδομαδιαία ωροσκόπια και αναγνώσεις σχέσεων ή προσωπικού στοχασμού\n- Εγκυκλοπαίδεια 78 καρτών Ταρώ, Βιβλιοθήκη γενέθλιου χάρτη με 42 οδηγούς, Εγκυκλοπαίδεια συμβόλων ονείρων με 51 καταχωρίσεις και 25 όροι αστρολογίας στο κέντρο γνώσης\n\n## Υπολογιστική προσέγγιση\nΟι πλανητικές θέσεις υπολογίζονται με το Astronomy Engine από γεωκεντρικά εκλειπτικά μήκη. Όταν η ώρα γέννησης είναι γνωστή, χρησιμοποιούνται συντεταγμένες και ιστορική ζώνη ώρας για Ωροσκόπο, Μεσουράνημα και σύστημα Ισων Οίκων.\n\n## Αρχή ερμηνείας\nΤο Mythborn διαχωρίζει ρητά τον αστρονομικό υπολογισμό από τη συμβολική ερμηνεία. Το περιεχόμενο προορίζεται για ψυχαγωγία, εκπαίδευση και προσωπικό στοχασμό· δεν αποτελεί ιατρική, νομική, οικονομική ή βέβαιη προγνωστική συμβουλή.\n\n## Ξεκίνα εδώ\n- [Γενέθλιος χάρτης](https://mythborn.co/gr/astroloji)\n- [Ο σημερινός ουρανός](https://mythborn.co/gr/bugunun-gokyuzu)\n- [Εγκυκλοπαίδεια Ταρώ](https://mythborn.co/gr/tarot-kartlari)\n- [Βιβλιοθήκη γενέθλιου χάρτη](https://mythborn.co/gr/astroloji-kutuphanesi)
+  el:`# Mythborn · Η Gözde των Καρτών
+
+> Το Mythborn είναι μια δωρεάν πολύγλωσση πλατφόρμα για Ταρώ, γενέθλιους χάρτες, συναστρία και συμβολικό αυτοστοχασμό με κεντρικό πρόσωπο την Gözde (Η Gözde των Καρτών).
+
+## Τι προσφέρει
+- Προσωπική συμβολική ανάγνωση με την Gözde: Καφές, Ταρώ, Κατίνα, Διαισθητική Ανάγνωση, Αγάπη & Σχέσεις, Παραδοσιακή Αστρολογία, Γενέθλιος Χάρτης, Αριθμολογία
+- Υπολογισμούς γενέθλιου χάρτη, σημερινού ουρανού και συναστρίας με πραγματικές αστρονομικές θέσεις πλανητών
+- Ημερήσιο Ταρώ, εβδομαδιαία ωροσκόπια και αναγνώσεις σχέσεων ή προσωπικού στοχασμού
+- Εγκυκλοπαίδεια 78 καρτών Ταρώ, Βιβλιοθήκη γενέθλιου χάρτη με 42 οδηγούς, Εγκυκλοπαίδεια συμβόλων ονείρων με 51 καταχωρίσεις και 25 όροι αστρολογίας στο κέντρο γνώσης
+- Αίτηση συνεργασίας ερμηνευτών συμβόλων και αστρολογίας σε 5 γλώσσες
+
+## Υπολογιστική προσέγγιση
+Οι πλανητικές θέσεις υπολογίζονται με το Astronomy Engine από γεωκεντρικά εκλειπτικά μήκη. Όταν η ώρα γέννησης είναι γνωστή, χρησιμοποιούνται συντεταγμένες και ιστορική ζώνη ώρας για Ωροσκόπο, Μεσουράνημα και σύστημα Ισων Οίκων.\n\n## Αρχή ερμηνείας
+Το Mythborn διαχωρίζει ρητά τον αστρονομικό υπολογισμό από τη συμβολική ερμηνεία. Το περιεχόμενο προορίζεται για ψυχαγωγία, εκπαίδευση και προσωπικό στοχασμό· δεν αποτελεί ιατρική, νομική, οικονομική ή βέβαιη προγνωστική συμβουλή.
+
+## Ξεκίνα εδώ
+- [Αρχική — Η Gözde των Καρτών](https://mythborn.co/gr)
+- [Αίτηση Ερμηνευτή](https://mythborn.co/gr/apply)
+- [Γενέθλιος χάρτης](https://mythborn.co/gr/astroloji)
+- [Ο σημερινός ουρανός](https://mythborn.co/gr/bugunun-gokyuzu)
+- [Εγκυκλοπαίδεια Ταρώ](https://mythborn.co/gr/tarot-kartlari)
+- [Βιβλιοθήκη γενέθλιου χάρτη](https://mythborn.co/gr/astroloji-kutuphanesi)
 - [Βεδική Αστρολογία](https://mythborn.co/gr/vedik-astroloji): αστρικός χάρτης Lahiri, nakshatra της Σελήνης και πλαίσιο Vimshottari dasha
 `,
-  es:`# Mythborn\n\n> Mythborn es una plataforma multilingüe gratuita para Tarot, cartas natales, sinastría y reflexión simbólica.\n\n## Qué ofrece Mythborn\n- Cálculos de carta natal, cielo actual y sinastría basados en posiciones planetarias astronómicas reales\n- Tarot diario, guía de horóscopo semanal y lecturas de relaciones o reflexión personal\n- Un centro de conocimiento con una enciclopedia de Tarot de 78 cartas, una biblioteca de carta natal, símbolos de sueños y términos de astrología\n\n## Enfoque de cálculo\nLas posiciones planetarias se calculan con Astronomy Engine a partir de longitudes eclípticas geocéntricas. Cuando se conoce la hora de nacimiento, Mythborn utiliza coordenadas y resolución histórica de zona horaria para mostrar el Ascendente, el MC y el sistema de casas iguales.\n\n## Principio de interpretación\nMythborn distingue claramente el cálculo astronómico de la interpretación simbólica. El contenido sirve para entretenimiento, educación y reflexión personal; no constituye consejo médico, jurídico, financiero ni una predicción determinista.\n\n## Empieza aquí\n- [Carta natal](https://mythborn.co/es/astroloji)\n- [El cielo de hoy](https://mythborn.co/es/bugunun-gokyuzu)\n- [Enciclopedia del Tarot](https://mythborn.co/es/tarot-kartlari)\n- [Biblioteca de carta natal](https://mythborn.co/es/astroloji-kutuphanesi)
+  es:`# Mythborn · Gözde, la voz de las cartas
+
+> Mythborn es una plataforma multilingüe gratuita para Tarot, cartas natales, sinastría y reflexión simbólica, guiada por Gözde (Gözde, la voz de las cartas).
+
+## Qué ofrece Mythborn
+- Disciplinas de lectura simbólica personalizada con Gözde: Lectura de Café, Tarot, Katina, Intuición, Amor y Relaciones, Astrología Tradicional, Carta Astral y Numerología
+- Cálculos de carta natal, cielo actual y sinastría basados en posiciones planetarias astronómicas reales
+- Tarot diario, guía de horóscopo semanal y lecturas de relaciones o reflexión personal
+- Un centro de conocimiento con una enciclopedia de Tarot de 78 cartas, una biblioteca de carta natal, símbolos de sueños y términos de astrología
+- Red curada de solicitud para intérpretes simbólicos en 5 idiomas
+
+## Enfoque de cálculo
+Las posiciones planetarias se calculan con Astronomy Engine a partir de longitudes eclípticas geocéntricas. Cuando se conoce la hora de nacimiento, Mythborn utiliza coordenadas y resolución histórica de zona horaria para mostrar el Ascendente, el MC y el sistema de casas iguales.
+
+## Principio de interpretación
+Mythborn distingue claramente el cálculo astronómico de la interpretación simbólica. El contenido sirve para entretenimiento, educación y reflexión personal; no constituye consejo médico, jurídico, financiero ni una predicción determinista.
+
+## Empieza aquí
+- [Inicio — Gözde, la voz de las cartas](https://mythborn.co/es)
+- [Solicitud de Intérprete](https://mythborn.co/es/apply)
+- [Carta natal](https://mythborn.co/es/astroloji)
+- [El cielo de hoy](https://mythborn.co/es/bugunun-gokyuzu)
+- [Enciclopedia del Tarot](https://mythborn.co/es/tarot-kartlari)
+- [Biblioteca de carta natal](https://mythborn.co/es/astroloji-kutuphanesi)
 - [Astrología védica](https://mythborn.co/es/vedik-astroloji): carta sideral Lahiri, nakshatra lunar y contexto de Vimshottari dasha
 `
 };
-

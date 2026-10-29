@@ -133,7 +133,10 @@ export default {
       if(incoming.pathname==='/sitemap.xml'){
         const xml=(await response.text()).replace(/\/el(?=\/|["<])/g,'/gr');
         const spanishEntries=spanishRoutes.filter(path=>!['/vedik-astroloji','/nakshatra-dasha'].includes(path)).map(path=>`<url><loc>${SITE}${href('es',path)}</loc>${blogDates[path]?`<lastmod>${blogDates[path]}</lastmod>`:''}<xhtml:link rel="alternate" hreflang="tr" href="${SITE}${href('tr',path)}"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}${href('en',path)}"/><xhtml:link rel="alternate" hreflang="el" href="${SITE}${href('el',path)}"/><xhtml:link rel="alternate" hreflang="es" href="${SITE}${href('es',path)}"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}${href('tr',path)}"/></url>`).join('');
-        return new Response(xml.replace('</urlset>',`${spanishEntries}${culturalSitemapEntries()}</urlset>`),{status:response.status,headers:response.headers});
+        const applyRoutes=['/yorumcu-basvuru','/en/apply','/gr/apply','/es/apply','/ar/apply'];
+        const applyAlts=`<xhtml:link rel="alternate" hreflang="tr" href="${SITE}/yorumcu-basvuru"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}/en/apply"/><xhtml:link rel="alternate" hreflang="el" href="${SITE}/gr/apply"/><xhtml:link rel="alternate" hreflang="es" href="${SITE}/es/apply"/><xhtml:link rel="alternate" hreflang="ar" href="${SITE}/ar/apply"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/yorumcu-basvuru"/>`;
+        const applyEntries=applyRoutes.map(p=>`<url><loc>${SITE}${p}</loc>${applyAlts}</url>`).join('');
+        return new Response(xml.replace('</urlset>',`${spanishEntries}${culturalSitemapEntries()}${applyEntries}</urlset>`),{status:response.status,headers:response.headers});
       }
       return response;
     }

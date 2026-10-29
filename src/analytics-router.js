@@ -137,10 +137,15 @@ const goneResponse=()=>new Response('Gone',{status:410,headers:{
   'referrer-policy':'no-referrer'
 }});
 
-const robotsResponse=()=>new Response('User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /yonetim\nSitemap: https://mythborn.co/sitemap.xml\n',{headers:{
-  'content-type':'text/plain; charset=utf-8',
-  'cache-control':'public, max-age=3600'
-}});
+const robotsResponse=()=>new Response(
+  'User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /yonetim\n\nUser-agent: GPTBot\nAllow: /\nDisallow: /api/\n\nUser-agent: OAI-SearchBot\nAllow: /\nDisallow: /api/\n\nUser-agent: ChatGPT-User\nAllow: /\nDisallow: /api/\n\nUser-agent: PerplexityBot\nAllow: /\nDisallow: /api/\n\nUser-agent: ClaudeBot\nAllow: /\nDisallow: /api/\n\nUser-agent: Google-Extended\nAllow: /\nDisallow: /api/\n\nUser-agent: Applebot-Extended\nAllow: /\nDisallow: /api/\n\nSitemap: https://mythborn.co/sitemap.xml\n',
+  {
+    headers:{
+      'content-type':'text/plain; charset=utf-8',
+      'cache-control':'public, max-age=3600'
+    }
+  }
+);
 
 const DORMANT_PRODUCTION_API_PREFIXES=['/api/auth/','/api/account/','/api/admin/'];
 const DORMANT_PRODUCTION_API_EXACT=new Set(['/api/results','/api/webhooks/payment']);

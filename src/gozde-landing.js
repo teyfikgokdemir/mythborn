@@ -1,9 +1,9 @@
 const langs = {
-  tr: ['/', 'tr', 'ltr', '/yorumcu-basvuru'],
-  en: ['/en', 'en', 'ltr', '/en/apply'],
-  el: ['/gr', 'el', 'ltr', '/gr/apply'],
-  es: ['/es', 'es', 'ltr', '/es/apply'],
-  ar: ['/ar', 'ar', 'rtl', '/ar/apply']
+  tr: ['/', 'tr', 'ltr', '/yorumcu-basvuru', 'tr_TR', '/llms.txt'],
+  en: ['/en', 'en', 'ltr', '/en/apply', 'en_US', '/llms.en.txt'],
+  el: ['/gr', 'el', 'ltr', '/gr/apply', 'el_GR', '/llms.gr.txt'],
+  es: ['/es', 'es', 'ltr', '/es/apply', 'es_ES', '/llms.es.txt'],
+  ar: ['/ar', 'ar', 'rtl', '/ar/apply', 'ar_AE', '/llms.txt']
 };
 
 const ICONS = ['☼', '☕', '♠', '☾', '♡', '✶', '☸', '✧'];
@@ -14,7 +14,8 @@ const C = {
     badge: 'GÖZDE AKTİF · BİREBİR & KİŞİYE ÖZEL SEMBOL OKUMASI',
     heading: 'Semboller her zaman konuşur.',
     headingEm: 'Klişe cümleler değil; sana özel, net bir yol haritası.',
-    sub: 'Gözde ile kartların, kahve sembollerinin ve gökyüzü anlatılarının izinde yeni bir keşif alanı. Yüzlerce rastgele profil arasında kaybolmadan; bizzat Gözde’nin derinlikli, gizlilik esaslı ve güçlendirici yorumlarıyla tanışın.',
+    sub: 'Kartların, kahve sembollerinin ve gökyüzü anlatılarının izinde; bizzat Gözde’nin derinlikli, gizlilik esaslı ve güçlendirici yorumlarıyla tanışın.',
+    keywords: 'Mythborn, Kartların Gözdesi, Gözde tarot, kahve falı yorumu, katina aşk açılımı, duru görü, yıldızname, doğum haritası analizi, numeroloji, sembolik danışmanlık',
     ctaPrimary: 'Alanını Seç & Gözde’ye İlet',
     social: 'TikTok’ta Gözde’yi keşfet',
     applyNav: 'Yorumcu Başvurusu',
@@ -23,11 +24,11 @@ const C = {
     navInquiry: 'Ön İletişim',
     navFaq: 'S.S.S.',
     trustStrip: [
-      ['%100 Birebir & Özgün', 'Hazır kalıp metinler veya rastgele nöbetçi yorumcular yok; her okuma bizzat Gözde tarafından senin soruna özel hazırlanır.'],
-      ['Tam Gizlilik & Güven', 'Yargılamayan, etik sınırları koruyan ve paylaştığın tüm detayları yalnızca seninle tutan özenli iletişim.'],
+      ['Birebir & Özgün Yorum', 'Hazır kalıp metinler yok; her okuma bizzat Gözde tarafından senin soruna özel hazırlanır.'],
+      ['Tam Gizlilik & Güven', 'Yargılamayan, etik sınırları koruyan ve paylaştığın tüm detayları gizli tutan özenli iletişim.'],
       ['Sesli, Yazılı veya Canlı', 'İhtiyacına göre detaylı ses kaydı, yazılı analiz metni veya birebir canlı iletişim tercihi.']
     ],
-    areasEyebrow: '8 SEMBOLİK KEŞİF ALANI',
+    areasEyebrow: 'SEMBOLİK KEŞİF ALANLARI',
     areasTitle: 'Bugün hangi düğümü çözmek istiyorsun?',
     areasSub: 'İhtiyacına en uygun alanı seç; Gözde sembolleri, arketipleri ve gökyüzü döngülerini senin odak sorun etrafında ayrıştırsın.',
     selectBtn: 'Bu Alanı Seç →',
@@ -35,9 +36,9 @@ const C = {
     cats: ['Tarot', 'Kahve Falı', 'Katina', 'Duru Görü', 'Aşk ve İlişki', 'Yıldızname', 'Doğum Haritası', 'Numeroloji'],
     catDetails: [
       ['ARKETİP & KARAR', 'Tarot', 'Geçmişin izleri, şimdinin enerjisi ve önündeki karar yollarını arketipsel kart sembolleriyle berraklaştır.'],
-      ['GELENEKSEL SEMBOLİZM', 'Kahve Falı', 'Fincandaki şekillerin, yolların ve sembollerin sezgisel bütünlük içinde senin gündemine tuttuğu ayna.'],
-      ['MİTOLOJİK AÇILIM', 'Katina', 'Duygusal bağların derinliğini, karşı tarafın niyetini ve ilişki dinamiklerini geleneksel Katina sembolleriyle oku.'],
-      ['SEZGİSEL BAKIŞ', 'Duru Görü', 'Yüzeyde görünmeyen enerji düğümlerini, sezgisel izlenimlerle ve bütünsel farkındalıkla ele al.'],
+      ['GELENEKSEL SEMBOLİZM', 'Kahve Falı', 'Fincandaki şekillerin, yolların ve sembollerin sezgisel bütünlük içinde gündemine tuttuğu ayna.'],
+      ['MİTOLOJİK AÇILIM', 'Katina', 'Duygusal bağların derinliğini, karşı tarafın niyetini ve ilişki dinamiklerini Katina sembolleriyle oku.'],
+      ['SEZGİSEL BAKIŞ', 'Duru Görü', 'Yüzeyde görünmeyen enerji düğümlerini sezgisel izlenimlerle ve bütünsel farkındalıkla ele al.'],
       ['DUYGUSAL DENGE', 'Aşk ve İlişki', 'İletişim ihtimallerini, kırılma noktalarını ve bağın ortak ritmini yargılamayan bir netlikle incele.'],
       ['KADİM GÖKYÜZÜ', 'Yıldızname', 'Klasik gökyüzü geleneğiyle mizaç özelliklerini, yaşam döngülerini ve koruyucu temaları keşfet.'],
       ['ASTRONOMİK VERİ', 'Doğum Haritası', 'Güneş, Ay, Yükselen, evler ve güncel gezegen geçişlerinin yaşamındaki somut yansımalarını öğren.'],
@@ -45,11 +46,11 @@ const C = {
     ],
     processEyebrow: 'İLK MESAJDA FARK EDİLEN KALİTE',
     processTitle: 'Burada süreç rastgele akmaz; netlik ve güven üzerine kurulur.',
-    processSub: 'Genel geçer cümlelerle vakit kaybetmek yerine, sorunun altındaki asıl ihtiyacı yakalayan 3 adımlı yapılandırılmış yaklaşım.',
+    processSub: 'Genel geçer cümlelerle vakit kaybetmeden, sorunun altındaki asıl ihtiyacı yakalayan yapılandırılmış yaklaşım.',
     steps: [
-      ['01', 'Alanını ve Odak Sorunu Seç', '8 sembolik disiplinden şu anki gündemine en çok temas eden başlığı belirle ve form üzerinden seç.'],
-      ['02', 'Bağlamını Güvenle Paylaş', 'Odaklandığın soruyu, doğum verini veya sembol detaylarını tercih ettiğin iletişim biçimiyle Gözde’ye ilet.'],
-      ['03', 'Sana Özel Yol Haritanı Al', 'Bağımlılık yaratmayan, kendi kararını en güçlü ve sakin zihinle vermeni sağlayan derinlikli yorumuna ulaş.']
+      ['Alanını ve Odak Sorunu Seç', 'Gündemine en çok temas eden sembolik disiplini belirle ve doğrudan form üzerinden seç.'],
+      ['Bağlamını Güvenle Paylaş', 'Odaklandığın soruyu, doğum verini veya sembol detaylarını tercih ettiğin biçimle Gözde’ye ilet.'],
+      ['Sana Özel Yol Haritanı Al', 'Bağımlılık yaratmayan, kendi kararını en güçlü ve sakin zihinle vermeni sağlayan yorumuna ulaş.']
     ],
     pillars: [
       ['Az Konu, Yüksek Netlik', 'Her şeyi yüzeysel konuşmak yerine asıl düğüm noktasına odaklanır, zihnindeki sis perdesini dağıtırız.'],
@@ -58,7 +59,7 @@ const C = {
     ],
     formEyebrow: 'GÖZDE İLE ÖN İLETİŞİM',
     formTitle: 'Odaklandığın konuyu paylaş, süreci birlikte başlatalım.',
-    formSub: 'Aşağıdaki formu doldurarak ilgilendiğin alanı ve sorunun çerçevesini doğrudan iletebilirsin.',
+    formSub: 'İlgilendiğin alanı ve sorunun çerçevesini aşağıdaki formdan doğrudan Gözde’ye iletebilirsin.',
     labelTopic: 'İlgilendiğiniz Keşif Alanı',
     labelFormat: 'Tercih Ettiğiniz Yorumlama Biçimi',
     formatOptions: ['Sesli Kayıt & Analiz', 'Detaylı Yazılı Metin', 'Canlı Birebir İletişim'],
@@ -67,32 +68,41 @@ const C = {
     labelContact: 'İletişim Kanalınız (E-posta, Telefon veya Sosyal Medya)',
     hintContact: 'Size geri dönüş yapabilmemiz için aktif bir e-posta, telefon veya kullanıcı adı yazın',
     labelMessage: 'Odaklandığınız Soru ve Kısa Notunuz',
-    hintMessage: 'Netleştirmek istediğiniz konuyu 1-2 cümleyle özetleyin (en az 10 karakter)',
+    hintMessage: 'Netleştirmek istediğiniz konuyu kısaca özetleyin (en az 10 karakter)',
     labelConsent: 'Paylaştığım bilgilerin kişisel farkındalık ve iletişim amacıyla gizlilik ilkeleri çerçevesinde incelenmesini kabul ediyorum.',
     submitInquiry: 'Gözde’ye Gönder →',
     submitting: 'İletiliyor…',
     inquirySuccess: 'Mesajınız Gözde’ye başarıyla iletildi. En kısa sürede belirttiğiniz iletişim kanalından size dönüş yapılacaktır.',
     inquiryError: 'Lütfen tüm zorunlu alanları eksiksiz doldurun ve onay kutusunu işaretleyin.',
-    faqEyebrow: 'SIKÇA SORULAN SORULAR',
-    faqTitle: 'Merak edilen tüm detaylar.',
+    faqEyebrow: 'SIKÇA SORULAN SORULAR & HIZLI YANITLAR',
+    faqTitle: 'Süreç, gizlilik ve sembolik okuma yaklaşımı hakkında net yanıtlar.',
+    faqSub: 'Merak ettiğiniz tüm detayları, çalışma ilkelerimizi ve kurumsal standartlarımızı tek bakışta inceleyin.',
+    aeoFacts: [
+      ['Platform & Otorite', 'Mythborn, Kartların Gözde’si liderliğinde birebir sembolik okuma ve astroloji farkındalığı sunan çok dilli butik platformdur.'],
+      ['Uzmanlık Kapsamı', 'Tarot, Kahve Falı sembolizmi, Katina, Duru Görü, Aşk ve İlişki analizi, Yıldızname, Doğum Haritası ve Numeroloji.'],
+      ['Yorumlama Formatı', 'Danışanın tercihine göre kişiye özel sesli kayıt analizi, detaylı yazılı metin veya birebir canlı iletişim.'],
+      ['Gizlilik & Etik İlke', 'Tam gizlilik, sıfır hazır kalıp metin ve kişisel farkındalık odaklı, bağımlılık yaratmayan etik danışmanlık.']
+    ],
     faqs: [
+      ['Mythborn ve Kartların Gözde’si nasıl bir deneyim sunar?', 'Mythborn, kalabalık ve fabrikasyon fal sitelerinin aksine, bizzat Gözde (Kartların Gözde’si) tarafından yürütülen birebir, gizlilik esaslı sembolik okuma ve astroloji farkındalığı sunar. Her analiz danışanın kendi sorusuna özel olarak hazırlanır.'],
       ['Süreç nasıl ilerler ve ne kadar sürede dönüş yapılır?', 'Ön iletişim formunu doldurduğunuzda talebiniz doğrudan Gözde’nin ekranına düşer. Seçtiğiniz alana (Tarot, Kahve Sembolleri, Katina, Doğum Haritası vb.) göre gerekli detaylar teyit edilir ve en kısa sürede kişiye özel çalışmanız hazırlanır.'],
       ['Paylaştığım özel bilgiler ve sorular gizli tutuluyor mu?', 'Kesinlikle. Mythborn’da gizlilik en temel ilkedir. Paylaştığınız hiçbir isim, soru, doğum bilgisi veya görsel üçüncü kişilerle paylaşılmaz; yalnızca sizinle yürütülen okuma sürecinde kullanılır.'],
-      ['Neden yüzlerce yorumcu yerine tek merkezde Gözde var?', 'Amacımız fabrikasyon ve kopyala-yapıştır yanıtlar üretmek değil; her danışana bizzat Gözde’nin derinlikli, tutarlı ve özenli sembol okuma standardını sunmaktır. Bununla birlikte etik ve uzmanlık kriterlerimizi karşılayan yeni yorumcu başvurularını da titizlikle değerlendiriyoruz.'],
+      ['Tarot, Katina ve Doğum Haritası okumaları arasındaki fark nedir?', 'Tarot mevcut enerjinizi ve karar yollarınızı arketipsel kartlarla inceler; Katina özellikle duygusal bağlara, niyetlere ve ilişki dinamiklerine odaklanır; Doğum Haritası ise astronomik gezegen konumlarıyla karakter ve dönem temalarını analiz eder.'],
+      ['Neden yüzlerce yorumcu yerine merkezde Gözde yer alıyor?', 'Amacımız kopyala-yapıştır yanıtlar üretmek değil; her danışana bizzat Gözde’nin derinlikli, tutarlı ve özenli sembol okuma standardını sunmaktır. Bununla birlikte etik ve uzmanlık kriterlerimizi karşılayan yeni yorumcu başvurularını ayrı sayfadan titizlikle değerlendiriyoruz.'],
       ['Sunulan yorumlar kesin gelecek tahmini midir?', 'Hayır. Mythborn üzerindeki tüm içerikler ve sembolik okumalar; kişisel farkındalık, kültürel sembolizm, öz-değerlendirme ve eğlence amaçlıdır. Tıbbi, hukuki, finansal tavsiye veya kesin gelecek vaadi içermez.']
     ],
     recruitEyebrow: 'MYTHBORN SEÇKİN YORUMCU AĞI',
     recruitTitle: 'Sembollerin dilini derinlik ve etikle okuyan bir uzman mısınız?',
-    recruitSub: 'Mythborn, kalıp cümlelerden uzak, sezgisi ve bilgisi güçlü yeni yorumcu adaylarının başvurularını ayrı bir değerlendirme süreciyle kabul etmektedir.',
+    recruitSub: 'Kalıp cümlelerden uzak, sezgisi ve bilgisi güçlü yorumcu adaylarının başvurularını ayrı bir değerlendirme süreciyle kabul ediyoruz.',
     recruitCta: 'Yorumcu Başvuru Sayfasına Git →',
     note: 'Kişisel farkındalık, kültürel sembolizm ve eğlence amaçlıdır.',
     applyPage: {
       back: '← Ana Sayfaya Dön',
       eyebrow: 'MYTHBORN SEÇKİN YORUMCU AĞI · Kartların Gözde’si',
       title: 'Uzman Yorumcu & Sembol Okuyucusu Başvurusu',
-      sub: 'Mythborn ailesini büyütürken niceliğe değil, niteliğe odaklanıyoruz. Danışanlara kopyala-yapıştır cümleler yerine gerçek içgörü, gizlilik ve yüksek iletişim kalitesi sunabilen uzmanların başvurularını bekliyoruz.',
+      sub: 'Danışanlara kopyala-yapıştır cümleler yerine gerçek içgörü, tam gizlilik ve yüksek iletişim kalitesi sunabilen uzmanların başvurularını bekliyoruz.',
       criteria: [
-        ['Özgün Yorum Yetkinliği', 'Tarot, Kahve Sembolizmi, Katina, Astroloji veya Numeroloji alanlarından en az birinde derinlikli ve özgün okuma disiplini.'],
+        ['Özgün Yorum Yetkinliği', 'Tarot, Kahve Sembolizmi, Katina, Astroloji veya Numeroloji alanlarında derinlikli ve özgün okuma disiplini.'],
         ['Etik Sınırlar & Saygı', 'Yargılamayan, korku veya bağımlılık yaratmayan, danışanın öz-farkındalığını güçlendiren özenli üslup.'],
         ['Zamanlama & İletişim Özeni', 'Sesli veya yazılı anlatımda akıcı ifade gücü ve süreç disiplinine bağlılık.']
       ],
@@ -116,7 +126,7 @@ const C = {
       social: 'Sosyal Medya veya Portfolyo Bağlantınız (Opsiyonel)',
       hintSocial: 'TikTok, Instagram veya kişisel sayfa bağlantınız',
       bio: 'Yaklaşımınız & Örnek Yorum Üslubunuz',
-      hintBio: 'Danışanlarınıza nasıl bir deneyim sunduğunuzu, hangi ekolleri kullandığınızı kısaca anlatın (en az 25 karakter).',
+      hintBio: 'Danışanlarınıza nasıl bir deneyim sunduğunuzu ve ekolünüzü kısaca anlatın (en az 25 karakter).',
       errBio: 'Lütfen yaklaşımınızı en az 25 karakterle açıklayın.',
       consent: 'Başvuru bilgilerimin Mythborn yorumcu değerlendirme süreci kapsamında incelenmesini ve gizlilik ilkelerini kabul ediyorum.',
       submit: 'Başvurumu İlet →',
@@ -129,7 +139,8 @@ const C = {
     badge: 'GÖZDE IS ACTIVE · ONE-ON-ONE PERSONAL SYMBOLIC READING',
     heading: 'Symbols always have a story to tell.',
     headingEm: 'Not generic clichés—a clear, personal roadmap crafted for you.',
-    sub: 'A considered world of cards, symbolic traditions and the language of the stars, guided by Gözde. Step away from crowded, impersonal directories and experience confidential, empowering insight tailored to your question.',
+    sub: 'A considered world of cards, symbolic traditions and the language of the stars, guided personally by Gözde with complete confidentiality and depth.',
+    keywords: 'Mythborn, Gözde of the Cards, Tarot reading, Turkish coffee reading, Katina love reading, intuitive insight, traditional astrology, birth chart analysis, numerology',
     ctaPrimary: 'Choose Your Area & Connect',
     social: 'Discover Gözde on TikTok',
     applyNav: 'Reader Application',
@@ -138,33 +149,33 @@ const C = {
     navInquiry: 'Connect',
     navFaq: 'FAQ',
     trustStrip: [
-      ['100% Personal & Bespoke', 'No copy-paste templates or random rotating operators; every reading is personally interpreted by Gözde for your specific question.'],
-      ['Complete Confidentiality', 'A safe, non-judgmental space with strict ethical boundaries where every detail you share stays strictly private.'],
-      ['Voice, Written or Live', 'Choose the format that fits your pace: detailed voice notes, structured written analysis, or direct live dialogue.']
+      ['Personal & Bespoke', 'No copy-paste templates; every reading is personally interpreted by Gözde for your specific question.'],
+      ['Complete Confidentiality', 'A safe, non-judgmental space with strict ethical boundaries where every detail stays strictly private.'],
+      ['Voice, Written or Live', 'Choose the format that fits your pace: detailed voice notes, written analysis, or direct live dialogue.']
     ],
-    areasEyebrow: '8 SYMBOLIC READING DISCIPLINES',
+    areasEyebrow: 'SYMBOLIC READING DISCIPLINES',
     areasTitle: 'Which question are you ready to untangle today?',
     areasSub: 'Select the lens that best matches your current crossroads; Gözde synthesizes symbols, archetypes, and sky cycles around your core focus.',
     selectBtn: 'Select This Area →',
-    formats: ['Voice Insight', 'Detailed Written', '1-on-1 Focus'],
+    formats: ['Voice Insight', 'Detailed Written', 'Personal Focus'],
     cats: ['Coffee Reading', 'Tarot', 'Katina', 'Intuitive Insight', 'Love & Relationships', 'Traditional Astrology', 'Birth Chart', 'Numerology'],
     catDetails: [
-      ['TRADITIONAL SYMBOLISM', 'Coffee Reading', 'An intuitive mirror of the patterns, paths, and symbols formed in your cup, interpreted around your current life themes.'],
-      ['ARCHETYPES & CHOICES', 'Tarot', 'Illuminate past influences, present momentum, and upcoming crossroads through structured archetypal card spreads.'],
-      ['MYTHIC DYNAMICS', 'Katina', 'Explore emotional bonds, unspoken intentions, and relationship dynamics through the traditional symbols of Katina.'],
+      ['TRADITIONAL SYMBOLISM', 'Coffee Reading', 'An intuitive mirror of the patterns, paths, and symbols formed in your cup around your current life themes.'],
+      ['ARCHETYPES & CHOICES', 'Tarot', 'Illuminate past influences, present momentum, and upcoming crossroads through structured archetypal spreads.'],
+      ['MYTHIC DYNAMICS', 'Katina', 'Explore emotional bonds, unspoken intentions, and relationship dynamics through traditional Katina symbols.'],
       ['DEEP PERCEPTION', 'Intuitive Insight', 'Address subtle energetic knots and underlying patterns through focused intuitive reflection and clarity.'],
-      ['EMOTIONAL BALANCE', 'Love & Relationships', 'Examine communication potential, turning points, and shared relationship rhythms with calm, non-judgmental clarity.'],
+      ['EMOTIONAL BALANCE', 'Love & Relationships', 'Examine communication potential, turning points, and shared rhythms with calm, non-judgmental clarity.'],
       ['CLASSICAL SKY LORE', 'Traditional Astrology', 'Discover temperament, life cycles, and protective themes rooted in classical celestial traditions.'],
       ['ASTRONOMICAL DATA', 'Birth Chart', 'Understand the concrete reflections of your Sun, Moon, Rising, houses, and current planetary transits.'],
       ['NUMBER & NAME RHYTHM', 'Numerology', 'Decode the numerical archetypes in your birth date and name to navigate your personal year cycles.']
     ],
     processEyebrow: 'QUALITY FELT FROM THE FIRST MESSAGE',
     processTitle: 'Nothing here is random; every step is built on clarity and trust.',
-    processSub: 'Instead of vague generalizations, experience a structured 3-step method that identifies the real need beneath your question.',
+    processSub: 'Instead of vague generalizations, experience a structured method that identifies the real need beneath your question.',
     steps: [
-      ['01', 'Choose Your Area & Focus', 'Select the discipline from our 8 symbolic areas that resonates most with your current situation.'],
-      ['02', 'Share Your Context Privately', 'Send your core question, birth details, or symbol notes to Gözde with your preferred communication format.'],
-      ['03', 'Receive Your Personal Roadmap', 'Gain structured, empowering perspective designed to help you make your own decisions with calm confidence.']
+      ['Choose Your Area & Focus', 'Select the symbolic discipline that resonates most with your current situation directly from the form.'],
+      ['Share Your Context Privately', 'Send your core question, birth details, or symbol notes to Gözde with your preferred communication format.'],
+      ['Receive Your Personal Roadmap', 'Gain structured, empowering perspective designed to help you make your own decisions with calm confidence.']
     ],
     pillars: [
       ['Focused Depth, Zero Clichés', 'Rather than speaking vaguely about everything, we narrow in on the core knot to clear the mental fog.'],
@@ -182,32 +193,41 @@ const C = {
     labelContact: 'Your Contact Channel (Email, Phone or Social Handle)',
     hintContact: 'Provide an active email, phone number, or handle so we can reach back to you',
     labelMessage: 'Your Core Question & Context',
-    hintMessage: 'Briefly summarize what you want to clarify in 1–2 sentences (min. 10 characters)',
+    hintMessage: 'Briefly summarize what you want to clarify (minimum 10 characters)',
     labelConsent: 'I agree that the information shared may be reviewed confidentially for personal reflection and communication.',
     submitInquiry: 'Send to Gözde →',
     submitting: 'Sending…',
     inquirySuccess: 'Your message has been sent to Gözde. We will reach out to you shortly via your preferred contact channel.',
     inquiryError: 'Please complete all required fields and check the consent box.',
-    faqEyebrow: 'FREQUENTLY ASKED QUESTIONS',
-    faqTitle: 'Everything you need to know.',
+    faqEyebrow: 'FREQUENTLY ASKED QUESTIONS & QUICK ANSWERS',
+    faqTitle: 'Clear answers on our process, privacy, and symbolic reading method.',
+    faqSub: 'Review every detail about our bespoke sessions, confidentiality standards, and editorial principles at a glance.',
+    aeoFacts: [
+      ['Platform & Authority', 'Mythborn is a multilingual boutique symbolic reading and astrology platform led by Gözde (Gözde of the Cards).'],
+      ['Core Disciplines', 'Tarot, Turkish Coffee Symbolism, Katina, Intuitive Insight, Love & Relationships, Traditional Astrology, Birth Chart, Numerology.'],
+      ['Reading Formats', 'Personalized voice recordings, detailed written analyses, or direct one-on-one live communication.'],
+      ['Privacy & Ethics', 'Strict confidentiality, zero copy-paste templates, and empowering self-reflection without deterministic claims.']
+    ],
     faqs: [
+      ['What makes Mythborn and Gözde of the Cards different?', 'Unlike mass-market fortune directories with rotating anonymous operators, Mythborn offers bespoke, one-on-one symbolic readings personally interpreted by Gözde with complete confidentiality and zero copy-paste clichés.'],
       ['How does the process work and how quickly will I hear back?', 'Once you submit the connection form, your request goes directly to Gözde. Depending on your chosen discipline (Tarot, Coffee Reading, Katina, Birth Chart, etc.), we confirm the details and prepare your personalized reading promptly.'],
       ['Is everything I share kept completely confidential?', 'Absolutely. Confidentiality is our foundation. Your name, questions, birth data, and symbols are never shared with third parties and are used solely for your personal reading.'],
-      ['Why is Gözde the central reader instead of hundreds of random profiles?', 'Our goal is boutique depth rather than mass-produced, copy-paste responses. Every client experiences Gözde’s personal standard of symbolic reading—while we selectively review applications from exceptional readers who share our ethics.'],
-      ['Do symbolic readings claim to predict a fixed future?', 'No. All content and readings on Mythborn are designed for personal reflection, cultural symbolism, self-discovery, and entertainment. They do not constitute medical, legal, or financial advice, nor do they claim absolute certainty about the future.']
+      ['How do Tarot, Katina, and Birth Chart readings differ?', 'Tarot examines present momentum and decision paths through archetypal cards; Katina focuses specifically on emotional bonds and relationship dynamics; Birth Chart analysis uses real astronomical positions to map temperament and timing.'],
+      ['Why is Gözde the central reader instead of hundreds of random profiles?', 'Our goal is boutique depth rather than mass-produced responses. Every client experiences Gözde’s personal standard—while we selectively review applications from exceptional readers on our dedicated application page.'],
+      ['Do symbolic readings claim to predict a fixed future?', 'No. All content and readings on Mythborn are designed for personal reflection, cultural symbolism, self-discovery, and entertainment. They do not constitute medical, legal, or financial advice.']
     ],
     recruitEyebrow: 'MYTHBORN CURATED READER NETWORK',
     recruitTitle: 'Are you an experienced reader who interprets symbols with depth and ethics?',
-    recruitSub: 'Mythborn selectively welcomes applications from gifted Tarot, coffee symbolism, and astrology specialists who value authenticity over clichés.',
+    recruitSub: 'Mythborn selectively welcomes applications from gifted Tarot, coffee symbolism, and astrology specialists who value authenticity.',
     recruitCta: 'Go to Reader Application Page →',
     note: 'For personal reflection, cultural symbolism and entertainment purposes.',
     applyPage: {
       back: '← Back to Home',
       eyebrow: 'MYTHBORN CURATED READER NETWORK · Gözde of the Cards',
       title: 'Specialist Reader & Symbolic Interpreter Application',
-      sub: 'As we expand the Mythborn circle, we prioritize depth over volume. We welcome applications from practitioners who offer genuine insight, strict confidentiality, and refined communication without copy-paste clichés.',
+      sub: 'We welcome applications from practitioners who offer genuine insight, strict confidentiality, and refined communication without copy-paste clichés.',
       criteria: [
-        ['Authentic Interpretive Mastery', 'Deep, original practice in at least one core discipline: Tarot, Coffee Symbolism, Katina, Astrology, or Numerology.'],
+        ['Authentic Interpretive Mastery', 'Deep, original practice in Tarot, Coffee Symbolism, Katina, Astrology, or Numerology.'],
         ['Ethical Boundaries & Respect', 'A non-judgmental, empowering voice that never uses fear-mongering or creates emotional dependency.'],
         ['Communication & Reliability', 'Articulate expression in voice or written readings, with strong respect for privacy and timeliness.']
       ],
@@ -244,7 +264,8 @@ const C = {
     badge: 'Η GÖZDE ΕΙΝΑΙ ΕΝΕΡΓΗ · ΠΡΟΣΩΠΙΚΗ ΑΝΑΓΝΩΣΗ ΣΥΜΒΟΛΩΝ',
     heading: 'Τα σύμβολα έχουν πάντα κάτι να πουν.',
     headingEm: 'Όχι έτοιμα κλισέ· ένας καθαρός, προσωπικός χάρτης προσανατολισμού.',
-    sub: 'Ένας ξεχωριστός κόσμος συμβόλων, καρτών και ουράνιων αφηγήσεων με την Gözde. Μακριά από απρόσωπες πλατφόρμες, γνωρίστε μια εχέμυθη, βαθιά και ενδυναμωτική προσέγγιση προσαρμοσμένη στο δικό σας ερώτημα.',
+    sub: 'Ένας ξεχωριστός κόσμος συμβόλων, καρτών και ουράνιων αφηγήσεων με την Gözde, με απόλυτη εχεμύθεια και ουσιαστικό βάθος.',
+    keywords: 'Mythborn, Η Gözde των Καρτών, Ταρώ, Καφές, Κατίνα, Διαισθητική Ανάγνωση, Αστρολογία, Γενέθλιος Χάρτης, Αριθμολογία',
     ctaPrimary: 'Επιλέξτε Θεματική & Επικοινωνήστε',
     social: 'Ανακαλύψτε την Gözde στο TikTok',
     applyNav: 'Αίτηση Ερμηνευτή',
@@ -253,11 +274,11 @@ const C = {
     navInquiry: 'Επικοινωνία',
     navFaq: 'Συχνές Ερωτήσεις',
     trustStrip: [
-      ['100% Προσωπική Ερμηνεία', 'Χωρίς τυποποιημένα κείμενα· κάθε ανάγνωση ετοιμάζεται προσωπικά από την Gözde αποκλειστικά για το δικό σας θέμα.'],
+      ['Προσωπική Ερμηνεία', 'Χωρίς τυποποιημένα κείμενα· κάθε ανάγνωση ετοιμάζεται προσωπικά από την Gözde για το δικό σας θέμα.'],
       ['Απόλυτη Εχεμύθεια', 'Ένας ασφαλής χώρος χωρίς κριτική, με σεβασμό στα ηθικά όρια και πλήρη εμπιστευτικότητα.'],
       ['Ηχητική, Γραπτή ή Ζωντανή', 'Επιλέξτε τη μορφή που σας ταιριάζει: αναλυτικό ηχητικό μήνυμα, γραπτή ανάλυση ή άμεση επικοινωνία.']
     ],
-    areasEyebrow: '8 ΠΕΔΙΑ ΣΥΜΒΟΛΙΚΗΣ ΑΝΑΓΝΩΣΗΣ',
+    areasEyebrow: 'ΠΕΔΙΑ ΣΥΜΒΟΛΙΚΗΣ ΑΝΑΓΝΩΣΗΣ',
     areasTitle: 'Ποιο ερώτημα θέλετε να ξεκαθαρίσετε σήμερα;',
     areasSub: 'Επιλέξτε το πεδίο που ταιριάζει στην ανάγκη σας· η Gözde συνθέτει σύμβολα, αρχέτυπα και ουράνιους κύκλους γύρω από το ερώτημά σας.',
     selectBtn: 'Επιλογή Θεματικής →',
@@ -275,11 +296,11 @@ const C = {
     ],
     processEyebrow: 'ΠΟΙΟΤΗΤΑ ΠΟΥ ΞΕΧΩΡΙΖΕΙ ΑΠΟ ΤΟ ΠΡΩΤΟ ΜΗΝΥΜΑ',
     processTitle: 'Εδώ τίποτα δεν κυλά τυχαία· κάθε βήμα χτίζεται στην εμπιστοσύνη.',
-    processSub: 'Αντί για γενικόλογες φράσεις, μια δομημένη προσέγγιση 3 βημάτων που εστιάζει στην ουσία του ερωτήματός σας.',
+    processSub: 'Αντί για γενικόλογες φράσεις, μια δομημένη προσέγγιση που εστιάζει στην πραγματική ουσία του ερωτήματός σας.',
     steps: [
-      ['01', 'Επιλέξτε Θεματική & Ερώτημα', 'Διαλέξτε από τις 8 θεματικές εκείνη που ανταποκρίνεται περισσότερο σε αυτό που σας απασχολεί.'],
-      ['02', 'Μοιραστείτε το Πλαίσιο με Ασφάλεια', 'Στείλτε το ερώτημά σας ή τα στοιχεία σας στην Gözde με την προτιμώμενη μορφή επικοινωνίας.'],
-      ['03', 'Λάβετε την Προσωπική σας Ανάλυση', 'Αποκτήστε μια καθαρή, ενδυναμωτική οπτική που σας βοηθά να πάρετε τις δικές σας αποφάσεις με σιγουριά.']
+      ['Επιλέξτε Θεματική & Ερώτημα', 'Διαλέξτε τη συμβολική θεματική που ανταποκρίνεται περισσότερο σε αυτό που σας απασχολεί σήμερα.'],
+      ['Μοιραστείτε το Πλαίσιο με Ασφάλεια', 'Στείλτε το ερώτημά σας ή τα στοιχεία σας στην Gözde με την προτιμώμενη μορφή επικοινωνίας.'],
+      ['Λάβετε την Προσωπική σας Ανάλυση', 'Αποκτήστε μια καθαρή, ενδυναμωτική οπτική που σας βοηθά να πάρετε τις δικές σας αποφάσεις.']
     ],
     pillars: [
       ['Εστιασμένη Καθαρότητα', 'Δεν αναλωνόμαστε σε γενικότητες· εστιάζουμε στον πυρήνα του θέματος για ουσιαστική διαύγεια.'],
@@ -288,7 +309,7 @@ const C = {
     ],
     formEyebrow: 'ΠΡΩΤΗ ΕΠΙΚΟΙΝΩΝΙΑ ΜΕ ΤΗΝ GÖZDE',
     formTitle: 'Μοιραστείτε το θέμα σας και ξεκινήστε.',
-    formSub: 'Συμπληρώστε τη φόρμα για να επιλέξετε θεματική και να στείλετε το ερώτημά σας.',
+    formSub: 'Συμπληρώστε τη φόρμα για να επιλέξετε θεματική και να στείλετε απευθείας το ερώτημά σας.',
     labelTopic: 'Επιλεγμένη Θεματική',
     labelFormat: 'Προτιμώμενη Μορφή Ανάλυσης',
     formatOptions: ['Ηχητική Ηχογράφηση & Ανάλυση', 'Αναλυτικό Γραπτό Κείμενο', 'Ζωντανή Επικοινωνία'],
@@ -303,13 +324,22 @@ const C = {
     submitting: 'Αποστολή…',
     inquirySuccess: 'Το μήνυμά σας στάλθηκε επιτυχώς στην Gözde. Θα επικοινωνήσουμε σύντομα μαζί σας.',
     inquiryError: 'Παρακαλούμε συμπληρώστε όλα τα υποχρεωτικά πεδία και αποδεχθείτε τους όρους.',
-    faqEyebrow: 'ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ',
-    faqTitle: 'Όλα όσα θέλετε να γνωρίζετε.',
+    faqEyebrow: 'ΣΥΧΝΕΣ ΕΡΩΤΗΣΕΙΣ & ΣΥΝΤΟΜΕΣ ΑΠΑΝΤΗΣΕΙΣ',
+    faqTitle: 'Καθαρές απαντήσεις για τη διαδικασία, την εχεμύθεια και τη μέθοδό μας.',
+    faqSub: 'Δείτε με μια ματιά όλες τις λεπτομέρειες για τον τρόπο λειτουργίας και τις αρχές του Mythborn.',
+    aeoFacts: [
+      ['Πλατφόρμα & Ταυτότητα', 'Το Mythborn είναι πολύγλωσση boutique πλατφόρμα συμβολικής ανάγνωσης και αστρολογίας με κεντρικό πρόσωπο την Gözde.'],
+      ['Θεματικά Πεδία', 'Ταρώ, Καφές, Κατίνα, Διαισθητική Ανάγνωση, Αγάπη & Σχέσεις, Παραδοσιακή Αστρολογία, Γενέθλιος Χάρτης, Αριθμολογία.'],
+      ['Μορφές Ανάλυσης', 'Προσωπική ηχητική ηχογράφηση, αναλυτικό γραπτό κείμενο ή απευθείας ζωντανή επικοινωνία.'],
+      ['Εχεμύθεια & Δεοντολογία', 'Πλήρης εμπιστευτικότητα, αυθεντική ερμηνεία χωρίς κλισέ και εστίαση στην προσωπική ενδυνάμωση.']
+    ],
     faqs: [
+      ['Τι κάνει το Mythborn και την Gözde των Καρτών να ξεχωρίζουν;', 'Σε αντίθεση με τις μαζικές πλατφόρμες, το Mythborn προσφέρει εξατομικευμένες συμβολικές αναγνώσεις από την ίδια την Gözde με πλήρη εχεμύθεια και ουσιαστικό βάθος.'],
       ['Πώς εξελίσσεται η διαδικασία;', 'Μόλις συμπληρώσετε τη φόρμα επικοινωνίας, το αίτημά σας φτάνει απευθείας στην Gözde. Ανάλογα με τη θεματική που επιλέξατε, επιβεβαιώνονται οι λεπτομέρειες και ετοιμάζεται η προσωπική σας ανάλυση.'],
       ['Τα στοιχεία και τα ερωτήματά μου παραμένουν απόλυτα εμπιστευτικά;', 'Απολύτως. Η εμπιστευτικότητα είναι θεμελιώδης αρχή στο Mythborn. Κανένα στοιχείο δεν κοινοποιείται σε τρίτους.'],
-      ['Γιατί υπάρχει η Gözde ως κεντρικό πρόσωπο;', 'Στόχος μας είναι η ποιότητα και η αυθεντικότητα, όχι οι τυποποιημένες απαντήσεις. Παράλληλα, δεχόμαστε αιτήσεις από επιλεγμένους ερμηνευτές που συμμερίζονται τις αξίες μας.'],
-      ['Οι αναγνώσεις αποτελούν βέβαιη πρόβλεψη μέλλοντος;', 'Όχι. Όλο το περιεχόμενο του Mythborn προσφέρεται για προσωπικό στοχασμό, πολιτισμικό συμβολισμό και ψυχαγωγία. Δεν υποκαθιστά ιατρικές, νομικές ή οικονομικές συμβουλές.']
+      ['Ποια η διαφορά ανάμεσα σε Ταρώ, Κατίνα και Γενέθλιο Χάρτη;', 'Το Ταρώ φωτίζει τη δυναμική του παρόντος και τις επιλογές, η Κατίνα εστιάζει στις σχέσεις και τα συναισθήματα, ενώ ο Γενέθλιος Χάρτης βασίζεται σε αστρονομικά δεδομένα.'],
+      ['Γιατί υπάρχει η Gözde ως κεντρικό πρόσωπο;', 'Στόχος μας είναι η ποιότητα και η αυθεντικότητα, όχι οι τυποποιημένες απαντήσεις. Παράλληλα, δεχόμαστε αιτήσεις από επιλεγμένους ερμηνευτές σε ξεχωριστή σελίδα.'],
+      ['Οι αναγνώσεις αποτελούν βέβαιη πρόβλεψη μέλλοντος;', 'Όχι. Όλο το περιεχόμενο του Mythborn προσφέρεται για προσωπικό στοχασμό, πολιτισμικό συμβολισμό και ψυχαγωγία.']
     ],
     recruitEyebrow: 'ΔΙΚΤΥΟ ΕΠΙΛΕΓΜΕΝΩΝ ΕΡΜΗΝΕΥΤΩΝ MYTHBORN',
     recruitTitle: 'Είστε έμπειρος ερμηνευτής συμβόλων ή αστρολογίας με ήθος και βάθος;',
@@ -320,9 +350,9 @@ const C = {
       back: '← Επιστροφή στην Αρχική',
       eyebrow: 'ΔΙΚΤΥΟ ΕΠΙΛΕΓΜΕΝΩΝ ΕΡΜΗΝΕΥΤΩΝ · Η Gözde των Καρτών',
       title: 'Αίτηση Συνεργασίας Ερμηνευτή Συμβόλων & Αστρολογίας',
-      sub: 'Στο Mythborn δίνουμε προτεραιότητα στην ποιότητα και την αυθεντικότητα. Αναζητούμε συνεργάτες που προσφέρουν ουσιαστική ανάλυση, εχεμύθεια και σεβασμό χωρίς έτοιμα κλισέ.',
+      sub: 'Αναζητούμε συνεργάτες που προσφέρουν ουσιαστική ανάλυση, εχεμύθεια και σεβασμό χωρίς έτοιμα κλισέ.',
       criteria: [
-        ['Αυθεντική Ερμηνευτική Ικανότητα', 'Βαθιά γνώση σε τουλάχιστον ένα πεδίο: Ταρώ, Καφές, Κατίνα, Αστρολογία ή Αριθμολογία.'],
+        ['Αυθεντική Ερμηνευτική Ικανότητα', 'Βαθιά γνώση σε Ταρώ, Καφέ, Κατίνα, Αστρολογία ή Αριθμολογία.'],
         ['Ηθικά Όρια & Εχεμύθεια', 'Ενδυναμωτικός λόγος χωρίς κριτική, φόβο ή καλλιέργεια εξάρτησης.'],
         ['Ποιότητα Επικοινωνίας', 'Καθαρή έκφραση σε ηχητική ή γραπτή μορφή και συνέπεια.']
       ],
@@ -356,10 +386,11 @@ const C = {
   },
   es: {
     lead: 'Gözde, la voz de las cartas',
-    badge: 'GÖZDE ACTIVA · LECTURA SIMBÓLICA PERSONALIZADA 1 A 1',
+    badge: 'GÖZDE ACTIVA · LECTURA SIMBÓLICA PERSONALIZADA',
     heading: 'Los símbolos siempre tienen algo que contar.',
     headingEm: 'Sin frases hechas: una hoja de ruta clara y personal para ti.',
-    sub: 'Un universo de símbolos, cartas y relatos celestes, de la mano de Gözde. Lejos de directorios impersonales, vive una experiencia confidencial, profunda y enriquecedora centrada en tu propia pregunta.',
+    sub: 'Un universo de símbolos, cartas y relatos celestes de la mano de Gözde, con absoluta confidencialidad, profundidad y claridad.',
+    keywords: 'Mythborn, Gözde la voz de las cartas, lectura de Tarot, lectura de café, Katina, intuición, astrología tradicional, carta astral, numerología',
     ctaPrimary: 'Elige tu Área y Conecta',
     social: 'Descubre a Gözde en TikTok',
     applyNav: 'Solicitud de Intérprete',
@@ -368,19 +399,19 @@ const C = {
     navInquiry: 'Contacto Inicial',
     navFaq: 'Preguntas',
     trustStrip: [
-      ['100% Personal y Único', 'Sin textos prefabricados ni operadores al azar; cada lectura es interpretada personalmente por Gözde para tu consulta.'],
+      ['Lectura Personal y Única', 'Sin textos prefabricados; cada lectura es interpretada personalmente por Gözde para tu consulta.'],
       ['Confidencialidad Total', 'Un espacio seguro, libre de juicios y con límites éticos claros donde cada detalle permanece privado.'],
       ['Audio, Escrito o En Vivo', 'Elige el formato que mejor se adapte a ti: nota de voz detallada, análisis escrito o comunicación directa.']
     ],
-    areasEyebrow: '8 DISCIPLINAS DE LECTURA SIMBÓLICA',
+    areasEyebrow: 'DISCIPLINAS DE LECTURA SIMBÓLICA',
     areasTitle: '¿Qué nudo quieres desenredar hoy?',
     areasSub: 'Elige el área que mejor conecte con tu momento actual; Gözde integra símbolos, arquetipos y ciclos celestes en torno a tu pregunta.',
     selectBtn: 'Elegir esta Área →',
-    formats: ['Análisis en Audio', 'Texto Detallado', 'Enfoque 1 a 1'],
+    formats: ['Análisis en Audio', 'Texto Detallado', 'Enfoque Personal'],
     cats: ['Lectura de Café', 'Tarot', 'Katina', 'Intuición', 'Amor y Relaciones', 'Astrología Tradicional', 'Carta Astral', 'Numerología'],
     catDetails: [
       ['SIMBOLISMO TRADICIONAL', 'Lectura de Café', 'Un espejo intuitivo de las figuras, caminos y símbolos de tu taza conectados con tu momento presente.'],
-      ['ARQUETIPOS Y DECISIONES', 'Tarot', 'Aclara las huellas del pasado, la energía del presente y los caminos de decisión mediante el lenguaje del Tarot.'],
+      ['ARQUETIPOS Y DECISIONES', 'Tarot', 'Aclara las huellas del pasado, la energía del presente y los caminos de decisión mediante el Tarot.'],
       ['DINÁMICA MÍTICA', 'Katina', 'Explora los vínculos emocionales, las intenciones y la dinámica de pareja a través de los símbolos de Katina.'],
       ['VISIÓN PROFUNDA', 'Intuición', 'Aborda los nudos invisibles en la superficie mediante una reflexión intuitiva y estructurada.'],
       ['EQUILIBRIO EMOCIONAL', 'Amor y Relaciones', 'Analiza el potencial de comunicación, los puntos de inflexión y el ritmo compartido sin juicios.'],
@@ -390,11 +421,11 @@ const C = {
     ],
     processEyebrow: 'CALIDAD QUE SE NOTA DESDE EL PRIMER MENSAJE',
     processTitle: 'Aquí nada fluye al azar; cada paso se basa en claridad y confianza.',
-    processSub: 'En lugar de frases genéricas, un proceso estructurado en 3 pasos que identifica la necesidad real detrás de tu consulta.',
+    processSub: 'En lugar de frases genéricas, un enfoque estructurado que identifica la necesidad real detrás de tu consulta.',
     steps: [
-      ['01', 'Elige tu Área y Pregunta', 'Selecciona entre las 8 disciplinas simbólicas la que mejor responda a tu inquietud actual.'],
-      ['02', 'Comparte tu Contexto en Confianza', 'Envía tu pregunta, datos natales o detalles simbólicos a Gözde indicando el formato que prefieres.'],
-      ['03', 'Recibe tu Perspectiva Personal', 'Obtén un análisis claro y constructivo pensado para que tomes tus propias decisiones con serenidad.']
+      ['Elige tu Área y Pregunta', 'Selecciona entre las disciplinas simbólicas la que mejor responda a tu inquietud actual en el formulario.'],
+      ['Comparte tu Contexto en Confianza', 'Envía tu pregunta, datos natales o detalles simbólicos a Gözde indicando el formato que prefieres.'],
+      ['Recibe tu Perspectiva Personal', 'Obtén un análisis claro y constructivo pensado para que tomes tus propias decisiones con serenidad.']
     ],
     pillars: [
       ['Pocas Temáticas, Máxima Claridad', 'No hablamos de todo superficialmente; vamos al núcleo de la cuestión para despejar las dudas.'],
@@ -412,19 +443,28 @@ const C = {
     labelContact: 'Tu Canal de Contacto (Correo, Teléfono o Red Social)',
     hintContact: 'Indica un correo, teléfono o usuario activo para poder responderte',
     labelMessage: 'Tu Pregunta Principal y Breve Nota',
-    hintMessage: 'Resume en 1 o 2 frases el tema que deseas aclarar (mínimo 10 caracteres)',
+    hintMessage: 'Resume brevemente el tema que deseas aclarar (mínimo 10 caracteres)',
     labelConsent: 'Acepto que la información compartida sea revisada de forma confidencial con fines de reflexión personal y contacto.',
     submitInquiry: 'Enviar a Gözde →',
     submitting: 'Enviando…',
     inquirySuccess: 'Tu mensaje ha sido enviado a Gözde. Nos pondremos en contacto contigo muy pronto por el canal indicado.',
     inquiryError: 'Por favor, completa todos los campos obligatorios y marca la casilla de aceptación.',
-    faqEyebrow: 'PREGUNTAS FRECUENTES',
-    faqTitle: 'Todo lo que necesitas saber.',
+    faqEyebrow: 'PREGUNTAS FRECUENTES Y RESPUESTAS RÁPIDAS',
+    faqTitle: 'Respuestas claras sobre nuestro proceso, privacidad y lectura simbólica.',
+    faqSub: 'Consulta de un vistazo todos los detalles sobre nuestras lecturas personalizadas y principios éticos.',
+    aeoFacts: [
+      ['Plataforma y Autoridad', 'Mythborn es una plataforma boutique multilingüe de lectura simbólica y astrología dirigida por Gözde.'],
+      ['Disciplinas', 'Lectura de Café, Tarot, Katina, Intuición, Amor y Relaciones, Astrología Tradicional, Carta Astral, Numerología.'],
+      ['Formatos de Entrega', 'Grabación de voz personalizada, análisis escrito detallado o comunicación directa.'],
+      ['Privacidad y Ética', 'Confidencialidad absoluta, lecturas sin plantillas genéricas y enfoque en el autoconocimiento.']
+    ],
     faqs: [
+      ['¿Qué diferencia a Mythborn y a Gözde, la voz de las cartas?', 'A diferencia de los directorios masivos, Mythborn ofrece lecturas simbólicas personalizadas interpretadas directamente por Gözde con total confidencialidad y sin frases prefabricadas.'],
       ['¿Cómo funciona el proceso y cuánto tarda la respuesta?', 'Al enviar el formulario de contacto inicial, tu solicitud llega directamente a Gözde. Según el área elegida (Tarot, Café, Katina, Carta Astral, etc.), confirmamos los detalles y preparamos tu lectura personalizada a la brevedad.'],
       ['¿La información y las preguntas que comparto son confidenciales?', 'Totalmente. La confidencialidad es un pilar esencial de Mythborn. Tus datos y consultas jamás se comparten con terceros.'],
-      ['¿Por qué Gözde es la lectora principal en lugar de cientos de perfiles?', 'Priorizamos la profundidad y la autenticidad frente a las respuestas en serie. Además, evaluamos cuidadosamente solicitudes de nuevos intérpretes que compartan nuestra ética.'],
-      ['¿Las lecturas garantizan hechos futuros?', 'No. Todo el contenido de Mythborn tiene fines de reflexión personal, simbolismo cultural, autoconocimiento y entretenimiento. No sustituye asesoramiento médico, legal ni financiero.']
+      ['¿Cuál es la diferencia entre Tarot, Katina y Carta Astral?', 'El Tarot ilumina la energía actual y las decisiones; Katina profundiza en vínculos afectivos e intenciones; la Carta Astral analiza posiciones astronómicas reales.'],
+      ['¿Por qué Gözde es la lectora principal en lugar de cientos de perfiles?', 'Priorizamos la profundidad y la autenticidad frente a las respuestas en serie. Además, evaluamos solicitudes de nuevos intérpretes en nuestra página dedicada.'],
+      ['¿Las lecturas garantizan hechos futuros?', 'No. Todo el contenido de Mythborn tiene fines de reflexión personal, simbolismo cultural, autoconocimiento y entretenimiento.']
     ],
     recruitEyebrow: 'RED DE INTÉRPRETES SELECCIONADOS DE MYTHBORN',
     recruitTitle: '¿Eres especialista en lectura simbólica o astrología con ética y profundidad?',
@@ -435,7 +475,7 @@ const C = {
       back: '← Volver al Inicio',
       eyebrow: 'RED DE INTÉRPRETES MYTHBORN · Gözde, la voz de las cartas',
       title: 'Solicitud para Intérpretes Simbólicos y Especialistas',
-      sub: 'Al ampliar el círculo de Mythborn priorizamos la calidad sobre la cantidad. Buscamos especialistas capaces de ofrecer lecturas auténticas, confidenciales y empáticas, lejos de frases hechas.',
+      sub: 'Buscamos especialistas capaces de ofrecer lecturas auténticas, confidenciales y empáticas, lejos de frases hechas.',
       criteria: [
         ['Maestría Interpretativa Auténtica', 'Práctica profunda y original en Tarot, Lectura de Café, Katina, Astrología o Numerología.'],
         ['Ética y Confidencialidad', 'Un lenguaje respetuoso que fortalezca la autonomía del consultante sin crear miedo ni dependencia.'],
@@ -474,7 +514,8 @@ const C = {
     badge: 'GÖZDE متاحة الآن · قراءة رمزية فردية ومخصصة',
     heading: 'للرموز دائماً حكاية ترويها.',
     headingEm: 'ليست عبارات مكررة؛ بل خارطة طريق واضحة ومخصصة لك.',
-    sub: 'عالم من الرموز والبطاقات وحكايات النجوم برفقة Gözde. بعيداً عن المنصات العشوائية، اختبر قراءة رمزية عميقة، سرية، وملهمة تركز على سؤالك الخاص.',
+    sub: 'عالم من الرموز والبطاقات وحكايات النجوم برفقة Gözde؛ قراءة رمزية عميقة، سرية، وملهمة تركز على سؤالك الخاص.',
+    keywords: 'Mythborn, Gözde قارئة البطاقات, التاروت, قراءة القهوة, كاتينا, البصيرة, الحب والعلاقات, التنجيم التقليدي, خارطة الميلاد, علم الأرقام',
     ctaPrimary: 'اختر مجالك وتواصل مع Gözde',
     social: 'اكتشف Gözde على تيك توك',
     applyNav: 'طلب انضمام القراء',
@@ -483,11 +524,11 @@ const C = {
     navInquiry: 'التواصل الأولي',
     navFaq: 'الأسئلة الشائعة',
     trustStrip: [
-      ['قراءة فردية وأصيلة 100%', 'لا نصوص جاهزة أو ردود عشوائية؛ كل قراءة تقدمها Gözde بنفسها حول سؤالك وسياقك الخاص.'],
+      ['قراءة فردية وأصيلة', 'لا نصوص جاهزة أو ردود عشوائية؛ كل قراءة تقدمها Gözde بنفسها حول سؤالك وسياقك الخاص.'],
       ['سرية تامة وثقة', 'مساحة آمنة تحترم الخصوصية والمعايير الأخلاقية دون أي أحكام مسبقة.'],
       ['صوتية أو مكتوبة أو مباشرة', 'اختر الأسلوب الأنسب لك: تسجيل صوتي مفصل، تحليل مكتوب، أو تواصل مباشر.']
     ],
-    areasEyebrow: '8 مجالات للقراءة الرمزية',
+    areasEyebrow: 'مجالات القراءة الرمزية',
     areasTitle: 'أي سؤال ترغب في توضيح معالمه اليوم؟',
     areasSub: 'اختر المجال الأقرب لاهتمامك الحالي؛ تقوم Gözde بتحليل الرموز والأنماط الفلكية حول سؤالك الأساسي.',
     selectBtn: 'اختر هذا المجال ←',
@@ -505,11 +546,11 @@ const C = {
     ],
     processEyebrow: 'جودة تلمسها من الرسالة الأولى',
     processTitle: 'لا شيء هنا يسير عشوائياً؛ كل خطوة مبنية على الوضوح والثقة.',
-    processSub: 'بدلاً من العبارات العامة، منهج منظم من 3 خطوات يركز على الجوهر الحقيقي لسؤالك.',
+    processSub: 'بدلاً من العبارات العامة، منهج منظم يركز مباشرة على الجوهر الحقيقي لسؤالك.',
     steps: [
-      ['01', 'حدد مجالك وسؤالك المحوري', 'اختر من بين المجالات الثمانية ما يلامس وضعك الحالي بشكل أدق.'],
-      ['02', 'شارك سياقك بخصوصية تامة', 'أرسل سؤالك أو بيانات ميلادك إلى Gözde مع تحديد صيغة القراءة المفضلة لديك.'],
-      ['03', 'احصل على رؤيتك المخصصة', 'استلم تحليلاً واضحاً يمنحك البصيرة والهدوء لاتخاذ قراراتك بنفسك.']
+      ['حدد مجالك وسؤالك المحوري', 'اختر من بين المجالات الرمزية ما يلامس وضعك الحالي بشكل أدق عبر النموذج.'],
+      ['شارك سياقك بخصوصية تامة', 'أرسل سؤالك أو بيانات ميلادك إلى Gözde مع تحديد صيغة القراءة المفضلة لديك.'],
+      ['احصل على رؤيتك المخصصة', 'استلم تحليلاً واضحاً يمنحك البصيرة والهدوء لاتخاذ قراراتك بنفسك.']
     ],
     pillars: [
       ['تركيز عميق ووضوح عالٍ', 'لا نشتت الانتباه بعموميات؛ بل نركز على جوهر المسألة لمنحك رؤية صافية.'],
@@ -527,18 +568,27 @@ const C = {
     labelContact: 'وسيلة التواصل (البريد الإلكتروني أو الهاتف أو الحساب)',
     hintContact: 'يرجى كتابة بريد إلكتروني أو رقم هاتف نشط لنتمكن من الرد عليك',
     labelMessage: 'سؤالك المحوري وملاحظتك المختصرة',
-    hintMessage: 'لخص الموضوع الذي ترغب في توضيحه في جملة أو جملتين (10 أحرف على الأقل)',
+    hintMessage: 'لخص الموضوع الذي ترغب في توضيحه بإيجاز (10 أحرف على الأقل)',
     labelConsent: 'أوافق على مراجعة المعلومات المشاركة بسرية تامة لأغراض التأمل الشخصي والتواصل.',
     submitInquiry: 'إرسال إلى Gözde ←',
     submitting: 'جاري الإرسال…',
     inquirySuccess: 'تم إرسال رسالتك إلى Gözde بنجاح. سنتواصل معك قريباً عبر وسيلة التواصل التي اخترتها.',
     inquiryError: 'يرجى ملء جميع الحقول المطلوبة والموافقة على الشروط.',
-    faqEyebrow: 'الأسئلة الشائعة',
-    faqTitle: 'كل ما تود معرفته.',
+    faqEyebrow: 'الأسئلة الشائعة والإجابات السريعة',
+    faqTitle: 'إجابات واضحة حول منهج القراءة الرمزية والخصوصية.',
+    faqSub: 'تعرف في لمحة سريعة على تفاصيل الجلسات الفردية ومعايير السرية والأخلاقيات لدينا.',
+    aeoFacts: [
+      ['المنصة والمرجعية', 'Mythborn منصة متعددة اللغات للقراءة الرمزية والفلك بإشراف Gözde قارئة البطاقات.'],
+      ['مجالات التخصص', 'قراءة القهوة، التاروت، كاتينا، البصيرة، الحب والعلاقات، التنجيم التقليدي، خارطة الميلاد، علم الأرقام.'],
+      ['صيغ التقديم', 'تسجيل صوتي مخصص، تحليل مكتوب مفصل، أو تواصل فردي مباشر.'],
+      ['الخصوصية والأخلاقيات', 'سرية تامة، قراءات أصيلة خالية من القوالب الجاهزة، وتركيز على الوعي الذاتي.']
+    ],
     faqs: [
+      ['ما الذي يميز Mythborn و Gözde قارئة البطاقات؟', 'بعيداً عن المنصات التجارية العشوائية، تقدم Mythborn قراءات رمزية فردية ومخصصة بإشراف Gözde شخصياً مع سرية تامة وعمق حقيقي.'],
       ['كيف تسير العملية ومتى يتم الرد؟', 'بمجرد إرسال نموذج التواصل الأولي، يصل طلبك مباشرة إلى Gözde. وبحسب المجال المختار، يتم تأكيد التفاصيل وإعداد قراءتك المخصصة في أقرب وقت.'],
       ['هل تظل معلوماتي وأسئلتي سرية تماماً؟', 'بكل تأكيد. السرية هي حجر الأساس في Mythborn، ولا تتم مشاركة أي بيانات مع أي طرف ثالث.'],
-      ['لماذا تتركز التجربة حول Gözde بدلاً من مئات الحسابات؟', 'هدفنا هو العمق والأصالة بعيداً عن الردود المنسوخة. وفي الوقت نفسه نستقبل طلبات الانضمام من المتخصصين المتميزين وفق معاييرنا الأخلاقية.'],
+      ['ما الفرق بين التاروت وكاتينا وخارطة الميلاد؟', 'يركز التاروت على طاقة الحاضر ومسارات القرار، وتختص كاتينا بديناميكية العلاقات والعاطفة، بينما تعتمد خارطة الميلاد على الحسابات الفلكية الدقيقة.'],
+      ['لماذا تتركز التجربة حول Gözde بدلاً من مئات الحسابات؟', 'هدفنا هو العمق والأصالة بعيداً عن الردود المنسوخة. وفي الوقت نفسه نستقبل طلبات الانضمام من المتخصصين المتميزين عبر صفحة مستقلة.'],
       ['هل القراءات تعد تنبؤاً حتمياً بالمستقبل؟', 'لا. جميع القراءات والمحتويات في Mythborn مخصصة للتأمل الشخصي، الرمزية الثقافية، والترفيه، ولا تعد نصيحة طبية أو قانونية أو مالية.']
     ],
     recruitEyebrow: 'شبكة قراء MYTHBORN المختارة',
@@ -550,9 +600,9 @@ const C = {
       back: '→ العودة إلى الصفحة الرئيسية',
       eyebrow: 'شبكة قراء MYTHBORN · Gözde قارئة البطاقات',
       title: 'طلب انضمام متخصصي قراءة الرموز والفلك',
-      sub: 'نحن نركز على الجودة والأصالة عند توسيع دائرة Mythborn. نرحب بطلبات المتخصصين القادرين على تقديم قراءات عميقة، سرية، وبعيدة عن الكليشيهات الجاهزة.',
+      sub: 'نرحب بطلبات المتخصصين القادرين على تقديم قراءات عميقة، سرية، وبعيدة عن الكليشيهات الجاهزة.',
       criteria: [
-        ['أصالة وعمق في التفسير', 'خبرة راسخة في واحد على الأقل من المجالات: التاروت، رموز القهوة، كاتينا، الفلك، أو علم الأرقام.'],
+        ['أصالة وعمق في التفسير', 'خبرة راسخة في التاروت، رموز القهوة، كاتينا، الفلك، أو علم الأرقام.'],
         ['الالتزام الأخلاقي والسرية', 'أسلوب راقٍ يحترم خصوصية المستفيد ويعزز وعيه الذاتي دون تخويف أو إثارة للتبعية.'],
         ['جودة التواصل والانضباط', 'قدرة تعبيرية واضحة صوتياً أو كتابياً مع الالتزام بالوقت والدقة.']
       ],
@@ -610,7 +660,7 @@ const sharedStyles = `
 :root{color-scheme:dark;--cream:#f4eadc;--gold:#d4ae75;--gold-bright:#edd09e;--muted:#c7bab0;--bg:#08080a;--card:#121017;--border:#be9d6b38;--ok:#37b87c;--err:#e56b60}
 *{box-sizing:border-box}
 html{min-height:100%;background:var(--bg);scroll-behavior:smooth}
-body{margin:0;color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);line-height:1.6}
+body{margin:0;color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);line-height:1.55}
 .wrap{position:relative;isolation:isolate;min-height:100svh;display:flex;flex-direction:column;background:#0d0a0b;overflow-x:hidden}
 .hero-stage{position:relative;isolation:isolate;min-height:92svh;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;border-bottom:1px solid var(--border)}
 .photo{position:absolute;inset:0;z-index:-2;margin:0}
@@ -628,98 +678,107 @@ body{margin:0;color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",
 .langs{display:flex;gap:12px;align-items:center}
 .langs a{color:#c9bcb1;text-decoration:none;font:600 11px system-ui,sans-serif;letter-spacing:.14em;padding:6px 4px}
 .langs a[aria-current=page],.langs a:hover{color:var(--gold)}
-.main{width:min(1450px,calc(100% - 72px));margin:0 auto;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:34px;padding:clamp(28px,6vh,88px) 0 36px;position:relative;z-index:2}
-.copy{max-width:650px;position:relative;z-index:1}
-.live-pill{display:inline-flex;align-items:center;gap:10px;background:rgba(16,14,18,.82);border:1px solid #d4ae7559;border-radius:999px;padding:7px 15px;font-size:11px;font-weight:700;letter-spacing:.14em;color:#f0d5a8;margin:0 0 18px;backdrop-filter:blur(8px)}
+.main{width:min(1450px,calc(100% - 72px));margin:0 auto;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:30px;padding:clamp(24px,5vh,76px) 0 32px;position:relative;z-index:2}
+.copy{max-width:860px;position:relative;z-index:1}
+.live-pill{display:inline-flex;align-items:center;gap:10px;background:rgba(16,14,18,.82);border:1px solid #d4ae7559;border-radius:999px;padding:7px 15px;font-size:11px;font-weight:700;letter-spacing:.14em;color:#f0d5a8;margin:0 0 16px;backdrop-filter:blur(8px)}
 .live-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:.32em;color:#d8b57f;margin:0 0 14px;text-transform:uppercase}
-.title{font:400 clamp(42px,4.8vw,74px)/1.05 Georgia,"Times New Roman",serif;letter-spacing:-.035em;margin:0 0 14px;text-wrap:balance}
-.title-em{display:block;font:italic 400 clamp(21px,2.2vw,31px)/1.3 Georgia,"Times New Roman",serif;color:var(--gold-bright);margin:0 0 20px}
-.sub{color:#e2dad3;font:400 16.5px/1.75 system-ui,sans-serif;max-width:580px;margin:0 0 26px}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:10px}
-.cta{display:inline-flex;gap:12px;align-items:center;justify-content:center;text-decoration:none;color:#160f08;background:#dbb980;border:1px solid #dbb980;border-radius:999px;padding:15px 26px;font-size:12.5px;letter-spacing:.08em;font-weight:700;cursor:pointer;transition:background .2s,transform .2s}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.3em;color:#d8b57f;margin:0 0 10px;text-transform:uppercase}
+.title{font:400 clamp(38px,4.2vw,66px)/1.06 Georgia,"Times New Roman",serif;letter-spacing:-.03em;margin:0 0 10px}
+.title-em{display:block;font:italic 400 clamp(18px,1.75vw,26px)/1.3 Georgia,"Times New Roman",serif;color:var(--gold-bright);margin:0 0 16px}
+.sub{color:#e2dad3;font:400 15.5px/1.65 system-ui,sans-serif;max-width:780px;margin:0 0 24px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:8px}
+.cta{display:inline-flex;gap:12px;align-items:center;justify-content:center;text-decoration:none;color:#160f08;background:#dbb980;border:1px solid #dbb980;border-radius:999px;padding:14px 25px;font-size:12.5px;letter-spacing:.08em;font-weight:700;cursor:pointer;transition:background .2s,transform .2s;white-space:nowrap}
 .cta:hover{background:#f0cd93;transform:translateY(-2px)}
-.cta-ghost{display:inline-flex;gap:10px;align-items:center;justify-content:center;text-decoration:none;color:var(--cream);background:rgba(14,12,16,.72);border:1px solid #d4ae7566;border-radius:999px;padding:15px 24px;font-size:12.5px;letter-spacing:.07em;font-weight:600;transition:border-color .2s,background .2s}
+.cta-ghost{display:inline-flex;gap:10px;align-items:center;justify-content:center;text-decoration:none;color:var(--cream);background:rgba(14,12,16,.72);border:1px solid #d4ae7566;border-radius:999px;padding:14px 23px;font-size:12.5px;letter-spacing:.07em;font-weight:600;transition:border-color .2s,background .2s;white-space:nowrap}
 .cta-ghost:hover{border-color:var(--gold);background:rgba(212,174,117,.14)}
-.trust-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:20px;border-radius:20px;background:rgba(12,10,15,.82);border:1px solid var(--border);backdrop-filter:blur(10px)}
-.trust-item{display:flex;flex-direction:column;gap:5px}
-.trust-item strong{font:600 14px/1.3 Georgia,serif;color:var(--gold-bright);display:flex;align-items:center;gap:8px}
+.trust-bar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;padding:18px 20px;border-radius:18px;background:rgba(12,10,15,.82);border:1px solid var(--border);backdrop-filter:blur(10px)}
+.trust-item{display:flex;flex-direction:column;gap:4px}
+.trust-item strong{font:600 14.5px/1.25 Georgia,serif;color:var(--gold-bright);display:flex;align-items:center;gap:8px;white-space:nowrap}
 .trust-item strong:before{content:"✦";color:var(--gold)}
-.trust-item span{font-size:13px;color:#d2c7bc;line-height:1.5}
+.trust-item span{font-size:12.5px;color:#d2c7bc;line-height:1.45}
 .chips{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
-.chips a{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:10px;font:500 12.5px/1.35 system-ui,sans-serif;color:#eee3d7;text-decoration:none;padding:10px 6px;border-radius:16px;transition:transform .2s,color .2s}
+.chips a{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:10px;font:500 12.5px/1.3 system-ui,sans-serif;color:#eee3d7;text-decoration:none;padding:8px 4px;border-radius:16px;transition:transform .2s,color .2s;white-space:nowrap}
 .chips a:hover{transform:translateY(-3px);color:var(--gold-bright)}
-.chips a:before{content:"✧";width:58px;height:58px;display:grid;place-items:center;border:1px solid #bc955d66;border-radius:50%;font:26px Georgia,serif;color:#d4ae75;background:#08070b88}
+.chips a:before{content:"✧";width:56px;height:56px;display:grid;place-items:center;border:1px solid #bc955d66;border-radius:50%;font:25px Georgia,serif;color:#d4ae75;background:#08070b88}
 .chips a:nth-child(1):before{content:"☼"}
-.chips a:nth-child(2):before{content:"☕";font-size:22px}
+.chips a:nth-child(2):before{content:"☕";font-size:21px}
 .chips a:nth-child(3):before{content:"♠"}
 .chips a:nth-child(4):before{content:"☾"}
 .chips a:nth-child(5):before{content:"♡"}
 .chips a:nth-child(6):before{content:"✶"}
 .chips a:nth-child(7):before{content:"☸"}
 .chips a:nth-child(8):before{content:"✧"}
-.section-block{width:min(1450px,calc(100% - 72px));margin:0 auto;padding:72px 0;border-bottom:1px solid var(--border)}
-.section-head{max-width:760px;margin-bottom:40px}
-.section-head h2{font:400 clamp(30px,3.4vw,48px)/1.12 Georgia,serif;margin:0 0 14px;color:#f7efe4}
-.section-head p{margin:0;color:var(--muted);font-size:16px;line-height:1.7}
-.areas-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.area-card{background:linear-gradient(180deg,#15121b 0%,#0e0c12 100%);border:1px solid var(--border);border-radius:20px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;transition:border-color .2s,transform .2s}
+.section-block{width:min(1450px,calc(100% - 72px));margin:0 auto;padding:64px 0;border-bottom:1px solid var(--border)}
+.section-head{width:100%;max-width:100%;margin-bottom:32px}
+.section-head h2{font:400 clamp(24px,2.2vw,36px)/1.18 Georgia,serif;margin:0 0 8px;color:#f7efe4}
+.section-head p{margin:0;color:var(--muted);font-size:15px;line-height:1.55;max-width:100%}
+.areas-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.area-card{background:linear-gradient(180deg,#15121b 0%,#0e0c12 100%);border:1px solid var(--border);border-radius:18px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:16px;transition:border-color .2s,transform .2s}
 .area-card:hover,.area-card.is-selected{border-color:var(--gold);transform:translateY(-3px)}
-.area-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.area-icon{width:46px;height:46px;border-radius:50%;border:1px solid #d4ae7555;display:grid;place-items:center;color:var(--gold);font:21px Georgia,serif;background:#09080c}
-.area-tag{font-size:10px;font-weight:700;letter-spacing:.18em;color:#cdb083;text-transform:uppercase}
-.area-card h3{font:400 23px/1.2 Georgia,serif;margin:10px 0 8px;color:#f8f0e5}
-.area-card p{margin:0;font-size:14px;color:#cfc4b8;line-height:1.65}
-.area-formats{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.area-formats small{font-size:11px;padding:4px 9px;border-radius:999px;background:#1c1722;color:#dfd2c2;border:1px solid #ffffff12}
-.area-btn{width:100%;padding:12px 16px;border-radius:12px;border:1px solid #d4ae7566;background:#1b1510;color:var(--gold-bright);font-weight:600;font-size:12.5px;letter-spacing:.05em;cursor:pointer;transition:background .2s,color .2s}
+.area-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.area-icon{width:42px;height:42px;border-radius:50%;border:1px solid #d4ae7555;display:grid;place-items:center;color:var(--gold);font:19px Georgia,serif;background:#09080c;flex-shrink:0}
+.area-tag{font-size:10px;font-weight:700;letter-spacing:.16em;color:#cdb083;text-transform:uppercase;white-space:nowrap}
+.area-card h3{font:400 21px/1.2 Georgia,serif;margin:10px 0 6px;color:#f8f0e5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.area-card p{margin:0;font-size:13.5px;color:#cfc4b8;line-height:1.55}
+.area-formats{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.area-formats small{font-size:10.5px;padding:3px 8px;border-radius:999px;background:#1c1722;color:#dfd2c2;border:1px solid #ffffff12;white-space:nowrap}
+.area-btn{width:100%;padding:11px 14px;border-radius:11px;border:1px solid #d4ae7566;background:#1b1510;color:var(--gold-bright);font-weight:600;font-size:12px;letter-spacing:.05em;cursor:pointer;transition:background .2s,color .2s;white-space:nowrap}
 .area-btn:hover{background:var(--gold);color:#140e07}
-.process-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-bottom:28px}
-.step-card,.pillar-card{background:#121017;border:1px solid var(--border);border-radius:20px;padding:26px}
-.step-num{font:400 32px/1 Georgia,serif;color:var(--gold);display:block;margin-bottom:12px}
-.step-card h3,.pillar-card h3{font:400 21px/1.25 Georgia,serif;margin:0 0 10px;color:#f6ede1}
-.step-card p,.pillar-card p{margin:0;font-size:14.5px;color:#ccc0b4;line-height:1.65}
-.inquiry-shell{display:grid;grid-template-columns:1fr 1.15fr;gap:36px;align-items:start;background:linear-gradient(145deg,#151119 0%,#0d0b11 100%);border:1px solid #d4ae7555;border-radius:24px;padding:clamp(24px,4vw,44px)}
-.form-card{display:flex;flex-direction:column;gap:18px}
-.field{display:flex;flex-direction:column;gap:5px}
-.field label,.field legend{font-size:13.5px;font-weight:600;color:#f2e7d8}
-.hint{display:block;color:#b5a799;font-size:12px;margin-bottom:2px}
-.field input,.field select,.field textarea{width:100%;padding:13px 15px;border-radius:12px;border:1px solid #be9d6b44;background:#09080c;color:var(--cream);font:400 14.5px/1.4 system-ui,sans-serif;transition:border-color .2s,background-color .2s}
-.field textarea{min-height:110px;resize:vertical}
+.process-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:18px}
+.step-card,.pillar-card{background:#121017;border:1px solid var(--border);border-radius:18px;padding:22px 24px}
+.step-card h3,.pillar-card h3{font:400 19.5px/1.25 Georgia,serif;margin:0 0 8px;color:#f6ede1;display:flex;align-items:center;gap:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step-card h3:before,.pillar-card h3:before{content:"✦";color:var(--gold);font-size:15px;flex-shrink:0}
+.step-card p,.pillar-card p{margin:0;font-size:13.5px;color:#ccc0b4;line-height:1.55}
+.inquiry-shell{display:grid;grid-template-columns:1fr 1.15fr;gap:34px;align-items:start;background:linear-gradient(145deg,#151119 0%,#0d0b11 100%);border:1px solid #d4ae7555;border-radius:22px;padding:clamp(22px,3.5vw,38px)}
+.form-card{display:flex;flex-direction:column;gap:16px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label,.field legend{font-size:13px;font-weight:600;color:#f2e7d8}
+.hint{display:block;color:#b5a799;font-size:11.5px;margin-bottom:2px}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border-radius:11px;border:1px solid #be9d6b44;background:#09080c;color:var(--cream);font:400 14px/1.4 system-ui,sans-serif;transition:border-color .2s,background-color .2s}
+.field textarea{min-height:100px;resize:vertical}
 .field input:focus,.field select:focus,.field textarea:focus{outline:2px solid #d4ae7588;border-color:var(--gold)}
-.error-msg{display:none;color:var(--err);font-size:12.5px;margin-top:4px;font-weight:500}
+.error-msg{display:none;color:var(--err);font-size:12px;margin-top:3px;font-weight:500}
 .field input:user-invalid,.field textarea:user-invalid,.field input.user-invalid-fallback,.field textarea.user-invalid-fallback{border-color:var(--err);background-color:#261112}
 .field input:user-invalid + .error-msg,.field textarea:user-invalid + .error-msg,.field input.user-invalid-fallback + .error-msg,.field textarea.user-invalid-fallback + .error-msg{display:block}
 .field:has(input:user-invalid) .hint,.field:has(textarea:user-invalid) .hint{color:#f29b94}
 .field input:user-valid,.field textarea:user-valid,.field input.user-valid-fallback,.field textarea.user-valid-fallback{border-color:var(--ok)}
-.specialty-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:4px}
-.check-pill{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:11px;border:1px solid #be9d6b38;background:#0a090e;font-size:13px;color:#eadfce;cursor:pointer}
-.check-pill input{width:16px;height:16px;accent-color:var(--gold);margin:0}
-.consent-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#d6c9bc;cursor:pointer}
-.consent-row input{width:18px;height:18px;margin-top:2px;accent-color:var(--gold);flex-shrink:0}
-.form-status{margin:0;padding:13px 16px;border-radius:12px;font-size:13.5px;display:none}
+.specialty-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:4px}
+.check-pill{display:flex;align-items:center;gap:8px;padding:9px 11px;border-radius:10px;border:1px solid #be9d6b38;background:#0a090e;font-size:12.5px;color:#eadfce;cursor:pointer}
+.check-pill input{width:15px;height:15px;accent-color:var(--gold);margin:0}
+.consent-row{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:#d6c9bc;cursor:pointer}
+.consent-row input{width:17px;height:17px;margin-top:2px;accent-color:var(--gold);flex-shrink:0}
+.form-status{margin:0;padding:12px 15px;border-radius:11px;font-size:13px;display:none}
 .form-status[data-state="ok"]{display:block;background:#10291e;border:1px solid var(--ok);color:#b9f5d8}
 .form-status[data-state="err"]{display:block;background:#2b1214;border:1px solid var(--err);color:#ffd2ce}
-.faq-list{display:flex;flex-direction:column;gap:14px;max-width:960px}
-.faq-item{background:#121017;border:1px solid var(--border);border-radius:16px;padding:18px 22px}
-.faq-item summary{font:600 17px/1.4 Georgia,serif;color:#f5ece0;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.aeo-dl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:0 0 28px;padding:0}
+.aeo-fact{background:#110f16;border:1px solid var(--border);border-radius:16px;padding:18px 20px}
+.aeo-fact dt{font:600 14px/1.3 Georgia,serif;color:var(--gold-bright);margin:0 0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aeo-fact dd{margin:0;font-size:13px;color:#cdc1b4;line-height:1.55}
+.faq-list{display:flex;flex-direction:column;gap:12px;width:100%}
+.faq-item{background:#121017;border:1px solid var(--border);border-radius:15px;padding:16px 22px}
+.faq-item summary{font:600 16.5px/1.35 Georgia,serif;color:#f5ece0;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .faq-item summary::-webkit-details-marker{display:none}
-.faq-item summary:after{content:"+";font:400 22px/1 system-ui,sans-serif;color:var(--gold)}
+.faq-item summary:after{content:"+";font:400 21px/1 system-ui,sans-serif;color:var(--gold)}
 .faq-item[open] summary:after{content:"−"}
-.faq-item p{margin:12px 0 0;color:#cfc3b6;font-size:14.5px;line-height:1.7}
-.recruit-banner{margin-top:44px;background:linear-gradient(90deg,#1a1410 0%,#120f17 100%);border:1px solid #d4ae7566;border-radius:22px;padding:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.recruit-banner h3{font:400 26px/1.2 Georgia,serif;margin:6px 0 8px;color:#f8efe2}
-.recruit-banner p{margin:0;color:#d2c5b8;max-width:680px;font-size:15px}
-.bottom{width:min(1450px,calc(100% - 72px));margin:0 auto;padding:24px 0 36px;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;font-size:12px;color:#b8a797}
+.faq-item p{margin:10px 0 0;color:#cfc3b6;font-size:14px;line-height:1.65}
+.recruit-banner{margin-top:34px;background:linear-gradient(90deg,#1a1410 0%,#120f17 100%);border:1px solid #d4ae7566;border-radius:20px;padding:26px 30px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap: nowrap}
+.recruit-copy{min-width:0;flex:1}
+.recruit-banner h3{font:400 clamp(20px,2vw,26px)/1.25 Georgia,serif;margin:4px 0 6px;color:#f8efe2}
+.recruit-banner p{margin:0;color:#d2c5b8;font-size:14.5px}
+.bottom{width:min(1450px,calc(100% - 72px));margin:0 auto;padding:22px 0 34px;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;font-size:12px;color:#b8a797}
 .bottom strong{font-weight:600;letter-spacing:.16em;color:#dcc39c}
 .bottom-links{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 .bottom-links a{color:#d4ae75;text-decoration:none}
 [dir=rtl] .title{letter-spacing:normal}
 [dir=rtl] .photo:after{background:linear-gradient(270deg,#050508f5 0%,#050508cc 35%,transparent 78%),linear-gradient(0deg,#08080a,transparent 45%)}
+@media(min-width:980px){
+  .section-head h2,.section-head p,.recruit-banner h3,.recruit-banner p,.title-em{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
 @media(max-width:1100px){
-  .areas-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .areas-grid,.aeo-dl{grid-template-columns:repeat(2,minmax(0,1fr))}
   .trust-bar,.process-grid,.inquiry-shell{grid-template-columns:1fr}
   .chips{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .recruit-banner{flex-wrap:wrap}
 }
 @media(max-width:700px){
   .wrap{background:#08080b}
@@ -729,16 +788,17 @@ body{margin:0;color:var(--cream);font-family:system-ui,-apple-system,"Segoe UI",
   .logo:before{margin-inline-end:8px;font-size:22px}
   .top-nav{gap:10px;width:100%;justify-content:space-between}
   .hero-stage{min-height:auto}
-  .main{padding:0 0 28px;gap:20px;justify-content:flex-start}
+  .main{padding:0 0 26px;gap:18px;justify-content:flex-start}
   .photo{position:relative;inset:auto;z-index:0;order:0;margin:0 0 0 calc((100% - 100vw)/2);width:100vw;max-width:none;height:clamp(290px,80vw,410px);overflow:hidden}
   .photo img{object-position:55% 32%;filter:brightness(.94) saturate(.96)}
   .photo:after{background:linear-gradient(0deg,#08080b 0%,transparent 28%)}
   .copy{order:1;max-width:100%}
-  .trust-bar{order:2;padding:16px}
+  .trust-bar{order:2;padding:15px}
   .chips{order:3;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 6px}
-  .areas-grid,.specialty-grid{grid-template-columns:1fr}
-  .title{font-size:clamp(34px,8.8vw,46px);line-height:1.1}
-  .section-block{padding:48px 0}
+  .areas-grid,.specialty-grid,.aeo-dl{grid-template-columns:1fr}
+  .title{font-size:clamp(32px,8.5vw,44px);line-height:1.1}
+  .step-card h3,.pillar-card h3,.area-card h3,.trust-item strong,.aeo-fact dt{white-space:normal}
+  .section-block{padding:44px 0}
 }
 @media(max-width:390px){
   .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -860,44 +920,128 @@ export const gozdeApplyPage = (pathname = '/yorumcu-basvuru') => {
   const locale = resolveGozdeLocale(pathname);
   const t = C[locale];
   const a = t.applyPage;
-  const [homeHref, lang, dir, applyHref] = langs[locale];
+  const [homeHref, lang, dir, applyHref, ogLocale, llmsHref] = langs[locale];
+  const canonicalUrl = `https://mythborn.co${applyHref}`;
   const schema = {
     '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: `MYTHBORN | ${a.title}`,
-    description: a.sub,
-    url: `https://mythborn.co${applyHref}`,
-    inLanguage: lang
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': 'https://mythborn.co/#organization',
+        name: 'MYTHBORN',
+        url: 'https://mythborn.co/',
+        logo: 'https://mythborn.co/images/gozde-tarot-hero.webp',
+        sameAs: ['https://www.tiktok.com/@gozdeli_'],
+        availableLanguage: ['tr', 'en', 'el', 'es', 'ar']
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonicalUrl}#webpage`,
+        name: `MYTHBORN | ${a.title}`,
+        description: a.sub,
+        url: canonicalUrl,
+        inLanguage: lang,
+        isPartOf: { '@id': 'https://mythborn.co/#website' },
+        about: { '@id': 'https://mythborn.co/#organization' }
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonicalUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'MYTHBORN', item: `https://mythborn.co${homeHref}` },
+          { '@type': 'ListItem', position: 2, name: a.title, item: canonicalUrl }
+        ]
+      }
+    ]
   };
-  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="index,follow"><meta name="description" content="${safe(a.sub)}"><title>MYTHBORN | ${safe(a.title)} — ${safe(t.lead)}</title><link rel="canonical" href="https://mythborn.co${applyHref}">${Object.entries(langs).map(([, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${v[3]}">`).join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co/yorumcu-basvuru"><meta property="og:type" content="website"><meta property="og:title" content="MYTHBORN · ${safe(a.title)}"><meta property="og:description" content="${safe(a.sub)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap"><header class="top"><a class="logo" href="${homeHref}">MYTHBORN</a><div class="top-nav"><a href="${homeHref}">${safe(a.back)}</a><a href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${safe(t.social)} ↗</a><nav class="langs" aria-label="Languages">${Object.entries(langs).map(([k, v]) => `<a href="${v[3]}" lang="${v[1]}" ${locale === k ? 'aria-current="page"' : ''}>${k.toUpperCase()}</a>`).join('')}</nav></div></header><main><section class="section-block" style="padding-top:28px"><div class="inquiry-shell"><div class="copy"><span class="live-pill"><span class="live-dot" aria-hidden="true"></span>${safe(t.lead)}</span><p class="eyebrow">${safe(a.eyebrow)}</p><h1 class="title" style="font-size:clamp(34px,4vw,54px)">${safe(a.title)}</h1><p class="sub">${safe(a.sub)}</p><figure style="margin:24px 0;border-radius:18px;overflow:hidden;border:1px solid var(--border);max-height:290px"><img src="/images/gozde-tarot-hero.webp" width="1536" height="1024" alt="${safe(t.lead)}" fetchpriority="high" style="width:100%;height:290px;object-fit:cover;object-position:center 32%;display:block"></figure><div style="display:flex;flex-direction:column;gap:14px">${a.criteria.map(([ct, cd]) => `<div class="pillar-card" style="padding:18px"><h3 style="font-size:18px;margin-bottom:6px">✦ ${safe(ct)}</h3><p style="font-size:13.5px">${safe(cd)}</p></div>`).join('')}</div></div><form id="gozde-apply-form" class="form-card" method="post" action="/api/gozde-apply" novalidate data-ok-msg="${safe(a.success)}" data-err-msg="${safe(a.error)}" data-sending-msg="${safe(t.submitting)}"><input type="hidden" name="locale" value="${locale}"><div><h2 style="font:400 28px/1.2 Georgia,serif;margin:0 0 8px;color:#f8efe2">${safe(a.formTitle)}</h2><p style="margin:0;color:var(--muted);font-size:14px">${safe(a.formSub)}</p></div><div class="field"><label for="apply-name">${safe(a.fullName)}</label><span id="apply-name-hint" class="hint">${safe(a.hintFullName)}</span><input id="apply-name" name="fullName" type="text" required minlength="2" maxlength="120" autocomplete="name" aria-describedby="apply-name-hint"></div><div class="field"><label for="apply-email">${safe(a.email)}</label><span id="apply-email-hint" class="hint">${safe(a.hintEmail)}</span><input id="apply-email" name="email" type="email" required autocomplete="email" aria-describedby="apply-email-hint" aria-errormessage="apply-email-err"><div id="apply-email-err" class="error-msg">${safe(a.errEmail)}</div></div><div class="field"><label for="apply-phone">${safe(a.phone)}</label><span id="apply-phone-hint" class="hint">${safe(a.hintPhone)}</span><input id="apply-phone" name="phone" type="tel" inputmode="tel" required minlength="7" maxlength="40" autocomplete="tel" aria-describedby="apply-phone-hint" aria-errormessage="apply-phone-err"><div id="apply-phone-err" class="error-msg">${safe(a.errPhone)}</div></div><fieldset class="field" style="border:0;padding:0;margin:0"><legend>${safe(a.specialties)}</legend><div class="specialty-grid">${t.cats.map((c) => `<label class="check-pill"><input type="checkbox" name="specialties" value="${safe(c)}"><span>${safe(c)}</span></label>`).join('')}</div></fieldset><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px"><div class="field"><label for="apply-exp">${safe(a.experience)}</label><select id="apply-exp" name="experience">${a.expOptions.map((o) => `<option value="${safe(o)}">${safe(o)}</option>`).join('')}</select></div><div class="field"><label for="apply-mod">${safe(a.modality)}</label><select id="apply-mod" name="modality">${a.modOptions.map((o) => `<option value="${safe(o)}">${safe(o)}</option>`).join('')}</select></div></div><div class="field"><label for="apply-langs">${safe(a.languages)}</label><span id="apply-langs-hint" class="hint">${safe(a.hintLanguages)}</span><input id="apply-langs" name="languages" type="text" required minlength="2" maxlength="120" aria-describedby="apply-langs-hint"></div><div class="field"><label for="apply-social">${safe(a.social)}</label><span id="apply-social-hint" class="hint">${safe(a.hintSocial)}</span><input id="apply-social" name="social" type="text" maxlength="180" aria-describedby="apply-social-hint"></div><div class="field"><label for="apply-bio">${safe(a.bio)}</label><span id="apply-bio-hint" class="hint">${safe(a.hintBio)}</span><textarea id="apply-bio" name="bio" required minlength="25" maxlength="1500" aria-describedby="apply-bio-hint" aria-errormessage="apply-bio-err"></textarea><div id="apply-bio-err" class="error-msg">${safe(a.errBio)}</div></div><label class="consent-row"><input type="checkbox" name="consent" value="yes" required><span>${safe(a.consent)}</span></label><p class="form-status" data-form-status role="status" aria-live="polite"></p><button type="submit" class="cta">${safe(a.submit)}</button></form></div></section></main><footer class="bottom"><strong>© MYTHBORN · ${safe(t.lead)}</strong><div class="bottom-links"><span>${safe(t.note)}</span><a href="${homeHref}">${safe(a.back)}</a></div></footer></div><script>${clientInteractiveScript}</script></body></html>`;
+  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="author" content="Gözde — MYTHBORN"><meta name="keywords" content="${safe(t.keywords)}"><meta name="description" content="${safe(a.sub)}"><title>MYTHBORN | ${safe(a.title)} — ${safe(t.lead)}</title><link rel="canonical" href="${canonicalUrl}">${Object.entries(langs).map(([, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${v[3]}">`).join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co/yorumcu-basvuru"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsHref}" title="LLM Context"><link rel="help" href="https://mythborn.co/ai-fact-sheet.txt"><meta property="og:type" content="website"><meta property="og:site_name" content="MYTHBORN"><meta property="og:locale" content="${ogLocale}"><meta property="og:url" content="${canonicalUrl}"><meta property="og:title" content="MYTHBORN · ${safe(a.title)}"><meta property="og:description" content="${safe(a.sub)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:secure_url" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:type" content="image/webp"><meta property="og:image:width" content="1536"><meta property="og:image:height" content="1024"><meta property="og:image:alt" content="${safe(t.lead)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MYTHBORN · ${safe(a.title)}"><meta name="twitter:description" content="${safe(a.sub)}"><meta name="twitter:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap"><header class="top"><a class="logo" href="${homeHref}">MYTHBORN</a><div class="top-nav"><a href="${homeHref}">${safe(a.back)}</a><a href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${safe(t.social)} ↗</a><nav class="langs" aria-label="Languages">${Object.entries(langs).map(([k, v]) => `<a href="${v[3]}" lang="${v[1]}" ${locale === k ? 'aria-current="page"' : ''}>${k.toUpperCase()}</a>`).join('')}</nav></div></header><main><section class="section-block" style="padding-top:28px"><div class="inquiry-shell"><div class="copy"><span class="live-pill"><span class="live-dot" aria-hidden="true"></span>${safe(t.lead)}</span><p class="eyebrow">${safe(a.eyebrow)}</p><h1 class="title" style="font-size:clamp(30px,3.4vw,46px)">${safe(a.title)}</h1><p class="sub">${safe(a.sub)}</p><figure style="margin:20px 0;border-radius:18px;overflow:hidden;border:1px solid var(--border);max-height:270px"><img src="/images/gozde-tarot-hero.webp" width="1536" height="1024" alt="${safe(t.lead)}" fetchpriority="high" style="width:100%;height:270px;object-fit:cover;object-position:center 32%;display:block"></figure><div style="display:flex;flex-direction:column;gap:12px">${a.criteria.map(([ct, cd]) => `<div class="pillar-card" style="padding:16px 18px"><h3>${safe(ct)}</h3><p>${safe(cd)}</p></div>`).join('')}</div></div><form id="gozde-apply-form" class="form-card" method="post" action="/api/gozde-apply" novalidate data-ok-msg="${safe(a.success)}" data-err-msg="${safe(a.error)}" data-sending-msg="${safe(t.submitting)}"><input type="hidden" name="locale" value="${locale}"><div><h2 style="font:400 26px/1.2 Georgia,serif;margin:0 0 6px;color:#f8efe2">${safe(a.formTitle)}</h2><p style="margin:0;color:var(--muted);font-size:13.5px">${safe(a.formSub)}</p></div><div class="field"><label for="apply-name">${safe(a.fullName)}</label><span id="apply-name-hint" class="hint">${safe(a.hintFullName)}</span><input id="apply-name" name="fullName" type="text" required minlength="2" maxlength="120" autocomplete="name" aria-describedby="apply-name-hint"></div><div class="field"><label for="apply-email">${safe(a.email)}</label><span id="apply-email-hint" class="hint">${safe(a.hintEmail)}</span><input id="apply-email" name="email" type="email" required autocomplete="email" aria-describedby="apply-email-hint" aria-errormessage="apply-email-err"><div id="apply-email-err" class="error-msg">${safe(a.errEmail)}</div></div><div class="field"><label for="apply-phone">${safe(a.phone)}</label><span id="apply-phone-hint" class="hint">${safe(a.hintPhone)}</span><input id="apply-phone" name="phone" type="tel" inputmode="tel" required minlength="7" maxlength="40" autocomplete="tel" aria-describedby="apply-phone-hint" aria-errormessage="apply-phone-err"><div id="apply-phone-err" class="error-msg">${safe(a.errPhone)}</div></div><fieldset class="field" style="border:0;padding:0;margin:0"><legend>${safe(a.specialties)}</legend><div class="specialty-grid">${t.cats.map((c) => `<label class="check-pill"><input type="checkbox" name="specialties" value="${safe(c)}"><span>${safe(c)}</span></label>`).join('')}</div></fieldset><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px"><div class="field"><label for="apply-exp">${safe(a.experience)}</label><select id="apply-exp" name="experience">${a.expOptions.map((o) => `<option value="${safe(o)}">${safe(o)}</option>`).join('')}</select></div><div class="field"><label for="apply-mod">${safe(a.modality)}</label><select id="apply-mod" name="modality">${a.modOptions.map((o) => `<option value="${safe(o)}">${safe(o)}</option>`).join('')}</select></div></div><div class="field"><label for="apply-langs">${safe(a.languages)}</label><span id="apply-langs-hint" class="hint">${safe(a.hintLanguages)}</span><input id="apply-langs" name="languages" type="text" required minlength="2" maxlength="120" aria-describedby="apply-langs-hint"></div><div class="field"><label for="apply-social">${safe(a.social)}</label><span id="apply-social-hint" class="hint">${safe(a.hintSocial)}</span><input id="apply-social" name="social" type="text" maxlength="180" aria-describedby="apply-social-hint"></div><div class="field"><label for="apply-bio">${safe(a.bio)}</label><span id="apply-bio-hint" class="hint">${safe(a.hintBio)}</span><textarea id="apply-bio" name="bio" required minlength="25" maxlength="1500" aria-describedby="apply-bio-hint" aria-errormessage="apply-bio-err"></textarea><div id="apply-bio-err" class="error-msg">${safe(a.errBio)}</div></div><label class="consent-row"><input type="checkbox" name="consent" value="yes" required><span>${safe(a.consent)}</span></label><p class="form-status" data-form-status role="status" aria-live="polite"></p><button type="submit" class="cta">${safe(a.submit)}</button></form></div></section></main><footer class="bottom"><strong>© MYTHBORN · ${safe(t.lead)}</strong><div class="bottom-links"><span>${safe(t.note)}</span><a href="${homeHref}">${safe(a.back)}</a></div></footer></div><script>${clientInteractiveScript}</script></body></html>`;
 };
 
 export const gozdeLanding = (pathname = '/') => {
   if (isGozdeApplyPath(pathname)) return gozdeApplyPage(pathname);
   const locale = resolveGozdeLocale(pathname);
   const t = C[locale];
-  const [homeHref, lang, dir, applyHref] = langs[locale];
+  const [homeHref, lang, dir, applyHref, ogLocale, llmsHref] = langs[locale];
+  const canonicalUrl = `https://mythborn.co${homeHref}`;
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
       {
+        '@type': 'Organization',
+        '@id': 'https://mythborn.co/#organization',
+        name: 'MYTHBORN',
+        url: 'https://mythborn.co/',
+        logo: 'https://mythborn.co/images/gozde-tarot-hero.webp',
+        sameAs: ['https://www.tiktok.com/@gozdeli_'],
+        availableLanguage: ['tr', 'en', 'el', 'es', 'ar']
+      },
+      {
+        '@type': 'Person',
+        '@id': 'https://mythborn.co/#gozde',
+        name: 'Gözde',
+        alternateName: t.lead,
+        url: canonicalUrl,
+        image: 'https://mythborn.co/images/gozde-tarot-hero.webp',
+        sameAs: ['https://www.tiktok.com/@gozdeli_'],
+        knowsAbout: t.cats,
+        worksFor: { '@id': 'https://mythborn.co/#organization' }
+      },
+      {
         '@type': 'WebSite',
+        '@id': 'https://mythborn.co/#website',
         name: `MYTHBORN · ${t.lead}`,
-        url: `https://mythborn.co${homeHref}`,
-        inLanguage: lang
+        url: 'https://mythborn.co/',
+        inLanguage: lang,
+        publisher: { '@id': 'https://mythborn.co/#organization' }
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${canonicalUrl}#webpage`,
+        url: canonicalUrl,
+        name: `MYTHBORN | ${t.lead} — ${t.heading}`,
+        description: t.sub,
+        inLanguage: lang,
+        isPartOf: { '@id': 'https://mythborn.co/#website' },
+        about: { '@id': 'https://mythborn.co/#gozde' },
+        mainEntity: { '@id': `${canonicalUrl}#essential-paths` },
+        speakable: {
+          '@type': 'SpeakableSpecification',
+          cssSelector: ['.copy h1', '.copy .sub', '.aeo-dl', '.faq-item']
+        }
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${canonicalUrl}#essential-paths`,
+        name: t.areasEyebrow,
+        numberOfItems: t.catDetails.length,
+        itemListElement: t.catDetails.map(([, name, desc], idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          name,
+          description: desc,
+          url: `${canonicalUrl}#alanlar`
+        }))
       },
       {
         '@type': 'FAQPage',
+        '@id': `${canonicalUrl}#faq`,
         inLanguage: lang,
         mainEntity: t.faqs.map(([q, ans]) => ({
           '@type': 'Question',
           name: q,
           acceptedAnswer: { '@type': 'Answer', text: ans }
         }))
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonicalUrl}#breadcrumb`,
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'MYTHBORN', item: canonicalUrl }
+        ]
       }
     ]
   };
-  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="index,follow"><meta name="description" content="${safe(t.sub)}"><title>MYTHBORN | ${safe(t.lead)} — ${safe(t.heading)}</title><link rel="canonical" href="https://mythborn.co${homeHref}">${Object.entries(langs).map(([, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${v[0]}">`).join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co/"><meta property="og:type" content="website"><meta property="og:title" content="MYTHBORN · ${safe(t.lead)}"><meta property="og:description" content="${safe(t.sub)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap"><div class="hero-stage"><header class="top"><a class="logo" href="${homeHref}">MYTHBORN</a><div class="top-nav"><a href="#alanlar">${safe(t.navAreas)}</a><a href="#yaklasim">${safe(t.navProcess)}</a><a href="#iletisim">${safe(t.navInquiry)}</a><a href="#sss">${safe(t.navFaq)}</a><a class="apply-pill" href="${applyHref}">${safe(t.applyNav)}</a><nav class="langs" aria-label="Languages">${Object.entries(langs).map(([k, v]) => `<a href="${v[0]}" lang="${v[1]}" ${locale === k ? 'aria-current="page"' : ''}>${k.toUpperCase()}</a>`).join('')}</nav></div></header><main class="main"><figure class="photo"><img src="/images/gozde-tarot-hero.webp" width="1536" height="1024" alt="${safe(t.lead)}" fetchpriority="high"><figcaption>GÖZDE</figcaption></figure><section class="copy"><div class="live-pill"><span class="live-dot" aria-hidden="true"></span><span>${safe(t.badge)}</span></div><p class="eyebrow">${safe(t.lead)}</p><h1 class="title">${safe(t.heading)}</h1><span class="title-em">${safe(t.headingEm)}</span><p class="sub">${safe(t.sub)}</p><div class="hero-actions"><a class="cta" href="#alanlar">${safe(t.ctaPrimary)} <span aria-hidden="true">→</span></a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${safe(t.social)} <span aria-hidden="true">↗</span></a></div></section><div class="trust-bar">${t.trustStrip.map(([title, desc]) => `<div class="trust-item"><strong>${safe(title)}</strong><span>${safe(desc)}</span></div>`).join('')}</div><div class="chips" aria-label="${safe(categoryLabels[locale])}">${t.cats.map((c) => `<a href="#alanlar">${safe(c)}</a>`).join('')}</div></main></div><section id="alanlar" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.areasEyebrow)}</p><h2>${safe(t.areasTitle)}</h2><p>${safe(t.areasSub)}</p></div><div class="areas-grid">${t.catDetails.map(([tag, name, desc], idx) => `<article class="area-card"><div><div class="area-top"><span class="area-icon" aria-hidden="true">${ICONS[idx] || '✧'}</span><span class="area-tag">${safe(tag)}</span></div><h3>${safe(name)}</h3><p>${safe(desc)}</p><div class="area-formats">${t.formats.map((f) => `<small>${safe(f)}</small>`).join('')}</div></div><button type="button" class="area-btn" data-select-topic="${safe(name)}">${safe(t.selectBtn)}</button></article>`).join('')}</div></section><section id="yaklasim" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.processEyebrow)}</p><h2>${safe(t.processTitle)}</h2><p>${safe(t.processSub)}</p></div><div class="process-grid">${t.steps.map(([num, title, desc]) => `<article class="step-card"><span class="step-num">${safe(num)}</span><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div><div class="process-grid">${t.pillars.map(([title, desc]) => `<article class="pillar-card"><h3>✦ ${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div></section><section id="iletisim" class="section-block"><div class="inquiry-shell"><div class="copy"><p class="eyebrow">${safe(t.formEyebrow)}</p><h2 style="font:400 clamp(28px,3.2vw,44px)/1.15 Georgia,serif;margin:0 0 14px;color:#f8efe2">${safe(t.formTitle)}</h2><p class="sub">${safe(t.formSub)}</p><div class="pillar-card" style="margin-top:20px"><h3>✦ ${safe(t.lead)}</h3><p>${safe(t.trustStrip[0][1])}</p><div style="margin-top:16px"><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${safe(t.social)} ↗</a></div></div></div><form id="gozde-inquiry-form" class="form-card" method="post" action="/api/gozde-inquiry" novalidate data-ok-msg="${safe(t.inquirySuccess)}" data-err-msg="${safe(t.inquiryError)}" data-sending-msg="${safe(t.submitting)}"><input type="hidden" name="locale" value="${locale}"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px"><div class="field"><label for="inquiry-topic">${safe(t.labelTopic)}</label><select id="inquiry-topic" name="topic">${t.cats.map((c) => `<option value="${safe(c)}">${safe(c)}</option>`).join('')}</select></div><div class="field"><label for="inquiry-format">${safe(t.labelFormat)}</label><select id="inquiry-format" name="format">${t.formatOptions.map((f) => `<option value="${safe(f)}">${safe(f)}</option>`).join('')}</select></div></div><div class="field"><label for="inquiry-name">${safe(t.labelName)}</label><span id="inquiry-name-hint" class="hint">${safe(t.hintName)}</span><input id="inquiry-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name" aria-describedby="inquiry-name-hint"></div><div class="field"><label for="inquiry-contact">${safe(t.labelContact)}</label><span id="inquiry-contact-hint" class="hint">${safe(t.hintContact)}</span><input id="inquiry-contact" name="contact" type="text" required minlength="3" maxlength="140" aria-describedby="inquiry-contact-hint"></div><div class="field"><label for="inquiry-message">${safe(t.labelMessage)}</label><span id="inquiry-message-hint" class="hint">${safe(t.hintMessage)}</span><textarea id="inquiry-message" name="message" required minlength="10" maxlength="1200" aria-describedby="inquiry-message-hint"></textarea></div><label class="consent-row"><input type="checkbox" name="consent" value="yes" required><span>${safe(t.labelConsent)}</span></label><p class="form-status" data-form-status role="status" aria-live="polite"></p><button type="submit" class="cta">${safe(t.submitInquiry)}</button></form></div></section><section id="sss" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.faqEyebrow)}</p><h2>${safe(t.faqTitle)}</h2></div><div class="faq-list">${t.faqs.map(([q, ans], idx) => `<details class="faq-item" name="mythborn-faq"${idx === 0 ? ' open' : ''}><summary>${safe(q)}</summary><p>${safe(ans)}</p></details>`).join('')}</div><div class="recruit-banner"><div><p class="eyebrow" style="margin-bottom:6px">${safe(t.recruitEyebrow)}</p><h3>${safe(t.recruitTitle)}</h3><p>${safe(t.recruitSub)}</p></div><a class="cta" href="${applyHref}">${safe(t.recruitCta)}</a></div></section><footer class="bottom"><strong>© MYTHBORN · ${safe(t.lead)}</strong><div class="bottom-links"><span>${safe(t.note)}</span><a href="${applyHref}">${safe(t.applyNav)}</a><a href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">TikTok ↗</a></div></footer></div><script>${clientInteractiveScript}</script></body></html>`;
+  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="author" content="Gözde — MYTHBORN"><meta name="keywords" content="${safe(t.keywords)}"><meta name="description" content="${safe(t.sub)}"><title>MYTHBORN | ${safe(t.lead)} — ${safe(t.heading)}</title><link rel="canonical" href="${canonicalUrl}">${Object.entries(langs).map(([, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${v[0]}">`).join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co/"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsHref}" title="LLM Context"><link rel="help" href="https://mythborn.co/ai-fact-sheet.txt"><meta property="og:type" content="website"><meta property="og:site_name" content="MYTHBORN"><meta property="og:locale" content="${ogLocale}"><meta property="og:url" content="${canonicalUrl}"><meta property="og:title" content="MYTHBORN · ${safe(t.lead)}"><meta property="og:description" content="${safe(t.sub)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:secure_url" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:type" content="image/webp"><meta property="og:image:width" content="1536"><meta property="og:image:height" content="1024"><meta property="og:image:alt" content="${safe(t.lead)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MYTHBORN · ${safe(t.lead)}"><meta name="twitter:description" content="${safe(t.sub)}"><meta name="twitter:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap"><div class="hero-stage"><header class="top"><a class="logo" href="${homeHref}">MYTHBORN</a><div class="top-nav"><a href="#alanlar">${safe(t.navAreas)}</a><a href="#yaklasim">${safe(t.navProcess)}</a><a href="#iletisim">${safe(t.navInquiry)}</a><a href="#sss">${safe(t.navFaq)}</a><a class="apply-pill" href="${applyHref}">${safe(t.applyNav)}</a><nav class="langs" aria-label="Languages">${Object.entries(langs).map(([k, v]) => `<a href="${v[0]}" lang="${v[1]}" ${locale === k ? 'aria-current="page"' : ''}>${k.toUpperCase()}</a>`).join('')}</nav></div></header><main class="main"><figure class="photo"><img src="/images/gozde-tarot-hero.webp" width="1536" height="1024" alt="${safe(t.lead)}" fetchpriority="high"><figcaption>GÖZDE</figcaption></figure><section class="copy"><div class="live-pill"><span class="live-dot" aria-hidden="true"></span><span>${safe(t.badge)}</span></div><p class="eyebrow">${safe(t.lead)}</p><h1 class="title">${safe(t.heading)}</h1><span class="title-em">${safe(t.headingEm)}</span><p class="sub">${safe(t.sub)}</p><div class="hero-actions"><a class="cta" href="#alanlar">${safe(t.ctaPrimary)} <span aria-hidden="true">→</span></a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${safe(t.social)} <span aria-hidden="true">↗</span></a></div></section><div class="trust-bar">${t.trustStrip.map(([title, desc]) => `<div class="trust-item"><strong>${safe(title)}</strong><span>${safe(desc)}</span></div>`).join('')}</div><div class="chips" aria-label="${safe(categoryLabels[locale])}">${t.cats.map((c) => `<a href="#alanlar">${safe(c)}</a>`).join('')}</div></main></div><section id="alanlar" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.areasEyebrow)}</p><h2>${safe(t.areasTitle)}</h2><p>${safe(t.areasSub)}</p></div><div class="areas-grid">${t.catDetails.map(([tag, name, desc], idx) => `<article class="area-card"><div><div class="area-top"><span class="area-icon" aria-hidden="true">${ICONS[idx] || '✧'}</span><span class="area-tag">${safe(tag)}</span></div><h3>${safe(name)}</h3><p>${safe(desc)}</p><div class="area-formats">${t.formats.map((f) => `<small>${safe(f)}</small>`).join('')}</div></div><button type="button" class="area-btn" data-select-topic="${safe(name)}">${safe(t.selectBtn)}</button></article>`).join('')}</div></section><section id="yaklasim" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.processEyebrow)}</p><h2>${safe(t.processTitle)}</h2><p>${safe(t.processSub)}</p></div><div class="process-grid">${t.steps.map(([title, desc]) => `<article class="step-card"><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div><div class="process-grid">${t.pillars.map(([title, desc]) => `<article class="pillar-card"><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div></section><section id="iletisim" class="section-block"><div class="inquiry-shell"><div class="copy"><p class="eyebrow">${safe(t.formEyebrow)}</p><h2 style="font:400 clamp(24px,2.4vw,34px)/1.18 Georgia,serif;margin:0 0 10px;color:#f8efe2">${safe(t.formTitle)}</h2><p class="sub" style="margin-bottom:18px">${safe(t.formSub)}</p><div class="pillar-card" style="margin-top:16px"><h3>${safe(t.lead)}</h3><p>${safe(t.trustStrip[0][1])}</p><div style="margin-top:14px"><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${safe(t.social)} ↗</a></div></div></div><form id="gozde-inquiry-form" class="form-card" method="post" action="/api/gozde-inquiry" novalidate data-ok-msg="${safe(t.inquirySuccess)}" data-err-msg="${safe(t.inquiryError)}" data-sending-msg="${safe(t.submitting)}"><input type="hidden" name="locale" value="${locale}"><div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px"><div class="field"><label for="inquiry-topic">${safe(t.labelTopic)}</label><select id="inquiry-topic" name="topic">${t.cats.map((c) => `<option value="${safe(c)}">${safe(c)}</option>`).join('')}</select></div><div class="field"><label for="inquiry-format">${safe(t.labelFormat)}</label><select id="inquiry-format" name="format">${t.formatOptions.map((f) => `<option value="${safe(f)}">${safe(f)}</option>`).join('')}</select></div></div><div class="field"><label for="inquiry-name">${safe(t.labelName)}</label><span id="inquiry-name-hint" class="hint">${safe(t.hintName)}</span><input id="inquiry-name" name="name" type="text" required minlength="2" maxlength="100" autocomplete="name" aria-describedby="inquiry-name-hint"></div><div class="field"><label for="inquiry-contact">${safe(t.labelContact)}</label><span id="inquiry-contact-hint" class="hint">${safe(t.hintContact)}</span><input id="inquiry-contact" name="contact" type="text" required minlength="3" maxlength="140" aria-describedby="inquiry-contact-hint"></div><div class="field"><label for="inquiry-message">${safe(t.labelMessage)}</label><span id="inquiry-message-hint" class="hint">${safe(t.hintMessage)}</span><textarea id="inquiry-message" name="message" required minlength="10" maxlength="1200" aria-describedby="inquiry-message-hint"></textarea></div><label class="consent-row"><input type="checkbox" name="consent" value="yes" required><span>${safe(t.labelConsent)}</span></label><p class="form-status" data-form-status role="status" aria-live="polite"></p><button type="submit" class="cta">${safe(t.submitInquiry)}</button></form></div></section><section id="sss" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.faqEyebrow)}</p><h2>${safe(t.faqTitle)}</h2><p>${safe(t.faqSub)}</p></div><dl class="aeo-dl">${t.aeoFacts.map(([dt, dd]) => `<div class="aeo-fact"><dt>✦ ${safe(dt)}</dt><dd>${safe(dd)}</dd></div>`).join('')}</dl><div class="faq-list">${t.faqs.map(([q, ans], idx) => `<details class="faq-item" name="mythborn-faq"${idx === 0 ? ' open' : ''}><summary>${safe(q)}</summary><p>${safe(ans)}</p></details>`).join('')}</div><div class="recruit-banner"><div class="recruit-copy"><p class="eyebrow" style="margin-bottom:4px">${safe(t.recruitEyebrow)}</p><h3>${safe(t.recruitTitle)}</h3><p>${safe(t.recruitSub)}</p></div><a class="cta" href="${applyHref}">${safe(t.recruitCta)}</a></div></section><footer class="bottom"><strong>© MYTHBORN · ${safe(t.lead)}</strong><div class="bottom-links"><span>${safe(t.note)}</span><a href="${applyHref}">${safe(t.applyNav)}</a><a href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">TikTok ↗</a></div></footer></div><script>${clientInteractiveScript}</script></body></html>`;
 };
 
 export const handleGozdeApi = async (request, env) => {
