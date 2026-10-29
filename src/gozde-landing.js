@@ -968,6 +968,22 @@ body.drawer-open{overflow:hidden}
 .cookie-banner-copy a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
 .cookie-banner-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .cookie-btn{min-height:40px;padding:9px 16px;font-size:12.5px;cursor:pointer;white-space:nowrap}
+.video-toast{position:fixed;top:max(76px,env(safe-area-inset-top));inset-inline-end:max(18px,env(safe-area-inset-right));inset-inline-start:auto;bottom:auto;z-index:125;width:min(410px,calc(100vw - 24px));margin:0;padding:0;border-radius:18px;background:linear-gradient(155deg,#171825f7,#0c0d14fc);border:1px solid #d8b78073;box-shadow:0 22px 54px #000000e6,0 0 0 1px #d8b78024;color:#f6ecdc;overflow:hidden;opacity:0;transform:translateY(-12px);transition:opacity .32s ease,transform .32s ease,overlay .32s allow-discrete,display .32s allow-discrete;transition-behavior:allow-discrete}
+.video-toast[hidden]{display:none!important}
+.video-toast.is-active,.video-toast:is(:popover-open,.\:popover-open){opacity:1;transform:translateY(0)}
+.video-toast-inner{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:12px;padding:12px 14px}
+.video-toast-thumb{position:relative;width:64px;height:64px;border-radius:13px;overflow:hidden;border:1px solid #d8b78059;display:block;flex-shrink:0}
+.video-toast-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
+.video-toast-play{position:absolute;inset:0;margin:auto;width:26px;height:26px;border-radius:999px;background:#e6c48ce6;color:#14100a;display:inline-flex;align-items:center;justify-content:center;font-size:11px;box-shadow:0 4px 12px #000000b3}
+.video-toast-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+.video-toast-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.12em;color:var(--gold);font-weight:600}
+.video-toast-title{color:#f8efe2;text-decoration:none;font:600 13px/1.36 system-ui,-apple-system,sans-serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.video-toast-title:hover{color:var(--gold)}
+.video-toast-cta{display:inline-flex;align-items:center;gap:4px;color:#edd09e;font-size:12px;font-weight:600;text-decoration:none;margin-top:1px}
+.video-toast-close{width:28px;height:28px;border-radius:999px;border:1px solid #ffffff1a;background:#ffffff08;color:#cabfb2;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:12px;align-self:start}
+.video-toast-close:hover{border-color:var(--gold);color:#fff}
+.video-toast-progress{display:block;height:3px;width:100%;background:linear-gradient(90deg,#c9a05b,#f1d5a5);transform-origin:left center;animation:toastTimer 6.5s linear forwards}
+@keyframes toastTimer{from{transform:scaleX(1)}to{transform:scaleX(0)}}
 @media(max-width:980px){
   .video-spotlight-card,.video-theater-grid{grid-template-columns:1fr!important;padding:18px}
   .zodiac-cards-grid{grid-template-columns:1fr!important}
@@ -977,6 +993,10 @@ body.drawer-open{overflow:hidden}
   .cookie-banner-copy p{font-size:11.8px;line-height:1.42}
   .cookie-banner-actions{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .cookie-btn{width:100%;min-height:38px;padding:8px 10px;font-size:12px;border-radius:999px}
+  .video-toast{top:max(68px,env(safe-area-inset-top));left:10px;right:10px;width:auto}
+  .video-toast-inner{grid-template-columns:56px 1fr auto;padding:11px 12px;gap:10px}
+  .video-toast-thumb{width:56px;height:56px}
+  .video-toast-title{font-size:12.4px}
 }
 @media(max-width:390px){
   .chips{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -1058,6 +1078,45 @@ const clientInteractiveScript = `
       btn.addEventListener('click', () => {
         cookieBanner.hidden = false;
       });
+    });
+  }
+
+  const videoToast = document.getElementById('video-promo-toast');
+  if (videoToast && !/\/(?:videolar|videos)\b/i.test(window.location.pathname)) {
+    const releaseId = videoToast.getAttribute('data-video-release') || 'latest';
+    const TOAST_KEY = 'mythborn_video_toast_' + releaseId;
+    let seenToast = false;
+    try {
+      seenToast = sessionStorage.getItem(TOAST_KEY) === '1';
+    } catch {}
+    const hideVideoToast = () => {
+      try {
+        sessionStorage.setItem(TOAST_KEY, '1');
+      } catch {}
+      videoToast.classList.remove('is-active');
+      if (typeof videoToast.hidePopover === 'function') {
+        try {
+          videoToast.hidePopover();
+        } catch {}
+      }
+      setTimeout(() => {
+        videoToast.hidden = true;
+      }, 320);
+    };
+    if (!seenToast) {
+      setTimeout(() => {
+        videoToast.hidden = false;
+        if (typeof videoToast.showPopover === 'function') {
+          try {
+            videoToast.showPopover();
+          } catch {}
+        }
+        requestAnimationFrame(() => videoToast.classList.add('is-active'));
+        setTimeout(hideVideoToast, 6500);
+      }, 1000);
+    }
+    videoToast.querySelectorAll('[data-close-video-toast], a').forEach((el) => {
+      el.addEventListener('click', hideVideoToast);
     });
   }
 
