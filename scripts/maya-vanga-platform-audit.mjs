@@ -93,6 +93,7 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert(html.includes('data-cookie-choice="accepted"') && html.includes('data-cookie-choice="essential"'), `${path} must include both Accept All and Essential Only options`);
  assert(html.includes('data-open-cookie-banner'), `${path} must include footer trigger to reopen cookie preferences`);
  assert(html.includes('href="https://qctcommerce.com/"') && html.includes('QCT Commerce'), `${path} must include QCT Commerce footer signature`);
+ assert(html.includes('id="exit-intent-dialog"') && html.includes('closedby="any"'), `${path} must include exit-intent retention dialog`);
  assert(html.includes('name="mythborn-faq"'));
  assert(html.includes('class="aeo-dl"'));
  assert(html.includes('SpeakableSpecification'));
