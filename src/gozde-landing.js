@@ -1056,13 +1056,13 @@ const clientInteractiveScript = `
   }
 
   const cookieBanner = document.getElementById('cookie-consent-banner');
-  const COOKIE_KEY = 'mythborn_cookie_consent';
+  const COOKIE_KEY = 'mythborn_cookie_consent_v2';
   if (cookieBanner) {
     let savedChoice = null;
     try {
       savedChoice = localStorage.getItem(COOKIE_KEY);
     } catch {}
-    if (!savedChoice && document.cookie.includes('mythborn_cookie_consent=')) {
+    if (!savedChoice && document.cookie.includes('mythborn_cookie_consent_v2=')) {
       savedChoice = 'accepted';
     }
     if (!savedChoice) {
@@ -1072,7 +1072,7 @@ const clientInteractiveScript = `
       try {
         localStorage.setItem(COOKIE_KEY, choice);
       } catch {}
-      document.cookie = 'mythborn_cookie_consent=' + encodeURIComponent(choice) + '; Path=/; Max-Age=31536000; SameSite=Lax; Secure';
+      document.cookie = 'mythborn_cookie_consent_v2=' + encodeURIComponent(choice) + '; Path=/; Max-Age=31536000; SameSite=Lax; Secure';
       cookieBanner.hidden = true;
     };
     cookieBanner.querySelectorAll('[data-cookie-choice]').forEach((btn) => {
@@ -1088,7 +1088,8 @@ const clientInteractiveScript = `
   }
 
   const videoToast = document.getElementById('video-promo-toast');
-  if (videoToast && !/\/(?:videolar|videos)\b/i.test(window.location.pathname)) {
+  const currentPath = (window.location.pathname || '').toLowerCase();
+  if (videoToast && !currentPath.includes('/videolar') && !currentPath.includes('/videos')) {
     const releaseId = videoToast.getAttribute('data-video-release') || 'latest';
     const TOAST_KEY = 'mythborn_video_toast_' + releaseId;
     let dismissed = false;
