@@ -70,7 +70,7 @@ for (const [path, lang] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['
 console.log('Coming-soon gated public surface checks passed.');
 
 // Reversible Gözde full platform & 5-language reader application pages:
-for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/ar','ar'],['/iletisim','tr']]) {
+for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/ar','ar']]) {
  const response=await worker.fetch(new Request('https://mythborn.co'+path),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
  assert.equal(response.status,200);
  assert.equal(response.headers.get('content-language'),language);
@@ -78,8 +78,11 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert(html.includes(({tr:'Kartların Gözde’si',en:'Gözde of the Cards',el:'Η Gözde των Καρτών',es:'Gözde, la voz de las cartas',ar:'Gözde قارئة البطاقات'})[language]));
  assert(html.includes('/images/gozde-tarot-hero.webp'));
  assert(html.includes('gozdeli_'));
+ assert(html.includes('id="mobile-drawer"'), `${path} must include mobile drawer menu`);
+ assert(html.includes('data-open-drawer'), `${path} must include mobile menu toggle button`);
  assert(html.includes('class="trust-bar"'));
  assert((html.match(/class="area-card"/g)||[]).length===8, `${path} must render all 8 service area cards`);
+ assert(html.includes('id="blog-onizleme"'), `${path} must render blog preview section`);
  assert(html.includes('id="gozde-inquiry-form"'));
  assert(html.includes('name="mythborn-faq"'));
  assert(html.includes('class="aeo-dl"'));
@@ -91,6 +94,34 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert(!html.includes('gozde-landing'));
  assert(!/(?:price|fiyat|checkout|reservation|booking|payment|ödeme|mailto:|wa\.me)/i.test(html), `${path} must remain free of commercial/prohibited terms`);
  if(language==='ar') assert(html.includes('dir="rtl"'));
+}
+
+// Standalone menu pages, legal pages (KVKK, Gizlilik, Kullanım Koşulları), and 10 blog articles:
+for (const subPath of [
+  '/kesif-alanlari','/yaklasim','/blog','/iletisim','/kvkk','/gizlilik','/kullanim-kosullari',
+  '/en/areas','/en/approach','/en/blog','/en/contact','/en/kvkk','/en/privacy','/en/terms',
+  '/gr/areas','/es/blog','/ar/kvkk',
+  '/blog/merkur-ve-gezegen-retrolari-rehberi',
+  '/blog/tutulma-mevsimi-ve-kader-kavsagi',
+  '/blog/katina-ask-acilimi-ve-iliski-dinamikleri',
+  '/blog/tarot-major-arkana-kader-karti-sifreleri',
+  '/blog/kahve-fali-sembolizmi-fincandaki-isaretler',
+  '/blog/dogum-haritasinda-7-ev-venus-ve-juno',
+  '/blog/saturn-dongusu-ve-hayat-sinavlari',
+  '/blog/numeroloji-ve-kisisel-yil-hesaplama',
+  '/blog/yildizname-gelenegi-ve-dort-element-mizaci',
+  '/blog/duru-goru-ve-sezgisel-farkindalik-rehberi'
+]) {
+  const response=await worker.fetch(new Request('https://mythborn.co'+subPath),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+  assert.equal(response.status,200, `${subPath} must return HTTP 200`);
+  const html=await response.text();
+  assert(html.includes('id="mobile-drawer"'), `${subPath} must include mobile drawer menu`);
+  assert(!/(?:price|fiyat|checkout|reservation|booking|payment|ödeme|mailto:|wa\.me)/i.test(html), `${subPath} must remain free of commercial/prohibited terms`);
+  if(subPath.startsWith('/blog/')){
+    assert(html.includes('"@type":"Article"'), `${subPath} must include Article schema`);
+    assert(html.includes('"@type":"FAQPage"'), `${subPath} must include FAQPage schema`);
+    assert(html.includes('class="article-meta"'), `${subPath} must include editorial meta`);
+  }
 }
 
 for (const [applyPath,language] of [['/yorumcu-basvuru','tr'],['/en/apply','en'],['/gr/apply','el'],['/es/apply','es'],['/ar/apply','ar']]) {

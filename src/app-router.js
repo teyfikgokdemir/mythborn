@@ -64,7 +64,7 @@ const searchItems=locale=>{
 export default {
   async fetch(request,env,ctx){
     const incoming=new URL(request.url);
-    if(incoming.pathname==='/api/gozde-inquiry'||incoming.pathname==='/api/gozde-apply'){
+    if(incoming.pathname==='/api/gozde-inquiry'||incoming.pathname==='/api/gozde-apply'||incoming.pathname==='/api/gozde-submissions'){
       return handleGozdeApi(request,env);
     }
     if((env.GOZDE_LAUNCH_ENABLED==='true' || (env.COMING_SOON_ENABLED!=='true' && isGozdeApplyPath(incoming.pathname))) && (request.method==='GET'||request.method==='HEAD') && !incoming.pathname.startsWith('/api/') && !incoming.pathname.startsWith('/cdn-cgi/') && !/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
