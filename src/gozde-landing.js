@@ -969,22 +969,23 @@ body:has(#cookie-consent-banner:not([hidden])) .scroll-top-btn{bottom:108px}
 .cookie-banner-copy a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
 .cookie-banner-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .cookie-btn{min-height:40px;padding:9px 16px;font-size:12.5px;cursor:pointer;white-space:nowrap}
-.video-toast{position:fixed;top:max(76px,env(safe-area-inset-top));inset-inline-end:max(18px,env(safe-area-inset-right));inset-inline-start:auto;bottom:auto;z-index:135;width:min(410px,calc(100vw - 24px));margin:0;padding:0;border-radius:18px;background:linear-gradient(155deg,#171825f7,#0c0d14fc);border:1.5px solid #e2be82;box-shadow:0 22px 54px #000000eb,0 0 0 3px #d8b78029;color:#f6ecdc;overflow:hidden;opacity:0;transform:translateY(-12px);transition:opacity .32s ease,transform .32s ease,overlay .32s allow-discrete,display .32s allow-discrete;transition-behavior:allow-discrete}
+.video-toast{position:fixed;top:max(82px,calc(env(safe-area-inset-top) + 20px));left:0;right:0;bottom:auto;z-index:140;width:min(580px,calc(100vw - 24px));margin:0 auto;padding:0;border-radius:22px;background:linear-gradient(155deg,#181927fa,#0b0c13fe);border:1.5px solid #edd09e;box-shadow:0 28px 72px #000000f5,0 0 44px #d8b78042,0 0 0 1px #ffffff14 inset;color:#f6ecdc;overflow:hidden;opacity:0;transform:translateY(-14px) scale(.97);transition:opacity .34s ease,transform .34s ease,overlay .34s allow-discrete,display .34s allow-discrete;transition-behavior:allow-discrete}
 .video-toast[hidden]{display:none!important}
-.video-toast.is-active{display:block;opacity:1;transform:translateY(0)}
-.video-toast:is(:popover-open,.\\:popover-open){display:block;opacity:1;transform:translateY(0)}
-.video-toast-inner{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:12px;padding:12px 14px}
-.video-toast-thumb{position:relative;width:64px;height:64px;border-radius:13px;overflow:hidden;border:1px solid #d8b78059;display:block;flex-shrink:0}
-.video-toast-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block}
-.video-toast-play{position:absolute;inset:0;margin:auto;width:26px;height:26px;border-radius:999px;background:#e6c48ce6;color:#14100a;display:inline-flex;align-items:center;justify-content:center;font-size:11px;box-shadow:0 4px 12px #000000b3}
-.video-toast-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
-.video-toast-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;letter-spacing:.12em;color:var(--gold);font-weight:600}
-.video-toast-title{color:#f8efe2;text-decoration:none;font:600 13px/1.36 system-ui,-apple-system,sans-serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.video-toast.is-active{display:block;opacity:1;transform:translateY(0) scale(1)}
+.video-toast:is(:popover-open,.\\:popover-open){display:block;opacity:1;transform:translateY(0) scale(1)}
+.video-toast-inner{display:grid;grid-template-columns:82px 1fr auto;align-items:center;gap:16px;padding:15px 18px}
+.video-toast-thumb{position:relative;width:82px;height:82px;border-radius:16px;overflow:hidden;border:1.5px solid #e5c388;display:block;flex-shrink:0;box-shadow:0 10px 24px #00000099}
+.video-toast-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 24%;display:block}
+.video-toast-play{position:absolute;inset:0;margin:auto;width:32px;height:32px;border-radius:999px;background:linear-gradient(135deg,#f3d9ad,#c99d57);color:#14100a;display:inline-flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 0 0 5px #d8b78038,0 6px 14px #000000cc}
+.video-toast-copy{display:flex;flex-direction:column;gap:5px;min-width:0}
+.video-toast-badge{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;letter-spacing:.14em;color:#f2d49f;font-weight:700}
+.video-toast-title{color:#fff7eb;text-decoration:none;font:400 clamp(15px,1.5vw,17.5px)/1.32 Georgia,serif;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .video-toast-title:hover{color:var(--gold)}
-.video-toast-cta{display:inline-flex;align-items:center;gap:4px;color:#edd09e;font-size:12px;font-weight:600;text-decoration:none;margin-top:1px}
-.video-toast-close{width:28px;height:28px;border-radius:999px;border:1px solid #ffffff1a;background:#ffffff08;color:#cabfb2;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:12px;align-self:start}
+.video-toast-actions{display:flex;align-items:center;margin-top:3px}
+.video-toast-cta{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:linear-gradient(135deg,#efd3a2,#c89c57);color:#17120a;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:.03em;box-shadow:0 6px 16px #00000080}
+.video-toast-close{width:30px;height:30px;border-radius:999px;border:1px solid #ffffff26;background:#ffffff0d;color:#dfd3c3;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:13px;align-self:start}
 .video-toast-close:hover{border-color:var(--gold);color:#fff}
-.video-toast-progress{display:block;height:3px;width:100%;background:linear-gradient(90deg,#c9a05b,#f1d5a5);transform-origin:left center;animation:toastTimer 8s linear forwards}
+.video-toast-progress{display:block;height:3.5px;width:100%;background:linear-gradient(90deg,#c9a05b,#f5ddb2);transform-origin:left center;animation:toastTimer 8.5s linear forwards}
 @keyframes toastTimer{from{transform:scaleX(1)}to{transform:scaleX(0)}}
 @media(max-width:980px){
   .video-spotlight-card,.video-theater-grid{grid-template-columns:1fr!important;padding:18px}
@@ -995,10 +996,10 @@ body:has(#cookie-consent-banner:not([hidden])) .scroll-top-btn{bottom:108px}
   .cookie-banner-copy p{font-size:11.8px;line-height:1.42}
   .cookie-banner-actions{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .cookie-btn{width:100%;min-height:38px;padding:8px 10px;font-size:12px;border-radius:999px}
-  .video-toast{top:max(68px,env(safe-area-inset-top));left:10px;right:10px;width:auto}
-  .video-toast-inner{grid-template-columns:56px 1fr auto;padding:11px 12px;gap:10px}
-  .video-toast-thumb{width:56px;height:56px}
-  .video-toast-title{font-size:12.4px}
+  .video-toast{top:max(70px,calc(env(safe-area-inset-top) + 14px));left:10px;right:10px;width:auto;margin:0 auto}
+  .video-toast-inner{grid-template-columns:68px 1fr auto;padding:13px 14px;gap:12px}
+  .video-toast-thumb{width:68px;height:68px;border-radius:14px}
+  .video-toast-title{font-size:14px;line-height:1.3}
   .scroll-top-btn{width:46px;height:46px;inset-inline-end:14px;bottom:max(20px,calc(env(safe-area-inset-bottom) + 12px))}
   body:has(#cookie-consent-banner:not([hidden])) .scroll-top-btn{bottom:max(184px,calc(env(safe-area-inset-bottom) + 174px))}
 }
@@ -1090,18 +1091,7 @@ const clientInteractiveScript = `
   const videoToast = document.getElementById('video-promo-toast');
   const currentPath = (window.location.pathname || '').toLowerCase();
   if (videoToast && !currentPath.includes('/videolar') && !currentPath.includes('/videos')) {
-    const releaseId = videoToast.getAttribute('data-video-release') || 'latest';
-    const TOAST_KEY = 'mythborn_video_toast_' + releaseId;
-    let dismissed = false;
-    try {
-      dismissed = sessionStorage.getItem(TOAST_KEY) === '1';
-    } catch {}
-    const hideVideoToast = (markDismissed) => {
-      if (markDismissed) {
-        try {
-          sessionStorage.setItem(TOAST_KEY, '1');
-        } catch {}
-      }
+    const hideVideoToast = () => {
       videoToast.classList.remove('is-active');
       if (typeof videoToast.hidePopover === 'function') {
         try {
@@ -1110,22 +1100,20 @@ const clientInteractiveScript = `
       }
       setTimeout(() => {
         videoToast.hidden = true;
-      }, 320);
+      }, 340);
     };
-    if (!dismissed) {
-      setTimeout(() => {
-        videoToast.hidden = false;
-        if (typeof videoToast.showPopover === 'function') {
-          try {
-            videoToast.showPopover();
-          } catch {}
-        }
-        requestAnimationFrame(() => videoToast.classList.add('is-active'));
-        setTimeout(() => hideVideoToast(false), 8000);
-      }, 1000);
-    }
+    setTimeout(() => {
+      videoToast.hidden = false;
+      if (typeof videoToast.showPopover === 'function') {
+        try {
+          videoToast.showPopover();
+        } catch {}
+      }
+      requestAnimationFrame(() => videoToast.classList.add('is-active'));
+      setTimeout(hideVideoToast, 8500);
+    }, 1000);
     videoToast.querySelectorAll('[data-close-video-toast], a').forEach((el) => {
-      el.addEventListener('click', () => hideVideoToast(true));
+      el.addEventListener('click', hideVideoToast);
     });
   }
 
@@ -1404,7 +1392,7 @@ export const gozdeLanding = (pathname = '/') => {
       }
     ]
   };
-  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="author" content="Gözde — MYTHBORN"><meta name="keywords" content="${safe(t.keywords)}"><meta name="description" content="${safe(t.sub)}"><title>MYTHBORN | ${safe(t.lead)} — ${safe(t.heading)}</title><link rel="canonical" href="${canonicalUrl}">${Object.entries(langs).map(([, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${v[0]}">`).join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co/"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsHref}" title="LLM Context"><link rel="help" href="https://mythborn.co/ai-fact-sheet.txt"><meta property="og:type" content="website"><meta property="og:site_name" content="MYTHBORN"><meta property="og:locale" content="${ogLocale}"><meta property="og:url" content="${canonicalUrl}"><meta property="og:title" content="MYTHBORN · ${safe(t.lead)}"><meta property="og:description" content="${safe(t.sub)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:secure_url" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:type" content="image/webp"><meta property="og:image:width" content="1536"><meta property="og:image:height" content="1024"><meta property="og:image:alt" content="${safe(t.lead)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MYTHBORN · ${safe(t.lead)}"><meta name="twitter:description" content="${safe(t.sub)}"><meta name="twitter:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap">${renderHeaderAndDrawer({ locale, t, langs, activeType: 'home', langHrefFn: (k) => langs[k][0] })}<div class="hero-stage"><main class="main"><figure class="photo"><img src="/images/gozde-tarot-hero.webp" width="1536" height="1024" alt="${safe(t.lead)}" fetchpriority="high"><figcaption>GÖZDE</figcaption></figure><section class="copy"><div class="live-pill"><span class="live-dot" aria-hidden="true"></span><span>${safe(t.badge)}</span></div><p class="eyebrow">${safe(t.lead)}</p><h1 class="title">${safe(t.heading)}</h1><span class="title-em">${safe(t.headingEm)}</span><p class="sub">${safe(t.sub)}</p><div class="hero-actions"><a class="cta" href="#alanlar">${safe(t.ctaPrimary)} <span aria-hidden="true">→</span></a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${safe(t.social)} <span aria-hidden="true">↗</span></a></div></section><div class="trust-bar">${t.trustStrip.map(([title, desc]) => `<div class="trust-item"><strong>${safe(title)}</strong><span>${safe(desc)}</span></div>`).join('')}</div><div class="chips" aria-label="${safe(categoryLabels[locale])}">${t.cats.map((c) => `<a href="#alanlar">${safe(c)}</a>`).join('')}</div></main></div><section id="alanlar" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.areasEyebrow)}</p><h2>${safe(t.areasTitle)}</h2><p>${safe(t.areasSub)}</p></div><div class="areas-grid">${t.catDetails.map(([tag, name, desc], idx) => `<article class="area-card"><div><div class="area-top"><span class="area-icon" aria-hidden="true">${ICONS[idx] || '✧'}</span><span class="area-tag">${safe(tag)}</span></div><h3>${safe(name)}</h3><p>${safe(desc)}</p><div class="area-formats">${t.formats.map((f) => `<small>${safe(f)}</small>`).join('')}</div></div><button type="button" class="area-btn" data-select-topic="${safe(name)}">${safe(t.selectBtn)}</button></article>`).join('')}</div></section><section id="yaklasim" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.processEyebrow)}</p><h2>${safe(t.processTitle)}</h2><p>${safe(t.processSub)}</p></div><div class="process-grid">${t.steps.map(([title, desc]) => `<article class="step-card"><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div><div class="process-grid">${t.pillars.map(([title, desc]) => `<article class="pillar-card"><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div></section>${renderVideoSpotlightSection({ locale })}${renderBlogPreviewSection({ locale })}${buildInquirySectionHtml(locale, t)}<section id="sss" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.faqEyebrow)}</p><h2>${safe(t.faqTitle)}</h2><p>${safe(t.faqSub)}</p></div><dl class="aeo-dl">${t.aeoFacts.map(([dt, dd]) => `<div class="aeo-fact"><dt>✦ ${safe(dt)}</dt><dd>${safe(dd)}</dd></div>`).join('')}</dl><div class="faq-list">${t.faqs.map(([q, ans], idx) => `<details class="faq-item" name="mythborn-faq"${idx === 0 ? ' open' : ''}><summary>${safe(q)}</summary><p>${safe(ans)}</p></details>`).join('')}</div><div class="recruit-banner"><div class="recruit-copy"><p class="eyebrow" style="margin-bottom:4px">${safe(t.recruitEyebrow)}</p><h3>${safe(t.recruitTitle)}</h3><p>${safe(t.recruitSub)}</p></div><a class="cta" href="${applyHref}">${safe(t.recruitCta)}</a></div></section>${renderFooter({ locale, t })}</div><script>${clientInteractiveScript}</script></body></html>`;
+  return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><meta name="author" content="Gözde — MYTHBORN"><meta name="keywords" content="${safe(t.keywords)}"><meta name="description" content="${safe(t.sub)}"><title>MYTHBORN | ${safe(t.lead)} — ${safe(t.heading)}</title><link rel="canonical" href="${canonicalUrl}">${Object.entries(langs).map(([, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${v[0]}">`).join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co/"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsHref}" title="LLM Context"><link rel="help" href="https://mythborn.co/ai-fact-sheet.txt"><meta property="og:type" content="website"><meta property="og:site_name" content="MYTHBORN"><meta property="og:locale" content="${ogLocale}"><meta property="og:url" content="${canonicalUrl}"><meta property="og:title" content="MYTHBORN · ${safe(t.lead)}"><meta property="og:description" content="${safe(t.sub)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:secure_url" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta property="og:image:type" content="image/webp"><meta property="og:image:width" content="1536"><meta property="og:image:height" content="1024"><meta property="og:image:alt" content="${safe(t.lead)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MYTHBORN · ${safe(t.lead)}"><meta name="twitter:description" content="${safe(t.sub)}"><meta name="twitter:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap">${renderHeaderAndDrawer({ locale, t, langs, activeType: 'home', langHrefFn: (k) => langs[k][0] })}<div class="hero-stage"><main class="main"><figure class="photo"><img src="/images/gozde-tarot-hero.webp" width="1536" height="1024" alt="${safe(t.lead)}" fetchpriority="high"><figcaption>GÖZDE</figcaption></figure><section class="copy"><div class="live-pill"><span class="live-dot" aria-hidden="true"></span><span>${safe(t.badge)}</span></div><p class="eyebrow">${safe(t.lead)}</p><h1 class="title">${safe(t.heading)}</h1><span class="title-em">${safe(t.headingEm)}</span><p class="sub">${safe(t.sub)}</p><div class="hero-actions"><a class="cta" href="#alanlar">${safe(t.ctaPrimary)} <span aria-hidden="true">→</span></a><a class="cta-ghost" href="https://www.tiktok.com/@gozdeli_" target="_blank" rel="noopener noreferrer">${safe(t.social)} <span aria-hidden="true">↗</span></a></div></section><div class="trust-bar">${t.trustStrip.map(([title, desc]) => `<div class="trust-item"><strong>${safe(title)}</strong><span>${safe(desc)}</span></div>`).join('')}</div><div class="chips" aria-label="${safe(categoryLabels[locale])}">${t.cats.map((c) => `<a href="#alanlar">${safe(c)}</a>`).join('')}</div></main></div>${renderVideoSpotlightSection({ locale })}<section id="alanlar" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.areasEyebrow)}</p><h2>${safe(t.areasTitle)}</h2><p>${safe(t.areasSub)}</p></div><div class="areas-grid">${t.catDetails.map(([tag, name, desc], idx) => `<article class="area-card"><div><div class="area-top"><span class="area-icon" aria-hidden="true">${ICONS[idx] || '✧'}</span><span class="area-tag">${safe(tag)}</span></div><h3>${safe(name)}</h3><p>${safe(desc)}</p><div class="area-formats">${t.formats.map((f) => `<small>${safe(f)}</small>`).join('')}</div></div><button type="button" class="area-btn" data-select-topic="${safe(name)}">${safe(t.selectBtn)}</button></article>`).join('')}</div></section><section id="yaklasim" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.processEyebrow)}</p><h2>${safe(t.processTitle)}</h2><p>${safe(t.processSub)}</p></div><div class="process-grid">${t.steps.map(([title, desc]) => `<article class="step-card"><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div><div class="process-grid">${t.pillars.map(([title, desc]) => `<article class="pillar-card"><h3>${safe(title)}</h3><p>${safe(desc)}</p></article>`).join('')}</div></section>${renderBlogPreviewSection({ locale })}${buildInquirySectionHtml(locale, t)}<section id="sss" class="section-block"><div class="section-head"><p class="eyebrow">${safe(t.faqEyebrow)}</p><h2>${safe(t.faqTitle)}</h2><p>${safe(t.faqSub)}</p></div><dl class="aeo-dl">${t.aeoFacts.map(([dt, dd]) => `<div class="aeo-fact"><dt>✦ ${safe(dt)}</dt><dd>${safe(dd)}</dd></div>`).join('')}</dl><div class="faq-list">${t.faqs.map(([q, ans], idx) => `<details class="faq-item" name="mythborn-faq"${idx === 0 ? ' open' : ''}><summary>${safe(q)}</summary><p>${safe(ans)}</p></details>`).join('')}</div><div class="recruit-banner"><div class="recruit-copy"><p class="eyebrow" style="margin-bottom:4px">${safe(t.recruitEyebrow)}</p><h3>${safe(t.recruitTitle)}</h3><p>${safe(t.recruitSub)}</p></div><a class="cta" href="${applyHref}">${safe(t.recruitCta)}</a></div></section>${renderFooter({ locale, t })}</div><script>${clientInteractiveScript}</script></body></html>`;
 };
 
 export const handleGozdeApi = async (request, env) => {
