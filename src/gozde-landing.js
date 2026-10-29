@@ -27,7 +27,7 @@ const ICONS = ['☼', '☕', '♠', '☾', '♡', '✶', '☸', '✧'];
 const C = {
   tr: {
     lead: 'Kartların Gözde’si',
-    badge: 'GÖZDE AKTİF · KİŞİYE ÖZEL SESLİ & YAZILI SEMBOL OKUMASI',
+    badge: 'GÖZDE AKTİF · SESLİ, YAZILI & RANDEVULU BİREBİR SEMBOL OKUMASI',
     heading: 'Semboller her zaman konuşur.',
     headingEm: 'Klişe cümleler değil; sana özel, net bir yol haritası.',
     sub: 'Gözde ile kartların, kahve sembollerinin ve gökyüzü anlatılarının izinde yeni bir keşif alanı. Yüzlerce rastgele profil arasında kaybolmadan; bizzat Gözde’nin derinlikli, gizlilik esaslı ve güçlendirici yorumlarıyla tanışın.',
@@ -42,13 +42,13 @@ const C = {
     trustStrip: [
       ['Birebir & Özgün Yorum', 'Hazır kalıp metinler yok; her okuma bizzat Gözde tarafından senin soruna özel hazırlanır.'],
       ['Tam Gizlilik & KVKK Güvencesi', 'Yargılamayan, etik sınırları koruyan ve paylaştığın tüm detayları gizli tutan özenli iletişim.'],
-      ['Özel Ses Kaydı veya Yazılı Analiz', 'Canlı arama telaşı olmadan; Gözde’nin sessizlikte tam odaklanmayla hazırladığı detaylı ses kaydı veya yazılı metin.']
+      ['Sesli, Yazılı veya Randevulu Birebir', 'İhtiyacına göre özel ses kaydı, detaylı yazılı analiz veya ön iletişimle planlanan randevulu birebir canlı görüşme.']
     ],
     areasEyebrow: 'SEMBOLİK KEŞİF ALANLARI',
     areasTitle: 'Bugün hangi düğümü çözmek istiyorsun?',
     areasSub: 'İhtiyacına en uygun alanı seç; Gözde sembolleri, arketipleri ve gökyüzü döngülerini senin odak sorun etrafında ayrıştırsın.',
     selectBtn: 'Bu Alanı Seç →',
-    formats: ['Özel Sesli Kayıt', 'Detaylı Yazılı', 'Kişisel Odak'],
+    formats: ['Özel Sesli Kayıt', 'Detaylı Yazılı', 'Randevulu Birebir'],
     cats: ['Tarot', 'Kahve Falı', 'Katina', 'Duru Görü', 'Aşk ve İlişki', 'Yıldızname', 'Doğum Haritası', 'Numeroloji'],
     catDetails: [
       ['ARKETİP & KARAR', 'Tarot', 'Geçmişin izleri, şimdinin enerjisi ve önündeki karar yollarını arketipsel kart sembolleriyle berraklaştır.'],
@@ -65,26 +65,26 @@ const C = {
     processSub: 'Genel geçer cümlelerle vakit kaybetmeden, sorunun altındaki asıl ihtiyacı yakalayan yapılandırılmış yaklaşım.',
     steps: [
       ['Alanını ve Odak Sorunu Seç', 'Gündemine en çok temas eden sembolik disiplini belirle ve doğrudan form üzerinden seç.'],
-      ['Bağlamını Güvenle Paylaş', 'Odaklandığın soruyu, doğum verini veya sembol detaylarını tercih ettiğin biçimle Gözde’ye ilet.'],
-      ['Sesli veya Yazılı Yol Haritanı Al', 'Canlı görüşme telaşı olmadan, Gözde’nin tam konsantrasyonla hazırladığı ses kaydı veya yazılı analizine ulaş.']
+      ['Tercihini ve Bağlamını Paylaş', 'Sesli kayıt, yazılı analiz veya randevulu birebir canlı görüşme tercihini sorununla birlikte Gözde’ye ilet.'],
+      ['Sana Özel Yol Haritanı Al', 'Seçtiğin formata göre özel ses/yazı analizine ulaş veya planlanan randevu saatinde Gözde ile birebir görüş.']
     ],
     pillars: [
       ['Az Konu, Yüksek Netlik', 'Her şeyi yüzeysel konuşmak yerine asıl düğüm noktasına odaklanır, zihnindeki sis perdesini dağıtırız.'],
-      ['Şeffaf ve Dürüst Format', 'Canlı arama vaadiyle yüzeysel sohbet etmeyiz; her okuma derin odaklanmayla ses kaydı veya yazılı metin olarak hazırlanır.'],
+      ['Planlı & Özenli Süreç', 'Anlık çağrı merkezi karmaşası yoktur; birebir canlı görüşmeler randevu ile, sesli ve yazılı okumalar ise derin odaklanmayla gerçekleştirilir.'],
       ['Seçkin ve Butik Deneyim', 'Fabrikasyon sistemlerin aksine, doğrudan Gözde’nin kürasyonu ve birebir ilgisiyle karşılaşırsın.']
     ],
-    formEyebrow: 'GÖZDE İLE ÖN İLETİŞİM',
+    formEyebrow: 'GÖZDE İLE ÖN İLETİŞİM & RANDEVU TALEBİ',
     formTitle: 'Odaklandığın konuyu paylaş, süreci birlikte başlatalım.',
-    formSub: 'İlgilendiğin alanı ve sorunun çerçevesini aşağıdaki formdan doğrudan Gözde’ye iletebilirsin.',
+    formSub: 'İlgilendiğin alanı, sorunun çerçevesini ve tercih ettiğin görüşme biçimini aşağıdaki formdan doğrudan Gözde’ye iletebilirsin.',
     labelTopic: 'İlgilendiğiniz Keşif Alanı',
-    labelFormat: 'Tercih Ettiğiniz Yorumlama Biçimi',
-    formatOptions: ['Kişiye Özel Sesli Kayıt Analizi', 'Detaylı Yazılı Okuma Metni', 'Sesli Kayıt + Yazılı Özet Sentezi'],
+    labelFormat: 'Tercih Ettiğiniz Yorumlama / Görüşme Biçimi',
+    formatOptions: ['Kişiye Özel Sesli Kayıt Analizi', 'Detaylı Yazılı Okuma Metni', 'Randevulu Birebir Canlı Görüşme'],
     labelName: 'Adınız veya Rumuzunuz',
     hintName: 'Örn. Ayşe K. veya yalnızca rumuzunuz',
     labelContact: 'İletişim Kanalınız (E-posta, Telefon veya Sosyal Medya)',
     hintContact: 'Size geri dönüş yapabilmemiz için aktif bir e-posta, telefon veya kullanıcı adı yazın',
     labelMessage: 'Odaklandığınız Soru ve Kısa Notunuz',
-    hintMessage: 'Netleştirmek istediğiniz konuyu kısaca özetleyin (en az 10 karakter)',
+    hintMessage: 'Netleştirmek istediğiniz konuyu ve randevu tercihinizi kısaca özetleyin (en az 10 karakter)',
     labelConsent: 'Paylaştığım bilgilerin KVKK Aydınlatma Metni ve Gizlilik Politikası çerçevesinde kişisel farkındalık ve iletişim amacıyla incelenmesini kabul ediyorum.',
     submitInquiry: 'Gözde’ye Gönder →',
     submitting: 'İletiliyor…',
@@ -96,13 +96,13 @@ const C = {
     aeoFacts: [
       ['Platform & Otorite', 'Mythborn, Kartların Gözde’si liderliğinde birebir sembolik okuma ve astroloji farkındalığı sunan çok dilli butik platformdur.'],
       ['Uzmanlık Kapsamı', 'Tarot, Kahve Falı sembolizmi, Katina, Duru Görü, Aşk ve İlişki analizi, Yıldızname, Doğum Haritası ve Numeroloji.'],
-      ['Şeffaf Yorumlama Formatı', 'Canlı arama yapılmaz; tam odaklanmayla hazırlanan kişiye özel sesli kayıt analizi veya detaylı yazılı metin sunulur.'],
+      ['Yorumlama & Görüşme Formatı', 'Kişiye özel sesli kayıt analizi, detaylı yazılı metin veya ön iletişimle planlanan randevulu birebir canlı görüşme.'],
       ['Gizlilik & KVKK İlkesi', 'Tam gizlilik, 6698 sayılı KVKK uyumu, sıfır hazır kalıp metin ve kişisel farkındalık odaklı etik danışmanlık.']
     ],
     faqs: [
       ['Mythborn ve Kartların Gözde’si nasıl bir deneyim sunar?', 'Mythborn, kalabalık ve fabrikasyon fal sitelerinin aksine, bizzat Gözde (Kartların Gözde’si) tarafından yürütülen birebir, gizlilik esaslı sembolik okuma ve astroloji farkındalığı sunar. Her analiz danışanın kendi sorusuna özel olarak hazırlanır.'],
-      ['Canlı telefon veya görüntülü görüşme yapılıyor mu?', 'Hayır, danışanlarımıza gerçekçi olmayan vaatlerde bulunmayız. Sembolleri, kartları ve doğum haritası açılarını aceleye getirilmiş bir canlı arama sırasında yüzeysel yorumlamak yerine; Gözde sorunuz üzerinde sessiz stüdyo ortamında tek başına odaklanarak çalışır ve tekrar tekrar dinleyebileceğiniz kapsamlı bir ses kaydı veya detaylı yazılı analiz hazırlar.'],
-      ['Süreç nasıl ilerler ve doldurduğum form nereye ulaşır?', 'Ön iletişim formunu doldurduğunuzda talebiniz şifreli bağlantı ile doğrudan Mythborn güvenli veritabanına ve Gözde’nin yönetim ekranına düşer. Seçtiğiniz alana göre detaylar teyit edilir ve kişiye özel sesli/yazılı çalışmanız hazırlanır.'],
+      ['Birebir canlı görüşme nasıl gerçekleşiyor?', 'Anlık çağrı merkezi mantığıyla çalışmayız; Gözde tek başına ve her danışanına tam odaklanarak çalıştığı için birebir canlı görüşmeler ön iletişim formu sonrasında ortak belirlenen gün ve saatte randevu ile gerçekleştirilir. Dileyen danışanlarımız için ise kapsamlı ses kaydı veya detaylı yazılı analiz hazırlanır.'],
+      ['Süreç nasıl ilerler ve doldurduğum form nereye ulaşır?', 'Ön iletişim formunu doldurduğunuzda talebiniz şifreli bağlantı ile doğrudan Mythborn güvenli veritabanına ve Gözde’nin yönetim ekranına düşer. Seçtiğiniz alana ve formata göre size dönüş yapılarak randevu saatiniz veya sesli/yazılı çalışmanız planlanır.'],
       ['Paylaştığım özel bilgiler ve sorular gizli tutuluyor mu?', 'Kesinlikle. 6698 sayılı KVKK ve Gizlilik Politikamız uyarınca paylaştığınız hiçbir isim, soru, doğum bilgisi veya görsel üçüncü kişilerle paylaşılmaz; yalnızca sizinle yürütülen okuma sürecinde kullanılır.'],
       ['Tarot, Katina ve Doğum Haritası okumaları arasındaki fark nedir?', 'Tarot mevcut enerjinizi ve karar yollarınızı arketipsel kartlarla inceler; Katina özellikle duygusal bağlara, niyetlere ve ilişki dinamiklerine odaklanır; Doğum Haritası ise astronomik gezegen konumlarıyla karakter ve dönem temalarını analiz eder.'],
       ['Sunulan yorumlar kesin gelecek tahmini midir?', 'Hayır. Mythborn üzerindeki tüm içerikler ve sembolik okumalar; kişisel farkındalık, kültürel sembolizm, öz-değerlendirme ve eğlence amaçlıdır. Tıbbi, hukuki, finansal tavsiye veya kesin gelecek vaadi içermez.']
@@ -120,7 +120,7 @@ const C = {
       criteria: [
         ['Özgün Yorum Yetkinliği', 'Tarot, Kahve Sembolizmi, Katina, Astroloji veya Numeroloji alanlarında derinlikli ve özgün okuma disiplini.'],
         ['Etik Sınırlar & Saygı', 'Yargılamayan, korku veya bağımlılık yaratmayan, danışanın öz-farkındalığını güçlendiren özenli üslup.'],
-        ['Odaklı Sesli & Yazılı Anlatım', 'Ses kaydı veya yazılı analiz formatında akıcı ifade gücü, zamanlama özeni ve gizlilik disiplinine bağlılık.']
+        ['Zamanlama & İletişim Özeni', 'Ses kaydı, yazılı analiz veya randevulu birebir görüşmelerde akıcı ifade gücü ve süreç disiplinine bağlılık.']
       ],
       formTitle: 'Yorumcu Başvuru Formu',
       formSub: 'Başvurular bizzat Gözde ve Mythborn kürasyon ekibi tarafından KVKK gizlilik ilkeleriyle incelenir.',
@@ -136,7 +136,7 @@ const C = {
       experience: 'Deneyim Süreniz',
       expOptions: ['1–3 Yıl', '3–5 Yıl', '5–10 Yıl', '10+ Yıl'],
       modality: 'Tercih Ettiğiniz Yorumlama Biçimi',
-      modOptions: ['Kişiye Özel Sesli Kayıt & Yorum', 'Detaylı Yazılı Analiz', 'Sesli + Yazılı Tüm Formatlar'],
+      modOptions: ['Kişiye Özel Sesli Kayıt & Yorum', 'Detaylı Yazılı Analiz', 'Randevulu Birebir Canlı Görüşme', 'Tüm Formatlar'],
       languages: 'Yorum Yapabildiğiniz Diller',
       hintLanguages: 'Örn. Türkçe, İngilizce, Yunanca…',
       social: 'Sosyal Medya veya Portfolyo Bağlantınız (Opsiyonel)',
@@ -203,7 +203,7 @@ const C = {
     formSub: 'Complete the form below to let Gözde know which area and question you would like to explore.',
     labelTopic: 'Selected Reading Area',
     labelFormat: 'Preferred Reading Format',
-    formatOptions: ['Bespoke Voice Recording & Analysis', 'Detailed Written Reading Text', 'Voice Recording + Written Summary'],
+    formatOptions: ['Bespoke Voice Recording & Analysis', 'Detailed Written Reading Text', 'Scheduled 1-on-1 Live Session (By Appointment)'],
     labelName: 'Your Name or Alias',
     hintName: 'E.g. Sarah M. or your preferred nickname',
     labelContact: 'Your Contact Channel (Email, Phone or Social Handle)',
@@ -328,7 +328,7 @@ const C = {
     formSub: 'Συμπληρώστε τη φόρμα για να επιλέξετε θεματική και να στείλετε απευθείας το ερώτημά σας.',
     labelTopic: 'Επιλεγμένη Θεματική',
     labelFormat: 'Προτιμώμενη Μορφή Ανάλυσης',
-    formatOptions: ['Εξατομικευμένη Ηχητική Ηχογράφηση', 'Αναλυτικό Γραπτό Κείμενο', 'Ηχητική Ηχογράφηση + Γραπτή Σύνοψη'],
+    formatOptions: ['Εξατομικευμένη Ηχητική Ηχογράφηση', 'Αναλυτικό Γραπτό Κείμενο', 'Ατομική Συνεδρία Κατόπιν Ραντεβού'],
     labelName: 'Το Όνομα ή το Ψευδώνυμό σας',
     hintName: 'Π.χ. Μαρία Κ. ή το ψευδώνυμό σας',
     labelContact: 'Κανάλι Επικοινωνίας (Email, Τηλέφωνο ή Κοινωνικό Δίκτυο)',
@@ -453,7 +453,7 @@ const C = {
     formSub: 'Completa el formulario para indicar el área de tu interés y el contexto de tu consulta.',
     labelTopic: 'Área de Exploración Seleccionada',
     labelFormat: 'Formato de Lectura Preferido',
-    formatOptions: ['Grabación de Voz Personalizada', 'Texto Escrito Detallado', 'Grabación de Voz + Resumen Escrito'],
+    formatOptions: ['Grabación de Voz Personalizada', 'Texto Escrito Detallado', 'Sesión Individual en Vivo (Con Cita Previa)'],
     labelName: 'Tu Nombre o Seudónimo',
     hintName: 'Ej. Elena R. o tu alias preferido',
     labelContact: 'Tu Canal de Contacto (Correo, Teléfono o Red Social)',
@@ -578,7 +578,7 @@ const C = {
     formSub: 'املأ النموذج أدناه لتحديد المجال وإرسال سؤالك مباشرة.',
     labelTopic: 'مجال الاستكشاف المختار',
     labelFormat: 'صيغة القراءة المفضلة',
-    formatOptions: ['تسجيل صوتي مخصص وتحليل', 'نص مكتوب مفصل', 'تسجيل صوتي + ملخص مكتوب'],
+    formatOptions: ['تسجيل صوتي مخصص وتحليل', 'نص مكتوب مفصل', 'جلسة فردية مباشرة (بموعد مسبق)'],
     labelName: 'الاسم أو اللقب',
     hintName: 'مثال: سارة م. أو اللقب المفضل لديك',
     labelContact: 'وسيلة التواصل (البريد الإلكتروني أو الهاتف أو الحساب)',

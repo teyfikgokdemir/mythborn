@@ -680,8 +680,8 @@ export const GOZDE_LEGAL_PAGES = {
         body: 'Sitede sunulan sembolik yorumlar ve blog rehberleri; tıbbi teşhis veya tedavi, psikolojik/psikiyatrik terapi, hukuki danışmanlık veya finansal yatırım tavsiyesi yerine geçmez. Sağlık, hukuk veya mali konulardaki kararlarınız için ilgili alanın lisanslı uzmanlarına başvurmanız esastır.'
       },
       {
-        h2: '3. Çalışma Formatı ve Şeffaflık İlkesi',
-        body: 'Mythborn, danışanlarına gerçekçi olmayan vaatlerde bulunmaz. Gözde tarafından gerçekleştirilen okumalar; aceleye getirilmiş canlı görüntülü/sesli aramalar şeklinde değil, sembollerin üzerinde sessizlik ve tam konsantrasyonla çalışılarak hazırlanan kişiye özel sesli kayıt analizi veya detaylı yazılı metin formatında sunulur.'
+        h2: '3. Çalışma Formatı ve Randevu İlkesi',
+        body: 'Mythborn, danışanlarına anlık çağrı merkezi vaadiyle yanıltıcı bilgi vermez. Gözde tek başına ve tam odaklanmayla çalıştığı için; birebir canlı görüşmeler ön iletişim formu sonrasında ortak belirlenen gün ve saatte randevu ile gerçekleştirilir. Dileyen danışanlarımıza ise kişiye özel hazırlanan sesli kayıt analizi veya detaylı yazılı okuma metni sunulur.'
       },
       {
         h2: '4. Yaş Sınırı ve Fikri Mülkiyet',

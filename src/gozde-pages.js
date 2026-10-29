@@ -71,10 +71,10 @@ export const EXTRA_UI = {
     kvkkNav: 'KVKK Aydınlatma Metni',
     privacyNav: 'Gizlilik & Çerez Politikası',
     termsNav: 'Kullanım Koşulları',
-    honestBadge: 'ŞEFFAF SÜREÇ · CANLI ARAMA DEĞİL, ODAKLI SES KAYDI & YAZILI ANALİZ',
-    honestTitle: 'Neden Canlı Arama Yerine Özel Hazırlanan Ses Kaydı ve Yazılı Analiz?',
+    honestBadge: 'ŞEFFAF SÜREÇ · SESLİ KAYIT, YAZILI ANALİZ VEYA RANDEVULU BİREBİR GÖRÜŞME',
+    honestTitle: 'Nasıl Çalışıyoruz? Sesli Kayıt, Yazılı Analiz ve Randevulu Birebir Görüşme',
     honestBody:
-      'Danışanlarımıza gerçekçi olmayan vaatlerde bulunmayız. Kartların, kahve sembollerinin ve doğum haritası açılarının derinliğini aceleye getirilmiş bir canlı telefon/video görüşmesinde yüzeysel geçiştirmek yerine; Gözde sorunuz üzerinde sessiz stüdyo ortamında tek başına odaklanarak çalışır. Böylece tekrar tekrar dinleyebileceğiniz kapsamlı bir ses kaydı veya detaylı yazılı yol haritası alırsınız.',
+      'Danışanlarımıza anlık çağrı merkezi vaadiyle yanıltıcı bilgi vermeyiz. Gözde tek başına ve derin odaklanmayla çalıştığı için; birebir canlı görüşmeler ön iletişim formu sonrasında size uygun gün ve saat planlanarak randevu ile gerçekleştirilir. Beklemek istemeyen veya kaydı tekrar tekrar dinlemek isteyen danışanlarımız için ise kapsamlı ses kaydı analizi veya detaylı yazılı yol haritası hazırlanır.',
     blogEyebrow: 'GÖKYÜZÜ GÜNDEMİ, RETRO & SEMBOL REHBERLERİ',
     blogTitle: 'Sembollerin ve Gökyüzünün Dilini Derinlemesine Keşfedin',
     blogSub: 'Gezegen retrolarından tutulma koridorlarına, Katina aşk açılımından Tarot arketiplerine uzanan 10 kapsamlı rehber.',
@@ -82,9 +82,9 @@ export const EXTRA_UI = {
     allBlogsCta: 'Tüm 10 Blog Rehberini İncele →',
     backToBlog: '← Tüm Blog Yazılarına Dön',
     sampleQuestionsLabel: 'Bu Okumada Sık Sorulan Odak Sorular:',
-    deliveryLabel: 'Teslimat & Yorumlama Biçimi:',
-    deliveryText: 'Kişiye özel hazırlanan detaylı ses kaydı veya kapsamlı yazılı analiz metni (canlı görüşme yapılmaz).',
-    askGozdeCta: 'Bu Konuda Gözde’ye Soru Gönder →'
+    deliveryLabel: 'Teslimat & Görüşme Biçimi:',
+    deliveryText: 'Kişiye özel ses kaydı, detaylı yazılı analiz veya ön iletişimle planlanan randevulu birebir canlı görüşme.',
+    askGozdeCta: 'Bu Konuda Gözde’ye Soru & Randevu Talebi İlet →'
   },
   en: {
     menuBtn: 'Menu',
@@ -95,10 +95,10 @@ export const EXTRA_UI = {
     kvkkNav: 'Data Protection (KVKK / GDPR)',
     privacyNav: 'Privacy & Cookie Policy',
     termsNav: 'Terms of Use & Disclaimer',
-    honestBadge: 'TRANSPARENT PROCESS · FOCUSED VOICE RECORDING & WRITTEN ANALYSIS',
-    honestTitle: 'Why Focused Voice Recordings & Written Analyses Instead of Live Calls?',
+    honestBadge: 'TRANSPARENT PROCESS · VOICE, WRITTEN OR BY-APPOINTMENT 1-ON-1 SESSION',
+    honestTitle: 'How We Work: Voice Recordings, Written Analyses & Scheduled 1-on-1 Sessions',
     honestBody:
-      'We never make misleading promises. Rather than rushing through symbols on a live phone or video call, Gözde works with your cards, cup symbols, and birth chart in quiet studio solitude—delivering a comprehensive voice recording or detailed written analysis you can revisit anytime.',
+      'Because Gözde works personally with every client rather than running an instant call center, live 1-on-1 sessions are conducted strictly by prior appointment after you submit the initial connection form. You may also choose a bespoke voice recording or detailed written analysis.',
     blogEyebrow: 'CELESTIAL CYCLES, RETROGRADES & SYMBOLIC GUIDES',
     blogTitle: 'Explore the Language of Symbols and the Sky in Depth',
     blogSub: '10 comprehensive long-form guides covering planetary retrogrades, eclipse corridors, Katina love spreads, and Tarot archetypes.',
@@ -106,9 +106,9 @@ export const EXTRA_UI = {
     allBlogsCta: 'Explore All 10 Blog Guides →',
     backToBlog: '← Back to All Guides',
     sampleQuestionsLabel: 'Key Questions Explored in This Reading:',
-    deliveryLabel: 'Reading Delivery Format:',
-    deliveryText: 'Bespoke recorded voice analysis or comprehensive written roadmap (no rushed live calls).',
-    askGozdeCta: 'Send Your Question to Gözde →'
+    deliveryLabel: 'Reading & Session Format:',
+    deliveryText: 'Bespoke voice recording, comprehensive written roadmap, or 1-on-1 live session by appointment.',
+    askGozdeCta: 'Send Question or Appointment Request →'
   },
   el: {
     menuBtn: 'Μενού',
@@ -119,10 +119,10 @@ export const EXTRA_UI = {
     kvkkNav: 'Προστασία Δεδομένων (KVKK/GDPR)',
     privacyNav: 'Πολιτική Απορρήτου & Cookies',
     termsNav: 'Όροι Χρήσης',
-    honestBadge: 'ΔΙΑΦΑΝΕΙΑ · ΗΧΗΤΙΚΗ ΗΧΟΓΡΑΦΗΣΗ & ΓΡΑΠΤΗ ΑΝΑΛΥΣΗ ΜΕ ΒΑΘΟΣ',
-    honestTitle: 'Γιατί Επιλέγουμε Εστιασμένη Ηχητική & Γραπτή Ανάλυση Αντί για Ζωντανή Κλήση;',
+    honestBadge: 'ΔΙΑΦΑΝΕΙΑ · ΗΧΗΤΙΚΗ, ΓΡΑΠΤΗ Ή ΠΡΟΣΩΠΙΚΗ ΣΥΝΕΔΡΙΑ ΚΑΤΟΠΙΝ ΡΑΝΤΕΒΟΥ',
+    honestTitle: 'Πώς Λειτουργούμε: Ηχητική Ανάλυση, Γραπτό Κείμενο & Προσωπικό Ραντεβού',
     honestBody:
-      'Είμαστε απόλυτα ειλικρινείς: η ουσιαστική ανάγνωση συμβόλων απαιτεί ησυχία και συγκέντρωση. Η Gözde μελετά το ερώτημά σας χωρίς την πίεση μιας ζωντανής κλήσης, ετοιμάζοντας μια αναλυτική ηχογράφηση ή γραπτή μελέτη που μπορείτε να ακούσετε ξανά όποτε θέλετε.',
+      'Είμαστε απόλυτα ειλικρινείς: επειδή κάθε ανάγνωση γίνεται προσωπικά από την Gözde, οι ζωντανές ατομικές συνεδρίες πραγματοποιούνται αποκλειστικά κατόπιν προγραμματισμένου ραντεβού μετά τη συμπλήρωση της φόρμας επικοινωνίας, παράλληλα με τις ηχητικές και γραπτές αναλύσεις.',
     blogEyebrow: 'ΟΥΡΑΝΙΟΙ ΚΥΚΛΟΙ, ΑΝΑΔΡΟΜΟΙ & ΣΥΜΒΟΛΙΚΟΙ ΟΔΗΓΟΙ',
     blogTitle: 'Ανακαλύψτε σε Βάθος τη Γλώσσα των Συμβόλων και των Άστρων',
     blogSub: '10 αναλυτικοί οδηγοί για ανάδρομους πλανήτες, εκλείψεις, Κατίνα, Ταρώ και γενέθλιο χάρτη.',
@@ -130,9 +130,9 @@ export const EXTRA_UI = {
     allBlogsCta: 'Δείτε και τα 10 Άρθρα →',
     backToBlog: '← Επιστροφή στα Άρθρα',
     sampleQuestionsLabel: 'Ενδεικτικά Ερωτήματα σε Αυτή τη Θεματική:',
-    deliveryLabel: 'Μορφή Παράδοσης:',
-    deliveryText: 'Εξατομικευμένη ηχητική ηχογράφηση ή αναλυτικό γραπτό κείμενο (όχι ζωντανή κλήση).',
-    askGozdeCta: 'Στείλτε το Ερώτημά σας στην Gözde →'
+    deliveryLabel: 'Μορφή Παράδοσης & Συνεδρίας:',
+    deliveryText: 'Ηχητική ηχογράφηση, αναλυτικό γραπτό κείμενο ή ατομική συνεδρία κατόπιν ραντεβού.',
+    askGozdeCta: 'Στείλτε Ερώτημα ή Αίτημα Ραντεβού →'
   },
   es: {
     menuBtn: 'Menú',
@@ -143,10 +143,10 @@ export const EXTRA_UI = {
     kvkkNav: 'Protección de Datos (KVKK/RGPD)',
     privacyNav: 'Política de Privacidad y Cookies',
     termsNav: 'Términos de Uso',
-    honestBadge: 'PROCESO TRANSPARENTE · AUDIO GRABADO Y ANÁLISIS ESCRITO EN PROFUNDIDAD',
-    honestTitle: '¿Por Qué Grabaciones de Voz y Análisis Escritos en Lugar de Llamadas en Vivo?',
+    honestBadge: 'PROCESO TRANSPARENTE · AUDIO, ESCRITO O SESIÓN INDIVIDUAL CON CITA PREVIA',
+    honestTitle: 'Cómo Trabajamos: Audio Grabado, Análisis Escrito y Sesión Individual con Cita Previa',
     honestBody:
-      'Hablamos siempre con total honestidad: interpretar símbolos y cartas astrales con rigor requiere silencio y concentración. Gözde estudia tu consulta en privado y prepara una grabación de voz detallada o un análisis escrito que podrás conservar y volver a escuchar siempre.',
+      'Hablamos siempre con total honestidad: dado que Gözde atiende personalmente cada consulta, las sesiones individuales en vivo se realizan exclusivamente con cita previa acordada tras enviar el formulario inicial, además de las modalidades en audio grabado o texto detallado.',
     blogEyebrow: 'CICLOS CELESTES, RETRÓGRADOS Y GUÍAS SIMBÓLICAS',
     blogTitle: 'Explora a Fondo el Lenguaje de los Símbolos y las Estrellas',
     blogSub: '10 guías extensas sobre planetas retrógrados, eclipses, lectura de Katina, arcanos del Tarot y carta natal.',
@@ -154,9 +154,9 @@ export const EXTRA_UI = {
     allBlogsCta: 'Ver las 10 Guías del Blog →',
     backToBlog: '← Volver al Blog',
     sampleQuestionsLabel: 'Preguntas Frecuentes en Esta Lectura:',
-    deliveryLabel: 'Formato de Entrega:',
-    deliveryText: 'Grabación de voz personalizada o análisis escrito detallado (sin llamadas en vivo apresuradas).',
-    askGozdeCta: 'Enviar Consulta a Gözde →'
+    deliveryLabel: 'Formato de Entrega y Sesión:',
+    deliveryText: 'Grabación de voz personalizada, análisis escrito detallado o sesión individual en vivo con cita previa.',
+    askGozdeCta: 'Enviar Consulta o Solicitud de Cita →'
   },
   ar: {
     menuBtn: 'القائمة',
@@ -167,10 +167,10 @@ export const EXTRA_UI = {
     kvkkNav: 'حماية البيانات الشخصية (KVKK)',
     privacyNav: 'سياسة الخصوصية وملفات الارتباط',
     termsNav: 'شروط الاستخدام وإخلاء المسؤولية',
-    honestBadge: 'شفافية تامة · تسجيل صوتي مفصل وتحليل مكتوب بتركيز عميق',
-    honestTitle: 'لماذا نعتمد التسجيل الصوتي والتحليل المكتوب بدلاً من المكالمات المباشرة؟',
+    honestBadge: 'شفافية تامة · تسجيل صوتي أو تحليل مكتوب أو جلسة فردية بموعد مسبق',
+    honestTitle: 'كيف نعمل؟ تسجيل صوتي، تحليل مكتوب، أو جلسة فردية مباشرة بموعد مسبق',
     honestBody:
-      'نحن نلتزم بالصدق التام معكم: القراءة الرمزية والفلكية العميقة تتطلب هدوءاً وتركيزاً عالياً بعيداً عن التسرع في المكالمات المباشرة. تدرس Gözde سؤالك بتركيز كامل وتعد لك تسجيلاً صوتياً مفصلاً أو تحليلاً مكتوباً يمكنك الرجوع إليه في أي وقت.',
+      'نلتزم بالوضوح والصدق معكم: لأن Gözde تقدم كل قراءة بنفسها وبتركيز كامل، فإن الجلسات الفردية المباشرة تتم حصراً بموعد مسبق يتم تنسيقه بعد إرسال نموذج التواصل الأولي، إلى جانب خيارات التسجيل الصوتي المفصل أو التحليل المكتوب.',
     blogEyebrow: 'حركة الكواكب، التراجعات وأدلة الرموز',
     blogTitle: 'استكشف لغة الرموز والنجوم بعمق ووضوح',
     blogSub: '10 مقالات وأدلة موسعة حول تراجع الكواكب، الكسوف والخسوف، أوراق كاتينا، التاروت وخارطة الميلاد.',
@@ -178,9 +178,9 @@ export const EXTRA_UI = {
     allBlogsCta: 'استعرض جميع المقالات الـ 10 ←',
     backToBlog: '→ العودة إلى المدونة',
     sampleQuestionsLabel: 'أبرز الأسئلة التي تتناولها هذه القراءة:',
-    deliveryLabel: 'صيغة تقديم القراءة:',
-    deliveryText: 'تسجيل صوتي مخصص أو تحليل مكتوب مفصل (لا توجد مكالمات فيديو أو هاتف مباشرة).',
-    askGozdeCta: 'أرسل سؤالك إلى Gözde ←'
+    deliveryLabel: 'صيغة تقديم القراءة والجلسة:',
+    deliveryText: 'تسجيل صوتي مخصص، تحليل مكتوب مفصل، أو جلسة فردية مباشرة بموعد مسبق.',
+    askGozdeCta: 'أرسل سؤالك أو طلب الموعد إلى Gözde ←'
   }
 };
 
@@ -497,8 +497,8 @@ export const renderLegalSubpage = (ctx, legalKey) => {
 };
 
 export const renderAdminFormsSubpage = (ctx) => {
-  const { locale, t, sharedStyles, clientInteractiveScript } = ctx;
-  const bodyHtml = `<section class="section-block" style="padding-top:32px"><div class="section-head"><p class="eyebrow">MYTHBORN · VERİTABANI KAYIT EKRANI (D1)</p><h1>Gelen Danışan Formları & Yorumcu Başvuruları</h1><p>Sitedeki Ön İletişim (/api/gozde-inquiry) ve Yorumcu Başvuru (/api/gozde-apply) formları doldurulduğunda doğrudan Cloudflare D1 veritabanındaki <code>gozde_inquiries</code> ve <code>gozde_applications</code> tablolarına kaydedilir ve bu ekrandan anlık olarak listelenir.</p></div><div id="admin-submissions-root" class="admin-grid"><div class="pillar-card"><h3>Danışan Ön İletişim Mesajları</h3><div id="inquiries-list"><p>Yükleniyor…</p></div></div><div class="pillar-card"><h3>Yorumcu Başvuruları</h3><div id="applications-list"><p>Yükleniyor…</p></div></div></div></section><script>
+  const { t, sharedStyles, clientInteractiveScript } = ctx;
+  const bodyHtml = `<section class="section-block" style="padding-top:32px"><div class="section-head"><p class="eyebrow">MYTHBORN · GELEN KUTUSU & YÖNETİM EKRANI</p><h1>Siteden Gelen Mesajlar ve Yorumcu Başvuruları</h1><p>Ziyaretçiler sitedeki <strong>Ön İletişim Formunu</strong> veya <strong>Yorumcu Başvuru Formunu</strong> doldurup gönderdiğinde tüm bilgiler otomatik olarak buraya düşer.</p></div><div id="admin-submissions-root" class="admin-grid"><div class="pillar-card"><h3>1. Danışan Ön İletişim & Randevu Talepleri</h3><div id="inquiries-list"><p>Yükleniyor…</p></div></div><div class="pillar-card"><h3>2. Falcı / Yorumcu Başvuruları</h3><div id="applications-list"><p>Yükleniyor…</p></div></div></div></section><script>
   (async () => {
     try {
       const res = await fetch('/api/gozde-submissions');
