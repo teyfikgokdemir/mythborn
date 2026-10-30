@@ -24,6 +24,7 @@ import {culturalLocale,culturalPage,culturalSitemapEntries,isCulturalPath} from 
 import {
   LLMS_TEXT,
   LLMS_FULL_TEXT,
+  AI_CATALOG_JSON,
   AI_PLUGIN_JSON,
   AGENT_MANIFEST_JSON,
   OPENAPI_JSON,
@@ -108,7 +109,7 @@ export default {
     if(incoming.pathname==='/llms-full.es.txt')return new Response(LLMS_FULL_TEXT.es,{headers:aiTextHeaders});
     if(incoming.pathname==='/llms-full.ar.txt')return new Response(LLMS_FULL_TEXT.ar,{headers:aiTextHeaders});
     if(incoming.pathname==='/.well-known/ai-plugin.json')return new Response(AI_PLUGIN_JSON,{headers:aiJsonHeaders});
-    if(incoming.pathname==='/.well-known/agent-manifest.json'||incoming.pathname==='/.well-known/ard.json')return new Response(AGENT_MANIFEST_JSON,{headers:aiJsonHeaders});
+    if(incoming.pathname==='/.well-known/ai-catalog.json'||incoming.pathname==='/ai-catalog.json'||incoming.pathname==='/.well-known/agent-manifest.json'||incoming.pathname==='/.well-known/ard.json')return new Response(AI_CATALOG_JSON,{headers:aiJsonHeaders});
     if(incoming.pathname==='/.well-known/openapi.json')return new Response(OPENAPI_JSON,{headers:aiJsonHeaders});
     if(incoming.pathname==='/ai-fact-sheet.json')return new Response(AI_FACT_SHEET_JSON,{headers:aiJsonHeaders});
     if(incoming.pathname==='/sitemap-video.xml')return new Response(VIDEO_SITEMAP_XML,{headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600, stale-while-revalidate=86400','access-control-allow-origin':'*'}});

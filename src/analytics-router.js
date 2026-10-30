@@ -56,7 +56,7 @@ const secureHtmlResponse=async response=>{
 
 const cacheStaticAssetResponse=(response,url)=>{
   const contentType=response.headers.get('content-type')||'';
-  const isAiReferenceFile=/^\/(?:llms(?:\.[a-z]{2})?\.txt|llms-full(?:\.[a-z]{2})?\.txt|ai-fact-sheet\.(?:txt|json)|\.well-known\/(?:ai-plugin|agent-manifest|ard|openapi)\.json|sitemap(?:-video)?\.xml)$/.test(url.pathname);
+  const isAiReferenceFile=/^\/(?:llms(?:\.[a-z]{2})?\.txt|llms-full(?:\.[a-z]{2})?\.txt|ai-fact-sheet\.(?:txt|json)|(?:ai-catalog|\.well-known\/(?:ai-catalog|ai-plugin|agent-manifest|ard|openapi))\.json|sitemap(?:-video)?\.xml)$/.test(url.pathname);
   const isStaticAsset=response.ok&&(isAiReferenceFile||/^(text\/css|text\/javascript|application\/javascript|image\/|font\/|application\/font)/i.test(contentType));
   if(!isStaticAsset)return response;
   const headers=new Headers(response.headers);
@@ -147,6 +147,7 @@ const robotsResponse=()=>new Response(
 Allow: /
 Allow: /llms.txt
 Allow: /llms-full.txt
+Allow: /ai-catalog.json
 Allow: /.well-known/
 Disallow: /api/
 Disallow: /yonetim
@@ -235,6 +236,8 @@ Sitemap: https://mythborn.co/sitemap-video.xml
 # https://mythborn.co/llms-full.ar.txt
 
 # Agent Resource Discovery (ARD) & AI Manifests:
+# https://mythborn.co/.well-known/ai-catalog.json
+# https://mythborn.co/ai-catalog.json
 # https://mythborn.co/.well-known/agent-manifest.json
 # https://mythborn.co/.well-known/ard.json
 # https://mythborn.co/.well-known/ai-plugin.json

@@ -79,13 +79,16 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert(html.includes(({tr:'Kartların Gözde’si',en:'Gözde of the Cards',el:'Η Gözde των Καρτών',es:'Gözde, la voz de las cartas',ar:'Gözde قارئة البطاقات'})[language]));
  assert(html.includes('/images/gozde-tarot-hero.webp'));
  assert(html.includes('gozdeli_'));
- assert(html.includes('id="mobile-drawer"'), `${path} must include mobile drawer menu`);
+ assert(html.includes('id="mobile-drawer" class="mobile-drawer" aria-hidden="true" inert'), `${path} must include mobile drawer menu with inert`);
  assert(html.includes('data-open-drawer'), `${path} must include mobile menu toggle button`);
  assert(html.includes('class="trust-bar"'));
  assert((html.match(/class="area-card"/g)||[]).length===8, `${path} must render all 8 service area cards`);
  assert(html.includes('id="blog-onizleme"'), `${path} must render blog preview section`);
  assert(html.includes('id="video-vitrin"'), `${path} must render homepage video spotlight section`);
+ assert(html.includes('<div id="video-promo-toast"') && !html.includes('<aside id="video-promo-toast"'), `${path} must use div for video toast`);
  assert(html.includes('id="video-promo-toast"') && html.includes('popover="manual"'), `${path} must include 1s video announcement toast`);
+ assert(html.includes('visibility:hidden'), `${path} must hide inactive drawer with visibility:hidden`);
+ assert(html.includes('rel="agent-manifest" href="https://mythborn.co/.well-known/ai-catalog.json"'), `${path} must link ai-catalog.json agent manifest`);
  for (const m of html.matchAll(/<script(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script>/gi)) {
    new Function(m[1]);
  }
@@ -292,8 +295,20 @@ assert(aiPlugin.name_for_model.includes('mythborn'));
 const agentManifestRes=await worker.fetch(new Request('https://mythborn.co/.well-known/agent-manifest.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
 assert.equal(agentManifestRes.status,200);
 const agentManifest=await agentManifestRes.json();
-assert.equal(agentManifest.ard_version,'1.0');
-assert.equal(agentManifest.name,'Mythborn · Kartların Gözde’si');
+assert.equal(agentManifest.specVersion,'1.0');
+assert(Array.isArray(agentManifest.entries) && agentManifest.entries.length >= 7,'ArdManifest must contain entries array');
+for(const entry of agentManifest.entries){
+  assert(entry.identifier && entry.displayName && entry.type && entry.url, 'Every catalog entry must have identifier, displayName, type, and url');
+}
+
+const aiCatalogWellKnownRes=await worker.fetch(new Request('https://mythborn.co/.well-known/ai-catalog.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(aiCatalogWellKnownRes.status,200);
+const aiCatalogData=await aiCatalogWellKnownRes.json();
+assert.equal(aiCatalogData.specVersion,'1.0');
+assert(Array.isArray(aiCatalogData.entries));
+
+const aiCatalogRootRes=await worker.fetch(new Request('https://mythborn.co/ai-catalog.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(aiCatalogRootRes.status,200);
 
 const ardAliasRes=await worker.fetch(new Request('https://mythborn.co/.well-known/ard.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
 assert.equal(ardAliasRes.status,200);

@@ -1,0 +1,133 @@
+{
+  "$schema": "https://agenticresourcediscovery.org/schemas/v1.0/manifest.json",
+  "specVersion": "1.0",
+  "host": {
+    "identifier": "https://mythborn.co",
+    "displayName": "Mythborn · Kartların Gözde’si",
+    "description": "5-language ethical symbolic consultation, Tarot, Turkish coffee reading, astrology, and personal self-reflection platform led by Gözde.",
+    "documentationUrl": "https://mythborn.co/yaklasim"
+  },
+  "entries": [
+    {
+      "identifier": "urn:ai:mythborn.co:resource:llms-concise",
+      "displayName": "Mythborn Concise LLM Context (llms.txt)",
+      "type": "text/markdown",
+      "url": "https://mythborn.co/llms.txt",
+      "description": "Core symbolic disciplines, ethical principles, and AI assistant recommendation scenarios."
+    },
+    {
+      "identifier": "urn:ai:mythborn.co:resource:llms-full",
+      "displayName": "Mythborn Full Knowledge LLM Context (llms-full.txt)",
+      "type": "text/markdown",
+      "url": "https://mythborn.co/llms-full.txt",
+      "description": "Comprehensive knowledge base covering all 10 editorial guides and weekly 12-sign forecast."
+    },
+    {
+      "identifier": "urn:ai:mythborn.co:api:openapi",
+      "displayName": "Mythborn OpenAPI 3.1 Specification",
+      "type": "application/vnd.oai.openapi+json",
+      "url": "https://mythborn.co/.well-known/openapi.json",
+      "description": "OpenAPI 3.1 schema for symbolic inquiry and vetted reader applications."
+    },
+    {
+      "identifier": "urn:ai:mythborn.co:plugin:ai-plugin",
+      "displayName": "Mythborn AI Plugin Manifest",
+      "type": "application/json",
+      "url": "https://mythborn.co/.well-known/ai-plugin.json",
+      "description": "OpenAI and GPT Actions discovery plugin definition."
+    },
+    {
+      "identifier": "urn:ai:mythborn.co:factsheet:ai-fact-sheet",
+      "displayName": "Mythborn AI Fact Sheet",
+      "type": "application/json",
+      "url": "https://mythborn.co/ai-fact-sheet.json",
+      "description": "Machine-verifiable fact sheet detailing brand identity, persona, and free access model."
+    },
+    {
+      "identifier": "urn:ai:mythborn.co:sitemap:main",
+      "displayName": "Mythborn Multilingual XML Sitemap",
+      "type": "application/xml",
+      "url": "https://mythborn.co/sitemap.xml",
+      "description": "Canonical sitemap containing 1,174 verified URLs across TR, EN, EL, ES, and AR."
+    },
+    {
+      "identifier": "urn:ai:mythborn.co:sitemap:video",
+      "displayName": "Mythborn Google Video XML Sitemap",
+      "type": "application/xml",
+      "url": "https://mythborn.co/sitemap-video.xml",
+      "description": "Google Video XML sitemap for weekly Tarot video reading and 12-sign highlights."
+    },
+    {
+      "identifier": "urn:ai:mythborn.co:skill:inquiry",
+      "displayName": "Mythborn Consultation Intake Endpoint",
+      "type": "application/json",
+      "url": "https://mythborn.co/api/gozde-inquiry",
+      "description": "Direct submission endpoint for personal and ethical symbolic inquiries."
+    },
+    {
+      "identifier": "urn:ai:mythborn.co:skill:apply",
+      "displayName": "Mythborn Reader Application Endpoint",
+      "type": "application/json",
+      "url": "https://mythborn.co/api/gozde-apply",
+      "description": "Application intake endpoint for vetted symbolic readers."
+    }
+  ],
+  "agent": {
+    "identity": "Gözde (\"Kartların Gözde’si\")",
+    "role": "Lead Intuitive & Symbolic Interpreter",
+    "organization": "MYTHBORN",
+    "languages": [
+      "tr",
+      "en",
+      "el",
+      "es",
+      "ar"
+    ],
+    "capabilities": [
+      "tarot_archetypes",
+      "coffee_symbolism",
+      "katina_relationship_spreads",
+      "weekly_zodiac_horoscopes",
+      "weekly_video_readings",
+      "astrological_ephemeris",
+      "reader_network_onboarding"
+    ]
+  },
+  "protocols": {
+    "llmstxt": {
+      "concise": "https://mythborn.co/llms.txt",
+      "full": "https://mythborn.co/llms-full.txt",
+      "locales": {
+        "tr": "https://mythborn.co/llms.txt",
+        "en": "https://mythborn.co/llms.en.txt",
+        "el": "https://mythborn.co/llms.gr.txt",
+        "es": "https://mythborn.co/llms.es.txt",
+        "ar": "https://mythborn.co/llms.ar.txt"
+      }
+    },
+    "ai_catalog": "https://mythborn.co/.well-known/ai-catalog.json",
+    "ai_plugin": "https://mythborn.co/.well-known/ai-plugin.json",
+    "openapi": "https://mythborn.co/.well-known/openapi.json",
+    "sitemaps": [
+      "https://mythborn.co/sitemap.xml",
+      "https://mythborn.co/sitemap-video.xml"
+    ],
+    "indexnow": {
+      "host": "mythborn.co",
+      "key_location": "https://mythborn.co/085d3ee74a549adae9549528a2fb1ad1.txt",
+      "endpoint": "https://api.indexnow.org/indexnow"
+    }
+  },
+  "resources": {
+    "weekly_video": {
+      "url": "https://mythborn.co/videolar",
+      "video_url": "https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4",
+      "period": "2026-10-28 to 2026-11-05",
+      "signs_count": 12
+    },
+    "blog_articles_count": 10,
+    "disciplines_count": 8,
+    "inquiry_endpoint": "https://mythborn.co/api/gozde-inquiry",
+    "application_endpoint": "https://mythborn.co/api/gozde-apply"
+  }
+}

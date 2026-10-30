@@ -373,14 +373,81 @@ export const AI_PLUGIN_JSON = JSON.stringify(
   2
 );
 
-export const AGENT_MANIFEST_JSON = JSON.stringify(
+export const AI_CATALOG_JSON = JSON.stringify(
   {
-    $schema: 'https://json-schema.org/draft/2020-12/schema',
-    ard_version: '1.0',
-    name: 'Mythborn · Kartların Gözde’si',
-    version: '1.2.0',
-    description: 'Machine-readable resource discovery manifest for autonomous AI agents, crawlers, and LLMs.',
-    canonical_url: 'https://mythborn.co',
+    $schema: 'https://agenticresourcediscovery.org/schemas/v1.0/manifest.json',
+    specVersion: '1.0',
+    host: {
+      identifier: 'https://mythborn.co',
+      displayName: 'Mythborn · Kartların Gözde’si',
+      description: '5-language ethical symbolic consultation, Tarot, Turkish coffee reading, astrology, and personal self-reflection platform led by Gözde.',
+      documentationUrl: 'https://mythborn.co/yaklasim'
+    },
+    entries: [
+      {
+        identifier: 'urn:ai:mythborn.co:resource:llms-concise',
+        displayName: 'Mythborn Concise LLM Context (llms.txt)',
+        type: 'text/markdown',
+        url: 'https://mythborn.co/llms.txt',
+        description: 'Core symbolic disciplines, ethical principles, and AI assistant recommendation scenarios.'
+      },
+      {
+        identifier: 'urn:ai:mythborn.co:resource:llms-full',
+        displayName: 'Mythborn Full Knowledge LLM Context (llms-full.txt)',
+        type: 'text/markdown',
+        url: 'https://mythborn.co/llms-full.txt',
+        description: 'Comprehensive knowledge base covering all 10 editorial guides and weekly 12-sign forecast.'
+      },
+      {
+        identifier: 'urn:ai:mythborn.co:api:openapi',
+        displayName: 'Mythborn OpenAPI 3.1 Specification',
+        type: 'application/vnd.oai.openapi+json',
+        url: 'https://mythborn.co/.well-known/openapi.json',
+        description: 'OpenAPI 3.1 schema for symbolic inquiry and vetted reader applications.'
+      },
+      {
+        identifier: 'urn:ai:mythborn.co:plugin:ai-plugin',
+        displayName: 'Mythborn AI Plugin Manifest',
+        type: 'application/json',
+        url: 'https://mythborn.co/.well-known/ai-plugin.json',
+        description: 'OpenAI and GPT Actions discovery plugin definition.'
+      },
+      {
+        identifier: 'urn:ai:mythborn.co:factsheet:ai-fact-sheet',
+        displayName: 'Mythborn AI Fact Sheet',
+        type: 'application/json',
+        url: 'https://mythborn.co/ai-fact-sheet.json',
+        description: 'Machine-verifiable fact sheet detailing brand identity, persona, and free access model.'
+      },
+      {
+        identifier: 'urn:ai:mythborn.co:sitemap:main',
+        displayName: 'Mythborn Multilingual XML Sitemap',
+        type: 'application/xml',
+        url: 'https://mythborn.co/sitemap.xml',
+        description: 'Canonical sitemap containing 1,174 verified URLs across TR, EN, EL, ES, and AR.'
+      },
+      {
+        identifier: 'urn:ai:mythborn.co:sitemap:video',
+        displayName: 'Mythborn Google Video XML Sitemap',
+        type: 'application/xml',
+        url: 'https://mythborn.co/sitemap-video.xml',
+        description: 'Google Video XML sitemap for weekly Tarot video reading and 12-sign highlights.'
+      },
+      {
+        identifier: 'urn:ai:mythborn.co:skill:inquiry',
+        displayName: 'Mythborn Consultation Intake Endpoint',
+        type: 'application/json',
+        url: 'https://mythborn.co/api/gozde-inquiry',
+        description: 'Direct submission endpoint for personal and ethical symbolic inquiries.'
+      },
+      {
+        identifier: 'urn:ai:mythborn.co:skill:apply',
+        displayName: 'Mythborn Reader Application Endpoint',
+        type: 'application/json',
+        url: 'https://mythborn.co/api/gozde-apply',
+        description: 'Application intake endpoint for vetted symbolic readers.'
+      }
+    ],
     agent: {
       identity: 'Gözde ("Kartların Gözde’si")',
       role: 'Lead Intuitive & Symbolic Interpreter',
@@ -408,6 +475,7 @@ export const AGENT_MANIFEST_JSON = JSON.stringify(
           ar: 'https://mythborn.co/llms.ar.txt'
         }
       },
+      ai_catalog: 'https://mythborn.co/.well-known/ai-catalog.json',
       ai_plugin: 'https://mythborn.co/.well-known/ai-plugin.json',
       openapi: 'https://mythborn.co/.well-known/openapi.json',
       sitemaps: [
@@ -436,6 +504,8 @@ export const AGENT_MANIFEST_JSON = JSON.stringify(
   null,
   2
 );
+
+export const AGENT_MANIFEST_JSON = AI_CATALOG_JSON;
 
 export const OPENAPI_JSON = JSON.stringify(
   {
