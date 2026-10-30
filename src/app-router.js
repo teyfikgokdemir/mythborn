@@ -21,6 +21,16 @@ import {notFoundPage,searchPage} from './localized-static-pages.js';
 import {decorate} from './page-decorator.js';
 import {discoveryPage,discoveryMeta} from './discovery-core.js';
 import {culturalLocale,culturalPage,culturalSitemapEntries,isCulturalPath} from './cultural-platform.js';
+import {
+  LLMS_TEXT,
+  LLMS_FULL_TEXT,
+  AI_PLUGIN_JSON,
+  AGENT_MANIFEST_JSON,
+  OPENAPI_JSON,
+  AI_FACT_SHEET_JSON,
+  VIDEO_SITEMAP_XML,
+  generateGozdeSitemapEntries
+} from './ai-manifests.js';
 
 const SITE=SITE_ORIGIN;
 const localeInfo=LOCALES;
@@ -83,11 +93,25 @@ export default {
       incoming.pathname='/gr'+incoming.pathname.slice(3);
       return Response.redirect(incoming.toString(),301);
     }
+    const aiTextHeaders={'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=60, s-maxage=60, must-revalidate','x-content-type-options':'nosniff','access-control-allow-origin':'*'};
+    const aiJsonHeaders={'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=60, s-maxage=60, must-revalidate','access-control-allow-origin':'*'};
     if(incoming.pathname==='/llms.el.txt')return Response.redirect(`${SITE}/llms.gr.txt`,301);
-    if(incoming.pathname==='/llms.txt')return new Response(llms.tr,{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600','x-content-type-options':'nosniff'}});
-    if(incoming.pathname==='/llms.en.txt')return new Response(llms.en,{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600','x-content-type-options':'nosniff'}});
-    if(incoming.pathname==='/llms.gr.txt')return new Response(llms.el,{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600','x-content-type-options':'nosniff'}});
-    if(incoming.pathname==='/llms.es.txt')return new Response(llms.es,{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'public, max-age=3600','x-content-type-options':'nosniff'}});
+    if(incoming.pathname==='/llms-full.el.txt')return Response.redirect(`${SITE}/llms-full.gr.txt`,301);
+    if(incoming.pathname==='/llms.txt')return new Response(LLMS_TEXT.tr,{headers:aiTextHeaders});
+    if(incoming.pathname==='/llms.en.txt')return new Response(LLMS_TEXT.en,{headers:aiTextHeaders});
+    if(incoming.pathname==='/llms.gr.txt')return new Response(LLMS_TEXT.el,{headers:aiTextHeaders});
+    if(incoming.pathname==='/llms.es.txt')return new Response(LLMS_TEXT.es,{headers:aiTextHeaders});
+    if(incoming.pathname==='/llms.ar.txt')return new Response(LLMS_TEXT.ar,{headers:aiTextHeaders});
+    if(incoming.pathname==='/llms-full.txt')return new Response(LLMS_FULL_TEXT.tr,{headers:aiTextHeaders});
+    if(incoming.pathname==='/llms-full.en.txt')return new Response(LLMS_FULL_TEXT.en,{headers:aiTextHeaders});
+    if(incoming.pathname==='/llms-full.gr.txt')return new Response(LLMS_FULL_TEXT.el,{headers:aiTextHeaders});
+    if(incoming.pathname==='/llms-full.es.txt')return new Response(LLMS_FULL_TEXT.es,{headers:aiTextHeaders});
+    if(incoming.pathname==='/llms-full.ar.txt')return new Response(LLMS_FULL_TEXT.ar,{headers:aiTextHeaders});
+    if(incoming.pathname==='/.well-known/ai-plugin.json')return new Response(AI_PLUGIN_JSON,{headers:aiJsonHeaders});
+    if(incoming.pathname==='/.well-known/agent-manifest.json'||incoming.pathname==='/.well-known/ard.json')return new Response(AGENT_MANIFEST_JSON,{headers:aiJsonHeaders});
+    if(incoming.pathname==='/.well-known/openapi.json')return new Response(OPENAPI_JSON,{headers:aiJsonHeaders});
+    if(incoming.pathname==='/ai-fact-sheet.json')return new Response(AI_FACT_SHEET_JSON,{headers:aiJsonHeaders});
+    if(incoming.pathname==='/sitemap-video.xml')return new Response(VIDEO_SITEMAP_XML,{headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600, stale-while-revalidate=86400','access-control-allow-origin':'*'}});
     const accessState=premiumState(env,new Date());
     if(incoming.pathname==='/api/search-index'){
       const requested=incoming.searchParams.get('locale'),locale=requested==='en'?'en':requested==='el'||requested==='gr'?'el':requested==='es'?'es':'tr';
@@ -136,7 +160,7 @@ export default {
         const applyRoutes=['/yorumcu-basvuru','/en/apply','/gr/apply','/es/apply','/ar/apply'];
         const applyAlts=`<xhtml:link rel="alternate" hreflang="tr" href="${SITE}/yorumcu-basvuru"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}/en/apply"/><xhtml:link rel="alternate" hreflang="el" href="${SITE}/gr/apply"/><xhtml:link rel="alternate" hreflang="es" href="${SITE}/es/apply"/><xhtml:link rel="alternate" hreflang="ar" href="${SITE}/ar/apply"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/yorumcu-basvuru"/>`;
         const applyEntries=applyRoutes.map(p=>`<url><loc>${SITE}${p}</loc>${applyAlts}</url>`).join('');
-        return new Response(xml.replace('</urlset>',`${spanishEntries}${culturalSitemapEntries()}${applyEntries}</urlset>`),{status:response.status,headers:response.headers});
+        return new Response(xml.replace('</urlset>',`${spanishEntries}${culturalSitemapEntries()}${applyEntries}${generateGozdeSitemapEntries()}</urlset>`),{status:response.status,headers:response.headers});
       }
       return response;
     }

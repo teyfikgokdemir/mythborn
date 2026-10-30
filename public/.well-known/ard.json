@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "ard_version": "1.0",
+  "name": "Mythborn · Kartların Gözde’si",
+  "version": "1.2.0",
+  "description": "Machine-readable resource discovery manifest for autonomous AI agents, crawlers, and LLMs.",
+  "canonical_url": "https://mythborn.co",
+  "agent": {
+    "identity": "Gözde (\"Kartların Gözde’si\")",
+    "role": "Lead Intuitive & Symbolic Interpreter",
+    "organization": "MYTHBORN",
+    "languages": [
+      "tr",
+      "en",
+      "el",
+      "es",
+      "ar"
+    ],
+    "capabilities": [
+      "tarot_archetypes",
+      "coffee_symbolism",
+      "katina_relationship_spreads",
+      "weekly_zodiac_horoscopes",
+      "weekly_video_readings",
+      "astrological_ephemeris",
+      "reader_network_onboarding"
+    ]
+  },
+  "protocols": {
+    "llmstxt": {
+      "concise": "https://mythborn.co/llms.txt",
+      "full": "https://mythborn.co/llms-full.txt",
+      "locales": {
+        "tr": "https://mythborn.co/llms.txt",
+        "en": "https://mythborn.co/llms.en.txt",
+        "el": "https://mythborn.co/llms.gr.txt",
+        "es": "https://mythborn.co/llms.es.txt",
+        "ar": "https://mythborn.co/llms.ar.txt"
+      }
+    },
+    "ai_plugin": "https://mythborn.co/.well-known/ai-plugin.json",
+    "openapi": "https://mythborn.co/.well-known/openapi.json",
+    "sitemaps": [
+      "https://mythborn.co/sitemap.xml",
+      "https://mythborn.co/sitemap-video.xml"
+    ],
+    "indexnow": {
+      "host": "mythborn.co",
+      "key_location": "https://mythborn.co/085d3ee74a549adae9549528a2fb1ad1.txt",
+      "endpoint": "https://api.indexnow.org/indexnow"
+    }
+  },
+  "resources": {
+    "weekly_video": {
+      "url": "https://mythborn.co/videolar",
+      "video_url": "https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4",
+      "period": "2026-10-28 to 2026-11-05",
+      "signs_count": 12
+    },
+    "blog_articles_count": 10,
+    "disciplines_count": 8,
+    "inquiry_endpoint": "https://mythborn.co/api/gozde-inquiry",
+    "application_endpoint": "https://mythborn.co/api/gozde-apply"
+  }
+}

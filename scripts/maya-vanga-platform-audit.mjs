@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import worker from '../src/app-router.js';
+import analyticsWorker from '../src/analytics-router.js';
 import {culturalPage} from '../src/cultural-platform.js';
 
 const env={ENVIRONMENT:'production',ASSETS:{fetch:async request=>{
@@ -229,5 +230,99 @@ const authSubRes=await worker.fetch(new Request('https://mythborn.co/api/gozde-s
 assert.equal(authSubRes.status,200,'Authenticated /api/gozde-submissions must return 200');
 const authSubData=await authSubRes.json();
 assert.equal(authSubData.ok,true);
+
+// AI Bot Access, Manifests, ARD, llms.txt, llms-full.txt, and Video Sitemap Audits
+const robotsRes=await analyticsWorker.fetch(new Request('https://mythborn.co/robots.txt'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(robotsRes.status,200);
+const robotsTxt=await robotsRes.text();
+for(const bot of ['GPTBot','ClaudeBot','Claude-Web','PerplexityBot','Google-Extended','Applebot-Extended','Meta-ExternalAgent','FacebookBot','Amazonbot','cohere-ai','DuckAssistBot','Bingbot']){
+  assert(robotsTxt.includes(`User-agent: ${bot}`),`robots.txt must explicitly grant access to ${bot}`);
+}
+assert(robotsTxt.includes('Allow: /llms.txt'));
+assert(robotsTxt.includes('Allow: /llms-full.txt'));
+assert(robotsTxt.includes('Allow: /.well-known/'));
+assert(robotsTxt.includes('Sitemap: https://mythborn.co/sitemap-video.xml'));
+
+// 5-Language llms.txt & llms-full.txt
+for(const [route, langKey] of [
+  ['/llms.txt','Kartların Gözde’si'],
+  ['/llms.en.txt','Gözde of the Cards'],
+  ['/llms.gr.txt','Η Gözde των Καρτών'],
+  ['/llms.es.txt','Gözde, la voz de las cartas'],
+  ['/llms.ar.txt','Gözde قارئة البطاقات']
+]){
+  const res=await worker.fetch(new Request(`https://mythborn.co${route}`),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+  assert.equal(res.status,200,`${route} must return 200`);
+  assert(res.headers.get('content-type').includes('text/plain'),`${route} must be text/plain`);
+  assert(res.headers.get('access-control-allow-origin')==='*',`${route} must allow CORS`);
+  const body=await res.text();
+  assert(body.includes(langKey),`${route} must contain expected content`);
+}
+
+for(const [route, langKey] of [
+  ['/llms-full.txt','Kartların Gözde’si'],
+  ['/llms-full.en.txt','Gözde of the Cards'],
+  ['/llms-full.gr.txt','Η Gözde των Καρτών'],
+  ['/llms-full.es.txt','Gözde, la voz de las cartas'],
+  ['/llms-full.ar.txt','Gözde قارئة البطاقات']
+]){
+  const res=await worker.fetch(new Request(`https://mythborn.co${route}`),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+  assert.equal(res.status,200,`${route} must return 200`);
+  assert(res.headers.get('content-type').includes('text/plain'),`${route} must be text/plain`);
+  const body=await res.text();
+  assert(body.includes(langKey),`${route} must contain expected full content`);
+}
+
+// Redirects
+const elRedirect=await worker.fetch(new Request('https://mythborn.co/llms.el.txt'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(elRedirect.status,301);
+assert.equal(elRedirect.headers.get('location'),'https://mythborn.co/llms.gr.txt');
+
+const elFullRedirect=await worker.fetch(new Request('https://mythborn.co/llms-full.el.txt'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(elFullRedirect.status,301);
+assert.equal(elFullRedirect.headers.get('location'),'https://mythborn.co/llms-full.gr.txt');
+
+// AI Catalogs & Manifests
+const aiPluginRes=await worker.fetch(new Request('https://mythborn.co/.well-known/ai-plugin.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(aiPluginRes.status,200);
+const aiPlugin=await aiPluginRes.json();
+assert.equal(aiPlugin.schema_version,'v1');
+assert(aiPlugin.name_for_model.includes('mythborn'));
+
+const agentManifestRes=await worker.fetch(new Request('https://mythborn.co/.well-known/agent-manifest.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(agentManifestRes.status,200);
+const agentManifest=await agentManifestRes.json();
+assert.equal(agentManifest.ard_version,'1.0');
+assert.equal(agentManifest.name,'Mythborn · Kartların Gözde’si');
+
+const ardAliasRes=await worker.fetch(new Request('https://mythborn.co/.well-known/ard.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(ardAliasRes.status,200);
+
+const openapiRes=await worker.fetch(new Request('https://mythborn.co/.well-known/openapi.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(openapiRes.status,200);
+const openapi=await openapiRes.json();
+assert.equal(openapi.openapi,'3.1.0');
+
+const factSheetRes=await worker.fetch(new Request('https://mythborn.co/ai-fact-sheet.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(factSheetRes.status,200);
+const factSheet=await factSheetRes.json();
+assert.equal(factSheet.mainEntity.name,'MYTHBORN');
+
+// Video Sitemap & Multilingual Sitemap
+const videoSitemapRes=await worker.fetch(new Request('https://mythborn.co/sitemap-video.xml'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(videoSitemapRes.status,200);
+const videoSitemapXml=await videoSitemapRes.text();
+assert(videoSitemapXml.includes('<video:video>'));
+assert(videoSitemapXml.includes('https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4'));
+
+const sitemapRes=await worker.fetch(new Request('https://mythborn.co/sitemap.xml'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
+assert.equal(sitemapRes.status,200);
+const sitemapXml=await sitemapRes.text();
+assert(sitemapXml.includes('https://mythborn.co/videolar'));
+assert(sitemapXml.includes('https://mythborn.co/en/videos'));
+assert(sitemapXml.includes('https://mythborn.co/gr/videos'));
+assert(sitemapXml.includes('https://mythborn.co/es/videos'));
+assert(sitemapXml.includes('https://mythborn.co/ar/videos'));
+assert(sitemapXml.includes('https://mythborn.co/blog/tarot-major-arkana-kader-karti-sifreleri'));
 
 console.log('Gözde 5-language platform, reader application pages, and API audits passed.');

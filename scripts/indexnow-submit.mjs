@@ -1,10 +1,11 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const SITE_ORIGIN = 'https://mythborn.co';
 const SITEMAP_URL = process.argv.find((arg) => arg.startsWith('http')) ?? `${SITE_ORIGIN}/sitemap.xml`;
 const API_URL = 'https://api.indexnow.org/indexnow';
-const KEY_DIR = resolve(new URL('../public/', import.meta.url).pathname);
+const KEY_DIR = fileURLToPath(new URL('../public/', import.meta.url));
 const DRY_RUN = process.argv.includes('--dry-run');
 const BATCH_SIZE = 10_000;
 

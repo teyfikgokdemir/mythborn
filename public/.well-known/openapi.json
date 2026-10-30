@@ -1,0 +1,168 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Mythborn — Gözde Symbolic Consultation API",
+    "description": "Public discovery and interaction endpoints for the Mythborn platform.",
+    "version": "1.2.0"
+  },
+  "servers": [
+    {
+      "url": "https://mythborn.co"
+    }
+  ],
+  "paths": {
+    "/api/gozde-inquiry": {
+      "post": {
+        "summary": "Submit a personal inquiry or consultation request to Gözde",
+        "operationId": "submitInquiry",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "contact",
+                  "message",
+                  "consent"
+                ],
+                "properties": {
+                  "locale": {
+                    "type": "string",
+                    "enum": [
+                      "tr",
+                      "en",
+                      "el",
+                      "es",
+                      "ar"
+                    ],
+                    "default": "tr"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 100
+                  },
+                  "contact": {
+                    "type": "string",
+                    "minLength": 3,
+                    "maxLength": 140
+                  },
+                  "topic": {
+                    "type": "string"
+                  },
+                  "format": {
+                    "type": "string"
+                  },
+                  "message": {
+                    "type": "string",
+                    "minLength": 10,
+                    "maxLength": 1200
+                  },
+                  "consent": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Inquiry received successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/api/gozde-apply": {
+      "post": {
+        "summary": "Apply to join the Mythborn specialist reader network",
+        "operationId": "submitReaderApplication",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "fullName",
+                  "email",
+                  "phone",
+                  "specialties",
+                  "bio",
+                  "consent"
+                ],
+                "properties": {
+                  "locale": {
+                    "type": "string",
+                    "enum": [
+                      "tr",
+                      "en",
+                      "el",
+                      "es",
+                      "ar"
+                    ],
+                    "default": "tr"
+                  },
+                  "fullName": {
+                    "type": "string",
+                    "minLength": 2,
+                    "maxLength": 120
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "minLength": 7,
+                    "maxLength": 40
+                  },
+                  "specialties": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 1
+                  },
+                  "experience": {
+                    "type": "string"
+                  },
+                  "modality": {
+                    "type": "string"
+                  },
+                  "languages": {
+                    "type": "string"
+                  },
+                  "social": {
+                    "type": "string"
+                  },
+                  "bio": {
+                    "type": "string",
+                    "minLength": 25,
+                    "maxLength": 1500
+                  },
+                  "consent": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Application received successfully"
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        }
+      }
+    }
+  }
+}

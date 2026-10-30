@@ -56,11 +56,16 @@ const secureHtmlResponse=async response=>{
 
 const cacheStaticAssetResponse=(response,url)=>{
   const contentType=response.headers.get('content-type')||'';
-  const isAiReferenceFile=/^\/(?:llms\.txt|ai-fact-sheet\.txt)$/.test(url.pathname);
+  const isAiReferenceFile=/^\/(?:llms(?:\.[a-z]{2})?\.txt|llms-full(?:\.[a-z]{2})?\.txt|ai-fact-sheet\.(?:txt|json)|\.well-known\/(?:ai-plugin|agent-manifest|ard|openapi)\.json|sitemap(?:-video)?\.xml)$/.test(url.pathname);
   const isStaticAsset=response.ok&&(isAiReferenceFile||/^(text\/css|text\/javascript|application\/javascript|image\/|font\/|application\/font)/i.test(contentType));
   if(!isStaticAsset)return response;
   const headers=new Headers(response.headers);
-  headers.set('cache-control',isAiReferenceFile?'public, max-age=60, s-maxage=60, must-revalidate':'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
+  if(isAiReferenceFile){
+    headers.set('cache-control','public, max-age=60, s-maxage=60, must-revalidate');
+    headers.set('access-control-allow-origin','*');
+  }else{
+    headers.set('cache-control','public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
+  }
   headers.set('x-content-type-options','nosniff');
   return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
 };
@@ -138,11 +143,110 @@ const goneResponse=()=>new Response('Gone',{status:410,headers:{
 }});
 
 const robotsResponse=()=>new Response(
-  'User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /yonetim\n\nUser-agent: GPTBot\nAllow: /\nDisallow: /api/\n\nUser-agent: OAI-SearchBot\nAllow: /\nDisallow: /api/\n\nUser-agent: ChatGPT-User\nAllow: /\nDisallow: /api/\n\nUser-agent: PerplexityBot\nAllow: /\nDisallow: /api/\n\nUser-agent: ClaudeBot\nAllow: /\nDisallow: /api/\n\nUser-agent: Google-Extended\nAllow: /\nDisallow: /api/\n\nUser-agent: Applebot-Extended\nAllow: /\nDisallow: /api/\n\nSitemap: https://mythborn.co/sitemap.xml\n',
+  `User-agent: *
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /.well-known/
+Disallow: /api/
+Disallow: /yonetim
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /api/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+
+User-agent: Perplexity-Search
+Allow: /
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: GoogleOther
+Allow: /
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /api/
+
+User-agent: FacebookBot
+Allow: /
+Disallow: /api/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /api/
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /api/
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+
+Sitemap: https://mythborn.co/sitemap.xml
+Sitemap: https://mythborn.co/sitemap-video.xml
+
+# LLM Contexts (llmstxt.org):
+# https://mythborn.co/llms.txt
+# https://mythborn.co/llms-full.txt
+# https://mythborn.co/llms.en.txt
+# https://mythborn.co/llms-full.en.txt
+# https://mythborn.co/llms.gr.txt
+# https://mythborn.co/llms-full.gr.txt
+# https://mythborn.co/llms.es.txt
+# https://mythborn.co/llms-full.es.txt
+# https://mythborn.co/llms.ar.txt
+# https://mythborn.co/llms-full.ar.txt
+
+# Agent Resource Discovery (ARD) & AI Manifests:
+# https://mythborn.co/.well-known/agent-manifest.json
+# https://mythborn.co/.well-known/ard.json
+# https://mythborn.co/.well-known/ai-plugin.json
+# https://mythborn.co/.well-known/openapi.json
+# https://mythborn.co/ai-fact-sheet.txt
+# https://mythborn.co/ai-fact-sheet.json
+`,
   {
     headers:{
       'content-type':'text/plain; charset=utf-8',
-      'cache-control':'public, max-age=3600'
+      'cache-control':'public, max-age=3600',
+      'access-control-allow-origin':'*'
     }
   }
 );

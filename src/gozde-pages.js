@@ -395,7 +395,7 @@ export const renderFooter = ({ locale, t, activeType = 'home', langHrefFn }) => 
     .join('')}</div><div class="exit-dialog-actions"><a class="cta" href="${r.videos}#burclar" data-exit-action>${safe(exitCopy.primaryCta)}</a><a class="cta-ghost" href="${r.contact}" data-exit-action>${safe(exitCopy.secondaryCta)}</a></div></div></dialog><aside id="video-promo-toast" class="video-toast" popover="manual" data-video-release="2026-10-28-v4" role="status" aria-live="polite" hidden><div class="video-toast-inner"><a class="video-toast-thumb" href="${r.videos}"><img src="/images/gozde-salon-portrait.jpg" width="96" height="96" alt="${safe(t.lead)}"><span class="video-toast-play" aria-hidden="true">▶</span></a><div class="video-toast-copy"><span class="video-toast-badge"><span class="live-dot" aria-hidden="true"></span> ${safe(videoToastCopy.badge)}</span><a class="video-toast-title" href="${r.videos}">${safe(videoToastCopy.title)}</a><div class="video-toast-actions"><a class="video-toast-cta" href="${r.videos}">${safe(videoToastCopy.cta)}</a></div></div><button type="button" class="video-toast-close" popovertarget="video-promo-toast" popovertargetaction="hide" data-close-video-toast aria-label="${safe(videoToastCopy.close)}">✕</button></div><span class="video-toast-progress" aria-hidden="true"></span></aside><aside id="cookie-consent-banner" class="cookie-banner" role="region" aria-label="${safe(cookieCopy.region)}" hidden><div class="cookie-banner-inner"><div class="cookie-banner-copy"><strong><span style="color:var(--gold)">✦</span> ${safe(cookieCopy.title)}</strong><p>${safe(cookieCopy.desc)} <a href="${r.privacy}">${safe(u.privacyNav)}</a> · <a href="${r.kvkk}">${safe(u.kvkkNav)}</a>.</p></div><div class="cookie-banner-actions"><button type="button" class="cta-ghost cookie-btn" data-cookie-choice="essential">${safe(cookieCopy.essentialOnly)}</button><button type="button" class="cta cookie-btn" data-cookie-choice="accepted">${safe(cookieCopy.acceptAll)}</button></div></div></aside><button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="${safe(topLabel)}" title="${safe(topLabel)}"><span aria-hidden="true">↑</span></button>`;
 };
 
-const ZODIAC_WEEKLY_DATA = [
+export const ZODIAC_WEEKLY_DATA = [
   { sign: 'Koç', en: 'Aries', el: 'Κριός', es: 'Aries', ar: 'الحمل', element: 'fire', card: 'İmparator & Değnek Ası', coffee: 'Kanatlı Anahtar', note: '28 Ekim – 5 Kasım haftasında ertelenen bir girişim hız kazanıyor; acele karar yerine stratejik sınır çizmek kazandıracak.' },
   { sign: 'Boğa', en: 'Taurus', el: 'Ταύρος', es: 'Tauro', ar: 'الثور', element: 'earth', card: 'Azize & Tılsım Dokuzlusu', coffee: 'Köklü Ağaç', note: 'Maddi güven ve uzun vadeli planlarda iç sesiniz çok berrak; sabırla koruduğunuz alanda somut bir netlik doğuyor.' },
   { sign: 'İkizler', en: 'Gemini', el: 'Δίδυμοι', es: 'Géminis', ar: 'الجوزاء', element: 'air', card: 'Büyücü & Kılıç İkilisi', coffee: 'Çifte Kuş', note: 'İkili görüşmeler ve beklenen bir haber gündemde; zihinsel ikilemi bitirmek için tek bir önceliğe odaklanın.' },
@@ -571,6 +571,7 @@ export const renderSubpageDocument = ({
   robots = 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
 }) => {
   const [, lang, dir, , ogLocale, llmsHref] = langs[locale];
+  const llmsFullHref = llmsHref.replace('/llms.', '/llms-full.').replace('/llms.txt', '/llms-full.txt');
   const canonicalUrl = `https://mythborn.co${canonicalPath}`;
   const getLangHref = langHrefFn || ((k) => ROUTE_MAP[k][pageType] || ROUTE_MAP[k].home);
   const schema = {
@@ -582,7 +583,19 @@ export const renderSubpageDocument = ({
         name: 'MYTHBORN',
         url: 'https://mythborn.co/',
         logo: 'https://mythborn.co/images/gozde-tarot-hero.webp',
-        sameAs: ['https://www.tiktok.com/@gozdeli_']
+        sameAs: ['https://www.tiktok.com/@gozdeli_'],
+        availableLanguage: ['tr', 'en', 'el', 'es', 'ar']
+      },
+      {
+        '@type': 'Person',
+        '@id': 'https://mythborn.co/#gozde',
+        name: 'Gözde',
+        alternateName: t.lead,
+        url: 'https://mythborn.co/',
+        image: 'https://mythborn.co/images/gozde-tarot-hero.webp',
+        sameAs: ['https://www.tiktok.com/@gozdeli_'],
+        knowsLanguage: ['tr', 'en', 'el', 'es', 'ar'],
+        worksFor: { '@id': 'https://mythborn.co/#organization' }
       },
       {
         '@type': 'WebPage',
@@ -596,7 +609,7 @@ export const renderSubpageDocument = ({
   };
   return `<!doctype html><html lang="${lang}" dir="${dir}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08090e"><meta name="robots" content="${robots}"><meta name="author" content="Gözde — MYTHBORN"><meta name="keywords" content="${safe(t.keywords)}"><meta name="description" content="${safe(description)}"><title>MYTHBORN | ${safe(title)} — ${safe(t.lead)}</title><link rel="canonical" href="${canonicalUrl}">${Object.entries(langs)
     .map(([k, v]) => `<link rel="alternate" hreflang="${v[1]}" href="https://mythborn.co${getLangHref(k)}">`)
-    .join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co${getLangHref('tr')}"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsHref}" title="LLM Context"><link rel="help" href="https://mythborn.co/ai-fact-sheet.txt"><meta property="og:type" content="website"><meta property="og:site_name" content="MYTHBORN"><meta property="og:locale" content="${ogLocale}"><meta property="og:url" content="${canonicalUrl}"><meta property="og:title" content="MYTHBORN · ${safe(title)}"><meta property="og:description" content="${safe(description)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MYTHBORN · ${safe(title)}"><meta name="twitter:description" content="${safe(description)}"><meta name="twitter:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap">${renderHeaderAndDrawer({ locale, t, langs, activeType: pageType, langHrefFn: getLangHref })}<main>${bodyHtml}</main>${renderFooter({ locale, t, activeType: pageType, langHrefFn: getLangHref })}</div><script>${clientInteractiveScript}</script></body></html>`;
+    .join('')}<link rel="alternate" hreflang="x-default" href="https://mythborn.co${getLangHref('tr')}"><link rel="agent-manifest" href="https://mythborn.co/.well-known/agent-manifest.json"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsHref}" title="LLM Context"><link rel="alternate" type="text/plain" href="https://mythborn.co${llmsFullHref}" title="Full LLM Context"><link rel="help" href="https://mythborn.co/ai-fact-sheet.txt"><link rel="help" href="https://mythborn.co/ai-fact-sheet.json"><link rel="sitemap" type="application/xml" title="Sitemap" href="https://mythborn.co/sitemap.xml"><link rel="sitemap" type="application/xml" title="Video Sitemap" href="https://mythborn.co/sitemap-video.xml"><meta property="og:type" content="website"><meta property="og:site_name" content="MYTHBORN"><meta property="og:locale" content="${ogLocale}"><meta property="og:url" content="${canonicalUrl}"><meta property="og:title" content="MYTHBORN · ${safe(title)}"><meta property="og:description" content="${safe(description)}"><meta property="og:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MYTHBORN · ${safe(title)}"><meta name="twitter:description" content="${safe(description)}"><meta name="twitter:image" content="https://mythborn.co/images/gozde-tarot-hero.webp"><script type="application/ld+json">${JSON.stringify(schema)}</script><style>${sharedStyles}</style></head><body><div class="wrap">${renderHeaderAndDrawer({ locale, t, langs, activeType: pageType, langHrefFn: getLangHref })}<main>${bodyHtml}</main>${renderFooter({ locale, t, activeType: pageType, langHrefFn: getLangHref })}</div><script>${clientInteractiveScript}</script></body></html>`;
 };
 
 export const renderAreasSubpage = (ctx) => {
