@@ -346,7 +346,11 @@ assert(videoSitemapXml.includes('https://mythborn.co/videos/28-ekim-5-kasim-taro
 
 const sitemapRes=await worker.fetch(new Request('https://mythborn.co/sitemap.xml'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
 assert.equal(sitemapRes.status,200);
+assert(sitemapRes.headers.get('content-type').includes('application/xml'), 'sitemap.xml must be application/xml');
 const sitemapXml=await sitemapRes.text();
+assert(sitemapXml.startsWith('<?xml'), 'sitemap.xml must start with XML declaration');
+assert(sitemapXml.trim().endsWith('</urlset>'), 'sitemap.xml must close urlset');
+assert(!sitemapXml.includes('<html'), 'sitemap.xml must not contain HTML tags');
 assert(sitemapXml.includes('https://mythborn.co/videolar'));
 assert(sitemapXml.includes('https://mythborn.co/en/videos'));
 assert(sitemapXml.includes('https://mythborn.co/gr/videos'));
