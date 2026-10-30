@@ -70,34 +70,57 @@ const cacheStaticAssetResponse=(response,url)=>{
   return new Response(response.body,{status:response.status,statusText:response.statusText,headers});
 };
 
-const LEGACY_EXACT_REDIRECTS=new Map([
-  ['/search','/arama'],
-  ['/en/search','/en/arama'],
-  ['/gr/search','/gr/arama'],
-  ['/el/search','/gr/arama'],
-  ['/es/search','/es/arama'],
-  ['/account/login','/'],
-  ['/account/register','/'],
-  ['/account','/'],
-  ['/giris','/'],
-  ['/kayit','/'],
-  ['/hesabim','/'],
-  ['/en/giris','/en'],
-  ['/en/kayit','/en'],
-  ['/en/hesabim','/en'],
-  ['/gr/giris','/gr'],
-  ['/gr/kayit','/gr'],
-  ['/gr/hesabim','/gr'],
-  ['/pages/privacy','/gizlilik'],
-  ['/pages/privacy-policy','/gizlilik'],
-  ['/pages/terms','/kullanim-kosullari'],
-  ['/pages/terms-of-service','/kullanim-kosullari'],
-  ['/pages/terms-and-conditions','/kullanim-kosullari'],
-  ['/pages/cookies','/cerezler'],
-  ['/pages/cookie-policy','/cerezler'],
-  ['/pages/kvkk','/kvkk'],
-  ['/pages/kvkk-aydinlatma-metni','/kvkk']
-]);
+const resolveLegacyRedirect=(pathname)=>{
+  const lower=pathname.toLowerCase();
+  if(
+    lower==='/'||lower.startsWith('/api/')||lower.startsWith('/yonetim')||
+    lower.startsWith('/.well-known/')||lower.startsWith('/images/')||lower.startsWith('/videos/')||
+    /\.[a-z0-9]{2,8}$/i.test(lower)
+  ) return null;
+
+  let locale='tr';
+  let clean=lower;
+  const m=lower.match(/^\/(en|gr|el|es|ar)(?=\/|$)/);
+  if(m){
+    locale=m[1]==='el'?'gr':m[1];
+    clean=lower.slice(m[0].length)||'/';
+  }
+
+  const prefix=locale==='tr'?'':'/'+locale;
+  const areasTarget=locale==='tr'?'/kesif-alanlari':prefix+'/areas';
+  const videosTarget=locale==='tr'?'/videolar#burclar':prefix+'/videos#burclar';
+  const blogTarget=locale==='tr'?'/blog':prefix+'/blog';
+  const homeTarget=locale==='tr'?'/':prefix;
+  const privacyTarget=locale==='tr'?'/gizlilik':prefix+'/privacy';
+  const termsTarget=locale==='tr'?'/kullanim-kosullari':prefix+'/terms';
+  const kvkkTarget=locale==='tr'?'/kvkk':prefix+'/kvkk';
+
+  const activeRoutes=new Set([
+    '/','/kesif-alanlari','/areas','/yaklasim','/approach',
+    '/videolar','/videos','/blog','/iletisim','/contact',
+    '/yorumcu-basvuru','/apply','/kvkk','/gizlilik','/privacy',
+    '/kullanim-kosullari','/terms'
+  ]);
+  if(activeRoutes.has(clean)) return null;
+  if(clean.startsWith('/blog/')) return null;
+
+  if(clean==='/haftalik-burc'||clean==='/weekly-horoscope') return videosTarget;
+  if(clean==='/tarot'||clean==='/gunluk-kart'||clean==='/otuz-gun'||clean==='/kariyer'||clean==='/deneyim'||clean==='/tarot-kartlari'||clean.startsWith('/tarot-kartlari/')||clean==='/tarot-cards'||clean.startsWith('/tarot-cards/')) return areasTarget;
+  if(clean==='/katina'||clean==='/ask'||clean==='/sinastri'||clean==='/burc-uyumu') return areasTarget;
+  if(clean==='/astroloji'||clean==='/vedik-astroloji'||clean==='/nakshatra-dasha'||clean==='/kadim-gokyuzu'||clean==='/bugunun-gokyuzu'||clean==='/ay-takvimi'||clean==='/dogum-haritasi'||clean==='/astroloji-kutuphanesi'||clean.startsWith('/astroloji-kutuphanesi/')||clean==='/astroloji-sozlugu'||clean.startsWith('/astroloji-sozlugu/')||clean==='/advanced-astrology'||clean.startsWith('/advanced-astrology/')||clean==='/astrology-library'||clean.startsWith('/astrology-library/')) return areasTarget;
+  if(clean==='/ruya-yorumlari'||clean==='/ruya-sembolleri'||clean.startsWith('/ruya-sembolleri/')||clean==='/numeroloji'||clean==='/dream-symbols'||clean.startsWith('/dream-symbols/')) return areasTarget;
+  if(clean==='/maya-zaman-donguleri'||clean==='/mezopotamya-astrolojisi'||clean==='/doga-gokyuzu-donguleri'||clean==='/travma-bilincli-astroloji') return blogTarget;
+  if(clean==='/search') return locale==='tr'?'/arama':prefix+'/arama';
+  if(clean==='/giris'||clean==='/kayit'||clean==='/hesabim'||clean==='/account'||clean.startsWith('/account/')||clean==='/login'||clean==='/register') return homeTarget;
+  if(clean.startsWith('/pages/cookie')) return '/cerezler';
+  if(clean==='/cerezler'||clean.startsWith('/pages/privacy')) return privacyTarget;
+  if(clean.startsWith('/pages/terms')) return termsTarget;
+  if(clean.startsWith('/pages/kvkk')) return kvkkTarget;
+  if(clean.startsWith('/pages/contact')) return locale==='tr'?'/iletisim':prefix+'/contact';
+  if(clean.startsWith('/pages/about')) return locale==='tr'?'/yaklasim':prefix+'/approach';
+
+  return null;
+};
 
 const LEGACY_SHOPIFY_PREFIXES=[
   '/products/',
@@ -288,9 +311,8 @@ export default {
     }
     if(url.pathname==='/robots.txt')return robotsResponse();
     if(env.ENVIRONMENT==='production'&&isDormantProductionApi(url.pathname))return dormantApiResponse();
-    if(LEGACY_EXACT_REDIRECTS.has(url.pathname)){
-      return Response.redirect(`https://mythborn.co${LEGACY_EXACT_REDIRECTS.get(url.pathname)}`,301);
-    }
+    const legacyTarget=resolveLegacyRedirect(url.pathname);
+    if(legacyTarget)return Response.redirect(`https://mythborn.co${legacyTarget}`,301);
     if(isLegacyShopifyPath(url.pathname))return goneResponse();
 
     const response=await app.fetch(request,env,ctx);

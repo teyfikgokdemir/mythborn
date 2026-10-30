@@ -685,7 +685,6 @@ export const VIDEO_SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
       <video:title>28 Ekim – 5 Kasım Haftalık Tarot ve Sembol Açılımı — Gözde</video:title>
       <video:description>Gözde’nin 28 Ekim – 5 Kasım haftalık Tarot açılımı videosu, 12 burç için haftalık kart ve kahve sembolü yorumları.</video:description>
       <video:content_loc>https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4</video:content_loc>
-      <video:player_loc>https://mythborn.co/videolar</video:player_loc>
       <video:duration>872</video:duration>
       <video:publication_date>2026-10-28T12:00:00+03:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
@@ -702,7 +701,6 @@ export const VIDEO_SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
       <video:title>Oct 28 – Nov 5 Weekly Tarot &amp; Symbolic Reading — Gözde</video:title>
       <video:description>Watch Gözde’s weekly Tarot video reading and 12-sign symbolic highlights for the Oct 28 – Nov 5 corridor.</video:description>
       <video:content_loc>https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4</video:content_loc>
-      <video:player_loc>https://mythborn.co/en/videos</video:player_loc>
       <video:duration>872</video:duration>
       <video:publication_date>2026-10-28T12:00:00+03:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
@@ -717,7 +715,6 @@ export const VIDEO_SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
       <video:title>28 Οκτ – 5 Νοε Εβδομαδιαίο Βίντεο Ταρώ — Gözde</video:title>
       <video:description>Εβδομαδιαίο βίντεο Ταρώ και προβλέψεις για τα 12 ζώδια από την Gözde.</video:description>
       <video:content_loc>https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4</video:content_loc>
-      <video:player_loc>https://mythborn.co/gr/videos</video:player_loc>
       <video:duration>872</video:duration>
       <video:publication_date>2026-10-28T12:00:00+03:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
@@ -732,7 +729,6 @@ export const VIDEO_SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
       <video:title>Tarot Semanal 28 Oct – 5 Nov — Gözde</video:title>
       <video:description>Video semanal de Tarot y resumen simbólico para los 12 signos del zodiaco con Gözde.</video:description>
       <video:content_loc>https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4</video:content_loc>
-      <video:player_loc>https://mythborn.co/es/videos</video:player_loc>
       <video:duration>872</video:duration>
       <video:publication_date>2026-10-28T12:00:00+03:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
@@ -747,7 +743,6 @@ export const VIDEO_SITEMAP_XML = `<?xml version="1.0" encoding="UTF-8"?>
       <video:title>فيديو قراءة التاروت الأسبوعية 28 أكتوبر – 5 نوفمبر — Gözde</video:title>
       <video:description>قراءة التاروت الأسبوعية ورسائل رموز الفنجان لجميع الأبراج الـ 12 مع Gözde.</video:description>
       <video:content_loc>https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4</video:content_loc>
-      <video:player_loc>https://mythborn.co/ar/videos</video:player_loc>
       <video:duration>872</video:duration>
       <video:publication_date>2026-10-28T12:00:00+03:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>

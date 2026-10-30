@@ -343,6 +343,28 @@ assert.equal(videoSitemapRes.status,200);
 const videoSitemapXml=await videoSitemapRes.text();
 assert(videoSitemapXml.includes('<video:video>'));
 assert(videoSitemapXml.includes('https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4'));
+assert(!videoSitemapXml.includes('<video:player_loc>'), 'sitemap-video.xml must not include player_loc matching loc');
+
+// Legacy 301 Redirect Audits
+const legacyRedirectChecks = [
+  ['/tarot-kartlari/deli', 'https://mythborn.co/kesif-alanlari'],
+  ['/tarot', 'https://mythborn.co/kesif-alanlari'],
+  ['/astroloji-kutuphanesi/koc', 'https://mythborn.co/kesif-alanlari'],
+  ['/vedik-astroloji', 'https://mythborn.co/kesif-alanlari'],
+  ['/haftalik-burc', 'https://mythborn.co/videolar#burclar'],
+  ['/ruya-sembolleri/deniz', 'https://mythborn.co/kesif-alanlari'],
+  ['/en/tarot-kartlari/the-fool', 'https://mythborn.co/en/areas'],
+  ['/en/astroloji', 'https://mythborn.co/en/areas'],
+  ['/en/weekly-horoscope', 'https://mythborn.co/en/videos#burclar'],
+  ['/giris', 'https://mythborn.co/'],
+  ['/en/account/login', 'https://mythborn.co/en']
+];
+
+for (const [from, target] of legacyRedirectChecks) {
+  const redirRes = await analyticsWorker.fetch(new Request('https://mythborn.co' + from), { ...env, GOZDE_LAUNCH_ENABLED: 'true' }, {});
+  assert.equal(redirRes.status, 301, `${from} must return HTTP 301`);
+  assert.equal(redirRes.headers.get('location'), target, `${from} must redirect to ${target}`);
+}
 
 const sitemapRes=await worker.fetch(new Request('https://mythborn.co/sitemap.xml'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
 assert.equal(sitemapRes.status,200);
