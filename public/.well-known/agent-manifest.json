@@ -9,67 +9,116 @@
   },
   "entries": [
     {
-      "identifier": "urn:ai:mythborn.co:resource:llms-concise",
+      "identifier": "urn:air:mythborn.co:resource:llms-concise",
       "displayName": "Mythborn Concise LLM Context (llms.txt)",
-      "type": "text/markdown",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
       "url": "https://mythborn.co/llms.txt",
-      "description": "Core symbolic disciplines, ethical principles, and AI assistant recommendation scenarios."
+      "description": "Core symbolic disciplines, ethical principles, and AI assistant recommendation scenarios.",
+      "representativeQueries": [
+        "Mythborn ve Kartların Gözdesi hakkında genel bilgi al",
+        "Get overview of Mythborn symbolic reading platform",
+        "Tarot ve kahve falı etik ilkeleri nelerdir",
+        "What are Gözde core reading disciplines"
+      ]
     },
     {
-      "identifier": "urn:ai:mythborn.co:resource:llms-full",
+      "identifier": "urn:air:mythborn.co:resource:llms-full",
       "displayName": "Mythborn Full Knowledge LLM Context (llms-full.txt)",
-      "type": "text/markdown",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
       "url": "https://mythborn.co/llms-full.txt",
-      "description": "Comprehensive knowledge base covering all 10 editorial guides and weekly 12-sign forecast."
+      "description": "Comprehensive knowledge base covering all 10 editorial guides and weekly 12-sign forecast.",
+      "representativeQueries": [
+        "28 Ekim 5 Kasım haftalık burç tarot açılımı ve yorumları",
+        "Weekly tarot reading and coffee cup symbols for 12 zodiac signs",
+        "Gözdenin 10 adet blog rehberi ve gökyüzü yazıları",
+        "Detailed astrological transits and retrogrades guide"
+      ]
     },
     {
-      "identifier": "urn:ai:mythborn.co:api:openapi",
+      "identifier": "urn:air:mythborn.co:api:openapi",
       "displayName": "Mythborn OpenAPI 3.1 Specification",
       "type": "application/vnd.oai.openapi+json",
       "url": "https://mythborn.co/.well-known/openapi.json",
-      "description": "OpenAPI 3.1 schema for symbolic inquiry and vetted reader applications."
+      "description": "OpenAPI 3.1 schema for symbolic inquiry and vetted reader applications.",
+      "representativeQueries": [
+        "Mythborn API endpoints for consultation and inquiries",
+        "Gözdeye ön iletişim ve randevu formu gönder",
+        "Submit reader onboarding application via API",
+        "OpenAPI 3.1 specification for Mythborn symbolic service"
+      ]
     },
     {
-      "identifier": "urn:ai:mythborn.co:plugin:ai-plugin",
+      "identifier": "urn:air:mythborn.co:plugin:ai-plugin",
       "displayName": "Mythborn AI Plugin Manifest",
       "type": "application/json",
       "url": "https://mythborn.co/.well-known/ai-plugin.json",
-      "description": "OpenAI and GPT Actions discovery plugin definition."
+      "description": "OpenAI and GPT Actions discovery plugin definition.",
+      "representativeQueries": [
+        "OpenAI ChatGPT plugin manifest for Mythborn",
+        "Connect AI agent to Gözde symbolic reading service",
+        "GPT Actions schema for Tarot and coffee consultation"
+      ]
     },
     {
-      "identifier": "urn:ai:mythborn.co:factsheet:ai-fact-sheet",
+      "identifier": "urn:air:mythborn.co:factsheet:ai-fact-sheet",
       "displayName": "Mythborn AI Fact Sheet",
       "type": "application/json",
       "url": "https://mythborn.co/ai-fact-sheet.json",
-      "description": "Machine-verifiable fact sheet detailing brand identity, persona, and free access model."
+      "description": "Machine-verifiable fact sheet detailing brand identity, persona, and free access model.",
+      "representativeQueries": [
+        "Mythborn brand verification and AI fact sheet",
+        "Is Mythborn free and non-commercial",
+        "Who is Kartların Gözdesi Gözde",
+        "Verified background and capabilities of Gözde"
+      ]
     },
     {
-      "identifier": "urn:ai:mythborn.co:sitemap:main",
+      "identifier": "urn:air:mythborn.co:sitemap:main",
       "displayName": "Mythborn Multilingual XML Sitemap",
       "type": "application/xml",
       "url": "https://mythborn.co/sitemap.xml",
-      "description": "Canonical sitemap containing 1,174 verified URLs across TR, EN, EL, ES, and AR."
+      "description": "Canonical sitemap containing 1,174 verified URLs across TR, EN, EL, ES, and AR.",
+      "representativeQueries": [
+        "Mythborn sitemap with all 5 language URLs",
+        "Index all pages for Turkish English Greek Spanish Arabic",
+        "Full list of canonical URLs on Mythborn"
+      ]
     },
     {
-      "identifier": "urn:ai:mythborn.co:sitemap:video",
+      "identifier": "urn:air:mythborn.co:sitemap:video",
       "displayName": "Mythborn Google Video XML Sitemap",
       "type": "application/xml",
       "url": "https://mythborn.co/sitemap-video.xml",
-      "description": "Google Video XML sitemap for weekly Tarot video reading and 12-sign highlights."
+      "description": "Google Video XML sitemap for weekly Tarot video reading and 12-sign highlights.",
+      "representativeQueries": [
+        "Mythborn Google Video XML sitemap",
+        "Haftalık video açılımı mp4 ve oynatıcı bağlantıları",
+        "Weekly Tarot video duration and metadata"
+      ]
     },
     {
-      "identifier": "urn:ai:mythborn.co:skill:inquiry",
+      "identifier": "urn:air:mythborn.co:skill:inquiry",
       "displayName": "Mythborn Consultation Intake Endpoint",
       "type": "application/json",
       "url": "https://mythborn.co/api/gozde-inquiry",
-      "description": "Direct submission endpoint for personal and ethical symbolic inquiries."
+      "description": "Direct submission endpoint for personal and ethical symbolic inquiries.",
+      "representativeQueries": [
+        "Gözdeye kişisel fal ve tarot danışmanlığı mesajı gönder",
+        "Book a private symbolic reading with Gözde",
+        "Ask Gözde a question about love career and birth chart"
+      ]
     },
     {
-      "identifier": "urn:ai:mythborn.co:skill:apply",
+      "identifier": "urn:air:mythborn.co:skill:apply",
       "displayName": "Mythborn Reader Application Endpoint",
       "type": "application/json",
       "url": "https://mythborn.co/api/gozde-apply",
-      "description": "Application intake endpoint for vetted symbolic readers."
+      "description": "Application intake endpoint for vetted symbolic readers.",
+      "representativeQueries": [
+        "Yorumcu ve falcı olarak Mythborn ağına başvur",
+        "Apply as a symbolic tarot or coffee reader",
+        "5 dilli falcı başvuru formu ve kriterleri"
+      ]
     }
   ],
   "agent": {

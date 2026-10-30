@@ -299,6 +299,11 @@ assert.equal(agentManifest.specVersion,'1.0');
 assert(Array.isArray(agentManifest.entries) && agentManifest.entries.length >= 7,'ArdManifest must contain entries array');
 for(const entry of agentManifest.entries){
   assert(entry.identifier && entry.displayName && entry.type && entry.url, 'Every catalog entry must have identifier, displayName, type, and url');
+  assert(/^urn:air:[a-zA-Z0-9.-]+(:[a-zA-Z0-9._-]+)+$/.test(entry.identifier), `${entry.identifier} must match RFC 8141 URN pattern urn:air:...`);
+  assert(Array.isArray(entry.representativeQueries) && entry.representativeQueries.length >= 2, `${entry.identifier} must have representativeQueries`);
+  if(entry.type.startsWith('text/markdown')){
+    assert(entry.type.includes('profile="urn:air:agent-skills"'), `${entry.identifier} must specify profile="urn:air:agent-skills"`);
+  }
 }
 
 const aiCatalogWellKnownRes=await worker.fetch(new Request('https://mythborn.co/.well-known/ai-catalog.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
