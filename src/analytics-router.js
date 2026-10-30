@@ -222,6 +222,8 @@ Disallow: /api/
 
 Sitemap: https://mythborn.co/sitemap.xml
 Sitemap: https://mythborn.co/sitemap-video.xml
+Agentmap: https://mythborn.co/.well-known/ard.json
+Agentmap: https://mythborn.co/.well-known/ai-catalog.json
 
 # LLM Contexts (llmstxt.org):
 # https://mythborn.co/llms.txt

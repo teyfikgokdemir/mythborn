@@ -1,7 +1,7 @@
 (() => {
   const sourceEndpoint = 'https://cansu.teyfikgokdemir.com/api/sources';
   const conversionEndpoint = 'https://cansu.teyfikgokdemir.com/api/conversions';
-  const site = document.currentScript?.dataset.site;
+  const site = document.currentScript?.dataset.site || 'mythborn';
   if (!site) return;
 
   const allowedHosts = ['mythborn.co', 'www.mythborn.co'];

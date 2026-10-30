@@ -79,7 +79,8 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert(html.includes(({tr:'Kartların Gözde’si',en:'Gözde of the Cards',el:'Η Gözde των Καρτών',es:'Gözde, la voz de las cartas',ar:'Gözde قارئة البطاقات'})[language]));
  assert(html.includes('/images/gozde-tarot-hero.webp'));
  assert(html.includes('gozdeli_'));
- assert(html.includes('id="mobile-drawer" class="mobile-drawer" aria-hidden="true" inert'), `${path} must include mobile drawer menu with inert`);
+ assert(html.includes('id="mobile-drawer" class="mobile-drawer" hidden inert'), `${path} must include mobile drawer menu with hidden and inert`);
+ assert(!html.includes('id="mobile-drawer" class="mobile-drawer" aria-hidden'), `${path} must not use aria-hidden on mobile drawer to eliminate aria-hidden-focus violations`);
  assert(html.includes('data-open-drawer'), `${path} must include mobile menu toggle button`);
  assert(html.includes('class="trust-bar"'));
  assert((html.match(/class="area-card"/g)||[]).length===8, `${path} must render all 8 service area cards`);
@@ -88,7 +89,12 @@ for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es']
  assert(html.includes('<div id="video-promo-toast"') && !html.includes('<aside id="video-promo-toast"'), `${path} must use div for video toast`);
  assert(html.includes('id="video-promo-toast"') && html.includes('popover="manual"'), `${path} must include 1s video announcement toast`);
  assert(html.includes('visibility:hidden'), `${path} must hide inactive drawer with visibility:hidden`);
+ assert(html.includes('rel="ard" href="https://mythborn.co/.well-known/ard.json"'), `${path} must link ard.json ARD manifest`);
+ assert(html.includes('rel="ai-catalog" href="https://mythborn.co/.well-known/ai-catalog.json"'), `${path} must link ai-catalog.json manifest`);
  assert(html.includes('rel="agent-manifest" href="https://mythborn.co/.well-known/ai-catalog.json"'), `${path} must link ai-catalog.json agent manifest`);
+ assert(html.includes('/cansu-source-beacon.js'), `${path} must load Cansu attribution and Umami beacon`);
+ assert(html.includes('G-RW928SX37X') && html.includes('GTM-PKC69D3L') && html.includes('AW-18090583790') && html.includes('ysacbtdz22'), `${path} must configure GA4, GTM, Ads, and Clarity measurement suite`);
+ assert(html.includes('analytics_storage'), `${path} must implement Google Consent Mode v2`);
  for (const m of html.matchAll(/<script(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script>/gi)) {
    new Function(m[1]);
  }
@@ -135,7 +141,8 @@ for (const subPath of [
   const response=await worker.fetch(new Request('https://mythborn.co'+subPath),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
   assert.equal(response.status,200, `${subPath} must return HTTP 200`);
   const html=await response.text();
-  assert(html.includes('id="mobile-drawer"'), `${subPath} must include mobile drawer menu`);
+  assert(html.includes('id="mobile-drawer" class="mobile-drawer" hidden inert'), `${subPath} must include mobile drawer menu with hidden and inert`);
+  assert(!html.includes('id="mobile-drawer" class="mobile-drawer" aria-hidden'), `${subPath} must not use aria-hidden on mobile drawer`);
   assert(!/(?:price|fiyat|checkout|reservation|booking|payment|ödeme|mailto:|wa\.me)/i.test(html), `${subPath} must remain free of commercial/prohibited terms`);
   if(subPath.startsWith('/blog/')){
     assert(html.includes('"@type":"Article"'), `${subPath} must include Article schema`);
@@ -245,6 +252,8 @@ assert(robotsTxt.includes('Allow: /llms.txt'));
 assert(robotsTxt.includes('Allow: /llms-full.txt'));
 assert(robotsTxt.includes('Allow: /.well-known/'));
 assert(robotsTxt.includes('Sitemap: https://mythborn.co/sitemap-video.xml'));
+assert(robotsTxt.includes('Agentmap: https://mythborn.co/.well-known/ard.json'), 'robots.txt must declare ARD Agentmap');
+assert(robotsTxt.includes('Agentmap: https://mythborn.co/.well-known/ai-catalog.json'), 'robots.txt must declare ai-catalog Agentmap');
 
 // 5-Language llms.txt & llms-full.txt
 for(const [route, langKey] of [
