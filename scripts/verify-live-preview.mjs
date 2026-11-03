@@ -31,7 +31,7 @@ async function testAll() {
   assert.strictEqual(natalRes.status, 200, 'Natal chart must return 200');
   const natalHtml = await natalRes.text();
   assert(natalHtml.includes('Güneş Burcu') || natalHtml.includes('Koç') || natalHtml.includes('Akrep'), 'Natal chart must show signs');
-  assert(natalHtml.includes('zodiac-wheel.svg'), 'Natal chart must embed zodiac wheel');
+  assert(natalHtml.includes('wheel-disc') || natalHtml.includes('Interactive Natal Chart Wheel') || natalHtml.includes('zodiac-wheel'), 'Natal chart must embed dynamic zodiac wheel');
   console.log('✓ Natal chart view passed');
 
   // 4. Subpages

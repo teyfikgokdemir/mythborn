@@ -15,6 +15,8 @@ export const getRouteHref = (localeKey, routeKey = 'home') => {
     transits: `${p}/transitler`,
     synastry: `${p}/sinastri`,
     glossary: `${p}/astroloji-sozlugu`,
+    learning: `${p}/ogrenme-merkezi`,
+    horoscopes: `${p}/burc-yorumlari`,
     approach: `${p}/yaklasim`,
     about: `${p}/hakkimizda`,
     contact: `${p}/iletisim`,
@@ -90,6 +92,26 @@ export const renderAstrologyLayout = ({
     ? `<link rel="canonical" href="${canonicalUrl}">`
     : '';
 
+  const hreflangTags = !isPreview ? `
+  <link rel="alternate" hreflang="tr" href="https://mythborn.co${getRouteHref('tr', currentRouteKey)}">
+  <link rel="alternate" hreflang="en" href="https://mythborn.co${getRouteHref('en', currentRouteKey)}">
+  <link rel="alternate" hreflang="el" href="https://mythborn.co${getRouteHref('el', currentRouteKey)}">
+  <link rel="alternate" hreflang="es" href="https://mythborn.co${getRouteHref('es', currentRouteKey)}">
+  <link rel="alternate" hreflang="ar" href="https://mythborn.co${getRouteHref('ar', currentRouteKey)}">
+  <link rel="alternate" hreflang="x-default" href="https://mythborn.co${getRouteHref('tr', currentRouteKey)}">` : '';
+
+  const ogLocale = locale === 'gr' ? 'el' : locale;
+  const ogTag = `
+  <meta property="og:title" content="${pageTitle}">
+  <meta property="og:description" content="${pageDesc}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/astrology/og/og-${ogLocale}.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${pageTitle}">
+  <meta name="twitter:description" content="${pageDesc}">
+  <meta name="twitter:image" content="/assets/astrology/og/og-${ogLocale}.svg">
+  <link rel="icon" type="image/svg+xml" href="/assets/astrology/mythborn-symbol.svg">`;
+
   return `<!doctype html>
 <html lang="${t.lang}" dir="${t.dir}">
 <head>
@@ -99,6 +121,8 @@ export const renderAstrologyLayout = ({
   <meta name="description" content="${pageDesc}">
   ${robotsMeta}
   ${canonicalTag}
+  ${hreflangTags}
+  ${ogTag}
   <meta name="theme-color" content="#08080c">
   <style>${SHARED_CSS}</style>
 </head>
@@ -107,7 +131,7 @@ export const renderAstrologyLayout = ({
     <header class="astro-header">
       <div class="astro-container astro-header-inner">
         <a class="astro-brand" href="${getRouteHref(locale, 'home')}">
-          <span class="astro-brand-emblem" aria-hidden="true">✦</span>
+          <img src="/assets/astrology/mythborn-symbol.svg" alt="" style="width:28px; height:28px; border-radius:50%; filter:drop-shadow(0 0 6px rgba(212,175,55,0.4))">
           <span>${safe(t.navBrand)}</span>
         </a>
 
@@ -181,7 +205,9 @@ export const renderAstrologyLayout = ({
             <h4>${safe(t.footer.colZodiac)}</h4>
             <ul>
               <li><a href="${getRouteHref(locale, 'zodiac')}">${safe(t.menu.zodiac)}</a></li>
+              <li><a href="${getRouteHref(locale, 'horoscopes')}">${locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Daily Horoscopes' : locale === 'el' ? 'Ημερήσιες Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'توقعات الأبراج'}</a></li>
               <li><a href="${getRouteHref(locale, 'glossary')}">${safe(t.menu.glossary)}</a></li>
+              <li><a href="${getRouteHref(locale, 'learning')}">${locale === 'tr' ? 'Öğrenme Merkezi' : locale === 'en' ? 'Learning Center' : locale === 'el' ? 'Κέντρο Μάθησης' : locale === 'es' ? 'Centro de Aprendizaje' : 'مركز التعلم'}</a></li>
               <li><a href="${getRouteHref(locale, 'approach')}">${safe(t.menu.approach)}</a></li>
             </ul>
           </div>

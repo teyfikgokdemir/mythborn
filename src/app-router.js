@@ -22,6 +22,7 @@ import {decorate} from './page-decorator.js';
 import {discoveryPage,discoveryMeta} from './discovery-core.js';
 import { culturalLocale, culturalPage, culturalSitemapEntries, isCulturalPath } from './cultural-platform.js';
 import { handleAstrologyRequest, isAstrologyPlatformPath } from './astrology-platform/router.js';
+import { generateAstrologySitemapEntries } from './astrology-platform/sitemap.js';
 import {
   LLMS_TEXT,
   LLMS_FULL_TEXT,
@@ -76,7 +77,7 @@ const searchItems=locale=>{
 export default {
   async fetch(request,env,ctx){
     const incoming=new URL(request.url);
-    if(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'&&isAstrologyPlatformPath(incoming.pathname)&&(!incoming.pathname.startsWith('/api/')||incoming.pathname.startsWith('/api/astrology/'))&&!incoming.pathname.startsWith('/cdn-cgi/')&&!/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
+    if((env.ASTROLOGY_PLATFORM_ENABLED==='true'||(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'))&&isAstrologyPlatformPath(incoming.pathname)&&(!incoming.pathname.startsWith('/api/')||incoming.pathname.startsWith('/api/astrology/'))&&!incoming.pathname.startsWith('/cdn-cgi/')&&!/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
       return handleAstrologyRequest(request,env);
     }
     if(env.ENVIRONMENT==='preview'&&(incoming.pathname==='/kartlarin-gozdesi'||incoming.pathname==='/gozde')){
@@ -130,7 +131,7 @@ export default {
       const applyRoutes=['/yorumcu-basvuru','/en/apply','/gr/apply','/es/apply','/ar/apply'];
       const applyAlts=`<xhtml:link rel="alternate" hreflang="tr" href="${SITE}/yorumcu-basvuru"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}/en/apply"/><xhtml:link rel="alternate" hreflang="el" href="${SITE}/gr/apply"/><xhtml:link rel="alternate" hreflang="es" href="${SITE}/es/apply"/><xhtml:link rel="alternate" hreflang="ar" href="${SITE}/ar/apply"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/yorumcu-basvuru"/>`;
       const applyEntries=applyRoutes.map(p=>`<url><loc>${SITE}${p}</loc>${applyAlts}</url>`).join('');
-      const fullXml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${generateGozdeSitemapEntries()}${applyEntries}${culturalSitemapEntries()}</urlset>`;
+      const fullXml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${generateGozdeSitemapEntries()}${applyEntries}${culturalSitemapEntries()}${generateAstrologySitemapEntries(SITE)}</urlset>`;
       return new Response(fullXml,{status:200,headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=60, s-maxage=60, must-revalidate','access-control-allow-origin':'*','x-content-type-options':'nosniff'}});
     }
     const accessState=premiumState(env,new Date());

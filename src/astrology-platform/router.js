@@ -1,6 +1,6 @@
 // Mythborn Astrology Platform — Request Router & Dispatcher
 import { ASTROLOGY_LOCALES } from './i18n.js';
-import { renderAstrologyLayout } from './layout.js';
+import { renderAstrologyLayout, getRouteHref } from './layout.js';
 import { renderHomeView } from './pages/home.js';
 import { renderNatalChartView } from './pages/natal-chart.js';
 import { renderZodiacIndexView } from './pages/zodiac.js';
@@ -9,6 +9,9 @@ import { renderRetrogradesView } from './pages/retrogrades.js';
 import { renderTransitsView } from './pages/transits.js';
 import { renderSynastryView } from './pages/synastry.js';
 import { renderGlossaryView } from './pages/glossary.js';
+import { renderApproachView } from './pages/approach.js';
+import { renderLearningCenterView } from './pages/learning.js';
+import { renderHoroscopesView } from './pages/horoscopes.js';
 import { generateDailyHoroscopes } from './horoscope-pipeline.js';
 
 export const resolveAstrologyLocale = (pathname = '/') => {
@@ -30,6 +33,8 @@ export const matchAstrologyRoute = (pathname = '/') => {
   if (clean === '/transitler' || clean === '/transits' || clean === '/diabaseis' || clean === '/transitos' || clean === '/al-uboor-alfalaki') return 'transits';
   if (clean === '/sinastri' || clean === '/synastry' || clean === '/synastria' || clean === '/sinastria' || clean === '/altawafuq-alfalaki') return 'synastry';
   if (clean === '/astroloji-sozlugu' || clean === '/astrology-glossary' || clean === '/lexiko-astrologias' || clean === '/glosario-astrologia' || clean === '/qamus-al-tanjim') return 'glossary';
+  if (clean === '/ogrenme-merkezi' || clean === '/learning-center' || clean === '/kentro-mathisis' || clean === '/centro-aprendizaje' || clean === '/markaz-altaalum') return 'learning';
+  if (clean === '/burc-yorumlari' || clean === '/gunluk-burc-yorumlari' || clean === '/horoscopes' || clean === '/daily-horoscopes' || clean === '/provlepseis' || clean === '/horoscopos' || clean === '/altawaqushat') return 'horoscopes';
   if (clean === '/yaklasim' || clean === '/approach' || clean === '/prosegisi' || clean === '/enfoque' || clean === '/al-manhaj') return 'approach';
 
   return null;
@@ -102,7 +107,21 @@ export const handleAstrologyRequest = (request, env) => {
       title = `${t.menu.glossary} ve Temel Kavramlar`;
       description = t.sections.glossarySub;
       break;
+    case 'learning':
+      contentHtml = renderLearningCenterView({ locale });
+      title = 'Astroloji Öğrenme Merkezi';
+      description = 'Kozmik okuryazarlık, doğum haritası, evler ve açılar rehberliği.';
+      break;
+    case 'horoscopes':
+      contentHtml = renderHoroscopesView({ locale, searchParams });
+      title = '12 Burç Günlük Gökyüzü Yorumları';
+      description = 'Astronomik verilere dayalı etik ve bilinçli burç rehberliği.';
+      break;
     case 'approach':
+      contentHtml = renderApproachView({ locale });
+      title = 'Yöntem, Etik İlkeler ve Sınırlarımız';
+      description = 'Matematiksel kesinlik, açık astronomi ve determinizmin reddi.';
+      break;
     case 'home':
     default:
       contentHtml = renderHomeView({ locale });
@@ -117,7 +136,8 @@ export const handleAstrologyRequest = (request, env) => {
     title,
     description,
     contentHtml,
-    isPreview
+    isPreview,
+    canonicalUrl: `https://mythborn.co${getRouteHref(locale, routeKey)}`
   });
 
   const headers = {

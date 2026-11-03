@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Mythborn Celestial Emblem">
+  <defs>
+    <radialGradient id="nebula-bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#19223c" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#06080d" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff5cc"/>
+      <stop offset="45%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8a6d1b"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="94" fill="url(#nebula-bg)" stroke="url(#gold-grad)" stroke-width="2.5"/>
+  <circle cx="100" cy="100" r="86" fill="none" stroke="rgba(212,175,55,0.3)" stroke-dasharray="3 4"/>
+  <!-- 8-Pointed Celestial Star -->
+  <polygon points="100,20 112,88 180,100 112,112 100,180 88,112 20,100 88,88" fill="none" stroke="url(#gold-grad)" stroke-width="2"/>
+  <polygon points="100,45 108,92 155,100 108,108 100,155 92,108 45,100 92,92" fill="url(#gold-grad)" opacity="0.8"/>
+  <circle cx="100" cy="100" r="10" fill="#06080d" stroke="url(#gold-grad)" stroke-width="2"/>
+  <circle cx="100" cy="100" r="4" fill="#fff5cc"/>
+</svg>

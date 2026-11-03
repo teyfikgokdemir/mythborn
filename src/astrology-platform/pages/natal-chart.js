@@ -2,6 +2,7 @@
 import { ASTROLOGY_LOCALES, ZODIAC_SIGNS } from '../i18n.js';
 import { getRouteHref } from '../layout.js';
 import { calculatePlanetaryPositions, calculateAnglesAndHouses, calculateAspects, lookupCity, ENGINE_METADATA } from '../data-core.js';
+import { renderNatalWheelSvg } from '../natal-wheel.js';
 
 export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
@@ -89,10 +90,10 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:24px; align-items:start">
         <div style="padding:24px; background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:16px; text-align:center">
           <h4 style="font-family:var(--font-serif); font-size:18px; color:var(--gold); margin-bottom:16px">
-            ✦ ${locale === 'tr' ? 'Otantik Zodyak Çarkı' : locale === 'en' ? 'Authentic Zodiac Wheel' : locale === 'el' ? 'Ζωδιακός Κύκλος' : locale === 'es' ? 'Rueda Zodiacal' : 'عجلة الأبراج'}
+            ✦ ${locale === 'tr' ? 'Matematiksel Zodyak Çarkı & Açılar' : locale === 'en' ? 'Mathematical Zodiac Wheel & Aspects' : locale === 'el' ? 'Ζωδιακός Κύκλος & Όψεις' : locale === 'es' ? 'Rueda Zodiacal y Aspectos' : 'عجلة الأبراج والاتصالات'}
           </h4>
-          <div style="position:relative; width:260px; height:260px; margin:0 auto">
-            <img src="/assets/astrology/zodiac-wheel.svg" alt="Zodiac Wheel" style="width:100%; height:100%; filter: drop-shadow(0 0 16px rgba(212,175,55,0.25))">
+          <div style="max-width:360px; margin:0 auto">
+            ${renderNatalWheelSvg({ planets: chartResult.planets, angles: chartResult.angles, aspects: chartResult.aspects, size: 360 })}
           </div>
           <p style="font-size:12px; color:var(--muted); margin-top:16px">
             ${ENGINE_METADATA.precision} · ${ENGINE_METADATA.houseSystem}

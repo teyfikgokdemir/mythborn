@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Air Element Symbol">
+  <defs>
+    <linearGradient id="grad-air" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e6a8"/>
+      <stop offset="100%" stop-color="#79c0ff"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="56" fill="#080a10" stroke="rgba(212,175,55,0.4)" stroke-width="1.5"/>
+  <path d="M 60,25 L 95,85 L 25,85 Z M 20,50 L 100,50" fill="none" stroke="url(#grad-air)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -32,7 +32,10 @@ export const renderZodiacIndexView = ({ locale = 'tr' }) => {
     return `
       <article id="${sign.slug}" class="zodiac-natural-card">
         <div class="zodiac-natural-header">
-          <span class="zodiac-natural-symbol" aria-hidden="true">${sign.symbol}</span>
+          <div style="display:flex; align-items:center; gap:12px">
+            <img src="/assets/astrology/zodiac/${sign.slug || sign.id}.svg" alt="${signName}" style="width:40px; height:40px; border-radius:50%">
+            <span class="zodiac-natural-symbol" aria-hidden="true">${sign.symbol}</span>
+          </div>
           <span class="zodiac-element-tag element-${sign.element}">${elementLabel}</span>
         </div>
         <h3 class="zodiac-natural-title">${naturalTitle}</h3>

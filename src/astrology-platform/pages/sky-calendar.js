@@ -27,14 +27,17 @@ export const renderSkyCalendarView = ({ locale = 'tr' }) => {
       <div class="astro-container">
         <!-- Güncel Canlı Ay Durumu -->
         <div style="padding:28px; background:linear-gradient(135deg, rgba(212,175,55,0.06), rgba(0,0,0,0.5)); border:1px solid var(--gold); border-radius:18px; margin-bottom:36px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px">
-          <div>
-            <span class="astro-card-tag">✦ LIVE MOON PHASE</span>
-            <h2 style="font-family:var(--font-serif); font-size:28px; color:#fff; margin:6px 0">
-              ${moon.name}
-            </h2>
-            <p style="color:var(--muted); font-size:14px; margin:0">
-              Açısal Konum: <strong>${moon.degrees}°</strong> · Aydınlanma Oranı: <strong style="color:var(--gold-bright)">%${moon.illuminationPct}</strong>
-            </p>
+          <div style="display:flex; align-items:center; gap:20px">
+            <img src="/assets/astrology/moon/${moon.phaseId.replace(/_/g, '-')}.svg" alt="${moon.name}" style="width:64px; height:64px; filter:drop-shadow(0 0 12px rgba(212,175,55,0.3))">
+            <div>
+              <span class="astro-card-tag">✦ LIVE MOON PHASE</span>
+              <h2 style="font-family:var(--font-serif); font-size:28px; color:#fff; margin:4px 0">
+                ${moon.name}
+              </h2>
+              <p style="color:var(--muted); font-size:14px; margin:0">
+                Açısal Konum: <strong>${moon.degrees}°</strong> · Aydınlanma Oranı: <strong style="color:var(--gold-bright)">%${moon.illuminationPct}</strong>
+              </p>
+            </div>
           </div>
           <div style="display:flex; gap:16px; flex-wrap:wrap">
             <div style="padding:12px 18px; background:rgba(0,0,0,0.4); border:1px solid rgba(255,255,255,0.08); border-radius:10px; font-size:13px">

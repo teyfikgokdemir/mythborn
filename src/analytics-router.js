@@ -88,6 +88,17 @@ const resolveLegacyRedirect=(pathname)=>{
   }
 
   const prefix=locale==='tr'?'':'/'+locale;
+  const natalTarget=locale==='tr'?'/dogum-haritasi':locale==='en'?'/en/birth-chart':locale==='gr'?'/gr/genethlios-chartis':locale==='es'?'/es/carta-natal':'/ar/kharitat-almilad';
+  const zodiacTarget=locale==='tr'?'/burclar':locale==='en'?'/en/zodiac-signs':locale==='gr'?'/gr/zodia':locale==='es'?'/es/signos-del-zodiaco':'/ar/al-abraj';
+  const calendarTarget=locale==='tr'?'/gokyuzu-takvimi':locale==='en'?'/en/sky-calendar':locale==='gr'?'/gr/imerologio-ouranou':locale==='es'?'/es/calendario-celeste':'/ar/altaqwim-alfalaki';
+  const transitsTarget=locale==='tr'?'/transitler':locale==='en'?'/en/transits':locale==='gr'?'/gr/diabaseis':locale==='es'?'/es/transitos':'/ar/al-uboor-alfalaki';
+  const retrosTarget=locale==='tr'?'/retrolar':locale==='en'?'/en/retrogrades':locale==='gr'?'/gr/anadromes':locale==='es'?'/es/retrogrados':'/ar/harakat-altaraju';
+  const synastryTarget=locale==='tr'?'/sinastri':locale==='en'?'/en/synastry':locale==='gr'?'/gr/synastria':locale==='es'?'/es/sinastria':'/ar/altawafuq-alfalaki';
+  const glossaryTarget=locale==='tr'?'/astroloji-sozlugu':locale==='en'?'/en/astrology-glossary':locale==='gr'?'/gr/lexiko-astrologias':locale==='es'?'/es/glosario-astrologia':'/ar/qamus-al-tanjim';
+  const learningTarget=locale==='tr'?'/ogrenme-merkezi':locale==='en'?'/en/learning-center':locale==='gr'?'/gr/kentro-mathisis':locale==='es'?'/es/centro-aprendizaje':'/ar/markaz-altaalum';
+  const horoscopesTarget=locale==='tr'?'/burc-yorumlari':locale==='en'?'/en/horoscopes':locale==='gr'?'/gr/provlepseis':locale==='es'?'/es/horoscopos':'/ar/altawaqushat';
+  const approachTarget=locale==='tr'?'/yaklasim':locale==='en'?'/en/approach':locale==='gr'?'/gr/prosegisi':locale==='es'?'/es/enfoque':'/ar/al-manhaj';
+
   const areasTarget=locale==='tr'?'/kesif-alanlari':prefix+'/areas';
   const videosTarget=locale==='tr'?'/videolar#burclar':prefix+'/videos#burclar';
   const blogTarget=locale==='tr'?'/blog':prefix+'/blog';
@@ -97,10 +108,19 @@ const resolveLegacyRedirect=(pathname)=>{
   const kvkkTarget=locale==='tr'?'/kvkk':prefix+'/kvkk';
 
   const activeRoutes=new Set([
-    '/','/kesif-alanlari','/areas','/yaklasim','/approach',
+    '/','/kesif-alanlari','/areas','/yaklasim','/approach','/prosegisi','/enfoque','/al-manhaj',
     '/videolar','/videos','/blog','/iletisim','/contact',
     '/yorumcu-basvuru','/apply','/kvkk','/gizlilik','/privacy',
-    '/kullanim-kosullari','/terms'
+    '/kullanim-kosullari','/terms','/kartlarin-gozdesi',
+    '/dogum-haritasi','/birth-chart','/genethlios-chartis','/carta-natal','/kharitat-almilad',
+    '/burclar','/zodiac-signs','/zodia','/signos-del-zodiaco','/al-abraj',
+    '/gokyuzu-takvimi','/sky-calendar','/imerologio-ouranou','/calendario-celeste','/altaqwim-alfalaki',
+    '/retrolar','/retrogrades','/anadromes','/retrogrados','/harakat-altaraju',
+    '/transitler','/transits','/diabaseis','/transitos','/al-uboor-alfalaki',
+    '/sinastri','/synastry','/synastria','/sinastria','/altawafuq-alfalaki',
+    '/astroloji-sozlugu','/astrology-glossary','/lexiko-astrologias','/glosario-astrologia','/qamus-al-tanjim',
+    '/ogrenme-merkezi','/learning-center','/kentro-mathisis','/centro-aprendizaje','/markaz-altaalum',
+    '/burc-yorumlari','/gunluk-burc-yorumlari','/horoscopes','/daily-horoscopes','/provlepseis','/horoscopos','/altawaqushat'
   ]);
   if(activeRoutes.has(clean)) return null;
   if(clean.startsWith('/blog/')) return null;
@@ -108,7 +128,7 @@ const resolveLegacyRedirect=(pathname)=>{
   if(clean==='/haftalik-burc'||clean==='/weekly-horoscope') return videosTarget;
   if(clean==='/tarot'||clean==='/gunluk-kart'||clean==='/otuz-gun'||clean==='/kariyer'||clean==='/deneyim'||clean==='/tarot-kartlari'||clean.startsWith('/tarot-kartlari/')||clean==='/tarot-cards'||clean.startsWith('/tarot-cards/')) return areasTarget;
   if(clean==='/katina'||clean==='/ask'||clean==='/sinastri'||clean==='/burc-uyumu') return areasTarget;
-  if(clean==='/astroloji'||clean==='/vedik-astroloji'||clean==='/nakshatra-dasha'||clean==='/kadim-gokyuzu'||clean==='/bugunun-gokyuzu'||clean==='/ay-takvimi'||clean==='/dogum-haritasi'||clean==='/astroloji-kutuphanesi'||clean.startsWith('/astroloji-kutuphanesi/')||clean==='/astroloji-sozlugu'||clean.startsWith('/astroloji-sozlugu/')||clean==='/advanced-astrology'||clean.startsWith('/advanced-astrology/')||clean==='/astrology-library'||clean.startsWith('/astrology-library/')) return areasTarget;
+  if(clean==='/astroloji'||clean==='/vedik-astroloji'||clean==='/nakshatra-dasha'||clean==='/kadim-gokyuzu'||clean==='/bugunun-gokyuzu'||clean==='/ay-takvimi'||clean==='/astroloji-kutuphanesi'||clean.startsWith('/astroloji-kutuphanesi/')||clean==='/advanced-astrology'||clean.startsWith('/advanced-astrology/')||clean==='/astrology-library'||clean.startsWith('/astrology-library/')) return areasTarget;
   if(clean==='/ruya-yorumlari'||clean==='/ruya-sembolleri'||clean.startsWith('/ruya-sembolleri/')||clean==='/numeroloji'||clean==='/dream-symbols'||clean.startsWith('/dream-symbols/')) return areasTarget;
   if(clean==='/maya-zaman-donguleri'||clean==='/mezopotamya-astrolojisi'||clean==='/doga-gokyuzu-donguleri'||clean==='/travma-bilincli-astroloji') return blogTarget;
   if(clean==='/search') return locale==='tr'?'/arama':prefix+'/arama';
@@ -118,7 +138,7 @@ const resolveLegacyRedirect=(pathname)=>{
   if(clean.startsWith('/pages/terms')) return termsTarget;
   if(clean.startsWith('/pages/kvkk')) return kvkkTarget;
   if(clean.startsWith('/pages/contact')) return locale==='tr'?'/iletisim':prefix+'/contact';
-  if(clean.startsWith('/pages/about')) return locale==='tr'?'/yaklasim':prefix+'/approach';
+  if(clean.startsWith('/pages/about')) return approachTarget;
 
   return null;
 };
@@ -312,7 +332,7 @@ export default {
     }
     if(url.pathname==='/robots.txt')return robotsResponse();
     if(env.ENVIRONMENT==='production'&&isDormantProductionApi(url.pathname))return dormantApiResponse();
-    if(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'&&isAstrologyPlatformPath(url.pathname)){
+    if((env.ASTROLOGY_PLATFORM_ENABLED==='true'||(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'))&&isAstrologyPlatformPath(url.pathname)){
       const response=await app.fetch(request,env,ctx);
       return cacheStaticAssetResponse(await secureHtmlResponse(response),url);
     }
