@@ -27,6 +27,11 @@ for(const path of ['/llms.txt','/llms.en.txt','/llms.gr.txt','/llms.es.txt','/ll
  assert(lacksIndividualBranding(text),path+' must not reference the retired identity');
  if(path==='/sitemap-video.xml')assert(!text.includes('<video:video>'),'no retired video entries');
 }
+for(const path of ['/images/gozde-salon-portrait.jpg','/images/gozde-tarot-hero.webp','/images/gozde-astrology-concept.jpg','/images/gozde-coffee-concept.jpg','/videos/28-ekim-5-kasim-tarot.mp4','/images/Mistik%20Mum%20I%C5%9F%C4%B1%C4%9F%C4%B1nda%20Tarot%20Ak%C5%9Fam%C4%B1.webp']){
+ const response=await app.fetch(new Request(domain+path),env,{});
+ assert.equal(response.status,410,path+' must have a clean gone response instead of a server error');
+ assert.equal(response.headers.get('x-robots-tag'),'noindex');
+}
 for(const path of [
  'src/gozde-landing.js','src/gozde-pages.js','src/gozde-blog-data.js',
  'public/images/gozde-tarot-hero.webp','public/images/gozde-salon-portrait.jpg',
