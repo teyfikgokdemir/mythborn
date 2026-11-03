@@ -2,36 +2,45 @@
 import { ASTROLOGY_LOCALES, ZODIAC_SIGNS } from '../i18n.js';
 import { getRouteHref } from '../layout.js';
 
+const safe = (str = '') =>
+  String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
 export const renderHomeView = ({ locale = 'tr' }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
   const isRtl = t.dir === 'rtl';
   const arrow = isRtl ? '←' : '→';
 
-  // 12 Zodiac Cards with NATURAL labels (No "Koç 12 Burç" repeats!)
+  // 12 Zodiac Cards with EMBEDDED SVG GLYPHS & Natural Labels
   const zodiacCardsHtml = ZODIAC_SIGNS.map((sign) => {
     const signName = sign[locale] || sign.tr;
-    const titleText = locale === 'tr' ? `${signName} Burcu Rehberi`
-      : locale === 'en' ? `${signName} Guide & Archetype`
-      : locale === 'el' ? `Οδηγός: ${signName}`
-      : locale === 'es' ? `Guía de ${signName}`
-      : `دليل برج ${signName}`;
+    const titleText = locale === 'tr' ? `${signName} Burcu`
+      : locale === 'en' ? `${signName} Sign`
+      : locale === 'el' ? `Ζώδιο: ${signName}`
+      : locale === 'es' ? `Signo ${signName}`
+      : `برج ${signName}`;
 
-    const linkText = locale === 'tr' ? `${signName} Dinamikleri`
-      : locale === 'en' ? `Explore ${signName}`
-      : locale === 'el' ? `Ανάλυση ${signName}`
-      : locale === 'es' ? `Explorar ${signName}`
-      : `استكشف ${signName}`;
+    const linkText = locale === 'tr' ? 'Detaylı İncele'
+      : locale === 'en' ? 'Explore Archetype'
+      : locale === 'el' ? 'Ανάλυση'
+      : locale === 'es' ? 'Explorar'
+      : 'استكشاف';
 
     return `
       <article class="zodiac-natural-card">
         <div class="zodiac-natural-header">
-          <span class="zodiac-natural-symbol" aria-hidden="true">${sign.symbol}</span>
+          <div class="zodiac-icon-badge">
+            <img src="/assets/astrology/zodiac/${sign.slug}.svg" alt="${signName}" loading="lazy">
+          </div>
           <span class="zodiac-element-tag element-${sign.element}">${sign.element.toUpperCase()}</span>
         </div>
         <h3 class="zodiac-natural-title">${titleText}</h3>
         <p class="zodiac-natural-ruler">🪐 ${sign.ruler} · ${sign.quality}</p>
         <div class="zodiac-natural-dates">${sign.dates}</div>
-        <a class="astro-card-link" style="margin-top:8px" href="${getRouteHref(locale, 'zodiac')}#${sign.slug}">
+        <a class="astro-card-link" style="margin-top:10px" href="${getRouteHref(locale, 'zodiac')}#${sign.slug}">
           <span>${linkText}</span>
           <span aria-hidden="true">${arrow}</span>
         </a>
@@ -40,7 +49,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
   }).join('');
 
   return `
-    <!-- 1. Hero: Net Değer Önerisi & Tek Ana CTA -->
+    <!-- 1. Hero: Ultra-Luxury Celestial Cosmos Artwork & Clear CTAs -->
     <section class="astro-hero">
       <div class="astro-container">
         <span class="astro-hero-eyebrow">✦ ${t.hero.eyebrow}</span>
@@ -59,11 +68,16 @@ export const renderHomeView = ({ locale = 'tr' }) => {
 
         <!-- 2. Hızlı Doğum Haritası Başlangıç Akışı -->
         <div class="astro-quick-box" id="quick-chart">
-          <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff; margin-bottom:6px">
-            ✦ ${t.quickNatal.title}
-          </h3>
-          <p style="font-size:13px; color:var(--muted); margin-bottom:14px">
-            ${t.quickNatal.sub} · <span style="color:var(--gold-bright)">${t.timeStandardNotice}</span>
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:10px">
+            <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff">
+              ✦ ${t.quickNatal.title}
+            </h3>
+            <span style="font-size:12px; color:var(--gold); letter-spacing:0.04em">
+              ${t.timeStandardNotice}
+            </span>
+          </div>
+          <p style="font-size:13.5px; color:var(--muted); margin-bottom:20px; line-height:1.6">
+            ${t.quickNatal.sub}
           </p>
           <form action="${getRouteHref(locale, 'natal')}" method="get">
             <div class="astro-quick-grid">
@@ -81,12 +95,13 @@ export const renderHomeView = ({ locale = 'tr' }) => {
               </div>
             </div>
             <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
-              <label style="font-size:12px; color:var(--dim); display:inline-flex; align-items:center; gap:6px; cursor:pointer">
+              <label style="font-size:13px; color:var(--dim); display:inline-flex; align-items:center; gap:8px; cursor:pointer">
                 <input type="checkbox" name="unknown_time" value="1">
                 <span>${t.quickNatal.unknownTime}</span>
               </label>
-              <button type="submit" class="astro-quick-btn" style="width:auto; padding:10px 24px">
+              <button type="submit" class="astro-quick-btn">
                 <span>${t.quickNatal.submitBtn}</span>
+                <span aria-hidden="true"> ${arrow}</span>
               </button>
             </div>
           </form>
@@ -94,124 +109,143 @@ export const renderHomeView = ({ locale = 'tr' }) => {
       </div>
     </section>
 
-    <!-- 3. Kozmik Büyük Üçlü (Big Three: Sun, Moon, Rising) -->
-    <section class="astro-section" style="border-top:1px solid var(--border)">
+    <!-- 3. Kozmik Büyük Üçlü (Foundational Triad) with Generated Editorial Artworks -->
+    <section class="astro-section">
       <div class="astro-container">
         <div class="astro-section-head">
           <span class="astro-card-tag">✦ THE FOUNDATIONAL TRIAD</span>
           <h2>${t.bigThree.title}</h2>
           <p>${t.bigThree.sub}</p>
         </div>
-        <div class="big-three-grid">
-          <article class="big-three-card">
-            <span class="big-three-glyph" aria-hidden="true">☉</span>
-            <h3>${t.bigThree.sunTitle}</h3>
-            <p>${t.bigThree.sunDesc}</p>
+        <div class="archetype-grid">
+          <!-- Sun Archetype Card -->
+          <article class="archetype-card">
+            <div class="archetype-art-wrap">
+              <img src="/images/astrology/sun-archetype.jpg" alt="${t.bigThree.sunTitle}" class="archetype-art-img" loading="lazy">
+            </div>
+            <div class="archetype-card-body">
+              <span class="archetype-card-glyph" aria-hidden="true">☉</span>
+              <h3 class="archetype-card-title">${t.bigThree.sunTitle}</h3>
+              <p class="archetype-card-desc">${t.bigThree.sunDesc}</p>
+            </div>
           </article>
-          <article class="big-three-card">
-            <span class="big-three-glyph" aria-hidden="true">☽</span>
-            <h3>${t.bigThree.moonTitle}</h3>
-            <p>${t.bigThree.moonDesc}</p>
+
+          <!-- Moon Archetype Card -->
+          <article class="archetype-card">
+            <div class="archetype-art-wrap">
+              <img src="/images/astrology/moon-archetype.jpg" alt="${t.bigThree.moonTitle}" class="archetype-art-img" loading="lazy">
+            </div>
+            <div class="archetype-card-body">
+              <span class="archetype-card-glyph" aria-hidden="true">☽</span>
+              <h3 class="archetype-card-title">${t.bigThree.moonTitle}</h3>
+              <p class="archetype-card-desc">${t.bigThree.moonDesc}</p>
+            </div>
           </article>
-          <article class="big-three-card">
-            <span class="big-three-glyph" aria-hidden="true">↑</span>
-            <h3>${t.bigThree.risingTitle}</h3>
-            <p>${t.bigThree.risingDesc}</p>
+
+          <!-- Ascendant Archetype Card -->
+          <article class="archetype-card">
+            <div class="archetype-art-wrap">
+              <img src="/images/astrology/ascendant-archetype.jpg" alt="${t.bigThree.risingTitle}" class="archetype-art-img" loading="lazy">
+            </div>
+            <div class="archetype-card-body">
+              <span class="archetype-card-glyph" aria-hidden="true">↑</span>
+              <h3 class="archetype-card-title">${t.bigThree.risingTitle}</h3>
+              <p class="archetype-card-desc">${t.bigThree.risingDesc}</p>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- 4. Bugünkü Gökyüzü ve Yaklaşan Ay Döngüleri (24 Saat Formatında) -->
-    <section class="astro-section" style="background: rgba(255,255,255,0.015); border-top:1px solid var(--border); border-bottom:1px solid var(--border)">
+    <!-- 4. 12 Zodiac Constellations Section with Tapestry Banner -->
+    <section class="astro-section" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-section-head">
-          <span class="astro-card-tag">✦ LIVE SKY & LUNATIONS</span>
-          <h2>${t.sections.skyTitle}</h2>
-          <p>${t.sections.skySub}</p>
-        </div>
-        <div class="sky-snapshot-grid">
-          <div class="sky-snapshot-card">
-            <div class="sky-snapshot-phase" aria-hidden="true">🌑</div>
-            <h4>Akrep Yeniayı</h4>
-            <time datetime="2026-11-09T18:45">09 Kasım 2026 · 18:45 TSI</time>
-            <small>17° Akrep · Dönüşüm ve Derin Niyet</small>
-          </div>
-          <div class="sky-snapshot-card">
-            <div class="sky-snapshot-phase" aria-hidden="true">🌓</div>
-            <h4>Kova İlk Dördün</h4>
-            <time datetime="2026-11-17T06:20">17 Kasım 2026 · 06:20 TSI</time>
-            <small>25° Kova · Harekete Geçiş & Vizyon</small>
-          </div>
-          <div class="sky-snapshot-card">
-            <div class="sky-snapshot-phase" aria-hidden="true">🌕</div>
-            <h4>Boğa Dolunayı</h4>
-            <time datetime="2026-11-24T21:14">24 Kasım 2026 · 21:14 TSI</time>
-            <small>02° Boğa · Hasat ve Maddi Denge</small>
-          </div>
-          <div class="sky-snapshot-card">
-            <div class="sky-snapshot-phase" aria-hidden="true">☿</div>
-            <h4>Merkür Yay Retrosu</h4>
-            <time datetime="2026-11-26T12:00">26 Kasım – 15 Aralık</time>
-            <small>Felsefi Bakış & İletişim İncelemesi</small>
-          </div>
-        </div>
-        <div style="text-align:center; margin-top:24px">
-          <a class="astro-btn-ghost" href="${getRouteHref(locale, 'calendar')}">
-            <span>Tüm 2026–2027 Gökyüzü Takvimini Gör</span>
-            <span aria-hidden="true">${arrow}</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. 12 Burç Keşif Alanı (Doğal İsimlerle) -->
-    <section class="astro-section">
-      <div class="astro-container">
-        <div class="astro-section-head">
-          <span class="astro-card-tag">✦ ZODIAC DIRECTORY</span>
+          <span class="astro-card-tag">✦ ZODIACAL ARCHETYPES</span>
           <h2>${t.sections.zodiacTitle}</h2>
           <p>${t.sections.zodiacSub}</p>
         </div>
+
+        <!-- Editorial Celestial Tapestry Showcase -->
+        <div class="zodiac-tapestry-wrap">
+          <img src="/images/astrology/zodiac-celestial-tapestry.jpg" alt="12 Zodiac Celestial Tapestry" class="zodiac-tapestry-img" loading="lazy">
+          <div class="zodiac-tapestry-overlay">
+            <h3 class="zodiac-tapestry-title">12 Burç ve Gökyüzü Arketipleri</h3>
+            <p class="zodiac-tapestry-sub">Kozmik zodyak çemberinde her burç, insanın doğayla ve evrenle kurduğu temel psikolojik ve sembolik bir diyaloğu temsil eder.</p>
+          </div>
+        </div>
+
         <div class="astro-grid-4">
           ${zodiacCardsHtml}
         </div>
       </div>
     </section>
 
-    <!-- 6. Analiz Araçları ve Sözlük -->
-    <section class="astro-section" style="background: rgba(255,255,255,0.015); border-top:1px solid var(--border)">
+    <!-- 5. Astrological Analysis Instruments Grid -->
+    <section class="astro-section" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-section-head">
-          <span class="astro-card-tag">✦ ANALYSIS ENGINES</span>
-          <h2>${t.sections.toolsTitle}</h2>
-          <p>${t.sections.toolsSub}</p>
+          <span class="astro-card-tag">✦ PRECISION INSTRUMENTS</span>
+          <h2>Astrolojik Analiz Araçları</h2>
+          <p>Açık kaynak efemeris modelleri ve matematiksel astronomi hesaplamalarıyla kişisel doğum ve gökyüzü analizleri.</p>
         </div>
         <div class="astro-grid-3">
           <article class="astro-card">
-            <span class="astro-card-tag">☉ NATAL ENGINE</span>
-            <h3>${t.menu.natal}</h3>
-            <p>Açık kaynak astronomi motoru ile 10 gezegen boylamı, yükselen (ASC) ve ev yerleşimlerinin saniyeler içinde hesaplanması.</p>
+            <span class="astro-card-tag">✦ NATAL HARİTA</span>
+            <h3>${safe(t.menu.natal)}</h3>
+            <p>Doğum tarihi, kesin saat ve koordinat verisiyle Güneş, Ay, Yükselen, gezegen evleri ve majör açılar.</p>
             <a class="astro-card-link" href="${getRouteHref(locale, 'natal')}">
-              <span>${t.menu.natal} Başlat</span>
+              <span>Haritayı Çıkar</span>
               <span aria-hidden="true">${arrow}</span>
             </a>
           </article>
+
           <article class="astro-card">
-            <span class="astro-card-tag">⚯ SYNASTRY ENGINE</span>
-            <h3>${t.menu.synastry}</h3>
-            <p>İki doğum haritası arasındaki açı orbları, Venüs-Mars çekim dinamikleri ve duygusal uyum haritası.</p>
+            <span class="astro-card-tag">✦ İLİŞKİ DİNAMİĞİ</span>
+            <h3>${safe(t.menu.synastry)}</h3>
+            <p>İki doğum haritasının gezegensel açılarının matematiksel karşılaştırması: Duygusal uyum, çekim ve iletişim temaları.</p>
             <a class="astro-card-link" href="${getRouteHref(locale, 'synastry')}">
-              <span>${t.menu.synastry} İncele</span>
+              <span>Sinastriyi İncele</span>
               <span aria-hidden="true">${arrow}</span>
             </a>
           </article>
+
           <article class="astro-card">
-            <span class="astro-card-tag">📖 KNOWLEDGE BASE</span>
-            <h3>${t.menu.glossary}</h3>
-            <p>Ev sistemleri, açı geometrileri, element dengesi ve astrolojik sembolizmin yalın kütüphanesi.</p>
+            <span class="astro-card-tag">✦ GÖKYÜZÜ RİTMİ</span>
+            <h3>${safe(t.menu.calendar)}</h3>
+            <p>Gerçek zamanlı Ay fazları, aydınlanma oranları, yeniay ve dolunay döngüleri takvimi.</p>
+            <a class="astro-card-link" href="${getRouteHref(locale, 'calendar')}">
+              <span>Takvimi Gör</span>
+              <span aria-hidden="true">${arrow}</span>
+            </a>
+          </article>
+
+          <article class="astro-card">
+            <span class="astro-card-tag">✦ ANLIK GÖKYÜZÜ</span>
+            <h3>${safe(t.menu.transits)}</h3>
+            <p>Gezegenlerin şu anki zodyak dereceleri, hızları ve günün aktif gökyüzü transitleri tablosu.</p>
+            <a class="astro-card-link" href="${getRouteHref(locale, 'transits')}">
+              <span>Transitleri Gör</span>
+              <span aria-hidden="true">${arrow}</span>
+            </a>
+          </article>
+
+          <article class="astro-card">
+            <span class="astro-card-tag">✦ RETRO DÖNEMLERİ</span>
+            <h3>${safe(t.menu.retros)}</h3>
+            <p>Merkür, Venüs, Mars ve dış gezegenlerin 2026/2027 geri hareket takvimi ve gölge fazları.</p>
+            <a class="astro-card-link" href="${getRouteHref(locale, 'retros')}">
+              <span>Retroları Keşfet</span>
+              <span aria-hidden="true">${arrow}</span>
+            </a>
+          </article>
+
+          <article class="astro-card">
+            <span class="astro-card-tag">✦ TERMİNOLOJİ</span>
+            <h3>${safe(t.menu.glossary)}</h3>
+            <p>Ev sistemleri, orb toleransları, apeks, ayanamsha ve astroloji terminolojisi referans sözlüğü.</p>
             <a class="astro-card-link" href="${getRouteHref(locale, 'glossary')}">
-              <span>Sözlüğü Keşfet</span>
+              <span>Sözlüğü Oku</span>
               <span aria-hidden="true">${arrow}</span>
             </a>
           </article>
@@ -219,24 +253,54 @@ export const renderHomeView = ({ locale = 'tr' }) => {
       </div>
     </section>
 
-    <!-- 7. Yöntem, Bilimsel Temel ve Etik Sınırlar -->
+    <!-- 6. Gözde Danışmanlık & Video Bridge Card -->
     <section class="astro-section" style="border-top:1px solid var(--border)">
-      <div class="astro-container" style="max-width:860px">
-        <div class="astro-section-head" style="margin-bottom:24px">
-          <span class="astro-card-tag">✦ METHODOLOGY & ETHICS</span>
-          <h2>${t.sections.ethicsTitle}</h2>
-          <p>${t.sections.ethicsSub}</p>
+      <div class="astro-container">
+        <div class="astro-bridge-card">
+          <div class="astro-bridge-copy">
+            <span class="astro-card-tag">✦ GÖZDE İLE HAFTALIK BAKIŞ</span>
+            <h3>Haftalık Tarot & Sembol Video Açılımları</h3>
+            <p>Astrolojik haritaların ötesinde, haftanın enerjilerini ve 12 burç için sembolik kart rehberliğini Gözde'nin sesinden ve anlatımından keşfedin. Sıfır abonelik tuzağı, saf sembolik farkındalık.</p>
+            <div style="display:flex; gap:14px; flex-wrap:wrap">
+              <a class="astro-btn-primary" href="${locale === 'tr' ? '/videolar' : `/${locale === 'el' ? 'gr' : locale}/videos`}">
+                <span>Haftalık Videoyu İzle</span>
+                <span aria-hidden="true">${arrow}</span>
+              </a>
+              <a class="astro-btn-ghost" href="${getRouteHref(locale, 'approach')}">
+                <span>Etik İlkelerimiz</span>
+              </a>
+            </div>
+          </div>
+          <div class="astro-bridge-media">
+            <img src="/images/gozde-salon-portrait.jpg" alt="Gözde" loading="lazy">
+          </div>
         </div>
-        <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px 24px; font-size:14px; line-height:1.7; color:var(--muted)">
-          <p style="margin-bottom:14px">
-            <strong>Matematiksel Şeffaflık:</strong> Mythborn, uydurma tablolar veya kapalı algoritmalar yerine; açık kaynak astronomik kütüphanelerle (<code style="color:var(--gold)">astronomy-engine</code>) çalışır. Gezegenlerin anlık ekliptik boylamları ve retroları matematiksel olarak türetilir.
-          </p>
-          <p style="margin-bottom:14px">
-            <strong>İradeye Saygı (Kadercilik Reddi):</strong> Gökyüzü bir buyruk verici değil; zamanın kalitesini gösteren kozmik bir saattir. Platformumuzda korku yayan, felaket tellallığı yapan veya "kesin ayrılık/kaza" vaat eden hiçbir içerik barındırılmaz.
-          </p>
-          <p style="margin:0">
-            <strong>Sınırlar:</strong> Astroloji sembolik bir öz-farkındalık ve arketipsel tefekkür aracıdır. Tıbbi teşhis, hukuki mütalaa veya yatırım tavsiyesi yerine geçemez.
-          </p>
+      </div>
+    </section>
+
+    <!-- 7. Yöntemimiz ve Astroloji Sınırları -->
+    <section class="astro-section" style="border-top:1px solid var(--border)">
+      <div class="astro-container">
+        <div class="astro-section-head">
+          <span class="astro-card-tag">✦ METHODOLOGY & BOUNDARIES</span>
+          <h2>${t.sections.approachTitle}</h2>
+          <p>${t.sections.approachSub}</p>
+        </div>
+        <div class="astro-card" style="max-width:860px; margin:0 auto; background:linear-gradient(180deg, rgba(16, 21, 38, 0.6) 0%, rgba(9, 12, 22, 0.9) 100%)">
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:16px; font-size:14.5px; line-height:1.7; color:var(--muted)">
+            <li style="display:flex; gap:12px; align-items:flex-start">
+              <span style="color:var(--gold-bright); font-size:16px">✦</span>
+              <span><strong style="color:#fff">Matematiksel Açıklık:</strong> Tüm gezegen boylamları açık kaynaklı efemeris algoritmalarıyla ve milisaniye hassasiyetinde hesaplanır.</span>
+            </li>
+            <li style="display:flex; gap:12px; align-items:flex-start">
+              <span style="color:var(--gold-bright); font-size:16px">✦</span>
+              <span><strong style="color:#fff">Determinizmin Reddi:</strong> Astroloji geleceği önceden haber veren bir kehanet değil, kişinin iç dinamiklerini anlamasına yardımcı olan arketipsel bir dildir.</span>
+            </li>
+            <li style="display:flex; gap:12px; align-items:flex-start">
+              <span style="color:var(--gold-bright); font-size:16px">✦</span>
+              <span><strong style="color:#fff">Etik Sınırlar:</strong> Tıbbi teşhis, kesin finansal tavsiye ve korku odaklı kaderci iddialara platformumuzda kesinlikle yer verilmez.</span>
+            </li>
+          </ul>
         </div>
       </div>
     </section>

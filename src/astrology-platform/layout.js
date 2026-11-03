@@ -1,34 +1,36 @@
-// Mythborn Astrology Platform — Master Layout (Header, Footer, Language Switcher, Drawer)
+// Mythborn Astrology Platform — Premium Layout & Navigation Component
 import { ASTROLOGY_LOCALES } from './i18n.js';
 import { SHARED_CSS } from './tokens.js';
 
 export const getRouteHref = (localeKey, routeKey = 'home') => {
-  const loc = ASTROLOGY_LOCALES[localeKey] || ASTROLOGY_LOCALES.tr;
-  const p = loc.prefix;
+  const p = localeKey === 'tr' ? '' : localeKey === 'el' ? '/gr' : `/${localeKey}`;
 
   const routes = {
     home: p || '/',
-    natal: `${p}/dogum-haritasi`,
-    zodiac: `${p}/burclar`,
-    calendar: `${p}/gokyuzu-takvimi`,
-    retros: `${p}/retrolar`,
-    transits: `${p}/transitler`,
-    synastry: `${p}/sinastri`,
-    glossary: `${p}/astroloji-sozlugu`,
-    learning: `${p}/ogrenme-merkezi`,
-    horoscopes: `${p}/burc-yorumlari`,
-    approach: `${p}/yaklasim`,
-    about: `${p}/hakkimizda`,
-    contact: `${p}/iletisim`,
+    natal: `${p}${localeKey === 'tr' ? '/dogum-haritasi' : localeKey === 'en' ? '/birth-chart' : localeKey === 'el' ? '/genethlios-chartis' : localeKey === 'es' ? '/carta-natal' : '/kharitat-almilad'}`,
+    zodiac: `${p}${localeKey === 'tr' ? '/burclar' : localeKey === 'en' ? '/zodiac-signs' : localeKey === 'el' ? '/zodia' : localeKey === 'es' ? '/signos-del-zodiaco' : '/al-abraj'}`,
+    calendar: `${p}${localeKey === 'tr' ? '/gokyuzu-takvimi' : localeKey === 'en' ? '/sky-calendar' : localeKey === 'el' ? '/imerologio-ouranou' : localeKey === 'es' ? '/calendario-celeste' : '/altaqwim-alfalaki'}`,
+    retros: `${p}${localeKey === 'tr' ? '/retrolar' : localeKey === 'en' ? '/retrogrades' : localeKey === 'el' ? '/anadromes' : localeKey === 'es' ? '/retrogrados' : '/harakat-altaraju'}`,
+    transits: `${p}${localeKey === 'tr' ? '/transitler' : localeKey === 'en' ? '/transits' : localeKey === 'el' ? '/diabaseis' : localeKey === 'es' ? '/transitos' : '/al-uboor-alfalaki'}`,
+    synastry: `${p}${localeKey === 'tr' ? '/sinastri' : localeKey === 'en' ? '/synastry' : localeKey === 'el' ? '/synastria' : localeKey === 'es' ? '/sinastria' : '/altawafuq-alfalaki'}`,
+    glossary: `${p}${localeKey === 'tr' ? '/astroloji-sozlugu' : localeKey === 'en' ? '/astrology-glossary' : localeKey === 'el' ? '/lexiko-astrologias' : localeKey === 'es' ? '/glosario-astrologia' : '/qamus-al-tanjim'}`,
+    learning: `${p}${localeKey === 'tr' ? '/ogrenme-merkezi' : localeKey === 'en' ? '/learning-center' : localeKey === 'el' ? '/kentro-mathisis' : localeKey === 'es' ? '/centro-aprendizaje' : '/markaz-altaalum'}`,
+    horoscopes: `${p}${localeKey === 'tr' ? '/burc-yorumlari' : localeKey === 'en' ? '/horoscopes' : localeKey === 'el' ? '/provlepseis' : localeKey === 'es' ? '/horoscopos' : '/altawaqushat'}`,
+    approach: `${p}${localeKey === 'tr' ? '/yaklasim' : localeKey === 'en' ? '/approach' : localeKey === 'el' ? '/prosegisi' : localeKey === 'es' ? '/enfoque' : '/al-manhaj'}`,
     kvkk: `${p}/kvkk`,
-    privacy: `${p}/gizlilik`,
-    terms: `${p}/kullanim-kosullari`
+    privacy: `${p}${localeKey === 'tr' ? '/gizlilik' : '/privacy'}`,
+    terms: `${p}${localeKey === 'tr' ? '/kullanim-kosullari' : '/terms'}`
   };
 
   return routes[routeKey] || (p || '/');
 };
 
-const safe = (str = '') => String(str).replace(/[&<>"']/g, (s) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]));
+const safe = (str = '') =>
+  String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 
 export const renderAstrologyLayout = ({
   locale = 'tr',
@@ -36,7 +38,7 @@ export const renderAstrologyLayout = ({
   title = '',
   description = '',
   contentHtml = '',
-  isPreview = true,
+  isPreview = false,
   canonicalUrl = ''
 }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
@@ -49,25 +51,21 @@ export const renderAstrologyLayout = ({
   const langLabels = { tr: 'TR', en: 'EN', el: 'GR', es: 'ES', ar: 'AR' };
   const langSwitcherHtml = langCodes
     .map((code) => {
-      const activeAttr = code === locale ? ' aria-current="page"' : '';
+      const activeClass = code === locale ? ' is-active' : '';
       const href = getRouteHref(code, currentRouteKey);
-      return `<a href="${href}" lang="${code}" data-lang-switch="${code}"${activeAttr}>${langLabels[code]}</a>`;
+      return `<a href="${href}" lang="${code}" class="${activeClass}" data-lang-switch="${code}">${langLabels[code]}</a>`;
     })
     .join('');
 
-  // Primary navigation items
-  const navItems = [
-    { key: 'home', label: t.menu.home },
+  // Primary desktop navigation items (NO redundant "Ana Sayfa" in navbar!)
+  const desktopPrimaryNav = [
     { key: 'natal', label: t.menu.natal },
     { key: 'zodiac', label: t.menu.zodiac },
     { key: 'calendar', label: t.menu.calendar },
-    { key: 'retros', label: t.menu.retros },
-    { key: 'transits', label: t.menu.transits },
-    { key: 'synastry', label: t.menu.synastry },
-    { key: 'glossary', label: t.menu.glossary }
+    { key: 'horoscopes', label: locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Horoscopes' : locale === 'el' ? 'Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'الأبراج' }
   ];
 
-  const desktopNavHtml = navItems
+  const primaryLinksHtml = desktopPrimaryNav
     .map((item) => {
       const href = getRouteHref(locale, item.key);
       const activeAttr = item.key === currentRouteKey ? ' aria-current="page"' : '';
@@ -75,7 +73,41 @@ export const renderAstrologyLayout = ({
     })
     .join('');
 
-  const drawerNavHtml = navItems
+  // Dropdown items for instruments & consultation
+  const exploreDropdownLabel = locale === 'tr' ? 'Keşif & Araçlar' : locale === 'en' ? 'Explore & Tools' : locale === 'el' ? 'Εργαλεία' : locale === 'es' ? 'Explorar' : 'أدوات فلكية';
+  const dropdownHtml = `
+    <div class="astro-nav-dropdown">
+      <button type="button" class="astro-nav-dropdown-btn">
+        <span>${exploreDropdownLabel}</span>
+        <span aria-hidden="true">▾</span>
+      </button>
+      <div class="astro-nav-dropdown-menu">
+        <a href="${getRouteHref(locale, 'transits')}">✦ ${safe(t.menu.transits)}</a>
+        <a href="${getRouteHref(locale, 'retros')}">✦ ${safe(t.menu.retros)}</a>
+        <a href="${getRouteHref(locale, 'synastry')}">✦ ${safe(t.menu.synastry)}</a>
+        <a href="${getRouteHref(locale, 'glossary')}">✦ ${safe(t.menu.glossary)}</a>
+        <a href="${getRouteHref(locale, 'learning')}">✦ ${locale === 'tr' ? 'Öğrenme Merkezi' : locale === 'en' ? 'Learning Center' : locale === 'el' ? 'Κέντρο Μάθησης' : locale === 'es' ? 'Centro de Aprendizaje' : 'مركز التعلم'}</a>
+        <a href="${getRouteHref(locale, 'approach')}">✦ ${safe(t.menu.approach)}</a>
+        <a href="${locale === 'tr' ? '/videolar' : `/${locale === 'el' ? 'gr' : locale}/videos`}">✦ ${locale === 'tr' ? 'Haftalık Video Açılımları' : locale === 'en' ? 'Weekly Video Readings' : locale === 'el' ? 'Εβδομαδιαία Βίντεο' : locale === 'es' ? 'Videos Semanales' : 'فيديوهات أسبوعية'}</a>
+      </div>
+    </div>
+  `;
+
+  const allDrawerItems = [
+    { key: 'home', label: t.menu.home },
+    { key: 'natal', label: t.menu.natal },
+    { key: 'zodiac', label: t.menu.zodiac },
+    { key: 'calendar', label: t.menu.calendar },
+    { key: 'horoscopes', label: locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Daily Horoscopes' : locale === 'el' ? 'Ημερήσιες Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'توقعات الأبراج' },
+    { key: 'transits', label: t.menu.transits },
+    { key: 'retros', label: t.menu.retros },
+    { key: 'synastry', label: t.menu.synastry },
+    { key: 'glossary', label: t.menu.glossary },
+    { key: 'learning', label: locale === 'tr' ? 'Öğrenme Merkezi' : locale === 'en' ? 'Learning Center' : locale === 'el' ? 'Κέντρο Μάθησης' : locale === 'es' ? 'Centro de Aprendizaje' : 'مركز التعلم' },
+    { key: 'approach', label: t.menu.approach }
+  ];
+
+  const drawerNavHtml = allDrawerItems
     .map((item) => {
       const href = getRouteHref(locale, item.key);
       const activeAttr = item.key === currentRouteKey ? ' aria-current="page"' : '';
@@ -123,7 +155,7 @@ export const renderAstrologyLayout = ({
   ${canonicalTag}
   ${hreflangTags}
   ${ogTag}
-  <meta name="theme-color" content="#08080c">
+  <meta name="theme-color" content="#05070e">
   <style>${SHARED_CSS}</style>
 </head>
 <body>
@@ -131,24 +163,25 @@ export const renderAstrologyLayout = ({
     <header class="astro-header">
       <div class="astro-container astro-header-inner">
         <a class="astro-brand" href="${getRouteHref(locale, 'home')}">
-          <img src="/assets/astrology/mythborn-symbol.svg" alt="" style="width:28px; height:28px; border-radius:50%; filter:drop-shadow(0 0 6px rgba(212,175,55,0.4))">
-          <span>${safe(t.navBrand)}</span>
+          <img src="/assets/astrology/mythborn-symbol.svg" alt="Mythborn Symbol" class="astro-brand-logo-img">
+          <span class="astro-brand-name">MYTHBORN</span>
         </a>
 
         <nav class="astro-nav-desktop" aria-label="Primary Navigation">
-          ${desktopNavHtml}
+          ${primaryLinksHtml}
+          ${dropdownHtml}
         </nav>
 
         <div class="astro-header-actions">
-          <a class="astro-cta-pill" href="${getRouteHref(locale, 'natal')}">
+          <a class="astro-cta-gold" href="${getRouteHref(locale, 'natal')}">
             <span>${safe(t.menu.ctaQuick)}</span>
+            <span aria-hidden="true">${isRtl ? '←' : '→'}</span>
           </a>
-          <div class="astro-langs" aria-label="Language Selector">
+          <div class="astro-lang-pills" aria-label="Language Selector">
             ${langSwitcherHtml}
           </div>
-          <button type="button" class="astro-menu-btn" data-drawer-open aria-expanded="false" aria-controls="astro-mobile-drawer">
+          <button type="button" class="astro-menu-btn" data-drawer-open aria-expanded="false" aria-controls="astro-mobile-drawer" aria-label="Menu">
             <span aria-hidden="true">☰</span>
-            <span>${safe(t.menu.menuToggle)}</span>
           </button>
         </div>
       </div>
@@ -159,17 +192,18 @@ export const renderAstrologyLayout = ({
       <div class="astro-drawer-panel">
         <div class="astro-drawer-head">
           <a class="astro-brand" href="${getRouteHref(locale, 'home')}">
-            <span class="astro-brand-emblem" aria-hidden="true">✦</span>
-            <span>${safe(t.navBrand)}</span>
+            <img src="/assets/astrology/mythborn-symbol.svg" alt="" style="width:26px; height:26px; border-radius:50%">
+            <span class="astro-brand-name">MYTHBORN</span>
           </a>
-          <button type="button" class="astro-btn-ghost" data-drawer-close aria-label="Close">✕</button>
+          <button type="button" class="astro-btn-ghost" style="padding:6px 12px; font-size:12px" data-drawer-close aria-label="Close">✕</button>
         </div>
         <nav class="astro-drawer-links" aria-label="Mobile Navigation">
           ${drawerNavHtml}
         </nav>
-        <div style="margin-top:auto">
-          <a class="astro-btn-primary" href="${getRouteHref(locale, 'natal')}" style="width:100%;justify-content:center">
-            ${safe(t.menu.ctaQuick)}
+        <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--border)">
+          <a class="astro-btn-primary" href="${getRouteHref(locale, 'natal')}" style="width:100%; justify-content:center">
+            <span>${safe(t.menu.ctaQuick)}</span>
+            <span aria-hidden="true">${isRtl ? '←' : '→'}</span>
           </a>
         </div>
       </div>
@@ -184,8 +218,8 @@ export const renderAstrologyLayout = ({
         <div class="astro-footer-grid">
           <div class="astro-footer-brand">
             <a class="astro-brand" href="${getRouteHref(locale, 'home')}">
-              <span class="astro-brand-emblem" aria-hidden="true">✦</span>
-              <span>${safe(t.navBrand)}</span>
+              <img src="/assets/astrology/mythborn-symbol.svg" alt="" style="width:24px; height:24px; border-radius:50%">
+              <span class="astro-brand-name">MYTHBORN</span>
             </a>
             <p>${safe(t.navTagline)}. ${safe(t.hero.lead)}</p>
           </div>
@@ -241,27 +275,29 @@ export const renderAstrologyLayout = ({
 
   <script>
     (function() {
-      const drawer = document.getElementById('astro-mobile-drawer');
-      const openBtn = document.querySelector('[data-drawer-open]');
-      const closeBtns = document.querySelectorAll('[data-drawer-close]');
-
-      const setDrawer = function(open) {
-        if (!drawer) return;
-        if (open) {
-          drawer.hidden = false;
-          drawer.removeAttribute('inert');
-          requestAnimationFrame(function() { drawer.classList.add('is-open'); });
-        } else {
-          drawer.classList.remove('is-open');
-          drawer.setAttribute('inert', '');
-          drawer.hidden = true;
-        }
-        if (openBtn) openBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      };
-
-      if (openBtn) openBtn.addEventListener('click', function() { setDrawer(true); });
-      closeBtns.forEach(function(b) { b.addEventListener('click', function() { setDrawer(false); }); });
-      document.addEventListener('keydown', function(e) { if (e.key === 'Escape') setDrawer(false); });
+      var btn = document.querySelector('[data-drawer-open]');
+      var drawer = document.getElementById('astro-mobile-drawer');
+      var closes = document.querySelectorAll('[data-drawer-close]');
+      if (!btn || !drawer) return;
+      function open() {
+        drawer.hidden = false;
+        drawer.removeAttribute('inert');
+        drawer.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+      function close() {
+        drawer.classList.remove('is-open');
+        drawer.hidden = true;
+        drawer.setAttribute('inert', '');
+        btn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+      btn.addEventListener('click', open);
+      closes.forEach(function(c) { c.addEventListener('click', close); });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !drawer.hidden) close();
+      });
     })();
   </script>
 </body>
