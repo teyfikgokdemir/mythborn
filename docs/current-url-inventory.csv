@@ -1,0 +1,121 @@
+URL,HTTP_Status,Category,Traffic_Backlink_Signal,Target_URL,Decision,Rationale,Confidence_Level
+/,200,Home,High,/,Koru,Türkçe ana sayfa ve kanonik giriş noktası,High
+/en,200,Home,Medium,/en,Koru,İngilizce ana sayfa,High
+/gr,200,Home,Medium,/gr,Koru,Yunanca ana sayfa,High
+/es,200,Home,Medium,/es,Koru,İspanyolca ana sayfa,High
+/ar,200,Home,Medium,/ar,Koru,Arapça ana sayfa (RTL),High
+/kesif-alanlari,200,Explore,High,/kesif-alanlari,Koru,Türkçe danışmanlık ve sembol disiplinleri merkezi,High
+/en/areas,200,Explore,Medium,/en/areas,Koru,İngilizce keşif alanları sayfası,High
+/gr/areas,200,Explore,Medium,/gr/areas,Koru,Yunanca keşif alanları sayfası,High
+/es/areas,200,Explore,Medium,/es/areas,Koru,İspanyolca keşif alanları sayfası,High
+/ar/areas,200,Explore,Medium,/ar/areas,Koru,Arapça keşif alanları sayfası,High
+/yaklasim,200,About,Medium,/yaklasim,Koru,Türkçe yöntem ve etik ilkeler sayfası,High
+/en/approach,200,About,Low,/en/approach,Koru,İngilizce yaklaşım sayfası,High
+/gr/approach,200,About,Low,/gr/approach,Koru,Yunanca yaklaşım sayfası,High
+/es/approach,200,About,Low,/es/approach,Koru,İspanyolca yaklaşım sayfası,High
+/ar/approach,200,About,Low,/ar/approach,Koru,Arapça yaklaşım sayfası,High
+/videolar,200,Video,High,/videolar,Koru,Haftalık video açılımı ve 12 burç rehberi,High
+/en/videos,200,Video,Medium,/en/videos,Koru,İngilizce haftalık video ve burç sayfası,High
+/gr/videos,200,Video,Medium,/gr/videos,Koru,Yunanca haftalık video sayfası,High
+/es/videos,200,Video,Medium,/es/videos,Koru,İspanyolca haftalık video sayfası,High
+/ar/videos,200,Video,Medium,/ar/videos,Koru,Arapça haftalık video sayfası,High
+/blog,200,Blog,High,/blog,Koru,Türkçe rehber ve makale arşivi (10 yazı),High
+/en/blog,200,Blog,Medium,/en/blog,Koru,İngilizce blog arşivi,High
+/gr/blog,200,Blog,Medium,/gr/blog,Koru,Yunanca blog arşivi,High
+/es/blog,200,Blog,Medium,/es/blog,Koru,İspanyolca blog arşivi,High
+/ar/blog,200,Blog,Medium,/ar/blog,Koru,Arapça blog arşivi,High
+/blog/merkur-ve-gezegen-retrolari-rehberi,200,Blog_Article,High,/blog/merkur-ve-gezegen-retrolari-rehberi,Koru,Merkür ve gezegen retroları rehberi,High
+/blog/tutulma-mevsimi-ve-kader-kavsagi,200,Blog_Article,Medium,/blog/tutulma-mevsimi-ve-kader-kavsagi,Koru,Güneş ve Ay tutulmaları rehberi,High
+/blog/katina-ask-acilimi-ve-iliski-dinamikleri,200,Blog_Article,High,/blog/katina-ask-acilimi-ve-iliski-dinamikleri,Koru,Katina ve ilişki dinamikleri rehberi,High
+/blog/tarot-major-arkana-kader-karti-sifreleri,200,Blog_Article,High,/blog/tarot-major-arkana-kader-karti-sifreleri,Koru,Tarot majör arkana rehberi,High
+/blog/kahve-fali-sembolizmi-fincandaki-isaretler,200,Blog_Article,High,/blog/kahve-fali-sembolizmi-fincandaki-isaretler,Koru,Kahve falı sembolleri rehberi,High
+/blog/dogum-haritasinda-7-ev-venus-ve-juno,200,Blog_Article,High,/blog/dogum-haritasinda-7-ev-venus-ve-juno,Koru,Doğum haritasında 7. ev ve ilişkiler rehberi,High
+/blog/saturn-dongusu-ve-hayat-sinavlari,200,Blog_Article,Medium,/blog/saturn-dongusu-ve-hayat-sinavlari,Koru,Satürn döngüsü ve 29 yaş sınavı rehberi,High
+/blog/numeroloji-ve-kisisel-yil-hesaplama,200,Blog_Article,Medium,/blog/numeroloji-ve-kisisel-yil-hesaplama,Koru,Numeroloji hesaplama rehberi,High
+/blog/yildizname-gelenegi-ve-dort-element-mizaci,200,Blog_Article,Medium,/blog/yildizname-gelenegi-ve-dort-element-mizaci,Koru,Yıldızname ve 4 element mizacı rehberi,High
+/blog/duru-goru-ve-sezgisel-farkindalik-rehberi,200,Blog_Article,Medium,/blog/duru-goru-ve-sezgisel-farkindalik-rehberi,Koru,Duru görü ve sezgisel farkındalık rehberi,High
+/iletisim,200,Contact,High,/iletisim,Koru,Kişisel soru ve ön danışmanlık formu,High
+/en/contact,200,Contact,Medium,/en/contact,Koru,İngilizce iletişim formu,High
+/gr/contact,200,Contact,Low,/gr/contact,Koru,Yunanca iletişim formu,High
+/es/contact,200,Contact,Medium,/es/contact,Koru,İspanyolca iletişim formu,High
+/ar/contact,200,Contact,Medium,/ar/contact,Koru,Arapça iletişim formu,High
+/yorumcu-basvuru,200,Apply,Medium,/yorumcu-basvuru,Koru,Yorumcu ağı başvuru ve onboarding formu,High
+/en/apply,200,Apply,Low,/en/apply,Koru,İngilizce yorumcu başvuru formu,High
+/gr/apply,200,Apply,Low,/gr/apply,Koru,Yunanca yorumcu başvuru formu,High
+/es/apply,200,Apply,Low,/es/apply,Koru,İspanyolca yorumcu başvuru formu,High
+/ar/apply,200,Apply,Low,/ar/apply,Koru,Arapça yorumcu başvuru formu,High
+/kvkk,200,Legal,High,/kvkk,Koru,6698 sayılı KVKK aydınlatma metni,High
+/en/kvkk,200,Legal,Low,/en/kvkk,Koru,İngilizce KVKK/GDPR metni,High
+/gr/kvkk,200,Legal,Low,/gr/kvkk,Koru,Yunanca KVKK/GDPR metni,High
+/es/kvkk,200,Legal,Low,/es/kvkk,Koru,İspanyolca KVKK/GDPR metni,High
+/ar/kvkk,200,Legal,Low,/ar/kvkk,Koru,Arapça KVKK/GDPR metni,High
+/gizlilik,200,Legal,High,/gizlilik,Koru,Gizlilik ve çerez politikası,High
+/en/privacy,200,Legal,Low,/en/privacy,Koru,İngilizce gizlilik politikası,High
+/gr/privacy,200,Legal,Low,/gr/privacy,Koru,Yunanca gizlilik politikası,High
+/es/privacy,200,Legal,Low,/es/privacy,Koru,İspanyolca gizlilik politikası,High
+/ar/privacy,200,Legal,Low,/ar/privacy,Koru,Arapça gizlilik politikası,High
+/kullanim-kosullari,200,Legal,High,/kullanim-kosullari,Koru,Kullanım şartları ve sorumluluk reddi beyanı,High
+/en/terms,200,Legal,Low,/en/terms,Koru,İngilizce kullanım şartları,High
+/gr/terms,200,Legal,Low,/gr/terms,Koru,Yunanca kullanım şartları,High
+/es/terms,200,Legal,Low,/es/terms,Koru,İspanyolca kullanım şartları,High
+/ar/terms,200,Legal,Low,/ar/terms,Koru,Arapça kullanım şartları,High
+/sitemap.xml,200,Sitemap,Critical,/sitemap.xml,Koru,150 kanonik sayfa içeren ana XML sitemap,High
+/sitemap-video.xml,200,Sitemap,Critical,/sitemap-video.xml,Koru,Haftalık video açılımı Google Video XML sitemap,High
+/robots.txt,200,Robots,Critical,/robots.txt,Koru,Arama motoru ve bot erişim kuralları,High
+/llms.txt,200,AI_Manifest,High,/llms.txt,Koru,Özet LLM bağlamı,High
+/llms-full.txt,200,AI_Manifest,High,/llms-full.txt,Koru,Tam bilgi bankası LLM bağlamı,High
+/.well-known/ard.json,200,AI_Manifest,Critical,/.well-known/ard.json,Koru,ARD spesifikasyonu ajan katalog manifestosu,High
+/.well-known/ai-catalog.json,200,AI_Manifest,Critical,/.well-known/ai-catalog.json,Koru,Yapay zeka kaynak keşif dosyası,High
+/.well-known/openapi.json,200,API_Spec,High,/.well-known/openapi.json,Koru,OpenAPI 3.1.0 şeması,High
+/ai-fact-sheet.json,200,AI_Manifest,High,/ai-fact-sheet.json,Koru,Makine tarafından doğrulanabilir bilgi föyü,High
+/api/gozde-inquiry,200,API_Endpoint,High,/api/gozde-inquiry,Koru,Ön danışmanlık form teslim endpointi,High
+/api/gozde-apply,200,API_Endpoint,Medium,/api/gozde-apply,Koru,Yorumcu başvuru form teslim endpointi,High
+/tarot,301,Legacy_Tarot,High,/kesif-alanlari,301,Eski tarot falı sayfası sembolik keşif merkezine bağlandı,High
+/gunluk-kart,301,Legacy_Tarot,High,/kesif-alanlari,301,Eski günlük kart çekme sayfası yönlendirildi,High
+/otuz-gun,301,Legacy_Tarot,Low,/kesif-alanlari,301,Eski 30 günlük döngü açılımı yönlendirildi,High
+/kariyer,301,Legacy_Tarot,Medium,/kesif-alanlari,301,Eski kariyer tarot açılımı yönlendirildi,High
+/deneyim,301,Legacy_Tarot,Low,/kesif-alanlari,301,Eski deneyim sayfası yönlendirildi,High
+/tarot-kartlari,301,Legacy_Tarot,High,/kesif-alanlari,301,Eski 78 tarot kartı fihristi yönlendirildi,High
+/tarot-kartlari/*,301,Legacy_Tarot,High,/kesif-alanlari,301,Eski tekil kart sayfaları (Deli Büyücü vb.) yönlendirildi,High
+/tarot-cards/*,301,Legacy_Tarot,Medium,/en/areas,301,Eski İngilizce tarot kartı sayfaları yönlendirildi,High
+/katina,301,Legacy_Relationship,High,/kesif-alanlari,301,Eski Katina destesi açılımı yönlendirildi,High
+/ask,301,Legacy_Relationship,High,/kesif-alanlari,301,Eski aşk açılımı sayfası yönlendirildi,High
+/sinastri,301,Legacy_Relationship,High,/kesif-alanlari,301,Eski ilişki sinastri sayfası yönlendirildi,High
+/burc-uyumu,301,Legacy_Relationship,High,/kesif-alanlari,301,Eski burç uyumu sayfası yönlendirildi,High
+/astroloji,301,Legacy_Astrology,High,/kesif-alanlari,301,Eski astroloji ana sayfası yönlendirildi,High
+/vedik-astroloji,301,Legacy_Astrology,Medium,/kesif-alanlari,301,Eski Vedik astroloji sayfası yönlendirildi,High
+/nakshatra-dasha,301,Legacy_Astrology,Low,/kesif-alanlari,301,Eski Nakshatra ve Vimshottari dasha sayfası yönlendirildi,High
+/kadim-gokyuzu,301,Legacy_Astrology,Low,/kesif-alanlari,301,Eski kadim gökyüzü sayfası yönlendirildi,High
+/bugunun-gokyuzu,301,Legacy_Astrology,High,/kesif-alanlari,301,Eski güncel transitler sayfası yönlendirildi,High
+/ay-takvimi,301,Legacy_Astrology,Medium,/kesif-alanlari,301,Eski Ay takvimi ve evreleri sayfası yönlendirildi,High
+/dogum-haritasi,301,Legacy_Astrology,High,/kesif-alanlari,301,Eski doğum haritası hesaplama sayfası yönlendirildi,High
+/astroloji-kutuphanesi,301,Legacy_Astrology,High,/kesif-alanlari,301,Eski astroloji kütüphanesi ana sayfası yönlendirildi,High
+/astroloji-kutuphanesi/*,301,Legacy_Astrology,High,/kesif-alanlari,301,Eski burç ve ev kütüphanesi makaleleri yönlendirildi,High
+/astroloji-sozlugu,301,Legacy_Astrology,Medium,/kesif-alanlari,301,Eski astroloji sözlüğü fihristi yönlendirildi,High
+/astroloji-sozlugu/*,301,Legacy_Astrology,Medium,/kesif-alanlari,301,Eski terim maddeleri yönlendirildi,High
+/advanced-astrology/*,301,Legacy_Astrology,Medium,/kesif-alanlari,301,Eski ileri astroloji rehberleri yönlendirildi,High
+/haftalik-burc,301,Legacy_Horoscope,High,/videolar#burclar,301,Eski haftalık burç yorumları yeni video ve 12 burç bölümüne yönlendirildi,High
+/weekly-horoscope,301,Legacy_Horoscope,Medium,/en/videos#burclar,301,Eski İngilizce haftalık burç sayfası yönlendirildi,High
+/ruya-yorumlari,301,Legacy_Dream,High,/kesif-alanlari,301,Eski rüya tabirleri ana sayfası yönlendirildi,High
+/ruya-sembolleri/*,301,Legacy_Dream,High,/kesif-alanlari,301,Eski rüya sembol maddeleri yönlendirildi,High
+/numeroloji,301,Legacy_Numerology,Medium,/kesif-alanlari,301,Eski numeroloji sayfası yönlendirildi,High
+/giris,301,Legacy_Account,High,/,301,Eski kullanıcı giriş sayfası ana sayfaya yönlendirildi,High
+/kayit,301,Legacy_Account,High,/,301,Eski kullanıcı kayıt sayfası ana sayfaya yönlendirildi,High
+/hesabim,301,Legacy_Account,High,/,301,Eski profil ve abonelik sayfası ana sayfaya yönlendirildi,High
+/account/*,301,Legacy_Account,Medium,/,301,Eski Shopify ve kullanıcı hesap alt sayfaları yönlendirildi,High
+/login,301,Legacy_Account,Medium,/en,301,Eski İngilizce giriş sayfası yönlendirildi,High
+/register,301,Legacy_Account,Medium,/en,301,Eski İngilizce kayıt sayfası yönlendirildi,High
+/search,301,Legacy_Search,Low,/arama,301,Arama yönlendirmesi,High
+/pages/cookie*,301,Legacy_Legal,Low,/cerezler,301,Eski çerez politikası sayfası yönlendirildi,High
+/pages/privacy*,301,Legacy_Legal,Low,/gizlilik,301,Eski Shopify gizlilik politikası yönlendirildi,High
+/pages/terms*,301,Legacy_Legal,Low,/kullanim-kosullari,301,Eski Shopify şartlar sayfası yönlendirildi,High
+/pages/kvkk*,301,Legacy_Legal,Low,/kvkk,301,Eski KVKK sayfası yönlendirildi,High
+/products,410,Legacy_Shopify,Low,NONE,410,Eski Shopify takı ürün listesi kalıcı olarak silindi (Gone),High
+/products/*,410,Legacy_Shopify,Low,NONE,410,Eski 925 gümüş ve takı ürünleri kalıcı olarak silindi (Gone),High
+/collections,410,Legacy_Shopify,Low,NONE,410,Eski Shopify koleksiyonları kalıcı olarak silindi (Gone),High
+/collections/*,410,Legacy_Shopify,Low,NONE,410,Eski takı koleksiyonları kalıcı olarak silindi (Gone),High
+/cart,410,Legacy_Shopify,Low,NONE,410,Eski Shopify sepet sayfası kalıcı olarak silindi (Gone),High
+/checkout,410,Legacy_Shopify,Low,NONE,410,Eski Shopify ödeme sayfası kalıcı olarak silindi (Gone),High
+/checkouts/*,410,Legacy_Shopify,Low,NONE,410,Eski Shopify ödeme oturumları kalıcı olarak silindi (Gone),High
+/apps/shop/*,410,Legacy_Shopify,Low,NONE,410,Eski Shopify uygulama sayfaları kalıcı olarak silindi (Gone),High
+/recommendations/products,410,Legacy_Shopify,Low,NONE,410,Eski Shopify ürün öneri endpointi kalıcı olarak silindi (Gone),High
