@@ -9,6 +9,7 @@ import { renderRetrogradesView } from './pages/retrogrades.js';
 import { renderTransitsView } from './pages/transits.js';
 import { renderSynastryView } from './pages/synastry.js';
 import { renderGlossaryView } from './pages/glossary.js';
+import { generateDailyHoroscopes } from './horoscope-pipeline.js';
 
 export const resolveAstrologyLocale = (pathname = '/') => {
   if (pathname.startsWith('/ar')) return 'ar';
@@ -34,10 +35,25 @@ export const matchAstrologyRoute = (pathname = '/') => {
   return null;
 };
 
-export const isAstrologyPlatformPath = (pathname = '/') => Boolean(matchAstrologyRoute(pathname));
+export const isAstrologyPlatformPath = (pathname = '/') => {
+  if (pathname === '/api/astrology/daily-horoscope' || pathname.endsWith('/daily-horoscope.json')) return true;
+  return Boolean(matchAstrologyRoute(pathname));
+};
 
 export const handleAstrologyRequest = (request, env) => {
   const url = new URL(request.url);
+
+  if (url.pathname === '/api/astrology/daily-horoscope' || url.pathname.endsWith('/daily-horoscope.json')) {
+    const data = generateDailyHoroscopes();
+    return new Response(JSON.stringify(data, null, 2), {
+      headers: {
+        'content-type': 'application/json; charset=utf-8',
+        'cache-control': 'public, max-age=1800',
+        'x-robots-tag': 'noindex, nofollow'
+      }
+    });
+  }
+
   const pathname = url.pathname;
   const locale = resolveAstrologyLocale(pathname);
   const routeKey = matchAstrologyRoute(pathname) || 'home';
