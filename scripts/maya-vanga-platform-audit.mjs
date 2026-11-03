@@ -53,11 +53,11 @@ assert(responsiveHtml.includes('prefers-reduced-motion'), 'cultural shell must r
 
 const sitemap=await worker.fetch(new Request('https://mythborn.co/sitemap.xml'),env,{});
 const xml=await sitemap.text();
-for(const path of ['/ar','/hakkinda','/en/about','/gr/about','/es/about','/ar/about','/tarot-sembolizm','/ar/meditation-mindfulness','/yorumcu-basvuru','/en/apply','/gr/apply','/es/apply','/ar/apply'])assert(xml.includes(`https://mythborn.co${path}`),`sitemap missing ${path}`);
+for(const path of ['/ar','/hakkinda','/en/about','/gr/about','/es/about','/ar/about','/tarot-sembolizm','/ar/meditation-mindfulness'])assert(xml.includes(`https://mythborn.co${path}`),`sitemap missing ${path}`);
 console.log('Maya Vanga five-locale, SEO, RTL, and legal-gate audit passed.');
 
 // Temporary public splash gate is reversible and keeps all five locales.
-for (const [path, lang] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/ar','ar'],['/iletisim','tr'],['/tarot-sembolizm','tr']]) {
+for (const [path, lang] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/ar','ar'],['/tarot-sembolizm','tr']]) {
   const response=await worker.fetch(new Request('https://mythborn.co'+path), {...env,COMING_SOON_ENABLED:'true'}, {});
   assert.equal(response.status,200);
   assert.equal(response.headers.get('cache-control'),'no-store');
@@ -70,314 +70,30 @@ for (const [path, lang] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['
 }
 console.log('Coming-soon gated public surface checks passed.');
 
-// Reversible Gözde full platform & 5-language reader application pages:
-for (const [path,language] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/ar','ar']]) {
- const response=await worker.fetch(new Request('https://mythborn.co'+path),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
- assert.equal(response.status,200);
- assert.equal(response.headers.get('content-language'),language);
- const html=await response.text();
- assert(html.includes(({tr:'Kartların Gözde’si',en:'Gözde of the Cards',el:'Η Gözde των Καρτών',es:'Gözde, la voz de las cartas',ar:'Gözde قارئة البطاقات'})[language]));
- assert(html.includes('/images/gozde-tarot-hero.webp'));
- assert(html.includes('gozdeli_'));
- assert(html.includes('id="mobile-drawer" class="mobile-drawer" hidden inert'), `${path} must include mobile drawer menu with hidden and inert`);
- assert(!html.includes('id="mobile-drawer" class="mobile-drawer" aria-hidden'), `${path} must not use aria-hidden on mobile drawer to eliminate aria-hidden-focus violations`);
- assert(html.includes('data-open-drawer'), `${path} must include mobile menu toggle button`);
- assert(html.includes('class="trust-bar"'));
- assert((html.match(/class="area-card"/g)||[]).length===8, `${path} must render all 8 service area cards`);
- assert(html.includes('id="blog-onizleme"'), `${path} must render blog preview section`);
- assert(html.includes('id="video-vitrin"'), `${path} must render homepage video spotlight section`);
- assert(html.includes('<div id="video-promo-toast"') && !html.includes('<aside id="video-promo-toast"'), `${path} must use div for video toast`);
- assert(html.includes('id="video-promo-toast"') && html.includes('popover="manual"'), `${path} must include 1s video announcement toast`);
- assert(html.includes('visibility:hidden'), `${path} must hide inactive drawer with visibility:hidden`);
- assert(html.includes('rel="ard" href="https://mythborn.co/.well-known/ard.json"'), `${path} must link ard.json ARD manifest`);
- assert(html.includes('rel="ai-catalog" href="https://mythborn.co/.well-known/ai-catalog.json"'), `${path} must link ai-catalog.json manifest`);
- assert(html.includes('rel="agent-manifest" href="https://mythborn.co/.well-known/ai-catalog.json"'), `${path} must link ai-catalog.json agent manifest`);
- assert(html.includes('/cansu-source-beacon.js'), `${path} must load Cansu attribution and Umami beacon`);
- assert(html.includes('G-RW928SX37X') && html.includes('GTM-PKC69D3L') && html.includes('AW-18090583790') && html.includes('ysacbtdz22'), `${path} must configure GA4, GTM, Ads, and Clarity measurement suite`);
- assert(html.includes('analytics_storage'), `${path} must implement Google Consent Mode v2`);
- for (const m of html.matchAll(/<script(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script>/gi)) {
-   new Function(m[1]);
- }
- assert(html.includes('id="gozde-inquiry-form"'));
- assert(html.includes('id="cookie-consent-banner"'), `${path} must include KVKK/GDPR cookie consent banner`);
- assert(html.includes('data-cookie-choice="accepted"') && html.includes('data-cookie-choice="essential"'), `${path} must include both Accept All and Essential Only options`);
- assert(html.includes('data-open-cookie-banner'), `${path} must include footer trigger to reopen cookie preferences`);
- assert(html.includes('href="https://qctcommerce.com/"') && html.includes('QCT Commerce'), `${path} must include QCT Commerce footer signature`);
- if(language!=='tr') assert(!html.includes('tarafından yapılmıştır'), `${path} must localize QCT Commerce signature`);
- assert(html.includes('class="tiktok-real-logo"'), `${path} must render real TikTok SVG logo`);
- const visibleHtml=html.replace(/<script[\s\S]*?<\/script>/gi,'');
- assert(!/>[^<]*@gozdeli_[^<]*</i.test(visibleHtml), `${path} must not show @gozdeli_ username in visible text`);
- assert(html.includes('data-lang-switch='), `${path} must include scroll-preserving language switch attributes`);
- assert(html.includes('overflow-x:clip') && html.includes('container-type:scroll-state'), `${path} must keep sticky header active with overflow-x:clip and scroll-state query`);
- assert(html.includes('id="exit-intent-dialog"') && html.includes('closedby="any"'), `${path} must include exit-intent retention dialog`);
- assert(html.includes('name="mythborn-faq"'));
- assert(html.includes('class="aeo-dl"'));
- assert(html.includes('SpeakableSpecification'));
- assert(html.includes('#essential-paths'));
- assert(html.includes('ai-fact-sheet.txt'));
- assert(!html.includes('step-num'), `${path} must not render card numbers`);
- assert(!html.includes('Maya Vanga'));
- assert(!html.includes('gozde-landing'));
- assert(!/(?:price|fiyat|checkout|reservation|booking|payment|ödeme|mailto:|wa\.me)/i.test(html), `${path} must remain free of commercial/prohibited terms`);
- if(language==='ar') assert(html.includes('dir="rtl"'));
+// Retired personal-reading brand: keep independent routes, remove personal media and posts.
+const retiredPagePaths=['/videolar','/en/videos','/gr/videos','/yorumcu-basvuru','/es/apply','/yonetim/formlar',
+ '/blog/merkur-ve-gezegen-retrolari-rehberi','/ar/blog/katina-ask-acilimi-ve-iliski-dinamikleri',
+ '/api/gozde-inquiry','/api/gozde-apply','/api/gozde-submissions'];
+for(const pathname of retiredPagePaths){
+  const response=await analyticsWorker.fetch(new Request('https://mythborn.co'+pathname),env,{});
+  assert.equal(response.status,410,'retired content must return 410: '+pathname);
+  assert((response.headers.get('x-robots-tag')||'').includes('noindex'),'retired page must be noindex: '+pathname);
 }
-
-// Standalone menu pages, legal pages (KVKK, Gizlilik, Kullanım Koşulları), and 10 blog articles:
-for (const subPath of [
-  '/kesif-alanlari','/yaklasim','/videolar','/blog','/iletisim','/kvkk','/gizlilik','/kullanim-kosullari',
-  '/en/areas','/en/approach','/en/videos','/en/blog','/en/contact','/en/kvkk','/en/privacy','/en/terms',
-  '/gr/areas','/gr/videos','/es/videos','/es/blog','/ar/videos','/ar/kvkk',
-  '/blog/merkur-ve-gezegen-retrolari-rehberi',
-  '/blog/tutulma-mevsimi-ve-kader-kavsagi',
-  '/blog/katina-ask-acilimi-ve-iliski-dinamikleri',
-  '/blog/tarot-major-arkana-kader-karti-sifreleri',
-  '/blog/kahve-fali-sembolizmi-fincandaki-isaretler',
-  '/blog/dogum-haritasinda-7-ev-venus-ve-juno',
-  '/blog/saturn-dongusu-ve-hayat-sinavlari',
-  '/blog/numeroloji-ve-kisisel-yil-hesaplama',
-  '/blog/yildizname-gelenegi-ve-dort-element-mizaci',
-  '/blog/duru-goru-ve-sezgisel-farkindalik-rehberi'
-]) {
-  const response=await worker.fetch(new Request('https://mythborn.co'+subPath),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-  assert.equal(response.status,200, `${subPath} must return HTTP 200`);
-  const html=await response.text();
-  assert(html.includes('id="mobile-drawer" class="mobile-drawer" hidden inert'), `${subPath} must include mobile drawer menu with hidden and inert`);
-  assert(!html.includes('id="mobile-drawer" class="mobile-drawer" aria-hidden'), `${subPath} must not use aria-hidden on mobile drawer`);
-  assert(!/(?:price|fiyat|checkout|reservation|booking|payment|ödeme|mailto:|wa\.me)/i.test(html), `${subPath} must remain free of commercial/prohibited terms`);
-  if(subPath.startsWith('/blog/')){
-    assert(html.includes('"@type":"Article"'), `${subPath} must include Article schema`);
-    assert(html.includes('"@type":"FAQPage"'), `${subPath} must include FAQPage schema`);
-    assert(html.includes('class="article-meta"'), `${subPath} must include editorial meta`);
-  }
-  if(subPath.endsWith('/videolar')||subPath.endsWith('/videos')){
-    assert(html.includes('"@type":"VideoObject"'), `${subPath} must include VideoObject schema`);
-    assert(html.includes('/videos/28-ekim-5-kasim-tarot.mp4'), `${subPath} must reference the featured weekly tarot video`);
-    assert(html.includes('preload="none"') && html.includes('width="1280" height="720"'), `${subPath} must use on-demand preload="none" and explicit dimensions`);
-    assert((html.match(/class="zodiac-week-card"/g)||[]).length===12, `${subPath} must render all 12 zodiac sign weekly cards`);
-  }
+for(const pathname of ['/llms.txt','/llms.en.txt','/llms.gr.txt','/llms.es.txt','/llms.ar.txt',
+ '/llms-full.txt','/llms-full.ar.txt','/ai-catalog.json','/.well-known/ard.json','/ai-fact-sheet.json',
+ '/sitemap-video.xml','/sitemap.xml']){
+  const response=await worker.fetch(new Request('https://mythborn.co'+pathname),env,{});
+  assert.equal(response.status,200,'available discovery resource: '+pathname);
+  const body=await response.text();
+  assert(!/Gözde|gozdeli_|gozde-tarot-hero/i.test(body),'retired identity present in '+pathname);
+  if(pathname.endsWith('.xml'))assert(body.trim().endsWith('</urlset>'));
 }
-
-for (const [applyPath,language] of [['/yorumcu-basvuru','tr'],['/en/apply','en'],['/gr/apply','el'],['/es/apply','es'],['/ar/apply','ar']]) {
- const response=await worker.fetch(new Request('https://mythborn.co'+applyPath),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
- assert.equal(response.status,200);
- assert.equal(response.headers.get('content-language'),language);
- const html=await response.text();
- assert(html.includes(`lang="${language}"`));
- assert(html.includes('id="gozde-apply-form"'));
- assert(html.includes('hreflang="ar"'));
- assert(html.includes('BreadcrumbList'));
- assert((html.match(/name="specialties"/g)||[]).length===8, `${applyPath} must include 8 specialty checkboxes`);
- assert(!/(?:price|fiyat|checkout|reservation|booking|payment|ödeme|mailto:|wa\.me)/i.test(html));
- if(language==='ar') assert(html.includes('dir="rtl"'));
+const refreshedSitemap=await (await worker.fetch(new Request('https://mythborn.co/sitemap.xml'),env,{})).text();
+assert(!refreshedSitemap.includes('/videos')&&!refreshedSitemap.includes('/videolar'));
+assert(!refreshedSitemap.includes('/yorumcu-basvuru'));
+for(const pathname of ['/','/en','/gr','/es','/ar']){
+  const response=await analyticsWorker.fetch(new Request('https://mythborn.co'+pathname),env,{});
+  assert.equal(response.status,200,'independent home '+pathname);
+  assert(!/Gözde|gozdeli_|gozde-tarot-hero/i.test(await response.text()),'retired personal name on '+pathname);
 }
-
-// Verify API validation and submission handling for both inquiry and application forms
-const badInquiry=await worker.fetch(new Request('https://mythborn.co/api/gozde-inquiry',{
-  method:'POST',
-  headers:{'content-type':'application/json'},
-  body:JSON.stringify({locale:'tr',name:'A',contact:'',message:'short',consent:false})
-}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(badInquiry.status,400);
-
-const goodInquiry=await worker.fetch(new Request('https://mythborn.co/api/gozde-inquiry',{
-  method:'POST',
-  headers:{'content-type':'application/json'},
-  body:JSON.stringify({locale:'tr',name:'Ayşe K.',contact:'ayse@example.com',topic:'Katina',format:'Sesli Kayıt & Analiz',message:'İlişki dinamiğimiz ve önümüzdeki süreç hakkında bilgi almak istiyorum.',consent:'yes'})
-}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(goodInquiry.status,200);
-const goodInquiryData=await goodInquiry.json();
-assert.equal(goodInquiryData.ok,true);
-
-const badApply=await worker.fetch(new Request('https://mythborn.co/api/gozde-apply',{
-  method:'POST',
-  headers:{'content-type':'application/json'},
-  body:JSON.stringify({locale:'en',fullName:'J',email:'invalid',phone:'123',specialties:[],bio:'too short',consent:false})
-}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(badApply.status,400);
-
-const goodApply=await worker.fetch(new Request('https://mythborn.co/api/gozde-apply',{
-  method:'POST',
-  headers:{'content-type':'application/json'},
-  body:JSON.stringify({
-    locale:'ar',
-    fullName:'Nour Al-Huda',
-    email:'nour@example.com',
-    phone:'+905551234567',
-    specialties:['التاروت','قراءة القهوة'],
-    experience:'5–10 سنوات',
-    modality:'تسجيل صوتي',
-    languages:'العربية، التركية، الإنجليزية',
-    social:'https://tiktok.com/@nour',
-    bio:'أقدم قراءات رمزية عميقة تركز على الوضوح والوعي الذاتي مع احترام كامل للخصوصية.',
-    consent:'yes'
-  })
-}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(goodApply.status,200);
-const goodApplyData=await goodApply.json();
-assert.equal(goodApplyData.ok,true);
-
-// Verify password protection on /yonetim/formlar and /api/gozde-submissions
-const adminPageRes=await worker.fetch(new Request('https://mythborn.co/yonetim/formlar'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(adminPageRes.status,200);
-const adminPageHtml=await adminPageRes.text();
-for (const m of adminPageHtml.matchAll(/<script(?![^>]*application\/ld\+json)[^>]*>([\s\S]*?)<\/script>/gi)) {
-  new Function(m[1]);
-}
-assert(adminPageHtml.includes('id="admin-login-form"'),'Admin page must include password login form');
-assert(adminPageHtml.includes('autocomplete="current-password"'),'Admin password input must use autocomplete="current-password"');
-
-const unauthSubRes=await worker.fetch(new Request('https://mythborn.co/api/gozde-submissions'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(unauthSubRes.status,401,'Unauthenticated /api/gozde-submissions must return 401');
-
-const wrongPassSubRes=await worker.fetch(new Request('https://mythborn.co/api/gozde-submissions',{
-  headers:{'x-admin-password':'wrong-password'}
-}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(wrongPassSubRes.status,401,'Wrong password on /api/gozde-submissions must return 401');
-
-const authSubRes=await worker.fetch(new Request('https://mythborn.co/api/gozde-submissions',{
-  headers:{'x-admin-password':'teyfikgokdemir'}
-}),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(authSubRes.status,200,'Authenticated /api/gozde-submissions must return 200');
-const authSubData=await authSubRes.json();
-assert.equal(authSubData.ok,true);
-
-// AI Bot Access, Manifests, ARD, llms.txt, llms-full.txt, and Video Sitemap Audits
-const robotsRes=await analyticsWorker.fetch(new Request('https://mythborn.co/robots.txt'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(robotsRes.status,200);
-const robotsTxt=await robotsRes.text();
-for(const bot of ['GPTBot','ClaudeBot','Claude-Web','PerplexityBot','Google-Extended','Applebot-Extended','Meta-ExternalAgent','FacebookBot','Amazonbot','cohere-ai','DuckAssistBot','Bingbot']){
-  assert(robotsTxt.includes(`User-agent: ${bot}`),`robots.txt must explicitly grant access to ${bot}`);
-}
-assert(robotsTxt.includes('Allow: /llms.txt'));
-assert(robotsTxt.includes('Allow: /llms-full.txt'));
-assert(robotsTxt.includes('Allow: /.well-known/'));
-assert(robotsTxt.includes('Sitemap: https://mythborn.co/sitemap-video.xml'));
-assert(robotsTxt.includes('Agentmap: https://mythborn.co/.well-known/ard.json'), 'robots.txt must declare ARD Agentmap');
-assert(robotsTxt.includes('Agentmap: https://mythborn.co/.well-known/ai-catalog.json'), 'robots.txt must declare ai-catalog Agentmap');
-
-// 5-Language llms.txt & llms-full.txt
-for(const [route, langKey] of [
-  ['/llms.txt','Kartların Gözde’si'],
-  ['/llms.en.txt','Gözde of the Cards'],
-  ['/llms.gr.txt','Η Gözde των Καρτών'],
-  ['/llms.es.txt','Gözde, la voz de las cartas'],
-  ['/llms.ar.txt','Gözde قارئة البطاقات']
-]){
-  const res=await worker.fetch(new Request(`https://mythborn.co${route}`),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-  assert.equal(res.status,200,`${route} must return 200`);
-  assert(res.headers.get('content-type').includes('text/plain'),`${route} must be text/plain`);
-  assert(res.headers.get('access-control-allow-origin')==='*',`${route} must allow CORS`);
-  const body=await res.text();
-  assert(body.includes(langKey),`${route} must contain expected content`);
-}
-
-for(const [route, langKey] of [
-  ['/llms-full.txt','Kartların Gözde’si'],
-  ['/llms-full.en.txt','Gözde of the Cards'],
-  ['/llms-full.gr.txt','Η Gözde των Καρτών'],
-  ['/llms-full.es.txt','Gözde, la voz de las cartas'],
-  ['/llms-full.ar.txt','Gözde قارئة البطاقات']
-]){
-  const res=await worker.fetch(new Request(`https://mythborn.co${route}`),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-  assert.equal(res.status,200,`${route} must return 200`);
-  assert(res.headers.get('content-type').includes('text/plain'),`${route} must be text/plain`);
-  const body=await res.text();
-  assert(body.includes(langKey),`${route} must contain expected full content`);
-}
-
-// Redirects
-const elRedirect=await worker.fetch(new Request('https://mythborn.co/llms.el.txt'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(elRedirect.status,301);
-assert.equal(elRedirect.headers.get('location'),'https://mythborn.co/llms.gr.txt');
-
-const elFullRedirect=await worker.fetch(new Request('https://mythborn.co/llms-full.el.txt'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(elFullRedirect.status,301);
-assert.equal(elFullRedirect.headers.get('location'),'https://mythborn.co/llms-full.gr.txt');
-
-// AI Catalogs & Manifests
-const aiPluginRes=await worker.fetch(new Request('https://mythborn.co/.well-known/ai-plugin.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(aiPluginRes.status,200);
-const aiPlugin=await aiPluginRes.json();
-assert.equal(aiPlugin.schema_version,'v1');
-assert(aiPlugin.name_for_model.includes('mythborn'));
-
-const agentManifestRes=await worker.fetch(new Request('https://mythborn.co/.well-known/agent-manifest.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(agentManifestRes.status,200);
-const agentManifest=await agentManifestRes.json();
-assert.equal(agentManifest.specVersion,'1.0');
-assert(Array.isArray(agentManifest.entries) && agentManifest.entries.length >= 7,'ArdManifest must contain entries array');
-for(const entry of agentManifest.entries){
-  assert(entry.identifier && entry.displayName && entry.type && entry.url, 'Every catalog entry must have identifier, displayName, type, and url');
-  assert(/^urn:air:[a-zA-Z0-9.-]+(:[a-zA-Z0-9._-]+)+$/.test(entry.identifier), `${entry.identifier} must match RFC 8141 URN pattern urn:air:...`);
-  assert(Array.isArray(entry.representativeQueries) && entry.representativeQueries.length >= 2, `${entry.identifier} must have representativeQueries`);
-  if(entry.type.startsWith('text/markdown')){
-    assert(entry.type.includes('profile="urn:air:agent-skills"'), `${entry.identifier} must specify profile="urn:air:agent-skills"`);
-  }
-}
-
-const aiCatalogWellKnownRes=await worker.fetch(new Request('https://mythborn.co/.well-known/ai-catalog.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(aiCatalogWellKnownRes.status,200);
-const aiCatalogData=await aiCatalogWellKnownRes.json();
-assert.equal(aiCatalogData.specVersion,'1.0');
-assert(Array.isArray(aiCatalogData.entries));
-
-const aiCatalogRootRes=await worker.fetch(new Request('https://mythborn.co/ai-catalog.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(aiCatalogRootRes.status,200);
-
-const ardAliasRes=await worker.fetch(new Request('https://mythborn.co/.well-known/ard.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(ardAliasRes.status,200);
-
-const openapiRes=await worker.fetch(new Request('https://mythborn.co/.well-known/openapi.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(openapiRes.status,200);
-const openapi=await openapiRes.json();
-assert.equal(openapi.openapi,'3.1.0');
-
-const factSheetRes=await worker.fetch(new Request('https://mythborn.co/ai-fact-sheet.json'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(factSheetRes.status,200);
-const factSheet=await factSheetRes.json();
-assert.equal(factSheet.mainEntity.name,'MYTHBORN');
-
-// Video Sitemap & Multilingual Sitemap
-const videoSitemapRes=await worker.fetch(new Request('https://mythborn.co/sitemap-video.xml'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(videoSitemapRes.status,200);
-const videoSitemapXml=await videoSitemapRes.text();
-assert(videoSitemapXml.includes('<video:video>'));
-assert(videoSitemapXml.includes('https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4'));
-assert(!videoSitemapXml.includes('<video:player_loc>'), 'sitemap-video.xml must not include player_loc matching loc');
-
-// Legacy 301 Redirect Audits
-const legacyRedirectChecks = [
-  ['/tarot-kartlari/deli', 'https://mythborn.co/kesif-alanlari'],
-  ['/tarot', 'https://mythborn.co/kesif-alanlari'],
-  ['/astroloji-kutuphanesi/koc', 'https://mythborn.co/kesif-alanlari'],
-  ['/vedik-astroloji', 'https://mythborn.co/kesif-alanlari'],
-  ['/haftalik-burc', 'https://mythborn.co/videolar#burclar'],
-  ['/ruya-sembolleri/deniz', 'https://mythborn.co/kesif-alanlari'],
-  ['/en/tarot-kartlari/the-fool', 'https://mythborn.co/en/areas'],
-  ['/en/astroloji', 'https://mythborn.co/en/areas'],
-  ['/en/weekly-horoscope', 'https://mythborn.co/en/videos#burclar'],
-  ['/giris', 'https://mythborn.co/'],
-  ['/en/account/login', 'https://mythborn.co/en']
-];
-
-for (const [from, target] of legacyRedirectChecks) {
-  const redirRes = await analyticsWorker.fetch(new Request('https://mythborn.co' + from), { ...env, GOZDE_LAUNCH_ENABLED: 'true' }, {});
-  assert.equal(redirRes.status, 301, `${from} must return HTTP 301`);
-  assert.equal(redirRes.headers.get('location'), target, `${from} must redirect to ${target}`);
-}
-
-const sitemapRes=await worker.fetch(new Request('https://mythborn.co/sitemap.xml'),{...env,GOZDE_LAUNCH_ENABLED:'true'},{});
-assert.equal(sitemapRes.status,200);
-assert(sitemapRes.headers.get('content-type').includes('application/xml'), 'sitemap.xml must be application/xml');
-const sitemapXml=await sitemapRes.text();
-assert(sitemapXml.startsWith('<?xml'), 'sitemap.xml must start with XML declaration');
-assert(sitemapXml.trim().endsWith('</urlset>'), 'sitemap.xml must close urlset');
-assert(!sitemapXml.includes('<html'), 'sitemap.xml must not contain HTML tags');
-assert(sitemapXml.includes('https://mythborn.co/videolar'));
-assert(sitemapXml.includes('https://mythborn.co/en/videos'));
-assert(sitemapXml.includes('https://mythborn.co/gr/videos'));
-assert(sitemapXml.includes('https://mythborn.co/es/videos'));
-assert(sitemapXml.includes('https://mythborn.co/ar/videos'));
-assert(sitemapXml.includes('https://mythborn.co/blog/tarot-major-arkana-kader-karti-sifreleri'));
-
-console.log('Gözde 5-language platform, reader application pages, and API audits passed.');
+console.log('Mythborn: independent 5-language presence, retired content and AI metadata audit passed.');
