@@ -1,0 +1,22 @@
+Section,TR_Route,EN_Route,EL_Route,ES_Route,AR_Route,Title_TR,Template_Component,HTTP_Status
+Home,/,/en,/gr,/es,/ar,Astroloji ve Gökyüzü Farkındalık Platformu,AstrologyHomeView,200
+Natal_Chart,/dogum-haritasi,/en/birth-chart,/gr/genethlios-chartis,/es/carta-natal,/ar/kharitat-almilad,Ücretsiz Doğum Haritası ve Yükselen Hesaplama,NatalChartView,200
+Zodiac_Index,/burclar,/en/zodiac-signs,/gr/zodia,/es/signos-del-zodiaco,/ar/al-abraj,12 Burç Rehberi ve Gezegen Yöneticileri,ZodiacIndexView,200
+Daily_Horoscope,/gunluk-burc,/en/daily-horoscope,/gr/imerisia-zodia,/es/horoscopo-diario,/ar/altala-alyawmi,Günlük Burç Yorumları ve Güncel Gökyüzü,HoroscopeDailyView,200
+Weekly_Horoscope,/haftalik-burc,/en/weekly-horoscope,/gr/evdomadiaia-zodia,/es/horoscopo-semanal,/ar/altala-alasbuei,Haftalık Burç ve Transit Analizleri,HoroscopeWeeklyView,200
+Monthly_Horoscope,/aylik-burc,/en/monthly-horoscope,/gr/miniaia-zodia,/es/horoscopo-mensual,/ar/altala-alshahri,Aylık Burç ve Yeniay/Dolunay Rehberi,HoroscopeMonthlyView,200
+Yearly_Horoscope,/yillik-burc,/en/yearly-horoscope,/gr/etisies-provlepseis,/es/horoscopo-anual,/ar/altala-alsanawi,2027 Yıllık Burç ve Gezegen Geçişleri,HoroscopeYearlyView,200
+Sky_Calendar,/gokyuzu-takvimi,/en/sky-calendar,/gr/imerologio-ouranou,/es/calendario-celeste,/ar/altaqwim-alfalaki,Kozmik Gökyüzü ve Ay Takvimi,SkyCalendarView,200
+Retrogrades,/retrolar,/en/retrogrades,/gr/anadromes,/es/retrogrados,/ar/harakat-altaraju,Merkür ve Gezegen Retroları Takvimi,RetrogradesView,200
+Eclipses,/tutulmalar,/en/eclipses,/gr/ekleipseis,/es/eclipses,/ar/alkhosof-walkossof,Güneş ve Ay Tutulmaları Döngüsü,EclipsesView,200
+Transits,/transitler,/en/transits,/gr/diabaseis,/es/transitos,/ar/al-uboor-alfalaki,Canlı Gezegen Transitleri ve Açıları,TransitsLiveView,200
+Synastry,/sinastri,/en/synastry,/gr/synastria,/es/sinastria,/ar/altawafuq-alfalaki,İlişki Uyumu ve Sinastri Haritası,SynastryView,200
+Glossary,/astroloji-sozlugu,/en/astrology-glossary,/gr/lexiko-astrologias,/es/glosario-astrologia,/ar/qamus-al-tanjim,Temel ve İleri Astroloji Sözlüğü,GlossaryView,200
+Guides_Index,/rehberler,/en/guides,/gr/odigoi,/es/guias,/ar/al-adillah,Astroloji Rehberleri ve İnceleme Yazıları,GuidesIndexView,200
+Guide_Post,/rehberler/:slug,/en/guides/:slug,/gr/odigoi/:slug,/es/guias/:slug,/ar/al-adillah/:slug,Tekil Astroloji Rehberi,GuideArticleView,200
+Method_About,/yaklasim,/en/approach,/gr/prosegisi,/es/enfoque,/ar/al-manhaj,Astronomik Yöntemimiz ve Etik İlkeler,ApproachMethodView,200
+About_Us,/hakkimizda,/en/about,/gr/schetika,/es/sobre-nosotros,/ar/man-nahnu,Mythborn ve Gözde Hakkında,AboutView,200
+Contact,/iletisim,/en/contact,/gr/epikoinonia,/es/contacto,/ar/al-ittisal,Ön Danışmanlık ve İletişim,ContactView,200
+Privacy,/gizlilik,/en/privacy,/gr/aporrito,/es/privacidad,/ar/al-khosoosiya,Gizlilik ve Çerez Politikası,LegalPageView,200
+KVKK,/kvkk,/en/kvkk,/gr/kvkk,/es/kvkk,/ar/kvkk,6698 Sayılı KVKK Aydınlatma Metni,LegalPageView,200
+Terms,/kullanim-kosullari,/en/terms,/gr/oroi-chrisis,/es/terminos,/ar/shuroot-al-istikhdam,Kullanım Şartları ve Sorumluluk Beyanı,LegalPageView,200
