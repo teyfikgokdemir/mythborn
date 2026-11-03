@@ -209,6 +209,7 @@ export const renderAstrologyLayout = ({
               <li><a href="${getRouteHref(locale, 'glossary')}">${safe(t.menu.glossary)}</a></li>
               <li><a href="${getRouteHref(locale, 'learning')}">${locale === 'tr' ? 'Öğrenme Merkezi' : locale === 'en' ? 'Learning Center' : locale === 'el' ? 'Κέντρο Μάθησης' : locale === 'es' ? 'Centro de Aprendizaje' : 'مركز التعلم'}</a></li>
               <li><a href="${getRouteHref(locale, 'approach')}">${safe(t.menu.approach)}</a></li>
+              <li><a href="${locale === 'tr' ? '/videolar' : `/${locale === 'el' ? 'gr' : locale}/videos`}">${locale === 'tr' ? 'Haftalık Video Açılımları' : locale === 'en' ? 'Weekly Video Readings' : locale === 'el' ? 'Εβδομαδιαία Βίντεο' : locale === 'es' ? 'Videos Semanales' : 'فيديوهات أسبوعية'}</a></li>
             </ul>
           </div>
 
