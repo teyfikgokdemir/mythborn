@@ -74,6 +74,11 @@ const searchItems=locale=>{
 export default {
   async fetch(request,env,ctx){
     const incoming=new URL(request.url);
+    // Retired personal media must return 410, not an application fallback error.
+    const retiredPersonalMedia = /^\/images\/gozde-(?:salon-portrait\.jpg|tarot-hero\.webp|astrology-concept\.jpg|coffee-concept\.jpg)$/i.test(incoming.pathname)
+      || incoming.pathname === '/videos/28-ekim-5-kasim-tarot.mp4'
+      || decodeURIComponent(incoming.pathname) === '/images/Mistik Mum Işığında Tarot Akşamı.webp';
+    if(retiredPersonalMedia) return new Response('Content unavailable',{status:410,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store','x-robots-tag':'noindex'}});
     // Former individual-reader pages and articles are permanently retired.
     const inactivePath=incoming.pathname.replace(/^\/(?:en|gr|es|ar)(?=\/)/,'');
     const retiredPages=new Set(['/yorumcu-basvuru','/videolar','/kesif-alanlari','/yaklasim','/yonetim/formlar','/areas','/approach','/videos','/apply']);
