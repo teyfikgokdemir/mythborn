@@ -4,6 +4,7 @@ import worker from '../src/app-router.js';
 const previewEnv = {
   ENVIRONMENT: 'preview',
   ASTROLOGY_PREVIEW_ENABLED: 'true',
+  GOZDE_LAUNCH_ENABLED: 'true',
   DB: {}
 };
 
@@ -58,7 +59,7 @@ for (const [path, lang, keyword] of subpages) {
 }
 
 console.log('\n--- 3. Testing Mock Form Behavior in Preview ---');
-const formReq = new Request('https://mythborn-preview.tevfikgokdemir.workers.dev/api/gozde-inquiry', {
+const formReq = new Request('https://mythborn-preview.teyfikgokdemir.workers.dev/api/gozde-inquiry', {
   method: 'POST',
   headers: { 'content-type': 'application/json' },
   body: JSON.stringify({ name: 'Test', contact: 'test@example.com', message: 'Hello', consent: true })
@@ -67,9 +68,40 @@ const formRes = await worker.fetch(formReq, previewEnv, {});
 assert.equal(formRes.status, 200);
 const formJson = await formRes.json();
 assert.equal(formJson.mock, true, 'Preview form must be mocked');
-console.log('PASS: Preview form mock response verified:', formJson.message);
+console.log('PASS: Preview inquiry form mock response verified:', formJson.message);
 
-console.log('\n--- 4. Verifying Production Remains Untouched ---');
+const applyReq = new Request('https://mythborn-preview.teyfikgokdemir.workers.dev/api/gozde-apply', {
+  method: 'POST',
+  headers: { 'content-type': 'application/json' },
+  body: JSON.stringify({ name: 'Reader Test', email: 'reader@example.com' })
+});
+const applyRes = await worker.fetch(applyReq, previewEnv, {});
+assert.equal(applyRes.status, 200);
+const applyJson = await applyRes.json();
+assert.equal(applyJson.mock, true, 'Preview apply form must be mocked');
+console.log('PASS: Preview apply form mock response verified:', applyJson.message);
+
+console.log('\n--- 4. Verifying Existing Gözde System Pages in Preview ---');
+const gozdeRoutes = [
+  ['/videolar', 'Video Açılımlar'],
+  ['/en/videos', 'Video Readings'],
+  ['/iletisim', 'Gözde'],
+  ['/en/contact', 'Gözde'],
+  ['/yorumcu-basvuru', 'Yorumcu'],
+  ['/en/apply', 'Reader'],
+  ['/kartlarin-gozdesi', 'Kartların Gözde’si']
+];
+
+for (const [path, expected] of gozdeRoutes) {
+  const req = new Request(`https://mythborn-preview.teyfikgokdemir.workers.dev${path}`);
+  const res = await worker.fetch(req, previewEnv, {});
+  assert.equal(res.status, 200, `${path} must return 200 in preview`);
+  const html = await res.text();
+  assert(html.includes(expected), `${path} must contain "${expected}"`);
+  console.log(`PASS: Gözde route ${path} intact in preview`);
+}
+
+console.log('\n--- 5. Verifying Production Remains Untouched ---');
 const prodEnv = { ENVIRONMENT: 'production', GOZDE_LAUNCH_ENABLED: 'true' };
 const prodReq = new Request('https://mythborn.co/');
 const prodRes = await worker.fetch(prodReq, prodEnv, {});

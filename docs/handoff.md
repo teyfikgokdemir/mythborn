@@ -6,16 +6,19 @@ Bu doküman, Mythborn platformunun başka bir yapay zekâ ajanı, yazılım müh
 
 ## 1. Temel Proje ve Git Bilgileri
 
-- **Canlı (Production) URL:** `https://mythborn.co` (Değiştirilmedi)
+- **Canlı (Production) URL:** `https://mythborn.co` (Kesinlikle dokunulmadı)
 - **Önizleme (Preview) URL:** `https://mythborn-preview.teyfikgokdemir.workers.dev` (Aşama 1 yayında)
 - **Son Çalışan Baseline Commit:** `18484f3` (Canlıdaki sürüm)
 - **Aşama 0 Checkpoint Commit:** `5e5d46d`
 - **Aşama 0.1 Checkpoint Commit:** `a3d8c05`
+- **Aşama 1 Checkpoint Commit:** `a9062ce` / Güncel Doğrulama Commit'i
 - **Aktif Geliştirme Dalı:** `work/astrology-platform-phase0`
 - **Preview Worker Adı:** `mythborn-preview`
+- **Preview Sürüm ID:** `56e0fa6c-93ca-4ac3-be46-dc02319c352f`
 - **Preview D1 Veritabanı:** `mythborn-membership-preview` (`82d3d933-282d-4369-b68e-cee26b66349b`)
 - **Production Worker Adı:** `mythborn` (Dokunulmadı)
 - **Production D1 Veritabanı:** `mythborn-membership` (`99490fbd-8f6c-4bf9-b5ed-bffdfdbd8771` - Dokunulmadı)
+- **Production Dağıtımı:** `NOT EXECUTED` (Onaylanana kadar durduruldu)
 
 ---
 
@@ -28,8 +31,11 @@ npm install
 # Test ve Denetim (Tüm proje test suiti geçmek zorundadır)
 npm run audit
 
-# Aşama 1 Astroloji Preview Testi
+# Aşama 1 Astroloji Preview Testi (Yerel simülasyon)
 node scripts/astrology-preview-test.mjs
+
+# Canlı Preview Uçtan Uca Doğrulama Testi (Canlı worker testi)
+node scripts/verify-live-preview.mjs
 
 # npm Güvenlik Açığı Taraması (Dependency vulnerability scan)
 npm audit
@@ -48,7 +54,7 @@ npm run deploy
 
 ## 3. Aşamaların Anlık Durumu
 
-- **Tamamlanan Aşama:** `Aşama 1` (Astroloji platformu frontend iskeleti, tasarım token'ları, 8 sayfa kabuğu, 5 dilli navigasyon, preview deployment).
+- **Tamamlanan Aşama:** `Aşama 1` (Astroloji platformu frontend iskeleti, tasarım token'ları, 8 sayfa kabuğu, 5 dilli navigasyon, preview deployment, Gözde alt sayfaları ve mock form entegrasyonu).
 - **Devam Eden Aşama:** Kullanıcı incelemesi ve Aşama 2 (Veri Çekirdeği) onayı bekleme.
 - **Bekleyen Aşamalar:** Aşama 2 (Veri Çekirdeği), Aşama 3 (Burç Yorumları), Aşama 4 (SEO / 301), Aşama 5 (Ek Modüller).
 
@@ -58,66 +64,29 @@ npm run deploy
 
 1. `src/astrology-platform/tokens.js`: Kozmik lüks tasarım token'ları ve responsive CSS.
 2. `src/astrology-platform/i18n.js`: 5 dil (TR, EN, EL, ES, AR) menü, başlık, uyarı ve 12 burç sözlüğü.
-3. `src/astrology-platform/layout.js`: Header, footer, dil değiştirici ve mobil drawer layout bileşeni.
-4. `src/astrology-platform/router.js`: Rota eşleştirici ve preview başlık yönetimi.
-5. `src/astrology-platform/pages/home.js`: Astroloji ana sayfa kabuğu.
-6. `src/astrology-platform/pages/natal-chart.js`: Doğum haritası sayfa kabuğu.
-7. `src/astrology-platform/pages/zodiac.js`: 12 Burç fihristi kabuğu.
-8. `src/astrology-platform/pages/sky-calendar.js`: Gökyüzü ve Ay takvimi kabuğu.
-9. `src/astrology-platform/pages/retrogrades.js`: Gezegen retroları kabuğu.
-10. `src/astrology-platform/pages/transits.js`: Gezegen transitleri ve açılar kabuğu.
-11. `src/astrology-platform/pages/synastry.js`: Sinastri ilişki uyumu kabuğu.
-12. `src/astrology-platform/pages/glossary.js`: Astroloji sözlüğü kabuğu.
-13. `src/app-router.js`: Preview ortamında istekleri izole şekilde astroloji platformuna yönlendiren katman eklendi.
-14. `wrangler.preview.jsonc`: Preview yapılandırması güncellendi.
-15. `scripts/astrology-preview-test.mjs`: Aşama 1 otomasyon testi.
-16. `scripts/verify-live-preview.mjs`: Canlı preview doğrulama aracı.
-17. `docs/phase-1-implementation.md`: Aşama 1 uygulama ve preview dağıtım raporu.
-18. `docs/progress.md`: Aşama takip matrisi güncellendi.
-19. `docs/handoff.md`: Bu belge güncellendi.
+3. `src/astrology-platform/layout.js`: Responsive master layout, dil değiştirici, erişilebilir `hidden inert` çekmece.
+4. `src/astrology-platform/router.js`: Rota eşleyici, dil belirleyici ve preview güvenlik başlıkları.
+5. `src/astrology-platform/pages/*`: 8 adet sayfa kabuğu (`home.js`, `natal-chart.js`, `zodiac.js`, `sky-calendar.js`, `retrogrades.js`, `transits.js`, `synastry.js`, `glossary.js`).
+6. `src/app-router.js`: İzole preview yönlendirme katmanı, Gözde ana sayfa preview rotası ve mock form koruması.
+7. `src/analytics-router.js`: Preview ortamında yeni astroloji rotalarının legacy 301 yönlendirmelerinden korunması.
+8. `wrangler.preview.jsonc`: Preview Worker ayrımı, `ASTROLOGY_PREVIEW_ENABLED: "true"`, `GOZDE_LAUNCH_ENABLED: "true"`.
+9. `scripts/astrology-preview-test.mjs` & `scripts/verify-live-preview.mjs`: Otomatik regresyon ve canlı preview doğrulama suite'i.
 
 ---
 
-## 5. Beş Dilin (TR, EN, EL/GR, ES, AR) Durumu
+## 5. Değişmeyen Sistemler ve Güvenlik Sınırları
 
-- **TR (Kaynak):** Tüm yeni astroloji sayfaları Türkçe olarak erişilebilir.
-- **EN (`/en`):** İngilizce rota eşlenikleri ve navigasyon etiketleri aktif.
-- **EL (`/gr`):** Yunanca rotalar `/gr` altında erişilebilir.
-- **ES (`/es`):** İspanyolca sayfalar aktiftir.
-- **AR (`/ar`):** Arapça sayfalar `dir="rtl"` ve aynalanmış sayfa düzeniyle çalışmaktadır.
-
----
-
-## 6. Güvenlik, Gizlilik ve İzolasyon Durumu
-
-- **Production İzolasyonu:** Production Worker (`mythborn`), Production D1 (`mythborn-membership`), `mythborn.co` domaini, SSL ve DNS ayarları kesinlikle değiştirilmemiştir.
-- **Preview Güvenliği:** Preview sayfalarında `noindex, nofollow` başlığı zorunludur. Arama motorları preview ortamını indeksleyemez. Formlar test/mock modundadır; veritabanına yazılmaz, e-posta gönderilmez.
-- **Ücretli Servisler:** Sıfır ücretli servis politikası korunmaktadır.
+- **Production Worker:** `mythborn` koduna, secret'larına ve varlıklarına deploy yapılmadı.
+- **Production D1:** `mythborn-membership` veritabanı okuma/yazma/şema değişikliğine maruz kalmadı.
+- **Production DNS/Domain:** `mythborn.co` domainine veya Cloudflare yönlendirmelerine dokunulmadı.
+- **Formlar ve İletişim:** Preview ortamında tüm `/api/gozde-*` istekleri mock yanıt döndürür; veritabanına yazmaz, e-posta göndermez, CRM'e iletmez.
 
 ---
 
-## 7. Kredi ve Bütçe Durumu
+## 6. Bir Sonraki Güvenli Adım (Aşama 2 Planı)
 
-- **Toplam Bütçe:** 236 Kredi
-- **Harcanan Kredi:** 47 Kredi
-- **Kalan Kredi:** 189 Kredi
-
----
-
-## 8. Geri Dönüş (Rollback) Yöntemi
-
-Olası bir sorun anında aşağıdaki adımla anında bilinen son çalışan sürüme dönülebilir:
-```bash
-git checkout main
-git reset --hard 18484f3
-npm run deploy
-```
-
----
-
-## 9. Bir Sonraki En Küçük ve Güvenli Adım
-
-**Aşama 2 Onayı:** Kullanıcıdan yazılı onay alındığında:
-1. `astronomy-engine` yerel efemeris hesaplamalarını (Güneş, Ay, gezegen boylamları, hızları, retro tespiti, transit açıları, Ay evreleri) gerçekleştiren izole veri çekirdeğini (`src/astrology-platform/data-core.js`) kodlamak.
-2. `docs/free-data-dependencies.md` belgesinde planlanan yerel şehir/koordinat JSON sözlüğünü (`src/data/major-cities.json`) ekleyerek Open-Meteo bağımlılığını offline-first hale getirmek.
-3. Testleri koşturup preview ortamında doğrulamak.
+Kullanıcı Aşama 2 için onay verdiğinde:
+1. `src/data/major-cities.json` oluşturularak Türkiye'nin 81 ili ve 100 küresel başkent için çevrimdışı geocoding sözlüğü eklenecek.
+2. `src/astrology.js` içindeki Open-Meteo isteğine yerel önbellek ve `AbortSignal.timeout(3500)` eklenecek.
+3. `astronomy-engine` kütüphanesiyle geocentric ekliptik boylamlar, gezegen hızları, retro tespiti ve orblar hesaplanacak.
+4. Yeni modüller yalnızca preview ortamında test edilecek; production'a dokunulmayacak.

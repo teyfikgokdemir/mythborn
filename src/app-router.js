@@ -76,8 +76,11 @@ const searchItems=locale=>{
 export default {
   async fetch(request,env,ctx){
     const incoming=new URL(request.url);
-    if(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'&&!incoming.pathname.startsWith('/api/')&&!incoming.pathname.startsWith('/cdn-cgi/')&&!/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
+    if(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'&&isAstrologyPlatformPath(incoming.pathname)&&!incoming.pathname.startsWith('/api/')&&!incoming.pathname.startsWith('/cdn-cgi/')&&!/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
       return handleAstrologyRequest(request,env);
+    }
+    if(env.ENVIRONMENT==='preview'&&(incoming.pathname==='/kartlarin-gozdesi'||incoming.pathname==='/gozde')){
+      return new Response(gozdeLanding('/'),{headers:{'content-type':'text/html; charset=utf-8','content-language':'tr','cache-control':'no-store'}});
     }
     if(incoming.pathname==='/api/gozde-inquiry'||incoming.pathname==='/api/gozde-apply'||incoming.pathname==='/api/gozde-submissions'){
       if(env.ENVIRONMENT==='preview'){

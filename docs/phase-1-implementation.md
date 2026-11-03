@@ -2,14 +2,17 @@
 
 **Tarih:** 2026-11-04  
 **Ortam:** Preview (`https://mythborn-preview.teyfikgokdemir.workers.dev`)  
-**Sürüm ID (Preview):** `7f6ffc80-709b-4eeb-b457-c3507172be56`  
+**Sürüm ID (Preview):** `56e0fa6c-93ca-4ac3-be46-dc02319c352f`  
+**Worker Adı:** `mythborn-preview`  
+**D1 Veritabanı (Preview):** `mythborn-membership-preview` (`82d3d933-282d-4369-b68e-cee26b66349b`)  
 **Geliştirme Dalı:** `work/astrology-platform-phase0`  
+**Production Deploy:** NOT EXECUTED (Onaylanana kadar durduruldu)  
 
 ---
 
 ## 1. Amaç ve Kapsam
 
-Bu adımda yalnızca yeni astroloji platformunun **frontend iskeleti, tasarım token'ları, 5 dilli rota yapısı ve sayfa kabukları** hazırlanmış; hiçbir otomatik veri, yapay zekâ metni veya veritabanı migrasyonu eklenmemiştir. Production ortamına kesinlikle dokunulmamış; sistem izole `mythborn-preview` Worker'ına dağıtılmıştır.
+Bu adımda yalnızca yeni astroloji platformunun **frontend iskeleti, tasarım token'ları, 5 dilli rota yapısı ve sayfa kabukları** hazırlanmış; hiçbir otomatik veri, yapay zekâ metni veya veritabanı migrasyonu eklenmemiştir. Production ortamına (`mythborn.co`) kesinlikle dokunulmamış; sistem izole `mythborn-preview` Worker'ına dağıtılmıştır.
 
 ---
 
@@ -32,15 +35,16 @@ Bu adımda yalnızca yeni astroloji platformunun **frontend iskeleti, tasarım t
 8. [`src/astrology-platform/pages/glossary.js`](file:///C:/Users/teyfi/mythborn/src/astrology-platform/pages/glossary.js): Astroloji sözlüğü kabuğu (Evler, açılar, temel noktalar ve elementler).
 
 ### Test ve Doğrulama Dosyaları
-- [`scripts/astrology-preview-test.mjs`](file:///C:/Users/teyfi/mythborn/scripts/astrology-preview-test.mjs): Preview 5 dil, RTL yönü, mobil menü `hidden inert`, noindex başlıkları ve mock form yanıtı otomasyon testi.
+- [`scripts/astrology-preview-test.mjs`](file:///C:/Users/teyfi/mythborn/scripts/astrology-preview-test.mjs): Preview 5 dil, RTL yönü, mobil menü `hidden inert`, noindex başlıkları, mock form yanıtı ve Gözde sayfaları regresyon testi.
 - [`scripts/verify-live-preview.mjs`](file:///C:/Users/teyfi/mythborn/scripts/verify-live-preview.mjs): Canlı preview ve production izolasyon kontrol testi.
 
 ---
 
 ## 3. Değiştirilen Dosyalar
 
-1. [`src/app-router.js`](file:///C:/Users/teyfi/mythborn/src/app-router.js): Preview ortamında (`env.ENVIRONMENT === 'preview'`) istekleri güvenli bir şekilde `handleAstrologyRequest` modülüne aktaran ve iletişim formlarını mock moda alan izolasyon katmanı eklendi. Production akışlarına (`env.ENVIRONMENT === 'production'`) dokunulmadı.
-2. [`wrangler.preview.jsonc`](file:///C:/Users/teyfi/mythborn/wrangler.preview.jsonc): Preview için `COMING_SOON_ENABLED: "false"` ve `ASTROLOGY_PREVIEW_ENABLED: "true"` değişkenleri tanımlandı.
+1. [`src/analytics-router.js`](file:///C:/Users/teyfi/mythborn/src/analytics-router.js): Preview ortamında yeni astroloji platformu sayfalarının legacy 301 yönlendirmelerine takılmasını engelleyen ve isteği doğrudan preview işleyicisine ileten koruma eklendi.
+2. [`src/app-router.js`](file:///C:/Users/teyfi/mythborn/src/app-router.js): Preview ortamında (`env.ENVIRONMENT === 'preview'`) istekleri güvenli bir şekilde `handleAstrologyRequest` modülüne aktaran, `/kartlarin-gozdesi` ile Gözde ana sayfasını preview eden ve formları mock moda alan izolasyon katmanı eklendi. Production akışlarına (`env.ENVIRONMENT === 'production'`) dokunulmadı.
+3. [`wrangler.preview.jsonc`](file:///C:/Users/teyfi/mythborn/wrangler.preview.jsonc): Preview için `COMING_SOON_ENABLED: "false"`, `GOZDE_LAUNCH_ENABLED: "true"` ve `ASTROLOGY_PREVIEW_ENABLED: "true"` değişkenleri tanımlandı.
 
 ---
 
@@ -50,7 +54,8 @@ Bu adımda yalnızca yeni astroloji platformunun **frontend iskeleti, tasarım t
 2. **Production D1 Veritabanı:** `mythborn-membership` (`99490fbd-8f6c-4bf9-b5ed-bffdfdbd8771`) veritabanına sorgu atılmadı, schema değiştirilmedi.
 3. **Domain ve DNS:** `mythborn.co` ana domainine DNS, SSL veya route müdahalesi yapılmadı.
 4. **Production SEO:** Canlı 301 yönlendirmeleri, `sitemap.xml`, `sitemap-video.xml` ve `robots.txt` dosyaları değiştirilmedi.
-5. **Open-Meteo ve Efemeris:** Mevcut `src/astrology.js` motoru bozulmadı, yeni ücretli servis eklenmedi.
+5. **Mevcut Gözde Sayfaları:** İletişim formu, danışmanlık, video açılımları ve blog akışları preview'da 200 OK ile korundu.
+6. **Open-Meteo ve Efemeris:** Mevcut `src/astrology.js` motoru bozulmadı, yeni ücretli servis eklenmedi.
 
 ---
 
@@ -60,5 +65,6 @@ Bu adımda yalnızca yeni astroloji platformunun **frontend iskeleti, tasarım t
 - **Ortam İzolasyon Testi:** `PASS` (`scripts/runtime-config-audit.mjs`)
 - **Astroloji Regresyon Testi:** `PASS` (`scripts/astrology-regression-audit.mjs`)
 - **Aşama 1 Preview Testi:** `PASS` (`scripts/astrology-preview-test.mjs`)
+- **Canlı Preview Uçtan Uca Doğrulama:** `PASS` (`scripts/verify-live-preview.mjs`)
 - **Paket Güvenlik Denetimi (`npm audit`):** `0 vulnerabilities`
 - **Canlı Preview URL Doğrulaması:** `https://mythborn-preview.teyfikgokdemir.workers.dev/` HTTP 200, `x-robots-tag: noindex, nofollow`, 5 dilde aktif.

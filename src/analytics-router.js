@@ -1,4 +1,5 @@
 import app from './app-router.js';
+import { isAstrologyPlatformPath } from './astrology-platform/router.js';
 
 const appendSources=(policy,directive,sources)=>{
   const pattern=new RegExp(`(^|;\\s*)${directive}\\s+([^;]*)`);
@@ -311,6 +312,10 @@ export default {
     }
     if(url.pathname==='/robots.txt')return robotsResponse();
     if(env.ENVIRONMENT==='production'&&isDormantProductionApi(url.pathname))return dormantApiResponse();
+    if(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'&&isAstrologyPlatformPath(url.pathname)){
+      const response=await app.fetch(request,env,ctx);
+      return cacheStaticAssetResponse(await secureHtmlResponse(response),url);
+    }
     const legacyTarget=resolveLegacyRedirect(url.pathname);
     if(legacyTarget)return Response.redirect(`https://mythborn.co${legacyTarget}`,301);
     if(isLegacyShopifyPath(url.pathname))return goneResponse();
