@@ -1,22 +1,51 @@
-// Mythborn Astrology Platform — 12 Zodiac Signs Index View Skeleton
+// Mythborn Astrology Platform — 12 Zodiac Signs Guide
 import { ASTROLOGY_LOCALES, ZODIAC_SIGNS } from '../i18n.js';
+import { getRouteHref } from '../layout.js';
 
 export const renderZodiacIndexView = ({ locale = 'tr' }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
+  const isRtl = t.dir === 'rtl';
+  const arrow = isRtl ? '←' : '→';
 
   const cardsHtml = ZODIAC_SIGNS.map((sign) => {
     const signName = sign[locale] || sign.tr;
+
+    // Natural title generation (NO "Koç 12 Burç" repeats!)
+    const naturalTitle = locale === 'tr' ? `${signName} Burcu Rehberi`
+      : locale === 'en' ? `${signName} Archetype & Guide`
+      : locale === 'el' ? `Οδηγός: ${signName}`
+      : locale === 'es' ? `Guía del Signo ${signName}`
+      : `دليل برج ${signName}`;
+
+    const elementLabel = sign.element.toUpperCase();
+
+    const desc = locale === 'tr'
+      ? `${signName}; ${sign.element === 'fire' ? 'Ateş' : sign.element === 'earth' ? 'Toprak' : sign.element === 'air' ? 'Hava' : 'Su'} elementi ve ${sign.quality} niteliğiyle, ${sign.ruler} yönetiminde temel yaşam motivasyonunu sembolize eder.`
+      : locale === 'en'
+      ? `${signName} embodies the ${sign.element} element and ${sign.quality} modality, ruled by ${sign.ruler}, representing foundational life momentum.`
+      : locale === 'el'
+      ? `${signName} εκπροσωπεί το στοιχείο ${sign.element} και ${sign.quality} ιδιοσυγκρασία υπό τον κυβερνήτη ${sign.ruler}.`
+      : locale === 'es'
+      ? `${signName} representa el elemento ${sign.element} y modalidad ${sign.quality}, bajo la regencia de ${sign.ruler}.`
+      : `${signName} يمثل عنصر ${sign.element} وحركة ${sign.quality} تحت حكم كوكب ${sign.ruler}.`;
+
     return `
-      <article id="${sign.slug}" class="astro-card">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px">
-          <span style="font-size:28px; color:var(--gold)">${sign.symbol}</span>
-          <span class="astro-card-tag" style="margin-bottom:0">${sign.element.toUpperCase()}</span>
+      <article id="${sign.slug}" class="zodiac-natural-card">
+        <div class="zodiac-natural-header">
+          <span class="zodiac-natural-symbol" aria-hidden="true">${sign.symbol}</span>
+          <span class="zodiac-element-tag element-${sign.element}">${elementLabel}</span>
         </div>
-        <h3>${signName}</h3>
-        <p>Yönetici Gezegen: <strong>${sign.ruler}</strong></p>
-        <p style="font-size:13px; color:var(--muted)">Doğum haritasındaki ${signName} arketipi; temel motivasyonları, ego ifadesini ve liderlik dinamiklerini sembolize eder.</p>
-        <div style="margin-top:auto; padding-top:14px; border-top:1px solid rgba(255,255,255,0.06); font-size:12px; color:var(--gold)">
-          <span>✦ Karakteristik & Arketip Rehberi</span>
+        <h3 class="zodiac-natural-title">${naturalTitle}</h3>
+        <p class="zodiac-natural-ruler">🪐 ${sign.ruler} · ${sign.quality}</p>
+        <div class="zodiac-natural-dates">${sign.dates}</div>
+        <p style="font-size:13px; color:var(--muted); line-height:1.6; margin-top:10px">
+          ${desc}
+        </p>
+        <div style="margin-top:auto; padding-top:14px; border-top:1px solid rgba(255,255,255,0.06); font-size:12px; display:flex; justify-content:space-between; align-items:center">
+          <span style="color:var(--gold-bright)">✦ ${sign.dates}</span>
+          <a href="${getRouteHref(locale, 'natal')}" style="color:var(--gold); text-decoration:none">
+            <span>${t.menu.natal}</span> <span aria-hidden="true">${arrow}</span>
+          </a>
         </div>
       </article>
     `;
@@ -25,7 +54,7 @@ export const renderZodiacIndexView = ({ locale = 'tr' }) => {
   return `
     <section class="astro-hero">
       <div class="astro-container">
-        <span class="astro-hero-eyebrow">✦ 12 BURÇ & ARKETİPİK REHBER</span>
+        <span class="astro-hero-eyebrow">✦ 12 BURÇ ARKETİPİ & KOZMİK MİZİÇ</span>
         <h1>${t.sections.zodiacTitle}</h1>
         <p class="astro-hero-lead">${t.sections.zodiacSub}</p>
       </div>

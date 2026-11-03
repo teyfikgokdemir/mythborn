@@ -44,13 +44,15 @@ export const handleAstrologyRequest = (request, env) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
   const isPreview = env?.ENVIRONMENT === 'preview';
 
+  const searchParams = Object.fromEntries(url.searchParams.entries());
+
   let contentHtml = '';
   let title = '';
   let description = '';
 
   switch (routeKey) {
     case 'natal':
-      contentHtml = renderNatalChartView({ locale });
+      contentHtml = renderNatalChartView({ locale, searchParams });
       title = `${t.menu.natal} Hesaplama`;
       description = 'Doğum haritası, yükselen burç ve gezegen evleri hesaplama aracı.';
       break;
@@ -75,7 +77,7 @@ export const handleAstrologyRequest = (request, env) => {
       description = 'Canlı gezegen transitleri ve geometrik açılar.';
       break;
     case 'synastry':
-      contentHtml = renderSynastryView({ locale });
+      contentHtml = renderSynastryView({ locale, searchParams });
       title = `${t.menu.synastry} ve Çift Haritası Uyumu`;
       description = 'İki harita arası ilişki ve uyum dinamikleri.';
       break;
