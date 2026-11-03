@@ -20,7 +20,8 @@ import {labels,llms} from './localized-shell-content.js';
 import {notFoundPage,searchPage} from './localized-static-pages.js';
 import {decorate} from './page-decorator.js';
 import {discoveryPage,discoveryMeta} from './discovery-core.js';
-import {culturalLocale,culturalPage,culturalSitemapEntries,isCulturalPath} from './cultural-platform.js';
+import { culturalLocale, culturalPage, culturalSitemapEntries, isCulturalPath } from './cultural-platform.js';
+import { handleAstrologyRequest, isAstrologyPlatformPath } from './astrology-platform/router.js';
 import {
   LLMS_TEXT,
   LLMS_FULL_TEXT,
@@ -75,7 +76,16 @@ const searchItems=locale=>{
 export default {
   async fetch(request,env,ctx){
     const incoming=new URL(request.url);
+    if(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'&&!incoming.pathname.startsWith('/api/')&&!incoming.pathname.startsWith('/cdn-cgi/')&&!/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
+      return handleAstrologyRequest(request,env);
+    }
     if(incoming.pathname==='/api/gozde-inquiry'||incoming.pathname==='/api/gozde-apply'||incoming.pathname==='/api/gozde-submissions'){
+      if(env.ENVIRONMENT==='preview'){
+        return new Response(JSON.stringify({ok:true,mock:true,message:'Preview test mode — no real data stored or emails sent.'}),{
+          status:200,
+          headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}
+        });
+      }
       return handleGozdeApi(request,env);
     }
     if((env.GOZDE_LAUNCH_ENABLED==='true' || (env.COMING_SOON_ENABLED!=='true' && isGozdeApplyPath(incoming.pathname))) && (request.method==='GET'||request.method==='HEAD') && !incoming.pathname.startsWith('/api/') && !incoming.pathname.startsWith('/cdn-cgi/') && !/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
