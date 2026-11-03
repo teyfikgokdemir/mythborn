@@ -1,90 +1,71 @@
-# Mythborn.co — Devralma ve Süreklilik Dokümanı (Handoff)
+# Mythborn.co — Devralma ve Handoff Dokümanı
 
-Bu doküman, Mythborn platformunun başka bir yapay zekâ ajanı, yazılım mühendisi veya proje yöneticisi tarafından sıfır bilgi kaybıyla devralınabilmesi için hazırlanmıştır.
-
----
-
-## 1. Temel Proje ve Git Bilgileri
-
-- **Canlı (Production) URL:** `https://mythborn.co` (Kesinlikle dokunulmadı)
-- **Önizleme (Preview) URL:** `https://mythborn-preview.teyfikgokdemir.workers.dev` (Aşama 1 yayında)
-- **Son Çalışan Baseline Commit:** `18484f3` (Canlıdaki sürüm)
-- **Aşama 0 Checkpoint Commit:** `5e5d46d`
-- **Aşama 0.1 Checkpoint Commit:** `a3d8c05`
-- **Aşama 1 Checkpoint Commit:** `a9062ce` / `54a561e`
-- **Aktif Geliştirme Dalı:** `work/astrology-platform-phase0`
-- **Preview Worker Adı:** `mythborn-preview`
-- **Preview Sürüm ID:** `56e0fa6c-93ca-4ac3-be46-dc02319c352f`
-- **Preview D1 Veritabanı:** `mythborn-membership-preview` (`82d3d933-282d-4369-b68e-cee26b66349b`)
-- **Production Worker Adı:** `mythborn` (Dokunulmadı)
-- **Production D1 Veritabanı:** `mythborn-membership` (`99490fbd-8f6c-4bf9-b5ed-bffdfdbd8771` - Dokunulmadı)
-- **Production Dağıtımı:** `NOT EXECUTED` (Onaylanana kadar durduruldu)
+Bu doküman, herhangi bir insan yazılımcı veya yapay zekâ asistanının projeyi hiçbir belirsizlik yaşamadan kaldığı yerden devralabilmesi için hazırlanmıştır.
 
 ---
 
-## 2. Çalıştırma, Test ve Dağıtım Komutları
+## 1. Proje ve Ortam Özeti
 
-```bash
-# Kurulum
-npm install
-
-# Test ve Denetim (Tüm proje test suiti geçmek zorundadır)
-npm run audit
-
-# Aşama 1 Astroloji Preview Testi (Yerel simülasyon)
-node scripts/astrology-preview-test.mjs
-
-# Canlı Preview Uçtan Uca Doğrulama Testi (Canlı worker testi)
-node scripts/verify-live-preview.mjs
-
-# npm Güvenlik Açığı Taraması (Dependency vulnerability scan)
-npm audit
-
-# Yerel Çalıştırma
-npm run dev
-
-# Önizleme Ortamına Dağıtım (Yalnızca preview worker'ı günceller)
-npm run preview
-
-# Canlı Ortama Dağıtım (Yalnızca kullanıcı yazılı onayı sonrası)
-npm run deploy
-```
+* **Aktif Branch:** `work/astrology-platform-phase0`
+* **Son Commit Hashleri:**
+  * `e01a7a6` — `feat: add multilingual horoscope pipeline pilot`
+  * `fd773af` — `feat: implement multilingual p0 astrology experiences`
+  * `4cf4c3d` — `feat: add free astronomy data core`
+  * `804c871` — `data: add offline city and timezone dictionary`
+  * `786271f` — `design: implement ultra-elite astrology visual system`
+* **Preview Ortamı:** `https://mythborn-preview.teyfikgokdemir.workers.dev`
+  * Worker: `mythborn-preview`
+  * D1 Binding: `mythborn-membership-preview` (`82d3d933-282d-4369-b68e-cee26b66349b`)
+  * Vars: `ASTROLOGY_PREVIEW_ENABLED=true`, `GOZDE_LAUNCH_ENABLED=true`, `ENVIRONMENT=preview`
+* **Production Ortamı:** `mythborn.co`
+  * Worker: `mythborn`
+  * D1 Binding: `mythborn-membership`
+  * **DURUMU: KESİNLİKLE DOKUNULMADI, DEPLOY EDİLMEDİ.**
 
 ---
 
-## 3. Strateji ve Mimari Dokümantasyon Envanteri
+## 2. Tamamlanan Mimari ve Bileşenler
 
-Proje kökündeki `docs/` klasöründe yer alan strateji ve mimari belgeler:
+1. **Çevrimdışı Şehir Sözlüğü (`src/data/major-cities.json`):**
+   * 81 Türkiye ili ve 20 küresel başkent/merkez.
+   * Koordinatlar, IANA zaman dilimleri (`tz`, `timezone`).
+   * Çift yönlü normalizasyon (Türkçe karakter ve aksan uyumu).
 
-1. [`docs/global-astrology-demand-research.md`](file:///C:/Users/teyfi/mythborn/docs/global-astrology-demand-research.md): 6 Pazar (TR, US/CA, UK/EU, ES/LATAM, EL, AR) talep ve LLM soru analizi.
-2. [`docs/global-search-and-ai-question-map.csv`](file:///C:/Users/teyfi/mythborn/docs/global-search-and-ai-question-map.csv): Çok dilli arama ve yapay zekâ sorguları öncelik matrisi.
-3. [`docs/competitor-and-premium-benchmark.md`](file:///C:/Users/teyfi/mythborn/docs/competitor-and-premium-benchmark.md): 8 Global lider, 5 yerel platform analizi ve farklılaşma matrisi.
-4. [`docs/mythborn-positioning-and-first-3-seconds.md`](file:///C:/Users/teyfi/mythborn/docs/mythborn-positioning-and-first-3-seconds.md): İlk 3 saniye hero stratejisi, 5 alternatif ve tek CTA önerisi.
-5. [`docs/ultra-elite-visual-direction.md`](file:///C:/Users/teyfi/mythborn/docs/ultra-elite-visual-direction.md): "Obsidian & Celestial Gold" görsel sanat yönetimi, renkler ve tipografi.
-6. [`docs/visual-assets-plan.md`](file:///C:/Users/teyfi/mythborn/docs/visual-assets-plan.md): Vektör SVG, kamu malı uzay haritaları ve matematiksel harita çizim planı.
-7. [`docs/global-content-architecture.md`](file:///C:/Users/teyfi/mythborn/docs/global-content-architecture.md): P0/P1/P2 içerik ve rota şartnamesi, 24 saat kuralı, doğal kart dili.
-8. [`docs/five-language-content-strategy.md`](file:///C:/Users/teyfi/mythborn/docs/five-language-content-strategy.md): 5 dil terminoloji sözlüğü, Arapça RTL kuralları ve eşitlik kapısı.
-9. [`docs/free-automation-architecture.md`](file:///C:/Users/teyfi/mythborn/docs/free-automation-architecture.md): `astronomy-engine`, yerel şehir sözlüğü ve kural tabanlı yorum mimarisi.
-10. [`docs/phase-2-implementation-plan.md`](file:///C:/Users/teyfi/mythborn/docs/phase-2-implementation-plan.md): Aşama 2 (Veri Çekirdeği) iş adımları ve kabul kriterleri.
-11. [`docs/phase-2-credit-budget.md`](file:///C:/Users/teyfi/mythborn/docs/phase-2-credit-budget.md): Kredi takip tablosu (182 Kredi bakiye).
-12. [`docs/progress.md`](file:///C:/Users/teyfi/mythborn/docs/progress.md): Aşamalar ve anlık durum takibi.
-13. [`docs/rollback-plan.md`](file:///C:/Users/teyfi/mythborn/docs/rollback-plan.md): Tek komutluk geri dönüş planı.
+2. **Ücretsiz Astronomik Veri Çekirdeği (`src/astrology-platform/data-core.js`):**
+   * `astronomy-engine` v2.1.19 (MIT lisanslı) tabanlı.
+   * Güneş, Ay ve 8 gezegen boylamı, enlemi ve günlük hız analizi.
+   * Anlık retrograd tespiti (günlük hız negatif olan gezegenler).
+   * Ay fazları (açı derecesi, % aydınlanma, yaklaşan Yeniay ve Dolunay).
+   * Yerel yıldız zamanı (Sidereal Time) ve ekliptik eğiklik (`eps=23.4392911°`) ile hesaplanan ASC, MC, DSC, IC ve 12 Eşit Ev.
+   * Doğum saati bilinmiyorsa güvenli kısmi çıktı (`timeUnknown=true`).
+   * 5 dilli Zodyak eşlemesi (TR, EN, EL, ES, AR).
+   * Katı 24 saat zaman formatı (`HH:mm`, TSI ve UTC).
+
+3. **P0 Astroloji Sayfaları (`src/astrology-platform/pages/`):**
+   * `home.js`: 3 saniyelik değer teklifi, Big Three Triad, hızlı doğum haritası giriş kutusu, anlık gökyüzü/ay durumu, 12 doğal etiketli burç kartı (tekrar eden etiketler temizlendi).
+   * `natal-chart.js`: Doğum bilgileri giriş formu, Zodyak Çarkı SVG gösterimi, gezegen ve ev tablosu, açı kalıpları, etik feragatname. Kişisel veri içeren URL üretmez.
+   * `zodiac.js`: 12 doğal başlıklı burç arketipi rehberi.
+   * `sky-calendar.js`: Canlı ay durumu ve 2026 Kasım-Aralık lunasyon takvimi.
+   * `retrogrades.js`: Aktif retrolar ve 2026 gezegen retroları rehberi.
+   * `transits.js`: Canlı transit gökyüzü ve etkin açılar.
+   * `synastry.js`: 2 haritalı ilişki ve açı karşılaştırma motoru.
+   * `glossary.js`: 16 temel kavramlık 5 dilli astroloji sözlüğü.
+
+4. **Otomatik Burç Yorumlama Pilotu (`src/astrology-platform/horoscope-pipeline.js`):**
+   * 12 burç x 5 dil kural tabanlı günlük yorum motoru.
+   * Etik süzgeç: Deterministik vaat, felaket tellallığı, finansal ve tıbbi tavsiye barındırmaz.
+   * `/api/astrology/daily-horoscope` JSON endpoint'i.
+
+5. **Testler ve Güvenlik:**
+   * `node scripts/astrology-data-core-test.mjs`: 11/11 birim testi geçerli.
+   * `node scripts/verify-live-preview.mjs`: Canlı preview üzerinde 15/15 kontrol başarılı.
+   * `npm run audit`: 71 dosya sözdizim ve ortam izolasyonu denetimini geçti.
+   * `npm audit`: 0 güvenlik açığı.
 
 ---
 
-## 4. Değişmeyen Sistemler ve Güvenlik Sınırları
+## 3. Kredi ve Bütçe Durumu
 
-- **Production Worker:** `mythborn` koduna, secret'larına ve varlıklarına deploy yapılmadı.
-- **Production D1:** `mythborn-membership` veritabanı okuma/yazma/şema değişikliğine maruz kalmadı.
-- **Production DNS/Domain:** `mythborn.co` domainine veya Cloudflare yönlendirmelerine dokunulmadı.
-- **Kod Değişikliği:** Bu oturumda hiçbir kod değişikliği veya görsel üretimi yapılmadı; yalnızca `docs/` altında araştırma ve planlama dosyaları üretildi.
-
----
-
-## 5. Bir Sonraki Güvenli Adım (Aşama 2 Başlangıcı)
-
-Kullanıcı Aşama 2 için onay verdiğinde:
-1. `src/data/major-cities.json` oluşturularak Türkiye'nin 81 ili ve 100 küresel başkent için çevrimdışı geocoding sözlüğü eklenecek.
-2. `src/astrology.js` içindeki Open-Meteo isteğine yerel önbellek ve `AbortSignal.timeout(3500)` eklenecek.
-3. `astronomy-engine` kütüphanesiyle geocentric ekliptik boylamlar, gezegen hızları, retro tespiti ve orblar hesaplanacak.
-4. Yeni modüller yalnızca preview ortamında test edilecek; production'a kesinlikle dokunulmayacak.
+* **Toplam Bütçe:** 236 Kredi
+* **Kullanılan:** 74 Kredi
+* **Kalan:** 162 Kredi

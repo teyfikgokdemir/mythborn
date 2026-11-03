@@ -35,3 +35,7 @@
 ### Karar 7: Güvenli Preview İzolasyonu ve Mock Formlar
 - **Gerekçe:** Canlı üretim sistemine (`mythborn.co`) ve canlı D1 veritabanına (`mythborn-membership`) hiçbir sahte veya test verisinin yazılmaması.
 - **Standart:** Preview worker'ı (`mythborn-preview`) `x-robots-tag: noindex, nofollow` ile korunur. Form gönderimleri test/mock modunda çalışır.
+
+### Karar 8: Kural Tabanlı Otomatik Burç Yorumlama ve Etik Süzgeç
+- **Gerekçe:** Ücretli veya kapalı kaynaklı harici LLM bağımlılıkları ve halüsinasyon riskini engellemek.
+- **Standart:** 12 burç x 5 dil için kural tabanlı arketip matrisi kullanılır (`src/astrology-platform/horoscope-pipeline.js`). Deterministik gelecek vaadi, felaket tellallığı, manipülatif satış, finansal ve tıbbi tavsiye içeren tüm ifadeler regex etik süzgeciyle kesin olarak engellenir. Yayınlanan her içerik `content_version: 1.0.0-pilot`, `translation_status: complete`, `review_status: verified` meta verilerini taşır.
