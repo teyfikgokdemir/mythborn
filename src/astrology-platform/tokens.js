@@ -460,6 +460,260 @@ html[dir="rtl"] .astro-drawer-panel {
   margin-top: 6px;
 }
 
+/* Big Three & Natural Zodiac Components */
+.big-three-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin: 36px 0;
+}
+.big-three-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 24px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.big-three-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.big-three-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+.big-three-glyph {
+  font-size: 28px;
+  margin-bottom: 12px;
+  display: inline-block;
+  color: var(--gold-bright);
+}
+.big-three-card h3 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 8px;
+  font-weight: 400;
+}
+.big-three-card p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Zodiac Natural Card */
+.zodiac-natural-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.zodiac-natural-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  background: var(--card-elevated);
+}
+.zodiac-natural-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.zodiac-natural-symbol {
+  font-size: 24px;
+  color: var(--gold);
+}
+.zodiac-element-tag {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.element-fire { background: rgba(229, 107, 85, 0.15); color: #f28b77; border: 1px solid rgba(229, 107, 85, 0.3); }
+.element-earth { background: rgba(95, 168, 117, 0.15); color: #7ecb94; border: 1px solid rgba(95, 168, 117, 0.3); }
+.element-air { background: rgba(107, 168, 229, 0.15); color: #8ec2f7; border: 1px solid rgba(107, 168, 229, 0.3); }
+.element-water { background: rgba(136, 117, 229, 0.15); color: #aca0f7; border: 1px solid rgba(136, 117, 229, 0.3); }
+
+.zodiac-natural-title {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  color: #fff;
+  font-weight: 400;
+  margin-top: 4px;
+}
+.zodiac-natural-ruler {
+  font-size: 12px;
+  color: var(--dim);
+}
+.zodiac-natural-dates {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Sky Calendar Snapshot */
+.sky-snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.sky-snapshot-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 18px;
+  text-align: center;
+}
+.sky-snapshot-phase {
+  font-size: 26px;
+  margin-bottom: 8px;
+  color: var(--gold);
+}
+.sky-snapshot-card h4 {
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.sky-snapshot-card time {
+  display: block;
+  font-size: 13px;
+  color: var(--gold-bright);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.sky-snapshot-card small {
+  font-size: 11px;
+  color: var(--dim);
+}
+
+/* Quick Natal Box in Hero */
+.astro-quick-box {
+  background: rgba(19, 16, 27, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  max-width: 680px;
+  margin: 36px auto 0;
+  text-align: start;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+.astro-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+.astro-quick-field label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.astro-quick-field input {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+}
+.astro-quick-field input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.astro-quick-btn {
+  width: 100%;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #d4ae75 0%, #aa8447 100%);
+  color: #08080c;
+  font-weight: 600;
+  border-radius: 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.astro-quick-btn:hover {
+  box-shadow: 0 4px 16px rgba(212, 174, 117, 0.35);
+  transform: translateY(-1px);
+}
+
+/* SVG Natal Wheel Container */
+.natal-wheel-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 28px auto;
+  max-width: 520px;
+}
+.natal-wheel-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.6));
+}
+
+/* Tables for Transits & Aspects */
+.astro-table-wrap {
+  overflow-x: auto;
+  margin: 24px 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+}
+.astro-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: start;
+}
+.astro-table th {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--gold);
+  padding: 12px 16px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.astro-table td {
+  padding: 12px 16px;
+  color: var(--cream);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  white-space: nowrap;
+}
+.astro-table tr:hover td {
+  background: rgba(212, 174, 117, 0.05);
+}
+
+@media (max-width: 980px) {
+  .big-three-grid { grid-template-columns: 1fr; }
+  .sky-snapshot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .astro-quick-grid { grid-template-columns: 1fr; }
+}
+
 /* Footer */
 .astro-footer {
   margin-top: auto;

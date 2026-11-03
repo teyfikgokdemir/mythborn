@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%" role="img" aria-label="Mythborn 360 Derecelik Zodyak Çarkı">
+  <title>Mythborn Zodyak ve Gezegen Çarkı</title>
+  <desc>360 derecelik 12 burç evi, ekliptik boylam çizgileri ve açı merkezini gösteren astronomik çark.</desc>
+  <defs>
+    <radialGradient id="wheelGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141022" stop-opacity="0.9"/>
+      <stop offset="70%" stop-color="#090810" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#050608" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="goldRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#edd09e"/>
+      <stop offset="50%" stop-color="#d4ae75"/>
+      <stop offset="100%" stop-color="#9e8156"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Arka Plan Diski -->
+  <circle cx="300" cy="300" r="285" fill="url(#wheelGlow)" stroke="url(#goldRing)" stroke-width="2"/>
+  <circle cx="300" cy="300" r="255" fill="none" stroke="rgba(212, 174, 117, 0.3)" stroke-width="1"/>
+  <circle cx="300" cy="300" r="215" fill="none" stroke="rgba(212, 174, 117, 0.2)" stroke-width="1"/>
+  <circle cx="300" cy="300" r="140" fill="rgba(8, 8, 12, 0.85)" stroke="url(#goldRing)" stroke-width="1.5"/>
+  <circle cx="300" cy="300" r="30" fill="#050608" stroke="rgba(212, 174, 117, 0.5)" stroke-width="1"/>
+
+  <!-- 12 Eşit Burç Evi Açı Çizgileri (30° aralıklarla) -->
+  <g stroke="rgba(212, 174, 117, 0.25)" stroke-width="1">
+    <line x1="300" y1="15" x2="300" y2="585"/>
+    <line x1="15" y1="300" x2="585" y2="300"/>
+    <line x1="102" y1="102" x2="498" y2="498"/>
+    <line x1="102" y1="498" x2="498" y2="102"/>
+    <line x1="45" y1="202" x2="555" y2="398"/>
+    <line x1="45" y1="398" x2="555" y2="202"/>
+    <line x1="202" y1="45" x2="398" y2="555"/>
+    <line x1="202" y1="555" x2="398" y2="45"/>
+  </g>
+
+  <!-- 12 Zodyak Glifi (Dış Çemberde) -->
+  <g font-family="system-ui, serif" font-size="20" fill="#edd09e" text-anchor="middle" dominant-baseline="central">
+    <text x="300" y="32">♈</text>
+    <text x="435" y="68">♉</text>
+    <text x="532" y="165">♊</text>
+    <text x="568" y="300">♋</text>
+    <text x="532" y="435">♌</text>
+    <text x="435" y="532">♍</text>
+    <text x="300" y="568">♎</text>
+    <text x="165" y="532">♏</text>
+    <text x="68" y="435">♐</text>
+    <text x="32" y="300">♑</text>
+    <text x="68" y="165">♒</text>
+    <text x="165" y="68">♓</text>
+  </g>
+
+  <!-- İç Açı Dinamikleri (Örnek Üçgen, Kare, Karşıt) -->
+  <polygon points="300,160 421,370 179,370" fill="rgba(56, 183, 122, 0.08)" stroke="rgba(56, 183, 122, 0.6)" stroke-width="1.2"/>
+  <line x1="200" y1="200" x2="400" y2="400" stroke="rgba(229, 107, 85, 0.6)" stroke-width="1.2" stroke-dasharray="4 3"/>
+
+  <!-- Merkez Pusula Yıldızı -->
+  <polygon points="300,285 304,296 315,300 304,304 300,315 296,304 285,300 296,296" fill="#d4ae75"/>
+</svg>
