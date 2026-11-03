@@ -32,7 +32,7 @@ import {
 } from './ai-manifests.js';
 
 const RETIRED_READER_POSTS=new Set(['merkur-ve-gezegen-retrolari-rehberi','tutulma-mevsimi-ve-kader-kavsagi','katina-ask-acilimi-ve-iliski-dinamikleri','tarot-major-arkana-kader-karti-sifreleri','kahve-fali-sembolizmi-fincandaki-isaretler','dogum-haritasinda-7-ev-venus-ve-juno','saturn-dongusu-ve-hayat-sinavlari','numeroloji-ve-kisisel-yil-hesaplama','yildizname-gelenegi-ve-dort-element-mizaci','duru-goru-ve-sezgisel-farkindalik-rehberi']);
-const RETIRED_READER_PAGES=new Set(['/videolar','/videos','/kesif-alanlari','/areas','/yaklasim','/approach','/iletisim','/contact','/yorumcu-basvuru','/apply','/yonetim/formlar']);
+const RETIRED_READER_PAGES=new Set(['/videolar','/videos','/yorumcu-basvuru','/apply','/yonetim/formlar']);
 const isRetiredReaderContent=pathname=>{
   if(/^\/api\/gozde-/i.test(pathname)||/^\/images\/gozde-[^/]+$/i.test(pathname)||pathname==='/videos/28-ekim-5-kasim-tarot.mp4')return true;
   const clean=pathname.replace(/^\/(?:en|gr|el|es|ar)(?=\/)/i,'').replace(/\/+$/,'')||'/';
