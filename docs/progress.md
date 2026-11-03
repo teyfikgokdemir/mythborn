@@ -16,8 +16,9 @@ Bu dosya, projenin kredili ve güvenli yürütülmesini sağlamak için her aşa
 | :--- | :--- | :---: | :--- | :--- |
 | **Aşama 0** | Durum Tespiti, Envanter ve Koruma | `DONE` | `5e5d46d` | Sistem denetlendi, 7 çekirdek belge ve `.env.example` üretildi. |
 | **Aşama 0.1** | Ek Doğrulama, Bağımlılık Analizi & Aşama 1 Dokümantasyonu | `DONE` | `a3d8c05` | Open-Meteo analizi, D1 yedek denetimi (`BLOCKED`), Aşama 1 mimari belgeleri ve kredi tahmini tamamlandı. |
-| **Aşama 1** | Yeni Astroloji Mimarisi (Frontend İskeleti & Preview Deploy) | `DONE` | `a9062ce` / Güncel | 5 dilli frontend iskeleti, tasarım token'ları, 8 sayfa kabuğu hazırlandı; preview ortamına (`mythborn-preview`) dağıtıldı. Gözde alt sayfaları ve mock form yanıtları doğrulandı. Production'a kesinlikle dokunulmadı. |
-| **Aşama 2** | Otomatik Gökyüzü Veri Çekirdeği (Astronomy Engine) | `BLOCKED` (Onay Bekliyor) | Beklemede | Ücretli API kullanılmayacak. Aşama 1 onayı ve yerel geocoding offline önbellek tasarımı bekleniyor. |
+| **Aşama 1** | Yeni Astroloji Mimarisi (Frontend İskeleti & Preview Deploy) | `DONE` | `a9062ce` / `54a561e` | 5 dilli frontend iskeleti, tasarım token'ları, 8 sayfa kabuğu hazırlandı; preview ortamına (`mythborn-preview`) dağıtıldı. Gözde alt sayfaları ve mock form yanıtları doğrulandı. |
+| **Strateji & Araştırma** | Global Talep, Rakip Kıyaslama, Marka & Görsel Sanat Yönetimi | `DONE` | Bu Oturum | 11 stratejik doküman üretildi: Talep haritası, rakip matrisi, ilk 3 saniye hero stratejisi, görsel sistem, 5 dilli içerik mimarisi ve ücretsiz otomasyon planı. Sıfır kodlama kuralına uyuldu. |
+| **Aşama 2** | Otomatik Gökyüzü Veri Çekirdeği (Astronomy Engine & Yerel Geocoding) | `BLOCKED` (Onay Bekliyor) | Beklemede | Ücretli API kullanılmayacak. Aşama 2 uygulama planı (`docs/phase-2-implementation-plan.md`) onaylanana kadar duruluyor. |
 | **Aşama 3** | Otomatik Burç Yorumları (5 Dilli Kural Tabanlı İçerik) | `BLOCKED` | Beklemede | Yasaklı kehanet kuralları, 12 burç şablonları, 5 dil çeviri denetimi ve pilot çalışma uygulanacak. |
 | **Aşama 4** | SEO, Kanonik Yapı ve 301 Geçişi | `BLOCKED` | Beklemede | Semantik 301 yönlendirme matrisi, redirect loop/chain testleri, Search Console ve sitemap doğrulaması. |
 | **Aşama 5** | Sonraki Özellikler (Doğum Haritası UI, Sinastri, Transitler) | `BLOCKED` | Beklemede | Kredi ve bütçe elverirse tek tek checkpoint'lerle eklenecek. |
@@ -35,7 +36,7 @@ Bu dosya, projenin kredili ve güvenli yürütülmesini sağlamak için her aşa
 ## ✦ Kontrol Noktaları ve Kredi Yönetimi
 
 - **Toplam Bütçe:** 236 Kredi
-- **Harcanan Kredi:** 49 Kredi (Aşama 0: 12 + Aşama 0.1: 10 + Aşama 1 Kodlama/Preview: 25 + Doğrulama/Uçtan Uca Güçlendirme: 2)
-- **Kalan Kredi:** 187 Kredi
-- **Durdurma İlkesi:** Her aşama sonunda çalışan ara sürüm bırakılır, `npm run audit` koşturulur, durum raporu kullanıcıya sunulur ve onay alınana kadar durulur.
+- **Harcanan Kredi:** 54 Kredi (Aşama 0: 12 + Aşama 0.1: 10 + Aşama 1: 25 + Doğrulama/Uçtan Uca: 2 + Strateji & Araştırma: 5)
+- **Kalan Kredi:** 182 Kredi
+- **Durdurma İlkesi:** Araştırma ve strateji tamamlandı. Kullanıcı onayı gelene kadar hiçbir kodlama, görsel üretimi veya deploy yapılmaz.
 - **Geri Dönüş (Rollback):** Her aşama `docs/rollback-plan.md` belgesindeki tek komutluk geri dönüş garantisine sahiptir.
