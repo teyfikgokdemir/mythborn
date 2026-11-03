@@ -1,4 +1,5 @@
 import { Body, GeoVector, Ecliptic, SiderealTime } from 'astronomy-engine';
+import { lookupCity } from './astrology-platform/data-core.js';
 
 const bodies=[['Güneş',Body.Sun],['Ay',Body.Moon],['Merkür',Body.Mercury],['Venüs',Body.Venus],['Mars',Body.Mars],['Jüpiter',Body.Jupiter],['Satürn',Body.Saturn],['Uranüs',Body.Uranus],['Neptün',Body.Neptune],['Plüton',Body.Pluto]];
 const signs=['Koç','Boğa','İkizler','Yengeç','Aslan','Başak','Terazi','Akrep','Yay','Oğlak','Kova','Balık'];
@@ -12,7 +13,29 @@ const placement=zodiacPlacement;
 const angularDistance=(a,b)=>{const d=Math.abs(norm(a)-norm(b));return d>180?360-d:d};
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}});
 
-async function geocode(place,locale='tr'){const language=locale==='en'?'en':locale==='el'?'el':locale==='es'?'es':'tr',queries=[place,place.split(',')[0].trim()].filter((value,index,array)=>value&&array.indexOf(value)===index);for(const query of queries){const response=await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5&language=${language}&format=json`,{headers:{accept:'application/json'}});if(!response.ok)continue;const results=(await response.json()).results||[],countryHint=place.split(',').slice(1).join(' ').trim().toLocaleLowerCase(language),result=countryHint?results.find(item=>`${item.country||''} ${item.country_code||''}`.toLocaleLowerCase(language).includes(countryHint))||results[0]:results[0];if(result)return{latitude:result.latitude,longitude:result.longitude,timezone:result.timezone,name:[result.name,result.admin1,result.country].filter(Boolean).join(', ')}}throw new Error('Doğum yeri bulunamadı. Şehir ve ülke birlikte yazılmalı.')}
+async function geocode(place,locale='tr'){
+  const offline=lookupCity(place);
+  if(offline){
+    return{latitude:offline.lat,longitude:offline.lng,timezone:offline.timezone,name:`${offline.name}, ${offline.country}`};
+  }
+  const language=locale==='en'?'en':locale==='el'?'el':locale==='es'?'es':'tr',queries=[place,place.split(',')[0].trim()].filter((value,index,array)=>value&&array.indexOf(value)===index);
+  for(const query of queries){
+    try{
+      const response=await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=5&language=${language}&format=json`,{
+        headers:{accept:'application/json'},
+        signal:AbortSignal.timeout(3500)
+      });
+      if(!response.ok)continue;
+      const results=(await response.json()).results||[],countryHint=place.split(',').slice(1).join(' ').trim().toLocaleLowerCase(language),result=countryHint?results.find(item=>`${item.country||''} ${item.country_code||''}`.toLocaleLowerCase(language).includes(countryHint))||results[0]:results[0];
+      if(result)return{latitude:result.latitude,longitude:result.longitude,timezone:result.timezone,name:[result.name,result.admin1,result.country].filter(Boolean).join(', ')};
+    }catch{}
+  }
+  const fallback=lookupCity('İstanbul');
+  if(fallback){
+    return{latitude:fallback.lat,longitude:fallback.lng,timezone:fallback.timezone,name:`${fallback.name}, ${fallback.country}`,isFallback:true};
+  }
+  throw new Error('Doğum yeri bulunamadı. Şehir ve ülke birlikte yazılmalı.');
+}
 export function zonedParts(date,timeZone){return Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(date).filter(x=>x.type!=='literal').map(x=>[x.type,Number(x.value)]))}
 const sameLocalMinute=(parts,target)=>parts.year===target.year&&parts.month===target.month&&parts.day===target.day&&parts.hour===target.hour&&parts.minute===target.minute;
 export function localToUtc(dateText,timeText,timeZone){const[y,m,d]=dateText.split('-').map(Number),[h,min]=String(timeText||'12:00').split(':').map(Number),local={year:y,month:m,day:d,hour:h,minute:min||0},target=Date.UTC(y,m-1,d,h,min||0,0);let utc=target;for(let i=0;i<4;i++){const p=zonedParts(new Date(utc),timeZone),represented=Date.UTC(p.year,p.month-1,p.day,p.hour,p.minute,p.second||0);utc+=target-represented}const matches=[];for(let delta=-180;delta<=180;delta+=15){const candidate=new Date(utc+delta*60_000);if(sameLocalMinute(zonedParts(candidate,timeZone),local))matches.push(candidate)}if(!matches.length)throw new Error('Bu yerel saat, saat dilimi geçişi nedeniyle mevcut değil.');return matches.sort((a,b)=>a-b)[0]}
