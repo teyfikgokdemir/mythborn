@@ -1,5 +1,4 @@
 import platform from './premium-router.js';
-import {gozdeLanding,isGozdeApplyPath,resolveGozdeLocale,handleGozdeApi} from './gozde-landing.js';
 import {comingSoonPage,comingSoonLocale} from './coming-soon.js';
 import {tarotSearchItems} from './tarot-library.js';
 import {dreamSearchItems,glossarySearchItems} from './dream-glossary.js';
@@ -30,7 +29,7 @@ import {
   OPENAPI_JSON,
   AI_FACT_SHEET_JSON,
   VIDEO_SITEMAP_XML,
-  generateGozdeSitemapEntries
+  generateSiteSitemapEntries
 } from './ai-manifests.js';
 
 const SITE=SITE_ORIGIN;
@@ -75,14 +74,12 @@ const searchItems=locale=>{
 export default {
   async fetch(request,env,ctx){
     const incoming=new URL(request.url);
-    if(incoming.pathname==='/api/gozde-inquiry'||incoming.pathname==='/api/gozde-apply'||incoming.pathname==='/api/gozde-submissions'){
-      return handleGozdeApi(request,env);
-    }
-    if((env.GOZDE_LAUNCH_ENABLED==='true' || (env.COMING_SOON_ENABLED!=='true' && isGozdeApplyPath(incoming.pathname))) && (request.method==='GET'||request.method==='HEAD') && !incoming.pathname.startsWith('/api/') && !incoming.pathname.startsWith('/cdn-cgi/') && !/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
-      const pathname=incoming.pathname;
-      const normalized=resolveGozdeLocale(pathname);
-      return new Response(request.method==='HEAD'?null:gozdeLanding(pathname),{headers:{'content-type':'text/html; charset=utf-8','content-language':normalized,'cache-control':'public, max-age=90'}});
-    }
+    // Former individual-reader pages and articles are permanently retired.
+    const inactivePath=incoming.pathname.replace(/^\/(?:en|gr|es|ar)(?=\/)/,'');
+    const retiredPages=new Set(['/yorumcu-basvuru','/videolar','/kesif-alanlari','/yaklasim','/yonetim/formlar','/areas','/approach','/videos','/apply']);
+    const retiredEditorial=new Set(["merkur-ve-gezegen-retrolari-rehberi","tutulma-mevsimi-ve-kader-kavsagi","katina-ask-acilimi-ve-iliski-dinamikleri","tarot-major-arkana-kader-karti-sifreleri","kahve-fali-sembolizmi-fincandaki-isaretler","dogum-haritasinda-7-ev-venus-ve-juno","saturn-dongusu-ve-hayat-sinavlari","numeroloji-ve-kisisel-yil-hesaplama","yildizname-gelenegi-ve-dort-element-mizaci","duru-goru-ve-sezgisel-farkindalik-rehberi"]);
+    const retiredSlug=inactivePath.startsWith('/blog/')?inactivePath.slice(6):'';
+    if(retiredPages.has(inactivePath)||retiredEditorial.has(retiredSlug))return new Response('Content unavailable',{status:410,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store','x-robots-tag':'noindex'}});
     if(env.COMING_SOON_ENABLED==='true' && (request.method==='GET'||request.method==='HEAD')){
       const pathname=incoming.pathname;
       if(pathname==='/robots.txt')return new Response('User-agent: *\nDisallow: /\n',{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store'}});
@@ -114,10 +111,7 @@ export default {
     if(incoming.pathname==='/ai-fact-sheet.json')return new Response(AI_FACT_SHEET_JSON,{headers:aiJsonHeaders});
     if(incoming.pathname==='/sitemap-video.xml')return new Response(VIDEO_SITEMAP_XML,{headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600, stale-while-revalidate=86400','access-control-allow-origin':'*'}});
     if(incoming.pathname==='/sitemap.xml'){
-      const applyRoutes=['/yorumcu-basvuru','/en/apply','/gr/apply','/es/apply','/ar/apply'];
-      const applyAlts=`<xhtml:link rel="alternate" hreflang="tr" href="${SITE}/yorumcu-basvuru"/><xhtml:link rel="alternate" hreflang="en" href="${SITE}/en/apply"/><xhtml:link rel="alternate" hreflang="el" href="${SITE}/gr/apply"/><xhtml:link rel="alternate" hreflang="es" href="${SITE}/es/apply"/><xhtml:link rel="alternate" hreflang="ar" href="${SITE}/ar/apply"/><xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/yorumcu-basvuru"/>`;
-      const applyEntries=applyRoutes.map(p=>`<url><loc>${SITE}${p}</loc>${applyAlts}</url>`).join('');
-      const fullXml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${generateGozdeSitemapEntries()}${applyEntries}${culturalSitemapEntries()}</urlset>`;
+      const fullXml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${generateSiteSitemapEntries()}${culturalSitemapEntries()}</urlset>`;
       return new Response(fullXml,{status:200,headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=60, s-maxage=60, must-revalidate','access-control-allow-origin':'*','x-content-type-options':'nosniff'}});
     }
     const accessState=premiumState(env,new Date());
