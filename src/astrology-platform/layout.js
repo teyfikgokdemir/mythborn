@@ -109,6 +109,35 @@ export const renderAstrologyLayout = ({
   };
   const curTel = telemetryLabels[locale] || telemetryLabels.tr;
 
+  const legalLabels = {
+    tr: {
+      kvkk: 'KVKK & GDPR',
+      privacy: 'Gizlilik Politikası',
+      terms: 'Kullanım Koşulları'
+    },
+    en: {
+      kvkk: 'KVKK & GDPR',
+      privacy: 'Privacy Policy',
+      terms: 'Terms of Service'
+    },
+    el: {
+      kvkk: 'KVKK & GDPR',
+      privacy: 'Πολιτική Απορρήτου',
+      terms: 'Όροι Χρήσης'
+    },
+    es: {
+      kvkk: 'KVKK y GDPR',
+      privacy: 'Política de Privacidad',
+      terms: 'Términos de Uso'
+    },
+    ar: {
+      kvkk: 'حماية البيانات و GDPR',
+      privacy: 'سياسة الخصوصية',
+      terms: 'شروط الاستخدام'
+    }
+  };
+  const curLegal = legalLabels[locale] || legalLabels.tr;
+
   const manifestoText = locale === 'tr' ? 'Açık kaynak efemeris modelleri ve matematiksel astronomiyle haritanızı hesaplayın; deterministik korku yerine sembolik öz-farkındalık kazanın.'
     : locale === 'en' ? 'Calculate your natal geometry with open-source mathematical ephemeris and archetypal psychology. Embracing conscious awareness over deterministic fear.'
     : locale === 'el' ? 'Ανοιχτού κώδικα αστρονομικά εφημερίδια και αρχετυπική ψυχολογία για συνειδητή αυτογνωσία.'
@@ -399,14 +428,12 @@ export const renderAstrologyLayout = ({
             </ul>
           </div>
 
-          <div class="astro-footer-col">
+          <div class="astro-footer-col astro-footer-col-legal">
             <h4>✦ ${safe(t.footer.colLegal)}</h4>
             <ul>
-              <li><a href="${getRouteHref(locale, 'kvkk')}">KVKK & GDPR</a></li>
-              <li><a href="${getRouteHref(locale, 'privacy')}">${safe(t.footer.colLegal)}</a></li>
-              <li><a href="${getRouteHref(locale, 'terms')}">${safe(t.footer.colLegal)}</a></li>
-              <li><a href="/llms.txt">llms.txt (AI Index)</a></li>
-              <li><a href="/llms-full.txt">AI Agent Manifest</a></li>
+              <li><a href="${getRouteHref(locale, 'kvkk')}">${safe(curLegal.kvkk)}</a></li>
+              <li><a href="${getRouteHref(locale, 'privacy')}">${safe(curLegal.privacy)}</a></li>
+              <li><a href="${getRouteHref(locale, 'terms')}">${safe(curLegal.terms)}</a></li>
             </ul>
           </div>
         </div>

@@ -2518,15 +2518,165 @@ html[dir="rtl"] .retro-guidance-box {
   .active-retro-5-grid { grid-template-columns: 1fr !important; }
   .daily-chronicle-grid { grid-template-columns: 1fr !important; }
 
-  /* Ultra-Elite Mobile Footer */
-  .astro-footer { padding: 36px 0 28px 0 !important; }
-  .astro-footer-telemetry { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; margin-bottom: 28px; }
-  .astro-footer-grid { grid-template-columns: 1fr !important; gap: 28px !important; margin-bottom: 28px !important; }
-  .astro-footer-col h4 { margin-bottom: 12px; }
-  .astro-footer-col ul { gap: 8px; }
-  .astro-footer-col ul li a { font-size: 14px; min-height: 36px; display: inline-flex; align-items: center; }
-  .astro-footer-bottom-bar { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .astro-footer-lang-badges { flex-wrap: wrap; width: 100%; gap: 6px; }
+  /* Ultra-Elite Mobile Footer — Haute Horlogerie 2-Column Luxury Layout */
+  .astro-footer {
+    padding: 32px 0 24px 0 !important;
+    background: radial-gradient(circle at 50% 0%, rgba(24, 32, 60, 0.35) 0%, #030408 75%) !important;
+  }
+
+  /* Micro Telemetry Grid: 3 Sleek Compact Pills */
+  .astro-footer-telemetry {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    padding: 8px 10px !important;
+    background: rgba(12, 16, 32, 0.75) !important;
+    border: 1px solid rgba(212, 175, 55, 0.22) !important;
+    border-radius: 12px !important;
+    margin-bottom: 22px !important;
+  }
+  .astro-footer-telemetry-pill {
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 6px 4px !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border: 1px solid rgba(212, 175, 55, 0.12) !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2px !important;
+  }
+
+  /* 2-Column Responsive Haute Architecture */
+  .astro-footer-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px 14px !important;
+    margin-bottom: 22px !important;
+  }
+
+  /* Centered Brand Lockup spanning 2 cols */
+  .astro-footer-brand-elite {
+    grid-column: span 2 !important;
+    text-align: center !important;
+    align-items: center !important;
+    padding: 18px 14px !important;
+    background: linear-gradient(165deg, rgba(14, 18, 36, 0.7) 0%, rgba(8, 11, 22, 0.9) 100%) !important;
+    border: 1px solid rgba(212, 175, 55, 0.22) !important;
+    border-radius: 14px !important;
+    gap: 10px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  }
+  .astro-footer-brand-elite .astro-brand {
+    justify-content: center !important;
+  }
+  .astro-footer-manifesto {
+    font-size: 12.5px !important;
+    line-height: 1.6 !important;
+    max-width: 100% !important;
+    color: rgba(248, 246, 240, 0.72) !important;
+    text-align: center !important;
+    margin: 0 !important;
+  }
+  .astro-footer-engine-badge {
+    font-size: 10px !important;
+    padding: 4px 10px !important;
+    letter-spacing: 0.04em !important;
+  }
+  .astro-back-to-top {
+    margin-top: 4px !important;
+    padding: 7px 18px !important;
+    font-size: 11.5px !important;
+    border-radius: 999px !important;
+  }
+
+  /* Compact 2-Column Navigation Cards */
+  .astro-footer-col {
+    padding: 14px 12px !important;
+    background: rgba(10, 14, 28, 0.6) !important;
+    border: 1px solid rgba(212, 175, 55, 0.15) !important;
+    border-radius: 12px !important;
+  }
+  .astro-footer-col h4 {
+    font-size: 11px !important;
+    letter-spacing: 0.1em !important;
+    margin-bottom: 10px !important;
+    padding-bottom: 6px !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.18) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+  .astro-footer-col ul {
+    gap: 7px !important;
+  }
+  .astro-footer-col ul li a {
+    font-size: 12px !important;
+    min-height: 26px !important;
+    line-height: 1.3 !important;
+    color: rgba(248, 246, 240, 0.78) !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Full-width Legal Strip */
+  .astro-footer-col-legal {
+    grid-column: span 2 !important;
+    padding: 12px 14px !important;
+    background: rgba(8, 11, 24, 0.55) !important;
+    border: 1px solid rgba(212, 175, 55, 0.12) !important;
+    text-align: center !important;
+  }
+  .astro-footer-col-legal h4 {
+    justify-content: center !important;
+    margin-bottom: 8px !important;
+  }
+  .astro-footer-col-legal ul {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+  .astro-footer-col-legal ul li a {
+    font-size: 11.5px !important;
+    padding: 4px 10px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 6px !important;
+    color: var(--muted) !important;
+  }
+
+  /* Disclaimer Card */
+  .astro-footer-disclaimer-card {
+    padding: 12px 14px !important;
+    margin-bottom: 18px !important;
+    gap: 10px !important;
+  }
+  .astro-footer-disclaimer-card p {
+    font-size: 11px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* Bottom Bar */
+  .astro-footer-bottom-bar {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 12px !important;
+    padding-top: 16px !important;
+  }
+  .astro-footer-lang-badges {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+  .astro-footer-lang-badge {
+    font-size: 11px !important;
+    padding: 4px 10px !important;
+  }
 
   /* Daily Horoscopes Mobile Overrides */
   .horoscope-weather-ribbon { padding: 14px 16px; flex-direction: column; align-items: flex-start; gap: 10px; }
