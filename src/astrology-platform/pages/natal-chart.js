@@ -198,6 +198,86 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
     </div>
   ` : '';
 
+  const titleMap = {
+    tr: 'Doğum Haritası Hesaplama ve Yükselen Analizi',
+    en: 'Birth Chart Calculation & Ascendant Synthesis',
+    el: 'Υπολογισμός Γενέθλιου Χάρτη & Ανάλυση Ωροσκόπου',
+    es: 'Cálculo de Carta Natal y Análisis del Ascendente',
+    ar: 'حساب خريطة الميلاد وتحليل الطالع الفلكي'
+  };
+
+  const eyebrowMap = {
+    tr: '✦ ASTRONOMY ENGINE KORUMALI MATEMATİKSEL DOĞUM HARİTASI',
+    en: '✦ ASTRONOMY ENGINE VERIFIED CELESTIAL NATAL CHART',
+    el: '✦ ΜΑΘΗΜΑΤΙΚΟΣ ΓΕΝΕΘΛΙΟΣ ΧΑΡΤΗΣ ΜΕ ASTRONOMY ENGINE',
+    es: '✦ CARTA NATAL MATEMÁTICA CON ASTRONOMY ENGINE',
+    ar: '✦ خريطة ميلاد فلكية دقيقة مدعومة بمحرك الفلك'
+  };
+
+  const standardsMap = {
+    tr: 'Europe/Istanbul (TSİ) referanslı · Katı 24 saat formatı · Açık kaynaklı efemeris algoritmaları',
+    en: 'Local timezone & UTC referenced · Strict 24-hour format · Open-source ephemeris algorithms',
+    el: 'Αναφορά τοπικής ώρας & UTC · Αυστηρή 24ωρη μορφή · Αλγόριθμοι εφημερίδων ανοιχτού κώδικα',
+    es: 'Referencia horaria local y UTC · Formato estricto de 24 horas · Algoritmos de efemérides abiertas',
+    ar: 'مرجع التوقيت المحلي وUTC · نظام 24 ساعة صارم · خوارزميات فلكية مفتوحة المصدر'
+  };
+
+  const boxTagMap = {
+    tr: '✦ MATEMATİKSEL ENSTRÜMAN',
+    en: '✦ MATHEMATICAL INSTRUMENT',
+    el: '✦ ΜΑΘΗΜΑΤΙΚΟ ΕΡΓΑΛΕΙΟ',
+    es: '✦ INSTRUMENTO MATEMÁTICO',
+    ar: '✦ أداة فلكية رياضية'
+  };
+
+  const cityHelperMap = {
+    tr: '81 İl ve Dünya Koordinat Eşlemesi',
+    en: 'Global coordinate & timezone lookup',
+    el: 'Αυτόματη εύρεση συντεταγμένων & ζώνης ώρας',
+    es: 'Búsqueda global de coordenadas y huso horario',
+    ar: 'مطابقة تلقائية للإحداثيات والمنطقة الزمنية عالمياً'
+  };
+
+  const cityQuickPicks = {
+    tr: [
+      ['Istanbul', 'İstanbul'],
+      ['Ankara', 'Ankara'],
+      ['Izmir', 'İzmir'],
+      ['London', 'London'],
+      ['Athens', 'Athens']
+    ],
+    en: [
+      ['London', 'London'],
+      ['New York', 'New York'],
+      ['Los Angeles', 'Los Angeles'],
+      ['Paris', 'Paris'],
+      ['Sydney', 'Sydney']
+    ],
+    el: [
+      ['Athens', 'Αθήνα'],
+      ['Thessaloniki', 'Θεσσαλονίκη'],
+      ['Nicosia', 'Λευκωσία'],
+      ['Heraklion', 'Ηράκλειο'],
+      ['London', 'London']
+    ],
+    es: [
+      ['Madrid', 'Madrid'],
+      ['Barcelona', 'Barcelona'],
+      ['Buenos Aires', 'Buenos Aires'],
+      ['Ciudad de Mexico', 'Ciudad de México'],
+      ['Bogota', 'Bogotá']
+    ],
+    ar: [
+      ['Riyadh', 'الرياض'],
+      ['Dubai', 'دبي'],
+      ['Cairo', 'القاهرة'],
+      ['Baghdad', 'بغداد'],
+      ['Istanbul', 'إسطنبول']
+    ]
+  };
+
+  const currentCities = cityQuickPicks[loc] || cityQuickPicks.tr;
+
   return `
     <!-- Integrated Full-Viewport Console: Editorial Identity + Astrolabe Form in 1 Clean Viewport -->
     <section class="natal-stage-viewport">
@@ -205,37 +285,37 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
         <div class="natal-console-grid">
           <!-- Editorial Side -->
           <div class="natal-editorial-side">
-            <span class="astro-hero-eyebrow">✦ ASTRONOMY ENGINE KORUMALI MATEMATİKSEL DOĞUM HARİTASI</span>
-            <h1 class="natal-main-title">${t.menu.natal} Hesaplama ve Yükselen Analizi</h1>
+            <span class="astro-hero-eyebrow">${eyebrowMap[loc] || eyebrowMap.tr}</span>
+            <h1 class="natal-main-title">${titleMap[loc] || titleMap.tr}</h1>
             <p class="natal-main-lead">${t.hero.lead}</p>
 
             <div class="natal-triad-pills">
               <div class="natal-triad-pill">
                 <span class="pill-glyph" aria-hidden="true">☉</span>
                 <div>
-                  <strong>${locale === 'tr' ? 'Güneş' : locale === 'en' ? 'Sun' : locale === 'el' ? 'Ήλιος' : locale === 'es' ? 'Sol' : 'الشمس'}</strong>
-                  <small>${locale === 'tr' ? 'Bilinç & İrade' : locale === 'en' ? 'Conscious Will' : locale === 'el' ? 'Συνείδηση' : locale === 'es' ? 'Voluntad' : 'الوعي والإرادة'}</small>
+                  <strong>${loc === 'tr' ? 'Güneş' : loc === 'en' ? 'Sun' : loc === 'el' ? 'Ήλιος' : loc === 'es' ? 'Sol' : 'الشمس'}</strong>
+                  <small>${loc === 'tr' ? 'Bilinç & İrade' : loc === 'en' ? 'Conscious Will' : loc === 'el' ? 'Συνείδηση' : loc === 'es' ? 'Voluntad' : 'الوعي والإرادة'}</small>
                 </div>
               </div>
               <div class="natal-triad-pill">
                 <span class="pill-glyph" aria-hidden="true">☽</span>
                 <div>
-                  <strong>${locale === 'tr' ? 'Ay' : locale === 'en' ? 'Moon' : locale === 'el' ? 'Σελήνη' : locale === 'es' ? 'Luna' : 'القمر'}</strong>
-                  <small>${locale === 'tr' ? 'Duygu & Hafıza' : locale === 'en' ? 'Emotion & Memory' : locale === 'el' ? 'Συναίσθημα' : locale === 'es' ? 'Emoción' : 'العاطفة والذاكرة'}</small>
+                  <strong>${loc === 'tr' ? 'Ay' : loc === 'en' ? 'Moon' : loc === 'el' ? 'Σελήνη' : loc === 'es' ? 'Luna' : 'القمر'}</strong>
+                  <small>${loc === 'tr' ? 'Duygu & Hafıza' : loc === 'en' ? 'Emotion & Memory' : loc === 'el' ? 'Συναίσθημα' : loc === 'es' ? 'Emoción' : 'العاطفة والذاكرة'}</small>
                 </div>
               </div>
               <div class="natal-triad-pill">
                 <span class="pill-glyph" aria-hidden="true">↑</span>
                 <div>
-                  <strong>${locale === 'tr' ? 'Yükselen' : locale === 'en' ? 'Ascendant' : locale === 'el' ? 'Ωροσκόπος' : locale === 'es' ? 'Ascendente' : 'الطالع'}</strong>
-                  <small>${locale === 'tr' ? 'Dünyayla Arayüz' : locale === 'en' ? 'Outer Persona' : locale === 'el' ? 'Εξωτερική Εικόνα' : locale === 'es' ? 'Interfaz Externa' : 'الواجهة الخارجية'}</small>
+                  <strong>${loc === 'tr' ? 'Yükselen' : loc === 'en' ? 'Ascendant' : loc === 'el' ? 'Ωροσκόπος' : loc === 'es' ? 'Ascendente' : 'الطالع'}</strong>
+                  <small>${loc === 'tr' ? 'Dünyayla Arayüz' : loc === 'en' ? 'Outer Persona' : loc === 'el' ? 'Εξωτερική Εικόνα' : loc === 'es' ? 'Interfaz Externa' : 'الواجهة الخارجية'}</small>
                 </div>
               </div>
             </div>
 
             <div class="natal-standards-box">
               <span style="color:var(--gold-bright)">✦</span>
-              <span>Europe/Istanbul (TSI) referanslı · Katı 24 saat formatı · Açık kaynaklı efemeris algoritmaları</span>
+              <span>${standardsMap[loc] || standardsMap.tr}</span>
             </div>
           </div>
 
@@ -244,10 +324,10 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
             <div class="natal-astrolabe-box">
               <div class="natal-box-head">
                 <div>
-                  <span class="natal-box-tag">✦ MATEMATİKSEL ENSTRÜMAN</span>
+                  <span class="natal-box-tag">${boxTagMap[loc] || boxTagMap.tr}</span>
                   <h2 class="natal-box-title">${t.quickNatal.title}</h2>
                 </div>
-                <span class="natal-box-badge">24h TSI</span>
+                <span class="natal-box-badge">24h</span>
               </div>
 
               <form action="${getRouteHref(locale, 'natal')}" method="get" class="natal-form-inner" autocomplete="off">
@@ -259,22 +339,18 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
 
                   <div class="natal-form-field">
                     <label for="birth-hour">${t.quickNatal.labelTime} (24h) *</label>
-                    ${render24hTimePicker({ idPrefix: 'birth', name: 'time', defaultValue: birthTime || '14:30', ariaLabelHour: t.quickNatal.labelTime, ariaLabelMinute: 'Dakika' })}
+                    ${render24hTimePicker({ idPrefix: 'birth', name: 'time', defaultValue: birthTime || '14:30', locale: loc, ariaLabelHour: t.quickNatal.labelTime })}
                   </div>
                 </div>
 
                 <div class="natal-form-field">
                   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px">
                     <label for="birth-place" style="margin:0">${t.quickNatal.labelCity} *</label>
-                    <span style="font-size:11px; color:var(--dim)">81 İl ve Dünya Koordinat Eşlemesi</span>
+                    <span style="font-size:11px; color:var(--dim)">${cityHelperMap[loc] || cityHelperMap.tr}</span>
                   </div>
-                  <input type="text" id="birth-place" name="city" placeholder="İstanbul, Ankara, İzmir, London, Athens..." required value="${birthCity || 'Istanbul'}" autocomplete="off">
+                  <input type="text" id="birth-place" name="city" placeholder="${loc === 'tr' ? 'İstanbul, Ankara, İzmir...' : loc === 'en' ? 'London, New York, Paris...' : loc === 'el' ? 'Αθήνα, Θεσσαλονίκη, London...' : loc === 'es' ? 'Madrid, Barcelona, Buenos Aires...' : 'الرياض، دبي، القاهرة...'}" required value="${birthCity || (currentCities[0] && currentCities[0][0]) || 'Istanbul'}" autocomplete="off">
                   <div class="natal-city-quick-picks">
-                    <button type="button" onclick="document.getElementById('birth-place').value='Istanbul'">İstanbul</button>
-                    <button type="button" onclick="document.getElementById('birth-place').value='Ankara'">Ankara</button>
-                    <button type="button" onclick="document.getElementById('birth-place').value='Izmir'">İzmir</button>
-                    <button type="button" onclick="document.getElementById('birth-place').value='London'">London</button>
-                    <button type="button" onclick="document.getElementById('birth-place').value='Athens'">Athens</button>
+                    ${currentCities.map(([val, label]) => `<button type="button" onclick="document.getElementById('birth-place').value='${val}'">${label}</button>`).join('')}
                   </div>
                 </div>
 

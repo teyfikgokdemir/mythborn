@@ -1,18 +1,13 @@
 import assert from 'node:assert';
 import fs from 'node:fs';
 
-console.log('Testing 301 redirects and Video Sitemap...');
+console.log('Testing 301 redirects and Video Sitemap (Zero Gözde purge)...');
 
-// 1. Check Video Sitemap file directly
+// 1. Check Video Sitemap file directly: Gözde videos must be completely purged
 const videoSitemapXml = fs.readFileSync('public/sitemap-video.xml', 'utf8');
 assert.ok(!videoSitemapXml.includes('player_loc'), 'public/sitemap-video.xml must NOT include player_loc');
-assert.ok(videoSitemapXml.includes('<video:content_loc>https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4</video:content_loc>'), 'Must include video:content_loc');
-assert.ok(videoSitemapXml.includes('<loc>https://mythborn.co/videolar</loc>'), 'Must include loc for /videolar');
-assert.ok(videoSitemapXml.includes('<loc>https://mythborn.co/en/videos</loc>'), 'Must include loc for /en/videos');
-assert.ok(videoSitemapXml.includes('<loc>https://mythborn.co/gr/videos</loc>'), 'Must include loc for /gr/videos');
-assert.ok(videoSitemapXml.includes('<loc>https://mythborn.co/es/videos</loc>'), 'Must include loc for /es/videos');
-assert.ok(videoSitemapXml.includes('<loc>https://mythborn.co/ar/videos</loc>'), 'Must include loc for /ar/videos');
-console.log('✅ Video Sitemap XML verification passed (no player_loc, correct content_loc across 5 languages)');
+assert.ok(!videoSitemapXml.includes('gozde'), 'public/sitemap-video.xml must NOT include gozde');
+console.log('✅ Video Sitemap XML verified cleanly purged of retired video assets');
 
 // 2. Test analytics-router fetch
 import router from '../src/analytics-router.js';

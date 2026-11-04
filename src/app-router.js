@@ -1,5 +1,4 @@
 import platform from './premium-router.js';
-import {gozdeLanding,isGozdeApplyPath,resolveGozdeLocale,handleGozdeApi} from './gozde-landing.js';
 import {comingSoonPage,comingSoonLocale} from './coming-soon.js';
 import {tarotSearchItems} from './tarot-library.js';
 import {dreamSearchItems,glossarySearchItems} from './dream-glossary.js';
@@ -31,8 +30,7 @@ import {
   AGENT_MANIFEST_JSON,
   OPENAPI_JSON,
   AI_FACT_SHEET_JSON,
-  VIDEO_SITEMAP_XML,
-  generateGozdeSitemapEntries
+  VIDEO_SITEMAP_XML
 } from './ai-manifests.js';
 
 const SITE=SITE_ORIGIN;
@@ -74,7 +72,7 @@ const searchItems=locale=>{
   ].map(item=>({...item,url:href(locale,item.path)}));
 };
 
-const isLegacyGozdePath = (p) => {
+const isLegacyRetiredPath = (p) => {
   return /^\/(?:(?:en|gr|el|es|ar)\/)?(?:videolar|videos|kartlarin-gozdesi|gozde|alanlar|areas|yorumcu-basvuru|apply|surec)(?:\/|$)/.test(p);
 };
 
@@ -90,24 +88,19 @@ export default {
   async fetch(request,env,ctx){
     const incoming=new URL(request.url);
 
-    // Legacy Gözde and Video route redirection — 301 permanent redirect to modern astrology platform
-    if (isLegacyGozdePath(incoming.pathname)) {
+    // Legacy retired route redirection — 301 permanent redirect to modern astrology platform
+    if (isLegacyRetiredPath(incoming.pathname)) {
       return Response.redirect(new URL(resolveLegacyRedirect(incoming.pathname), incoming.origin).toString(), 301);
     }
 
     if((env.ASTROLOGY_PLATFORM_ENABLED==='true'||(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'))&&isAstrologyPlatformPath(incoming.pathname)&&(!incoming.pathname.startsWith('/api/')||incoming.pathname.startsWith('/api/astrology/'))&&!incoming.pathname.startsWith('/cdn-cgi/')&&!/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
       return handleAstrologyRequest(request,env);
     }
-    if(incoming.pathname==='/api/gozde-inquiry'||incoming.pathname==='/api/gozde-apply'||incoming.pathname==='/api/gozde-submissions'){
+    if(incoming.pathname.startsWith('/api/gozde-')){
       return new Response(JSON.stringify({ok:false,message:'Endpoint retired.'}),{
         status:410,
         headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store'}
       });
-    }
-    if(env.GOZDE_LAUNCH_ENABLED==='true' && (request.method==='GET'||request.method==='HEAD') && !incoming.pathname.startsWith('/api/') && !incoming.pathname.startsWith('/cdn-cgi/') && !/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
-      const pathname=incoming.pathname;
-      const normalized=resolveGozdeLocale(pathname);
-      return new Response(request.method==='HEAD'?null:gozdeLanding(pathname),{headers:{'content-type':'text/html; charset=utf-8','content-language':normalized,'cache-control':'public, max-age=90'}});
     }
     if(env.COMING_SOON_ENABLED==='true' && (request.method==='GET'||request.method==='HEAD')){
       const pathname=incoming.pathname;

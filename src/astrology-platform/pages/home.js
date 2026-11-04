@@ -58,6 +58,30 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     `;
   }).join('');
 
+  const quickCityHelperMap = {
+    tr: 'Türkiye’nin 81 ili ve tüm dünya şehirleri için anında koordinat ve saat dilimi eşlemesi.',
+    en: 'Instant coordinate and timezone lookup for global cities.',
+    el: 'Άμεσος εντοπισμός συντεταγμένων και ζώνης ώρας για πόλεις παγκοσμίως.',
+    es: 'Búsqueda instantánea de coordenadas y huso horario para ciudades globales.',
+    ar: 'تحديد فوري للإحداثيات والمنطقة الزمنية للمدن حول العالم.'
+  };
+
+  const quickCityPlaceholderMap = {
+    tr: 'İstanbul, Ankara, İzmir...',
+    en: 'London, New York, Paris...',
+    el: 'Αθήνα, Θεσσαλονίκη, London...',
+    es: 'Madrid, Barcelona, Buenos Aires...',
+    ar: 'الرياض، دبي، القاهرة...'
+  };
+
+  const quickCityDefaultMap = {
+    tr: 'Istanbul',
+    en: 'London',
+    el: 'Athens',
+    es: 'Madrid',
+    ar: 'Riyadh'
+  };
+
   return `
     <!-- 1. Hero: Ultra-Luxury Celestial Cosmos Artwork & Clear CTAs -->
     <section class="astro-hero astro-section-viewport">
@@ -97,14 +121,14 @@ export const renderHomeView = ({ locale = 'tr' }) => {
               </div>
               <div class="astro-quick-field">
                 <label for="qk-hour">${t.quickNatal.labelTime} (24h)</label>
-                ${render24hTimePicker({ idPrefix: 'qk', name: 'time', defaultValue: '14:30', ariaLabelHour: t.quickNatal.labelTime, ariaLabelMinute: 'Dakika' })}
+                ${render24hTimePicker({ idPrefix: 'qk', name: 'time', defaultValue: '14:30', locale: loc, ariaLabelHour: t.quickNatal.labelTime })}
               </div>
               <div class="astro-quick-field">
                 <label for="qk-city">${t.quickNatal.labelCity}</label>
-                <input id="qk-city" name="city" type="text" required placeholder="${loc === 'tr' ? 'İstanbul, Ankara, İzmir...' : 'London, New York, Paris...'}" value="Istanbul" autocomplete="off">
-                <span style="font-size:10.5px; color:var(--dim); display:block; margin-top:4px">${loc === 'tr' ? 'Türkiye’nin 81 ili ve tüm dünya şehirleri için anında koordinat ve saat dilimi eşlemesi.' : 'Instant coordinate and timezone lookup for global cities.'}</span>
+                <input id="qk-city" name="city" type="text" required placeholder="${quickCityPlaceholderMap[loc] || quickCityPlaceholderMap.tr}" value="${quickCityDefaultMap[loc] || quickCityDefaultMap.tr}" autocomplete="off">
               </div>
             </div>
+            <div style="font-size:10.5px; color:var(--dim); margin:-6px 0 14px 0">${quickCityHelperMap[loc] || quickCityHelperMap.tr}</div>
             <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
               <label style="font-size:12.5px; color:var(--dim); display:inline-flex; align-items:center; gap:8px; cursor:pointer">
                 <input type="checkbox" name="unknown_time" value="1" onchange="var h=document.getElementById('qk-hour'),m=document.getElementById('qk-min');if(h&&m){h.disabled=this.checked;m.disabled=this.checked;}">

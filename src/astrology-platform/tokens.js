@@ -146,6 +146,58 @@ input[type="checkbox"] {
   text-transform: uppercase;
 }
 
+/* Universal Haute Horlogerie Form Elements — Eliminates Browser Default White Inputs */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+select,
+textarea,
+.astro-form-group input,
+.astro-form-card input,
+.synastry-person-card input,
+.natal-form-field input {
+  width: 100%;
+  padding: 11px 14px;
+  background: rgba(8, 12, 22, 0.88) !important;
+  border: 1px solid rgba(212, 175, 55, 0.3) !important;
+  border-radius: 10px;
+  color: #ffffff !important;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  color-scheme: dark;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="datetime-local"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+select:focus,
+textarea:focus,
+.astro-form-group input:focus,
+.astro-form-card input:focus,
+.synastry-person-card input:focus,
+.natal-form-field input:focus {
+  outline: none;
+  border-color: var(--gold-bright) !important;
+  background: rgba(14, 20, 36, 0.96) !important;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85) sepia(60%) saturate(300%) hue-rotate(5deg);
+  cursor: pointer;
+}
+
 .synastry-person-card {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(212, 175, 55, 0.18);
@@ -196,17 +248,18 @@ input[type="checkbox"] {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden !important;
   max-width: 100vw !important;
   width: 100% !important;
   position: relative;
+  padding-top: 68px;
+  overflow-x: clip !important;
 }
 
 main {
   flex-grow: 1;
-  overflow-x: hidden !important;
   max-width: 100vw !important;
   width: 100% !important;
+  overflow-x: clip !important;
 }
 
 .astro-container {
@@ -214,16 +267,21 @@ main {
   margin: 0 auto;
 }
 
-/* Header & Navigation — Ultra-Luxury Editorial Language */
+/* Header & Navigation — Ultra-Luxury Editorial Language (Always Fixed Floating Header) */
 .astro-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(5, 7, 14, 0.82);
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  z-index: 1000 !important;
+  background: rgba(5, 7, 14, 0.92);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.16);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.65);
+  overflow-x: clip !important;
   transition: all 0.25s ease;
 }
 .astro-header-inner {
@@ -458,7 +516,7 @@ main {
 .astro-drawer {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 1100 !important;
   display: flex;
   visibility: hidden;
 }
@@ -2560,6 +2618,7 @@ html[dir="rtl"] .retro-guidance-box {
   .astro-nav-desktop { display: none !important; }
   .astro-menu-btn { display: inline-flex !important; }
   .astro-cta-gold { display: none !important; }
+  .astro-lang-pills { display: none !important; }
   .astro-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .archetype-grid { grid-template-columns: 1fr; }
   .retro-grid-triad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -2567,7 +2626,7 @@ html[dir="rtl"] .retro-guidance-box {
   .astro-bridge-card { flex-direction: column; text-align: center; }
   .astro-bridge-copy { display: flex; flex-direction: column; align-items: center; }
   .lunation-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .active-retro-5-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .active-retro-5-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
   .astro-footer-grid { grid-template-columns: 1.5fr 1fr 1fr; gap: 32px; }
   .horoscope-spotlight-body { grid-template-columns: 1fr; gap: 20px; }
 }
@@ -2596,7 +2655,7 @@ html[dir="rtl"] .retro-guidance-box {
   .astro-grid-4,
   .retro-grid-triad,
   .retro-grid-quad { grid-template-columns: 1fr !important; }
-  .active-retro-5-grid { grid-template-columns: 1fr !important; }
+  .active-retro-5-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
   .daily-chronicle-grid { grid-template-columns: 1fr !important; }
 
   /* Ultra-Elite Mobile Footer — Haute Horlogerie 2-Column Luxury Layout */
@@ -2767,5 +2826,175 @@ html[dir="rtl"] .retro-guidance-box {
 @media (max-width: 540px) {
   .lunation-card-grid { grid-template-columns: 1fr !important; }
   .active-retro-5-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Learning Center Haute Horlogerie Stack */
+.learning-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.learning-elite-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 22px 28px;
+  background: linear-gradient(135deg, rgba(14, 18, 34, 0.78) 0%, rgba(8, 10, 20, 0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.learning-elite-card:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.65), 0 0 24px rgba(212, 175, 55, 0.16);
+  background: linear-gradient(135deg, rgba(20, 26, 48, 0.85) 0%, rgba(10, 14, 26, 0.95) 100%);
+}
+.learning-elite-badge {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 14px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.22) 0%, rgba(10, 14, 28, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--gold-bright);
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+.learning-elite-body {
+  flex: 1;
+  min-width: 0;
+}
+.learning-elite-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: #fff;
+  margin: 0 0 5px 0;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.learning-elite-desc {
+  font-size: 13.5px;
+  color: rgba(248, 246, 240, 0.72);
+  line-height: 1.5;
+  margin: 0;
+  white-space: normal;
+}
+.learning-elite-action {
+  flex-shrink: 0;
+}
+.learning-elite-btn {
+  font-size: 12.5px;
+  padding: 10px 18px;
+  white-space: nowrap !important;
+}
+
+/* Approach & Ethics Haute Horlogerie Grid */
+.approach-elite-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1060px;
+  margin: 0 auto;
+}
+.approach-elite-card {
+  padding: 28px 26px;
+  background: linear-gradient(145deg, rgba(14, 18, 34, 0.78) 0%, rgba(6, 8, 16, 0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 18px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.approach-elite-card:hover {
+  border-color: rgba(212, 175, 55, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.7), 0 0 24px rgba(212, 175, 55, 0.18);
+}
+.approach-elite-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.approach-elite-icon {
+  font-size: 20px;
+  color: var(--gold-bright);
+}
+.approach-elite-tag {
+  font-size: 10.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+}
+.approach-elite-title {
+  font-family: var(--font-serif);
+  font-size: 21px;
+  color: #fff;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+.approach-elite-text {
+  font-size: 13.5px;
+  color: rgba(248, 246, 240, 0.72);
+  line-height: 1.65;
+  margin: 0 0 20px 0;
+  flex-grow: 1;
+}
+.approach-elite-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.approach-elite-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--gold-bright);
+  background: rgba(212, 175, 55, 0.09);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.approach-engine-banner {
+  margin-top: 28px;
+  max-width: 1060px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 14px 20px;
+  background: rgba(5, 7, 14, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .approach-elite-grid { grid-template-columns: 1fr; }
+  .learning-elite-card { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .learning-elite-action { width: 100%; }
+  .learning-elite-btn { width: 100%; justify-content: center; }
 }
 `;
