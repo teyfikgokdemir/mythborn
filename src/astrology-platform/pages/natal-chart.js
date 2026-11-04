@@ -64,7 +64,7 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
   }
 
   const resultHtml = chartResult ? `
-    <div class="astro-chart-result" style="margin-top:40px">
+    <div class="astro-chart-result">
       <!-- Big Three Triad -->
       <div class="big-three-grid" style="margin-bottom:32px">
         <article class="big-three-card" style="border-color:var(--gold)">
@@ -148,56 +148,110 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
   ` : '';
 
   return `
-    <section class="astro-hero">
+    <!-- Integrated Full-Viewport Console: Editorial Identity + Astrolabe Form in 1 Clean Viewport -->
+    <section class="natal-stage-viewport">
       <div class="astro-container">
-        <span class="astro-hero-eyebrow">✦ ASTRONOMY ENGINE KORUMALI MATEMATİKSEL DOĞUM HARİTASI</span>
-        <h1>${t.menu.natal} Hesaplama ve Yükselen Analizi</h1>
-        <p class="astro-hero-lead">${t.hero.lead}</p>
-      </div>
-    </section>
+        <div class="natal-console-grid">
+          <!-- Editorial Side -->
+          <div class="natal-editorial-side">
+            <span class="astro-hero-eyebrow">✦ ASTRONOMY ENGINE KORUMALI MATEMATİKSEL DOĞUM HARİTASI</span>
+            <h1 class="natal-main-title">${t.menu.natal} Hesaplama ve Yükselen Analizi</h1>
+            <p class="natal-main-lead">${t.hero.lead}</p>
 
-    <section class="astro-section">
-      <div class="astro-container">
-        <div class="astro-form-card" style="max-width:680px; margin:0 auto">
-          <h2 style="font-family:var(--font-serif); font-size:24px; color:#fff; margin-bottom:8px; font-weight:400">
-            ${t.quickNatal.title}
-          </h2>
-          <p style="color:var(--muted); font-size:13px; margin-bottom:20px">
-            ${t.quickNatal.sub} · <span style="color:var(--gold-bright)">${t.timeStandardNotice}</span>
-          </p>
-
-          <form action="${getRouteHref(locale, 'natal')}" method="get">
-            <div class="astro-form-group">
-              <label for="birth-date">${t.quickNatal.labelDate} *</label>
-              <input type="date" id="birth-date" name="date" required value="${birthDate || '1995-03-21'}">
+            <div class="natal-triad-pills">
+              <div class="natal-triad-pill">
+                <span class="pill-glyph" aria-hidden="true">☉</span>
+                <div>
+                  <strong>${locale === 'tr' ? 'Güneş' : locale === 'en' ? 'Sun' : locale === 'el' ? 'Ήλιος' : locale === 'es' ? 'Sol' : 'الشمس'}</strong>
+                  <small>${locale === 'tr' ? 'Bilinç & İrade' : locale === 'en' ? 'Conscious Will' : locale === 'el' ? 'Συνείδηση' : locale === 'es' ? 'Voluntad' : 'الوعي والإرادة'}</small>
+                </div>
+              </div>
+              <div class="natal-triad-pill">
+                <span class="pill-glyph" aria-hidden="true">☽</span>
+                <div>
+                  <strong>${locale === 'tr' ? 'Ay' : locale === 'en' ? 'Moon' : locale === 'el' ? 'Σελήνη' : locale === 'es' ? 'Luna' : 'القمر'}</strong>
+                  <small>${locale === 'tr' ? 'Duygu & Hafıza' : locale === 'en' ? 'Emotion & Memory' : locale === 'el' ? 'Συναίσθημα' : locale === 'es' ? 'Emoción' : 'العاطفة والذاكرة'}</small>
+                </div>
+              </div>
+              <div class="natal-triad-pill">
+                <span class="pill-glyph" aria-hidden="true">↑</span>
+                <div>
+                  <strong>${locale === 'tr' ? 'Yükselen' : locale === 'en' ? 'Ascendant' : locale === 'el' ? 'Ωροσκόπος' : locale === 'es' ? 'Ascendente' : 'الطالع'}</strong>
+                  <small>${locale === 'tr' ? 'Dünyayla Arayüz' : locale === 'en' ? 'Outer Persona' : locale === 'el' ? 'Εξωτερική Εικόνα' : locale === 'es' ? 'Interfaz Externa' : 'الواجهة الخارجية'}</small>
+                </div>
+              </div>
             </div>
 
-            <div class="astro-form-group">
-              <label>${t.quickNatal.labelTime} (24h)</label>
-              ${render24hTimePicker({ idPrefix: 'birth', name: 'time', defaultValue: birthTime || '14:30', ariaLabelHour: t.quickNatal.labelTime, ariaLabelMinute: 'Dakika' })}
-              <label style="display:flex; align-items:center; gap:8px; margin-top:8px; font-weight:400; font-size:13px; color:var(--muted); cursor:pointer">
-                <input type="checkbox" id="time-unknown" name="unknown_time" value="1" ${unknownTime ? 'checked' : ''} style="width:auto" onchange="var h=document.getElementById('birth-hour'),m=document.getElementById('birth-min');if(h&&m){h.disabled=this.checked;m.disabled=this.checked;}">
-                <span>${t.quickNatal.unknownTime}</span>
-              </label>
+            <div class="natal-standards-box">
+              <span style="color:var(--gold-bright)">✦</span>
+              <span>Europe/Istanbul (TSI) referanslı · Katı 24 saat formatı · Açık kaynaklı efemeris algoritmaları</span>
             </div>
+          </div>
 
-            <div class="astro-form-group">
-              <label for="birth-place">${t.quickNatal.labelCity} *</label>
-              <input type="text" id="birth-place" name="city" placeholder="İstanbul, Ankara, London, Athens..." required value="${birthCity || 'Istanbul'}">
-              <span class="astro-form-note">Çevrimdışı 81 il sözlüğü ve 3500 ms açık kaynaklı koordinat eşlemesi kullanılır.</span>
-            </div>
+          <!-- Astrolabe Calculation Console Side -->
+          <div class="natal-instrument-side">
+            <div class="natal-astrolabe-box">
+              <div class="natal-box-head">
+                <div>
+                  <span class="natal-box-tag">✦ MATEMATİKSEL ENSTRÜMAN</span>
+                  <h2 class="natal-box-title">${t.quickNatal.title}</h2>
+                </div>
+                <span class="natal-box-badge">24h TSI</span>
+              </div>
 
-            <div style="margin-top:24px">
-              <button type="submit" class="astro-btn-primary" style="width:100%; justify-content:center">
-                <span>${t.quickNatal.submitBtn}</span>
-                <span aria-hidden="true">${arrow}</span>
-              </button>
+              <form action="${getRouteHref(locale, 'natal')}" method="get" class="natal-form-inner">
+                <div class="natal-form-row">
+                  <div class="natal-form-field">
+                    <label for="birth-date">${t.quickNatal.labelDate} *</label>
+                    <input type="date" id="birth-date" name="date" required value="${birthDate || '1995-03-21'}">
+                  </div>
+
+                  <div class="natal-form-field">
+                    <label for="birth-hour">${t.quickNatal.labelTime} (24h) *</label>
+                    ${render24hTimePicker({ idPrefix: 'birth', name: 'time', defaultValue: birthTime || '14:30', ariaLabelHour: t.quickNatal.labelTime, ariaLabelMinute: 'Dakika' })}
+                  </div>
+                </div>
+
+                <div class="natal-form-field">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px">
+                    <label for="birth-place" style="margin:0">${t.quickNatal.labelCity} *</label>
+                    <span style="font-size:11px; color:var(--dim)">Çevrimdışı 81 İl Sözlüğü</span>
+                  </div>
+                  <input type="text" id="birth-place" name="city" placeholder="İstanbul, Ankara, İzmir, London, Athens..." required value="${birthCity || 'Istanbul'}">
+                  <div class="natal-city-quick-picks">
+                    <button type="button" onclick="document.getElementById('birth-place').value='Istanbul'">İstanbul</button>
+                    <button type="button" onclick="document.getElementById('birth-place').value='Ankara'">Ankara</button>
+                    <button type="button" onclick="document.getElementById('birth-place').value='Izmir'">İzmir</button>
+                    <button type="button" onclick="document.getElementById('birth-place').value='London'">London</button>
+                    <button type="button" onclick="document.getElementById('birth-place').value='Athens'">Athens</button>
+                  </div>
+                </div>
+
+                <div class="natal-options-row">
+                  <label class="natal-check-label">
+                    <input type="checkbox" id="time-unknown" name="unknown_time" value="1" ${unknownTime ? 'checked' : ''} onchange="var h=document.getElementById('birth-hour'),m=document.getElementById('birth-min');if(h&&m){h.disabled=this.checked;m.disabled=this.checked;}">
+                    <span>${t.quickNatal.unknownTime}</span>
+                  </label>
+                </div>
+
+                <button type="submit" class="natal-submit-btn">
+                  <span>${t.quickNatal.submitBtn}</span>
+                  <span aria-hidden="true">${arrow}</span>
+                </button>
+              </form>
             </div>
-          </form>
+          </div>
         </div>
-
-        ${resultHtml}
       </div>
     </section>
+
+    <!-- Results Section (If calculated) -->
+    ${chartResult ? `
+      <section class="astro-section astro-section-viewport" id="natal-results">
+        <div class="astro-container">
+          ${resultHtml}
+        </div>
+      </section>
+    ` : ''}
   `;
 };

@@ -33,6 +33,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
+  scroll-padding-top: 76px;
 }
 
 body {
@@ -596,6 +597,7 @@ html[dir="rtl"] .astro-time-select {
   flex-direction: column;
   justify-content: center;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
   scroll-margin-top: 76px;
 }
 .astro-section-head {
@@ -1151,6 +1153,238 @@ html[dir="rtl"] .retro-guidance-box {
   border-left: none;
   border-right: 2px solid var(--gold);
   border-radius: 6px 0 0 6px;
+}
+
+/* Natal Stage Integrated Viewport (Hero + Astrolabe Console in 1 Viewport) */
+.natal-stage-viewport {
+  min-height: calc(100vh - 76px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 4vh, 48px) 0;
+  background: radial-gradient(circle at 80% 30%, rgba(13, 18, 36, 0.45) 0%, rgba(5, 7, 14, 0.95) 70%),
+              linear-gradient(180deg, rgba(8, 9, 14, 0.9) 0%, rgba(5, 7, 14, 0.98) 100%),
+              url('/images/astrology/hero-celestial-cosmos.jpg') right center / cover no-repeat;
+  border-bottom: 1px solid var(--border);
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
+.natal-console-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(24px, 4vw, 54px);
+  align-items: center;
+}
+.natal-editorial-side {
+  display: flex;
+  flex-direction: column;
+}
+.natal-main-title {
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 3.2vw, 46px);
+  line-height: 1.16;
+  color: #fff;
+  margin: 12px 0 16px;
+  font-weight: 400;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+}
+.natal-main-lead {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 15px;
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+.natal-triad-pills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.natal-triad-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: rgba(16, 21, 38, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+}
+.pill-glyph {
+  font-size: 20px;
+  color: var(--gold-bright);
+}
+.natal-triad-pill strong {
+  display: block;
+  font-size: 13px;
+  color: #fff;
+  line-height: 1.2;
+}
+.natal-triad-pill small {
+  display: block;
+  font-size: 11px;
+  color: var(--dim);
+}
+.natal-standards-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+/* Astrolabe Console Box */
+.natal-astrolabe-box {
+  background: rgba(11, 15, 28, 0.88);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  border-radius: 22px;
+  padding: 26px 30px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+.natal-astrolabe-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gold-gradient);
+}
+.natal-box-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.natal-box-tag {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+.natal-box-title {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  color: #fff;
+  font-weight: 500;
+  margin: 0;
+}
+.natal-box-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-bright);
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+.natal-form-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.natal-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.natal-form-field label {
+  display: block;
+  font-size: 11.5px;
+  color: var(--cream);
+  font-weight: 500;
+  margin-bottom: 5px;
+  letter-spacing: 0.04em;
+}
+.natal-form-field input[type="text"],
+.natal-form-field input[type="date"] {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(5, 7, 14, 0.8);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 13.5px;
+  transition: all 0.2s ease;
+}
+.natal-form-field input:focus {
+  outline: none;
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+.natal-city-quick-picks {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+.natal-city-quick-picks button {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: var(--muted);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.natal-city-quick-picks button:hover {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-bright);
+  border-color: var(--gold);
+}
+.natal-options-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2px 0 4px;
+}
+.natal-check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+.natal-check-label input {
+  width: auto;
+  accent-color: var(--gold);
+}
+.natal-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #e5c38c 0%, #c49952 50%, #9c7331 100%);
+  color: #05070e;
+  font-weight: 700;
+  font-size: 14.5px;
+  letter-spacing: 0.02em;
+  padding: 13px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
+  transition: all 0.22s ease;
+  width: 100%;
+}
+.natal-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(212, 175, 55, 0.5);
 }
 
 @media (max-width: 1100px) {
