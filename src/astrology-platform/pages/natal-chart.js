@@ -4,11 +4,13 @@ import { getRouteHref } from '../layout.js';
 import { calculatePlanetaryPositions, calculateAnglesAndHouses, calculateAspects, lookupCity, ENGINE_METADATA } from '../data-core.js';
 import { renderNatalWheelSvg } from '../natal-wheel.js';
 import { render24hTimePicker } from '../time-picker.js';
+import { getSignCompendium } from '../zodiac-compendium.js';
 
 export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
   const isRtl = t.dir === 'rtl';
   const arrow = isRtl ? '←' : '→';
+  const loc = locale === 'gr' ? 'el' : ['tr', 'en', 'el', 'es', 'ar'].includes(locale) ? locale : 'tr';
 
   const birthDate = searchParams.date || searchParams.birthDate || '';
   const birthTime = searchParams.time || searchParams.birthTime || '12:00';
@@ -85,6 +87,55 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
           <p style="font-size:20px; font-weight:600; color:#fff">${chartResult.asc ? `${chartResult.asc.symbol} ${chartResult.asc.sign}` : '—'}</p>
           <small style="color:var(--gold-bright)">${chartResult.asc ? chartResult.asc.formatted : (locale === 'tr' ? 'Doğum saati bilinmiyor' : 'Unknown birth time')}</small>
         </article>
+      </div>
+
+      <!-- Kişisel Büyük Üçlü Ruhsal Analiz Raporu -->
+      <div class="natal-interpretation-dossier" style="margin-bottom:32px; padding:28px 30px; background:linear-gradient(165deg, rgba(14,18,34,0.92) 0%, rgba(6,8,16,0.98) 100%); border:1px solid rgba(212,175,55,0.35); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.7)">
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:16px; margin-bottom:24px; flex-wrap:wrap; gap:12px">
+          <div>
+            <span class="astro-card-tag">✦ ${locale === 'tr' ? 'KİŞİYE ÖZEL KOZMİK PORTRE' : 'PERSONAL COSMIC PORTRAIT'}</span>
+            <h3 style="font-family:var(--font-serif); font-size:24px; color:#fff; margin:4px 0 0">${locale === 'tr' ? 'Büyük Üçlü Ruhsal Analiz Raporunuz' : 'Your Big Three Archetypal Synthesis'}</h3>
+          </div>
+          <span style="font-size:12.5px; color:var(--gold-bright)">${birthDate} · ${birthCity}</span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:20px">
+          <!-- Güneş -->
+          <div style="padding:18px 22px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px">
+            <h4 style="font-family:var(--font-serif); font-size:17.5px; color:var(--gold); margin:0 0 8px; display:flex; align-items:center; gap:8px">
+              <span>☉</span>
+              <span>${locale === 'tr' ? `Güneş ${chartResult.sun.sign} Burcunda: Öz Benliğiniz ve Yaşam Amacınız` : `Sun in ${chartResult.sun.sign}: Core Purpose`}</span>
+            </h4>
+            <p style="font-size:14px; color:rgba(248,246,240,0.88); line-height:1.7; margin:0 0 10px">${getSignCompendium(chartResult.sun?.signId).soulEssence[loc] || getSignCompendium(chartResult.sun?.signId).soulEssence.tr}</p>
+            <p style="font-size:13px; color:var(--gold-bright); margin:0"><strong>✦ ${locale === 'tr' ? 'Kozmik Rolünüz' : 'Cosmic Role'}:</strong> ${getSignCompendium(chartResult.sun?.signId).inBigThree.sun}</p>
+          </div>
+
+          <!-- Ay -->
+          <div style="padding:18px 22px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px">
+            <h4 style="font-family:var(--font-serif); font-size:17.5px; color:var(--gold); margin:0 0 8px; display:flex; align-items:center; gap:8px">
+              <span>☽</span>
+              <span>${locale === 'tr' ? `Ay ${chartResult.moon.sign} Burcunda: Duygusal Güvenlik ve İçsel Dünyanız` : `Moon in ${chartResult.moon.sign}: Emotional Core`}</span>
+            </h4>
+            <p style="font-size:14px; color:rgba(248,246,240,0.88); line-height:1.7; margin:0 0 10px">${getSignCompendium(chartResult.moon?.signId).soulEssence[loc] || getSignCompendium(chartResult.moon?.signId).soulEssence.tr}</p>
+            <p style="font-size:13px; color:var(--gold-bright); margin:0"><strong>✦ ${locale === 'tr' ? 'Duygusal Beslenme İhtiyacınız' : 'Emotional Need'}:</strong> ${getSignCompendium(chartResult.moon?.signId).inBigThree.moon}</p>
+          </div>
+
+          <!-- Yükselen -->
+          ${chartResult.asc ? `
+            <div style="padding:18px 22px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px">
+              <h4 style="font-family:var(--font-serif); font-size:17.5px; color:var(--gold); margin:0 0 8px; display:flex; align-items:center; gap:8px">
+                <span>↑</span>
+                <span>${locale === 'tr' ? `Yükselen ${chartResult.asc.sign} Burcunda: Dünyaya Açılan Maskeniz ve Yaşam Rotanız` : `Ascendant in ${chartResult.asc.sign}: Outer Mask & Aura`}</span>
+              </h4>
+              <p style="font-size:14px; color:rgba(248,246,240,0.88); line-height:1.7; margin:0 0 10px">${getSignCompendium(chartResult.asc?.signId).soulEssence[loc] || getSignCompendium(chartResult.asc?.signId).soulEssence.tr}</p>
+              <p style="font-size:13px; color:var(--gold-bright); margin:0"><strong>✦ ${locale === 'tr' ? 'Dış Dünyadaki Auranız' : 'Outer Aura'}:</strong> ${getSignCompendium(chartResult.asc?.signId).inBigThree.rising}</p>
+            </div>
+          ` : `
+            <div style="padding:14px 18px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:10px; font-size:13px; color:var(--muted)">
+              ${locale === 'tr' ? 'Doğum saati girilmediği için Yükselen burç (ASC) ve ev yerleşimleri hesaplanmadı. Tam saat bilindiğinde dünyaya açılan pencereli analiz aktifleşir.' : 'Birth time was omitted; Ascendant and house cusps are omitted.'}
+            </div>
+          `}
+        </div>
       </div>
 
       <!-- Zodyak Çarkı Görseli & Gezegen Tablosu -->

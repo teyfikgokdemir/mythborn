@@ -2,11 +2,13 @@
 import { ASTROLOGY_LOCALES } from '../i18n.js';
 import { getRouteHref } from '../layout.js';
 import { calculatePlanetaryPositions, lookupCity, MAJOR_ASPECTS, normalizeLongitude, ENGINE_METADATA } from '../data-core.js';
+import { getSignCompendium } from '../zodiac-compendium.js';
 
 export const renderSynastryView = ({ locale = 'tr', searchParams = {} }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
   const isRtl = t.dir === 'rtl';
   const arrow = isRtl ? '←' : '→';
+  const loc = locale === 'gr' ? 'el' : ['tr', 'en', 'el', 'es', 'ar'].includes(locale) ? locale : 'tr';
 
   const p1Date = searchParams.p1_date || '';
   const p1City = searchParams.p1_city || 'Istanbul';
@@ -134,6 +136,51 @@ export const renderSynastryView = ({ locale = 'tr', searchParams = {} }) => {
                 <h4 style="margin:6px 0; color:#fff">Işıklar Uyumu</h4>
                 <strong style="font-size:14px; color:#fff">${synastryResult.p1Sun.sign} & ${synastryResult.p2Sun.sign}</strong>
                 <p style="font-size:12px; color:var(--muted); margin:4px 0 0">Güneş burcu dinamikleri</p>
+              </div>
+            </div>
+
+            <!-- Derinlemesine İlişki ve Uyum Analiz Raporu -->
+            <div style="margin-bottom:28px; padding:28px 30px; background:linear-gradient(165deg, rgba(14,18,34,0.92) 0%, rgba(6,8,16,0.98) 100%); border:1px solid rgba(212,175,55,0.35); border-radius:18px; box-shadow:0 18px 45px rgba(0,0,0,0.65)">
+              <div style="border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:14px; margin-bottom:20px">
+                <span class="astro-card-tag">✦ ARKETİPSEL İLİŞKİ SENTEZİ</span>
+                <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff; margin:4px 0 0">
+                  ${locale === 'tr' ? `${synastryResult.p1Sun.sign} & ${synastryResult.p2Sun.sign} Arasındaki Ruhsal Çekim ve Büyüme Alanları` : `${synastryResult.p1Sun.sign} & ${synastryResult.p2Sun.sign} Relational Synthesis`}
+                </h3>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:16px">
+                <div style="padding:16px 20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px">
+                  <h4 style="font-family:var(--font-serif); font-size:16px; color:var(--gold); margin:0 0 6px">
+                    ☉☉ ${locale === 'tr' ? 'Yaşam Amaçları & İrade Uyumu' : 'Core Life Purpose & Will'}
+                  </h4>
+                  <p style="font-size:13.5px; color:rgba(248,246,240,0.85); line-height:1.7; margin:0">
+                    ${locale === 'tr'
+                      ? `1. Kişi (${synastryResult.p1Sun.sign}) kendi varoluşunu ${getSignCompendium(synastryResult.p1Sun.signId).soulEssence.tr.slice(0, 100)}... şeklinde deneyimlerken; 2. Kişi (${synastryResult.p2Sun.sign}) ${getSignCompendium(synastryResult.p2Sun.signId).soulEssence.tr.slice(0, 100)}... dinamikleriyle hareket eder. Birbirinizi değiştirmeye çalışmak yerine zıt kutupların tamamlayıcılığına saygı duymak ilişkinin en sağlam omurgasıdır.`
+                      : `The synthesis of ${synastryResult.p1Sun.sign} and ${synastryResult.p2Sun.sign} bridges distinct modes of expression, requiring mutual celebration of autonomy rather than projection.`}
+                  </p>
+                </div>
+
+                <div style="padding:16px 20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px">
+                  <h4 style="font-family:var(--font-serif); font-size:16px; color:var(--gold); margin:0 0 6px">
+                    ☽☽ ${locale === 'tr' ? 'Duygusal Dil & Mahremiyet Sığınakları' : 'Emotional Intimacy & Soul Sanctuary'}
+                  </h4>
+                  <p style="font-size:13.5px; color:rgba(248,246,240,0.85); line-height:1.7; margin:0">
+                    ${locale === 'tr'
+                      ? `Ay burçları (${synastryResult.p1Moon.sign} ve ${synastryResult.p2Moon.sign}), kriz anlarında nasıl tepki verdiğinizi ve şefkati nasıl aradığınızı fısıldar. Biri içine kapanırken diğeri konuşmak isteyebilir. Farklılıkları kusur değil, birbirinizi besleyecek zenginlikler olarak kabul ettiğinizde sarsılmaz bir duygusal liman inşa edilir.`
+                      : `The Moon placements (${synastryResult.p1Moon.sign} and ${synastryResult.p2Moon.sign}) reveal your private attachment styles and vulnerability rhythms.`}
+                  </p>
+                </div>
+
+                <div style="padding:16px 20px; background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.22); border-radius:12px">
+                  <h4 style="font-family:var(--font-serif); font-size:16px; color:var(--gold-bright); margin:0 0 6px">
+                    ✦ ${locale === 'tr' ? 'Kozmik İlişki Pusulası' : 'Cosmic Compass for the Couple'}
+                  </h4>
+                  <p style="font-size:13.5px; color:#f8f6f0; line-height:1.7; margin:0">
+                    ${locale === 'tr'
+                      ? `Haritanızdaki ${synastryResult.counts.harmonious} uyumlu açı akışı kolaylaştırırken, ${synastryResult.counts.challenging} gelişim açısı ilişkinin büyüme motorudur. Gerilim açıları bir ayrılık fermanı değil; olgunlaşmak, dinlemeyi öğrenmek ve birbirinizi yüceltmek için kozmik bir davettir.`
+                      : `Harmonious aspects supply natural ease, while challenging aspects provide the evolutionary fuel that matures mutual devotion.`}
+                  </p>
+                </div>
               </div>
             </div>
 

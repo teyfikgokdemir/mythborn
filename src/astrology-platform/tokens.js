@@ -1601,6 +1601,274 @@ html[dir="rtl"] .retro-guidance-box {
   letter-spacing: 0.02em;
 }
 
+/* Zodiac Interactive Selector & Deep Dossier */
+.zodiac-selector-scroll {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 14px 4px;
+  margin-top: 20px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.zodiac-selector-scroll::-webkit-scrollbar {
+  display: none;
+}
+.zodiac-pill-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  color: var(--cream);
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap !important;
+  text-decoration: none;
+  transition: all 0.22s ease;
+  flex-shrink: 0;
+}
+.zodiac-pill-item:hover {
+  border-color: var(--gold-bright);
+  background: rgba(212, 175, 55, 0.1);
+  color: #fff;
+  transform: translateY(-1px);
+}
+.zodiac-pill-item.is-active {
+  background: var(--gold-gradient);
+  color: #05070e;
+  border-color: transparent;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.4);
+}
+.zodiac-pill-glyph {
+  font-size: 14px;
+}
+
+.zodiac-dossier-card {
+  background: linear-gradient(165deg, rgba(14, 18, 34, 0.95) 0%, rgba(6, 8, 16, 0.98) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 22px;
+  padding: clamp(24px, 4vw, 40px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.zodiac-dossier-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+}
+.zodiac-dossier-icon-box {
+  width: 72px;
+  height: 72px;
+  border-radius: 18px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.zodiac-dossier-img {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.45));
+}
+.zodiac-quality-tag,
+.zodiac-ruler-tag {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+}
+.zodiac-dossier-title {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 3vw, 32px);
+  color: #fff;
+  margin: 4px 0;
+  letter-spacing: 0.02em;
+}
+.zodiac-dossier-dates {
+  font-size: 13px;
+  color: var(--gold-bright);
+}
+.zodiac-dossier-block {
+  padding: 22px 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+.zodiac-dossier-block-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--gold);
+  margin: 0 0 12px 0;
+}
+.zodiac-dossier-lead-text {
+  font-size: 15px;
+  color: rgba(248, 246, 240, 0.88);
+  line-height: 1.75;
+  margin: 0;
+}
+.zodiac-light-shadow-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.zodiac-light-box {
+  padding: 22px;
+  background: rgba(74, 222, 128, 0.04);
+  border: 1px solid rgba(74, 222, 128, 0.28);
+  border-radius: 14px;
+}
+.zodiac-light-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: #4ade80;
+  margin: 0 0 14px 0;
+}
+.zodiac-shadow-box {
+  padding: 22px;
+  background: rgba(248, 113, 113, 0.04);
+  border: 1px solid rgba(248, 113, 113, 0.28);
+  border-radius: 14px;
+}
+.zodiac-shadow-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: #f87171;
+  margin: 0 0 14px 0;
+}
+.zodiac-bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(248, 246, 240, 0.85);
+}
+.zodiac-bullet-list li {
+  position: relative;
+  padding-left: 18px;
+}
+.zodiac-bullet-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+.zodiac-theme-box {
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 14px;
+}
+.zodiac-theme-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--gold-bright);
+  margin: 0 0 12px 0;
+}
+.zodiac-theme-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(248, 246, 240, 0.82);
+  margin: 0;
+}
+.zodiac-big3-role-box {
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 14px;
+  margin-top: 20px;
+}
+.zodiac-big3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.zodiac-big3-col {
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(248, 246, 240, 0.8);
+}
+.zodiac-big3-col strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.zodiac-archetype-subtitle {
+  font-size: 12.5px;
+  color: var(--gold-bright);
+  margin: 2px 0 8px 0;
+  font-weight: 600;
+}
+.zodiac-card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 10px 0;
+}
+.zodiac-card-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: flex-end;
+}
+.zodiac-deep-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold-bright);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.zodiac-deep-link:hover {
+  color: #fff;
+  transform: translateX(2px);
+}
+.is-featured-border {
+  border-color: rgba(212, 175, 55, 0.6) !important;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+}
+
+@media (max-width: 900px) {
+  .zodiac-light-shadow-grid { grid-template-columns: 1fr; }
+  .zodiac-big3-grid { grid-template-columns: 1fr; }
+}
+
 /* Responsive Breakpoints & Desktop Header Guarantee */
 @media (min-width: 1025px) {
   .astro-nav-desktop { display: flex !important; }

@@ -46,7 +46,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
         <h3 class="zodiac-natural-title">${titleText}</h3>
         <p class="zodiac-natural-ruler">🪐 ${rulerLabel} · ${qualityLabel}</p>
         <div class="zodiac-natural-dates">${datesLabel}</div>
-        <a class="astro-card-link" style="margin-top:10px" href="${getRouteHref(locale, 'zodiac')}#${sign.slug}">
+        <a class="astro-card-link" style="margin-top:10px" href="${getRouteHref(locale, 'zodiac')}?sign=${sign.slug}#dossier">
           <span>${linkText}</span>
           <span aria-hidden="true">${arrow}</span>
         </a>
@@ -119,7 +119,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     <section class="astro-section astro-section-viewport" id="archetypes">
       <div class="astro-container">
         <div class="astro-section-head">
-          <span class="astro-card-tag">✦ THE FOUNDATIONAL TRIAD</span>
+          <span class="astro-card-tag">✦ ${locale === 'tr' ? 'KOZMİK BÜYÜK ÜÇLÜ' : 'THE FOUNDATIONAL TRIAD'}</span>
           <h2>${t.bigThree.title}</h2>
           <p>${t.bigThree.sub}</p>
         </div>
@@ -167,7 +167,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     <section class="astro-section astro-section-viewport" id="zodiac" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-section-head">
-          <span class="astro-card-tag">✦ ZODIACAL ARCHETYPES</span>
+          <span class="astro-card-tag">✦ ${locale === 'tr' ? '12 ZODYAK ARKETİPİ' : 'ZODIACAL ARCHETYPES'}</span>
           <h2>${t.sections.zodiacTitle}</h2>
           <p>${t.sections.zodiacSub}</p>
         </div>
@@ -176,8 +176,8 @@ export const renderHomeView = ({ locale = 'tr' }) => {
         <div class="zodiac-tapestry-wrap">
           <img src="/images/astrology/zodiac-celestial-tapestry.jpg" alt="12 Zodiac Celestial Tapestry" class="zodiac-tapestry-img" loading="lazy">
           <div class="zodiac-tapestry-overlay">
-            <h3 class="zodiac-tapestry-title">12 Burç ve Gökyüzü Arketipleri</h3>
-            <p class="zodiac-tapestry-sub">Kozmik zodyak çemberinde her burç, insanın evrenle kurduğu temel sembolik diyaloğu temsil eder.</p>
+            <h3 class="zodiac-tapestry-title">${locale === 'tr' ? '12 Burç ve Gökyüzü Arketipleri' : 'The 12 Zodiac Archetypes'}</h3>
+            <p class="zodiac-tapestry-sub">${locale === 'tr' ? 'Kozmik zodyak çemberinde her burç, insanın evrenle kurduğu temel sembolik diyaloğu ve ruhsal potansiyeli temsil eder.' : 'Every archetype embodies a distinct human potential within the celestial sphere.'}</p>
           </div>
         </div>
 
@@ -191,7 +191,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     <section class="astro-section astro-section-viewport" id="instruments" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-section-head">
-          <span class="astro-card-tag">✦ PRECISION INSTRUMENTS</span>
+          <span class="astro-card-tag">✦ ${locale === 'tr' ? 'HASSAS ANALİZ ARAÇLARI' : 'PRECISION INSTRUMENTS'}</span>
           <h2>Astrolojik Analiz Araçları</h2>
           <p>Açık kaynak efemeris modelleri ve matematiksel astronomi hesaplamalarıyla kişisel doğum ve gökyüzü analizleri.</p>
         </div>

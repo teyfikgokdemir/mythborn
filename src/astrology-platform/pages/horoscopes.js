@@ -25,18 +25,23 @@ export const renderHoroscopesView = ({ locale = 'tr', searchParams = {} }) => {
     return `
       <article id="horoscope-${s.id}" class="zodiac-natural-card" style="${isSelected ? 'border-color:var(--gold); box-shadow:0 0 20px rgba(212,175,55,0.2)' : ''}">
         <div class="zodiac-natural-header">
-          <div style="display:flex; align-items:center; gap:10px">
-            <span class="zodiac-natural-symbol" aria-hidden="true">${s.symbol}</span>
-            <strong style="color:#fff; font-size:17px">${s.name}</strong>
+          <div style="display:flex; align-items:center; gap:12px">
+            <div class="zodiac-icon-badge">
+              <img src="/assets/astrology/zodiac/${s.id}.svg" alt="${s.name}" onerror="this.onerror=null;this.src='/assets/astrology/zodiac/${signMeta.icon || s.id}.svg'" loading="lazy">
+            </div>
+            <div>
+              <strong style="color:#fff; font-size:18px; display:block">${s.name}</strong>
+              <span style="font-size:12px; color:var(--muted)">${signMeta.dates || ''}</span>
+            </div>
           </div>
           <span class="zodiac-element-tag element-${s.element}">${s.element.toUpperCase()}</span>
         </div>
-        <h3 class="zodiac-natural-title" style="font-size:18px; margin-top:8px">${signTitle}</h3>
-        <p style="font-size:14px; font-weight:600; color:var(--gold-bright); margin:6px 0 10px 0">✦ ${s.headline}</p>
-        <p style="font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:12px">${s.theme}</p>
-        <div style="padding:10px 14px; background:rgba(0,0,0,0.3); border-radius:8px; border:1px solid rgba(255,255,255,0.06); font-size:12px">
-          <strong style="color:var(--gold); display:block; margin-bottom:2px">💡 ${locData.adviceLabel}:</strong>
-          <span style="color:#e2e8f0">${s.advice}</span>
+        <h3 class="zodiac-natural-title" style="font-size:18px; margin-top:12px">${signTitle}</h3>
+        <p style="font-size:14.5px; font-weight:600; color:var(--gold-bright); margin:6px 0 10px 0; letter-spacing:0.01em">✦ ${s.headline}</p>
+        <p style="font-size:13.5px; color:rgba(248,246,240,0.85); line-height:1.7; margin-bottom:14px">${s.theme}</p>
+        <div style="padding:12px 16px; background:rgba(0,0,0,0.45); border-radius:10px; border:1px solid rgba(212,175,55,0.2); font-size:12.5px; line-height:1.6">
+          <strong style="color:var(--gold); display:block; margin-bottom:4px">💡 ${locData.adviceLabel}:</strong>
+          <span style="color:#f8f6f0">${s.advice}</span>
         </div>
       </article>
     `;

@@ -47,64 +47,64 @@ const TEMPLATES = {
     disclaimer: 'Yorumlar kişisel farkındalık ve sembolik rehberlik amaçlıdır; kesin gelecek garantisi veya finansal/tıbbi tavsiye içermez.',
     signs: {
       aries: {
-        headline: 'Kararlılık ve Yeni Başlangıçlar',
-        theme: 'Güneş ve Ay döngüleri, kişisel girişimlerinizi hızlandırırken sabırlı adımların önemini hatırlatıyor.',
-        advice: 'Tepkisel hareket etmek yerine net bir öncelik belirleyin.'
+        headline: 'Kararlılık, İrade ve Yeni Eşikler',
+        theme: 'Gök kubbedeki ateş enerjisi, sizi ertelediğiniz adımları atmaya ve kendi yolunuzu açmaya çağırıyor. Ancak bu ivme, körü körüne bir aceleyle değil, ne istediğini bilen bir sükunetle yönlendirilmeli. Çevrenizin hızına tahammülsüzlük göstermek yerine kendi ritminizin gücüne güvenin.',
+        advice: 'Tepkisel bir öfkeyle karar vermek yerine, hedefinizi yazılı hale getirin ve ilk adımı sabırla başlatın.'
       },
       taurus: {
-        headline: 'Maddi Denge ve İçsel Güven',
-        theme: 'Toprak enerjisinin sunduğu somut zemin, değer verdiğiniz alanlarda kalıcı temeller kurmanızı destekliyor.',
-        advice: 'Değişime direnç göstermek yerine pratik adımlara odaklanın.'
+        headline: 'Maddi Güvence, Dinginlik ve İçsel Öz-Değer',
+        theme: 'Toprak elementi size sarsılmaz bir zemin sunarken, kontrolünüz dışındaki değişimlere karşı gösterdiğiniz içsel direnç yorucu olabilir. Huzur, her şeyin sabit kalmasında değil, değişimin içinde kendi merkezini koruyabilmektedir. Bedeninizin ve ruhunuzun dinlenme çağrısına kulak verin.',
+        advice: 'Konfor alanına hapsolmak yerine, küçük pratik yeniliklere alan açın ve sahip olduğunuz değerlerin tadını çıkarın.'
       },
       gemini: {
-        headline: 'İletişim Hacmi ve Zihinsel Netlik',
-        theme: 'Hava elementi bilgi akışını hareketlendirirken birden fazla konu arasında odak dağılması riski doğabilir.',
-        advice: 'Önemli görüşmelerde yazılı ve net ifadeleri tercih edin.'
+        headline: 'Zihinsel Berraklık ve Derin Diyaloglar',
+        theme: 'Merkür’ün hareketli frekansı zihninize onlarca yeni fikir fısıldıyor; ancak aynı anda çok fazla yöne koşmak odak dağınıklığı ve sinirsel yorgunluk getirebilir. Bugün yüzlerce yüzeysel sohbet yerine, ruhunuza dokunacak tek bir derin diyaloğu seçin.',
+        advice: 'Zihninizi dinlendirmek için teknolojik gürültüyü kısın; fikirlerinizi eyleme dönüştürecek bir öncelik sırası yapın.'
       },
       cancer: {
-        headline: 'Duygusal Alan ve İçsel Sınırlar',
-        theme: 'Su burçlarının derinliği sezgilerinizi güçlendirirken, başkalarının yüklerini üstlenmeme dengesini kurmalısınız.',
-        advice: 'Kendi ihtiyaçlarınıza alan açmayı ihmal etmeyin.'
+        headline: 'Duygusal Alan, Aidiyet ve Şefkatli Sınırlar',
+        theme: 'Ay’ın döngüsel ışığı sezgilerinizi olağanüstü keskinleştirirken, başkalarının dile getiremediği gerilimleri sünger gibi çekme riskiniz yüksek. Başkalarını koruma arzunuz, kendi duygusal sınırlarınızı çiğnemenize neden olmamalı. Kendi yuvanızın sıcaklığına sığının.',
+        advice: 'Hayır demenin de bir sevgi ve öz-saygı ifadesi olduğunu hatırlayın; kırgınlıklarınızı sessizliğe değil, şefkatli bir açıklığa dökün.'
       },
       leo: {
-        headline: 'Görünürlük ve Yaratıcı İfade',
-        theme: 'Ateş mizacının verdiği coşku projelerinizi öne çıkarırken, iş birliğine açık kalmak başarıyı pekiştirir.',
-        advice: 'Övgüden ziyade ortak hedeflere katkıya odaklanın.'
+        headline: 'Yaratıcı Kıvılcım ve Kalpten Gelen Cömertlik',
+        theme: 'Güneş’in ışığı yaratıcı projelerinizi ve doğal liderliğinizi görünür kılıyor. Ancak gerçek asalet, sadece takdir toplamakta değil, başkalarının da kendi ışıklarını keşfetmesine alan açabilmektedir. Gururunuzun incinmesine izin vermeden kalbinizin sıcaklığıyla hareket edin.',
+        advice: 'Onay arayışından sıyrılıp sadece üretmenin ve sevmenin saf neşesine odaklanın; ekibinize cesaret aşılayın.'
       },
       virgo: {
-        headline: 'Sadeleşme ve Yöntem Geliştirme',
-        theme: 'Detayları görme kabiliyetiniz karmaşık süreçleri çözmenizi kolaylaştırıyor; kendinize aşırı yüklenmeyin.',
-        advice: 'Mükemmeliyetçiliği bir kenara bırakıp ilerlemeyi kutlayın.'
+        headline: 'Sadeleşme, Detay Ustalığı ve Kusursuzluktan Özgürleşme',
+        theme: 'Hayatın karmaşık detaylarını düzenleme ve pratik çözümler üretme gücünüz zirvede. Fakat mükemmeliyetçiliğin acımasız terazisi hem kendinizi hem de sevdiklerinizi hırpalayabilir. Kusurların da hayatın organik güzelliğinin bir parçası olduğunu kabullenmek size derin bir nefes aldıracak.',
+        advice: 'Eksikleri saymayı bırakın ve tamamlanan adımların değerini kutlayın; zihninizi bedensel bir yürüyüşle topraklayın.'
       },
       libra: {
-        headline: 'İlişkilerde Denge ve Karar Alma',
-        theme: 'Ortaklıklar ve diyaloglar ön planda; başkalarını memnun etme arzusu kendi kararınızı geciktirmemeli.',
-        advice: 'Gerektiğinde nazik ama net bir şekilde sınır çizin.'
+        headline: 'İlişkilerde Denge, Hakkaniyet ve Kararlı Duruş',
+        theme: 'Ortaklıklar, dostluklar ve ikili dengeler günün ana eksenini oluşturuyor. Huzursuzluk çıkmasın diye kendi isteklerinizden ödün verme eğilimi, zamanla içsel bir öfkeye dönüşebilir. Gerçek uyum, her iki tarafın da kendi gerçeğini özgürce ifade edebildiği yerde filizlenir.',
+        advice: 'Kararsızlık kuyusunda oyalanmak yerine, sezgilerinizin işaret ettiği yönde nazik ama net bir seçim yapın.'
       },
       scorpio: {
-        headline: 'Dönüşüm ve Sezgisel Derinlik',
-        theme: 'Güneşin konumu içsel gerçeklerle yüzleşmeyi ve gereksiz bağları geride bırakmayı destekliyor.',
-        advice: 'Kontrol ihtiyacını serbest bırakıp sürecin akışına güvenin.'
+        headline: 'Kozmik Dönüşüm, Sezgisel Hakikat ve Arınma',
+        theme: 'Yüzeyin altındaki gerçekleri görme gücünüz her zamankinden daha keskin. Eski kırgınlıkları, şüpheleri ve artık size hizmet etmeyen duygusal yükleri serbest bırakma eşiğindesiniz. Dönüşüm, eski olanı zorla tutmayı bıraktığınızda başlar; küllerinizden yeniden doğuyorsunuz.',
+        advice: 'Kontrol saplantısını bırakın ve hayatın akışına güvenin; affetmek karşı tarafı haklı çıkarmak değil, kendi ruhunuzu özgürleştirmektir.'
       },
       sagittarius: {
-        headline: 'Genişleme ve Gelecek Vizyonu',
-        theme: 'Merak duygunuz ve öğrenme motivasyonunuz yeni kapılar aralayabilir; detayları gözden kaçırmayın.',
-        advice: 'Büyük resmi planlarken ilk adımı somutlaştırın.'
+        headline: 'Ufkun Genişlemesi, Bilgelik ve Anlam Arayışı',
+        theme: 'İçinizdeki kaşif yeni öğrenmeler, felsefi açılımlar ve seyahat hayalleriyle canlanıyor. Büyük vizyonlar kurarken ayaklarınızın yere basması, projelerin havada kalmasını önleyecektir. İyimserliğiniz en güçlü rehberiniz; onu pratik sorumluluklarla taçlandırın.',
+        advice: 'Gözünüzü uzak ufuklara dikerken bugünün küçük adımlarını küçümsemeyin; dinlemeye de konuşmak kadar değer verin.'
       },
       capricorn: {
-        headline: 'Sorumluluk ve Uzun Vadeli Yapı',
-        theme: 'Disiplinli yaklaşımınız otorite ve iş alanlarında saygı uyandırıyor; dinlenme dengesini koruyun.',
-        advice: 'Tüm yükü tek başınıza taşımak zorunda değilsiniz.'
+        headline: 'Zamanın İdaresi, Sabırlı İnşa ve İçsel Olgunluk',
+        theme: 'Disiplinli ve vakur duruşunuz sayesinde en dik yamaçları adım adım tırmanıyorsunuz. Ancak tüm dünyanın yükünü tek başınıza omuzlamak zorunda değilsiniz. Başarıya giden yolda sevdiklerinizle paylaştığınız sıcak anlar, en az ulaştığınız zirveler kadar değerlidir.',
+        advice: 'Kendinize karşı sert bir yargıç olmak yerine şefkatli bir rehber olun; dinlenmeyi bir zayıflık değil, stratejik bir ihtiyaç olarak görün.'
       },
       aquarius: {
-        headline: 'Özgün Çözümler ve Kolektif Bakış',
-        theme: 'Geleneksel kalıpların dışındaki fikirleriniz dikkat çekiyor; düşüncelerinizi sakin ve anlaşılır aktarın.',
-        advice: 'Farklı bakış açılarına hoşgörüyle yaklaşın.'
+        headline: 'Özgün Vizyon, Fikir Devrimi ve Kolektif Güç',
+        theme: 'Geleneksel kalıplara sığmayan yenilikçi bakış açınız, çevrenizdekilere yeni kapılar aralıyor. Ancak fikirlerinizi paylaşırken aşırı mesafeli veya teorik kalmak bağları zayıflatabilir. Vizyonunuzu kalbinizin sıcaklığı ve samimi bir empatiyle buluşturun.',
+        advice: 'Farklı düşünenleri küçümsemek yerine onların endişelerini dinleyin; özgün projelerinize somut bir başlangıç tarihi koyun.'
       },
       pisces: {
-        headline: 'Sezgisel Netlik ve Sanatsal İlham',
-        theme: 'Duygusal algınız yüksek; günün yoğun temposunda zihninizi dinlendirecek molalar oluşturun.',
-        advice: 'Somut gerçeklikle sezgileriniz arasında sağlıklı bir köprü kurun.'
+        headline: 'Sezgisel Şifa, Sanatsal İlham ve Dingin Teslimiyet',
+        theme: 'Ruhsal algınız ve empati gücünüz okyanuslar kadar derin. Çevrenizin duygusal dalgalanmalarından etkilenmemek için kendi mistik alanınızı korumalısınız. Sanat, müzik ve dua gibi ruhu besleyen pratikler, dünyevi karmaşadan sıyrılıp içsel ışığınızı parlatmanızı sağlayacak.',
+        advice: 'Kurtarıcı rolüne soyunup kendinizi tüketmek yerine kendi sınırlarınızı koruyun; hayallerinizi kağıda dökerek somutlaştırın.'
       }
     }
   },

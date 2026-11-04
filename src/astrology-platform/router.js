@@ -78,7 +78,7 @@ export const handleAstrologyRequest = (request, env) => {
       description = 'Doğum haritası, yükselen burç ve gezegen evleri hesaplama aracı.';
       break;
     case 'zodiac':
-      contentHtml = renderZodiacIndexView({ locale });
+      contentHtml = renderZodiacIndexView({ locale, searchParams });
       title = t.sections.zodiacTitle;
       description = t.sections.zodiacSub;
       break;
