@@ -1036,7 +1036,7 @@ html[dir="rtl"] .astro-time-select {
   font-weight: 600;
 }
 
-/* Gözde Tarot & Video Spotlight Bridge */
+/* Celestial Archetype Bridge Card */
 .astro-bridge-card {
   display: flex;
   align-items: center;

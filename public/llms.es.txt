@@ -1,13 +1,12 @@
-# Mythborn — Plataforma de Astronomía de Precisión y Astrología Arquetípica (Español)
+# Mythborn — Plataforma de Astronomía de Precisión y Astrología Arquetípica
 
-> Mythborn (https://mythborn.co/es) es una plataforma de guía celeste y astronomía de acceso libre y privacidad estricta. Combina cálculos matemáticos de efemérides (coordenadas geocéntricas, estaciones planetarias, lunaciones) con psicología arquetípica junguiana profunda.
+> Mythborn (https://mythborn.co/es) combina modelos de efemérides astronómicas matemáticas de código abierto con psicología profunda arquetípica en 5 idiomas.
 
-## Enlaces Principales
-- **Carta Natal y Gran Tríada:** https://mythborn.co/es/birth-chart (Cálculo gratuito e instantáneo de Sol, Luna y Ascendente en formato de 24 horas).
-- **Compendio de los 12 Arquetipos Zodiacales:** https://mythborn.co/es/zodiac (Perfiles psicológicos completos, integración de sombras y vocación para los 12 signos).
-- **Calendario Celeste y Fases Lunares:** https://mythborn.co/es/sky-calendar (Monitoreo lunar en tiempo real y corredores de lunaciones).
-- **Planetas Retrógrados:** https://mythborn.co/es/retrogrades (Radar en vivo con velocidades planetarias en grados/día).
-- **Tránsitos Actuales:** https://mythborn.co/es/transits (Posiciones geocéntricas en tiempo real).
-- **Sinastría de Pareja:** https://mythborn.co/es/synastry (Compatibilidad arquetípica vincular).
-- **Horóscopo Psicológico Diario:** https://mythborn.co/es/horoscopes (Orientación diaria consciente).
-- **Método y Ética:** https://mythborn.co/es/approach (Separación estricta entre astronomía matemática y autorreflexión simbólica).
+## Herramientas y Rutas Principales
+- **Carta Natal y Gran Tríada:** https://mythborn.co/es/birth-chart
+- **Compendio de 12 Arquetipos Zodiacales:** https://mythborn.co/es/zodiac
+- **Calendario Celeste y Fases Lunares:** https://mythborn.co/es/sky-calendar
+- **Planetas Retrógrados:** https://mythborn.co/es/retrogrades
+- **Tránsitos Actuales:** https://mythborn.co/es/transits
+- **Sinastría Vincular:** https://mythborn.co/es/synastry
+- **Método y Ética:** https://mythborn.co/es/approach

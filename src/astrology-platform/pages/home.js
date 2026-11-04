@@ -264,26 +264,26 @@ export const renderHomeView = ({ locale = 'tr' }) => {
       </div>
     </section>
 
-    <!-- 6. Gözde Danışmanlık & Video Bridge Card -->
-    <section class="astro-section astro-section-viewport" id="weekly-insight" style="border-top:1px solid var(--border)">
+    <!-- 6. Arketip Külliyatı & Derin Psikoloji Köprüsü -->
+    <section class="astro-section astro-section-viewport" id="archetype-bridge" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-bridge-card">
           <div class="astro-bridge-copy">
-            <span class="astro-card-tag">✦ GÖZDE İLE HAFTALIK BAKIŞ</span>
-            <h3>Haftalık Tarot & Sembol Video Açılımları</h3>
-            <p>Astrolojik haritaların ötesinde, haftanın enerjilerini ve 12 burç için sembolik kart rehberliğini Gözde'nin sesinden ve anlatımından keşfedin. Sıfır abonelik tuzağı, saf sembolik farkındalık.</p>
+            <span class="astro-card-tag">✦ ${loc === 'tr' ? 'MATEMATİKSEL ASTRONOMİ & DERİN PSİKOLOJİ' : loc === 'en' ? 'MATHEMATICAL ASTRONOMY & DEPTH PSYCHOLOGY' : loc === 'el' ? 'ΜΑΘΗΜΑΤΙΚΗ ΑΣΤΡΟΝΟΜΙΑ & ΨΥΧΟΛΟΓΙΑ' : loc === 'es' ? 'ASTRONOMÍA MATEMÁTICA Y PSICOLOGÍA' : 'الفلك الرياضي وعلم النفس الرمزي'}</span>
+            <h3>${loc === 'tr' ? '12 Burç Arketip Külliyatı ve Kişisel Portreler' : loc === 'en' ? '12 Zodiac Archetype Dossiers & Cosmic Portraits' : loc === 'el' ? '12 Ζωδιακά Αρχέτυπα & Κοσμικά Πορτρέτα' : loc === 'es' ? 'Dossiers de los 12 Arquetipos Zodiacales' : 'ملفات الأنماط الفلكية الـ 12 والبورتريه الكوني'}</h3>
+            <p>${loc === 'tr' ? 'Gök kubbedeki matematiksel devinimleri kişisel farkındalığa dönüştürün. Yüzeysel burç genellemelerinin ötesinde; Güneş, Ay ve Yükselen arketipinizin ışık ve gölge dengesini bilimsel şeffaflıkla inceleyin.' : loc === 'en' ? 'Translate cosmic geometry into authentic self-awareness. Transcending superficial horoscopes, discover the light and shadow dynamics of your Sun, Moon, and Ascendant.' : loc === 'el' ? 'Μετατρέψτε την ουράνια γεωμετρία σε ουσιαστική αυτογνωσία. Ανακαλύψτε τις δυναμικές φωτός και σκιάς του Ήλιου, της Σελήνης και του Ωροσκόπου σας.' : loc === 'es' ? 'Transforme la geometría celeste en autoconocimiento auténtico. Descubra las dinámicas de luz y sombra de su Sol, Luna y Ascendente.' : 'حول الحسابات الفلكية إلى وعي ذاتي حقيقي بعيداً عن التنبؤات السطحية. اكتشف توازن النور والظل لشمسك، قمرك، وطالعك.'}</p>
             <div style="display:flex; gap:14px; flex-wrap:wrap">
-              <a class="astro-btn-primary" href="${locale === 'tr' ? '/videolar' : `/${locale === 'el' ? 'gr' : locale}/videos`}">
-                <span>Haftalık Videoyu İzle</span>
+              <a class="astro-btn-primary" href="${getRouteHref(locale, 'zodiac')}">
+                <span>${loc === 'tr' ? '12 Burç Arketipini Keşfet' : loc === 'en' ? 'Explore 12 Archetypes' : loc === 'el' ? 'Εξερεύνηση 12 Ζωδίων' : loc === 'es' ? 'Explorar 12 Arquetipos' : 'استكشف الأبراج الـ 12'}</span>
                 <span aria-hidden="true">${arrow}</span>
               </a>
               <a class="astro-btn-ghost" href="${getRouteHref(locale, 'approach')}">
-                <span>Etik İlkelerimiz</span>
+                <span>${loc === 'tr' ? 'Etik İlkelerimiz' : loc === 'en' ? 'Ethical Principles' : loc === 'el' ? 'Ηθικές Αρχές' : loc === 'es' ? 'Principios Éticos' : 'المبادئ الأخلاقية'}</span>
               </a>
             </div>
           </div>
           <div class="astro-bridge-media">
-            <img src="/images/gozde-salon-portrait.jpg" alt="Gözde" loading="lazy">
+            <img src="/images/astrology/zodiac-celestial-tapestry.jpg" alt="12 Zodiac Archetypes" loading="lazy">
           </div>
         </div>
       </div>

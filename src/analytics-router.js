@@ -99,19 +99,18 @@ const resolveLegacyRedirect=(pathname)=>{
   const horoscopesTarget=locale==='tr'?'/burc-yorumlari':locale==='en'?'/en/horoscopes':locale==='gr'?'/gr/provlepseis':locale==='es'?'/es/horoscopos':'/ar/altawaqushat';
   const approachTarget=locale==='tr'?'/yaklasim':locale==='en'?'/en/approach':locale==='gr'?'/gr/prosegisi':locale==='es'?'/es/enfoque':'/ar/al-manhaj';
 
-  const areasTarget=locale==='tr'?'/kesif-alanlari':prefix+'/areas';
-  const videosTarget=locale==='tr'?'/videolar#burclar':prefix+'/videos#burclar';
-  const blogTarget=locale==='tr'?'/blog':prefix+'/blog';
+  const areasTarget=locale==='tr'?'/burclar':zodiacTarget;
+  const videosTarget=horoscopesTarget;
+  const blogTarget=locale==='tr'?'/ogrenme-merkezi':learningTarget;
   const homeTarget=locale==='tr'?'/':prefix;
   const privacyTarget=locale==='tr'?'/gizlilik':prefix+'/privacy';
   const termsTarget=locale==='tr'?'/kullanim-kosullari':prefix+'/terms';
   const kvkkTarget=locale==='tr'?'/kvkk':prefix+'/kvkk';
 
   const activeRoutes=new Set([
-    '/','/kesif-alanlari','/areas','/yaklasim','/approach','/prosegisi','/enfoque','/al-manhaj',
-    '/videolar','/videos','/blog','/iletisim','/contact',
-    '/yorumcu-basvuru','/apply','/kvkk','/gizlilik','/privacy',
-    '/kullanim-kosullari','/terms','/kartlarin-gozdesi',
+    '/','/yaklasim','/approach','/prosegisi','/enfoque','/al-manhaj',
+    '/kvkk','/gizlilik','/privacy',
+    '/kullanim-kosullari','/terms',
     '/dogum-haritasi','/birth-chart','/genethlios-chartis','/carta-natal','/kharitat-almilad',
     '/burclar','/zodiac-signs','/zodia','/signos-del-zodiaco','/al-abraj',
     '/gokyuzu-takvimi','/sky-calendar','/imerologio-ouranou','/calendario-celeste','/altaqwim-alfalaki',
@@ -123,9 +122,9 @@ const resolveLegacyRedirect=(pathname)=>{
     '/burc-yorumlari','/gunluk-burc-yorumlari','/horoscopes','/daily-horoscopes','/provlepseis','/horoscopos','/altawaqushat'
   ]);
   if(activeRoutes.has(clean)) return null;
-  if(clean.startsWith('/blog/')) return null;
 
-  if(clean==='/haftalik-burc'||clean==='/weekly-horoscope') return videosTarget;
+  if(clean==='/videolar'||clean==='/videos'||clean==='/haftalik-burc'||clean==='/weekly-horoscope') return horoscopesTarget;
+  if(clean==='/kartlarin-gozdesi'||clean==='/gozde'||clean==='/kesif-alanlari'||clean==='/areas'||clean==='/yorumcu-basvuru'||clean==='/apply') return zodiacTarget;
   if(clean==='/tarot'||clean==='/gunluk-kart'||clean==='/otuz-gun'||clean==='/kariyer'||clean==='/deneyim'||clean==='/tarot-kartlari'||clean.startsWith('/tarot-kartlari/')||clean==='/tarot-cards'||clean.startsWith('/tarot-cards/')) return areasTarget;
   if(clean==='/katina'||clean==='/ask'||clean==='/sinastri'||clean==='/burc-uyumu') return areasTarget;
   if(clean==='/astroloji'||clean==='/vedik-astroloji'||clean==='/nakshatra-dasha'||clean==='/kadim-gokyuzu'||clean==='/bugunun-gokyuzu'||clean==='/ay-takvimi'||clean==='/astroloji-kutuphanesi'||clean.startsWith('/astroloji-kutuphanesi/')||clean==='/advanced-astrology'||clean.startsWith('/advanced-astrology/')||clean==='/astrology-library'||clean.startsWith('/astrology-library/')) return areasTarget;

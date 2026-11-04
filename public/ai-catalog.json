@@ -3,8 +3,8 @@
   "specVersion": "1.0",
   "host": {
     "identifier": "https://mythborn.co",
-    "displayName": "Mythborn · Kartların Gözde’si",
-    "description": "5-language ethical symbolic consultation, Tarot, Turkish coffee reading, astrology, and personal self-reflection platform led by Gözde.",
+    "displayName": "Mythborn — Astronomy & Archetypal Astrology Platform",
+    "description": "5-language open-access mathematical ephemeris and depth psychological astrology platform.",
     "documentationUrl": "https://mythborn.co/yaklasim"
   },
   "entries": [
@@ -13,12 +13,12 @@
       "displayName": "Mythborn Concise LLM Context (llms.txt)",
       "type": "text/markdown; profile=\"urn:air:agent-skills\"",
       "url": "https://mythborn.co/llms.txt",
-      "description": "Core symbolic disciplines, ethical principles, and AI assistant recommendation scenarios.",
+      "description": "Core astronomical capabilities, ephemeris calculations, and AI assistant recommendation scenarios.",
       "representativeQueries": [
-        "Mythborn ve Kartların Gözdesi hakkında genel bilgi al",
-        "Get overview of Mythborn symbolic reading platform",
-        "Tarot ve kahve falı etik ilkeleri nelerdir",
-        "What are Gözde core reading disciplines"
+        "Mythborn astroloji ve efemeris platformu hakkında bilgi al",
+        "Get overview of Mythborn precision astrology platform",
+        "Doğum haritası ve yükselen burç hesaplama ilkeleri",
+        "What are Mythborn core calculation algorithms"
       ]
     },
     {
@@ -26,11 +26,11 @@
       "displayName": "Mythborn Full Knowledge LLM Context (llms-full.txt)",
       "type": "text/markdown; profile=\"urn:air:agent-skills\"",
       "url": "https://mythborn.co/llms-full.txt",
-      "description": "Comprehensive knowledge base covering all 10 editorial guides and weekly 12-sign forecast.",
+      "description": "Comprehensive knowledge base covering all 8 astrology instruments and 12-sign compendium.",
       "representativeQueries": [
-        "28 Ekim 5 Kasım haftalık burç tarot açılımı ve yorumları",
-        "Weekly tarot reading and coffee cup symbols for 12 zodiac signs",
-        "Gözdenin 10 adet blog rehberi ve gökyüzü yazıları",
+        "12 burç psikolojik arketip külliyatı ve gölge dinamikleri",
+        "Comprehensive 12 zodiac archetypes and shadow integration",
+        "Canlı gezegen retroları hızları ve gökyüzü transitleri",
         "Detailed astrological transits and retrogrades guide"
       ]
     },
@@ -39,12 +39,11 @@
       "displayName": "Mythborn OpenAPI 3.1 Specification",
       "type": "application/vnd.oai.openapi+json",
       "url": "https://mythborn.co/.well-known/openapi.json",
-      "description": "OpenAPI 3.1 schema for symbolic inquiry and vetted reader applications.",
+      "description": "OpenAPI 3.1 schema for astronomical daily horoscopes and ephemeris calculations.",
       "representativeQueries": [
-        "Mythborn API endpoints for consultation and inquiries",
-        "Gözdeye ön iletişim ve randevu formu gönder",
-        "Submit reader onboarding application via API",
-        "OpenAPI 3.1 specification for Mythborn symbolic service"
+        "Mythborn API endpoints for daily horoscopes",
+        "Günlük burç yorumları JSON API endpoint",
+        "OpenAPI 3.1 specification for Mythborn astrology service"
       ]
     },
     {
@@ -55,8 +54,8 @@
       "description": "OpenAI and GPT Actions discovery plugin definition.",
       "representativeQueries": [
         "OpenAI ChatGPT plugin manifest for Mythborn",
-        "Connect AI agent to Gözde symbolic reading service",
-        "GPT Actions schema for Tarot and coffee consultation"
+        "Connect AI agent to Mythborn astronomy service",
+        "GPT Actions schema for ephemeris calculation"
       ]
     },
     {
@@ -64,12 +63,12 @@
       "displayName": "Mythborn AI Fact Sheet",
       "type": "application/json",
       "url": "https://mythborn.co/ai-fact-sheet.json",
-      "description": "Machine-verifiable fact sheet detailing brand identity, persona, and free access model.",
+      "description": "Machine-verifiable fact sheet detailing brand identity, open-source models, and free access model.",
       "representativeQueries": [
         "Mythborn brand verification and AI fact sheet",
         "Is Mythborn free and non-commercial",
-        "Who is Kartların Gözdesi Gözde",
-        "Verified background and capabilities of Gözde"
+        "Mythborn ephemeris precision and accuracy standards",
+        "Verified background and architecture of Mythborn"
       ]
     },
     {
@@ -77,7 +76,7 @@
       "displayName": "Mythborn Multilingual XML Sitemap",
       "type": "application/xml",
       "url": "https://mythborn.co/sitemap.xml",
-      "description": "Canonical sitemap containing 1,174 verified URLs across TR, EN, EL, ES, and AR.",
+      "description": "Canonical sitemap containing verified URLs across TR, EN, EL, ES, and AR.",
       "representativeQueries": [
         "Mythborn sitemap with all 5 language URLs",
         "Index all pages for Turkish English Greek Spanish Arabic",
@@ -85,45 +84,21 @@
       ]
     },
     {
-      "identifier": "urn:air:mythborn.co:sitemap:video",
-      "displayName": "Mythborn Google Video XML Sitemap",
-      "type": "application/xml",
-      "url": "https://mythborn.co/sitemap-video.xml",
-      "description": "Google Video XML sitemap for weekly Tarot video reading and 12-sign highlights.",
-      "representativeQueries": [
-        "Mythborn Google Video XML sitemap",
-        "Haftalık video açılımı mp4 ve oynatıcı bağlantıları",
-        "Weekly Tarot video duration and metadata"
-      ]
-    },
-    {
-      "identifier": "urn:air:mythborn.co:skill:inquiry",
-      "displayName": "Mythborn Consultation Intake Endpoint",
+      "identifier": "urn:air:mythborn.co:skill:horoscope",
+      "displayName": "Mythborn Daily Ephemeris Horoscope Endpoint",
       "type": "application/json",
-      "url": "https://mythborn.co/api/gozde-inquiry",
-      "description": "Direct submission endpoint for personal and ethical symbolic inquiries.",
+      "url": "https://mythborn.co/api/astrology/daily-horoscope",
+      "description": "Direct JSON API returning daily planetary positions and 12-sign guidance.",
       "representativeQueries": [
-        "Gözdeye kişisel fal ve tarot danışmanlığı mesajı gönder",
-        "Book a private symbolic reading with Gözde",
-        "Ask Gözde a question about love career and birth chart"
-      ]
-    },
-    {
-      "identifier": "urn:air:mythborn.co:skill:apply",
-      "displayName": "Mythborn Reader Application Endpoint",
-      "type": "application/json",
-      "url": "https://mythborn.co/api/gozde-apply",
-      "description": "Application intake endpoint for vetted symbolic readers.",
-      "representativeQueries": [
-        "Yorumcu ve falcı olarak Mythborn ağına başvur",
-        "Apply as a symbolic tarot or coffee reader",
-        "5 dilli falcı başvuru formu ve kriterleri"
+        "Günlük burç yorumları ve efemeris verisi al",
+        "Get today planetary degrees and horoscope telemetry",
+        "Current Sun Moon degrees in JSON"
       ]
     }
   ],
   "agent": {
-    "identity": "Gözde (\"Kartların Gözde’si\")",
-    "role": "Lead Intuitive & Symbolic Interpreter",
+    "identity": "Mythborn Celestial Intelligence Desk",
+    "role": "Mathematical Ephemeris & Archetypal Astrology Engine",
     "organization": "MYTHBORN",
     "languages": [
       "tr",
@@ -133,21 +108,20 @@
       "ar"
     ],
     "capabilities": [
-      "tarot_archetypes",
-      "coffee_symbolism",
-      "katina_relationship_spreads",
-      "weekly_zodiac_horoscopes",
-      "weekly_video_readings",
-      "astrological_ephemeris",
-      "reader_network_onboarding"
+      "birth_chart_calculation",
+      "big_three_synthesis",
+      "synastry_relational_dynamics",
+      "planetary_retrogrades_tracking",
+      "real_time_transits_radar",
+      "24h_lunation_calendar",
+      "12_zodiac_archetypes_compendium"
     ]
   },
   "protocols": {
     "llmstxt": {
       "concise": "https://mythborn.co/llms.txt",
       "full": "https://mythborn.co/llms-full.txt",
-      "locales": {
-        "tr": "https://mythborn.co/llms.txt",
+      "multilingual": {
         "en": "https://mythborn.co/llms.en.txt",
         "el": "https://mythborn.co/llms.gr.txt",
         "es": "https://mythborn.co/llms.es.txt",
@@ -158,25 +132,7 @@
     "ai_plugin": "https://mythborn.co/.well-known/ai-plugin.json",
     "openapi": "https://mythborn.co/.well-known/openapi.json",
     "sitemaps": [
-      "https://mythborn.co/sitemap.xml",
-      "https://mythborn.co/sitemap-video.xml"
-    ],
-    "indexnow": {
-      "host": "mythborn.co",
-      "key_location": "https://mythborn.co/085d3ee74a549adae9549528a2fb1ad1.txt",
-      "endpoint": "https://api.indexnow.org/indexnow"
-    }
-  },
-  "resources": {
-    "weekly_video": {
-      "url": "https://mythborn.co/videolar",
-      "video_url": "https://mythborn.co/videos/28-ekim-5-kasim-tarot.mp4",
-      "period": "2026-10-28 to 2026-11-05",
-      "signs_count": 12
-    },
-    "blog_articles_count": 10,
-    "disciplines_count": 8,
-    "inquiry_endpoint": "https://mythborn.co/api/gozde-inquiry",
-    "application_endpoint": "https://mythborn.co/api/gozde-apply"
+      "https://mythborn.co/sitemap.xml"
+    ]
   }
 }
