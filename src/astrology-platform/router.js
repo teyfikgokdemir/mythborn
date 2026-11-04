@@ -27,7 +27,7 @@ export const matchAstrologyRoute = (pathname = '/') => {
 
   if (clean === '/' || clean === '') return 'home';
   if (clean === '/dogum-haritasi' || clean === '/birth-chart' || clean === '/genethlios-chartis' || clean === '/carta-natal' || clean === '/kharitat-almilad') return 'natal';
-  if (clean === '/burclar' || clean === '/zodiac-signs' || clean === '/zodia' || clean === '/signos-del-zodiaco' || clean === '/al-abraj') return 'zodiac';
+  if (clean === '/burclar' || clean === '/12-burc' || clean === '/burc-rehberi' || clean === '/zodiac-signs' || clean === '/zodia' || clean === '/signos-del-zodiaco' || clean === '/al-abraj') return 'zodiac';
   if (clean === '/gokyuzu-takvimi' || clean === '/sky-calendar' || clean === '/imerologio-ouranou' || clean === '/calendario-celeste' || clean === '/altaqwim-alfalaki') return 'calendar';
   if (clean === '/retrolar' || clean === '/retrogrades' || clean === '/anadromes' || clean === '/retrogrados' || clean === '/harakat-altaraju') return 'retros';
   if (clean === '/transitler' || clean === '/transits' || clean === '/diabaseis' || clean === '/transitos' || clean === '/al-uboor-alfalaki') return 'transits';
