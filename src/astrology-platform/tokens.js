@@ -968,18 +968,207 @@ html[dir="rtl"] .astro-time-select {
   letter-spacing: 0.05em;
 }
 
+/* Retrograde Curated Layout & Elite Cards */
+.retro-group-container {
+  margin-bottom: 40px;
+}
+.retro-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.retro-group-title {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: #fff;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.retro-group-badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold-bright);
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+.retro-grid-triad {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.retro-grid-quad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+.retro-elite-card {
+  background: linear-gradient(180deg, rgba(16, 21, 38, 0.78) 0%, rgba(9, 12, 22, 0.98) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 18px;
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+.retro-elite-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.retro-elite-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.15);
+}
+.retro-elite-card:hover::before {
+  opacity: 1;
+}
+.retro-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  gap: 10px;
+}
+.retro-glyph-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(212, 175, 55, 0.22) 0%, rgba(10, 14, 28, 0.9) 75%);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--gold-bright);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+}
+.retro-sign-pill {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gold-bright);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  padding: 4px 9px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+.retro-planet-title {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: #fff;
+  font-weight: 500;
+  margin: 0 0 3px 0;
+}
+.retro-cycle-tag {
+  font-size: 10.5px;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 10px;
+}
+.retro-date-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(5, 7, 14, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+}
+.retro-date-text {
+  font-size: 12px;
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.retro-duration-badge {
+  font-size: 10px;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.12);
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+.retro-phase-track {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.retro-phase-step {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.retro-phase-step.is-active {
+  background: var(--gold-gradient);
+  box-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+}
+.retro-theme-desc {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0 0 10px 0;
+  flex-grow: 1;
+}
+.retro-guidance-box {
+  background: rgba(212, 175, 55, 0.05);
+  border-left: 2px solid var(--gold);
+  padding: 7px 9px;
+  border-radius: 0 6px 6px 0;
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.45;
+}
+html[dir="rtl"] .retro-guidance-box {
+  border-left: none;
+  border-right: 2px solid var(--gold);
+  border-radius: 6px 0 0 6px;
+}
+
 @media (max-width: 1100px) {
   .astro-nav-desktop { display: none; }
   .astro-menu-btn { display: inline-flex; }
   .astro-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .archetype-grid { grid-template-columns: 1fr; }
+  .retro-grid-triad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .retro-grid-quad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .astro-bridge-card { flex-direction: column; text-align: center; }
   .astro-bridge-copy { display: flex; flex-direction: column; align-items: center; }
 }
 
 @media (max-width: 768px) {
   .astro-grid-3,
-  .astro-grid-4 { grid-template-columns: 1fr; }
+  .astro-grid-4,
+  .retro-grid-triad,
+  .retro-grid-quad { grid-template-columns: 1fr; }
   .astro-quick-grid { grid-template-columns: 1fr; }
   .astro-footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .astro-cta-gold { display: none; }
