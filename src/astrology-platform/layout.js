@@ -458,33 +458,62 @@ export const renderAstrologyLayout = ({
         </div>
       </div>
     </footer>
+    <button type="button" id="astro-scroll-top" class="astro-scroll-top-btn" aria-label="${backToTopText}" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <svg class="astro-scroll-top-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 19V5M5 12l7-7 7 7"/>
+      </svg>
+    </button>
   </div>
 
   <script>
     (function() {
+      // Mobile Drawer Controller
       var btn = document.querySelector('[data-drawer-open]');
       var drawer = document.getElementById('astro-mobile-drawer');
       var closes = document.querySelectorAll('[data-drawer-close]');
-      if (!btn || !drawer) return;
-      function open() {
-        drawer.hidden = false;
-        drawer.removeAttribute('inert');
-        drawer.classList.add('is-open');
-        btn.setAttribute('aria-expanded', 'true');
-        document.body.style.overflow = 'hidden';
+      if (btn && drawer) {
+        function open() {
+          drawer.hidden = false;
+          drawer.removeAttribute('inert');
+          drawer.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+          document.body.style.overflow = 'hidden';
+        }
+        function close() {
+          drawer.classList.remove('is-open');
+          drawer.hidden = true;
+          drawer.setAttribute('inert', '');
+          btn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+        btn.addEventListener('click', open);
+        closes.forEach(function(c) { c.addEventListener('click', close); });
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && !drawer.hidden) close();
+        });
       }
-      function close() {
-        drawer.classList.remove('is-open');
-        drawer.hidden = true;
-        drawer.setAttribute('inert', '');
-        btn.setAttribute('aria-expanded', 'false');
-        document.body.style.overflow = '';
+
+      // Floating Back to Top Controller (Reveals only on scroll, hidden at top)
+      var topBtn = document.getElementById('astro-scroll-top');
+      if (topBtn) {
+        var ticking = false;
+        function updateScroll() {
+          var scrolled = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+          if (scrolled > 300) {
+            topBtn.classList.add('is-visible');
+          } else {
+            topBtn.classList.remove('is-visible');
+          }
+          ticking = false;
+        }
+        window.addEventListener('scroll', function() {
+          if (!ticking) {
+            window.requestAnimationFrame(updateScroll);
+            ticking = true;
+          }
+        }, { passive: true });
+        updateScroll();
       }
-      btn.addEventListener('click', open);
-      closes.forEach(function(c) { c.addEventListener('click', close); });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && !drawer.hidden) close();
-      });
     })();
   </script>
 </body>

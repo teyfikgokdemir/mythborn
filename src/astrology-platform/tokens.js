@@ -1589,6 +1589,87 @@ html[dir="rtl"] .astro-footer-col ul li a:hover {
   color: var(--gold-bright);
 }
 
+/* ==========================================================================
+   FLOATING BACK TO TOP ORB (Haute Horlogerie Celestial Arrow)
+   Hidden when at page top / idle, smoothly reveals on scroll
+   ========================================================================== */
+.astro-scroll-top-btn {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(22, 28, 52, 0.92) 0%, rgba(8, 11, 24, 0.96) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  color: var(--gold-bright);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 990;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 20px rgba(212, 175, 55, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.9);
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.3s,
+              background 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
+  outline: none;
+}
+
+html[dir="rtl"] .astro-scroll-top-btn {
+  right: auto;
+  left: 24px;
+}
+
+.astro-scroll-top-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.astro-scroll-top-btn:hover {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.28) 0%, rgba(14, 18, 36, 0.98) 100%);
+  border-color: var(--gold-bright);
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75), 0 0 28px rgba(212, 175, 55, 0.45);
+  color: #fff;
+}
+
+.astro-scroll-top-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.astro-scroll-top-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+  filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.5));
+}
+
+.astro-scroll-top-btn:hover .astro-scroll-top-icon {
+  transform: translateY(-2px);
+  stroke: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .astro-scroll-top-btn {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+    right: 18px;
+    width: 44px;
+    height: 44px;
+  }
+  html[dir="rtl"] .astro-scroll-top-btn {
+    left: 18px;
+  }
+}
+
 /* Retrograde Curated Layout & Elite Cards */
 .retro-group-container {
   margin-bottom: 40px;
