@@ -3,6 +3,7 @@ import { ASTROLOGY_LOCALES, ZODIAC_SIGNS } from '../i18n.js';
 import { getRouteHref } from '../layout.js';
 import { calculatePlanetaryPositions, calculateAnglesAndHouses, calculateAspects, lookupCity, ENGINE_METADATA } from '../data-core.js';
 import { renderNatalWheelSvg } from '../natal-wheel.js';
+import { render24hTimePicker } from '../time-picker.js';
 
 export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
@@ -172,10 +173,10 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
             </div>
 
             <div class="astro-form-group">
-              <label for="birth-time">${t.quickNatal.labelTime} (24h)</label>
-              <input type="time" id="birth-time" name="time" value="${birthTime || '14:30'}">
+              <label>${t.quickNatal.labelTime} (24h)</label>
+              ${render24hTimePicker({ idPrefix: 'birth', name: 'time', defaultValue: birthTime || '14:30', ariaLabelHour: t.quickNatal.labelTime, ariaLabelMinute: 'Dakika' })}
               <label style="display:flex; align-items:center; gap:8px; margin-top:8px; font-weight:400; font-size:13px; color:var(--muted); cursor:pointer">
-                <input type="checkbox" id="time-unknown" name="unknown_time" value="1" ${unknownTime ? 'checked' : ''} style="width:auto">
+                <input type="checkbox" id="time-unknown" name="unknown_time" value="1" ${unknownTime ? 'checked' : ''} style="width:auto" onchange="var h=document.getElementById('birth-hour'),m=document.getElementById('birth-min');if(h&&m){h.disabled=this.checked;m.disabled=this.checked;}">
                 <span>${t.quickNatal.unknownTime}</span>
               </label>
             </div>

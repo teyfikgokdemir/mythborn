@@ -1,6 +1,7 @@
 // Mythborn Astrology Platform — Homepage View
 import { ASTROLOGY_LOCALES, ZODIAC_SIGNS } from '../i18n.js';
 import { getRouteHref } from '../layout.js';
+import { render24hTimePicker } from '../time-picker.js';
 
 const safe = (str = '') =>
   String(str)
@@ -50,7 +51,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
 
   return `
     <!-- 1. Hero: Ultra-Luxury Celestial Cosmos Artwork & Clear CTAs -->
-    <section class="astro-hero">
+    <section class="astro-hero astro-section-viewport">
       <div class="astro-container">
         <span class="astro-hero-eyebrow">✦ ${t.hero.eyebrow}</span>
         <h1>${t.hero.title}</h1>
@@ -68,15 +69,15 @@ export const renderHomeView = ({ locale = 'tr' }) => {
 
         <!-- 2. Hızlı Doğum Haritası Başlangıç Akışı -->
         <div class="astro-quick-box" id="quick-chart">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:10px">
-            <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:10px">
+            <h3 style="font-family:var(--font-serif); font-size:20px; color:#fff">
               ✦ ${t.quickNatal.title}
             </h3>
-            <span style="font-size:12px; color:var(--gold); letter-spacing:0.04em">
+            <span style="font-size:11.5px; color:var(--gold); letter-spacing:0.04em">
               ${t.timeStandardNotice}
             </span>
           </div>
-          <p style="font-size:13.5px; color:var(--muted); margin-bottom:20px; line-height:1.6">
+          <p style="font-size:13px; color:var(--muted); margin-bottom:16px; line-height:1.5">
             ${t.quickNatal.sub}
           </p>
           <form action="${getRouteHref(locale, 'natal')}" method="get">
@@ -86,8 +87,8 @@ export const renderHomeView = ({ locale = 'tr' }) => {
                 <input id="qk-date" name="date" type="date" required value="1995-03-21">
               </div>
               <div class="astro-quick-field">
-                <label for="qk-time">${t.quickNatal.labelTime}</label>
-                <input id="qk-time" name="time" type="time" step="60" required value="14:30">
+                <label for="qk-hour">${t.quickNatal.labelTime} (24h)</label>
+                ${render24hTimePicker({ idPrefix: 'qk', name: 'time', defaultValue: '14:30', ariaLabelHour: t.quickNatal.labelTime, ariaLabelMinute: 'Dakika' })}
               </div>
               <div class="astro-quick-field">
                 <label for="qk-city">${t.quickNatal.labelCity}</label>
@@ -95,8 +96,8 @@ export const renderHomeView = ({ locale = 'tr' }) => {
               </div>
             </div>
             <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
-              <label style="font-size:13px; color:var(--dim); display:inline-flex; align-items:center; gap:8px; cursor:pointer">
-                <input type="checkbox" name="unknown_time" value="1">
+              <label style="font-size:12.5px; color:var(--dim); display:inline-flex; align-items:center; gap:8px; cursor:pointer">
+                <input type="checkbox" name="unknown_time" value="1" onchange="var h=document.getElementById('qk-hour'),m=document.getElementById('qk-min');if(h&&m){h.disabled=this.checked;m.disabled=this.checked;}">
                 <span>${t.quickNatal.unknownTime}</span>
               </label>
               <button type="submit" class="astro-quick-btn">
@@ -110,7 +111,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     </section>
 
     <!-- 3. Kozmik Büyük Üçlü (Foundational Triad) with Generated Editorial Artworks -->
-    <section class="astro-section">
+    <section class="astro-section astro-section-viewport" id="archetypes">
       <div class="astro-container">
         <div class="astro-section-head">
           <span class="astro-card-tag">✦ THE FOUNDATIONAL TRIAD</span>
@@ -158,7 +159,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     </section>
 
     <!-- 4. 12 Zodiac Constellations Section with Tapestry Banner -->
-    <section class="astro-section" style="border-top:1px solid var(--border)">
+    <section class="astro-section astro-section-viewport" id="zodiac" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-section-head">
           <span class="astro-card-tag">✦ ZODIACAL ARCHETYPES</span>
@@ -171,7 +172,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
           <img src="/images/astrology/zodiac-celestial-tapestry.jpg" alt="12 Zodiac Celestial Tapestry" class="zodiac-tapestry-img" loading="lazy">
           <div class="zodiac-tapestry-overlay">
             <h3 class="zodiac-tapestry-title">12 Burç ve Gökyüzü Arketipleri</h3>
-            <p class="zodiac-tapestry-sub">Kozmik zodyak çemberinde her burç, insanın doğayla ve evrenle kurduğu temel psikolojik ve sembolik bir diyaloğu temsil eder.</p>
+            <p class="zodiac-tapestry-sub">Kozmik zodyak çemberinde her burç, insanın evrenle kurduğu temel sembolik diyaloğu temsil eder.</p>
           </div>
         </div>
 
@@ -182,7 +183,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     </section>
 
     <!-- 5. Astrological Analysis Instruments Grid -->
-    <section class="astro-section" style="border-top:1px solid var(--border)">
+    <section class="astro-section astro-section-viewport" id="instruments" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-section-head">
           <span class="astro-card-tag">✦ PRECISION INSTRUMENTS</span>
@@ -254,7 +255,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     </section>
 
     <!-- 6. Gözde Danışmanlık & Video Bridge Card -->
-    <section class="astro-section" style="border-top:1px solid var(--border)">
+    <section class="astro-section astro-section-viewport" id="weekly-insight" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-bridge-card">
           <div class="astro-bridge-copy">
@@ -279,7 +280,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     </section>
 
     <!-- 7. Yöntemimiz ve Astroloji Sınırları -->
-    <section class="astro-section" style="border-top:1px solid var(--border)">
+    <section class="astro-section astro-section-viewport" id="methodology" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-section-head">
           <span class="astro-card-tag">✦ METHODOLOGY & BOUNDARIES</span>

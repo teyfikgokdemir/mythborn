@@ -32,6 +32,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
 }
 
 body {
@@ -358,7 +359,7 @@ html[dir="rtl"] .astro-drawer-panel {
 /* Hero Section with Celestial Art Background */
 .astro-hero {
   position: relative;
-  padding: 100px 0 76px;
+  padding: clamp(36px, 6vh, 68px) 0 clamp(24px, 4vh, 48px);
   text-align: center;
   overflow: hidden;
   background: radial-gradient(circle at 75% 35%, rgba(13, 18, 36, 0.3) 0%, rgba(5, 7, 14, 0.92) 65%),
@@ -381,8 +382,8 @@ html[dir="rtl"] .astro-drawer-panel {
   text-transform: uppercase;
   letter-spacing: 0.22em;
   color: var(--gold-bright);
-  margin-bottom: 22px;
-  padding: 7px 18px;
+  margin-bottom: 14px;
+  padding: 6px 16px;
   border: 1px solid rgba(212, 175, 55, 0.32);
   border-radius: 999px;
   background: rgba(212, 175, 55, 0.08);
@@ -391,29 +392,29 @@ html[dir="rtl"] .astro-drawer-panel {
 }
 .astro-hero h1 {
   font-family: var(--font-serif);
-  font-size: clamp(38px, 5.2vw, 68px);
-  line-height: 1.14;
+  font-size: clamp(28px, 3.8vw, 52px);
+  line-height: 1.15;
   letter-spacing: -0.015em;
   color: #fff;
-  margin-bottom: 22px;
+  margin-bottom: 14px;
   font-weight: 400;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
 }
 .astro-hero-lead {
-  max-width: 720px;
-  margin: 0 auto 36px;
-  color: rgba(255, 255, 255, 0.76);
-  font-size: clamp(16px, 1.35vw, 19px);
-  line-height: 1.72;
+  max-width: 680px;
+  margin: 0 auto 22px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(14.5px, 1.2vw, 17px);
+  line-height: 1.62;
   font-weight: 300;
 }
 .astro-hero-actions {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 48px;
+  margin-bottom: 28px;
 }
 .astro-btn-primary {
   display: inline-flex;
@@ -422,9 +423,9 @@ html[dir="rtl"] .astro-drawer-panel {
   background: linear-gradient(135deg, #e5c38c 0%, #c49952 50%, #9c7331 100%);
   color: #06080e;
   font-weight: 700;
-  padding: 15px 32px;
+  padding: 13px 28px;
   border-radius: 999px;
-  font-size: 14.5px;
+  font-size: 14px;
   letter-spacing: 0.02em;
   box-shadow: 0 8px 28px rgba(212, 175, 55, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   transition: all 0.25s ease;
@@ -440,9 +441,9 @@ html[dir="rtl"] .astro-drawer-panel {
   background: rgba(14, 18, 32, 0.6);
   color: #fff;
   border: 1px solid rgba(212, 175, 55, 0.35);
-  padding: 15px 28px;
+  padding: 13px 24px;
   border-radius: 999px;
-  font-size: 14.5px;
+  font-size: 14px;
   backdrop-filter: blur(16px);
   transition: all 0.25s ease;
 }
@@ -455,15 +456,15 @@ html[dir="rtl"] .astro-drawer-panel {
 
 /* Quick Natal Instrument Box */
 .astro-quick-box {
-  max-width: 880px;
+  max-width: 860px;
   margin: 0 auto;
-  background: rgba(11, 15, 28, 0.72);
+  background: rgba(11, 15, 28, 0.82);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(212, 175, 55, 0.26);
-  border-radius: 24px;
-  padding: 32px 36px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 20px;
+  padding: 22px 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1);
   text-align: left;
 }
 html[dir="rtl"] .astro-quick-box {
@@ -472,25 +473,25 @@ html[dir="rtl"] .astro-quick-box {
 .astro-quick-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-bottom: 20px;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 .astro-quick-field label {
   display: block;
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--cream);
   font-weight: 500;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   letter-spacing: 0.04em;
 }
 .astro-quick-field input {
   width: 100%;
-  padding: 12px 14px;
-  background: rgba(5, 7, 14, 0.65);
+  padding: 10px 12px;
+  background: rgba(5, 7, 14, 0.7);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 10px;
   color: #fff;
-  font-size: 14px;
+  font-size: 13.5px;
   transition: all 0.2s ease;
 }
 .astro-quick-field input:focus {
@@ -503,8 +504,9 @@ html[dir="rtl"] .astro-quick-box {
   color: #05070e;
   font-weight: 700;
   border: none;
-  border-radius: 12px;
-  padding: 12px 28px;
+  border-radius: 10px;
+  padding: 11px 24px;
+  font-size: 13.5px;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
   transition: all 0.2s ease;
@@ -514,12 +516,91 @@ html[dir="rtl"] .astro-quick-box {
   box-shadow: 0 8px 24px rgba(212, 175, 55, 0.45);
 }
 
+/* 24-Hour Custom Dual Time Picker (Strict 24h, zero native AM/PM popups) */
+.astro-time-24h {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+.astro-time-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.astro-time-select {
+  width: 100%;
+  padding: 10px 8px;
+  background: rgba(5, 7, 14, 0.85);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23c49952' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 22px;
+  transition: all 0.2s ease;
+}
+html[dir="rtl"] .astro-time-select {
+  background-position: left 8px center;
+  padding-right: 8px;
+  padding-left: 22px;
+}
+.astro-time-select:focus {
+  outline: none;
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.25);
+}
+.astro-time-select:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.astro-time-select option {
+  background: #090c16;
+  color: #fff;
+  font-size: 13px;
+  padding: 4px;
+}
+.astro-time-colon {
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  padding-bottom: 10px;
+}
+.astro-time-sub {
+  font-size: 9.5px;
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
 .astro-section {
-  padding: 72px 0;
+  padding: clamp(36px, 5vh, 60px) 0;
+  scroll-snap-align: start;
+  scroll-margin-top: 76px;
+}
+.astro-section-viewport {
+  min-height: calc(100vh - 76px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-margin-top: 76px;
 }
 .astro-section-head {
   text-align: center;
-  margin-bottom: 44px;
+  margin-bottom: 28px;
 }
 .astro-section-head h2 {
   font-family: var(--font-serif);
@@ -540,35 +621,38 @@ html[dir="rtl"] .astro-quick-box {
 .archetype-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
-  margin: 36px 0;
+  gap: 22px;
+  margin: 18px 0 0;
 }
 .archetype-card {
-  background: linear-gradient(180deg, rgba(16, 21, 38, 0.75) 0%, rgba(9, 12, 22, 0.96) 100%);
+  background: linear-gradient(180deg, rgba(16, 21, 38, 0.8) 0%, rgba(9, 12, 22, 0.98) 100%);
   border: 1px solid rgba(212, 175, 55, 0.22);
-  border-radius: 22px;
+  border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 .archetype-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   border-color: rgba(212, 175, 55, 0.55);
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65), 0 0 24px rgba(212, 175, 55, 0.18);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.65), 0 0 20px rgba(212, 175, 55, 0.18);
 }
 .archetype-art-wrap {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  height: 190px;
+  aspect-ratio: auto;
   overflow: hidden;
   position: relative;
   background: #05070e;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.16);
 }
 .archetype-art-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 38%;
   transition: transform 0.6s ease;
   display: block;
 }
@@ -579,48 +663,48 @@ html[dir="rtl"] .astro-quick-box {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(9, 12, 22, 1) 100%);
+  background: linear-gradient(180deg, transparent 55%, rgba(9, 12, 22, 0.95) 100%);
 }
 .archetype-card-body {
-  padding: 24px 26px 28px;
+  padding: 16px 20px 20px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 .archetype-card-glyph {
-  font-size: 26px;
+  font-size: 22px;
   color: var(--gold-bright);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   display: inline-block;
 }
 .archetype-card-title {
   font-family: var(--font-serif);
-  font-size: 21px;
+  font-size: 18px;
   color: #fff;
-  font-weight: 400;
-  margin-bottom: 10px;
+  font-weight: 500;
+  margin-bottom: 6px;
 }
 .archetype-card-desc {
   color: var(--muted);
-  font-size: 14.5px;
-  line-height: 1.65;
+  font-size: 13.5px;
+  line-height: 1.55;
   margin: 0;
 }
 
 /* Zodiac Celestial Tapestry Showcase Banner */
 .zodiac-tapestry-wrap {
   width: 100%;
-  max-height: 380px;
-  border-radius: 24px;
+  max-height: 180px;
+  border-radius: 18px;
   overflow: hidden;
-  margin-bottom: 44px;
+  margin-bottom: 24px;
   position: relative;
   border: 1px solid rgba(212, 175, 55, 0.25);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
 }
 .zodiac-tapestry-img {
   width: 100%;
-  height: 380px;
+  height: 180px;
   object-fit: cover;
   object-position: center 30%;
   display: block;
@@ -628,35 +712,35 @@ html[dir="rtl"] .astro-quick-box {
 .zodiac-tapestry-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(5, 7, 14, 0.15) 0%, rgba(5, 7, 14, 0.88) 100%);
+  background: linear-gradient(180deg, rgba(5, 7, 14, 0.2) 0%, rgba(5, 7, 14, 0.9) 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 32px 36px;
+  padding: 20px 24px;
 }
 .zodiac-tapestry-title {
   font-family: var(--font-serif);
-  font-size: clamp(22px, 2.4vw, 32px);
+  font-size: clamp(20px, 2.2vw, 26px);
   color: #fff;
-  font-weight: 400;
-  margin-bottom: 6px;
+  font-weight: 500;
+  margin-bottom: 4px;
 }
 .zodiac-tapestry-sub {
   color: rgba(255, 255, 255, 0.78);
-  font-size: 15px;
+  font-size: 13.5px;
   max-width: 650px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* Zodiac Natural Cards Grid */
 .zodiac-natural-card {
   background: linear-gradient(180deg, rgba(16, 21, 38, 0.65) 0%, rgba(10, 13, 24, 0.9) 100%);
   border: 1px solid rgba(212, 175, 55, 0.18);
-  border-radius: 18px;
-  padding: 24px 22px;
+  border-radius: 16px;
+  padding: 18px 18px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
   transition: all 0.25s ease;
   position: relative;
   overflow: hidden;
@@ -673,15 +757,15 @@ html[dir="rtl"] .astro-quick-box {
   justify-content: space-between;
 }
 .zodiac-icon-badge {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   background: rgba(212, 175, 55, 0.08);
   border: 1px solid rgba(212, 175, 55, 0.22);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  padding: 5px;
 }
 .zodiac-icon-badge img {
   width: 28px;
