@@ -62,16 +62,18 @@ export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
 
     const isFeatured = sign.slug === activeSlug;
 
+    const upperElement = loc === 'tr' ? signElementLabel.replace(/i/g, 'İ').toUpperCase() : signElementLabel.toUpperCase();
+
     return `
       <article id="${sign.slug}" class="zodiac-natural-card ${isFeatured ? 'is-featured-border' : ''}">
         <div class="zodiac-natural-header">
           <div style="display:flex; align-items:center; gap:12px">
-            <div class="zodiac-icon-badge">
-              <img src="/assets/astrology/zodiac/${sign.slug}.svg" alt="${signName}" onerror="this.onerror=null;this.src='/assets/astrology/zodiac/${sign.icon}.svg'" loading="lazy">
+            <div class="zodiac-icon-badge" aria-hidden="true">
+              <span class="zodiac-glyph-mark">${sign.symbol}</span>
             </div>
             <span class="zodiac-natural-symbol" aria-hidden="true">${sign.symbol}</span>
           </div>
-          <span class="zodiac-element-tag element-${sign.element}">${signElementLabel.toUpperCase()}</span>
+          <span class="zodiac-element-tag element-${sign.element}">${upperElement}</span>
         </div>
 
         <h3 class="zodiac-natural-title">${naturalTitle}</h3>

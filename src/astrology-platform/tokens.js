@@ -28,12 +28,16 @@ html {
   font-family: var(--font-sans);
   background: var(--bg);
   color: var(--cream);
+  color-scheme: dark;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
   scroll-padding-top: 76px;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
 }
 
 body {
@@ -41,7 +45,11 @@ body {
   background: var(--bg-gradient);
   background-attachment: fixed;
   color: var(--cream);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -54,18 +62,155 @@ button, input, select, textarea {
   font: inherit;
 }
 
+/* Universal Ultra-Luxury Form Inputs — Site-Wide Default */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+select,
+textarea {
+  font-family: inherit;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  background: rgba(10, 14, 26, 0.85) !important;
+  color: var(--cream) !important;
+  border: 1px solid rgba(212, 175, 55, 0.28) !important;
+  border-radius: 12px !important;
+  outline: none;
+  color-scheme: dark;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: rgba(166, 171, 189, 0.55);
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--gold-bright) !important;
+  background: rgba(14, 20, 38, 0.95) !important;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.22), 0 0 16px rgba(212, 175, 55, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.4) !important;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85) sepia(0.5) saturate(2) hue-rotate(5deg);
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--gold);
+  cursor: pointer;
+}
+
+/* Site-Wide Form Container & Group Cards */
+.astro-form-card {
+  background: linear-gradient(165deg, rgba(14, 18, 34, 0.85) 0%, rgba(8, 10, 20, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 20px;
+  padding: clamp(20px, 3.5vw, 36px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.astro-form-group {
+  margin-bottom: 16px;
+}
+
+.astro-form-group label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.synastry-person-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 16px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.25s ease;
+}
+
+.synastry-person-card:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  background: rgba(212, 175, 55, 0.03);
+}
+
+.synastry-person-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  padding-bottom: 10px;
+  margin-bottom: 6px;
+}
+
+.synastry-person-title {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--gold-bright);
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.synastry-person-badge {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--gold);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  font-weight: 600;
+}
+
 .astro-shell {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
+  position: relative;
 }
 
 main {
   flex-grow: 1;
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
 }
 
 .astro-container {
-  width: min(1320px, calc(100% - 48px));
+  width: min(1320px, calc(100% - 36px));
   margin: 0 auto;
 }
 
@@ -781,16 +926,26 @@ html[dir="rtl"] .astro-time-select {
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid rgba(212, 175, 55, 0.22);
-  display: flex;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(12, 16, 30, 0.85) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+.zodiac-glyph-mark {
+  font-size: 20px;
+  line-height: 1;
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.65);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .zodiac-icon-badge img {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.45));
 }
 .zodiac-element-tag {
@@ -925,60 +1080,500 @@ html[dir="rtl"] .astro-time-select {
   display: block;
 }
 
-/* Footer */
-.astro-footer {
-  border-top: 1px solid var(--border);
-  background: #04050a;
-  padding: 72px 0 36px;
-  color: var(--muted);
-}
-.astro-footer-grid {
-  display: grid;
-  grid-template-columns: 2fr repeat(3, 1fr);
-  gap: 48px;
-  margin-bottom: 48px;
-}
-.astro-footer-brand p {
-  margin-top: 14px;
-  font-size: 14px;
-  line-height: 1.68;
-  max-width: 380px;
-}
-.astro-footer-col h4 {
-  font-family: var(--font-serif);
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: #fff;
-  margin-bottom: 18px;
-}
-.astro-footer-col ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 14px;
-}
-.astro-footer-col a:hover {
-  color: var(--gold-bright);
-}
-.astro-footer-disclaimer {
-  padding: 24px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 12.5px;
-  line-height: 1.7;
-  color: var(--dim);
-  text-align: center;
-}
-.astro-footer-bottom {
-  padding-top: 28px;
+/* ==========================================================================
+   DAILY HOROSCOPES & CELESTIAL WEATHER JOURNAL (/burc-yorumlari)
+   Distinct visual architecture from encyclopedic /burclar
+   ========================================================================== */
+.horoscope-weather-ribbon {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 13px;
-  flex-wrap: wrap;
   gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 22px;
+  background: linear-gradient(135deg, rgba(20, 26, 48, 0.75) 0%, rgba(9, 12, 22, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.32);
+  border-radius: 16px;
+  margin-bottom: 28px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+.horoscope-weather-cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.horoscope-weather-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  font-size: 12px;
+  color: var(--cream);
+  font-weight: 500;
+}
+.horoscope-weather-pill strong {
+  color: var(--gold-bright);
+}
+
+/* 12-Zodiac Horizontal Interactive Ribbon */
+.horoscope-selector-ribbon {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 4px 18px 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 175, 55, 0.4) transparent;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 32px;
+}
+.horoscope-selector-chip {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: rgba(14, 18, 34, 0.75);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.horoscope-selector-chip:hover {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.16);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+.horoscope-selector-chip.is-active {
+  border-color: var(--gold-bright);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.28) 0%, rgba(14, 18, 34, 0.95) 100%);
+  color: var(--gold-bright);
+  font-weight: 600;
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.25);
+}
+.horoscope-selector-glyph {
+  font-size: 16px;
+  color: var(--gold-bright);
+}
+
+/* Featured Daily Spotlight Card */
+.horoscope-spotlight-card {
+  padding: 28px 32px;
+  background: linear-gradient(145deg, rgba(18, 24, 46, 0.92) 0%, rgba(8, 11, 20, 0.98) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(212, 175, 55, 0.12);
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+.horoscope-spotlight-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+}
+.horoscope-spotlight-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.horoscope-spotlight-title {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 3.5vw, 28px);
+  color: #fff;
+  margin: 0;
+}
+.horoscope-spotlight-body {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+.horoscope-spotlight-narrative {
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(248, 246, 240, 0.9);
+}
+.horoscope-spotlight-meters {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.meter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.meter-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+}
+.meter-label-row strong {
+  color: var(--gold-bright);
+}
+.meter-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-bright));
+  border-radius: 999px;
+}
+
+/* 12 Daily Chronicle Cards */
+.daily-chronicle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.daily-chronicle-card {
+  background: linear-gradient(165deg, rgba(14, 18, 34, 0.88) 0%, rgba(7, 9, 18, 0.96) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-left: 3px solid var(--gold);
+  border-radius: 16px;
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.25s ease;
+  position: relative;
+}
+.daily-chronicle-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.55);
+  border-left-color: var(--gold-bright);
+  background: linear-gradient(165deg, rgba(20, 26, 48, 0.95) 0%, rgba(10, 13, 26, 1) 100%);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(212, 175, 55, 0.16);
+}
+.daily-chronicle-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.daily-sign-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.daily-sign-glyph {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(12, 16, 30, 0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+  color: var(--gold-bright);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+.daily-sign-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+.daily-sign-dates {
+  font-size: 11px;
+  color: var(--dim);
+}
+.daily-transit-resonance {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--gold);
+  letter-spacing: 0.03em;
+  font-weight: 500;
+}
+.daily-chronicle-headline {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: #fff;
+  margin: 0;
+  line-height: 1.35;
+}
+.daily-chronicle-theme {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(248, 246, 240, 0.85);
+  margin: 0;
+  flex-grow: 1;
+}
+.daily-chronicle-advice-box {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.daily-chronicle-advice-box strong {
+  color: var(--gold-bright);
+  display: block;
+  margin-bottom: 4px;
+}
+.daily-chronicle-advice-box span {
+  color: #f8f6f0;
+}
+.daily-dossier-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 12.5px;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.daily-dossier-link:hover {
+  color: var(--gold-bright);
+  transform: translateX(3px);
+}
+html[dir="rtl"] .daily-dossier-link:hover {
+  transform: translateX(-3px);
+}
+
+/* ==========================================================================
+   ULTRA-ELITE HAUTE HORLOGERIE FOOTER
+   4-Column architectural elegance, telemetry ribbon, mobile-optimized touch
+   ========================================================================== */
+.astro-footer {
+  background: radial-gradient(circle at 50% 0%, rgba(20, 26, 48, 0.45) 0%, #030408 70%);
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 48px 0 32px 0;
+  color: var(--muted);
+  position: relative;
+  overflow: hidden;
+}
+.astro-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+
+/* Telemetry Status Bar */
+.astro-footer-telemetry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  background: rgba(14, 18, 34, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+.astro-footer-telemetry-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--cream);
+  font-weight: 500;
+}
+.astro-footer-telemetry-pill strong {
+  color: var(--gold-bright);
+}
+
+/* Main 4-Column Grid */
+.astro-footer-grid {
+  display: grid;
+  grid-template-columns: 2.2fr repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.astro-footer-brand-elite {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.astro-footer-brand-elite .astro-brand {
+  gap: 10px;
+  margin-bottom: 2px;
+}
+.astro-footer-brand-elite .astro-brand-name {
+  font-size: 18px;
+  letter-spacing: 0.18em;
+}
+.astro-footer-manifesto {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(248, 246, 240, 0.78);
+  max-width: 380px;
+  margin: 0;
+}
+.astro-footer-engine-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--gold-bright);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  width: fit-content;
+}
+.astro-back-to-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 10px;
+  padding: 8px 16px;
+  color: var(--gold-bright);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-decoration: none;
+  width: fit-content;
+  transition: all 0.2s ease;
+  margin-top: 4px;
+}
+.astro-back-to-top:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.2);
+}
+
+/* Footer Nav Columns */
+.astro-footer-col h4 {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--gold-bright);
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.astro-footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.astro-footer-col ul li a {
+  font-size: 13.5px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.4;
+}
+.astro-footer-col ul li a:hover {
+  color: var(--gold-bright);
+  transform: translateX(3px);
+}
+html[dir="rtl"] .astro-footer-col ul li a:hover {
+  transform: translateX(-3px);
+}
+
+/* Luxury Disclaimer Card */
+.astro-footer-disclaimer-card {
+  padding: 18px 24px;
+  background: rgba(10, 14, 26, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 12px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.astro-footer-disclaimer-icon {
+  font-size: 16px;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.astro-footer-disclaimer-card p {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--dim);
+  margin: 0;
+}
+
+/* Bottom Bar */
+.astro-footer-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 12.5px;
+}
+.astro-footer-lang-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.astro-footer-lang-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+.astro-footer-lang-badge:hover,
+.astro-footer-lang-badge.is-active {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: rgba(212, 175, 55, 0.4);
+  color: var(--gold-bright);
 }
 .astro-qct-sig {
   display: inline-flex;
@@ -987,6 +1582,11 @@ html[dir="rtl"] .astro-time-select {
   color: var(--gold);
   font-size: 12px;
   letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.astro-qct-sig:hover {
+  color: var(--gold-bright);
 }
 
 /* Retrograde Curated Layout & Elite Cards */
@@ -1878,7 +2478,7 @@ html[dir="rtl"] .retro-guidance-box {
 @media (max-width: 1024px) {
   .astro-nav-desktop { display: none !important; }
   .astro-menu-btn { display: inline-flex !important; }
-  .astro-cta-gold { display: none; }
+  .astro-cta-gold { display: none !important; }
   .astro-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .archetype-grid { grid-template-columns: 1fr; }
   .retro-grid-triad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -1886,21 +2486,55 @@ html[dir="rtl"] .retro-guidance-box {
   .astro-bridge-card { flex-direction: column; text-align: center; }
   .astro-bridge-copy { display: flex; flex-direction: column; align-items: center; }
   .lunation-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .active-retro-5-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .active-retro-5-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .astro-footer-grid { grid-template-columns: 1.5fr 1fr 1fr; gap: 32px; }
+  .horoscope-spotlight-body { grid-template-columns: 1fr; gap: 20px; }
 }
 
 @media (max-width: 768px) {
+  /* Strict Mobile Header Containment — ZERO Horizontal Overflow */
+  .astro-header-actions .astro-lang-pills { display: none !important; }
+  .astro-header-actions .astro-cta-gold { display: none !important; }
+  .astro-header-inner { padding: 10px 0 !important; gap: 8px !important; }
+  .astro-brand { font-size: 14px !important; letter-spacing: 0.12em !important; gap: 8px !important; }
+  .astro-brand-logo-img { width: 24px !important; height: 24px !important; }
+  .astro-menu-btn { width: 38px !important; height: 38px !important; min-width: 38px !important; padding: 6px !important; }
+  .astro-container { width: calc(100% - 24px) !important; padding: 0 !important; }
+
+  /* Mobile Hero & Quick Calc */
+  .astro-hero { min-height: auto !important; padding: 32px 0 24px 0 !important; }
+  .astro-hero h1 { font-size: clamp(24px, 6.5vw, 34px) !important; line-height: 1.25 !important; }
+  .astro-hero-lead { font-size: 14px !important; }
+  .astro-hero-actions { flex-direction: column !important; width: 100% !important; gap: 10px !important; }
+  .astro-hero-actions a { width: 100% !important; justify-content: center !important; }
+  .astro-quick-box { padding: 18px 14px !important; border-radius: 14px !important; }
+  .astro-quick-grid { grid-template-columns: 1fr !important; }
+
+  /* Grids to single column */
   .astro-grid-3,
   .astro-grid-4,
   .retro-grid-triad,
-  .retro-grid-quad { grid-template-columns: 1fr; }
-  .astro-quick-grid { grid-template-columns: 1fr; }
-  .astro-footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .active-retro-5-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .retro-grid-quad { grid-template-columns: 1fr !important; }
+  .active-retro-5-grid { grid-template-columns: 1fr !important; }
+  .daily-chronicle-grid { grid-template-columns: 1fr !important; }
+
+  /* Ultra-Elite Mobile Footer */
+  .astro-footer { padding: 36px 0 28px 0 !important; }
+  .astro-footer-telemetry { flex-direction: column; align-items: flex-start; gap: 8px; padding: 12px 14px; margin-bottom: 28px; }
+  .astro-footer-grid { grid-template-columns: 1fr !important; gap: 28px !important; margin-bottom: 28px !important; }
+  .astro-footer-col h4 { margin-bottom: 12px; }
+  .astro-footer-col ul { gap: 8px; }
+  .astro-footer-col ul li a { font-size: 14px; min-height: 36px; display: inline-flex; align-items: center; }
+  .astro-footer-bottom-bar { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .astro-footer-lang-badges { flex-wrap: wrap; width: 100%; gap: 6px; }
+
+  /* Daily Horoscopes Mobile Overrides */
+  .horoscope-weather-ribbon { padding: 14px 16px; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .horoscope-spotlight-card { padding: 20px 18px; }
 }
 
 @media (max-width: 540px) {
-  .lunation-card-grid { grid-template-columns: 1fr; }
-  .active-retro-5-grid { grid-template-columns: 1fr; }
+  .lunation-card-grid { grid-template-columns: 1fr !important; }
+  .active-retro-5-grid { grid-template-columns: 1fr !important; }
 }
 `;

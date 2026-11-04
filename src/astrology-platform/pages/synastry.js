@@ -78,37 +78,63 @@ export const renderSynastryView = ({ locale = 'tr', searchParams = {} }) => {
 
     <section class="astro-section">
       <div class="astro-container">
-        <div class="astro-form-card" style="max-width:800px; margin:0 auto">
-          <form action="${getRouteHref(locale, 'synastry')}" method="get">
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:24px">
-              <div>
-                <h3 style="font-family:var(--font-serif); font-size:18px; color:var(--gold); margin-bottom:12px">✦ 1. Kişinin Bilgileri</h3>
-                <div class="astro-form-group">
-                  <label for="p1-date">Doğum Tarihi *</label>
-                  <input type="date" id="p1-date" name="p1_date" required value="${p1Date || '1992-05-14'}">
+        <div class="astro-form-card" style="max-width:880px; margin:0 auto">
+          <form action="${getRouteHref(locale, 'synastry')}" method="get" autocomplete="off">
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:24px">
+              <!-- 1. Kişi -->
+              <div class="synastry-person-card">
+                <div class="synastry-person-head">
+                  <h3 class="synastry-person-title">
+                    <span>✦</span>
+                    <span>${locale === 'tr' ? '1. Kişinin Bilgileri' : locale === 'en' ? 'Person 1 Details' : locale === 'el' ? '1ο Άτομο' : locale === 'es' ? 'Persona 1' : 'بيانات الطرف الأول'}</span>
+                  </h3>
+                  <span class="synastry-person-badge">${locale === 'tr' ? 'Referans' : locale === 'en' ? 'Reference' : locale === 'el' ? 'Αναφορά' : locale === 'es' ? 'Referencia' : 'مرجع'}</span>
                 </div>
                 <div class="astro-form-group">
-                  <label for="p1-city">Doğum Şehri *</label>
-                  <input type="text" id="p1-city" name="p1_city" required value="${p1City || 'Istanbul'}">
+                  <label for="p1-date">${locale === 'tr' ? 'Doğum Tarihi *' : locale === 'en' ? 'Date of Birth *' : locale === 'el' ? 'Ημερομηνία Γέννησης *' : locale === 'es' ? 'Fecha de Nacimiento *' : 'تاريخ الميلاد *'}</label>
+                  <input type="date" id="p1-date" name="p1_date" required value="${p1Date || '1992-05-14'}" autocomplete="off">
+                </div>
+                <div class="astro-form-group">
+                  <label for="p1-city">${locale === 'tr' ? 'Doğum Şehri *' : locale === 'en' ? 'City of Birth *' : locale === 'el' ? 'Πόλη Γέννησης *' : locale === 'es' ? 'Ciudad de Nacimiento *' : 'مدينة الميلاد *'}</label>
+                  <input type="text" id="p1-city" name="p1_city" required value="${p1City || 'Istanbul'}" placeholder="${locale === 'tr' ? 'İstanbul, Ankara, İzmir...' : 'London, New York, Paris...'}" autocomplete="off">
+                  <div class="natal-city-quick-picks" style="margin-top:6px">
+                    <button type="button" onclick="document.getElementById('p1-city').value='Istanbul'">İstanbul</button>
+                    <button type="button" onclick="document.getElementById('p1-city').value='Ankara'">Ankara</button>
+                    <button type="button" onclick="document.getElementById('p1-city').value='Izmir'">İzmir</button>
+                    <button type="button" onclick="document.getElementById('p1-city').value='London'">London</button>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <h3 style="font-family:var(--font-serif); font-size:18px; color:var(--gold); margin-bottom:12px">✦ 2. Kişinin Bilgileri</h3>
-                <div class="astro-form-group">
-                  <label for="p2-date">Doğum Tarihi *</label>
-                  <input type="date" id="p2-date" name="p2_date" required value="${p2Date || '1994-09-23'}">
+              <!-- 2. Kişi -->
+              <div class="synastry-person-card">
+                <div class="synastry-person-head">
+                  <h3 class="synastry-person-title">
+                    <span>✦</span>
+                    <span>${locale === 'tr' ? '2. Kişinin Bilgileri' : locale === 'en' ? 'Person 2 Details' : locale === 'el' ? '2ο Άτομο' : locale === 'es' ? 'Persona 2' : 'بيانات الطرف الثاني'}</span>
+                  </h3>
+                  <span class="synastry-person-badge">${locale === 'tr' ? 'Partner / Çift' : locale === 'en' ? 'Partner' : locale === 'el' ? 'Σύντροφος' : locale === 'es' ? 'Pareja' : 'الشريك'}</span>
                 </div>
                 <div class="astro-form-group">
-                  <label for="p2-city">Doğum Şehri *</label>
-                  <input type="text" id="p2-city" name="p2_city" required value="${p2City || 'Ankara'}">
+                  <label for="p2-date">${locale === 'tr' ? 'Doğum Tarihi *' : locale === 'en' ? 'Date of Birth *' : locale === 'el' ? 'Ημερομηνία Γέννησης *' : locale === 'es' ? 'Fecha de Nacimiento *' : 'تاريخ الميلاد *'}</label>
+                  <input type="date" id="p2-date" name="p2_date" required value="${p2Date || '1994-09-23'}" autocomplete="off">
+                </div>
+                <div class="astro-form-group">
+                  <label for="p2-city">${locale === 'tr' ? 'Doğum Şehri *' : locale === 'en' ? 'City of Birth *' : locale === 'el' ? 'Πόλη Γέννησης *' : locale === 'es' ? 'Ciudad de Nacimiento *' : 'مدينة الميلاد *'}</label>
+                  <input type="text" id="p2-city" name="p2_city" required value="${p2City || 'Ankara'}" placeholder="${locale === 'tr' ? 'Ankara, İstanbul, İzmir...' : 'Paris, Rome, Athens...'}" autocomplete="off">
+                  <div class="natal-city-quick-picks" style="margin-top:6px">
+                    <button type="button" onclick="document.getElementById('p2-city').value='Ankara'">Ankara</button>
+                    <button type="button" onclick="document.getElementById('p2-city').value='Istanbul'">İstanbul</button>
+                    <button type="button" onclick="document.getElementById('p2-city').value='Izmir'">İzmir</button>
+                    <button type="button" onclick="document.getElementById('p2-city').value='Athens'">Athens</button>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div style="margin-top:24px">
               <button type="submit" class="astro-btn-primary" style="width:100%; justify-content:center">
-                <span>Sinastri Haritasını Karşılaştır</span>
+                <span>${locale === 'tr' ? 'Sinastri Haritasını Karşılaştır' : locale === 'en' ? 'Compare Synastry Charts' : locale === 'el' ? 'Σύγκριση Συναστρίας' : locale === 'es' ? 'Comparar Sinastría' : 'مقارنة التوافق الفلكي'}</span>
                 <span aria-hidden="true">${arrow}</span>
               </button>
             </div>

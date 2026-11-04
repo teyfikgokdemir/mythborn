@@ -12,12 +12,14 @@ const safe = (str = '') =>
 
 export const renderHomeView = ({ locale = 'tr' }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
+  const loc = locale === 'gr' ? 'el' : ['tr', 'en', 'el', 'es', 'ar'].includes(locale) ? locale : 'tr';
   const isRtl = t.dir === 'rtl';
   const arrow = isRtl ? '←' : '→';
+  const clean = (txt) => (txt || '').replace(/[→←\s]+$/, '');
 
-  // 12 Zodiac Cards — Fully Localized (Zero English in TR) + Safe Icon Fallbacks
+  // 12 Zodiac Cards — Fully Localized (Zero English in TR) + Radiant Astronomical Glyph Badges
   const zodiacCardsHtml = ZODIAC_SIGNS.map((sign) => {
-    const signName = sign[locale] || sign.tr;
+    const signName = sign[loc] || sign.tr;
     const titleText = locale === 'tr' ? `${signName} Burcu`
       : locale === 'en' ? `${signName} Sign`
       : locale === 'el' ? `Ζώδιο: ${signName}`
@@ -30,24 +32,26 @@ export const renderHomeView = ({ locale = 'tr' }) => {
       : locale === 'es' ? 'Explorar'
       : 'استكشاف';
 
-    const elementLabel = (ZODIAC_LOCALIZED.elements[sign.element] && ZODIAC_LOCALIZED.elements[sign.element][locale]) || sign.element;
-    const qualityLabel = (ZODIAC_LOCALIZED.qualities[sign.quality] && ZODIAC_LOCALIZED.qualities[sign.quality][locale]) || sign.quality;
-    const rulerLabel = (ZODIAC_LOCALIZED.rulers[sign.ruler] && ZODIAC_LOCALIZED.rulers[sign.ruler][locale]) || sign.ruler;
-    const datesLabel = (ZODIAC_LOCALIZED.dates[sign.slug] && ZODIAC_LOCALIZED.dates[sign.slug][locale]) || sign.dates;
+    const elementLabel = (ZODIAC_LOCALIZED.elements[sign.element] && ZODIAC_LOCALIZED.elements[sign.element][loc]) || sign.element;
+    const qualityLabel = (ZODIAC_LOCALIZED.qualities[sign.quality] && ZODIAC_LOCALIZED.qualities[sign.quality][loc]) || sign.quality;
+    const rulerLabel = (ZODIAC_LOCALIZED.rulers[sign.ruler] && ZODIAC_LOCALIZED.rulers[sign.ruler][loc]) || sign.ruler;
+    const datesLabel = (ZODIAC_LOCALIZED.dates[sign.slug] && ZODIAC_LOCALIZED.dates[sign.slug][loc]) || sign.dates;
+
+    const upperElement = loc === 'tr' ? elementLabel.replace(/i/g, 'İ').toUpperCase() : elementLabel.toUpperCase();
 
     return `
       <article class="zodiac-natural-card">
         <div class="zodiac-natural-header">
-          <div class="zodiac-icon-badge">
-            <img src="/assets/astrology/zodiac/${sign.slug}.svg" alt="${signName}" onerror="this.onerror=null;this.src='/assets/astrology/zodiac/${sign.icon}.svg'" loading="lazy">
+          <div class="zodiac-icon-badge" aria-hidden="true">
+            <span class="zodiac-glyph-mark">${sign.symbol}</span>
           </div>
-          <span class="zodiac-element-tag element-${sign.element}">${elementLabel.toUpperCase()}</span>
+          <span class="zodiac-element-tag element-${sign.element}">${upperElement}</span>
         </div>
         <h3 class="zodiac-natural-title">${titleText}</h3>
         <p class="zodiac-natural-ruler">🪐 ${rulerLabel} · ${qualityLabel}</p>
         <div class="zodiac-natural-dates">${datesLabel}</div>
         <a class="astro-card-link" style="margin-top:10px" href="${getRouteHref(locale, 'zodiac')}?sign=${sign.slug}#dossier">
-          <span>${linkText}</span>
+          <span>${clean(linkText)}</span>
           <span aria-hidden="true">${arrow}</span>
         </a>
       </article>
@@ -63,11 +67,11 @@ export const renderHomeView = ({ locale = 'tr' }) => {
         <p class="astro-hero-lead">${t.hero.lead}</p>
         <div class="astro-hero-actions">
           <a class="astro-btn-primary" href="${getRouteHref(locale, 'natal')}">
-            <span>${t.hero.ctaPrimary}</span>
+            <span>${clean(t.hero.ctaPrimary)}</span>
             <span aria-hidden="true">${arrow}</span>
           </a>
           <a class="astro-btn-ghost" href="${getRouteHref(locale, 'calendar')}">
-            <span>${t.hero.ctaSecondary}</span>
+            <span>${clean(t.hero.ctaSecondary)}</span>
             <span aria-hidden="true">${arrow}</span>
           </a>
         </div>
@@ -85,7 +89,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
           <p style="font-size:13px; color:var(--muted); margin-bottom:16px; line-height:1.5">
             ${t.quickNatal.sub}
           </p>
-          <form action="${getRouteHref(locale, 'natal')}" method="get">
+          <form action="${getRouteHref(locale, 'natal')}" method="get" autocomplete="off">
             <div class="astro-quick-grid">
               <div class="astro-quick-field">
                 <label for="qk-date">${t.quickNatal.labelDate}</label>
@@ -97,7 +101,8 @@ export const renderHomeView = ({ locale = 'tr' }) => {
               </div>
               <div class="astro-quick-field">
                 <label for="qk-city">${t.quickNatal.labelCity}</label>
-                <input id="qk-city" name="city" type="text" required placeholder="İstanbul, İzmir, London..." value="Istanbul">
+                <input id="qk-city" name="city" type="text" required placeholder="${loc === 'tr' ? 'İstanbul, Ankara, İzmir...' : 'London, New York, Paris...'}" value="Istanbul" autocomplete="off">
+                <span style="font-size:10.5px; color:var(--dim); display:block; margin-top:4px">${loc === 'tr' ? 'Türkiye’nin 81 ili ve tüm dünya şehirleri için anında koordinat ve saat dilimi eşlemesi.' : 'Instant coordinate and timezone lookup for global cities.'}</span>
               </div>
             </div>
             <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
@@ -106,8 +111,8 @@ export const renderHomeView = ({ locale = 'tr' }) => {
                 <span>${t.quickNatal.unknownTime}</span>
               </label>
               <button type="submit" class="astro-quick-btn">
-                <span>${t.quickNatal.submitBtn}</span>
-                <span aria-hidden="true"> ${arrow}</span>
+                <span>${clean(t.quickNatal.submitBtn)}</span>
+                <span aria-hidden="true">${arrow}</span>
               </button>
             </div>
           </form>

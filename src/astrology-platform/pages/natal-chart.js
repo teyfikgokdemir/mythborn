@@ -250,7 +250,7 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
                 <span class="natal-box-badge">24h TSI</span>
               </div>
 
-              <form action="${getRouteHref(locale, 'natal')}" method="get" class="natal-form-inner">
+              <form action="${getRouteHref(locale, 'natal')}" method="get" class="natal-form-inner" autocomplete="off">
                 <div class="natal-form-row">
                   <div class="natal-form-field">
                     <label for="birth-date">${t.quickNatal.labelDate} *</label>
@@ -266,9 +266,9 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
                 <div class="natal-form-field">
                   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px">
                     <label for="birth-place" style="margin:0">${t.quickNatal.labelCity} *</label>
-                    <span style="font-size:11px; color:var(--dim)">Çevrimdışı 81 İl Sözlüğü</span>
+                    <span style="font-size:11px; color:var(--dim)">81 İl ve Dünya Koordinat Eşlemesi</span>
                   </div>
-                  <input type="text" id="birth-place" name="city" placeholder="İstanbul, Ankara, İzmir, London, Athens..." required value="${birthCity || 'Istanbul'}">
+                  <input type="text" id="birth-place" name="city" placeholder="İstanbul, Ankara, İzmir, London, Athens..." required value="${birthCity || 'Istanbul'}" autocomplete="off">
                   <div class="natal-city-quick-picks">
                     <button type="button" onclick="document.getElementById('birth-place').value='Istanbul'">İstanbul</button>
                     <button type="button" onclick="document.getElementById('birth-place').value='Ankara'">Ankara</button>

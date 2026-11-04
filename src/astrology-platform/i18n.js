@@ -19,14 +19,14 @@ export const ASTROLOGY_LOCALES = {
       synastry: 'Sinastri & Uyum',
       glossary: 'Astroloji Sözlüğü',
       approach: 'Yöntem ve Etik',
-      ctaQuick: 'Ücretsiz Haritanı Çıkar →',
+      ctaQuick: 'Ücretsiz Haritanı Çıkar',
       menuToggle: 'Menü'
     },
     hero: {
       eyebrow: 'AÇIK KAYNAKLI EFEMERİS İLE HESAPLANAN KOZMİK REHBERİNİZ',
       title: 'Gökyüzünün Haritası, Ruhun Pusulası.',
       lead: 'Açık kaynak efemeris modelleri ve matematiksel astronomi hesaplamalarıyla doğum haritanızı çıkarın; Güneş, Ay ve yükselen burcunuzun derin dinamiklerini keşfedin.',
-      ctaPrimary: 'Ücretsiz Doğum Haritanı Çıkar →',
+      ctaPrimary: 'Ücretsiz Doğum Haritanı Çıkar',
       ctaSecondary: 'Bugünkü Gökyüzünü İncele'
     },
     quickNatal: {
@@ -36,7 +36,7 @@ export const ASTROLOGY_LOCALES = {
       labelTime: 'Doğum Saati (24s: 00:00 - 23:59)',
       labelCity: 'Doğum Şehri',
       unknownTime: 'Doğum saatimi bilmiyorum (Güneş doğumu haritası)',
-      submitBtn: 'Haritamı ve Büyük Üçlümü Göster →'
+      submitBtn: 'Haritamı ve Büyük Üçlümü Göster'
     },
     bigThree: {
       title: 'Kozmik Büyük Üçlü: Kimlik, Ruh ve Arayüz',
@@ -88,14 +88,14 @@ export const ASTROLOGY_LOCALES = {
       synastry: 'Synastry & Compatibility',
       glossary: 'Astrology Glossary',
       approach: 'Method & Ethics',
-      ctaQuick: 'Calculate Free Chart →',
+      ctaQuick: 'Calculate Free Chart',
       menuToggle: 'Menu'
     },
     hero: {
       eyebrow: 'YOUR COSMIC GUIDE CALCULATED WITH OPEN-SOURCE EPHEMERIS',
       title: 'Map of the Sky, Compass of the Soul.',
       lead: 'Calculate your accurate birth chart using open-source ephemeris models and mathematical astronomy; explore the deep dynamics of your Sun, Moon, and Rising sign.',
-      ctaPrimary: 'Generate Your Free Birth Chart →',
+      ctaPrimary: 'Generate Your Free Birth Chart',
       ctaSecondary: 'Explore Today’s Sky'
     },
     quickNatal: {
@@ -105,7 +105,7 @@ export const ASTROLOGY_LOCALES = {
       labelTime: 'Time of Birth (24h: 00:00 - 23:59)',
       labelCity: 'City of Birth',
       unknownTime: 'I do not know my birth time (Sunrise chart)',
-      submitBtn: 'Show My Chart & Big Three →'
+      submitBtn: 'Show My Chart & Big Three'
     },
     bigThree: {
       title: 'The Cosmic Big Three: Identity, Soul & Interface',
@@ -157,14 +157,14 @@ export const ASTROLOGY_LOCALES = {
       synastry: 'Συναστρία',
       glossary: 'Λεξικό Αστρολογίας',
       approach: 'Μέθοδος & Ηθική',
-      ctaQuick: 'Υπολογισμός Χάρτη →',
+      ctaQuick: 'Υπολογισμός Χάρτη',
       menuToggle: 'Μενού'
     },
     hero: {
       eyebrow: 'ΚΟΣΜΙΚΟΣ ΟΔΗΓΟΣ ΜΕ ΜΑΘΗΜΑΤΙΚΕΣ ΕΦΗΜΕΡΙΔΕΣ ΑΝΟΙΧΤΟΥ ΚΩΔΙΚΑ',
       title: 'Χάρτης του Ουρανού, Πυξίδα της Ψυχής.',
       lead: 'Υπολογίστε με μαθηματική ακρίβεια τον γενέθλιο χάρτη σας με ανοιχτά αστρονομικά μοντέλα· ανακαλύψτε τις βαθιές δυναμικές του Ήλιου, της Σελήνης και του Ωροσκόπου σας.',
-      ctaPrimary: 'Υπολογισμός Γενέθλιου Χάρτη →',
+      ctaPrimary: 'Υπολογισμός Γενέθλιου Χάρτη',
       ctaSecondary: 'Εξερευνήστε τον Σημερινό Ουρανό'
     },
     quickNatal: {
@@ -174,7 +174,7 @@ export const ASTROLOGY_LOCALES = {
       labelTime: 'Ώρα Γέννησης (24ωρη: 00:00 - 23:59)',
       labelCity: 'Πόλη Γέννησης',
       unknownTime: 'Δεν γνωρίζω την ακριβή ώρα (Χάρτης Ανατολής Ήλιου)',
-      submitBtn: 'Εμφάνιση Χάρτη & Μεγάλης Τριάδας →'
+      submitBtn: 'Εμφάνιση Χάρτη & Μεγάλης Τριάδας'
     },
     bigThree: {
       title: 'Η Κοσμική Μεγάλη Τριάδα: Ταυτότητα, Ψυχή & Διεπαφή',
@@ -226,14 +226,14 @@ export const ASTROLOGY_LOCALES = {
       synastry: 'Sinastría de Pareja',
       glossary: 'Glosario Astral',
       approach: 'Método y Ética',
-      ctaQuick: 'Calcular Carta Gratis →',
+      ctaQuick: 'Calcular Carta Gratis',
       menuToggle: 'Menú'
     },
     hero: {
       eyebrow: 'TU GUÍA CÓSMICA CALCULADA CON EFEMÉRIDES DE CÓDIGO ABIERTO',
       title: 'Mapa del Cielo, Brújula del Alma.',
       lead: 'Calcula tu carta natal exacta utilizando modelos matemáticos de efemérides de código abierto; descubre las profundas dinámicas de tu Sol, Luna y Ascendente.',
-      ctaPrimary: 'Calcula Tu Carta Natal Gratis →',
+      ctaPrimary: 'Calcula Tu Carta Natal Gratis',
       ctaSecondary: 'Explora el Cielo de Hoy'
     },
     quickNatal: {
@@ -243,7 +243,7 @@ export const ASTROLOGY_LOCALES = {
       labelTime: 'Hora de Nacimiento (24h: 00:00 - 23:59)',
       labelCity: 'Ciudad de Nacimiento',
       unknownTime: 'No conozco mi hora exacta (Carta de amanecer solar)',
-      submitBtn: 'Ver Mi Carta y la Gran Tríada →'
+      submitBtn: 'Ver Mi Carta y la Gran Tríada'
     },
     bigThree: {
       title: 'La Gran Tríada Cósmica: Identidad, Alma e Interfaz',
@@ -295,14 +295,14 @@ export const ASTROLOGY_LOCALES = {
       synastry: 'التوافق الفلكي',
       glossary: 'قاموس الفلك',
       approach: 'المنهج والأخلاقيات',
-      ctaQuick: 'احسب خريطتك مجاناً ←',
+      ctaQuick: 'احسب خريطتك مجاناً',
       menuToggle: 'القائمة'
     },
     hero: {
       eyebrow: 'دليلك الكوني بحسابات فلكية مفتوحة المصدر',
       title: 'خريطة السماء، بوصلة الروح.',
       lead: 'احسب خريطة ميلادك الدقيقة عبر نماذج حسابات فلكية رياضية مفتوحة المصدر؛ واستكشف الأبعاد العميقة لشمسك وقمرك وبرجك الطالع.',
-      ctaPrimary: 'احسب خريطة ميلادك مجاناً ←',
+      ctaPrimary: 'احسب خريطة ميلادك مجاناً',
       ctaSecondary: 'استكشف حركة السماء اليوم'
     },
     quickNatal: {
@@ -312,7 +312,7 @@ export const ASTROLOGY_LOCALES = {
       labelTime: 'وقت الميلاد (24 ساعة: 00:00 - 23:59)',
       labelCity: 'مدينة الميلاد',
       unknownTime: 'لا أعرف وقت ولادتي بالتحديد (خريطة شروق الشمس)',
-      submitBtn: 'عرض خريطتي والثلاثية الكبرى ←'
+      submitBtn: 'عرض خريطتي والثلاثية الكبرى'
     },
     bigThree: {
       title: 'الثلاثية الكونية الكبرى: الهوية، الروح والواجهة',
