@@ -458,7 +458,7 @@ export const renderAstrologyLayout = ({
         </div>
       </div>
     </footer>
-    <button type="button" id="astro-scroll-top" class="astro-scroll-top-btn" aria-label="${backToTopText}" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <button type="button" id="astro-scroll-top" class="astro-scroll-top-btn" aria-label="${backToTopText}">
       <svg class="astro-scroll-top-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M12 19V5M5 12l7-7 7 7"/>
       </svg>
@@ -493,26 +493,51 @@ export const renderAstrologyLayout = ({
         });
       }
 
-      // Floating Back to Top Controller (Reveals only on scroll, hidden at top)
+      // Dynamic Motion-Only Scroll Controller:
+      // Button appears ONLY while actively scrolling. Once scrolling stops and the page is stationary,
+      // it automatically fades out after 1.5s so it never stays statically on screen.
       var topBtn = document.getElementById('astro-scroll-top');
       if (topBtn) {
-        var ticking = false;
-        function updateScroll() {
+        var scrollTimer = null;
+        var isHovered = false;
+
+        topBtn.addEventListener('mouseenter', function() {
+          isHovered = true;
+          clearTimeout(scrollTimer);
+        });
+        topBtn.addEventListener('mouseleave', function() {
+          isHovered = false;
+          scheduleHide();
+        });
+        topBtn.addEventListener('touchstart', function() {
+          isHovered = true;
+          clearTimeout(scrollTimer);
+        }, { passive: true });
+        topBtn.addEventListener('click', function() {
+          isHovered = false;
+          topBtn.classList.remove('is-visible');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        function scheduleHide() {
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(function() {
+            if (!isHovered) {
+              topBtn.classList.remove('is-visible');
+            }
+          }, 1500);
+        }
+
+        window.addEventListener('scroll', function() {
           var scrolled = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-          if (scrolled > 300) {
+          if (scrolled > 250) {
             topBtn.classList.add('is-visible');
+            scheduleHide();
           } else {
+            clearTimeout(scrollTimer);
             topBtn.classList.remove('is-visible');
           }
-          ticking = false;
-        }
-        window.addEventListener('scroll', function() {
-          if (!ticking) {
-            window.requestAnimationFrame(updateScroll);
-            ticking = true;
-          }
         }, { passive: true });
-        updateScroll();
       }
     })();
   </script>
