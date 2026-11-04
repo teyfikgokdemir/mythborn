@@ -348,17 +348,57 @@ export const ASTROLOGY_LOCALES = {
   }
 };
 
+export const ZODIAC_LOCALIZED = {
+  elements: {
+    fire: { tr: 'Ateş', en: 'Fire', el: 'Φωτιά', es: 'Fuego', ar: 'نار' },
+    earth: { tr: 'Toprak', en: 'Earth', el: 'Γη', es: 'Tierra', ar: 'تراب' },
+    air: { tr: 'Hava', en: 'Air', el: 'Αέρας', es: 'Aire', ar: 'هواء' },
+    water: { tr: 'Su', en: 'Water', el: 'Νερό', es: 'Agua', ar: 'ماء' },
+  },
+  qualities: {
+    cardinal: { tr: 'Öncü', en: 'Cardinal', el: 'Παρορμητικό', es: 'Cardinal', ar: 'منقلب' },
+    fixed: { tr: 'Sabit', en: 'Fixed', el: 'Σταθερό', es: 'Fijo', ar: 'ثابت' },
+    mutable: { tr: 'Değişken', en: 'Mutable', el: 'Μεταβλητό', es: 'Mutable', ar: 'متبدل' },
+  },
+  rulers: {
+    'Mars': { tr: 'Mars', en: 'Mars', el: 'Άρης', es: 'Marte', ar: 'المريخ' },
+    'Venus': { tr: 'Venüs', en: 'Venus', el: 'Αφροδίτη', es: 'Venus', ar: 'الزهرة' },
+    'Mercury': { tr: 'Merkür', en: 'Mercury', el: 'Ερμής', es: 'Mercurio', ar: 'عطارد' },
+    'Moon': { tr: 'Ay', en: 'Moon', el: 'Σελήνη', es: 'Luna', ar: 'القمر' },
+    'Sun': { tr: 'Güneş', en: 'Sun', el: 'Ήλιος', es: 'Sol', ar: 'الشمس' },
+    'Mars / Pluto': { tr: 'Mars · Plüton', en: 'Mars / Pluto', el: 'Άρης / Πλούτων', es: 'Marte / Plutón', ar: 'المريخ / بلوتو' },
+    'Jupiter': { tr: 'Jüpiter', en: 'Jupiter', el: 'Δίας', es: 'Júpiter', ar: 'المشتري' },
+    'Saturn': { tr: 'Satürn', en: 'Saturn', el: 'Κρόνος', es: 'Saturno', ar: 'زحل' },
+    'Saturn / Uranus': { tr: 'Satürn · Uranüs', en: 'Saturn / Uranus', el: 'Κρόνος / Ουρανός', es: 'Saturno / Urano', ar: 'زحل / أورانوس' },
+    'Jupiter / Neptune': { tr: 'Jüpiter · Neptün', en: 'Jupiter / Neptune', el: 'Δίας / Ποσειδών', es: 'Jüpiter / Neptuno', ar: 'المشتري / نبتون' },
+  },
+  dates: {
+    koc: { tr: '21 Mart – 19 Nisan', en: 'March 21 – April 19', el: '21 Μαρτίου – 19 Απριλίου', es: '21 de marzo – 19 de abril', ar: '21 مارس – 19 أبريل' },
+    boga: { tr: '20 Nisan – 20 Mayıs', en: 'April 20 – May 20', el: '20 Απριλίου – 20 Μαΐου', es: '20 de abril – 20 de mayo', ar: '20 أبريل – 20 مايو' },
+    ikizler: { tr: '21 Mayıs – 20 Haziran', en: 'May 21 – June 20', el: '21 Μαΐου – 20 Ιουνίου', es: '21 de mayo – 20 de junio', ar: '21 مايو – 20 يونيو' },
+    yengec: { tr: '21 Haziran – 22 Temmuz', en: 'June 21 – July 22', el: '21 Ιουνίου – 22 Ιουλίου', es: '21 de junio – 22 de julio', ar: '21 يونيو – 22 يوليو' },
+    aslan: { tr: '23 Temmuz – 22 Ağustos', en: 'July 23 – August 22', el: '23 Ιουλίου – 22 Αυγούστου', es: '23 de julio – 22 de agosto', ar: '23 يوليو – 22 أغسطس' },
+    basak: { tr: '23 Ağustos – 22 Eylül', en: 'August 23 – September 22', el: '23 Αυγούστου – 22 Σεπτεμβρίου', es: '23 de agosto – 22 de septiembre', ar: '23 أغسطس – 22 سبتمبر' },
+    terazi: { tr: '23 Eylül – 22 Ekim', en: 'September 23 – October 22', el: '23 Σεπτεμβρίου – 22 Οκτωβρίου', es: '23 de septiembre – 22 de octubre', ar: '23 سبتمبر – 22 أكتوبر' },
+    akrep: { tr: '23 Ekim – 21 Kasım', en: 'October 23 – November 21', el: '23 Οκτωβρίου – 21 Νοεμβρίου', es: '23 de octubre – 21 de noviembre', ar: '23 أكتوبر – 21 نوفمبر' },
+    yay: { tr: '22 Kasım – 21 Aralık', en: 'November 22 – December 21', el: '22 Νοεμβρίου – 21 Δεκεμβρίου', es: '22 de noviembre – 21 de diciembre', ar: '22 نوفمبر – 21 ديسمبر' },
+    oglak: { tr: '22 Aralık – 19 Ocak', en: 'December 22 – January 19', el: '22 Δεκεμβρίου – 19 Ιανουαρίου', es: '22 de diciembre – 19 de enero', ar: '22 ديسمبر – 19 يناير' },
+    kova: { tr: '20 Ocak – 18 Şubat', en: 'January 20 – February 18', el: '20 Ιανουαρίου – 18 Φεβρουαρίου', es: '20 de enero – 18 de febrero', ar: '20 يناير – 18 فبراير' },
+    balik: { tr: '19 Şubat – 20 Mart', en: 'February 19 – March 20', el: '19 Φεβρουαρίου – 20 Μαρτίου', es: '19 de febrero – 20 de marzo', ar: '19 فبراير – 20 مارس' }
+  }
+};
+
 export const ZODIAC_SIGNS = [
-  { slug: 'koc', symbol: '♈', tr: 'Koç', en: 'Aries', el: 'Κριός', es: 'Aries', ar: 'الحمل', element: 'fire', quality: 'cardinal', ruler: 'Mars', dates: '21 Mart – 19 Nisan' },
-  { slug: 'boga', symbol: '♉', tr: 'Boğa', en: 'Taurus', el: 'Ταύρος', es: 'Tauro', ar: 'الثور', element: 'earth', quality: 'fixed', ruler: 'Venus', dates: '20 Nisan – 20 Mayıs' },
-  { slug: 'ikizler', symbol: '♊', tr: 'İkizler', en: 'Gemini', el: 'Δίδυμοι', es: 'Géminis', ar: 'الجوزاء', element: 'air', quality: 'mutable', ruler: 'Mercury', dates: '21 Mayıs – 20 Haziran' },
-  { slug: 'yengec', symbol: '♋', tr: 'Yengeç', en: 'Cancer', el: 'Καρκίνος', es: 'Cáncer', ar: 'السرطان', element: 'water', quality: 'cardinal', ruler: 'Moon', dates: '21 Haziran – 22 Temmuz' },
-  { slug: 'aslan', symbol: '♌', tr: 'Aslan', en: 'Leo', el: 'Λέων', es: 'Leo', ar: 'الأسد', element: 'fire', quality: 'fixed', ruler: 'Sun', dates: '23 Temmuz – 22 Ağustos' },
-  { slug: 'basak', symbol: '♍', tr: 'Başak', en: 'Virgo', el: 'Παρθένος', es: 'Virgo', ar: 'العذراء', element: 'earth', quality: 'mutable', ruler: 'Mercury', dates: '23 Ağustos – 22 Eylül' },
-  { slug: 'terazi', symbol: '♎', tr: 'Terazi', en: 'Libra', el: 'Ζυγός', es: 'Libra', ar: 'الميزان', element: 'air', quality: 'cardinal', ruler: 'Venus', dates: '23 Eylül – 22 Ekim' },
-  { slug: 'akrep', symbol: '♏', tr: 'Akrep', en: 'Scorpio', el: 'Σκορπιός', es: 'Escorpio', ar: 'العقرب', element: 'water', quality: 'fixed', ruler: 'Mars / Pluto', dates: '23 Ekim – 21 Kasım' },
-  { slug: 'yay', symbol: '♐', tr: 'Yay', en: 'Sagittarius', el: 'Τοξότης', es: 'Sagitario', ar: 'القوس', element: 'fire', quality: 'mutable', ruler: 'Jupiter', dates: '22 Kasım – 21 Aralık' },
-  { slug: 'oglak', symbol: '♑', tr: 'Oğlak', en: 'Capricorn', el: 'Αιγόκερως', es: 'Capricornio', ar: 'الجدي', element: 'earth', quality: 'cardinal', ruler: 'Saturn', dates: '22 Aralık – 19 Ocak' },
-  { slug: 'kova', symbol: '♒', tr: 'Kova', en: 'Aquarius', el: 'Υδροχόος', es: 'Acuario', ar: 'الدلو', element: 'air', quality: 'fixed', ruler: 'Saturn / Uranus', dates: '20 Ocak – 18 Şubat' },
-  { slug: 'balik', symbol: '♓', tr: 'Balık', en: 'Pisces', el: 'Ιχθύες', es: 'Piscis', ar: 'الحوت', element: 'water', quality: 'mutable', ruler: 'Jupiter / Neptune', dates: '19 Şubat – 20 Mart' }
+  { slug: 'koc', icon: 'aries', symbol: '♈', tr: 'Koç', en: 'Aries', el: 'Κριός', es: 'Aries', ar: 'الحمل', element: 'fire', quality: 'cardinal', ruler: 'Mars', dates: '21 Mart – 19 Nisan' },
+  { slug: 'boga', icon: 'taurus', symbol: '♉', tr: 'Boğa', en: 'Taurus', el: 'Ταύρος', es: 'Tauro', ar: 'الثور', element: 'earth', quality: 'fixed', ruler: 'Venus', dates: '20 Nisan – 20 Mayıs' },
+  { slug: 'ikizler', icon: 'gemini', symbol: '♊', tr: 'İkizler', en: 'Gemini', el: 'Δίδυμοι', es: 'Géminis', ar: 'الجوزاء', element: 'air', quality: 'mutable', ruler: 'Mercury', dates: '21 Mayıs – 20 Haziran' },
+  { slug: 'yengec', icon: 'cancer', symbol: '♋', tr: 'Yengeç', en: 'Cancer', el: 'Καρκίνος', es: 'Cáncer', ar: 'السرطان', element: 'water', quality: 'cardinal', ruler: 'Moon', dates: '21 Haziran – 22 Temmuz' },
+  { slug: 'aslan', icon: 'leo', symbol: '♌', tr: 'Aslan', en: 'Leo', el: 'Λέων', es: 'Leo', ar: 'الأسد', element: 'fire', quality: 'fixed', ruler: 'Sun', dates: '23 Temmuz – 22 Ağustos' },
+  { slug: 'basak', icon: 'virgo', symbol: '♍', tr: 'Başak', en: 'Virgo', el: 'Παρθένος', es: 'Virgo', ar: 'العذراء', element: 'earth', quality: 'mutable', ruler: 'Mercury', dates: '23 Ağustos – 22 Eylül' },
+  { slug: 'terazi', icon: 'libra', symbol: '♎', tr: 'Terazi', en: 'Libra', el: 'Ζυγός', es: 'Libra', ar: 'الميزان', element: 'air', quality: 'cardinal', ruler: 'Venus', dates: '23 Eylül – 22 Ekim' },
+  { slug: 'akrep', icon: 'scorpio', symbol: '♏', tr: 'Akrep', en: 'Scorpio', el: 'Σκορπιός', es: 'Escorpio', ar: 'العقرب', element: 'water', quality: 'fixed', ruler: 'Mars / Pluto', dates: '23 Ekim – 21 Kasım' },
+  { slug: 'yay', icon: 'sagittarius', symbol: '♐', tr: 'Yay', en: 'Sagittarius', el: 'Τοξότης', es: 'Sagitario', ar: 'القوس', element: 'fire', quality: 'mutable', ruler: 'Jupiter', dates: '22 Kasım – 21 Aralık' },
+  { slug: 'oglak', icon: 'capricorn', symbol: '♑', tr: 'Oğlak', en: 'Capricorn', el: 'Αιγόκερως', es: 'Capricornio', ar: 'الجدي', element: 'earth', quality: 'cardinal', ruler: 'Saturn', dates: '22 Aralık – 19 Ocak' },
+  { slug: 'kova', icon: 'aquarius', symbol: '♒', tr: 'Kova', en: 'Aquarius', el: 'Υδροχόος', es: 'Acuario', ar: 'الدلو', element: 'air', quality: 'fixed', ruler: 'Saturn / Uranus', dates: '20 Ocak – 18 Şubat' },
+  { slug: 'balik', icon: 'pisces', symbol: '♓', tr: 'Balık', en: 'Pisces', el: 'Ιχθύες', es: 'Piscis', ar: 'الحوت', element: 'water', quality: 'mutable', ruler: 'Jupiter / Neptune', dates: '19 Şubat – 20 Mart' }
 ];

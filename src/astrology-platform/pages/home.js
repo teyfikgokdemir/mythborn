@@ -1,5 +1,5 @@
 // Mythborn Astrology Platform — Homepage View
-import { ASTROLOGY_LOCALES, ZODIAC_SIGNS } from '../i18n.js';
+import { ASTROLOGY_LOCALES, ZODIAC_SIGNS, ZODIAC_LOCALIZED } from '../i18n.js';
 import { getRouteHref } from '../layout.js';
 import { render24hTimePicker } from '../time-picker.js';
 
@@ -15,7 +15,7 @@ export const renderHomeView = ({ locale = 'tr' }) => {
   const isRtl = t.dir === 'rtl';
   const arrow = isRtl ? '←' : '→';
 
-  // 12 Zodiac Cards with EMBEDDED SVG GLYPHS & Natural Labels
+  // 12 Zodiac Cards — Fully Localized (Zero English in TR) + Safe Icon Fallbacks
   const zodiacCardsHtml = ZODIAC_SIGNS.map((sign) => {
     const signName = sign[locale] || sign.tr;
     const titleText = locale === 'tr' ? `${signName} Burcu`
@@ -30,17 +30,22 @@ export const renderHomeView = ({ locale = 'tr' }) => {
       : locale === 'es' ? 'Explorar'
       : 'استكشاف';
 
+    const elementLabel = (ZODIAC_LOCALIZED.elements[sign.element] && ZODIAC_LOCALIZED.elements[sign.element][locale]) || sign.element;
+    const qualityLabel = (ZODIAC_LOCALIZED.qualities[sign.quality] && ZODIAC_LOCALIZED.qualities[sign.quality][locale]) || sign.quality;
+    const rulerLabel = (ZODIAC_LOCALIZED.rulers[sign.ruler] && ZODIAC_LOCALIZED.rulers[sign.ruler][locale]) || sign.ruler;
+    const datesLabel = (ZODIAC_LOCALIZED.dates[sign.slug] && ZODIAC_LOCALIZED.dates[sign.slug][locale]) || sign.dates;
+
     return `
       <article class="zodiac-natural-card">
         <div class="zodiac-natural-header">
           <div class="zodiac-icon-badge">
-            <img src="/assets/astrology/zodiac/${sign.slug}.svg" alt="${signName}" loading="lazy">
+            <img src="/assets/astrology/zodiac/${sign.slug}.svg" alt="${signName}" onerror="this.onerror=null;this.src='/assets/astrology/zodiac/${sign.icon}.svg'" loading="lazy">
           </div>
-          <span class="zodiac-element-tag element-${sign.element}">${sign.element.toUpperCase()}</span>
+          <span class="zodiac-element-tag element-${sign.element}">${elementLabel.toUpperCase()}</span>
         </div>
         <h3 class="zodiac-natural-title">${titleText}</h3>
-        <p class="zodiac-natural-ruler">🪐 ${sign.ruler} · ${sign.quality}</p>
-        <div class="zodiac-natural-dates">${sign.dates}</div>
+        <p class="zodiac-natural-ruler">🪐 ${rulerLabel} · ${qualityLabel}</p>
+        <div class="zodiac-natural-dates">${datesLabel}</div>
         <a class="astro-card-link" style="margin-top:10px" href="${getRouteHref(locale, 'zodiac')}#${sign.slug}">
           <span>${linkText}</span>
           <span aria-hidden="true">${arrow}</span>

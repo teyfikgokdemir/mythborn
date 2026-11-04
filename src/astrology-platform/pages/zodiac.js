@@ -1,5 +1,5 @@
 // Mythborn Astrology Platform — 12 Zodiac Signs Guide
-import { ASTROLOGY_LOCALES, ZODIAC_SIGNS } from '../i18n.js';
+import { ASTROLOGY_LOCALES, ZODIAC_SIGNS, ZODIAC_LOCALIZED } from '../i18n.js';
 import { getRouteHref } from '../layout.js';
 
 export const renderZodiacIndexView = ({ locale = 'tr' }) => {
@@ -17,35 +17,40 @@ export const renderZodiacIndexView = ({ locale = 'tr' }) => {
       : locale === 'es' ? `Guía del Signo ${signName}`
       : `دليل برج ${signName}`;
 
-    const elementLabel = sign.element.toUpperCase();
+    const elementLabel = (ZODIAC_LOCALIZED.elements[sign.element] && ZODIAC_LOCALIZED.elements[sign.element][locale]) || sign.element;
+    const qualityLabel = (ZODIAC_LOCALIZED.qualities[sign.quality] && ZODIAC_LOCALIZED.qualities[sign.quality][locale]) || sign.quality;
+    const rulerLabel = (ZODIAC_LOCALIZED.rulers[sign.ruler] && ZODIAC_LOCALIZED.rulers[sign.ruler][locale]) || sign.ruler;
+    const datesLabel = (ZODIAC_LOCALIZED.dates[sign.slug] && ZODIAC_LOCALIZED.dates[sign.slug][locale]) || sign.dates;
 
     const desc = locale === 'tr'
-      ? `${signName}; ${sign.element === 'fire' ? 'Ateş' : sign.element === 'earth' ? 'Toprak' : sign.element === 'air' ? 'Hava' : 'Su'} elementi ve ${sign.quality} niteliğiyle, ${sign.ruler} yönetiminde temel yaşam motivasyonunu sembolize eder.`
+      ? `${signName}; ${elementLabel} elementi ve ${qualityLabel} niteliğiyle, ${rulerLabel} yönetiminde temel yaşam motivasyonunu sembolize eder.`
       : locale === 'en'
-      ? `${signName} embodies the ${sign.element} element and ${sign.quality} modality, ruled by ${sign.ruler}, representing foundational life momentum.`
+      ? `${signName} embodies the ${elementLabel} element and ${qualityLabel} modality, ruled by ${rulerLabel}, representing foundational life momentum.`
       : locale === 'el'
-      ? `${signName} εκπροσωπεί το στοιχείο ${sign.element} και ${sign.quality} ιδιοσυγκρασία υπό τον κυβερνήτη ${sign.ruler}.`
+      ? `${signName} εκπροσωπεί το στοιχείο ${elementLabel} και ${qualityLabel} ιδιοσυγκρασία υπό τον κυβερνήτη ${rulerLabel}.`
       : locale === 'es'
-      ? `${signName} representa el elemento ${sign.element} y modalidad ${sign.quality}, bajo la regencia de ${sign.ruler}.`
-      : `${signName} يمثل عنصر ${sign.element} وحركة ${sign.quality} تحت حكم كوكب ${sign.ruler}.`;
+      ? `${signName} representa el elemento ${elementLabel} y modalidad ${qualityLabel}, bajo la regencia de ${rulerLabel}.`
+      : `${signName} يمثل عنصر ${elementLabel} وحركة ${qualityLabel} تحت حكم كوكب ${rulerLabel}.`;
 
     return `
       <article id="${sign.slug}" class="zodiac-natural-card">
         <div class="zodiac-natural-header">
           <div style="display:flex; align-items:center; gap:12px">
-            <img src="/assets/astrology/zodiac/${sign.slug || sign.id}.svg" alt="${signName}" style="width:40px; height:40px; border-radius:50%">
+            <div class="zodiac-icon-badge">
+              <img src="/assets/astrology/zodiac/${sign.slug}.svg" alt="${signName}" onerror="this.onerror=null;this.src='/assets/astrology/zodiac/${sign.icon}.svg'" loading="lazy">
+            </div>
             <span class="zodiac-natural-symbol" aria-hidden="true">${sign.symbol}</span>
           </div>
-          <span class="zodiac-element-tag element-${sign.element}">${elementLabel}</span>
+          <span class="zodiac-element-tag element-${sign.element}">${elementLabel.toUpperCase()}</span>
         </div>
         <h3 class="zodiac-natural-title">${naturalTitle}</h3>
-        <p class="zodiac-natural-ruler">🪐 ${sign.ruler} · ${sign.quality}</p>
-        <div class="zodiac-natural-dates">${sign.dates}</div>
+        <p class="zodiac-natural-ruler">🪐 ${rulerLabel} · ${qualityLabel}</p>
+        <div class="zodiac-natural-dates">${datesLabel}</div>
         <p style="font-size:13px; color:var(--muted); line-height:1.6; margin-top:10px">
           ${desc}
         </p>
         <div style="margin-top:auto; padding-top:14px; border-top:1px solid rgba(255,255,255,0.06); font-size:12px; display:flex; justify-content:space-between; align-items:center">
-          <span style="color:var(--gold-bright)">✦ ${sign.dates}</span>
+          <span style="color:var(--gold-bright)">✦ ${datesLabel}</span>
           <a href="${getRouteHref(locale, 'natal')}" style="color:var(--gold); text-decoration:none">
             <span>${t.menu.natal}</span> <span aria-hidden="true">${arrow}</span>
           </a>
