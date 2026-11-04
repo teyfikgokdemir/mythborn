@@ -231,47 +231,47 @@ main {
 .astro-cta-gold {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  background: rgba(212, 175, 55, 0.08);
-  border: 1px solid rgba(212, 175, 55, 0.42);
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.16) 0%, rgba(180, 140, 30, 0.08) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.5);
   color: var(--gold-bright);
   font-weight: 600;
   font-size: 11.5px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 8px 16px;
-  border-radius: 999px;
+  letter-spacing: 0.06em;
+  padding: 7px 16px;
+  border-radius: 8px;
   white-space: nowrap !important;
   backdrop-filter: blur(12px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.22s ease;
 }
 .astro-cta-gold:hover {
   background: var(--gold-gradient);
   color: #05070e;
   border-color: transparent;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.45);
 }
 
 .astro-lang-pills {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
+  gap: 3px;
+  padding: 3px 8px;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 8px;
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
 }
 .astro-lang-pills a {
-  padding: 2px 5px;
+  padding: 2px 6px;
   border-radius: 4px;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.5);
   white-space: nowrap !important;
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 .astro-lang-pills a:hover {
   color: #fff;
@@ -279,25 +279,34 @@ main {
 .astro-lang-pills a.is-active,
 .astro-lang-pills a[aria-current="page"] {
   color: var(--gold-bright);
-  background: transparent;
-  font-weight: 800;
-  text-shadow: 0 0 8px rgba(212, 175, 55, 0.55);
+  background: rgba(212, 175, 55, 0.16);
+  font-weight: 700;
+  box-shadow: inset 0 0 8px rgba(212, 175, 55, 0.25);
 }
-  font-weight: 800;
+.astro-lang-dot {
+  color: rgba(212, 175, 55, 0.35);
+  font-size: 10px;
+  margin: 0 1px;
+  user-select: none;
 }
 
 .astro-menu-btn {
-  display: none;
+  display: none !important;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
   color: var(--cream);
   font-size: 18px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+.astro-menu-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold-bright);
 }
 
 /* Mobile Drawer */
@@ -1397,15 +1406,219 @@ html[dir="rtl"] .retro-guidance-box {
   box-shadow: 0 12px 32px rgba(212, 175, 55, 0.5);
 }
 
-@media (max-width: 1100px) {
-  .astro-nav-desktop { display: none; }
-  .astro-menu-btn { display: inline-flex; }
+/* Haute Horlogerie Lunation Showcase Corridor */
+.lunation-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+.lunation-card {
+  position: relative;
+  background: linear-gradient(165deg, rgba(14, 18, 32, 0.9) 0%, rgba(8, 10, 18, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 18px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lunation-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 24px rgba(212, 175, 55, 0.15);
+}
+.lunation-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.lunation-card-icon {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.45));
+}
+.lunation-illum-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--gold-bright);
+}
+.lunation-card-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+.lunation-zodiac-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 4px 10px;
+  border-radius: 6px;
+  width: fit-content;
+}
+.lunation-time-box {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+}
+.lunation-time-tsi {
+  color: #fff;
+  font-weight: 600;
+}
+.lunation-time-utc {
+  color: var(--muted);
+  font-size: 11px;
+}
+.lunation-guide-text {
+  font-size: 12.5px;
+  color: rgba(248, 246, 240, 0.72);
+  line-height: 1.55;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Active Retrogrades Balanced Grid & Live Telemetry */
+.live-telemetry-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.live-pulse-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11.5px;
+  color: #f87171;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.live-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f87171;
+  box-shadow: 0 0 0 rgba(248, 113, 113, 0.7);
+  animation: livePulseAnim 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+@keyframes livePulseAnim {
+  0% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(248, 113, 113, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(248, 113, 113, 0); }
+}
+.live-telemetry-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--gold-bright);
+  letter-spacing: 0.03em;
+}
+.active-retro-5-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+.active-retro-card {
+  padding: 18px 16px;
+  background: rgba(0, 0, 0, 0.55);
+  border-radius: 14px;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.22s ease;
+}
+.active-retro-card:hover {
+  border-color: rgba(248, 113, 113, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6), 0 0 16px rgba(248, 113, 113, 0.15);
+}
+.active-retro-glyph-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.active-retro-glyph {
+  font-size: 24px;
+  color: var(--gold-bright);
+}
+.active-retro-pill {
+  font-size: 10.5px;
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.5);
+  background: rgba(248, 113, 113, 0.08);
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.active-retro-name {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+.active-retro-sign {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0;
+}
+.active-retro-speed {
+  font-size: 11px;
+  color: var(--gold);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
+/* Responsive Breakpoints & Desktop Header Guarantee */
+@media (min-width: 1025px) {
+  .astro-nav-desktop { display: flex !important; }
+  .astro-menu-btn { display: none !important; }
+}
+
+@media (max-width: 1024px) {
+  .astro-nav-desktop { display: none !important; }
+  .astro-menu-btn { display: inline-flex !important; }
+  .astro-cta-gold { display: none; }
   .astro-grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .archetype-grid { grid-template-columns: 1fr; }
   .retro-grid-triad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .retro-grid-quad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .astro-bridge-card { flex-direction: column; text-align: center; }
   .astro-bridge-copy { display: flex; flex-direction: column; align-items: center; }
+  .lunation-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .active-retro-5-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 768px) {
@@ -1415,6 +1628,11 @@ html[dir="rtl"] .retro-guidance-box {
   .retro-grid-quad { grid-template-columns: 1fr; }
   .astro-quick-grid { grid-template-columns: 1fr; }
   .astro-footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .astro-cta-gold { display: none; }
+  .active-retro-5-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 540px) {
+  .lunation-card-grid { grid-template-columns: 1fr; }
+  .active-retro-5-grid { grid-template-columns: 1fr; }
 }
 `;

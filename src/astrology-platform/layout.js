@@ -46,14 +46,15 @@ export const renderAstrologyLayout = ({
   const pageDesc = description ? safe(description) : safe(t.hero.lead);
   const isRtl = t.dir === 'rtl';
 
-  // Language switcher links
+  // Language switcher links (Editorial haute horlogerie with delicate mid-dots)
   const langCodes = ['tr', 'en', 'el', 'es', 'ar'];
   const langLabels = { tr: 'TR', en: 'EN', el: 'GR', es: 'ES', ar: 'AR' };
   const langSwitcherHtml = langCodes
-    .map((code) => {
+    .map((code, idx) => {
       const activeClass = code === locale ? ' is-active' : '';
       const href = getRouteHref(code, currentRouteKey);
-      return `<a href="${href}" lang="${code}" class="${activeClass}" data-lang-switch="${code}">${langLabels[code]}</a>`;
+      const link = `<a href="${href}" lang="${code}" class="${activeClass}" data-lang-switch="${code}">${langLabels[code]}</a>`;
+      return idx < langCodes.length - 1 ? `${link}<span class="astro-lang-dot" aria-hidden="true">·</span>` : link;
     })
     .join('');
 

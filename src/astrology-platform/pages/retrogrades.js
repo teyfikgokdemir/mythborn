@@ -292,26 +292,33 @@ export const renderRetrogradesView = ({ locale = 'tr' }) => {
         <h1 style="margin-bottom:12px">${t.menu.retros} ve Gölge Dönemleri</h1>
         <p class="astro-hero-lead" style="margin-bottom:28px">Gezegenlerin Dünya'dan gözlemlenen hız yavaşlaması ve sembolik içsel gözden geçirme süreçleri. Korku yerine farkındalık ve hazırlık rehberi.</p>
 
-        <!-- Canlı Aktif Retrolar Efemeris Radarı -->
-        <div style="padding:22px 28px; background:rgba(11, 15, 28, 0.85); backdrop-filter:blur(28px); border:1px solid rgba(212, 175, 55, 0.3); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.1)">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:10px">
-            <span class="astro-card-tag" style="color:#f87171; border-color:rgba(248,113,113,0.35); background:rgba(248,113,113,0.08); padding:5px 14px; border-radius:999px; font-size:11px; margin-bottom:0">
-              ✦ ŞU AN GÖKYÜZÜNDE AKTİF RETROLAR (CANLI HESAPLAMA)
-            </span>
-            <span style="font-size:12px; color:var(--gold-bright); letter-spacing:0.04em">0.001° Efemeris Hassasiyeti</span>
+        <!-- Canlı Aktif Retrolar Efemeris Radarı (5'li Dengeli Grid & Canlı Telemetri) -->
+        <div style="padding:22px 28px; background:rgba(11, 15, 28, 0.88); backdrop-filter:blur(28px); border:1px solid rgba(212, 175, 55, 0.35); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.1)">
+          <div class="live-telemetry-bar">
+            <div class="live-pulse-wrapper">
+              <span class="live-pulse-dot" aria-hidden="true"></span>
+              <span>${locale === 'tr' ? 'ŞU AN GÖKYÜZÜNDE AKTİF RETROLAR' : locale === 'en' ? 'ACTIVE RETROGRADES IN THE SKY' : locale === 'el' ? 'ΕΝΕΡΓΕΣ ΑΝΑΔΡΟΜΕΣ ΣΤΟΝ ΟΥΡΑΝΟ' : locale === 'es' ? 'RETROGRADACIONES ACTIVAS EN EL CIELO' : 'الكواكب المتراجعة حالياً'}</span>
+            </div>
+            <div class="live-telemetry-meta">
+              <span>✦ ${snapshot.metadata.time_istanbul_24h} TSI (${snapshot.metadata.time_utc_24h} UTC)</span>
+              <span style="border-left:1px solid rgba(255,255,255,0.15); padding-left:12px">0.001° Efemeris Hassasiyeti</span>
+            </div>
           </div>
-          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px">
+
+          <div class="active-retro-5-grid">
             ${snapshot.activeRetrogrades.length > 0 ? snapshot.activeRetrogrades.map(r => `
-              <div style="padding:16px 18px; background:rgba(0,0,0,0.5); border-radius:14px; border:1px solid rgba(248,113,113,0.3); display:flex; flex-direction:column; gap:6px; text-align:left">
-                <div style="display:flex; justify-content:space-between; align-items:center">
-                  <span style="font-size:24px; color:var(--gold-bright)">${r.symbol}</span>
-                  <span style="font-size:11px; color:#f87171; border:1px solid #f87171; padding:2px 8px; border-radius:999px; font-weight:600">Retrograd</span>
+              <div class="active-retro-card">
+                <div class="active-retro-glyph-row">
+                  <span class="active-retro-glyph">${r.symbol}</span>
+                  <span class="active-retro-pill">${locale === 'tr' ? 'Retrograd' : locale === 'en' ? 'Retrograde' : locale === 'el' ? 'Ανάδρομος' : locale === 'es' ? 'Retrógrado' : 'متراجع'}</span>
                 </div>
-                <h4 style="margin:2px 0 0 0; color:#fff; font-family:var(--font-serif); font-size:17px">${r.name}</h4>
-                <p style="font-size:12.5px; color:var(--muted); margin:0">${r.sign} burcunda geri harekette</p>
-                <small style="font-size:11.5px; color:var(--gold); display:block; margin-top:4px">Günlük Hız: ${r.dailySpeed}°/gün</small>
+                <h4 class="active-retro-name">${r.name}</h4>
+                <p class="active-retro-sign">${r.sign} ${locale === 'tr' ? 'burcunda geri harekette' : locale === 'en' ? 'retrograde in sign' : locale === 'el' ? 'σε ανάδρομη πορεία' : locale === 'es' ? 'en movimiento retrógrado' : 'في حركة تراجع'}</p>
+                <div class="active-retro-speed">
+                  <span>${locale === 'tr' ? 'Günlük Hız' : locale === 'en' ? 'Daily Speed' : locale === 'el' ? 'Ταχύτητα' : locale === 'es' ? 'Velocidad' : 'السرعة اليومية'}: <strong>${r.dailySpeed}°/g</strong></span>
+                </div>
               </div>
-            `).join('') : '<p style="color:var(--muted); font-size:14px; margin:8px 0; text-align:center">Şu anda geri harekette olan majör gezegen bulunmamaktadır. Gökyüzü doğrudan (direct) akışta.</p>'}
+            `).join('') : `<p style="color:var(--muted); font-size:14px; margin:8px 0; text-align:center">${locale === 'tr' ? 'Şu anda geri harekette olan majör gezegen bulunmamaktadır. Gökyüzü doğrudan (direct) akışta.' : 'No major retrograde planets at this moment. Planetary motions are direct.'}</p>`}
           </div>
         </div>
       </div>
