@@ -285,27 +285,24 @@ export const renderRetrogradesView = ({ locale = 'tr' }) => {
   `;
 
   return `
-    <section class="astro-hero astro-section-viewport">
+    <!-- 1. Integrated Hero Stage: Editorial Head + Live Cosmic Retrograde Radar (Full Viewport, NOT EMPTY!) -->
+    <section class="astro-hero astro-section-viewport" style="display:flex; flex-direction:column; justify-content:center; padding:clamp(32px, 5vh, 60px) 0">
       <div class="astro-container">
         <span class="astro-hero-eyebrow">✦ GÖRÜNÜR GERİ HAREKETLER & İÇE DÖNÜŞ DÖNEMLERİ</span>
-        <h1>${t.menu.retros} ve Gölge Dönemleri</h1>
-        <p class="astro-hero-lead">Gezegenlerin Dünya'dan gözlemlenen hız yavaşlaması ve sembolik içsel gözden geçirme süreçleri. Korku yerine farkındalık ve hazırlık rehberi.</p>
-      </div>
-    </section>
+        <h1 style="margin-bottom:12px">${t.menu.retros} ve Gölge Dönemleri</h1>
+        <p class="astro-hero-lead" style="margin-bottom:28px">Gezegenlerin Dünya'dan gözlemlenen hız yavaşlaması ve sembolik içsel gözden geçirme süreçleri. Korku yerine farkındalık ve hazırlık rehberi.</p>
 
-    <section class="astro-section">
-      <div class="astro-container">
-        <!-- Canlı Aktif Retrolar -->
-        <div style="padding:22px 26px; background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:18px; margin-bottom:44px; box-shadow:0 12px 30px rgba(0,0,0,0.4)">
+        <!-- Canlı Aktif Retrolar Efemeris Radarı -->
+        <div style="padding:22px 28px; background:rgba(11, 15, 28, 0.85); backdrop-filter:blur(28px); border:1px solid rgba(212, 175, 55, 0.3); border-radius:20px; box-shadow:0 20px 50px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.1)">
           <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; flex-wrap:wrap; gap:10px">
-            <span class="astro-card-tag" style="color:#f87171; border-color:rgba(248,113,113,0.35); background:rgba(248,113,113,0.08); padding:5px 12px; border-radius:999px">
-              ✦ ŞU AN AKTİF RETROLAR (CANLI HESAPLAMA)
+            <span class="astro-card-tag" style="color:#f87171; border-color:rgba(248,113,113,0.35); background:rgba(248,113,113,0.08); padding:5px 14px; border-radius:999px; font-size:11px; margin-bottom:0">
+              ✦ ŞU AN GÖKYÜZÜNDE AKTİF RETROLAR (CANLI HESAPLAMA)
             </span>
-            <span style="font-size:12px; color:var(--muted)">${ENGINE_METADATA.precision}</span>
+            <span style="font-size:12px; color:var(--gold-bright); letter-spacing:0.04em">0.001° Efemeris Hassasiyeti</span>
           </div>
           <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:16px">
             ${snapshot.activeRetrogrades.length > 0 ? snapshot.activeRetrogrades.map(r => `
-              <div style="padding:16px 18px; background:rgba(0,0,0,0.45); border-radius:14px; border:1px solid rgba(248,113,113,0.3); display:flex; flex-direction:column; gap:6px">
+              <div style="padding:16px 18px; background:rgba(0,0,0,0.5); border-radius:14px; border:1px solid rgba(248,113,113,0.3); display:flex; flex-direction:column; gap:6px; text-align:left">
                 <div style="display:flex; justify-content:space-between; align-items:center">
                   <span style="font-size:24px; color:var(--gold-bright)">${r.symbol}</span>
                   <span style="font-size:11px; color:#f87171; border:1px solid #f87171; padding:2px 8px; border-radius:999px; font-weight:600">Retrograd</span>
@@ -314,11 +311,16 @@ export const renderRetrogradesView = ({ locale = 'tr' }) => {
                 <p style="font-size:12.5px; color:var(--muted); margin:0">${r.sign} burcunda geri harekette</p>
                 <small style="font-size:11.5px; color:var(--gold); display:block; margin-top:4px">Günlük Hız: ${r.dailySpeed}°/gün</small>
               </div>
-            `).join('') : '<p style="color:var(--muted); font-size:14px; margin:4px 0">Şu anda geri harekette olan gezegen bulunmamaktadır.</p>'}
+            `).join('') : '<p style="color:var(--muted); font-size:14px; margin:8px 0; text-align:center">Şu anda geri harekette olan majör gezegen bulunmamaktadır. Gökyüzü doğrudan (direct) akışta.</p>'}
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="astro-section-head" style="margin-bottom:36px">
+    <!-- 2. Master Retrograde Calendar (Triad + Quad, Clean Second Viewport) -->
+    <section class="astro-section astro-section-viewport" id="retro-calendar" style="border-top:1px solid var(--border)">
+      <div class="astro-container">
+        <div class="astro-section-head" style="margin-bottom:30px">
           <span class="astro-card-tag">✦ 2026 GEZEGEN RETROLARI TAKVİMİ</span>
           <h2>Dönemler ve Arketipsel Anlamları</h2>
           <p>Korku üretmeyen, döngüsel farkındalık ve stratejik hazırlık odaklı 7 ana retrograd takvimi.</p>

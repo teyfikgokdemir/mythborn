@@ -69,31 +69,32 @@ main {
   margin: 0 auto;
 }
 
-/* Header & Navigation */
+/* Header & Navigation — Ultra-Luxury Editorial Language */
 .astro-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(5, 7, 14, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(5, 7, 14, 0.82);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.16);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
   transition: all 0.25s ease;
 }
 .astro-header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 18px 0;
+  gap: 20px;
+  padding: 13px 0;
 }
 .astro-brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   font-family: var(--font-serif);
-  font-size: 21px;
-  letter-spacing: 0.2em;
+  font-size: 19px;
+  letter-spacing: 0.26em;
   color: #fff;
   font-weight: 600;
   flex-shrink: 0;
@@ -104,13 +105,13 @@ main {
   opacity: 0.9;
 }
 .astro-brand-logo-img {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.55));
 }
 .astro-brand-name {
-  background: linear-gradient(135deg, #ffffff 30%, #f3cf7a 100%);
+  background: linear-gradient(135deg, #ffffff 40%, #f3cf7a 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -118,17 +119,17 @@ main {
 .astro-nav-desktop {
   display: flex;
   align-items: center;
-  gap: 26px;
-  font-size: 13.5px;
-  letter-spacing: 0.05em;
+  gap: 24px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: rgba(248, 246, 240, 0.72);
   flex-shrink: 0;
 }
 .astro-nav-desktop > a {
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   position: relative;
-  padding: 8px 0;
+  padding: 6px 0;
   white-space: nowrap !important;
   font-weight: 500;
 }
@@ -139,11 +140,11 @@ main {
 .astro-nav-desktop > a[aria-current="page"]::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   right: 0;
-  height: 2px;
-  background: var(--gold);
+  height: 1.5px;
+  background: var(--gold-gradient);
   border-radius: 2px;
 }
 
@@ -159,13 +160,13 @@ main {
   gap: 5px;
   background: transparent;
   border: none;
-  color: var(--muted);
+  color: rgba(248, 246, 240, 0.72);
   font-family: inherit;
-  font-size: 13.5px;
+  font-size: 12px;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 8px 0;
+  letter-spacing: 0.12em;
+  padding: 6px 0;
   cursor: pointer;
   white-space: nowrap !important;
   transition: color 0.2s ease;
@@ -207,7 +208,7 @@ main {
   gap: 10px;
   padding: 10px 14px;
   color: #d1d5db;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 500;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -224,45 +225,51 @@ main {
 .astro-header-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   flex-shrink: 0;
 }
 .astro-cta-gold {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #e5c38c 0%, #c49952 50%, #9c7331 100%);
-  color: #05070e;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.02em;
-  padding: 9px 20px;
+  gap: 7px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.42);
+  color: var(--gold-bright);
+  font-weight: 600;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 16px;
   border-radius: 999px;
   white-space: nowrap !important;
-  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
-  transition: all 0.22s ease;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .astro-cta-gold:hover {
+  background: var(--gold-gradient);
+  color: #05070e;
+  border-color: transparent;
   transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.45);
 }
 
 .astro-lang-pills {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  padding: 3px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(212, 175, 55, 0.2);
+  gap: 4px;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
 }
 .astro-lang-pills a {
-  padding: 5px 9px;
-  border-radius: 999px;
-  color: var(--muted);
+  padding: 2px 5px;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.45);
   white-space: nowrap !important;
   transition: all 0.2s ease;
 }
@@ -271,8 +278,11 @@ main {
 }
 .astro-lang-pills a.is-active,
 .astro-lang-pills a[aria-current="page"] {
-  background: var(--gold-gradient);
-  color: #05070e;
+  color: var(--gold-bright);
+  background: transparent;
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.55);
+}
   font-weight: 800;
 }
 
