@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Gemini Zodiac Glyph">
+  <defs>
+    <radialGradient id="bg-gemini" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141824" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#07090e" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="gold-gemini" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e6a8"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#997a15"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="56" fill="url(#bg-gemini)" stroke="url(#gold-gemini)" stroke-width="1.5"/>
+  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(212,175,55,0.2)" stroke-dasharray="2 4"/>
+  <path d="M 35,25 L 85,25 M 35,95 L 85,95 M 50,25 L 50,95 M 70,25 L 70,95" fill="none" stroke="url(#gold-gemini)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

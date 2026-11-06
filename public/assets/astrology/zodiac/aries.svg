@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Aries Zodiac Glyph">
+  <defs>
+    <radialGradient id="bg-aries" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141824" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#07090e" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="gold-aries" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e6a8"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#997a15"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="56" fill="url(#bg-aries)" stroke="url(#gold-aries)" stroke-width="1.5"/>
+  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(212,175,55,0.2)" stroke-dasharray="2 4"/>
+  <path d="M 30,70 C 30,40 45,25 60,35 C 75,45 60,80 60,90 M 90,70 C 90,40 75,25 60,35" fill="none" stroke="url(#gold-aries)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
