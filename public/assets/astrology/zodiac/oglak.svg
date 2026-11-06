@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Capricorn Zodiac Glyph">
+  <defs>
+    <radialGradient id="bg-capricorn" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141824" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#07090e" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="gold-capricorn" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e6a8"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#997a15"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="56" fill="url(#bg-capricorn)" stroke="url(#gold-capricorn)" stroke-width="1.5"/>
+  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(212,175,55,0.2)" stroke-dasharray="2 4"/>
+  <path d="M 30,35 L 45,85 L 60,35 C 65,45 70,60 70,75 A 15,15 0 1,0 90,65 C 90,55 75,55 70,75" fill="none" stroke="url(#gold-capricorn)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

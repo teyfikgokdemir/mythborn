@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="og-glow-tr" cx="80%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#243358" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#06080e" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="og-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4cf"/>
+      <stop offset="60%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#8b6e16"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#og-glow-tr)"/>
+  <circle cx="950" cy="315" r="280" fill="none" stroke="rgba(212,175,55,0.25)" stroke-width="2"/>
+  <circle cx="950" cy="315" r="220" fill="none" stroke="rgba(212,175,55,0.15)" stroke-dasharray="4 6"/>
+  
+  <text x="80" y="160" font-family="serif" font-size="24" fill="#d4af37" letter-spacing="4">MYTHBORN.CO · 24H ASTRONOMICAL PRECISION</text>
+  <text x="80" y="270" font-family="serif" font-size="56" font-weight="bold" fill="#ffffff">Mythborn — Ultra Elit Astroloji</text>
+  <text x="80" y="340" font-family="sans-serif" font-size="28" fill="#a0aec0">Matematiksel Doğum Haritası & Kozmik Öz-Farkındalık</text>
+  <text x="80" y="520" font-family="sans-serif" font-size="20" fill="#d4af37">✦ Güneş · Ay · Yükselen · 12 Burç · Transitler · 5 Dil</text>
+</svg>

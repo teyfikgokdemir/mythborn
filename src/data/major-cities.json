@@ -1,0 +1,810 @@
+[
+  {
+    "name": "Adana",
+    "country": "TR",
+    "lat": 37,
+    "lng": 35.3213,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Adıyaman",
+    "country": "TR",
+    "lat": 37.7648,
+    "lng": 38.2786,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Afyonkarahisar",
+    "country": "TR",
+    "lat": 38.7507,
+    "lng": 30.5567,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Ağrı",
+    "country": "TR",
+    "lat": 39.7191,
+    "lng": 43.0503,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Amasya",
+    "country": "TR",
+    "lat": 40.6533,
+    "lng": 35.8331,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Ankara",
+    "country": "TR",
+    "lat": 39.9334,
+    "lng": 32.8597,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Antalya",
+    "country": "TR",
+    "lat": 36.8969,
+    "lng": 30.7133,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Artvin",
+    "country": "TR",
+    "lat": 41.1828,
+    "lng": 41.8183,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Aydın",
+    "country": "TR",
+    "lat": 37.856,
+    "lng": 27.8416,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Balıkesir",
+    "country": "TR",
+    "lat": 39.6484,
+    "lng": 27.8826,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Bilecik",
+    "country": "TR",
+    "lat": 40.1451,
+    "lng": 29.9799,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Bingöl",
+    "country": "TR",
+    "lat": 38.8854,
+    "lng": 40.4983,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Bitlis",
+    "country": "TR",
+    "lat": 38.4006,
+    "lng": 42.1095,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Bolu",
+    "country": "TR",
+    "lat": 40.7358,
+    "lng": 31.6061,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Burdur",
+    "country": "TR",
+    "lat": 37.7203,
+    "lng": 30.2908,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Bursa",
+    "country": "TR",
+    "lat": 40.1885,
+    "lng": 29.061,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Çanakkale",
+    "country": "TR",
+    "lat": 40.1553,
+    "lng": 26.4142,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Çankırı",
+    "country": "TR",
+    "lat": 40.6013,
+    "lng": 33.6134,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Çorum",
+    "country": "TR",
+    "lat": 40.5506,
+    "lng": 34.9556,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Denizli",
+    "country": "TR",
+    "lat": 37.7765,
+    "lng": 29.0864,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Diyarbakır",
+    "country": "TR",
+    "lat": 37.9144,
+    "lng": 40.2306,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Edirne",
+    "country": "TR",
+    "lat": 41.6772,
+    "lng": 26.5557,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Elazığ",
+    "country": "TR",
+    "lat": 38.681,
+    "lng": 39.2264,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Erzincan",
+    "country": "TR",
+    "lat": 39.75,
+    "lng": 39.5,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Erzurum",
+    "country": "TR",
+    "lat": 39.9043,
+    "lng": 41.2679,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Eskişehir",
+    "country": "TR",
+    "lat": 39.7767,
+    "lng": 30.5206,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Gaziantep",
+    "country": "TR",
+    "lat": 37.0662,
+    "lng": 37.3833,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Giresun",
+    "country": "TR",
+    "lat": 40.9128,
+    "lng": 38.3895,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Gümüşhane",
+    "country": "TR",
+    "lat": 40.46,
+    "lng": 39.4717,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Hakkari",
+    "country": "TR",
+    "lat": 37.5833,
+    "lng": 43.7333,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Hatay",
+    "country": "TR",
+    "lat": 36.4018,
+    "lng": 36.3498,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Isparta",
+    "country": "TR",
+    "lat": 37.7648,
+    "lng": 30.5566,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Mersin",
+    "country": "TR",
+    "lat": 36.8,
+    "lng": 34.6333,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "İstanbul",
+    "country": "TR",
+    "lat": 41.0082,
+    "lng": 28.9784,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "İzmir",
+    "country": "TR",
+    "lat": 38.4192,
+    "lng": 27.1287,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Kars",
+    "country": "TR",
+    "lat": 40.6167,
+    "lng": 43.1,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Kastamonu",
+    "country": "TR",
+    "lat": 41.3887,
+    "lng": 33.7827,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Kayseri",
+    "country": "TR",
+    "lat": 38.7312,
+    "lng": 35.4787,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Kırklareli",
+    "country": "TR",
+    "lat": 41.7333,
+    "lng": 27.2167,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Kırşehir",
+    "country": "TR",
+    "lat": 39.1425,
+    "lng": 34.1709,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Kocaeli",
+    "country": "TR",
+    "lat": 40.8533,
+    "lng": 29.8815,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Konya",
+    "country": "TR",
+    "lat": 37.8667,
+    "lng": 32.4833,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Kütahya",
+    "country": "TR",
+    "lat": 39.4167,
+    "lng": 29.9833,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Malatya",
+    "country": "TR",
+    "lat": 38.3552,
+    "lng": 38.3095,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Manisa",
+    "country": "TR",
+    "lat": 38.6191,
+    "lng": 27.4289,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Kahramanmaraş",
+    "country": "TR",
+    "lat": 37.5858,
+    "lng": 36.9371,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Mardin",
+    "country": "TR",
+    "lat": 37.3212,
+    "lng": 40.7245,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Muğla",
+    "country": "TR",
+    "lat": 37.2153,
+    "lng": 28.3636,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Muş",
+    "country": "TR",
+    "lat": 38.7432,
+    "lng": 41.5064,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Nevşehir",
+    "country": "TR",
+    "lat": 38.6244,
+    "lng": 34.7144,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Niğde",
+    "country": "TR",
+    "lat": 37.9667,
+    "lng": 34.6833,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Ordu",
+    "country": "TR",
+    "lat": 40.9839,
+    "lng": 37.8764,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Rize",
+    "country": "TR",
+    "lat": 41.0201,
+    "lng": 40.5234,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Sakarya",
+    "country": "TR",
+    "lat": 40.7569,
+    "lng": 30.3783,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Samsun",
+    "country": "TR",
+    "lat": 41.2928,
+    "lng": 36.3313,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Siirt",
+    "country": "TR",
+    "lat": 37.9333,
+    "lng": 41.95,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Sinop",
+    "country": "TR",
+    "lat": 42.0231,
+    "lng": 35.1531,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Sivas",
+    "country": "TR",
+    "lat": 39.7477,
+    "lng": 37.0179,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Tekirdağ",
+    "country": "TR",
+    "lat": 40.9833,
+    "lng": 27.5167,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Tokat",
+    "country": "TR",
+    "lat": 40.3167,
+    "lng": 36.55,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Trabzon",
+    "country": "TR",
+    "lat": 41.0015,
+    "lng": 39.7178,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Tunceli",
+    "country": "TR",
+    "lat": 39.1079,
+    "lng": 39.5401,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Şanlıurfa",
+    "country": "TR",
+    "lat": 37.1591,
+    "lng": 38.7969,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Uşak",
+    "country": "TR",
+    "lat": 38.6823,
+    "lng": 29.4082,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Van",
+    "country": "TR",
+    "lat": 38.4891,
+    "lng": 43.4089,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Yozgat",
+    "country": "TR",
+    "lat": 39.8181,
+    "lng": 34.8147,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Zonguldak",
+    "country": "TR",
+    "lat": 41.4564,
+    "lng": 31.7987,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Aksaray",
+    "country": "TR",
+    "lat": 38.3687,
+    "lng": 34.037,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Bayburt",
+    "country": "TR",
+    "lat": 40.2552,
+    "lng": 40.2249,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Karaman",
+    "country": "TR",
+    "lat": 37.1759,
+    "lng": 33.2287,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Kırıkkale",
+    "country": "TR",
+    "lat": 39.8468,
+    "lng": 33.5153,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Batman",
+    "country": "TR",
+    "lat": 37.8812,
+    "lng": 41.1293,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Şırnak",
+    "country": "TR",
+    "lat": 37.5164,
+    "lng": 42.4594,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Bartın",
+    "country": "TR",
+    "lat": 41.6344,
+    "lng": 32.3375,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Ardahan",
+    "country": "TR",
+    "lat": 41.1105,
+    "lng": 42.7022,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Iğdır",
+    "country": "TR",
+    "lat": 39.9167,
+    "lng": 44.0333,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Yalova",
+    "country": "TR",
+    "lat": 40.655,
+    "lng": 29.2769,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Karabük",
+    "country": "TR",
+    "lat": 41.2061,
+    "lng": 32.6204,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Kilis",
+    "country": "TR",
+    "lat": 36.7184,
+    "lng": 37.1212,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Osmaniye",
+    "country": "TR",
+    "lat": 37.0742,
+    "lng": 36.2467,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "Düzce",
+    "country": "TR",
+    "lat": 40.8438,
+    "lng": 31.1565,
+    "tz": "Europe/Istanbul",
+    "timezone": "Europe/Istanbul"
+  },
+  {
+    "name": "London",
+    "country": "GB",
+    "lat": 51.5074,
+    "lng": -0.1278,
+    "tz": "Europe/London",
+    "timezone": "Europe/London"
+  },
+  {
+    "name": "Paris",
+    "country": "FR",
+    "lat": 48.8566,
+    "lng": 2.3522,
+    "tz": "Europe/Paris",
+    "timezone": "Europe/Paris"
+  },
+  {
+    "name": "Berlin",
+    "country": "DE",
+    "lat": 52.52,
+    "lng": 13.405,
+    "tz": "Europe/Berlin",
+    "timezone": "Europe/Berlin"
+  },
+  {
+    "name": "Rome",
+    "country": "IT",
+    "lat": 41.9028,
+    "lng": 12.4964,
+    "tz": "Europe/Rome",
+    "timezone": "Europe/Rome"
+  },
+  {
+    "name": "Madrid",
+    "country": "ES",
+    "lat": 40.4168,
+    "lng": -3.7038,
+    "tz": "Europe/Madrid",
+    "timezone": "Europe/Madrid"
+  },
+  {
+    "name": "Athens",
+    "country": "GR",
+    "lat": 37.9838,
+    "lng": 23.7275,
+    "tz": "Europe/Athens",
+    "timezone": "Europe/Athens"
+  },
+  {
+    "name": "Thessaloniki",
+    "country": "GR",
+    "lat": 40.6401,
+    "lng": 22.9444,
+    "tz": "Europe/Athens",
+    "timezone": "Europe/Athens"
+  },
+  {
+    "name": "New York",
+    "country": "US",
+    "lat": 40.7128,
+    "lng": -74.006,
+    "tz": "America/New_York",
+    "timezone": "America/New_York"
+  },
+  {
+    "name": "Los Angeles",
+    "country": "US",
+    "lat": 34.0522,
+    "lng": -118.2437,
+    "tz": "America/Los_Angeles",
+    "timezone": "America/Los_Angeles"
+  },
+  {
+    "name": "Toronto",
+    "country": "CA",
+    "lat": 43.6532,
+    "lng": -79.3832,
+    "tz": "America/Toronto",
+    "timezone": "America/Toronto"
+  },
+  {
+    "name": "Mexico City",
+    "country": "MX",
+    "lat": 19.4326,
+    "lng": -99.1332,
+    "tz": "America/Mexico_City",
+    "timezone": "America/Mexico_City"
+  },
+  {
+    "name": "Buenos Aires",
+    "country": "AR",
+    "lat": -34.6037,
+    "lng": -58.3816,
+    "tz": "America/Argentina/Buenos_Aires",
+    "timezone": "America/Argentina/Buenos_Aires"
+  },
+  {
+    "name": "Cairo",
+    "country": "EG",
+    "lat": 30.0444,
+    "lng": 31.2357,
+    "tz": "Africa/Cairo",
+    "timezone": "Africa/Cairo"
+  },
+  {
+    "name": "Riyadh",
+    "country": "SA",
+    "lat": 24.7136,
+    "lng": 46.6753,
+    "tz": "Asia/Riyadh",
+    "timezone": "Asia/Riyadh"
+  },
+  {
+    "name": "Dubai",
+    "country": "AE",
+    "lat": 25.2048,
+    "lng": 55.2708,
+    "tz": "Asia/Dubai",
+    "timezone": "Asia/Dubai"
+  },
+  {
+    "name": "Doha",
+    "country": "QA",
+    "lat": 25.2854,
+    "lng": 51.531,
+    "tz": "Asia/Qatar",
+    "timezone": "Asia/Qatar"
+  },
+  {
+    "name": "Beirut",
+    "country": "LB",
+    "lat": 33.8938,
+    "lng": 35.5018,
+    "tz": "Asia/Beirut",
+    "timezone": "Asia/Beirut"
+  },
+  {
+    "name": "Amman",
+    "country": "JO",
+    "lat": 31.9454,
+    "lng": 35.9284,
+    "tz": "Asia/Amman",
+    "timezone": "Asia/Amman"
+  },
+  {
+    "name": "Tokyo",
+    "country": "JP",
+    "lat": 35.6762,
+    "lng": 139.6503,
+    "tz": "Asia/Tokyo",
+    "timezone": "Asia/Tokyo"
+  },
+  {
+    "name": "Sydney",
+    "country": "AU",
+    "lat": -33.8688,
+    "lng": 151.2093,
+    "tz": "Australia/Sydney",
+    "timezone": "Australia/Sydney"
+  }
+]

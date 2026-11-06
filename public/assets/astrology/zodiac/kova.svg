@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Aquarius Zodiac Glyph">
+  <defs>
+    <radialGradient id="bg-aquarius" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141824" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#07090e" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="gold-aquarius" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e6a8"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#997a15"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="56" fill="url(#bg-aquarius)" stroke="url(#gold-aquarius)" stroke-width="1.5"/>
+  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(212,175,55,0.2)" stroke-dasharray="2 4"/>
+  <path d="M 25,45 L 40,35 L 55,45 L 70,35 L 85,45 L 95,35 M 25,75 L 40,65 L 55,75 L 70,65 L 85,75 L 95,65" fill="none" stroke="url(#gold-aquarius)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -20,6 +20,8 @@ import {notFoundPage,searchPage} from './localized-static-pages.js';
 import {decorate} from './page-decorator.js';
 import {discoveryPage,discoveryMeta} from './discovery-core.js';
 import {culturalLocale,culturalPage,culturalSitemapEntries,isCulturalPath} from './cultural-platform.js';
+import {handleAstrologyRequest,isAstrologyPlatformPath} from './astrology-platform/router.js';
+import {generateAstrologySitemapEntries} from './astrology-platform/sitemap.js';
 import {
   LLMS_TEXT,
   LLMS_FULL_TEXT,
@@ -85,6 +87,15 @@ export default {
     const retiredEditorial=new Set(["merkur-ve-gezegen-retrolari-rehberi","tutulma-mevsimi-ve-kader-kavsagi","katina-ask-acilimi-ve-iliski-dinamikleri","tarot-major-arkana-kader-karti-sifreleri","kahve-fali-sembolizmi-fincandaki-isaretler","dogum-haritasinda-7-ev-venus-ve-juno","saturn-dongusu-ve-hayat-sinavlari","numeroloji-ve-kisisel-yil-hesaplama","yildizname-gelenegi-ve-dort-element-mizaci","duru-goru-ve-sezgisel-farkindalik-rehberi"]);
     const retiredSlug=inactivePath.startsWith('/blog/')?inactivePath.slice(6):'';
     if(retiredPages.has(inactivePath)||retiredEditorial.has(retiredSlug))return new Response('Content unavailable',{status:410,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store','x-robots-tag':'noindex'}});
+    // User-approved 4 Nov 2026 independent astrology experience (Worker version 64019e2c).
+    // Retired personal media and editorial routes are rejected above before this routing.
+    if((env.ASTROLOGY_PLATFORM_ENABLED==='true'||(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'))
+      &&isAstrologyPlatformPath(incoming.pathname)
+      &&(!incoming.pathname.startsWith('/api/')||incoming.pathname.startsWith('/api/astrology/'))
+      &&!incoming.pathname.startsWith('/cdn-cgi/')
+      &&!/\.[a-z0-9]{2,8}$/i.test(incoming.pathname)){
+      return handleAstrologyRequest(request,env);
+    }
     if(env.COMING_SOON_ENABLED==='true' && (request.method==='GET'||request.method==='HEAD')){
       const pathname=incoming.pathname;
       if(pathname==='/robots.txt')return new Response('User-agent: *\nDisallow: /\n',{headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store'}});
@@ -116,7 +127,7 @@ export default {
     if(incoming.pathname==='/ai-fact-sheet.json')return new Response(AI_FACT_SHEET_JSON,{headers:aiJsonHeaders});
     if(incoming.pathname==='/sitemap-video.xml')return new Response(VIDEO_SITEMAP_XML,{headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600, stale-while-revalidate=86400','access-control-allow-origin':'*'}});
     if(incoming.pathname==='/sitemap.xml'){
-      const fullXml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${generateSiteSitemapEntries()}${culturalSitemapEntries()}</urlset>`;
+      const fullXml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${generateSiteSitemapEntries()}${culturalSitemapEntries()}${generateAstrologySitemapEntries(SITE)}</urlset>`;
       return new Response(fullXml,{status:200,headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=60, s-maxage=60, must-revalidate','access-control-allow-origin':'*','x-content-type-options':'nosniff'}});
     }
     const accessState=premiumState(env,new Date());

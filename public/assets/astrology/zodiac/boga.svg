@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Taurus Zodiac Glyph">
+  <defs>
+    <radialGradient id="bg-taurus" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#141824" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#07090e" stop-opacity="0.95"/>
+    </radialGradient>
+    <linearGradient id="gold-taurus" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e6a8"/>
+      <stop offset="50%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#997a15"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="56" fill="url(#bg-taurus)" stroke="url(#gold-taurus)" stroke-width="1.5"/>
+  <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(212,175,55,0.2)" stroke-dasharray="2 4"/>
+  <path d="M 30,30 C 40,50 80,50 90,30 M 60,50 C 40,50 35,70 35,80 C 35,95 85,95 85,80 C 85,70 80,50 60,50 Z" fill="none" stroke="url(#gold-taurus)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
