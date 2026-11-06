@@ -32,7 +32,7 @@ for(const path of ['/videolar','/en/videos','/yorumcu-basvuru','/en/apply','/blo
    return {ok:response.status===410,reason:'status='+response.status};
  });
 }
-for(const path of ['/images/gozde-salon-portrait.jpg','/images/gozde-tarot-hero.webp','/images/gozde-astrology-concept.jpg','/images/gozde-coffee-concept.jpg','/videos/28-ekim-5-kasim-tarot.mp4']){
+for(const path of ['/images/gozde-salon-portrait.jpg','/images/gozde-tarot-hero.webp','/images/gozde-astrology-concept.jpg','/images/gozde-coffee-concept.jpg','/images/gozde-katina-concept.jpg','/images/gozde-launch.webp','/videos/28-ekim-5-kasim-tarot.mp4']){
  await untilVerified('deleted media '+path,async()=>{
    const response=await fetch(site+path,{headers:{'cache-control':'no-cache','user-agent':'Mythborn-Production-QA/3.0'}});
    return {ok:response.status===404||response.status===410,reason:'status='+response.status};
