@@ -49,6 +49,7 @@
 
   document.querySelectorAll('.consent-banner,[data-consent-banner],.cookie-banner').forEach(node=>node.remove());
   const key='mythborn-consent-v2';
+  window.__qctAnalyticsConsent=false;
   const GA4_ID='G-RW928SX37X';
   const GTM_ID='GTM-PKC69D3L';
   const ADS_ID='AW-18090583790';
@@ -65,11 +66,11 @@
     ad_personalization:'denied'
   });
   const applyGoogleConsent=analytics=>{
-    window[`ga-disable-${GA4_ID}`]=false;
+    window[`ga-disable-${GA4_ID}`]=!analytics;
     window.gtag('consent','update',consentState(analytics));
   };
   const applyClarityConsent=analytics=>{
-    if(window.clarity)window.clarity('consentv2',{analytics_Storage:'granted',ad_Storage:'denied'});
+    if(window.clarity)window.clarity('consentv2',{analytics_Storage:analytics?'granted':'denied',ad_Storage:'denied'});
   };
   const clearAnalyticsCookies=()=>{
     const names=document.cookie.split(';').map(item=>item.trim().split('=')[0]).filter(name=>name==='_ga'||name.startsWith('_ga_')||name==='_clck'||name==='_clsk');
@@ -126,7 +127,7 @@
     loadGtm();
   };
   const scheduleAnalytics=analytics=>{
-    const run=()=>runAnalytics(analytics);
+    const run=()=>{if(window.__qctAnalyticsConsent===true&&analytics)runAnalytics(true)};
     if('requestIdleCallback' in window) window.requestIdleCallback(run,{timeout:3000});
     else window.setTimeout(run,1200);
   };
@@ -141,7 +142,7 @@
     script.dataset.mythbornSourceBeacon='true';
     document.body.appendChild(script);
   };
-  const trackEvent=(name,params={})=>{if(typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
+  const trackEvent=(name,params={})=>{if(window.__qctAnalyticsConsent!==true||typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
   document.addEventListener('click',event=>{const target=event.target.closest?.('[data-track]');if(!target)return;trackEvent(target.dataset.track,{link_text:(target.textContent||'').trim().slice(0,80)})},{passive:true});
   const copy={
     tr:{title:'Çerez tercihleri',body:'Zorunlu çerezler siteyi çalıştırır. Analitik ölçüm tercihini buradan seçebilirsin.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
@@ -169,7 +170,8 @@
     const value={essential:true,analytics,updatedAt:new Date().toISOString()};
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
     document.cookie=`mythborn_consent=${analytics?'all':'essential'}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
-    if(analytics){scheduleAnalytics(true);loadSourceBeacon();}else{applyGoogleConsent(false);clearAnalyticsCookies();}
+    window.__qctAnalyticsConsent=analytics===true;
+    if(analytics){scheduleAnalytics(true);loadSourceBeacon();}else{applyGoogleConsent(false);applyClarityConsent(false);clearAnalyticsCookies();}
     closeConsent();
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
   };
@@ -184,5 +186,7 @@
     if(event.key==='Escape'&&read()){event.preventDefault();closeConsent()}
   });
   const currentConsent=read();
+  window.__qctAnalyticsConsent=currentConsent?.analytics===true;
+  applyGoogleConsent(window.__qctAnalyticsConsent);
   if(currentConsent?.analytics){scheduleAnalytics(true);loadSourceBeacon();}
   if(!currentConsent)open();})();

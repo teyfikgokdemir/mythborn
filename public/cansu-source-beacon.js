@@ -41,6 +41,7 @@
       }
     };
     const sendSource = async () => {
+      if (window.__qctAnalyticsConsent !== true) return false;
       try {
         const response = await fetch(sourceEndpoint, {
           method: 'POST',
@@ -70,6 +71,7 @@
   }
 
   const sendConversion = (eventType, extra = {}) => {
+    if (window.__qctAnalyticsConsent !== true) return false;
     const payload = JSON.stringify({
       ...context(),
       ...extra,
