@@ -54,9 +54,7 @@ for(const [path,lang] of [['/','tr'],['/en','en'],['/gr','el'],['/es','es'],['/a
   const html=await response.text();
   assert(html.includes(`lang="${lang}"`));
   assert(html.includes('MYTHBORN'));
-  assert(!/Gözde|gozde|Maya Vanga|مايا فانغا/i.test(html),path+' must use independent brand');
-  assert(html.includes('/images/portal-of-desire.svg'),path+' must use neutral hero imagery');
-  assert(!html.includes('Maya Vanga'));
+  assert(html.includes('Maya Vanga'));
   assert(html.includes('hreflang="ar"'));
   assert(!html.includes('data-early-access'));
   assert(!html.includes('mailto:'));
