@@ -127,8 +127,8 @@ const entries={
       "intro": "Το MYTHBORN είναι ένας ανεξάρτητος εκδοτικός χώρος για τα σύμβολα και την πολιτισμική μνήμη.",
       "sections": [
         [
-          "Ποια είναι η Maya Vanga;",
-          "Η Maya Vanga είναι επαγγελματικό ψευδώνυμο που χρησιμοποιείται για την εκδοτική ταυτότητα του MYTHBORN. Δεν δηλώνει συγγένεια ή σύνδεση με την ιστορική Baba Vanga. Η σιλουέτα είναι συμβολικό έργο, όχι φωτογραφία της επαγγελματία."
+          "Τι είναι το MYTHBORN;",
+          "Το MYTHBORN είναι ανεξάρτητη πολύγλωσση πλατφόρμα για τα ταρώ, την αστρολογία και τον πολιτισμικό συμβολισμό, χωρίς σύνδεση με συγκεκριμένο πρόσωπο."
         ],
         [
           "Η προσέγγισή μας",
@@ -189,7 +189,7 @@ const entries={
       "sections": [
         [
           "¿Qué es MYTHBORN?",
-          "Maya Vanga es un seudónimo profesional de la identidad editorial de MYTHBORN. No implica parentesco ni vínculo con la histórica Baba Vanga. La silueta es una representación artística, no una fotografía de la profesional."
+          "MYTHBORN es una plataforma multilingüe e independiente para explorar el tarot, la astrología y el simbolismo cultural, sin atribuciones a profesionales concretos."
         ],
         [
           "Nuestro enfoque",
@@ -250,7 +250,7 @@ const entries={
       "sections": [
         [
           "ما هي ميثبورن؟",
-          "مايا فانغا اسم مهني مستعار يُستخدم للهوية التحريرية لميثبورن. ولا يشير إلى قرابة أو صلة تاريخية ببابا فانغا. الصورة الظلية عمل رمزي وليست صورة فوتوغرافية للممارسة."
+          "ميثبورن منصة مستقلة متعددة اللغات لاستكشاف التاروت والتنجيم والرموز الثقافية دون نسب المحتوى إلى شخص بعينه."
         ],
         [
           "منهجنا",
