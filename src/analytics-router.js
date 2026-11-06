@@ -311,11 +311,14 @@ export default {
     }
     if(url.pathname==='/robots.txt')return robotsResponse();
     if(env.ENVIRONMENT==='production'&&isDormantProductionApi(url.pathname))return dormantApiResponse();
-    const legacyTarget=resolveLegacyRedirect(url.pathname);
-    if(legacyTarget)return Response.redirect(`https://mythborn.co${legacyTarget}`,301);
-    if(isLegacyShopifyPath(url.pathname))return goneResponse();
 
     const response=await app.fetch(request,env,ctx);
+    if(response.status===404){
+      const legacyTarget=resolveLegacyRedirect(url.pathname);
+      const retiredMultipass=url.pathname.toLowerCase().startsWith('/account/login/multipass');
+      if(legacyTarget&&!retiredMultipass)return Response.redirect(`https://mythborn.co${legacyTarget}`,301);
+      if(isLegacyShopifyPath(url.pathname))return goneResponse();
+    }
     return cacheStaticAssetResponse(await secureHtmlResponse(response),url);
   }
 };
