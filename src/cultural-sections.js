@@ -1,12 +1,12 @@
-// Localized long-form informational content for Maya Vanga public pages.
+// Localized long-form informational content for the independent Mythborn brand.
 const entries={
   "tr": {
     "about": {
       "intro": "MYTHBORN, sembolleri ve kültürel mirası bugünün okuruyla buluşturan bağımsız bir yayın alanıdır.",
       "sections": [
         [
-          "Maya Vanga kimdir?",
-          "Maya Vanga, MYTHBORN’un editoryal çalışmalarında kullanılan profesyonel takma addır. Tarihî Baba Vanga ile akrabalık, miras veya temsil ilişkisi ifade etmez. Kullanılan kadın silüeti temsili bir tasarım öğesidir; gerçek uygulayıcının fotoğrafı değildir."
+          "MYTHBORN nedir?",
+          "MYTHBORN, Tarot, astroloji ve kültürel sembolleri bağımsız bir marka çatısı altında ele alan çok dilli bir keşif platformudur. Herhangi bir kişiye veya tarihî figüre bağlı olduğunu iddia etmez."
         ],
         [
           "Yaklaşımımız",
@@ -66,8 +66,8 @@ const entries={
       "intro": "MYTHBORN is an independent editorial space exploring symbols, cultural memory and their place in contemporary life.",
       "sections": [
         [
-          "Who is Maya Vanga?",
-          "Maya Vanga is a professional pen name used for MYTHBORN's editorial identity. It does not claim kinship, inheritance or affiliation with the historical Baba Vanga. The silhouette is a representative artwork, not a photograph of the practitioner."
+          "What is MYTHBORN?",
+          "MYTHBORN is an independent multilingual platform exploring Tarot, astrology and cultural symbolism. Its content is not attributed to an individual practitioner or historical figure."
         ],
         [
           "Our approach",
@@ -188,7 +188,7 @@ const entries={
       "intro": "MYTHBORN es un espacio editorial independiente dedicado a los símbolos y la memoria cultural.",
       "sections": [
         [
-          "¿Quién es Maya Vanga?",
+          "¿Qué es MYTHBORN?",
           "Maya Vanga es un seudónimo profesional de la identidad editorial de MYTHBORN. No implica parentesco ni vínculo con la histórica Baba Vanga. La silueta es una representación artística, no una fotografía de la profesional."
         ],
         [
@@ -249,7 +249,7 @@ const entries={
       "intro": "ميثبورن مساحة تحريرية مستقلة لاستكشاف الرموز والذاكرة الثقافية.",
       "sections": [
         [
-          "من هي مايا فانغا؟",
+          "ما هي ميثبورن؟",
           "مايا فانغا اسم مهني مستعار يُستخدم للهوية التحريرية لميثبورن. ولا يشير إلى قرابة أو صلة تاريخية ببابا فانغا. الصورة الظلية عمل رمزي وليست صورة فوتوغرافية للممارسة."
         ],
         [
