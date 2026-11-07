@@ -5,6 +5,7 @@ import { calculatePlanetaryPositions, calculateAnglesAndHouses, calculateAspects
 import { renderNatalWheelSvg } from '../natal-wheel.js';
 import { render24hTimePicker } from '../time-picker.js';
 import { getSignCompendium } from '../zodiac-compendium.js';
+import { getToolSeo } from '../seo-content.js';
 
 export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
@@ -277,6 +278,12 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
   };
 
   const currentCities = cityQuickPicks[loc] || cityQuickPicks.tr;
+  const seo = getToolSeo({
+    locale: loc,
+    type: 'natal',
+    t,
+    routeHref: (routeKey) => getRouteHref(locale, routeKey)
+  });
 
   return `
     <!-- Integrated Full-Viewport Console: Editorial Identity + Astrolabe Form in 1 Clean Viewport -->
@@ -380,5 +387,8 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
         </div>
       </section>
     ` : ''}
+    <section class="astro-section" id="natal-seo-content">
+      <div class="astro-container">${seo.html}</div>
+    </section>
   `;
 };

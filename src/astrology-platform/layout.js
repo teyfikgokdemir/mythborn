@@ -39,7 +39,8 @@ export const renderAstrologyLayout = ({
   description = '',
   contentHtml = '',
   isPreview = false,
-  canonicalUrl = ''
+  canonicalUrl = '',
+  faqItems = []
 }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
   const pageTitle = title ? `${safe(title)} — ${safe(t.navBrand)}` : `${safe(t.navBrand)} · ${safe(t.navTagline)}`;
@@ -289,7 +290,26 @@ export const renderAstrologyLayout = ({
           "price": "0",
           "priceCurrency": "USD"
         }
-      }
+      },
+      {
+        "@type": "WebPage",
+        "@id": `https://mythborn.co${getRouteHref(locale, currentRouteKey)}#webpage`,
+        "url": `https://mythborn.co${getRouteHref(locale, currentRouteKey)}`,
+        "name": pageTitle,
+        "description": pageDesc,
+        "isPartOf": { "@id": "https://mythborn.co/#website" },
+        "inLanguage": t.lang
+      },
+      ...(faqItems.length > 0 ? [{
+        "@type": "FAQPage",
+        "@id": `https://mythborn.co${getRouteHref(locale, currentRouteKey)}#faq`,
+        "url": `https://mythborn.co${getRouteHref(locale, currentRouteKey)}`,
+        "mainEntity": faqItems.map((item) => ({
+          "@type": "Question",
+          "name": item.question,
+          "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+        }))
+      }] : [])
     ]
   };
   const jsonLdTag = `<script type="application/ld+json">${JSON.stringify(schemaGraph)}</script>`;

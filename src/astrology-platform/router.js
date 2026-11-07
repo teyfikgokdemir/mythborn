@@ -13,6 +13,7 @@ import { renderApproachView } from './pages/approach.js';
 import { renderLearningCenterView } from './pages/learning.js';
 import { renderHoroscopesView } from './pages/horoscopes.js';
 import { generateDailyHoroscopes } from './horoscope-pipeline.js';
+import { getApproachFaqItems, getToolSeo } from './seo-content.js';
 
 export const resolveAstrologyLocale = (pathname = '/') => {
   if (pathname.startsWith('/ar')) return 'ar';
@@ -70,17 +71,20 @@ export const handleAstrologyRequest = (request, env) => {
   let contentHtml = '';
   let title = '';
   let description = '';
+  let faqItems = [];
 
   switch (routeKey) {
     case 'natal':
       contentHtml = renderNatalChartView({ locale, searchParams });
-      title = `${t.menu.natal} Hesaplama`;
-      description = 'Doğum haritası, yükselen burç ve gezegen evleri hesaplama aracı.';
+      title = ({ tr: 'Doğum Haritası Hesaplama ve Yükselen Analizi', en: 'Birth Chart Calculation and Ascendant Analysis', el: 'Υπολογισμός Γενέθλιου Χάρτη και Ωροσκόπου', es: 'Cálculo de Carta Natal y Análisis del Ascendente', ar: 'حساب خريطة الميلاد وتحليل الطالع' }[locale] || 'Birth Chart Calculation');
+      description = ({ tr: 'Doğum tarihi, saati ve şehriyle doğum haritası, yükselen burç ve gezegen evlerini hesaplayın.', en: 'Calculate a birth chart, rising sign and planetary houses from your birth date, time and city.', el: 'Υπολογίστε τον γενέθλιο χάρτη, τον ωροσκόπο και τους πλανητικούς οίκους σας.', es: 'Calcula tu carta natal, ascendente y casas planetarias con tus datos de nacimiento.', ar: 'احسب خريطة الميلاد والطالع والبيوت الفلكية من بيانات ميلادك.' }[locale] || t.hero.lead);
+      faqItems = getToolSeo({ locale, type: 'natal', t, routeHref: (routeKey) => getRouteHref(locale, routeKey) }).faqItems;
       break;
     case 'zodiac':
       contentHtml = renderZodiacIndexView({ locale, searchParams });
       title = t.sections.zodiacTitle;
       description = t.sections.zodiacSub;
+      faqItems = getToolSeo({ locale, type: 'zodiac', t, routeHref: (routeKey) => getRouteHref(locale, routeKey) }).faqItems;
       break;
     case 'calendar':
       contentHtml = renderSkyCalendarView({ locale });
@@ -119,8 +123,9 @@ export const handleAstrologyRequest = (request, env) => {
       break;
     case 'approach':
       contentHtml = renderApproachView({ locale });
-      title = 'Yöntem, Etik İlkeler ve Sınırlarımız';
-      description = 'Matematiksel kesinlik, açık astronomi ve determinizmin reddi.';
+      title = ({ tr: 'Yöntem, Etik İlkeler ve Sınırlarımız', en: 'Methodology, Ethics and Boundaries', el: 'Μεθοδολογία, Ηθική και Όρια', es: 'Metodología, Ética y Límites', ar: 'المنهج والأخلاقيات والحدود' }[locale] || 'Methodology, Ethics and Boundaries');
+      description = ({ tr: 'Matematiksel kesinlik, açık astronomi ve determinizmin reddi.', en: 'How Mythborn calculates astronomical positions and presents astrology as symbolic, non-deterministic reflection.', el: 'Η μεθοδολογία, τα ηθικά όρια και η συμβολική προσέγγιση του Mythborn.', es: 'La metodología, los límites éticos y el enfoque simbólico de Mythborn.', ar: 'منهجية Mythborn وحدودها الأخلاقية ونهجها الرمزي.' }[locale] || t.hero.lead);
+      faqItems = getApproachFaqItems({ locale });
       break;
     case 'home':
     default:
@@ -137,7 +142,8 @@ export const handleAstrologyRequest = (request, env) => {
     description,
     contentHtml,
     isPreview,
-    canonicalUrl: `https://mythborn.co${getRouteHref(locale, routeKey)}`
+    canonicalUrl: `https://mythborn.co${getRouteHref(locale, routeKey)}`,
+    faqItems
   });
 
   const headers = {

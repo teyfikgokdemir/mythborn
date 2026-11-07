@@ -2,6 +2,7 @@
 import { ASTROLOGY_LOCALES, ZODIAC_SIGNS, ZODIAC_LOCALIZED } from '../i18n.js';
 import { getRouteHref } from '../layout.js';
 import { ZODIAC_COMPENDIUM } from '../zodiac-compendium.js';
+import { getToolSeo } from '../seo-content.js';
 
 export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
@@ -24,6 +25,12 @@ export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
   const activeCareer = activeData.careerVocation[loc] || activeData.careerVocation.tr;
   const activeLesson = activeData.lifeLesson[loc] || activeData.lifeLesson.tr;
   const activeInBigThree = activeData.inBigThree;
+  const seo = getToolSeo({
+    locale: loc,
+    type: 'zodiac',
+    t,
+    routeHref: (routeKey) => getRouteHref(locale, routeKey)
+  });
 
   const elementLabel = (ZODIAC_LOCALIZED.elements[activeData.element] && ZODIAC_LOCALIZED.elements[activeData.element][loc]) || activeData.element;
   const qualityLabel = (ZODIAC_LOCALIZED.qualities[activeData.quality] && ZODIAC_LOCALIZED.qualities[activeData.quality][loc]) || activeData.quality;
@@ -221,6 +228,9 @@ export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
           ${cardsHtml}
         </div>
       </div>
+    </section>
+    <section class="astro-section" id="zodiac-seo-content">
+      <div class="astro-container">${seo.html}</div>
     </section>
   `;
 };
