@@ -83,7 +83,7 @@ export default {
     if(retiredPersonalMedia) return new Response('Content unavailable',{status:410,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store','x-robots-tag':'noindex'}});
     // Former individual-reader pages and articles are permanently retired.
     const inactivePath=incoming.pathname.replace(/^\/(?:en|gr|es|ar)(?=\/)/,'');
-    const retiredPages=new Set(['/yorumcu-basvuru','/videolar','/kesif-alanlari','/yaklasim','/yonetim/formlar','/areas','/approach','/videos','/apply']);
+    const retiredPages=new Set(['/yorumcu-basvuru','/videolar','/kesif-alanlari','/yonetim/formlar','/areas','/videos','/apply']);
     const retiredEditorial=new Set(["merkur-ve-gezegen-retrolari-rehberi","tutulma-mevsimi-ve-kader-kavsagi","katina-ask-acilimi-ve-iliski-dinamikleri","tarot-major-arkana-kader-karti-sifreleri","kahve-fali-sembolizmi-fincandaki-isaretler","dogum-haritasinda-7-ev-venus-ve-juno","saturn-dongusu-ve-hayat-sinavlari","numeroloji-ve-kisisel-yil-hesaplama","yildizname-gelenegi-ve-dort-element-mizaci","duru-goru-ve-sezgisel-farkindalik-rehberi"]);
     const retiredSlug=inactivePath.startsWith('/blog/')?inactivePath.slice(6):'';
     if(retiredPages.has(inactivePath)||retiredEditorial.has(retiredSlug))return new Response('Content unavailable',{status:410,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store','x-robots-tag':'noindex'}});

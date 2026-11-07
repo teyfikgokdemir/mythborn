@@ -82,6 +82,8 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     ar: 'Riyadh'
   };
 
+  const toolCards = t.tools || [];
+
   return `
     <!-- 1. Hero: Ultra-Luxury Celestial Cosmos Artwork & Clear CTAs -->
     <section class="astro-hero astro-section-viewport">
@@ -220,70 +222,21 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     <section class="astro-section astro-section-viewport" id="instruments" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-section-head">
-          <span class="astro-card-tag">✦ ${locale === 'tr' ? 'HASSAS ANALİZ ARAÇLARI' : 'PRECISION INSTRUMENTS'}</span>
-          <h2>Astrolojik Analiz Araçları</h2>
-          <p>Açık kaynak efemeris modelleri ve matematiksel astronomi hesaplamalarıyla kişisel doğum ve gökyüzü analizleri.</p>
+          <span class="astro-card-tag">✦ ${locale === 'tr' ? 'HASSAS ANALİZ ARAÇLARI' : t.sections.toolsTitle.toUpperCase()}</span>
+          <h2>${safe(t.sections.toolsTitle)}</h2>
+          <p>${safe(t.sections.toolsSub)}</p>
         </div>
         <div class="astro-grid-3">
+          ${toolCards.map((tool) => `
           <article class="astro-card">
-            <span class="astro-card-tag">✦ NATAL HARİTA</span>
-            <h3>${safe(t.menu.natal)}</h3>
-            <p>Doğum tarihi, kesin saat ve koordinat verisiyle Güneş, Ay, Yükselen, gezegen evleri ve majör açılar.</p>
-            <a class="astro-card-link" href="${getRouteHref(locale, 'natal')}">
-              <span>Haritayı Çıkar</span>
+            <span class="astro-card-tag">✦ ${safe(tool.tag)}</span>
+            <h3>${safe(tool.title)}</h3>
+            <p>${safe(tool.description)}</p>
+            <a class="astro-card-link" href="${getRouteHref(locale, tool.route)}">
+              <span>${safe(tool.cta)}</span>
               <span aria-hidden="true">${arrow}</span>
             </a>
-          </article>
-
-          <article class="astro-card">
-            <span class="astro-card-tag">✦ İLİŞKİ DİNAMİĞİ</span>
-            <h3>${safe(t.menu.synastry)}</h3>
-            <p>İki doğum haritasının gezegensel açılarının matematiksel karşılaştırması: Duygusal uyum, çekim ve iletişim temaları.</p>
-            <a class="astro-card-link" href="${getRouteHref(locale, 'synastry')}">
-              <span>Sinastriyi İncele</span>
-              <span aria-hidden="true">${arrow}</span>
-            </a>
-          </article>
-
-          <article class="astro-card">
-            <span class="astro-card-tag">✦ GÖKYÜZÜ RİTMİ</span>
-            <h3>${safe(t.menu.calendar)}</h3>
-            <p>Gerçek zamanlı Ay fazları, aydınlanma oranları, yeniay ve dolunay döngüleri takvimi.</p>
-            <a class="astro-card-link" href="${getRouteHref(locale, 'calendar')}">
-              <span>Takvimi Gör</span>
-              <span aria-hidden="true">${arrow}</span>
-            </a>
-          </article>
-
-          <article class="astro-card">
-            <span class="astro-card-tag">✦ ANLIK GÖKYÜZÜ</span>
-            <h3>${safe(t.menu.transits)}</h3>
-            <p>Gezegenlerin şu anki zodyak dereceleri, hızları ve günün aktif gökyüzü transitleri tablosu.</p>
-            <a class="astro-card-link" href="${getRouteHref(locale, 'transits')}">
-              <span>Transitleri Gör</span>
-              <span aria-hidden="true">${arrow}</span>
-            </a>
-          </article>
-
-          <article class="astro-card">
-            <span class="astro-card-tag">✦ RETRO DÖNEMLERİ</span>
-            <h3>${safe(t.menu.retros)}</h3>
-            <p>Merkür, Venüs, Mars ve dış gezegenlerin 2026/2027 geri hareket takvimi ve gölge fazları.</p>
-            <a class="astro-card-link" href="${getRouteHref(locale, 'retros')}">
-              <span>Retroları Keşfet</span>
-              <span aria-hidden="true">${arrow}</span>
-            </a>
-          </article>
-
-          <article class="astro-card">
-            <span class="astro-card-tag">✦ TERMİNOLOJİ</span>
-            <h3>${safe(t.menu.glossary)}</h3>
-            <p>Ev sistemleri, orb toleransları, apeks, ayanamsha ve astroloji terminolojisi referans sözlüğü.</p>
-            <a class="astro-card-link" href="${getRouteHref(locale, 'glossary')}">
-              <span>Sözlüğü Oku</span>
-              <span aria-hidden="true">${arrow}</span>
-            </a>
-          </article>
+          </article>`).join('')}
         </div>
       </div>
     </section>
@@ -317,9 +270,9 @@ export const renderHomeView = ({ locale = 'tr' }) => {
     <section class="astro-section astro-section-viewport" id="methodology" style="border-top:1px solid var(--border)">
       <div class="astro-container">
         <div class="astro-section-head">
-          <span class="astro-card-tag">✦ METHODOLOGY & BOUNDARIES</span>
-          <h2>${t.sections.approachTitle}</h2>
-          <p>${t.sections.approachSub}</p>
+          <span class="astro-card-tag">✦ ${safe(t.sections.ethicsTitle)}</span>
+          <h2>${safe(t.sections.ethicsTitle)}</h2>
+          <p>${safe(t.sections.ethicsSub)}</p>
         </div>
         <div class="astro-card" style="max-width:860px; margin:0 auto; background:linear-gradient(180deg, rgba(16, 21, 38, 0.6) 0%, rgba(9, 12, 22, 0.9) 100%)">
           <ul style="list-style:none; display:flex; flex-direction:column; gap:16px; font-size:14.5px; line-height:1.7; color:var(--muted)">

@@ -60,6 +60,14 @@ export const ASTROLOGY_LOCALES = {
       ethicsTitle: 'Yöntemimiz ve Astrolojinin Sınırları',
       ethicsSub: 'Mythborn kaderci kehanet değil, açık astronomi verisine dayalı sembolik öz-farkındalık sunar.'
     },
+    tools: [
+      { tag: 'NATAL HARİTA', title: 'Doğum Haritası', description: 'Doğum tarihi, kesin saat ve koordinat verisiyle Güneş, Ay, Yükselen, gezegen evleri ve majör açıları keşfedin.', cta: 'Haritayı Çıkar', route: 'natal' },
+      { tag: 'İLİŞKİ DİNAMİĞİ', title: 'Sinastri & Uyum', description: 'İki doğum haritasının gezegensel açılarını karşılaştırarak duygusal uyum, çekim ve iletişim temalarını inceleyin.', cta: 'Sinastriyi İncele', route: 'synastry' },
+      { tag: 'GÖKYÜZÜ RİTMİ', title: 'Gökyüzü Takvimi', description: 'Gerçek zamanlı Ay fazlarını, aydınlanma oranını, yeniay ve dolunay döngülerini takip edin.', cta: 'Takvimi Gör', route: 'calendar' },
+      { tag: 'ANLIK GÖKYÜZÜ', title: 'Canlı Transitler', description: 'Gezegenlerin güncel zodyak derecelerini, hızlarını ve aktif gökyüzü transitlerini inceleyin.', cta: 'Transitleri Gör', route: 'transits' },
+      { tag: 'RETRO DÖNEMLERİ', title: 'Gezegen Retroları', description: 'Merkür, Venüs, Mars ve dış gezegenlerin 2026/2027 geri hareket ve gölge dönemlerini keşfedin.', cta: 'Retroları Keşfet', route: 'retros' },
+      { tag: 'TERMİNOLOJİ', title: 'Astroloji Sözlüğü', description: 'Ev sistemleri, orb toleransları, apeks, ayanamsha ve astroloji terimleri için başvuru rehberi.', cta: 'Sözlüğü Oku', route: 'glossary' }
+    ],
     disclaimer: 'UYARI VE YASAL BİLGİLENDİRME: Mythborn platformunda sunulan tüm astrolojik hesaplamalar, gezegen konumları ve sembolik yorumlar kişisel farkındalık, kültürel araştırma ve eğlence amaçlıdır. Profesyonel psikolojik, hukuki, finansal veya tıbbi tavsiye yerine geçmez.',
     footer: {
       colTools: 'Astroloji Araçları',
@@ -129,6 +137,14 @@ export const ASTROLOGY_LOCALES = {
       ethicsTitle: 'Our Methodology & Ethical Boundaries',
       ethicsSub: 'Mythborn provides symbolic self-reflection and open astronomical data, never fatalistic prophecy.'
     },
+    tools: [
+      { tag: 'NATAL CHART', title: 'Birth Chart', description: 'Explore the Sun, Moon, Rising sign, planetary houses and major aspects using your birth data and coordinates.', cta: 'Generate Chart', route: 'natal' },
+      { tag: 'RELATIONSHIP DYNAMICS', title: 'Synastry & Compatibility', description: 'Compare planetary contacts between two birth charts across emotional, attraction and communication themes.', cta: 'Explore Synastry', route: 'synastry' },
+      { tag: 'CELESTIAL RHYTHM', title: 'Sky Calendar', description: 'Follow real-time Moon phases, illumination, New Moon and Full Moon cycles.', cta: 'View Calendar', route: 'calendar' },
+      { tag: 'CURRENT SKY', title: 'Current Transits', description: 'Inspect current planetary zodiac degrees, speeds and the day’s active transits.', cta: 'View Transits', route: 'transits' },
+      { tag: 'RETROGRADE CYCLES', title: 'Planetary Retrogrades', description: 'Explore the 2026/2027 retrograde and shadow periods of Mercury, Venus, Mars and the outer planets.', cta: 'Explore Retrogrades', route: 'retros' },
+      { tag: 'TERMINOLOGY', title: 'Astrology Glossary', description: 'Use a reference guide to house systems, orb tolerances, apexes, ayanamsha and astrological terms.', cta: 'Read Glossary', route: 'glossary' }
+    ],
     disclaimer: 'DISCLAIMER & LEGAL NOTICE: All astrological calculations, planetary positions, and symbolic interpretations on Mythborn are provided strictly for self-reflection, educational context, and entertainment. They never substitute for licensed psychological, medical, legal, or financial counsel.',
     footer: {
       colTools: 'Astrology Tools',
@@ -198,6 +214,14 @@ export const ASTROLOGY_LOCALES = {
       ethicsTitle: 'Η Μεθοδολογία μας & Ηθικά Όρια',
       ethicsSub: 'Το Mythborn προσφέρει συμβολική αυτογνωσία με ανοιχτά δεδομένα, όχι μοιρολατρική πρόβλεψη.'
     },
+    tools: [
+      { tag: 'ΓΕΝΕΘΛΙΟΣ ΧΑΡΤΗΣ', title: 'Γενέθλιος Χάρτης', description: 'Εξερευνήστε Ήλιο, Σελήνη, Ωροσκόπο, πλανητικούς οίκους και κύριες όψεις με τα στοιχεία γέννησής σας.', cta: 'Υπολογισμός Χάρτη', route: 'natal' },
+      { tag: 'ΔΥΝΑΜΙΚΗ ΣΧΕΣΕΩΝ', title: 'Συναστρία & Συμβατότητα', description: 'Συγκρίνετε τις πλανητικές επαφές δύο χαρτών σε συναισθηματικά και επικοινωνιακά θέματα.', cta: 'Εξερευνήστε τη Συναστρία', route: 'synastry' },
+      { tag: 'ΟΥΡΑΝΙΟΣ ΡΥΘΜΟΣ', title: 'Ουράνιο Ημερολόγιο', description: 'Παρακολουθήστε τις φάσεις της Σελήνης, τον φωτισμό και τους κύκλους Νέας Σελήνης και Πανσελήνου.', cta: 'Προβολή Ημερολογίου', route: 'calendar' },
+      { tag: 'ΖΩΝΤΑΝΟΣ ΟΥΡΑΝΟΣ', title: 'Διελεύσεις', description: 'Δείτε τις τρέχουσες πλανητικές θέσεις, ταχύτητες και τις ενεργές διελεύσεις της ημέρας.', cta: 'Προβολή Διελεύσεων', route: 'transits' },
+      { tag: 'ΑΝΑΔΡΟΜΟΙ ΚΥΚΛΟΙ', title: 'Ανάδρομοι Πλανήτες', description: 'Εξερευνήστε τις ανάδρομες και σκιώδεις περιόδους των πλανητών για το 2026/2027.', cta: 'Εξερεύνηση Αναδρόμων', route: 'retros' },
+      { tag: 'ΟΡΟΛΟΓΙΑ', title: 'Λεξικό Αστρολογίας', description: 'Ένας οδηγός για συστήματα οίκων, ανοχές όψεων, ακμές, ayanamsha και αστρολογικούς όρους.', cta: 'Ανάγνωση Λεξικού', route: 'glossary' }
+    ],
     disclaimer: 'ΝΟΜΙΚΗ ΣΗΜΕΙΩΣΗ & ΑΠΟΠΟΙΗΣΗ ΕΥΘΥΝΗΣ: Όλοι οι υπολογισμοί και οι συμβολικές ερμηνείες στο Mythborn παρέχονται αποκλειστικά για αυτογνωσία, πολιτιστική μελέτη και ψυχαγωγία. Σε καμία περίπτωση δεν υποκαθιστούν ιατρικές, ψυχολογικές, νομικές ή οικονομικές συμβουλές.',
     footer: {
       colTools: 'Εργαλεία',
@@ -267,6 +291,14 @@ export const ASTROLOGY_LOCALES = {
       ethicsTitle: 'Nuestra Metodología y Límites Éticos',
       ethicsSub: 'Mythborn ofrece autorreflexión simbólica con datos astronómicos abiertos, nunca adivinación fatalista.'
     },
+    tools: [
+      { tag: 'CARTA NATAL', title: 'Carta Natal', description: 'Explora el Sol, la Luna, el Ascendente, las casas planetarias y los aspectos principales con tus datos de nacimiento.', cta: 'Calcular Carta', route: 'natal' },
+      { tag: 'DINÁMICA RELACIONAL', title: 'Sinastría y Compatibilidad', description: 'Compara los contactos planetarios de dos cartas en temas emocionales, de atracción y comunicación.', cta: 'Explorar Sinastría', route: 'synastry' },
+      { tag: 'RITMO CELESTE', title: 'Calendario Celeste', description: 'Sigue las fases de la Luna, la iluminación y los ciclos de Luna Nueva y Luna Llena.', cta: 'Ver Calendario', route: 'calendar' },
+      { tag: 'CIELO ACTUAL', title: 'Tránsitos Actuales', description: 'Consulta los grados zodiacales, velocidades y tránsitos activos de los planetas.', cta: 'Ver Tránsitos', route: 'transits' },
+      { tag: 'CICLOS RETRÓGRADOS', title: 'Planetas Retrógrados', description: 'Explora los periodos retrógrados y de sombra de 2026/2027.', cta: 'Explorar Retrógrados', route: 'retros' },
+      { tag: 'TERMINOLOGÍA', title: 'Glosario Astrológico', description: 'Consulta sistemas de casas, orbes, cúspides, ayanamsha y términos astrológicos.', cta: 'Leer Glosario', route: 'glossary' }
+    ],
     disclaimer: 'AVISO LEGAL: Todos los cálculos astronómicos y lecturas simbólicas en Mythborn se ofrecen estrictamente para autorreflexión, contexto cultural y entretenimiento. Nunca sustituyen el consejo psicológico, médico, legal o financiero.',
     footer: {
       colTools: 'Herramientas',
@@ -336,6 +368,14 @@ export const ASTROLOGY_LOCALES = {
       ethicsTitle: 'منهجيتنا والحدود الأخلاقية',
       ethicsSub: 'تقدم Mythborn تأملاً ذاتياً مبنياً على بيانات فلكية صريحة، بعيداً عن الادعاءات الغيبية أو التكهنات.'
     },
+    tools: [
+      { tag: 'خريطة الميلاد', title: 'خريطة الميلاد', description: 'استكشف الشمس والقمر والطالع والبيوت الفلكية والاتصالات الرئيسية باستخدام بيانات ميلادك.', cta: 'احسب الخريطة', route: 'natal' },
+      { tag: 'ديناميكيات العلاقات', title: 'التوافق الفلكي', description: 'قارن الاتصالات الكوكبية بين خريطتي ميلاد في موضوعات المشاعر والجذب والتواصل.', cta: 'استكشف التوافق', route: 'synastry' },
+      { tag: 'الإيقاع السماوي', title: 'التقويم الفلكي', description: 'تابع أطوار القمر ونسبة الإضاءة ودورات القمر الجديد والبدر.', cta: 'عرض التقويم', route: 'calendar' },
+      { tag: 'السماء الحالية', title: 'العبور الفلكي', description: 'اطلع على درجات الكواكب الحالية وسرعاتها والعبور النشط اليوم.', cta: 'عرض العبور', route: 'transits' },
+      { tag: 'دورات التراجع', title: 'التراجع الكوكبي', description: 'استكشف فترات التراجع والظل للكواكب خلال عامي 2026 و2027.', cta: 'استكشف التراجع', route: 'retros' },
+      { tag: 'المصطلحات', title: 'قاموس الفلك', description: 'مرجع للبيوت الفلكية ومدى الاتصالات والعقد والايانامشا والمصطلحات الفلكية.', cta: 'قراءة القاموس', route: 'glossary' }
+    ],
     disclaimer: 'إخلاء مسؤولية وتنويه قانوني: جميع الحسابات الفلكية وقراءات الخرائط والرموز المقدمة على منصة Mythborn مخصصة للتأمل الذاتي والتوعية الثقافية فقط. ولا تعتبر بأي شكل بديلاً عن الاستشارات النفسية أو الطبية أو القانونية أو المالية المرخصة.',
     footer: {
       colTools: 'أدوات الفلك',
