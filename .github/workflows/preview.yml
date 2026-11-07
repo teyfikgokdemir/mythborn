@@ -85,9 +85,20 @@ jobs:
             --name "$WORKER_NAME"
           # Preview is isolated from the production Worker and must not be indexed.
           PREVIEW_URL="https://${WORKER_NAME}.teyfikgokdemir.workers.dev/"
-          STATUS="$(curl -sS -o /tmp/mythborn-preview-home.html -w '%{http_code}' "$PREVIEW_URL")"
-          test "$STATUS" = "200"
-          grep -q 'MYTHBORN' /tmp/mythborn-preview-home.html
+          PREVIEW_VERIFIED=false
+          for attempt in $(seq 1 10); do
+            STATUS="$(curl -L -sS --max-time 15 -o /tmp/mythborn-preview-home.html -w '%{http_code}' "$PREVIEW_URL" || true)"
+            echo "Preview check attempt ${attempt}: HTTP ${STATUS:-unknown}"
+            if [[ "$STATUS" == "200" ]] && grep -q 'MYTHBORN' /tmp/mythborn-preview-home.html; then
+              PREVIEW_VERIFIED=true
+              break
+            fi
+            sleep 4
+          done
+          if [[ "$PREVIEW_VERIFIED" != "true" ]]; then
+            echo "Preview is not reachable or missing MYTHBORN after retries" >&2
+            exit 1
+          fi
           {
             echo "## Mythborn preview deploy tamamlandı"
             echo
