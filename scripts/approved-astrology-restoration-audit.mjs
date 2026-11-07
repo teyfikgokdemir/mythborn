@@ -29,6 +29,14 @@ for(const path of ['/yaklasim','/en/approach','/gr/prosegisi','/es/enfoque','/ar
   const response=await app.fetch(new Request('https://mythborn.co'+path),env,{});
   assert.equal(response.status,200,path+' must serve the published methodology page');
 }
+for(const [path,answerHeading] of [['/en/approach','DIRECT ANSWER'],['/en/birth-chart','DIRECT ANSWER'],['/en/zodiac-signs','DIRECT ANSWER']]){
+  const response=await app.fetch(new Request('https://mythborn.co'+path),env,{});
+  const html=await response.text();
+  assert.equal(response.status,200,path+' must serve SEO answer content');
+  assert(html.includes(answerHeading),path+' must expose a direct answer block');
+  assert(html.includes('"@type":"FAQPage"'),path+' must expose FAQ structured data');
+  assert(!/<title>[^<]*Hesaplama/i.test(html),path+' must not contain Turkish metadata fallback');
+}
 for(const path of ['/yorumcu-basvuru','/en/apply','/videolar','/en/videos','/blog/merkur-ve-gezegen-retrolari-rehberi','/images/gozde-launch.webp','/images/gozde-katina-concept.jpg']){
   const response=await app.fetch(new Request('https://mythborn.co'+path),env,{});
   assert.equal(response.status,410,path+' must remain retired');

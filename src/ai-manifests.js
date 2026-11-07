@@ -16,7 +16,17 @@ const catalog={
   specVersion:'1.0',
   host:{identifier:SITE,displayName:'Mythborn',description:'Independent multilingual Tarot, astrology and symbolic reflection information platform.',documentationUrl:SITE+'/astroloji'},
   languages:['tr','en','el','es','ar'],
-  resources:[{title:'Home',url:SITE+'/'},{title:'Tarot',url:SITE+'/tarot'},{title:'Astrology',url:SITE+'/astroloji'},{title:'Blog',url:SITE+'/blog'}],
+  resources:[
+    {title:'Home',url:SITE+'/'},
+    {title:'Birth Chart Calculator',url:SITE+'/dogum-haritasi'},
+    {title:'Astrology Methodology and Ethics',url:SITE+'/yaklasim'},
+    {title:'Zodiac Guide',url:SITE+'/burclar'},
+    {title:'Astrology Glossary',url:SITE+'/astroloji-sozlugu'},
+    {title:'Sky Calendar',url:SITE+'/gokyuzu-takvimi'},
+    {title:'Current Transits',url:SITE+'/transitler'},
+    {title:'Tarot',url:SITE+'/tarot'},
+    {title:'Blog',url:SITE+'/blog'}
+  ],
   policies:{purpose:'Education, entertainment and self-reflection',individualReader:false,personalConsultation:false}
 };
 export const AI_PLUGIN_JSON=JSON.stringify({
@@ -36,9 +46,15 @@ export const OPENAPI_JSON=JSON.stringify({
 },null,2);
 export const AI_FACT_SHEET_JSON=JSON.stringify({
  name:'Mythborn',website:SITE,languages:['tr','en','el','es','ar'],
- description:'Independent Tarot, astrology, dream symbolism and personal-reflection platform.',
- topics:['Tarot','Katina','Astrology','Birth charts','Dream symbolism','Numerology'],
- individualReader:false,personalAppointmentService:false,
+	 description:'Independent Tarot, astrology, dream symbolism and personal-reflection platform.',
+	 topics:['Tarot','Katina','Astrology','Birth charts','Dream symbolism','Numerology'],
+	 resources:[
+	  {title:'Birth Chart Calculator',url:SITE+'/dogum-haritasi'},
+	  {title:'Astrology Methodology and Ethics',url:SITE+'/yaklasim'},
+	  {title:'Zodiac Guide',url:SITE+'/burclar'},
+	  {title:'Astrology Glossary',url:SITE+'/astroloji-sozlugu'}
+	 ],
+	 individualReader:false,personalAppointmentService:false,
  contentPurpose:'Education, entertainment and self-reflection'
 },null,2);
 export const VIDEO_SITEMAP_XML='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"></urlset>';

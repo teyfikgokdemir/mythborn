@@ -1,6 +1,8 @@
 // Mythborn Astrology Platform — Approach, Ethics & Boundaries
 import { ASTROLOGY_LOCALES } from '../i18n.js';
 import { ENGINE_METADATA } from '../data-core.js';
+import { getRouteHref } from '../layout.js';
+import { getApproachSeo } from '../seo-content.js';
 
 export const renderApproachView = ({ locale = 'tr' }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
@@ -185,6 +187,11 @@ export const renderApproachView = ({ locale = 'tr' }) => {
 
   const loc = locale === 'gr' ? 'el' : ['tr', 'en', 'el', 'es', 'ar'].includes(locale) ? locale : 'tr';
   const c = content[loc] || content.tr;
+  const seo = getApproachSeo({
+    locale: loc,
+    content,
+    routeHref: (routeKey) => getRouteHref(locale, routeKey)
+  });
 
   return `
     <section class="astro-hero" style="padding-bottom:32px">
@@ -217,6 +224,7 @@ export const renderApproachView = ({ locale = 'tr' }) => {
           <span style="color:var(--gold-bright); font-size:16px">✦</span>
           <span>${loc === 'tr' ? 'Hesaplama Çekirdeği: astronomy-engine v2.1.19 (MIT Lisansı) · Yerel yıldız zamanı ve ekliptik eğiklik (eps ~23.4392911°) · Eşit Ev (Equal House) Sistemi' : loc === 'en' ? 'Core Engine: astronomy-engine v2.1.19 (MIT License) · Local sidereal time & true obliquity · Equal House System' : loc === 'el' ? 'Πυρήνας Υπολογισμού: astronomy-engine v2.1.19 (MIT) · Τοπικός αστρικός χρόνος & πραγματική λοξότητα' : loc === 'es' ? 'Motor de Cálculo: astronomy-engine v2.1.19 (Licencia MIT) · Tiempo sidéreo local y oblicuidad real' : 'محرك الحسابات: astronomy-engine v2.1.19 (ترخيص MIT) · التوقيت النجمي المحلي والميل الحقيقي'}</span>
         </div>
+        ${seo.html}
       </div>
     </section>
   `;
