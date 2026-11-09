@@ -50,7 +50,8 @@ const secureHtmlResponse=async response=>{
   headers.set('x-frame-options','DENY');
   headers.set('referrer-policy','strict-origin-when-cross-origin');
   headers.set('permissions-policy','camera=(), microphone=(), payment=(), geolocation=()');
-  const html=await response.text();
+  let html=await response.text();
+  if(!html.includes("traffic-counter.js")){ html=html.replace("</body>", '<script src="https://teyfikgokdemir.com/traffic-counter.js" data-site="mythborn" defer></script></body>'); }
   return new Response(html,{status:response.status,statusText:response.statusText,headers});
 };
 
@@ -104,7 +105,7 @@ const resolveLegacyRedirect=(pathname)=>{
   if(activeRoutes.has(clean)) return null;
   if(clean.startsWith('/blog/')) return null;
 
-  if(clean==='/haftalik-burc'||clean==='/weekly-horoscope') return videosTarget;
+  if(clean==='/gunluk-burc'||clean==='/daily-horoscope'||clean==='/haftalik-burc'||clean==='/weekly-horoscope') return videosTarget;
   if(clean==='/tarot'||clean==='/gunluk-kart'||clean==='/otuz-gun'||clean==='/kariyer'||clean==='/deneyim'||clean==='/tarot-kartlari'||clean.startsWith('/tarot-kartlari/')||clean==='/tarot-cards'||clean.startsWith('/tarot-cards/')) return areasTarget;
   if(clean==='/katina'||clean==='/ask'||clean==='/sinastri'||clean==='/burc-uyumu') return areasTarget;
   if(clean==='/astroloji'||clean==='/vedik-astroloji'||clean==='/nakshatra-dasha'||clean==='/kadim-gokyuzu'||clean==='/bugunun-gokyuzu'||clean==='/ay-takvimi'||clean==='/dogum-haritasi'||clean==='/astroloji-kutuphanesi'||clean.startsWith('/astroloji-kutuphanesi/')||clean==='/astroloji-sozlugu'||clean.startsWith('/astroloji-sozlugu/')||clean==='/advanced-astrology'||clean.startsWith('/advanced-astrology/')||clean==='/astrology-library'||clean.startsWith('/astrology-library/')) return areasTarget;
