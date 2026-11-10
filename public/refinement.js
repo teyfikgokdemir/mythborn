@@ -58,7 +58,7 @@
   window.dataLayer=window.dataLayer||[];
   window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
   window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
-  let gaLoaded=!!document.querySelector('script[data-mythborn-ga4]'),gaConfigured=window.__mythbornGaConfigured===true,gtmLoaded=false,clarityLoaded=false;
+  let gaLoaded=!!document.querySelector('script[data-mythborn-ga4]'),gaConfigured=window.__mythbornGaConfigured===true,adsConfigured=window.__mythbornAdsConfigured===true,gtmLoaded=false,clarityLoaded=false;
   const consentState=analytics=>({
     analytics_storage: analytics?'granted':'denied',
     ad_storage:'denied',
@@ -66,7 +66,6 @@
     ad_personalization:'denied'
   });
   const applyGoogleConsent=analytics=>{
-    window[`ga-disable-${GA4_ID}`]=!analytics;
     window.gtag('consent','update',consentState(analytics));
   };
   const applyClarityConsent=analytics=>{
@@ -102,6 +101,10 @@
       gaConfigured=true;
       window.__mythbornGaConfigured=true;
       window.gtag('config',GA4_ID,{send_page_view:true,anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
+    }
+    if(analytics&&!adsConfigured){
+      adsConfigured=true;
+      window.__mythbornAdsConfigured=true;
       window.gtag('config',ADS_ID,{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false});
     }
   };
@@ -145,11 +148,11 @@
   const trackEvent=(name,params={})=>{if(window.__qctAnalyticsConsent!==true||typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
   document.addEventListener('click',event=>{const target=event.target.closest?.('[data-track]');if(!target)return;trackEvent(target.dataset.track,{link_text:(target.textContent||'').trim().slice(0,80)})},{passive:true});
   const copy={
-    tr:{title:'Çerez tercihleri',body:'Zorunlu çerezler siteyi çalıştırır. Analitik ölçüm tercihini buradan seçebilirsin.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
-    en:{title:'Cookie preferences',body:'Essential cookies keep the site working. Choose whether to allow analytics measurement.',policy:'Cookie policy',accept:'Accept',reject:'Reject'},
-    el:{title:'Προτιμήσεις cookies',body:'Τα απαραίτητα cookies διατηρούν τη λειτουργία του ιστότοπου. Επίλεξε αν επιτρέπεις analytics.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
-    es:{title:'Preferencias de cookies',body:'Las cookies esenciales mantienen el sitio en funcionamiento. Elige si permites medición analítica.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'},
-    ar:{title:'تفضيلات ملفات الارتباط',body:'تحافظ ملفات الارتباط الأساسية على عمل الموقع. اختر ما إذا كنت تسمح بالقياس التحليلي.',policy:'سياسة ملفات الارتباط',accept:'قبول',reject:'رفض'}
+    tr:{title:'Çerez tercihleri',body:'Anonim toplu ve sınırlı çerezsiz ölçüm çalışabilir. Analitik çerezler ve oturum kaydı için tercihini seç.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
+    en:{title:'Cookie preferences',body:'Anonymous aggregate and limited cookieless measurement may run. Choose whether to allow analytics cookies and session recording.',policy:'Cookie policy',accept:'Accept',reject:'Reject'},
+    el:{title:'Προτιμήσεις cookies',body:'Μπορεί να λειτουργεί ανώνυμη συγκεντρωτική και περιορισμένη μέτρηση χωρίς cookies. Επίλεξε για cookies analytics και καταγραφή συνεδρίας.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
+    es:{title:'Preferencias de cookies',body:'Puede funcionar una medición agregada anónima y limitada sin cookies. Elige si permites cookies analíticas y grabación de sesión.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'},
+    ar:{title:'تفضيلات ملفات الارتباط',body:'قد يعمل قياس مجمّع مجهول ومحدود دون ملفات ارتباط. اختر ما إذا كنت تسمح بملفات التحليلات وتسجيل الجلسة.',policy:'سياسة ملفات الارتباط',accept:'قبول',reject:'رفض'}
   }[locale];
   const policyHref='/cerezler';
   const dialog=document.createElement('aside');
@@ -171,7 +174,7 @@
     try{localStorage.setItem(key,JSON.stringify(value))}catch{}
     document.cookie=`mythborn_consent=${analytics?'all':'essential'}; Path=/; Max-Age=31536000; SameSite=Lax; Secure`;
     window.__qctAnalyticsConsent=analytics===true;
-    if(analytics){scheduleAnalytics(true);loadSourceBeacon();}else{applyGoogleConsent(false);applyClarityConsent(false);clearAnalyticsCookies();}
+    if(analytics){scheduleAnalytics(true);loadSourceBeacon();}else{loadGa(false);loadClarity(false);clearAnalyticsCookies();}
     closeConsent();
     window.dispatchEvent(new CustomEvent('mythborn:consent',{detail:value}));
   };
@@ -187,6 +190,6 @@
   });
   const currentConsent=read();
   window.__qctAnalyticsConsent=currentConsent?.analytics===true;
-  applyGoogleConsent(window.__qctAnalyticsConsent);
   if(currentConsent?.analytics){scheduleAnalytics(true);loadSourceBeacon();}
+  else{loadGa(false);loadClarity(false);}
   if(!currentConsent)open();})();
