@@ -66,6 +66,17 @@ assert.ok(html.indexOf('class="listening-deck"') < html.indexOf('class="frequenc
 assert.match(html,/\.studio\{display:block;margin:0 0 104px\}/);
 assert.match(html,/\.artwork\{position:absolute;inset:0 0 0 30%/);
 assert.match(html,/Sesin içinde/);
+assert.match(html,/\.intro\{width:100vw;max-width:none;margin-left:calc\(50% - 50vw\);min-height:calc\(100svh - 84px\)/,'full-viewport hero missing');
+assert.match(html,/#studio\.section-head\{display:block!important;text-align:center/,'centered studio header missing');
+assert.match(html,/id="bilimsel-dinleme"/,'evidence-based guide missing');
+assert.match(html,/Şifa için belirlenmiş bir süre yok/);
+assert.match(html,/80 dB\(A\).*40 saat/);
+assert.match(html,/90 dB\(A\).*4 saat/);
+assert.match(html,/Tarayıcı, kulaklığından çıkan gerçek dB\(A\) düzeyini ölçemez/);
+assert.match(html,/nccih\.nih\.gov\/health\/music-and-health/);
+assert.match(html,/who\.int\/news-room\/questions-and-answers\/item\/deafness-and-hearing-loss-safe-listening/);
+assert.match(html,/value="900">15 dakika/);
+
 assert.match(html,/tek bir saf sinüs dalgası/);
 
 new vm.Script(script,{filename:'public/frequency-studio.js'});
