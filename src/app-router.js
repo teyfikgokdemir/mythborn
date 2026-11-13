@@ -21,6 +21,7 @@ import {decorate} from './page-decorator.js';
 import {discoveryPage,discoveryMeta} from './discovery-core.js';
 import {culturalLocale,culturalPage,culturalSitemapEntries,isCulturalPath} from './cultural-platform.js';
 import {ebcedPath,ebcedPage} from './ebced-page.js';
+import {frequencyPrototypePath,frequencyPrototypePage} from './frequency-prototype.js';
 import {handleAstrologyRequest,isAstrologyPlatformPath} from './astrology-platform/router.js';
 import {generateAstrologySitemapEntries} from './astrology-platform/sitemap.js';
 import {
@@ -88,6 +89,10 @@ export default {
     const retiredEditorial=new Set(["merkur-ve-gezegen-retrolari-rehberi","tutulma-mevsimi-ve-kader-kavsagi","katina-ask-acilimi-ve-iliski-dinamikleri","tarot-major-arkana-kader-karti-sifreleri","kahve-fali-sembolizmi-fincandaki-isaretler","dogum-haritasinda-7-ev-venus-ve-juno","saturn-dongusu-ve-hayat-sinavlari","numeroloji-ve-kisisel-yil-hesaplama","yildizname-gelenegi-ve-dort-element-mizaci","duru-goru-ve-sezgisel-farkindalik-rehberi"]);
     const retiredSlug=inactivePath.startsWith('/blog/')?inactivePath.slice(6):'';
     if(retiredPages.has(inactivePath)||retiredEditorial.has(retiredSlug))return new Response('Content unavailable',{status:410,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store','x-robots-tag':'noindex'}});
+    // Standalone Frequency Studio product concept: preview only, no production route or SEO exposure.
+    if(env.ENVIRONMENT==='preview' && frequencyPrototypePath(incoming.pathname) && (request.method==='GET'||request.method==='HEAD')){
+      return new Response(request.method==='HEAD'?null:frequencyPrototypePage(),{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store','x-robots-tag':'noindex, nofollow'}});
+    }
     // Isolated preview of the symbolic calculator; production launch remains gated.
     if(env.ENVIRONMENT==='preview' && ebcedPath(incoming.pathname) && (request.method==='GET'||request.method==='HEAD'))return new Response(request.method==='HEAD'?null:ebcedPage(incoming.pathname),{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}});
     // User-approved 4 Nov 2026 independent astrology experience (Worker version 64019e2c).
