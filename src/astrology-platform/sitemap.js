@@ -12,7 +12,8 @@ export const ASTROLOGY_SITEMAP_ROUTES = [
   'glossary',
   'learning',
   'horoscopes',
-  'approach'
+  'approach',
+  'contact'
 ];
 
 export function generateAstrologySitemapEntries(origin = 'https://mythborn.co') {
