@@ -13,6 +13,7 @@ const BASE_CONTENT_SECURITY_POLICY="default-src 'self'; img-src 'self' data: blo
 
 const allowAnalyticsProviders=policy=>{
   let next=policy;
+  next=appendSources(next,'img-src',['https://upload.wikimedia.org']);
   next=appendSources(next,'script-src',[
     'https://www.googletagmanager.com',
     'https://www.clarity.ms',
