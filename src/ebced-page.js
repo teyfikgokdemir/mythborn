@@ -152,6 +152,49 @@ const langs = {
   }
 };
 
+const EBCEd_GUIDE={
+  tr:{
+    label:'EBCED & NUMEROLOJİ REHBERİ',head:'Ebced nedir, ne işe yarar?',
+    explanation:'Ebced, Arap alfabesindeki harflere belirli sayısal değerler atayan tarihsel bir hesaplama geleneğidir. Harflerin toplamı, bir isim ya da kelime için sayısal karşılık verir. Bu yöntem özellikle tarih düşürme, edebiyat ve sembolik yorumlarda kullanılmıştır.',
+    numericHead:'Numeroloji ile farkı nedir?',
+    numeric:'Bu sayfada Ebced, Arap harflerinin değerlerini; Pisagor numerolojisi ise Latin harfleri ve doğum tarihi üzerinden sembolik sayıları hesaplar. İki yöntemin kuralları ve ortaya çıkan değerleri birbirinden farklıdır.',
+    stepsHead:'Burada nasıl kullanılır?',
+    steps:'İsmini gir, önerilen Arap harfli yazımı kontrol et ve hesabı başlat. İstersen anne adı ve doğum tarihini ekle. Sonuçlarda her sayı için hesaplama yöntemi ile geleneksel anlamı ayrı ayrı görebilirsin.',
+    warning:'Ebced ve numeroloji sonuçları sembolik yorumlardır; bilimsel kişilik ölçümü, sağlık tavsiyesi veya kesin gelecek tahmini değildir.',
+    linkPersonal:'Kişisel analizi aç',linkCompare:'İki kişiyi karşılaştır'
+  },
+  en:{
+    label:'ABJAD & NUMEROLOGY GUIDE',head:'What is Abjad and what is it used for?',
+    explanation:'Abjad is a historical method that assigns numerical values to Arabic letters. Adding these values produces a number for a name or word. The practice has appeared in chronograms, literature and symbolic interpretation.',
+    numericHead:'How is numerology different?',
+    numeric:'Abjad uses Arabic letter values, while the Pythagorean numerology used here calculates symbolic numbers from Latin-script names and dates of birth. They are distinct systems with different rules.',
+    stepsHead:'How does this tool work?',
+    steps:'Enter a name, review its proposed Arabic spelling, then calculate. Mother’s name and date of birth are optional. Each result separates the calculation from its traditional interpretation.',
+    warning:'These are symbolic interpretations, not scientifically validated personality tests, health advice or reliable predictions.',
+    linkPersonal:'Open personal analysis',linkCompare:'Compare two people'
+  },
+  el:{
+    label:'ΟΔΗΓΟΣ ΑΜΠΤΖΑΝΤ ΚΑΙ ΑΡΙΘΜΟΛΟΓΙΑΣ',head:'Τι είναι το Αμπτζάντ;',
+    explanation:'Το Αμπτζάντ είναι ιστορικό σύστημα που αντιστοιχίζει αριθμητικές τιμές στα αραβικά γράμματα. Το άθροισμα δίνει μια αριθμητική τιμή για όνομα ή λέξη και χρησιμοποιήθηκε στη λογοτεχνία και σε συμβολικές ερμηνείες.',
+    numericHead:'Πώς διαφέρει από την αριθμολογία;',
+    numeric:'Το Αμπτζάντ βασίζεται σε αραβικά γράμματα, ενώ η Πυθαγόρεια αριθμολογία εδώ βασίζεται σε λατινικούς χαρακτήρες και ημερομηνίες γέννησης. Πρόκειται για διαφορετικές μεθόδους.',
+    stepsHead:'Πώς λειτουργεί;',
+    steps:'Πληκτρολόγησε το όνομα και έλεγξε την προτεινόμενη αραβική γραφή. Το όνομα μητέρας και η ημερομηνία γέννησης είναι προαιρετικά. Κάθε αποτέλεσμα εξηγεί τον υπολογισμό και τον συμβολισμό.',
+    warning:'Οι ερμηνείες είναι συμβολικές, όχι επιστημονική αξιολόγηση ή αξιόπιστη πρόβλεψη.',
+    linkPersonal:'Ατομική ανάλυση',linkCompare:'Σύγκριση δύο ατόμων'
+  },
+  es:{
+    label:'GUÍA DE ÁBYAD Y NUMEROLOGÍA',head:'¿Qué es el Ábyad y para qué sirve?',
+    explanation:'El Ábyad es un método histórico que asigna valores numéricos a las letras árabes. La suma da un valor para un nombre o palabra y se ha usado en literatura y lecturas simbólicas.',
+    numericHead:'¿En qué se diferencia de la numerología?',
+    numeric:'El Ábyad utiliza letras árabes; la numerología pitagórica de esta herramienta emplea letras latinas y fechas de nacimiento. Son métodos distintos.',
+    stepsHead:'¿Cómo se utiliza?',
+    steps:'Escribe un nombre, revisa su escritura árabe sugerida y calcula. El nombre materno y la fecha de nacimiento son opcionales. Cada resultado explica el cálculo y su interpretación simbólica.',
+    warning:'Las interpretaciones son simbólicas, no pruebas de personalidad, consejos médicos ni predicciones fiables.',
+    linkPersonal:'Análisis individual',linkCompare:'Comparar dos personas'
+  }
+};
+
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 }[c]));
@@ -1000,6 +1043,44 @@ export function ebcedPage(path, isPreview = true) {
       .consent-dialog .consent-actions button {width:100% !important;min-width:0 !important;}
     }
 
+
+/* Wider editorial header, single-line introduction on wide desktop */
+@media(min-width:1180px){
+ .shell{width:min(1300px,calc(100% - 64px))}
+ .hero{max-width:1300px;margin:14px auto 30px}
+ .hero .lead{max-width:none;width:100%;font-size:clamp(14px,1.12vw,17px);white-space:nowrap;line-height:1.6}
+ .analysis-path-nav,#ebced-form,#result,.info-panel,.footer,.ebced-guide{max-width:1080px;margin-left:auto;margin-right:auto}
+}
+@media(max-width:1179px){.hero .lead{white-space:normal}}
+.ebced-language{isolation:isolate;z-index:60}
+.ebced-language summary{display:inline-flex;align-items:center;gap:9px;min-height:43px;padding:8px 15px;border-radius:999px;background:linear-gradient(140deg,rgba(222,181,107,.1),rgba(12,15,24,.93));border:1px solid rgba(225,188,117,.39);box-shadow:inset 0 1px rgba(255,255,255,.06);color:#f0dba7;font-size:12px;font-weight:650;letter-spacing:.02em}
+.ebced-language summary:hover,.ebced-language[open] summary{border-color:rgba(243,205,125,.78);background:rgba(229,190,111,.12)}
+.ebced-language summary:focus-visible,.ebced-language-options a:focus-visible{outline:2px solid #f3cf7a;outline-offset:3px}
+.ebced-language-globe{height:18px;width:18px;flex:none}
+.ebced-language-code{letter-spacing:.1em;font-size:11px}
+.ebced-language-full{color:#eee3ce;font-weight:500}
+.ebced-language-chevron{font-size:15px;color:#d0b57d;transition:transform .2s}
+.ebced-language[open] .ebced-language-chevron{transform:rotate(180deg)}
+.ebced-language-options{position:absolute;inset-inline-end:0;top:calc(100% + 11px);min-width:205px;padding:7px;background:rgba(13,16,26,.99);border:1px solid rgba(226,189,120,.39);border-radius:13px;box-shadow:0 22px 65px #000b;display:grid;gap:3px}
+.ebced-language-options a{display:flex;align-items:center;gap:16px;color:#e6e0d7;font-size:13px;padding:11px 13px;border-radius:8px}
+.ebced-language-options a span{width:24px;font-size:10px;font-weight:750;color:#deb870;letter-spacing:.07em}
+.ebced-language-options a:hover,.ebced-language-options a[aria-current="page"]{background:rgba(213,173,104,.13);color:#ffe2a4}
+.ebced-guide{margin:45px auto 28px;padding:clamp(23px,3vw,43px);background:linear-gradient(135deg,rgba(20,24,38,.96),rgba(10,13,22,.92));border:1px solid rgba(221,180,104,.23);border-radius:17px}
+.ebced-guide-heading{max-width:900px}
+.ebced-guide-heading h2{font:400 clamp(25px,3vw,38px)/1.22 Georgia,serif;letter-spacing:-.02em;margin:8px 0 13px;color:#f2e7d6}
+.ebced-guide-heading p,.ebced-guide-grid p,.ebced-guide-tail p{font-size:14px;color:#b9bbc6;line-height:1.85}
+.ebced-guide-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px;margin:24px 0;padding:23px 0;border-top:1px solid rgba(221,180,104,.15);border-bottom:1px solid rgba(221,180,104,.15)}
+.ebced-guide-grid article{min-width:0}
+.ebced-guide-grid article+article{border-left:1px solid rgba(221,180,104,.15);padding-left:24px}
+.ebced-guide-grid h3{font:400 22px/1.25 Georgia,serif;color:#e9d19a;margin:0 0 9px}
+.ebced-guide-tail{display:flex;justify-content:space-between;gap:24px;align-items:center}
+.ebced-guide-tail p{font-size:12px;max-width:640px}
+.ebced-guide-links{display:flex;gap:15px;flex-wrap:wrap;flex-shrink:0}
+.ebced-guide-links a{color:#e8c683;font-size:12px;text-underline-offset:5px}
+@media(max-width:850px){.ebced-guide-grid{grid-template-columns:1fr;gap:23px}.ebced-guide-grid article+article{border:0;padding:0}.ebced-guide-tail{flex-direction:column;align-items:flex-start;gap:14px}.ebced-guide-links{flex-shrink:1}}
+@media(max-width:420px){.ebced-language-full{display:none}.ebced-language summary{padding:8px 11px}.ebced-guide{padding:20px 16px}}
+@media(prefers-reduced-motion:reduce){.ebced-language-chevron{transition:none}}
+
     /* Print Stylesheet */
     @media print {
       body { background: #fff !important; color: #000 !important; }
@@ -1022,7 +1103,7 @@ export function ebcedPage(path, isPreview = true) {
       </a>
       <div class="nav-actions">
         <a href="${homeHref}" class="home-link">← ${lang === 'en' ? 'Home' : lang === 'el' ? 'Αρχική' : lang === 'es' ? 'Inicio' : 'Ana Sayfa'}</a>
-        <details class="ebced-language"><summary aria-label="Language"><span>◎</span> ${lang === 'tr' ? 'Türkçe' : lang === 'en' ? 'English' : lang === 'el' ? 'Ελληνικά' : 'Español'} <span aria-hidden="true">⌄</span></summary><nav class="ebced-language-options" aria-label="Select language"><a ${lang==='tr'?'aria-current="page"':''} href="${currentTr}">Türkçe</a><a ${lang==='en'?'aria-current="page"':''} href="${currentEn}">English</a><a ${lang==='el'?'aria-current="page"':''} href="${currentGr}">Ελληνικά</a><a ${lang==='es'?'aria-current="page"':''} href="${currentEs}">Español</a></nav></details>
+        <details class="ebced-language"><summary aria-label="${lang === 'tr' ? 'Dili değiştir' : lang === 'el' ? 'Επιλογή γλώσσας' : lang === 'es' ? 'Elegir idioma' : 'Change language'}"><svg class="ebced-language-globe" aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M4 12h16M12 4c-5 4-5 12 0 16M12 4c5 4 5 12 0 16" stroke="currentColor" stroke-width="1.2"/></svg><span class="ebced-language-code">${lang === 'el' ? 'EL' : lang.toUpperCase()}</span><span class="ebced-language-full">${lang === 'tr' ? 'Türkçe' : lang === 'en' ? 'English' : lang === 'el' ? 'Ελληνικά' : 'Español'}</span><span class="ebced-language-chevron" aria-hidden="true">⌄</span></summary><nav class="ebced-language-options" aria-label="Languages"><a ${lang==='tr'?'aria-current="page"':''} href="${currentTr}"><span>TR</span>Türkçe</a><a ${lang==='en'?'aria-current="page"':''} href="${currentEn}"><span>EN</span>English</a><a ${lang==='el'?'aria-current="page"':''} href="${currentGr}"><span>EL</span>Ελληνικά</a><a ${lang==='es'?'aria-current="page"':''} href="${currentEs}"><span>ES</span>Español</a></nav></details>
       </div>
     </header>
 
@@ -1088,6 +1169,16 @@ export function ebcedPage(path, isPreview = true) {
 
     <!-- Results Section -->
     <section id="result" aria-live="polite"></section>
+
+    <!-- Explanatory guide, shown after the calculator results and before methodology -->
+    <section class="ebced-guide" aria-labelledby="ebced-guide-heading">
+      <div class="ebced-guide-heading"><span class="eyebrow">${esc(EBCEd_GUIDE[lang].label)}</span><h2 id="ebced-guide-heading">${esc(EBCEd_GUIDE[lang].head)}</h2><p>${esc(EBCEd_GUIDE[lang].explanation)}</p></div>
+      <div class="ebced-guide-grid">
+        <article><h3>${esc(EBCEd_GUIDE[lang].numericHead)}</h3><p>${esc(EBCEd_GUIDE[lang].numeric)}</p></article>
+        <article><h3>${esc(EBCEd_GUIDE[lang].stepsHead)}</h3><p>${esc(EBCEd_GUIDE[lang].steps)}</p></article>
+      </div>
+      <div class="ebced-guide-tail"><p>${esc(EBCEd_GUIDE[lang].warning)}</p><div class="ebced-guide-links"><a href="${personalUrls[lang]}">${esc(EBCEd_GUIDE[lang].linkPersonal)} →</a><a href="${compareUrls[lang]}">${esc(EBCEd_GUIDE[lang].linkCompare)} ↗</a></div></div>
+    </section>
 
     <!-- Methodology & Philosophical Notes -->
     <details class="panel info-panel">
