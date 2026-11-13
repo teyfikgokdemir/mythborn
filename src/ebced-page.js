@@ -971,6 +971,35 @@ export function ebcedPage(path, isPreview = true) {
     @media(max-width:700px){.meaning-grid{grid-template-columns:1fr}.meaning-card,.readable-summary{padding:21px 17px}.meaning-row summary{min-height:58px}.readable-summary>p{font-size:14px}}
     @media(prefers-reduced-motion:reduce){.meaning-chevron{transition:none}}
 
+
+    /* Consent UI injected by the existing analytics/privacy pipeline.
+       Presentation only: no changes to consent storage, tracking or button actions. */
+    .consent-dialog {
+      position:fixed !important;inset:auto 18px 20px auto !important;
+      width:min(570px,calc(100vw - 36px)) !important;max-height:calc(100dvh - 36px) !important;
+      overflow-y:auto !important;box-sizing:border-box;z-index:99999 !important;
+      margin:0 !important;padding:0 !important;background:#10131e !important;
+      border:1px solid rgba(215,184,124,.4) !important;border-radius:17px !important;
+      box-shadow:0 24px 85px rgba(0,0,0,.74),0 0 42px rgba(194,151,76,.08) !important;
+      color:#f6f1e9 !important; font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+    }
+    .consent-dialog .consent-panel {padding:24px !important;display:grid !important;gap:18px !important;align-items:start !important;background:none !important;}
+    .consent-dialog .consent-copy {min-width:0 !important;}
+    .consent-dialog .consent-copy strong {display:block;color:#eed49c !important;font:400 23px/1.25 Georgia,serif !important;letter-spacing:0 !important;margin-bottom:9px !important;}
+    .consent-dialog .consent-copy p {font-size:13px !important;line-height:1.7 !important;margin:0 !important;color:#cecbd4 !important;}
+    .consent-dialog .consent-copy a {color:#e9cf90 !important;text-decoration:underline !important;text-underline-offset:3px !important;}
+    .consent-dialog .consent-actions {display:flex !important;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px !important;}
+    .consent-dialog .consent-actions button {appearance:none;min-width:120px;min-height:43px;padding:10px 19px !important;margin:0 !important;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px !important;font-weight:600 !important;line-height:1.2 !important;border-radius:9px !important;}
+    .consent-dialog [data-consent-reject] {background:transparent !important;border:1px solid rgba(215,184,124,.4) !important;color:#f2e1bb !important;}
+    .consent-dialog [data-consent-accept] {background:linear-gradient(110deg,#f1d693,#be963f) !important;border:1px solid #dab566 !important;color:#11121a !important;}
+    .consent-dialog button:focus-visible,.consent-dialog a:focus-visible {outline:2px solid #ffe8a9 !important;outline-offset:3px !important;}
+    @media(max-width:600px){
+      .consent-dialog {inset:auto 12px 12px !important;width:calc(100vw - 24px) !important;max-height:50dvh !important;border-radius:14px !important;}
+      .consent-dialog .consent-panel {padding:18px !important;gap:14px !important;}
+      .consent-dialog .consent-actions {display:grid !important;grid-template-columns:1fr 1fr;}
+      .consent-dialog .consent-actions button {width:100% !important;min-width:0 !important;}
+    }
+
     /* Print Stylesheet */
     @media print {
       body { background: #fff !important; color: #000 !important; }
