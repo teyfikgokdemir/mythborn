@@ -19,19 +19,31 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 const reduce=n=>{while(n>9)n=String(n).split('').reduce((a,b)=>a+Number(b),0);return n};
 const digits=s=>[...s.replace(/\D/g,'')].reduce((a,c)=>a+Number(c),0);
 const nameNumerology=s=>[...s.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/İ/g,'I').replace(/ı/g,'I').replace(/Ç/g,'C').replace(/Ğ/g,'G').replace(/Ö/g,'O').replace(/Ş/g,'S').replace(/Ü/g,'U')].reduce((sum,ch)=>{const n=ch.charCodeAt(0)-65;return sum+(n>=0&&n<26?(n%9)+1:0)},0);
-function abjad(s){const parts=[...s.normalize('NFKC')].filter(c=>Object.hasOwn(values,c)).map(c=>({letter:c,value:values[c]}));return {parts,total:parts.reduce((a,p)=>a+p.value,0)}}
-function person(id){
+function abjad(s,options={}){
+ const maghribi=options.system==='maghribi',table={...values};
+ if(maghribi)Object.assign(table,{س:300,ش:1000,ص:60,ض:90,ظ:800,غ:900});
+ table['ة']=options.ta===400?400:5;
+ table['ؤ']=6;table['ئ']=10;table['ٱ']=1;table['ی']=10;table['ء']=0;
+ const parts=[],ignored=[];
+ for(const c of [...s.normalize('NFKC')]){
+   if(c==='ّ' && options.shadda==='twice' && parts.length){const previous=parts[parts.length-1];parts.push({letter:previous.letter+'ّ',value:previous.value});continue}
+   if(Object.hasOwn(table,c)){if(table[c])parts.push({letter:c,value:table[c]});continue}
+   if(!/[\s\u064B-\u065F\u0670\u0640.,،؛!?؟()\[\]0-9]/u.test(c))ignored.push(c);
+ }
+ return {parts,ignored,total:parts.reduce((a,p)=>a+p.value,0)};
+}
+function person(id,options){
 const name=$(id+'Name').value.trim(),mother=$(id+'Mother').value.trim(),arabic=$(id+'Arabic').value.trim(),motherArabic=$(id+'MotherArabic').value.trim(),date=$(id+'Date').value;
 if(!name||!arabic)throw Error('Ad ve Arap harfli yazım gereklidir. / Name and Arabic spelling are required.');
 if((mother&&!motherArabic)||(!mother&&motherArabic))throw Error('Anne adı ile Arap harfli karşılığı birlikte girilmelidir. / Complete both maternal name fields.');
 if(date&&(!/^\d{4}-\d{2}-\d{2}$/.test(date)||Number.isNaN(Date.parse(date))||new Date(date).toISOString().slice(0,10)!==date))throw Error('Geçerli bir doğum tarihi gir. / Enter a valid birth date.');
-const a=abjad(arabic),m=abjad(motherArabic);if(!a.parts.length)throw Error('Arap harfli yazımda geçerli harf bulunamadı.');
+const a=abjad(arabic,options),m=abjad(motherArabic,options);if(!a.parts.length)throw Error('Arap harfli yazımda geçerli harf bulunamadı.');
 return {name,mother,arabic,motherArabic,date,a,m,full:a.total+m.total,expression:nameNumerology(name),life:date?digits(date):null};
 }
 function rendering(p){
 const letters=p.a.parts.map(x=>esc(x.letter)+' ('+x.value+')').join(' + ');
 const mom=p.m.parts.map(x=>esc(x.letter)+' ('+x.value+')').join(' + ');
-return '<article class="result-card"><h2>'+esc(p.name)+'</h2><div class="summary"><div class="stat">Ebced<strong>'+p.a.total+'</strong></div><div class="stat">İfade / Expression<strong>'+reduce(p.expression)+'</strong></div><div class="stat">Yaşam yolu / Life path<strong>'+(p.life===null?'—':reduce(p.life))+'</strong></div>'+(p.m.parts.length?'<div class="stat">Anne adıyla / With mother<strong>'+p.full+'</strong></div>':'')+'</div><p class="letters" dir="auto">'+esc(p.arabic)+' = '+letters+'</p>'+(p.m.parts.length?'<p class="letters" dir="auto">'+esc(p.motherArabic)+' = '+mom+'</p>':'')+'<p class="muted">İsim numerolojisi: '+p.expression+' → '+reduce(p.expression)+(p.life!==null?' · Doğum tarihi rakamları: '+p.life+' → '+reduce(p.life):'')+'</p></article>';
+return '<article class="result-card"><h2>'+esc(p.name)+'</h2><div class="summary"><div class="stat">Ebced<strong>'+p.a.total+'</strong></div><div class="stat">İfade / Expression<strong>'+reduce(p.expression)+'</strong></div><div class="stat">Yaşam yolu / Life path<strong>'+(p.life===null?'—':reduce(p.life))+'</strong></div>'+(p.m.parts.length?'<div class="stat">Anne adıyla / With mother<strong>'+p.full+'</strong></div>':'')+'</div><p class="letters" dir="auto">'+esc(p.arabic)+' = '+letters+'</p>'+(p.m.parts.length?'<p class="letters" dir="auto">'+esc(p.motherArabic)+' = '+mom+'</p>':'')+(p.a.ignored.length?'<p class="muted">Hesaba alınmayan karakterler / Uncounted: '+esc(p.a.ignored.join(' '))+'</p>':'')+'<p class="muted">İsim numerolojisi: '+p.expression+' → '+reduce(p.expression)+(p.life!==null?' · Doğum tarihi rakamları: '+p.life+' → '+reduce(p.life):'')+'</p></article>';
 }
 const themes={
 1:{title:'Başlangıç ve inisiyatif',positive:'Yeni adımlar atma ve bağımsız karar verme',care:'Ortak kararlarda diğer kişinin görüşünü duymak',reflection:'Bu dönemde neyi başlatmak istiyorsun?'},
@@ -55,7 +67,7 @@ compare.addEventListener('change',()=>{second.classList.toggle('hidden',!compare
 form.addEventListener('submit',event=>{
 event.preventDefault();
 try{
-const a=person('a'),b=compare.checked?person('b'):null;
+const options={system:$('abjadSystem').value,ta:Number($('taValue').value),shadda:$('shadda').value};const a=person('a',options),b=compare.checked?person('b',options):null;
 let html=rendering(a)+breakdown(a.a,'Harf dökümü / Letter breakdown')+(a.m.parts.length?breakdown(a.m,'Anne adı / Maternal name'):'')+(b?rendering(b)+breakdown(b.a,'Harf dökümü / Letter breakdown')+(b.m.parts.length?breakdown(b.m,'Anne adı / Maternal name'):''):'');
 if(b){
 const total=a.a.total+b.a.total,root=reduce(total),motherTotal=a.full+b.full;
