@@ -359,6 +359,7 @@ export function ebcedPage(path, isPreview = true) {
       color-scheme: dark;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: clip; max-width: 100%; }
     body {
       background: var(--bg-radial);
       background-attachment: fixed;
@@ -1217,15 +1218,17 @@ export function ebcedPage(path, isPreview = true) {
 .ebced-numerology-story::before{content:'';position:absolute;inset:0;z-index:-1;opacity:.08;background:url('/images/Mythborn_02_Altin_Kutsal_Geometri.webp') center 47%/cover no-repeat;pointer-events:none;mask-image:linear-gradient(90deg,transparent 5%,#000 100%)}
 
 @media(max-width:1024px){
- .ebced-illustrated-hero{grid-template-columns:1fr;gap:20px;padding:24px 0 28px}
- .ebced-hero-art{height:240px}
+ .shell{width:min(100%,calc(100% - 28px));max-width:100%}
+ .ebced-illustrated-hero{grid-template-columns:minmax(0,1fr);gap:20px;padding:22px 0 28px}
+ .ebced-hero-art{height:240px;width:100%}
  .ebced-hero-art::after{background:linear-gradient(180deg,rgba(6,9,19,.35) 0%,transparent 30%,transparent 75%,rgba(6,9,19,.5) 100%)}
- .ebced-what{grid-template-columns:1fr;gap:26px;padding:34px 0}
- .ebced-numerology{grid-template-columns:1fr;gap:28px;padding:32px 0}
+ .ebced-what{grid-template-columns:minmax(0,1fr);gap:26px;padding:32px 0}
+ .ebced-numerology{grid-template-columns:minmax(0,1fr);gap:28px;padding:30px 0}
  .ebced-numerology-cta{border-left:0;border-top:1px solid rgba(212,175,55,.16);padding-left:0;padding-top:24px}
 }
 @media(max-width:850px){
- .ebced-guide-grid{grid-template-columns:1fr;gap:22px}
+ .ebced-cta-grid{grid-template-columns:minmax(0,1fr)}
+ .ebced-guide-grid{grid-template-columns:minmax(0,1fr);gap:22px}
  .ebced-guide-grid article+article{border:0;padding:0}
  .ebced-guide-tail{flex-direction:column;align-items:flex-start;gap:14px}
  .ebced-guide-links{flex-shrink:1}
@@ -1233,11 +1236,11 @@ export function ebcedPage(path, isPreview = true) {
 @media(max-width:640px){
  .ebced-features-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
  .ebced-feature-item+.ebced-feature-item{border-left:0}
- .ebced-numerology-left{grid-template-columns:1fr;text-align:left;gap:16px}
+ .ebced-numerology-left{grid-template-columns:minmax(0,1fr);text-align:left;gap:16px}
  .ebced-numerology-art{width:136px;height:136px}
- .ebced-cta-grid{grid-template-columns:1fr}
  .ebced-hero-art{height:205px}
  .ebced-lead-rule{display:none}
+ .ebced-header .brand-name{font-size:16px;letter-spacing:.16em}
 }
 @media(prefers-reduced-motion:reduce){.ebced-language-chevron,.ebced-cta-card,.ebced-header-cta{transition:none}.ebced-cta-card:hover,.ebced-header-cta:hover{transform:none}}
 
