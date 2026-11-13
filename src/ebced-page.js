@@ -156,7 +156,7 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 }[c]));
 
-export const ebcedPath=p=>/^\/(?:(?:en|gr|es)\/)?ebced\/?$/.test(p);
+export const ebcedPath=p=>/^\/(?:(?:en|gr|es)\/)?ebced(?:\/(?:uyum|compatibility|symvatotita|compatibilidad))?\/?$/.test(p);
 
 function renderPersonBlock(id, legend, t) {
   return `
@@ -194,6 +194,7 @@ function renderPersonBlock(id, legend, t) {
 }
 
 export function ebcedPage(path, isPreview = true) {
+  const isComparison = /\/(?:uyum|compatibility|symvatotita|compatibilidad)\/?$/.test(path);
   const lang = path.startsWith('/en/') ? 'en'
     : path.startsWith('/gr/') ? 'el'
     : path.startsWith('/es/') ? 'es'
@@ -201,10 +202,12 @@ export function ebcedPage(path, isPreview = true) {
 
   const t = langs[lang] || langs.tr;
 
-  const currentTr = '/ebced';
-  const currentEn = '/en/ebced';
-  const currentGr = '/gr/ebced';
-  const currentEs = '/es/ebced';
+  const personalUrls = { tr: '/ebced', en: '/en/ebced', el: '/gr/ebced', es: '/es/ebced' };
+  const compareUrls = { tr: '/ebced/uyum', en: '/en/ebced/compatibility', el: '/gr/ebced/symvatotita', es: '/es/ebced/compatibilidad' };
+  const currentTr = (isComparison ? compareUrls : personalUrls).tr;
+  const currentEn = (isComparison ? compareUrls : personalUrls).en;
+  const currentGr = (isComparison ? compareUrls : personalUrls).el;
+  const currentEs = (isComparison ? compareUrls : personalUrls).es;
 
   const homeHref = lang === 'en' ? '/en' : lang === 'el' ? '/gr' : lang === 'es' ? '/es' : '/';
 
@@ -226,8 +229,8 @@ export function ebcedPage(path, isPreview = true) {
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="${isPreview ? 'noindex,follow' : 'index,follow'}">
   <meta name="theme-color" content="#05070e">
-  <title>${esc(t.metaTitle)}</title>
-  <meta name="description" content="${esc(t.metaDesc)}">
+  <title>${esc(isComparison ? t.modeCompare + ' | Mythborn' : t.metaTitle)}</title>
+  <meta name="description" content="${esc(isComparison ? t.modeCompare + '. ' + t.metaDesc : t.metaDesc)}">
   <link rel="canonical" href="https://mythborn.co${path}">
   <link rel="alternate" hreflang="tr" href="https://mythborn.co/ebced">
   <link rel="alternate" hreflang="en" href="https://mythborn.co/en/ebced">
@@ -867,6 +870,43 @@ export function ebcedPage(path, isPreview = true) {
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; animation: none !important; }
     }
+
+/* Editorial redesign: quiet typographic hierarchy and a separate two-person journey */
+.shell { width:min(1020px,calc(100% - 40px)); padding: 20px 0 68px; }
+.topbar { margin-bottom: 24px; padding: 8px 0 18px; flex-wrap:nowrap; }
+.nav-actions { display:flex; align-items:center; gap:12px; }
+.brand-name { letter-spacing:.17em; }
+.hero { margin: 12px auto 28px; max-width: 760px; }
+.hero h1, .hero > h1 { font-size:clamp(32px,4.2vw,54px); letter-spacing:-.025em; line-height:1.1; margin:12px 0 15px; }
+.hero .lead { max-width:660px; margin-inline:auto; line-height:1.6; }
+.telemetry-ribbon { margin-top:14px; }
+.telemetry-tag { border:0; background:none; padding:2px 8px; color:var(--muted); }
+.eyebrow { letter-spacing:.13em; font-size:10px; }
+.analysis-path-nav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; max-width:740px; margin: 0 auto 22px; }
+.analysis-path { display:flex;justify-content:center;align-items:center;min-height:52px;text-align:center;color:var(--muted);font-size:14px;font-weight:600;text-decoration:none;background:rgba(255,255,255,.025);border:1px solid rgba(212,175,55,.19);border-radius:11px;padding:12px;transition:border .2s,background .2s; }
+.analysis-path:hover,.analysis-path.is-current { background:rgba(212,175,55,.10);border-color:rgba(212,175,55,.62);color:var(--gold-bright); }
+.panel { padding:clamp(16px,3vw,29px); box-shadow:0 10px 35px rgba(0,0,0,.26); margin-bottom:20px; }
+.person-fieldset { padding:20px 22px; border-color:rgba(212,175,55,.13);background:rgba(255,255,255,.009);margin-bottom:17px; }
+.form-grid { grid-template-columns: repeat(3,minmax(0,1fr));gap:14px; }
+.form-group { min-width:0; }
+.form-group label { font-size:11px; letter-spacing:.025em; }
+.step-progress { display:flex;gap:10px;justify-content:center;align-items:center;margin:0 0 25px; }
+.step-progress span { flex:1;padding:11px 8px;border-bottom:2px solid rgba(212,175,55,.19);color:var(--muted);font-size:12px;text-align:center; }
+.step-progress span.is-active { border-color:var(--gold-bright);color:var(--gold-bright); }
+.step-actions { display:flex;gap:12px;justify-content:flex-end;margin:8px 0 15px; }
+.step-primary,.step-secondary { border-radius:9px;padding:13px 20px;border:1px solid rgba(212,175,55,.35);cursor:pointer;font-weight:600; }
+.step-primary { background:linear-gradient(115deg,#f3dc9d,#b99734);color:#121017; }
+.step-secondary { color:var(--cream);background:transparent; }
+.ebced-language { position:relative;z-index:20; }
+.ebced-language summary { display:flex; gap:9px;align-items:center;cursor:pointer;list-style:none;white-space:nowrap;background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.28);padding:10px 13px;border-radius:9px;color:var(--gold-bright);font-size:13px; }
+.ebced-language summary::-webkit-details-marker { display:none; }
+.ebced-language-options { position:absolute;inset-inline-end:0;top:calc(100% + 8px);min-width:165px;padding:7px;background:#101421;border:1px solid rgba(212,175,55,.3);border-radius:12px;box-shadow:0 15px 40px #000a;display:grid;gap:2px; }
+.ebced-language-options a { display:block;color:var(--cream);font-size:13px;padding:11px;border-radius:7px;text-decoration:none; }
+.ebced-language-options a:hover,.ebced-language-options a[aria-current="page"] { background:rgba(212,175,55,.13); }
+.hidden,[hidden] { display:none !important; }
+@media(max-width:760px) { .shell {width:calc(100% - 26px);} .topbar {flex-wrap:wrap;}.brand-name {font-size:17px;}.form-grid {grid-template-columns:1fr;} .analysis-path-nav {grid-template-columns:1fr 1fr;} .analysis-path {font-size:12px;} .nav-actions {gap:7px;} .person-fieldset {padding:17px 13px;} .step-progress span{font-size:11px;} .hero h1 {font-size:clamp(29px,8vw,40px);} }
+@media(max-width:390px) { .home-link {font-size:11px;padding:8px;} .ebced-language summary {font-size:12px;padding:9px;} .step-actions {flex-direction:column-reverse;} .step-actions button {width:100%;} }
+
     /* Print Stylesheet */
     @media print {
       body { background: #fff !important; color: #000 !important; }
@@ -889,51 +929,37 @@ export function ebcedPage(path, isPreview = true) {
       </a>
       <div class="nav-actions">
         <a href="${homeHref}" class="home-link">← ${lang === 'en' ? 'Home' : lang === 'el' ? 'Αρχική' : lang === 'es' ? 'Inicio' : 'Ana Sayfa'}</a>
-        <nav class="lang-pills" aria-label="Language Selector">
-          <a href="${currentTr}" class="${lang === 'tr' ? 'active' : ''}">TR</a>
-          <a href="${currentEn}" class="${lang === 'en' ? 'active' : ''}">EN</a>
-          <a href="${currentGr}" class="${lang === 'el' ? 'active' : ''}">GR</a>
-          <a href="${currentEs}" class="${lang === 'es' ? 'active' : ''}">ES</a>
-        </nav>
+        <details class="ebced-language"><summary aria-label="Language"><span>◎</span> ${lang === 'tr' ? 'Türkçe' : lang === 'en' ? 'English' : lang === 'el' ? 'Ελληνικά' : 'Español'} <span aria-hidden="true">⌄</span></summary><nav class="ebced-language-options" aria-label="Select language"><a ${lang==='tr'?'aria-current="page"':''} href="${currentTr}">Türkçe</a><a ${lang==='en'?'aria-current="page"':''} href="${currentEn}">English</a><a ${lang==='el'?'aria-current="page"':''} href="${currentGr}">Ελληνικά</a><a ${lang==='es'?'aria-current="page"':''} href="${currentEs}">Español</a></nav></details>
       </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
       <span class="eyebrow">${esc(t.badge)}</span>
-      <h1>${esc(t.title)}</h1>
+      <h1>${esc(isComparison ? t.modeCompare : t.title)}</h1>
       <p class="lead">${esc(t.subtitle)}</p>
       <div class="telemetry-ribbon">
-        <span class="telemetry-tag">${esc(t.pillMath)}</span>
+        
         <span class="telemetry-tag">${esc(t.pillPrivacy)}</span>
-        <span class="telemetry-tag">${esc(t.pillSystems)}</span>
+        
       </div>
     </section>
 
-    <!-- Mode Selector -->
-    <div class="mode-toggle-card" role="radiogroup" aria-label="Analysis Mode">
-      <label class="mode-label">
-        <input type="radio" name="analysisMode" id="mode-personal" value="personal" checked>
-        <span>👤 ${esc(t.modePersonal)}</span>
-      </label>
-      <label class="mode-label">
-        <input type="radio" name="analysisMode" id="mode-compare" value="compare">
-        <span>👥 ${esc(t.modeCompare)}</span>
-      </label>
-    </div>
+    <nav class="analysis-path-nav" aria-label="Analysis selection">
+      <a class="analysis-path ${!isComparison ? 'is-current' : ''}" href="${personalUrls[lang]}" ${!isComparison ? 'aria-current="page"' : ''}>✦ ${esc(t.modePersonal)}</a>
+      <a class="analysis-path ${isComparison ? 'is-current' : ''}" href="${compareUrls[lang]}" ${isComparison ? 'aria-current="page"' : ''}>♡ ${esc(t.modeCompare)}</a>
+    </nav>
 
-    <!-- Main Form -->
-    <form id="ebced-form" class="panel" novalidate>
-      <!-- Person 1 -->
-      <div id="first-person-container">
+    <form id="ebced-form" class="panel" novalidate data-analysis-mode="${isComparison ? 'compare' : 'personal'}">
+      ${isComparison ? `<div class="step-progress" aria-label="Progress"><span data-step-marker="1" class="is-active">01 · ${esc(t.person1Legend)}</span><span data-step-marker="2">02 · ${esc(t.person2Legend)}</span></div>` : ''}
+      <div id="first-person-container" class="person-step">
         ${renderPersonBlock('a', t.person1Legend, t)}
       </div>
-
-      <!-- Person 2 (Revealed on Compare) -->
-      <div id="second-person-container" class="hidden">
+      ${isComparison ? `<div id="second-person-container" class="person-step hidden" hidden>
         ${renderPersonBlock('b', t.person2Legend, t)}
       </div>
-
+      <div class="step-actions"><button id="comparison-back" class="step-secondary hidden" type="button" hidden>← ${lang === 'tr' ? 'Önceki Kişi' : lang === 'es' ? 'Anterior' : lang === 'el' ? 'Πίσω' : 'Previous person'}</button>
+      <button id="comparison-next" class="step-primary" type="button">${lang === 'tr' ? 'İkinci Kişiye Geç' : lang === 'es' ? 'Continuar con la segunda persona' : lang === 'el' ? 'Συνέχεια στο δεύτερο άτομο' : 'Continue to second person'} →</button></div>` : ''}
       <!-- Advanced Calculation Parameters -->
       <details class="config-accordion">
         <summary class="config-summary">
@@ -964,7 +990,7 @@ export function ebcedPage(path, isPreview = true) {
         </div>
       </details>
 
-      <button type="submit" class="btn-submit">${esc(t.submitBtn)}</button>
+      <button type="submit" class="btn-submit ${isComparison ? 'hidden' : ''}" ${isComparison ? 'hidden' : ''}>${esc(t.submitBtn)}</button>
     </form>
 
     <!-- Results Section -->
