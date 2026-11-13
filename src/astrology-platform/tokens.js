@@ -3302,3 +3302,24 @@ html[dir="rtl"] .retro-guidance-box {
   .astro-ebced-art {width:min(49vw,190px);}
 }
 `;
+
+
+/* Approved immersive Ebced direction: uninterrupted visual with readable copy overlay.
+   No separate framed image, no extra spacing, RTL-safe and mobile-safe. */
+.astro-ebced-feature{isolation:isolate;background:#080b12!important;min-height:clamp(520px,72svh,730px);display:flex;align-items:center}
+.astro-ebced-feature-inner{position:static!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;width:min(100% - 80px,1300px)!important;min-height:clamp(520px,72svh,730px)!important;padding:clamp(62px,8vw,100px) 0!important;margin-inline:auto!important}
+.astro-ebced-feature .astro-ebced-feature-copy{position:relative;z-index:2;max-width:690px;width:min(58%,690px);padding:clamp(12px,2vw,30px) 0}
+.astro-ebced-feature h2{font-size:clamp(42px,4.8vw,74px);line-height:1.07;max-width:660px;text-shadow:0 3px 27px #05070fd9}
+.astro-ebced-feature .astro-ebced-lead{color:#e0d7ce;max-width:600px;font-size:clamp(16px,1.4vw,19px);text-shadow:0 2px 14px #000b}
+.astro-ebced-feature .astro-ebced-caption{color:#f1c878}
+.astro-ebced-feature .astro-ebced-disclaimer{color:#a7a6af}
+.astro-ebced-feature .astro-ebced-photo-frame{position:absolute!important;z-index:0!important;inset:0!important;display:block!important;width:100%!important;max-width:none!important;height:100%!important;min-height:100%!important;margin:0!important;padding:0!important;overflow:hidden!important;border:0!important;border-radius:0!important;box-shadow:none!important;background:#080b12}
+.astro-ebced-feature .astro-ebced-photo-frame::before{content:'';z-index:1;position:absolute;inset:0;background:linear-gradient(90deg,#070a12 0%,rgba(7,10,18,.97) 21%,rgba(7,10,18,.77) 43%,rgba(7,10,18,.26) 70%,rgba(7,10,18,.05) 100%),linear-gradient(0deg,rgba(7,10,18,.75),transparent 29%,transparent 80%,rgba(7,10,18,.3));pointer-events:none}
+.astro-ebced-feature .astro-ebced-photo{width:100%;height:100%;object-fit:cover;object-position:68% 50%;filter:saturate(.92) brightness(.88) contrast(1.06);transition:none}
+.astro-ebced-feature .astro-ebced-photo-frame figcaption{display:none}
+@media(hover:hover){.astro-ebced-feature .astro-ebced-photo-frame:hover .astro-ebced-photo{transform:none;filter:saturate(.92) brightness(.88) contrast(1.06)}}
+@media(min-width:1400px){.astro-ebced-feature .astro-ebced-feature-copy{width:57%}}
+@media(max-width:900px){.astro-ebced-feature,.astro-ebced-feature-inner{min-height:610px!important}.astro-ebced-feature-inner{width:calc(100% - 54px)!important}.astro-ebced-feature .astro-ebced-feature-copy{width:min(100%,630px)}.astro-ebced-feature .astro-ebced-photo-frame::before{background:linear-gradient(90deg,rgba(7,10,18,.98),rgba(7,10,18,.88) 48%,rgba(7,10,18,.4)),linear-gradient(0deg,#070a12 0%,transparent 25%)}}
+@media(max-width:600px){.astro-ebced-feature,.astro-ebced-feature-inner{min-height:620px!important}.astro-ebced-feature-inner{width:calc(100% - 36px)!important;padding:60px 0 78px!important}.astro-ebced-feature .astro-ebced-feature-copy{width:100%}.astro-ebced-feature h2{font-size:clamp(37px,9.5vw,51px)}.astro-ebced-feature .astro-ebced-lead{font-size:15px}.astro-ebced-feature .astro-ebced-photo{object-position:74% 50%}.astro-ebced-feature .astro-ebced-photo-frame::before{background:linear-gradient(90deg,rgba(6,9,17,.96),rgba(6,9,17,.83) 65%,rgba(6,9,17,.54)),linear-gradient(0deg,rgba(6,9,17,.88),transparent 28%)}}
+@media(prefers-reduced-motion:reduce){.astro-ebced-feature .astro-ebced-photo{transition:none}}
+[dir="rtl"] .astro-ebced-feature .astro-ebced-photo-frame::before{background:linear-gradient(270deg,#070a12 0%,rgba(7,10,18,.95) 33%,rgba(7,10,18,.23) 75%,rgba(7,10,18,.07)),linear-gradient(0deg,rgba(7,10,18,.75),transparent 29%)}
