@@ -157,8 +157,7 @@ export const renderAstrologyLayout = ({
     { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
     { key: 'zodiac', label: t.menu.zodiac },
     { key: 'ebced', label: locale === 'tr' ? 'Ebced' : locale === 'ar' ? 'الأبجد' : locale === 'el' ? 'Αμπτζάντ' : locale === 'es' ? 'Ábyad' : 'Abjad' },
-    { key: 'calendar', label: t.menu.calendar },
-    { key: 'horoscopes', label: locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Horoscopes' : locale === 'el' ? 'Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'الأبراج' }
+    { key: 'calendar', label: t.menu.calendar }
   ];
 
   const primaryLinksHtml = desktopPrimaryNav
@@ -178,6 +177,7 @@ export const renderAstrologyLayout = ({
         <span aria-hidden="true">▾</span>
       </button>
       <div class="astro-nav-dropdown-menu">
+        <a href="${getRouteHref(locale, 'horoscopes')}">✦ ${locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Horoscopes' : locale === 'el' ? 'Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'الأبراج'}</a>
         <a href="${getRouteHref(locale, 'transits')}">✦ ${safe(t.menu.transits)}</a>
         <a href="${getRouteHref(locale, 'retros')}">✦ ${safe(t.menu.retros)}</a>
         <a href="${getRouteHref(locale, 'synastry')}">✦ ${safe(t.menu.synastry)}</a>
