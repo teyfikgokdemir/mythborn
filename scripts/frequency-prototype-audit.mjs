@@ -53,7 +53,7 @@ assert.doesNotMatch(script,/ratio:\s*\.5|ratio:\s*1\.5|const voices\s*=/,'mixed 
 assert.match(script,/const MAX_GAIN = 0\.25/,'safe audio output bound changed unexpectedly');
 assert.match(script,/\(Number\(volume\.value\) \/ 30\) \* MAX_GAIN/);
 // Design review: real asset and visual layout requirements from screenshots.
-assert.match(html,/frequency-hero-scene\.svg/);
+assert.match(html,/Mythborn_01_Kozmik_Usturlap\.webp/);
 assert.match(html,/\.artwork-scene\{/);
 assert.match(html,/#anlam\.section-head\{/);
 assert.match(html,/#anlam\.section-head h2\{white-space:nowrap/);
