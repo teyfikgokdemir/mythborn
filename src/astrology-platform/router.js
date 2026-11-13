@@ -129,7 +129,7 @@ export const handleAstrologyRequest = (request, env) => {
       break;
     case 'home':
     default:
-      contentHtml = renderHomeView({ locale });
+      contentHtml = renderHomeView({ locale, isPreview });
       title = t.hero.title;
       description = t.hero.lead;
       break;

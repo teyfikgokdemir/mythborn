@@ -21,6 +21,7 @@ import {decorate} from './page-decorator.js';
 import {discoveryPage,discoveryMeta} from './discovery-core.js';
 import {culturalLocale,culturalPage,culturalSitemapEntries,isCulturalPath} from './cultural-platform.js';
 import {ebcedPath,ebcedPage} from './ebced-page.js';
+import {frequencyPrototypePath,frequencyPrototypePage} from './frequency-prototype.js';
 import {handleAstrologyRequest,isAstrologyPlatformPath} from './astrology-platform/router.js';
 import {generateAstrologySitemapEntries} from './astrology-platform/sitemap.js';
 import {
@@ -88,6 +89,12 @@ export default {
     const retiredEditorial=new Set(["merkur-ve-gezegen-retrolari-rehberi","tutulma-mevsimi-ve-kader-kavsagi","katina-ask-acilimi-ve-iliski-dinamikleri","tarot-major-arkana-kader-karti-sifreleri","kahve-fali-sembolizmi-fincandaki-isaretler","dogum-haritasinda-7-ev-venus-ve-juno","saturn-dongusu-ve-hayat-sinavlari","numeroloji-ve-kisisel-yil-hesaplama","yildizname-gelenegi-ve-dort-element-mizaci","duru-goru-ve-sezgisel-farkindalik-rehberi"]);
     const retiredSlug=inactivePath.startsWith('/blog/')?inactivePath.slice(6):'';
     if(retiredPages.has(inactivePath)||retiredEditorial.has(retiredSlug))return new Response('Content unavailable',{status:410,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store','x-robots-tag':'noindex'}});
+    // Release Frequency Studio to both environments. Preview stays noindex.
+    if(frequencyPrototypePath(incoming.pathname) && (request.method==='GET'||request.method==='HEAD')){
+      if(incoming.pathname==='/frequency-studio')return Response.redirect(`${SITE}/frekans-studyo`,301);
+      const preview=env.ENVIRONMENT==='preview';
+      return new Response(request.method==='HEAD'?null:frequencyPrototypePage(preview),{headers:{'content-type':'text/html; charset=utf-8','cache-control':preview?'no-store':'public, max-age=300',...(preview?{'x-robots-tag':'noindex, nofollow'}:{})}});
+    }
     // Isolated preview of the symbolic calculator; production launch remains gated.
     if(env.ENVIRONMENT==='preview' && ebcedPath(incoming.pathname) && (request.method==='GET'||request.method==='HEAD'))return new Response(request.method==='HEAD'?null:ebcedPage(incoming.pathname),{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}});
     // User-approved 4 Nov 2026 independent astrology experience (Worker version 64019e2c).
@@ -131,7 +138,7 @@ export default {
     if(incoming.pathname==='/ai-fact-sheet.json')return new Response(AI_FACT_SHEET_JSON,{headers:aiJsonHeaders});
     if(incoming.pathname==='/sitemap-video.xml')return new Response(VIDEO_SITEMAP_XML,{headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=3600, stale-while-revalidate=86400','access-control-allow-origin':'*'}});
     if(incoming.pathname==='/sitemap.xml'){
-      const fullXml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${generateSiteSitemapEntries()}${culturalSitemapEntries()}${generateAstrologySitemapEntries(SITE)}</urlset>`;
+      const fullXml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${generateSiteSitemapEntries()}${culturalSitemapEntries()}${generateAstrologySitemapEntries(SITE)}<url><loc>${SITE}/frekans-studyo</loc><lastmod>2026-11-13</lastmod></url></urlset>`;
       return new Response(fullXml,{status:200,headers:{'content-type':'application/xml; charset=utf-8','cache-control':'public, max-age=60, s-maxage=60, must-revalidate','access-control-allow-origin':'*','x-content-type-options':'nosniff'}});
     }
     const accessState=premiumState(env,new Date());

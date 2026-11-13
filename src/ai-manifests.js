@@ -11,6 +11,15 @@ Mythborn منصة مستقلة متعددة اللغات للتعرف على ا�
 
 https://mythborn.co/ar
 المحتوى للتثقيف والترفيه والتأمل الشخصي.`};
+
+const FREQUENCY_DISCOVERY = {
+  tr: '\n\n## Frequency Studio (Türkçe ses deneyimi)\n- https://mythborn.co/frekans-studyo — 11 gerçek zamanlı saf sinüs tonu, Solfeggio atıfları ve 432/440 Hz akort referansları.\n- Her seçimin açıklamasında sembolik gelenek ile ölçülebilir ses frekansı ayrı tutulur. Tedavi veya şifa iddiası yoktur.\n',
+  en: '\n\n## Frequency Studio (Turkish-language audio experience)\n- https://mythborn.co/frekans-studyo — 11 generated pure sine tones, cultural Solfeggio meanings and 432/440 Hz tuning references.\n- No medical or healing claims; the interface is currently in Turkish.\n',
+  el: '\n\n## Frequency Studio (στα Τουρκικά)\n- https://mythborn.co/frekans-studyo — 11 καθαροί τόνοι, πολιτισμικές ερμηνείες και επιστημονικοί περιορισμοί. Η εφαρμογή είναι στα τουρκικά.\n',
+  es: '\n\n## Frequency Studio (en turco)\n- https://mythborn.co/frekans-studyo — 11 tonos sinusoidales, significados simbólicos y explicación de los límites científicos. La herramienta está en turco.\n',
+  ar: '\n\n## Frequency Studio (واجهة باللغة التركية)\n- https://mythborn.co/frekans-studyo — أحد عشر تردداً صوتياً نقياً وتفسيرات رمزية، دون وعود طبية.\n'
+};
+for (const [locale, content] of Object.entries(FREQUENCY_DISCOVERY)) LLMS_TEXT[locale] = (LLMS_TEXT[locale] || '') + content;
 export const LLMS_FULL_TEXT=Object.fromEntries(Object.entries(LLMS_TEXT).map(([locale,content])=>[locale,content+'\n\nReference: Mythborn provides a 78-card Tarot encyclopedia, astrology reference material, dream symbols and free reflective experiences. It does not advertise individual consultants or appointments.\n']));
 const catalog={
   specVersion:'1.0',
@@ -19,6 +28,7 @@ const catalog={
   resources:[
     {title:'Home',url:SITE+'/'},
     {title:'Birth Chart Calculator',url:SITE+'/dogum-haritasi'},
+    {title:'Frequency Studio (Turkish)',url:SITE+'/frekans-studyo'},
     {title:'Astrology Methodology and Ethics',url:SITE+'/yaklasim'},
     {title:'Zodiac Guide',url:SITE+'/burclar'},
     {title:'Astrology Glossary',url:SITE+'/astroloji-sozlugu'},
@@ -47,7 +57,7 @@ export const OPENAPI_JSON=JSON.stringify({
 export const AI_FACT_SHEET_JSON=JSON.stringify({
  name:'Mythborn',website:SITE,languages:['tr','en','el','es','ar'],
 	 description:'Independent Tarot, astrology, dream symbolism and personal-reflection platform.',
-	 topics:['Tarot','Katina','Astrology','Birth charts','Dream symbolism','Numerology'],
+	 topics:['Tarot','Katina','Astrology','Birth charts','Dream symbolism','Numerology','Sound frequencies','Frequency Studio'],
 	 resources:[
 	  {title:'Birth Chart Calculator',url:SITE+'/dogum-haritasi'},
 	  {title:'Astrology Methodology and Ethics',url:SITE+'/yaklasim'},

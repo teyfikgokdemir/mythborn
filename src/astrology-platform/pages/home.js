@@ -11,7 +11,15 @@ const safe = (str = '') =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
-export const renderHomeView = ({ locale = 'tr' }) => {
+const frequencyTeaser = {
+  tr: { eyebrow: 'FREQUENCY STUDIO · SESİN GİZEMİ', title: 'Görünmeyeni <em>dinle.</em>', text: 'Gerçek frekansların sesini keşfet. On bir saf ton, kişisel ses deneyimleri ve bilimsel sınırları açıkça belirtilmiş dinleme rehberi.', action: 'Frekans Stüdyosu’nu keşfet', note: 'Ses deneyimi · 11 saf ton · Bilimsel dinleme rehberi' },
+  en: { eyebrow: 'FREQUENCY STUDIO · THE MYSTERY OF SOUND', title: 'Listen to the <em>unseen.</em>', text: 'Explore actual sound frequencies. Eleven pure tones, a personal listening experience and science-based guidance without therapeutic promises.', action: 'Explore Frequency Studio', note: 'Sound experience · 11 pure tones · Safe-listening guidance' },
+  el: { eyebrow: 'FREQUENCY STUDIO · ΤΟ ΜΥΣΤΗΡΙΟ ΤΟΥ ΗΧΟΥ', title: 'Άκου το <em>αόρατο.</em>', text: 'Εξερεύνησε πραγματικές συχνότητες ήχου με έντεκα καθαρούς τόνους και τεκμηριωμένη ενημέρωση για την ασφαλή ακρόαση.', action: 'Εξερεύνησε το στούντιο', note: 'Ήχος · 11 καθαροί τόνοι · Ασφαλής ακρόαση' },
+  es: { eyebrow: 'FREQUENCY STUDIO · EL MISTERIO DEL SONIDO', title: 'Escucha lo <em>invisible.</em>', text: 'Explora frecuencias sonoras reales, once tonos puros y orientación sobre escucha segura sin promesas terapéuticas.', action: 'Explorar Frequency Studio', note: 'Sonido · 11 tonos puros · Escucha segura' },
+  ar: { eyebrow: 'FREQUENCY STUDIO · أسرار الصوت', title: 'استمع إلى <em>ما لا يُرى.</em>', text: 'اكتشف ترددات صوتية حقيقية وأحد عشر نغمة نقية وإرشادات استماع آمنة دون وعود علاجية.', action: 'اكتشف استوديو الترددات', note: 'تجربة صوتية · ١١ نغمة · استماع آمن' }
+};
+
+export const renderHomeView = ({ locale = 'tr', isPreview = false }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
   const loc = locale === 'gr' ? 'el' : ['tr', 'en', 'el', 'es', 'ar'].includes(locale) ? locale : 'tr';
   const isRtl = t.dir === 'rtl';
@@ -146,6 +154,19 @@ export const renderHomeView = ({ locale = 'tr' }) => {
         </div>
       </div>
     </section>
+
+    ${`<section class="astro-frequency-preview" id="frequency-studio" aria-labelledby="astro-frequency-preview-title">
+      <div class="astro-frequency-preview-visual" aria-hidden="true"><img src="/images/Mythborn_01_Kozmik_Usturlap.webp" loading="lazy" decoding="async" width="1792" height="1024" alt=""></div>
+      <div class="astro-container astro-frequency-preview-inner">
+        <div class="astro-frequency-preview-copy">
+          <span class="astro-card-tag">✦ ${frequencyTeaser[loc].eyebrow}</span>
+          <h2 id="astro-frequency-preview-title">${frequencyTeaser[loc].title}</h2>
+          <p>${frequencyTeaser[loc].text}</p>
+          <a class="astro-frequency-preview-cta" href="/frekans-studyo"><span>${frequencyTeaser[loc].action}</span><span aria-hidden="true">${isRtl ? '←' : '↗'}</span></a>
+          <small>${frequencyTeaser[loc].note}</small>
+        </div>
+      </div>
+    </section>`}
 
     ${renderEbcedPromo(locale)}
 

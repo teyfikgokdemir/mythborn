@@ -156,10 +156,13 @@ export const renderAstrologyLayout = ({
     { key: 'natal', label: t.menu.natal },
     { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
     { key: 'zodiac', label: t.menu.zodiac },
-    { key: 'ebced', label: locale === 'tr' ? 'Ebced' : locale === 'ar' ? 'الأبجد' : locale === 'el' ? 'Αμπτζάντ' : locale === 'es' ? 'Ábyad' : 'Abjad' },
-    { key: 'calendar', label: t.menu.calendar },
-    { key: 'horoscopes', label: locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Horoscopes' : locale === 'el' ? 'Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'الأبراج' }
+    { key: 'calendar', label: t.menu.calendar }
   ];
+
+  // Frequency Studio is a published page; preserve the same link across all locales.
+  const frequencyTitle = ({ tr: 'Frekans Stüdyosu', en: 'Frequency Studio', el: 'Στούντιο Συχνοτήτων', es: 'Estudio de Frecuencias', ar: 'استوديو الترددات' })[locale] || 'Frequency Studio';
+  const frequencyHref = '/frekans-studyo';
+  const frequencyDesktopLink = `<a class="astro-nav-frequency" href="${frequencyHref}">${safe(frequencyTitle)}</a>`;
 
   const primaryLinksHtml = desktopPrimaryNav
     .map((item) => {
@@ -178,6 +181,7 @@ export const renderAstrologyLayout = ({
         <span aria-hidden="true">▾</span>
       </button>
       <div class="astro-nav-dropdown-menu">
+        <a href="${getRouteHref(locale, 'horoscopes')}">✦ ${locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Horoscopes' : locale === 'el' ? 'Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'الأبراج'}</a>
         <a href="${getRouteHref(locale, 'transits')}">✦ ${safe(t.menu.transits)}</a>
         <a href="${getRouteHref(locale, 'retros')}">✦ ${safe(t.menu.retros)}</a>
         <a href="${getRouteHref(locale, 'synastry')}">✦ ${safe(t.menu.synastry)}</a>
@@ -191,8 +195,10 @@ export const renderAstrologyLayout = ({
   const allDrawerItems = [
     { key: 'home', label: t.menu.home },
     { key: 'natal', label: t.menu.natal },
+    { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
     { key: 'zodiac', label: t.menu.zodiac },
     { key: 'calendar', label: t.menu.calendar },
+    { key: 'frequency', label: frequencyTitle },
     { key: 'horoscopes', label: locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Daily Horoscopes' : locale === 'el' ? 'Ημερήσιες Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'توقعات الأبراج' },
     { key: 'transits', label: t.menu.transits },
     { key: 'retros', label: t.menu.retros },
@@ -204,7 +210,7 @@ export const renderAstrologyLayout = ({
 
   const drawerNavHtml = allDrawerItems
     .map((item) => {
-      const href = getRouteHref(locale, item.key);
+      const href = item.key === 'frequency' ? frequencyHref : getRouteHref(locale, item.key);
       const activeAttr = item.key === currentRouteKey ? ' aria-current="page"' : '';
       return `<a href="${href}"${activeAttr}><span>✦ ${safe(item.label)}</span><span aria-hidden="true">${isRtl ? '←' : '→'}</span></a>`;
     })
@@ -342,14 +348,11 @@ export const renderAstrologyLayout = ({
 
         <nav class="astro-nav-desktop" aria-label="Primary Navigation">
           ${primaryLinksHtml}
+          ${frequencyDesktopLink}
           ${dropdownHtml}
         </nav>
 
         <div class="astro-header-actions">
-          <a class="astro-cta-gold" href="${getRouteHref(locale, 'natal')}">
-            <span>${safe(clean(t.menu.ctaQuick))}</span>
-            <span aria-hidden="true">${isRtl ? '←' : '→'}</span>
-          </a>
           ${langSwitcherHtml}
           <button type="button" class="astro-menu-btn" data-drawer-open aria-expanded="false" aria-controls="astro-mobile-drawer" aria-label="Menu">
             <span aria-hidden="true">☰</span>

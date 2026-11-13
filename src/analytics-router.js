@@ -39,6 +39,24 @@ const allowAnalyticsProviders=policy=>{
   return next;
 };
 
+
+const CONSENT_PRESENTATION_STYLE = `<style id="mythborn-consent-design-v4">
+.consent-dialog{position:fixed!important;inset:auto 0 0 0!important;width:100%!important;max-width:none!important;max-height:min(45dvh,320px)!important;overflow-y:auto!important;box-sizing:border-box!important;z-index:2147483000!important;margin:0!important;padding:0!important;background:linear-gradient(110deg,#0c1019,#11131c)!important;border:0!important;border-top:1px solid rgba(224,188,114,.49)!important;border-radius:0!important;box-shadow:0 -16px 58px rgba(0,0,0,.6)!important;color:#eee9e1!important;font-family:system-ui,-apple-system,Segoe UI,sans-serif!important}
+.consent-dialog .consent-panel{display:grid!important;grid-template-columns:minmax(180px,.35fr) minmax(0,1fr) auto!important;gap:26px!important;align-items:center!important;max-width:1360px!important;width:calc(100% - 64px)!important;margin:0 auto!important;padding:18px 0!important;box-sizing:border-box!important;background:none!important;border:0!important}
+.consent-dialog .consent-copy{min-width:0!important;display:contents!important}
+.consent-dialog .consent-copy strong{display:block!important;margin:0!important;font:500 20px/1.3 Georgia,serif!important;letter-spacing:0!important;color:#f5dfad!important}
+.consent-dialog .consent-copy p{margin:0!important;max-width:720px!important;color:#c6c4cf!important;font:400 12px/1.7 system-ui,-apple-system,Segoe UI,sans-serif!important}
+.consent-dialog .consent-copy a{color:#e9c77f!important;text-decoration:underline!important;text-underline-offset:3px!important}
+.consent-dialog .consent-actions{display:flex!important;flex-direction:row!important;gap:10px!important;align-items:center!important;justify-content:flex-end!important;margin:0!important;padding:0!important;min-width:0!important}
+.consent-dialog .consent-actions button{appearance:none!important;display:flex!important;align-items:center!important;justify-content:center!important;min-width:115px!important;min-height:42px!important;padding:10px 17px!important;margin:0!important;border-radius:9px!important;box-sizing:border-box!important;cursor:pointer!important;font:600 12px/1.2 system-ui,-apple-system,Segoe UI,sans-serif!important}
+.consent-dialog [data-consent-accept]{background:linear-gradient(110deg,#f3d995,#c69c46)!important;border:1px solid #dcb76c!important;color:#16151c!important}
+.consent-dialog [data-consent-reject]{background:transparent!important;border:1px solid rgba(221,188,117,.38)!important;color:#eee2cd!important}
+.consent-dialog button:focus-visible,.consent-dialog a:focus-visible{outline:2px solid #ffe6a5!important;outline-offset:3px!important}
+@media(max-width:1000px){.consent-dialog .consent-panel{grid-template-columns:minmax(0,1fr) auto!important;gap:8px 20px!important}.consent-dialog .consent-copy{display:block!important;grid-column:1!important;grid-row:1!important}.consent-dialog .consent-copy strong{margin-bottom:5px!important}.consent-dialog .consent-actions{grid-column:2!important;grid-row:1!important}}
+@media(max-width:640px){.consent-dialog{max-height:57dvh!important;padding-bottom:env(safe-area-inset-bottom)!important}.consent-dialog .consent-panel{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:11px!important;width:calc(100% - 32px)!important;padding:14px 0!important}.consent-dialog .consent-copy{display:block!important}.consent-dialog .consent-copy strong{font-size:17px!important;margin-bottom:5px!important}.consent-dialog .consent-copy p{font-size:11px!important;line-height:1.6!important}.consent-dialog .consent-actions{display:grid!important;grid-template-columns:1fr 1fr!important;width:100%!important}.consent-dialog .consent-actions button{width:100%!important;min-width:0!important;min-height:40px!important}}
+@media(prefers-reduced-motion:reduce){.consent-dialog *{transition:none!important;animation:none!important}}
+</style>`;
+
 const secureHtmlResponse=async response=>{
   const contentType=response.headers.get('content-type')||'';
   if(!contentType.includes('text/html'))return response;
@@ -51,6 +69,7 @@ const secureHtmlResponse=async response=>{
   headers.set('referrer-policy','strict-origin-when-cross-origin');
   headers.set('permissions-policy','camera=(), microphone=(), payment=(), geolocation=()');
   let html=await response.text();
+  if(!html.includes('mythborn-consent-design-v4'))html=html.replace(/<\/head\s*>/i,CONSENT_PRESENTATION_STYLE+'</head>');
   html=html.replace(/<script\b(?=[^>]*\bsrc\s*=\s*(['"])\/refinement\.js(?:\?[^'"]*)?\1)[^>]*>\s*<\/script\s*>/gi,'');
   const analyticsScripts=[];
   analyticsScripts.push('<script src="/refinement.js" defer></script>');

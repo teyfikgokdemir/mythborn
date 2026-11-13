@@ -14,10 +14,24 @@ const languages = [
 
 for (const [locale, pathname, ebcedUrl, heading] of languages) {
   assert.equal(getRouteHref(locale, 'ebced'), ebcedUrl, `${locale} ebced URL`);
+  const liveHome = renderHomeView({ locale, isPreview: false });
+  assert.match(liveHome,/id="frequency-studio"/,`${locale} production must show studio`);
+  const previewHome = renderHomeView({ locale, isPreview: true });
+  assert.match(previewHome,/id="frequency-studio"/,`${locale} preview should show frequency promo`);
+  assert.match(previewHome,/href="\/frekans-studyo"/,`${locale} frequency promo link`);
+  const desktopPreview=renderAstrologyLayout({locale,isPreview:true,contentHtml:previewHome});
+  assert.doesNotMatch(desktopPreview,/<a class="astro-cta-gold"[^>]*>/,`${locale} header CTA should not duplicate home hero`);
+  assert.match(desktopPreview,/class="astro-nav-frequency"/,`${locale} preview desktop nav`);
+  assert.match(desktopPreview,/href="\/frekans-studyo"/,`${locale} preview studio nav href`);
+  const desktopProd=renderAstrologyLayout({locale,isPreview:false,contentHtml:liveHome});
+  assert.match(desktopProd,/class="astro-nav-frequency"/,`${locale} production nav must show studio link`);
   const home = renderHomeView({ locale });
   assert.equal((home.match(/id="astro-ebced-title"/g) || []).length, 1, `${locale} feature appears once`);
   assert.equal((home.match(/astro-ebced-feature-inner/g) || []).length, 1, `${locale} feature is single panel`);
   assert.ok(home.includes(heading), `${locale} feature is translated`);
+  assert.ok(home.includes('astro-ebced-photo-frame'), `${locale} authentic imagery is present`);
+  assert.ok(home.includes('/images/Mythborn_03_Usturlap_ve_Kadim_Kitap.webp'), `${locale} first-party image is used`);
+  assert.ok(home.includes('figcaption'), `${locale} image source is identified`);
   assert.ok(home.includes(`href="${ebcedUrl}"`), `${locale} feature links to tool`);
   assert.ok(home.indexOf('<!-- 1. Hero:') < home.indexOf('astro-ebced-feature'), `${locale} feature follows hero`);
   assert.ok(home.indexOf('astro-ebced-feature') < home.indexOf('<!-- 3. Kozmik Büyük Üçlü'), `${locale} feature precedes triad`);
@@ -44,6 +58,11 @@ for (const [locale, pathname, ebcedUrl, heading] of languages) {
 }
 const css = readFileSync(new URL('../src/astrology-platform/tokens.js', import.meta.url), 'utf8');
 assert.match(css, /\.astro-ebced-feature-inner\s*\{/);
+assert.match(css,/\.astro-ebced-photo-frame/);
+assert.match(css,/\.astro-ebced-photo/);
+assert.match(css,/immersive Ebced direction/);
+assert.match(css,/\.astro-ebced-feature \.astro-ebced-photo-frame\{position:absolute!important/);
+assert.match(css,/\.astro-ebced-feature \.astro-ebced-feature-copy\{position:relative/);
 assert.match(css, /\.astro-lang-options\s*\{/);
 assert.match(css, /prefers-reduced-motion:\s*reduce/);
 assert.match(css, /max-width:\s*1180px/);
