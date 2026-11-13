@@ -156,7 +156,6 @@ export const renderAstrologyLayout = ({
     { key: 'natal', label: t.menu.natal },
     { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
     { key: 'zodiac', label: t.menu.zodiac },
-    { key: 'ebced', label: locale === 'tr' ? 'Ebced' : locale === 'ar' ? 'الأبجد' : locale === 'el' ? 'Αμπτζάντ' : locale === 'es' ? 'Ábyad' : 'Abjad' },
     { key: 'calendar', label: t.menu.calendar }
   ];
 
