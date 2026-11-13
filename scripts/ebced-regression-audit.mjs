@@ -72,6 +72,23 @@ const mohammadSmall = calculate('محمد', {}).totalSmall;
 // م=4, ح=8, م=4, د=4 => 4 + 8 + 4 + 4 = 20
 assert.equal(mohammadSmall, 20, 'Mohammad small abjad must be 20');
 
+// 7b. Distinguish the real birth-date Sun sign from a name-based symbolic mapping.
+const symbolicBlock = src.slice(src.indexOf('const SYMBOL_INFO ='), src.indexOf('// Render letter breakdown table'));
+assert.ok(symbolicBlock.includes('function sunSignByDate'), 'sun sign helper must be present');
+const symbolic = vm.runInNewContext(symbolicBlock + '; ({sunSignByDate,renderSymbolicNote})');
+assert.equal(symbolic.sunSignByDate('1980-06-30','tr'), 'Yengeç');
+assert.equal(symbolic.sunSignByDate('1980-06-30','en'), 'Cancer');
+assert.equal(symbolic.sunSignByDate('1980-02-01','tr'), 'Kova');
+assert.equal(symbolic.sunSignByDate('1980-11-01','tr'), 'Akrep');
+assert.equal(symbolic.sunSignByDate('', 'tr'), null);
+const symbolicHtml=symbolic.renderSymbolicNote({date:'1980-06-30',a:{total:896},zodiacIndex:8,elementIndex:4},'tr',{elementNames:{4:'Su (Mâî)'},zodiacNames:{8:'Akrep (Akreb)'}});
+assert.match(symbolicHtml,/Güneş burcu/);
+assert.match(symbolicHtml,/Yengeç/);
+assert.match(symbolicHtml,/Akrep/);
+assert.match(symbolicHtml,/896/);
+assert.match(symbolicHtml,/Bu sonuçlar neden farklı/);
+assert.match(symbolicHtml,/evrensel veya bilimsel/);
+
 // 8. Distinct routes for personal and relationship readings in all four locales.
 const page = readFileSync(new URL('../src/ebced-page.js', import.meta.url), 'utf8');
 const {ebcedPath,ebcedPage} = await import('../src/ebced-page.js');
