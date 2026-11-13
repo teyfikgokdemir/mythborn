@@ -156,7 +156,7 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 }[c]));
 
-export const ebcedPath=p=>/^\/(?:(?:en|gr|es)\/)?ebced\/?$/.test(p);
+export const ebcedPath=p=>/^\/(?:(?:en|gr|es)\/)?ebced(?:\/(?:uyum|compatibility|symvatotita|compatibilidad))?\/?$/.test(p);
 
 function renderPersonBlock(id, legend, t) {
   return `
@@ -194,6 +194,7 @@ function renderPersonBlock(id, legend, t) {
 }
 
 export function ebcedPage(path, isPreview = true) {
+  const isComparison = /\/(?:uyum|compatibility|symvatotita|compatibilidad)\/?$/.test(path);
   const lang = path.startsWith('/en/') ? 'en'
     : path.startsWith('/gr/') ? 'el'
     : path.startsWith('/es/') ? 'es'
@@ -201,10 +202,12 @@ export function ebcedPage(path, isPreview = true) {
 
   const t = langs[lang] || langs.tr;
 
-  const currentTr = '/ebced';
-  const currentEn = '/en/ebced';
-  const currentGr = '/gr/ebced';
-  const currentEs = '/es/ebced';
+  const personalUrls = { tr: '/ebced', en: '/en/ebced', el: '/gr/ebced', es: '/es/ebced' };
+  const compareUrls = { tr: '/ebced/uyum', en: '/en/ebced/compatibility', el: '/gr/ebced/symvatotita', es: '/es/ebced/compatibilidad' };
+  const currentTr = (isComparison ? compareUrls : personalUrls).tr;
+  const currentEn = (isComparison ? compareUrls : personalUrls).en;
+  const currentGr = (isComparison ? compareUrls : personalUrls).el;
+  const currentEs = (isComparison ? compareUrls : personalUrls).es;
 
   const homeHref = lang === 'en' ? '/en' : lang === 'el' ? '/gr' : lang === 'es' ? '/es' : '/';
 
@@ -226,14 +229,14 @@ export function ebcedPage(path, isPreview = true) {
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="${isPreview ? 'noindex,follow' : 'index,follow'}">
   <meta name="theme-color" content="#05070e">
-  <title>${esc(t.metaTitle)}</title>
-  <meta name="description" content="${esc(t.metaDesc)}">
+  <title>${esc(isComparison ? t.modeCompare + ' | Mythborn' : t.metaTitle)}</title>
+  <meta name="description" content="${esc(isComparison ? t.modeCompare + '. ' + t.metaDesc : t.metaDesc)}">
   <link rel="canonical" href="https://mythborn.co${path}">
-  <link rel="alternate" hreflang="tr" href="https://mythborn.co/ebced">
-  <link rel="alternate" hreflang="en" href="https://mythborn.co/en/ebced">
-  <link rel="alternate" hreflang="el" href="https://mythborn.co/gr/ebced">
-  <link rel="alternate" hreflang="es" href="https://mythborn.co/es/ebced">
-  <link rel="alternate" hreflang="x-default" href="https://mythborn.co/ebced">
+  <link rel="alternate" hreflang="tr" href="https://mythborn.co${currentTr}">
+  <link rel="alternate" hreflang="en" href="https://mythborn.co${currentEn}">
+  <link rel="alternate" hreflang="el" href="https://mythborn.co${currentGr}">
+  <link rel="alternate" hreflang="es" href="https://mythborn.co${currentEs}">
+  <link rel="alternate" hreflang="x-default" href="https://mythborn.co${currentTr}">
   <link rel="icon" type="image/svg+xml" href="/assets/astrology/mythborn-symbol.svg">
   <script type="application/ld+json">${JSON.stringify(schemaJson)}</script>
   <style>
@@ -867,6 +870,136 @@ export function ebcedPage(path, isPreview = true) {
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; animation: none !important; }
     }
+
+/* Editorial redesign: quiet typographic hierarchy and a separate two-person journey */
+.shell { width:min(1020px,calc(100% - 40px)); padding: 20px 0 68px; }
+.topbar { margin-bottom: 24px; padding: 8px 0 18px; flex-wrap:nowrap; }
+.nav-actions { display:flex; align-items:center; gap:12px; }
+.brand-name { letter-spacing:.17em; }
+.hero { margin: 12px auto 28px; max-width: 760px; }
+.hero h1, .hero > h1 { font-size:clamp(32px,4.2vw,54px); letter-spacing:-.025em; line-height:1.1; margin:12px 0 15px; }
+.hero .lead { max-width:660px; margin-inline:auto; line-height:1.6; }
+.telemetry-ribbon { margin-top:14px; }
+.telemetry-tag { border:0; background:none; padding:2px 8px; color:var(--muted); }
+.eyebrow { letter-spacing:.13em; font-size:10px; }
+.analysis-path-nav { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; max-width:740px; margin: 0 auto 22px; }
+.analysis-path { display:flex;justify-content:center;align-items:center;min-height:52px;text-align:center;color:var(--muted);font-size:14px;font-weight:600;text-decoration:none;background:rgba(255,255,255,.025);border:1px solid rgba(212,175,55,.19);border-radius:11px;padding:12px;transition:border .2s,background .2s; }
+.analysis-path:hover,.analysis-path.is-current { background:rgba(212,175,55,.10);border-color:rgba(212,175,55,.62);color:var(--gold-bright); }
+.panel { padding:clamp(16px,3vw,29px); box-shadow:0 10px 35px rgba(0,0,0,.26); margin-bottom:20px; }
+.person-fieldset { padding:20px 22px; border-color:rgba(212,175,55,.13);background:rgba(255,255,255,.009);margin-bottom:17px; }
+.form-grid { grid-template-columns: repeat(3,minmax(0,1fr));gap:14px; }
+.form-group { min-width:0; }
+.form-group label { font-size:11px; letter-spacing:.025em; }
+.step-progress { display:flex;gap:10px;justify-content:center;align-items:center;margin:0 0 25px; }
+.step-progress span { flex:1;padding:11px 8px;border-bottom:2px solid rgba(212,175,55,.19);color:var(--muted);font-size:12px;text-align:center; }
+.step-progress span.is-active { border-color:var(--gold-bright);color:var(--gold-bright); }
+.step-actions { display:flex;gap:12px;justify-content:flex-end;margin:8px 0 15px; }
+.step-primary,.step-secondary { border-radius:9px;padding:13px 20px;border:1px solid rgba(212,175,55,.35);cursor:pointer;font-weight:600; }
+.step-primary { background:linear-gradient(115deg,#f3dc9d,#b99734);color:#121017; }
+.step-secondary { color:var(--cream);background:transparent; }
+.ebced-language { position:relative;z-index:20; }
+.ebced-language summary { display:flex; gap:9px;align-items:center;cursor:pointer;list-style:none;white-space:nowrap;background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.28);padding:10px 13px;border-radius:9px;color:var(--gold-bright);font-size:13px; }
+.ebced-language summary::-webkit-details-marker { display:none; }
+.ebced-language-options { position:absolute;inset-inline-end:0;top:calc(100% + 8px);min-width:165px;padding:7px;background:#101421;border:1px solid rgba(212,175,55,.3);border-radius:12px;box-shadow:0 15px 40px #000a;display:grid;gap:2px; }
+.ebced-language-options a { display:block;color:var(--cream);font-size:13px;padding:11px;border-radius:7px;text-decoration:none; }
+.ebced-language-options a:hover,.ebced-language-options a[aria-current="page"] { background:rgba(212,175,55,.13); }
+.hidden,[hidden] { display:none !important; }
+@media(max-width:760px) { .shell {width:calc(100% - 26px);} .topbar {flex-wrap:wrap;}.brand-name {font-size:17px;}.form-grid {grid-template-columns:1fr;} .analysis-path-nav {grid-template-columns:1fr 1fr;} .analysis-path {font-size:12px;} .nav-actions {gap:7px;} .person-fieldset {padding:17px 13px;} .step-progress span{font-size:11px;} .hero h1 {font-size:clamp(29px,8vw,40px);} }
+@media(max-width:390px) { .home-link {font-size:11px;padding:8px;} .ebced-language summary {font-size:12px;padding:9px;} .step-actions {flex-direction:column-reverse;} .step-actions button {width:100%;} }
+
+
+    /* Result experience: refined editorial layout and clear separation of calculation methods */
+    .person-summary-card { border:1px solid rgba(212,175,55,.24); background:linear-gradient(145deg,#121525,#0b0d18); padding:clamp(21px,3.8vw,44px); }
+    .person-summary-card .card-head { align-items:center; }
+    .person-summary-card .person-title { font-size:clamp(28px,3.8vw,43px); letter-spacing:-.018em; }
+    .card-method-tag { color:var(--gold-bright);border:1px solid rgba(212,175,55,.24);border-radius:999px;padding:9px 13px;font-size:11px;white-space:nowrap;letter-spacing:.04em; }
+    .person-summary-card .arabic-display-box { min-height:106px;display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;padding:18px 26px;background:linear-gradient(100deg,rgba(6,8,17,.85),rgba(19,20,30,.65));border:1px solid rgba(212,175,55,.26);margin-top:21px; }
+    .person-summary-card .arabic-main { font-size:clamp(31px,3.7vw,48px);line-height:1.7;color:#ebd29a;overflow-wrap:anywhere;text-align:center; }
+    .person-summary-card .arabic-mom { font-size:clamp(21px,2vw,27px);line-height:1.6;color:#d3cbdb;overflow-wrap:anywhere;text-align:center; }
+    .arabic-hint { margin:7px 0 23px;color:var(--muted);font-size:11px;text-align:center; }
+    .symbol-guide { display:grid;grid-template-columns:1fr 1.45fr;gap:13px;margin-bottom:23px; }
+    .symbol-guide-item { padding:17px 19px;background:rgba(212,175,55,.028);border:1px solid rgba(212,175,55,.17);border-radius:11px;display:flex;flex-direction:column;gap:10px; }
+    .symbol-guide-birth { background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.33); }
+    .symbol-guide-label { font-size:11px;letter-spacing:.04em;color:var(--muted);font-weight:600;line-height:1.45; }
+    .symbol-guide-item strong { color:#e9dfc8;font-size:clamp(14px,1.3vw,17px);font-weight:600;line-height:1.4; }
+    .symbol-guide-birth strong { color:var(--gold-bright); }
+    .symbol-guide-separator { color:rgba(212,175,55,.55);padding:0 5px; }
+    .symbol-guide-details { grid-column:1/-1; border:1px solid rgba(212,175,55,.14);border-radius:11px;background:rgba(255,255,255,.013);padding:13px 18px; }
+    .symbol-guide-details summary { cursor:pointer;color:var(--gold-bright);font-weight:600;font-size:13px;line-height:1.5; }
+    .symbol-guide-details summary:focus-visible { outline:2px solid var(--gold-bright);outline-offset:4px; }
+    .symbol-guide-details p { color:var(--muted);line-height:1.7;font-size:13px;margin:10px 0 0; }
+    .symbol-guide-details .symbol-guide-formula { color:#f0deb7;font-size:12px; }
+    .symbol-guide-details .symbol-guide-caution { font-size:12px; }
+    .stats-grid { grid-template-columns:repeat(4,minmax(0,1fr));gap:12px; }
+    .stat-pill { min-width:0; padding:17px; background:#0b0d17;border:1px solid rgba(212,175,55,.12);border-radius:11px; }
+    .stat-label { font-size:11px;line-height:1.5;letter-spacing:.02em; }
+    .stat-val { font-size:clamp(24px,2.6vw,34px); }
+    @media(max-width:820px) { .stats-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:560px) {
+      .symbol-guide { grid-template-columns:1fr; }
+      .symbol-guide-details { grid-column:auto; }
+      .person-summary-card .arabic-display-box { padding:14px 10px;gap:8px; }
+      .person-summary-card .arabic-main { font-size:clamp(26px,7vw,38px); }
+      .card-method-tag { white-space:normal; }
+    }
+
+
+    /* Explanatory results: clear definitions, readable calculations, no decorative numbered cards */
+    .meaning-card,.readable-summary { padding:clamp(23px,3.2vw,40px);background:linear-gradient(145deg,#111524,#0a0d16); }
+    .meaning-header { max-width:740px; margin:0 0 22px; }
+    .meaning-kicker,.summary-eyebrow {font-size:11px;letter-spacing:.15em;font-weight:700;color:var(--gold-bright);}
+    .meaning-header h3,.readable-summary h2 {font:400 clamp(25px,3.2vw,36px)/1.22 var(--font-serif);color:#faf3e6;margin:10px 0 12px;}
+    .meaning-header p {font-size:15px;line-height:1.6;color:var(--muted);}
+    .meaning-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start;}
+    .meaning-row {min-width:0;background:#0b0e18;border:1px solid rgba(215,184,124,.18);border-radius:11px;overflow:hidden;}
+    .meaning-row[open] {border-color:rgba(215,184,124,.45);background:#101522;}
+    .meaning-row summary {min-height:66px;display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;list-style:none;}
+    .meaning-row summary::-webkit-details-marker {display:none;}
+    .meaning-row summary:focus-visible {outline:2px solid var(--gold-bright);outline-offset:-3px;}
+    .meaning-row summary>span:first-child {flex:1;font-size:13px;font-weight:600;line-height:1.5;color:#d9d7dd;}
+    .meaning-row summary strong {font:26px/1 var(--font-serif);color:#ebd296;}
+    .meaning-chevron {color:var(--gold-bright);font-size:19px;transition:transform .2s;}
+    .meaning-row[open] .meaning-chevron {transform:rotate(180deg);}
+    .meaning-answer {padding:0 18px 18px;font-size:13px;line-height:1.7;color:var(--muted);}
+    .meaning-answer p {margin:9px 0 0;}
+    .meaning-answer b {display:block;color:#e8d4a8;margin-bottom:2px;font-weight:600;}
+    .meaning-answer strong {color:#ebd296;}
+    .meaning-disclaimer {margin-top:20px;border-top:1px solid rgba(215,184,124,.15);padding-top:17px;color:var(--muted);font-size:12px;line-height:1.65;}
+    .readable-summary {border-color:rgba(212,175,55,.45);background:radial-gradient(ellipse at 100% 0%,rgba(171,129,52,.13),transparent 56%),#101421;}
+    .readable-summary>p {max-width:850px;font-size:15px;line-height:1.75;color:#d8d2c8;margin:11px 0;}
+    .readable-summary>p strong {color:#f0d79e;}
+    @media(max-width:700px){.meaning-grid{grid-template-columns:1fr}.meaning-card,.readable-summary{padding:21px 17px}.meaning-row summary{min-height:58px}.readable-summary>p{font-size:14px}}
+    @media(prefers-reduced-motion:reduce){.meaning-chevron{transition:none}}
+
+
+    /* Consent UI injected by the existing analytics/privacy pipeline.
+       Presentation only: no changes to consent storage, tracking or button actions. */
+    .consent-dialog {
+      position:fixed !important;inset:auto 18px 20px auto !important;
+      width:min(570px,calc(100vw - 36px)) !important;max-height:calc(100dvh - 36px) !important;
+      overflow-y:auto !important;box-sizing:border-box;z-index:99999 !important;
+      margin:0 !important;padding:0 !important;background:#10131e !important;
+      border:1px solid rgba(215,184,124,.4) !important;border-radius:17px !important;
+      box-shadow:0 24px 85px rgba(0,0,0,.74),0 0 42px rgba(194,151,76,.08) !important;
+      color:#f6f1e9 !important; font-family:system-ui,-apple-system,Segoe UI,sans-serif;
+    }
+    .consent-dialog .consent-panel {padding:24px !important;display:grid !important;gap:18px !important;align-items:start !important;background:none !important;}
+    .consent-dialog .consent-copy {min-width:0 !important;}
+    .consent-dialog .consent-copy strong {display:block;color:#eed49c !important;font:400 23px/1.25 Georgia,serif !important;letter-spacing:0 !important;margin-bottom:9px !important;}
+    .consent-dialog .consent-copy p {font-size:13px !important;line-height:1.7 !important;margin:0 !important;color:#cecbd4 !important;}
+    .consent-dialog .consent-copy a {color:#e9cf90 !important;text-decoration:underline !important;text-underline-offset:3px !important;}
+    .consent-dialog .consent-actions {display:flex !important;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:10px !important;}
+    .consent-dialog .consent-actions button {appearance:none;min-width:120px;min-height:43px;padding:10px 19px !important;margin:0 !important;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px !important;font-weight:600 !important;line-height:1.2 !important;border-radius:9px !important;}
+    .consent-dialog [data-consent-reject] {background:transparent !important;border:1px solid rgba(215,184,124,.4) !important;color:#f2e1bb !important;}
+    .consent-dialog [data-consent-accept] {background:linear-gradient(110deg,#f1d693,#be963f) !important;border:1px solid #dab566 !important;color:#11121a !important;}
+    .consent-dialog button:focus-visible,.consent-dialog a:focus-visible {outline:2px solid #ffe8a9 !important;outline-offset:3px !important;}
+    @media(max-width:600px){
+      .consent-dialog {inset:auto 12px 12px !important;width:calc(100vw - 24px) !important;max-height:50dvh !important;border-radius:14px !important;}
+      .consent-dialog .consent-panel {padding:18px !important;gap:14px !important;}
+      .consent-dialog .consent-actions {display:grid !important;grid-template-columns:1fr 1fr;}
+      .consent-dialog .consent-actions button {width:100% !important;min-width:0 !important;}
+    }
+
     /* Print Stylesheet */
     @media print {
       body { background: #fff !important; color: #000 !important; }
@@ -889,51 +1022,37 @@ export function ebcedPage(path, isPreview = true) {
       </a>
       <div class="nav-actions">
         <a href="${homeHref}" class="home-link">← ${lang === 'en' ? 'Home' : lang === 'el' ? 'Αρχική' : lang === 'es' ? 'Inicio' : 'Ana Sayfa'}</a>
-        <nav class="lang-pills" aria-label="Language Selector">
-          <a href="${currentTr}" class="${lang === 'tr' ? 'active' : ''}">TR</a>
-          <a href="${currentEn}" class="${lang === 'en' ? 'active' : ''}">EN</a>
-          <a href="${currentGr}" class="${lang === 'el' ? 'active' : ''}">GR</a>
-          <a href="${currentEs}" class="${lang === 'es' ? 'active' : ''}">ES</a>
-        </nav>
+        <details class="ebced-language"><summary aria-label="Language"><span>◎</span> ${lang === 'tr' ? 'Türkçe' : lang === 'en' ? 'English' : lang === 'el' ? 'Ελληνικά' : 'Español'} <span aria-hidden="true">⌄</span></summary><nav class="ebced-language-options" aria-label="Select language"><a ${lang==='tr'?'aria-current="page"':''} href="${currentTr}">Türkçe</a><a ${lang==='en'?'aria-current="page"':''} href="${currentEn}">English</a><a ${lang==='el'?'aria-current="page"':''} href="${currentGr}">Ελληνικά</a><a ${lang==='es'?'aria-current="page"':''} href="${currentEs}">Español</a></nav></details>
       </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
       <span class="eyebrow">${esc(t.badge)}</span>
-      <h1>${esc(t.title)}</h1>
-      <p class="lead">${esc(t.subtitle)}</p>
+      <h1>${esc((isComparison ? {tr:'İki Kişilik Ebced Uyumu',en:'Two-Person Abjad Reading',el:'Συμβολική Σύγκριση Δύο Προσώπων',es:'Comparación de Dos Personas'} : {tr:'Ebced & Numeroloji',en:'Abjad & Numerology',el:'Αμπτζάντ & Αριθμολογία',es:'Ábyad y Numerología'})[lang])}</h1>
+      <p class="lead">${esc(({tr:'İsimlerin harf değerlerini hesapla, geleneksel sembolizmi keşfet ve sonuçları adım adım incele.',en:'Calculate letter values, explore traditional symbolism, and review every step.',el:'Υπολογίστε τις αριθμητικές τιμές των γραμμάτων και εξερευνήστε τις συμβολικές ερμηνείες.',es:'Calcula valores de letras y explora sus interpretaciones simbólicas.'})[lang])}</p>
       <div class="telemetry-ribbon">
-        <span class="telemetry-tag">${esc(t.pillMath)}</span>
+        
         <span class="telemetry-tag">${esc(t.pillPrivacy)}</span>
-        <span class="telemetry-tag">${esc(t.pillSystems)}</span>
+        
       </div>
     </section>
 
-    <!-- Mode Selector -->
-    <div class="mode-toggle-card" role="radiogroup" aria-label="Analysis Mode">
-      <label class="mode-label">
-        <input type="radio" name="analysisMode" id="mode-personal" value="personal" checked>
-        <span>👤 ${esc(t.modePersonal)}</span>
-      </label>
-      <label class="mode-label">
-        <input type="radio" name="analysisMode" id="mode-compare" value="compare">
-        <span>👥 ${esc(t.modeCompare)}</span>
-      </label>
-    </div>
+    <nav class="analysis-path-nav" aria-label="Analysis selection">
+      <a class="analysis-path ${!isComparison ? 'is-current' : ''}" href="${personalUrls[lang]}" ${!isComparison ? 'aria-current="page"' : ''}>✦ ${esc(t.modePersonal)}</a>
+      <a class="analysis-path ${isComparison ? 'is-current' : ''}" href="${compareUrls[lang]}" ${isComparison ? 'aria-current="page"' : ''}>♡ ${esc(t.modeCompare)}</a>
+    </nav>
 
-    <!-- Main Form -->
-    <form id="ebced-form" class="panel" novalidate>
-      <!-- Person 1 -->
-      <div id="first-person-container">
+    <form id="ebced-form" class="panel" novalidate data-analysis-mode="${isComparison ? 'compare' : 'personal'}">
+      ${isComparison ? `<div class="step-progress" aria-label="Progress"><span data-step-marker="1" class="is-active">01 · ${esc(t.person1Legend)}</span><span data-step-marker="2">02 · ${esc(t.person2Legend)}</span></div>` : ''}
+      <div id="first-person-container" class="person-step">
         ${renderPersonBlock('a', t.person1Legend, t)}
       </div>
-
-      <!-- Person 2 (Revealed on Compare) -->
-      <div id="second-person-container" class="hidden">
+      ${isComparison ? `<div id="second-person-container" class="person-step hidden" hidden>
         ${renderPersonBlock('b', t.person2Legend, t)}
       </div>
-
+      <div class="step-actions"><button id="comparison-back" class="step-secondary hidden" type="button" hidden>← ${lang === 'tr' ? 'Önceki Kişi' : lang === 'es' ? 'Anterior' : lang === 'el' ? 'Πίσω' : 'Previous person'}</button>
+      <button id="comparison-next" class="step-primary" type="button">${lang === 'tr' ? 'İkinci Kişiye Geç' : lang === 'es' ? 'Continuar con la segunda persona' : lang === 'el' ? 'Συνέχεια στο δεύτερο άτομο' : 'Continue to second person'} →</button></div>` : ''}
       <!-- Advanced Calculation Parameters -->
       <details class="config-accordion">
         <summary class="config-summary">
@@ -964,7 +1083,7 @@ export function ebcedPage(path, isPreview = true) {
         </div>
       </details>
 
-      <button type="submit" class="btn-submit">${esc(t.submitBtn)}</button>
+      <button type="submit" class="btn-submit ${isComparison ? 'hidden' : ''}" ${isComparison ? 'hidden' : ''}>${esc(t.submitBtn)}</button>
     </form>
 
     <!-- Results Section -->
