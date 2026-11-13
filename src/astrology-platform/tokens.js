@@ -3212,6 +3212,24 @@ html[dir="rtl"] .retro-guidance-box {
   .astro-header-actions .astro-cta-gold { display: none !important; }
 }
 
+/* Photographic heritage artifact: CC0 Met Museum image, replacing abstract glyph placeholder. */
+.astro-ebced-feature .astro-ebced-photo-frame{
+ width:min(100%,390px);height:clamp(340px,37vw,470px);aspect-ratio:auto;
+ position:relative;display:block;overflow:hidden;margin:0;isolation:isolate;
+ border-radius:16px;border:1px solid rgba(224,184,108,.3);
+ background:linear-gradient(145deg,#151822,#0a0c12);
+ box-shadow:0 24px 78px rgba(0,0,0,.34),0 0 65px rgba(160,111,50,.08);
+}
+.astro-ebced-photo-frame::before{
+ content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
+ background:linear-gradient(180deg,rgba(6,8,15,.03) 48%,rgba(5,7,11,.72) 100%),radial-gradient(ellipse at center,transparent 22%,rgba(6,7,13,.2) 90%);
+}
+.astro-ebced-photo{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.32) saturate(.81) contrast(1.12) brightness(.77);transition:transform .55s ease,filter .55s ease}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.astro-ebced-photo-frame:hover .astro-ebced-photo{transform:scale(1.035);filter:sepia(.25) saturate(.88) contrast(1.14) brightness(.85)}}
+.astro-ebced-photo-frame figcaption{position:absolute;bottom:18px;left:20px;right:12px;z-index:2;color:#d7bf88;font-size:10px;letter-spacing:.11em;line-height:1.6;text-shadow:0 2px 8px #000}
+@media(max-width:900px){.astro-ebced-feature .astro-ebced-photo-frame{width:min(100%,380px);height:350px;margin-inline:auto;}}
+@media(max-width:440px){.astro-ebced-feature .astro-ebced-photo-frame{width:min(100%,340px);height:300px}}
+
 /* Mythborn layout refinement · compact premium header + centered discovery */
 .astro-header { overflow:visible !important; }
 .astro-nav-desktop { font-size:12.5px; letter-spacing:.065em; gap:clamp(14px,1.6vw,27px); }
