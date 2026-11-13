@@ -159,6 +159,13 @@ export const renderAstrologyLayout = ({
     { key: 'calendar', label: t.menu.calendar }
   ];
 
+  // Preview-only navigation: frequency prototype is deliberately not exposed in production.
+  const frequencyTitle = ({ tr: 'Frekans Stüdyosu', en: 'Frequency Studio', el: 'Στούντιο Συχνοτήτων', es: 'Estudio de Frecuencias', ar: 'استوديو الترددات' })[locale] || 'Frequency Studio';
+  const frequencyHref = '/frekans-studyo';
+  const frequencyDesktopLink = isPreview
+    ? `<a class="astro-nav-frequency" href="${frequencyHref}">${safe(frequencyTitle)}</a>`
+    : '';
+
   const primaryLinksHtml = desktopPrimaryNav
     .map((item) => {
       const href = getRouteHref(locale, item.key);
@@ -193,6 +200,7 @@ export const renderAstrologyLayout = ({
     { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
     { key: 'zodiac', label: t.menu.zodiac },
     { key: 'calendar', label: t.menu.calendar },
+    ...(isPreview ? [{ key: 'frequency', label: frequencyTitle }] : []),
     { key: 'horoscopes', label: locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Daily Horoscopes' : locale === 'el' ? 'Ημερήσιες Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'توقعات الأبراج' },
     { key: 'transits', label: t.menu.transits },
     { key: 'retros', label: t.menu.retros },
@@ -204,7 +212,7 @@ export const renderAstrologyLayout = ({
 
   const drawerNavHtml = allDrawerItems
     .map((item) => {
-      const href = getRouteHref(locale, item.key);
+      const href = item.key === 'frequency' ? frequencyHref : getRouteHref(locale, item.key);
       const activeAttr = item.key === currentRouteKey ? ' aria-current="page"' : '';
       return `<a href="${href}"${activeAttr}><span>✦ ${safe(item.label)}</span><span aria-hidden="true">${isRtl ? '←' : '→'}</span></a>`;
     })
@@ -342,6 +350,7 @@ export const renderAstrologyLayout = ({
 
         <nav class="astro-nav-desktop" aria-label="Primary Navigation">
           ${primaryLinksHtml}
+          ${frequencyDesktopLink}
           ${dropdownHtml}
         </nav>
 
