@@ -3224,7 +3224,7 @@ html[dir="rtl"] .retro-guidance-box {
  content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
  background:linear-gradient(180deg,rgba(6,8,15,.03) 48%,rgba(5,7,11,.72) 100%),radial-gradient(ellipse at center,transparent 22%,rgba(6,7,13,.2) 90%);
 }
-.astro-ebced-photo{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.32) saturate(.81) contrast(1.12) brightness(.77);transition:transform .55s ease,filter .55s ease}
+.astro-ebced-photo{width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.22) saturate(.93) contrast(1.09) brightness(.93);transition:transform .55s ease,filter .55s ease}
 @media(hover:hover) and (prefers-reduced-motion:no-preference){.astro-ebced-photo-frame:hover .astro-ebced-photo{transform:scale(1.035);filter:sepia(.25) saturate(.88) contrast(1.14) brightness(.85)}}
 .astro-ebced-photo-frame figcaption{position:absolute;bottom:18px;left:20px;right:12px;z-index:2;color:#d7bf88;font-size:10px;letter-spacing:.11em;line-height:1.6;text-shadow:0 2px 8px #000}
 @media(max-width:900px){.astro-ebced-feature .astro-ebced-photo-frame{width:min(100%,380px);height:350px;margin-inline:auto;}}
