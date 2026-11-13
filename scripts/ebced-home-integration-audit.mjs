@@ -20,6 +20,7 @@ for (const [locale, pathname, ebcedUrl, heading] of languages) {
   assert.match(previewHome,/id="frequency-studio"/,`${locale} preview should show frequency promo`);
   assert.match(previewHome,/href="\/frekans-studyo"/,`${locale} frequency promo link`);
   const desktopPreview=renderAstrologyLayout({locale,isPreview:true,contentHtml:previewHome});
+  assert.doesNotMatch(desktopPreview,/<a class="astro-cta-gold"[^>]*>/,`${locale} header CTA should not duplicate home hero`);
   assert.match(desktopPreview,/class="astro-nav-frequency"/,`${locale} preview desktop nav`);
   assert.match(desktopPreview,/href="\/frekans-studyo"/,`${locale} preview studio nav href`);
   const desktopProd=renderAstrologyLayout({locale,isPreview:false,contentHtml:liveHome});
