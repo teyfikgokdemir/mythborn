@@ -20,6 +20,7 @@ import {notFoundPage,searchPage} from './localized-static-pages.js';
 import {decorate} from './page-decorator.js';
 import {discoveryPage,discoveryMeta} from './discovery-core.js';
 import {culturalLocale,culturalPage,culturalSitemapEntries,isCulturalPath} from './cultural-platform.js';
+import {ebcedPath,ebcedPage} from './ebced-page.js';
 import {handleAstrologyRequest,isAstrologyPlatformPath} from './astrology-platform/router.js';
 import {generateAstrologySitemapEntries} from './astrology-platform/sitemap.js';
 import {
@@ -87,6 +88,8 @@ export default {
     const retiredEditorial=new Set(["merkur-ve-gezegen-retrolari-rehberi","tutulma-mevsimi-ve-kader-kavsagi","katina-ask-acilimi-ve-iliski-dinamikleri","tarot-major-arkana-kader-karti-sifreleri","kahve-fali-sembolizmi-fincandaki-isaretler","dogum-haritasinda-7-ev-venus-ve-juno","saturn-dongusu-ve-hayat-sinavlari","numeroloji-ve-kisisel-yil-hesaplama","yildizname-gelenegi-ve-dort-element-mizaci","duru-goru-ve-sezgisel-farkindalik-rehberi"]);
     const retiredSlug=inactivePath.startsWith('/blog/')?inactivePath.slice(6):'';
     if(retiredPages.has(inactivePath)||retiredEditorial.has(retiredSlug))return new Response('Content unavailable',{status:410,headers:{'content-type':'text/plain; charset=utf-8','cache-control':'no-store','x-robots-tag':'noindex'}});
+    // Isolated preview of the symbolic calculator; production launch remains gated.
+    if(env.ENVIRONMENT==='preview' && ebcedPath(incoming.pathname) && (request.method==='GET'||request.method==='HEAD'))return new Response(request.method==='HEAD'?null:ebcedPage(incoming.pathname),{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}});
     // User-approved 4 Nov 2026 independent astrology experience (Worker version 64019e2c).
     // Retired personal media and editorial routes are rejected above before this routing.
     if((env.ASTROLOGY_PLATFORM_ENABLED==='true'||(env.ENVIRONMENT==='preview'&&env.ASTROLOGY_PREVIEW_ENABLED==='true'))
@@ -102,6 +105,7 @@ export default {
       if(pathname==='/sitemap.xml')return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>',{headers:{'content-type':'text/html; charset=utf-8'.replace('text/html','application/xml'),'cache-control':'no-store'}});
       if(!pathname.startsWith('/api/') && !/\.[a-z0-9]{2,8}$/i.test(pathname) && !pathname.startsWith('/cdn-cgi/'))return new Response(request.method==='HEAD'?null:comingSoonPage(pathname),{headers:{'content-type':'text/html; charset=utf-8','content-language':comingSoonLocale(pathname),'cache-control':'no-store'}});
     }
+    if(ebcedPath(incoming.pathname) && (request.method==='GET'||request.method==='HEAD'))return new Response(request.method==='HEAD'?null:ebcedPage(incoming.pathname),{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}});
     if(isCulturalPath(incoming.pathname))return new Response(culturalPage(incoming.pathname),{headers:{'content-type':'text/html; charset=utf-8','content-language':culturalLocale(incoming.pathname),'cache-control':'public, max-age=300'}});
     if(incoming.pathname==='/el'||incoming.pathname.startsWith('/el/')){
       incoming.pathname='/gr'+incoming.pathname.slice(3);
