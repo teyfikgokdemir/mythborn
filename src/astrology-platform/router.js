@@ -90,38 +90,38 @@ export const handleAstrologyRequest = (request, env) => {
       break;
     case 'calendar':
       contentHtml = renderSkyCalendarView({ locale });
-      title = `${t.menu.calendar} ve Ay Evreleri`;
+      title = ({tr:'Gökyüzü Takvimi ve Ay Evreleri',en:'Sky Calendar and Moon Phases',el:'Ουράνιο Ημερολόγιο και Φάσεις Σελήνης',es:'Calendario Celeste y Fases Lunares',ar:'التقويم الفلكي ومراحل القمر'})[locale];
       description = t.sections.skySub;
       break;
     case 'retros':
       contentHtml = renderRetrogradesView({ locale });
-      title = `${t.menu.retros} Takvimi`;
-      description = 'Gezegen retroları ve gölge dönemleri rehberi.';
+      title = ({tr:'Gezegen Retroları Takvimi',en:'Planetary Retrogrades Calendar',el:'Ημερολόγιο Ανάδρομων Πλανητών',es:'Calendario de Planetas Retrógrados',ar:'تقويم تراجع الكواكب'})[locale];
+      description = ({tr:'Gezegen retroları ve gölge dönemleri rehberi.',en:'Explore planetary retrograde cycles and their shadow periods.',el:'Εξερευνήστε τους ανάδρομους κύκλους των πλανητών και τις περιόδους σκιάς τους.',es:'Explora los ciclos retrógrados de los planetas y sus períodos de sombra.',ar:'استكشف دورات تراجع الكواكب وفترات الظل المرتبطة بها.'})[locale];
       break;
     case 'transits':
       contentHtml = renderTransitsView({ locale });
-      title = `${t.menu.transits} ve Açı Dinamikleri`;
-      description = 'Canlı gezegen transitleri ve geometrik açılar.';
+      title = ({tr:'Gezegen Transitleri ve Açı Dinamikleri',en:'Planetary Transits and Aspects',el:'Πλανητικές Διελεύσεις και Όψεις',es:'Tránsitos Planetarios y Aspectos',ar:'عبور الكواكب والزوايا الفلكية'})[locale];
+      description = ({tr:'Canlı gezegen transitleri ve geometrik açılar.',en:'Explore current planetary transits and geometric aspects.',el:'Δείτε τις τρέχουσες πλανητικές διελεύσεις και τις γεωμετρικές όψεις.',es:'Consulta los tránsitos planetarios actuales y sus aspectos geométricos.',ar:'استكشف عبور الكواكب الحالي والزوايا الهندسية بينها.'})[locale];
       break;
     case 'synastry':
       contentHtml = renderSynastryView({ locale, searchParams });
-      title = `${t.menu.synastry} ve Çift Haritası Uyumu`;
-      description = 'İki harita arası ilişki ve uyum dinamikleri.';
+      title = ({tr:'Sinastri ve Çift Haritası Uyumu',en:'Synastry and Birth Chart Compatibility',el:'Συναστρία και Συμβατότητα Γενέθλιων Χαρτών',es:'Sinastría y Compatibilidad de Cartas Natales',ar:'التوافق الفلكي ومقارنة خرائط الميلاد'})[locale];
+      description = ({tr:'İki harita arası ilişki ve uyum dinamikleri.',en:'Compare two birth charts to explore symbolic relationship dynamics.',el:'Συγκρίνετε δύο γενέθλιους χάρτες για να εξερευνήσετε συμβολικά τη δυναμική μιας σχέσης.',es:'Compara dos cartas natales para explorar dinámicas simbólicas de pareja.',ar:'قارن بين خريطتي ميلاد لاستكشاف ديناميكيات العلاقة بصورة رمزية.'})[locale];
       break;
     case 'glossary':
       contentHtml = renderGlossaryView({ locale });
-      title = `${t.menu.glossary} ve Temel Kavramlar`;
+      title = ({tr:'Astroloji Sözlüğü ve Temel Kavramlar',en:'Astrology Glossary and Key Concepts',el:'Αστρολογικό Λεξικό και Βασικές Έννοιες',es:'Glosario de Astrología y Conceptos Clave',ar:'قاموس التنجيم والمفاهيم الأساسية'})[locale];
       description = t.sections.glossarySub;
       break;
     case 'learning':
       contentHtml = renderLearningCenterView({ locale });
-      title = 'Astroloji Öğrenme Merkezi';
-      description = 'Kozmik okuryazarlık, doğum haritası, evler ve açılar rehberliği.';
+      title = ({tr:'Astroloji Öğrenme Merkezi',en:'Astrology Learning Center',el:'Κέντρο Εκμάθησης Αστρολογίας',es:'Centro de Aprendizaje de Astrología',ar:'مركز تعلم التنجيم'})[locale];
+      description = ({tr:'Kozmik okuryazarlık, doğum haritası, evler ve açılar rehberliği.',en:'Learn the basics of birth charts, astrological houses and planetary aspects.',el:'Μάθετε τα βασικά των γενέθλιων χαρτών, των αστρολογικών οίκων και των πλανητικών όψεων.',es:'Aprende los fundamentos de las cartas natales, las casas y los aspectos planetarios.',ar:'تعرف على أساسيات خرائط الميلاد والبيوت الفلكية والزوايا بين الكواكب.'})[locale];
       break;
     case 'horoscopes':
       contentHtml = renderHoroscopesView({ locale, searchParams });
-      title = '12 Burç Günlük Gökyüzü Yorumları';
-      description = 'Astronomik verilere dayalı etik ve bilinçli burç rehberliği.';
+      title = ({tr:'12 Burç Günlük Gökyüzü Yorumları',en:'Daily Horoscopes for All 12 Zodiac Signs',el:'Ημερήσιες Προβλέψεις για τα 12 Ζώδια',es:'Horóscopos Diarios de los 12 Signos',ar:'الأبراج اليومية للعلامات الاثنتي عشرة'})[locale];
+      description = ({tr:'Astronomik verilere dayalı etik ve bilinçli burç rehberliği.',en:'Explore reflective daily zodiac guidance informed by astronomical data.',el:'Διαβάστε ημερήσιες συμβολικές ερμηνείες των ζωδίων με βάση αστρονομικά δεδομένα.',es:'Explora orientaciones simbólicas diarias para cada signo basadas en datos astronómicos.',ar:'استكشف قراءات يومية رمزية للأبراج تستند إلى بيانات فلكية.'})[locale];
       break;
     case 'approach':
       contentHtml = renderApproachView({ locale });
