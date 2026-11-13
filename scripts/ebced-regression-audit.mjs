@@ -120,6 +120,20 @@ for (const item of ['greater','lesser','maternal','expression','soul','personali
 for(const token of ['.consent-dialog','[data-consent-reject]','[data-consent-accept]','.meaning-grid','.readable-summary']) {
   assert.ok(page.includes(token), 'style missing: '+token);
 }
+// Premium UI & guidance: localized interpretation, accessible selector and single-line desktop intro.
+for (const lang of ['tr','en','el','es']) {
+ const route = {tr:'/ebced',en:'/en/ebced',el:'/gr/ebced',es:'/es/ebced'}[lang];
+ const rendered=ebcedPage(route,true);
+ assert.match(rendered,/id="ebced-guide-heading"/,`guide missing: ${lang}`);
+ assert.match(rendered,/ebced-language-globe/,`language selector missing: ${lang}`);
+ assert.match(rendered,/class="ebced-guide-grid"/,`guide layout missing: ${lang}`);
+}
+assert.match(page,/\.hero \.lead\{max-width:none;width:100%;/);
+assert.match(page,/white-space:nowrap/);
+assert.match(page,/EBCEd_GUIDE/);
+assert.match(page,/sayısal değerler atayan tarihsel/);
+assert.match(page,/aria-label="Languages"/);
+
 // 9. Template markup assertions
 assert.match(page, /name="abjadSystem"/, 'markup must include abjadSystem selector');
 assert.match(page, /name="taValue"/, 'markup must include taValue selector');
