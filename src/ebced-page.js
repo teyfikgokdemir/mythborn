@@ -193,7 +193,7 @@ function renderPersonBlock(id, legend, t) {
   `;
 }
 
-export function ebcedPage(path) {
+export function ebcedPage(path, isPreview = true) {
   const lang = path.startsWith('/en/') ? 'en'
     : path.startsWith('/gr/') ? 'el'
     : path.startsWith('/es/') ? 'es'
@@ -224,7 +224,7 @@ export function ebcedPage(path) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="robots" content="noindex,follow">
+  <meta name="robots" content="${isPreview ? 'noindex,follow' : 'index,follow'}">
   <meta name="theme-color" content="#05070e">
   <title>${esc(t.metaTitle)}</title>
   <meta name="description" content="${esc(t.metaDesc)}">
