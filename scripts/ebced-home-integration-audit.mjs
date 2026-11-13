@@ -19,7 +19,7 @@ for (const [locale, pathname, ebcedUrl, heading] of languages) {
   assert.equal((home.match(/astro-ebced-feature-inner/g) || []).length, 1, `${locale} feature is single panel`);
   assert.ok(home.includes(heading), `${locale} feature is translated`);
   assert.ok(home.includes('astro-ebced-photo-frame'), `${locale} authentic imagery is present`);
-  assert.ok(home.includes('upload.wikimedia.org'), `${locale} Met museum CC0 asset is used`);
+  assert.ok(home.includes('/images/ebced-heritage.svg'), `${locale} first-party image is used`);
   assert.ok(home.includes('figcaption'), `${locale} image source is identified`);
   assert.ok(home.includes(`href="${ebcedUrl}"`), `${locale} feature links to tool`);
   assert.ok(home.indexOf('<!-- 1. Hero:') < home.indexOf('astro-ebced-feature'), `${locale} feature follows hero`);
