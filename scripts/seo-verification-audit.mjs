@@ -63,6 +63,19 @@ for (const path of coreRoutes) {
   add(!/\bundefined\b/i.test(result.body), `[Undefined Render] ${path} contains undefined`);
   add(result.body.includes('<link rel="canonical"'), `[Canonical Missing] ${path}`);
   add(result.body.includes('hreflang="en"'), `[Hreflang Missing] ${path} has no English alternate`);
+  add(result.body.includes('class="astro-skip-link" href="#main-content"'), `[Skip Link] ${path} is missing the astrology skip link`);
+}
+
+const localizedAstrologyHomes = ['/', '/en', '/gr', '/es', '/ar'];
+for (const path of localizedAstrologyHomes) {
+  const result = await fetchPath(path);
+  const legalColumn = result.body.match(/<div class="astro-footer-col astro-footer-col-legal">([\s\S]*?)<\/div>/)?.[1] || '';
+  const legalHrefs = [...legalColumn.matchAll(/<a href="([^"]+)"/g)].map(match => match[1]);
+  add(legalHrefs.length === 4, `[Legal Footer] ${path} exposes ${legalHrefs.length} links, expected 4`);
+  for (const href of legalHrefs) {
+    const destination = await fetchPath(href);
+    add(destination.status === 200, `[Legal Footer] ${path} links to ${href}, which returned HTTP ${destination.status}`);
+  }
 }
 
 for (const [path, expectedHeading] of [

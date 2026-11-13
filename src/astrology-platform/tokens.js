@@ -58,6 +58,26 @@ a {
   transition: color 0.2s ease;
 }
 
+.astro-skip-link {
+  position: fixed;
+  inset-block-start: 12px;
+  inset-inline-start: 16px;
+  z-index: 2000;
+  padding: 11px 16px;
+  border-radius: 12px;
+  background: var(--cream);
+  color: var(--bg);
+  font-weight: 700;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease-out;
+}
+
+.astro-skip-link:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
 button, input, select, textarea {
   font: inherit;
 }
@@ -2145,6 +2165,27 @@ html[dir="rtl"] .retro-guidance-box {
   box-shadow: 0 12px 32px rgba(212, 175, 55, 0.5);
 }
 
+@media (max-width: 900px) {
+  .natal-stage-viewport {
+    align-items: flex-start;
+  }
+  .natal-console-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .natal-stage-viewport {
+    padding-block: 28px;
+  }
+  .natal-astrolabe-box {
+    padding: 22px 18px;
+  }
+  .natal-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Haute Horlogerie Lunation Showcase Corridor */
 .lunation-card-grid {
   display: grid;
@@ -3199,6 +3240,7 @@ html[dir="rtl"] .retro-guidance-box {
   @keyframes mythborn-ebced-orbit { to { transform: rotate(360deg); } }
 }
 @media (prefers-reduced-motion: reduce) {
+  .astro-skip-link { transition: none; }
   .astro-ebced-orbit { animation: none !important; }
 }
 
