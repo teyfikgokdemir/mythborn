@@ -7,6 +7,7 @@ export const getRouteHref = (localeKey, routeKey = 'home') => {
 
   const routes = {
     home: p || '/',
+    ebced: localeKey === 'ar' ? '/ebced' : `${p}/ebced`,
     natal: `${p}${localeKey === 'tr' ? '/dogum-haritasi' : localeKey === 'en' ? '/birth-chart' : localeKey === 'el' ? '/genethlios-chartis' : localeKey === 'es' ? '/carta-natal' : '/kharitat-almilad'}`,
     zodiac: `${p}${localeKey === 'tr' ? '/burclar' : localeKey === 'en' ? '/zodiac-signs' : localeKey === 'el' ? '/zodia' : localeKey === 'es' ? '/signos-del-zodiaco' : '/al-abraj'}`,
     calendar: `${p}${localeKey === 'tr' ? '/gokyuzu-takvimi' : localeKey === 'en' ? '/sky-calendar' : localeKey === 'el' ? '/imerologio-ouranou' : localeKey === 'es' ? '/calendario-celeste' : '/altaqwim-alfalaki'}`,
@@ -60,14 +61,13 @@ export const renderAstrologyLayout = ({
 
   const clean = (txt) => (txt || '').replace(/[→←\s]+$/, '');
 
-  const langSwitcherHtml = langCodes
-    .map((code, idx) => {
-      const activeClass = code === locale ? ' is-active' : '';
-      const href = getRouteHref(code, currentRouteKey);
-      const link = `<a href="${href}" lang="${code}" class="${activeClass}" data-lang-switch="${code}">${langLabels[code]}</a>`;
-      return idx < langCodes.length - 1 ? `${link}<span class="astro-lang-dot" aria-hidden="true">·</span>` : link;
-    })
-    .join('');
+  const langSwitcherHtml = `
+    <details class="astro-lang-select">
+      <summary aria-label="${locale === 'tr' ? 'Dil seç' : locale === 'ar' ? 'اختر اللغة' : 'Select language'}"><span aria-hidden="true">◎</span><span class="astro-lang-current">${langFullNames[locale]}</span><span class="astro-lang-chevron" aria-hidden="true">▾</span></summary>
+      <div class="astro-lang-options" role="group" aria-label="Languages">
+        ${langCodes.map(code => `<a href="${getRouteHref(code, currentRouteKey)}" lang="${code}"${code === locale ? ' aria-current="page"' : ''}><span>${langLabels[code]}</span><span>${langFullNames[code]}</span></a>`).join('')}
+      </div>
+    </details>`;
 
   const drawerLangHtml = langCodes.map((code) => {
     const isCur = code === locale;
@@ -154,7 +154,9 @@ export const renderAstrologyLayout = ({
   // Primary desktop navigation items (NO redundant "Ana Sayfa" in navbar!)
   const desktopPrimaryNav = [
     { key: 'natal', label: t.menu.natal },
+    { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
     { key: 'zodiac', label: t.menu.zodiac },
+    { key: 'ebced', label: locale === 'tr' ? 'Ebced' : locale === 'ar' ? 'الأبجد' : locale === 'el' ? 'Αμπτζάντ' : locale === 'es' ? 'Ábyad' : 'Abjad' },
     { key: 'calendar', label: t.menu.calendar },
     { key: 'horoscopes', label: locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Horoscopes' : locale === 'el' ? 'Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'الأبراج' }
   ];
@@ -348,9 +350,7 @@ export const renderAstrologyLayout = ({
             <span>${safe(clean(t.menu.ctaQuick))}</span>
             <span aria-hidden="true">${isRtl ? '←' : '→'}</span>
           </a>
-          <div class="astro-lang-pills" aria-label="Language Selector">
-            ${langSwitcherHtml}
-          </div>
+          ${langSwitcherHtml}
           <button type="button" class="astro-menu-btn" data-drawer-open aria-expanded="false" aria-controls="astro-mobile-drawer" aria-label="Menu">
             <span aria-hidden="true">☰</span>
           </button>
