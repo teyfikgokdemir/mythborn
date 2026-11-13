@@ -89,4 +89,4 @@ assert.match(page, /id="mode-compare"/, 'markup must include mode-compare');
 assert.match(page, /id="second-person-container"/, 'markup must include second-person-container');
 assert.match(page, /WebApplication/, 'markup must include WebApplication schema');
 
-console.log(`ebced-regression-audit: ${cases.length} arithmetic cases, Person 1/2 fixtures, Numerology, Master Numbers, and route assertions PASS`);
+console.log(`ebced-regression-audit: ${cases.length} arithmetic cases, synthetic fixtures, Numerology, Master Numbers, and route assertions PASS`);
