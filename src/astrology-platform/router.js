@@ -2,6 +2,7 @@
 import { ASTROLOGY_LOCALES } from './i18n.js';
 import { renderAstrologyLayout, getRouteHref } from './layout.js';
 import { renderHomeView } from './pages/home.js';
+import { renderContactView } from './pages/contact.js';
 import { renderNatalChartView } from './pages/natal-chart.js';
 import { renderZodiacIndexView } from './pages/zodiac.js';
 import { renderSkyCalendarView } from './pages/sky-calendar.js';
@@ -27,6 +28,7 @@ export const matchAstrologyRoute = (pathname = '/') => {
   const clean = pathname.toLowerCase().replace(/^\/(?:en|gr|el|es|ar)(?=\/|$)/, '') || '/';
 
   if (clean === '/' || clean === '') return 'home';
+  if (['/iletisim','/contact','/epikoinonia','/contacto','/alittisal'].includes(clean)) return 'contact';
   if (clean === '/dogum-haritasi' || clean === '/birth-chart' || clean === '/genethlios-chartis' || clean === '/carta-natal' || clean === '/kharitat-almilad') return 'natal';
   if (clean === '/burclar' || clean === '/12-burc' || clean === '/burc-rehberi' || clean === '/zodiac-signs' || clean === '/zodia' || clean === '/signos-del-zodiaco' || clean === '/al-abraj') return 'zodiac';
   if (clean === '/gokyuzu-takvimi' || clean === '/sky-calendar' || clean === '/imerologio-ouranou' || clean === '/calendario-celeste' || clean === '/altaqwim-alfalaki') return 'calendar';
@@ -126,6 +128,11 @@ export const handleAstrologyRequest = (request, env) => {
       title = ({ tr: 'Yöntem, Etik İlkeler ve Sınırlarımız', en: 'Methodology, Ethics and Boundaries', el: 'Μεθοδολογία, Ηθική και Όρια', es: 'Metodología, Ética y Límites', ar: 'المنهج والأخلاقيات والحدود' }[locale] || 'Methodology, Ethics and Boundaries');
       description = ({ tr: 'Matematiksel kesinlik, açık astronomi ve determinizmin reddi.', en: 'How Mythborn calculates astronomical positions and presents astrology as symbolic, non-deterministic reflection.', el: 'Η μεθοδολογία, τα ηθικά όρια και η συμβολική προσέγγιση του Mythborn.', es: 'La metodología, los límites éticos y el enfoque simbólico de Mythborn.', ar: 'منهجية Mythborn وحدودها الأخلاقية ونهجها الرمزي.' }[locale] || t.hero.lead);
       faqItems = getApproachFaqItems({ locale });
+      break;
+    case 'contact':
+      contentHtml = renderContactView({ locale });
+      title = ({tr:'İletişim ve Destek',en:'Contact and Support',el:'Επικοινωνία και Υποστήριξη',es:'Contacto y Soporte',ar:'التواصل والدعم'})[locale];
+      description = ({tr:'Mythborn destek, teknik sorular ve iş birlikleri için iletişim adresleri.',en:'Contact Mythborn for support, technical questions and collaborations.',el:'Επικοινωνήστε με το Mythborn για υποστήριξη και συνεργασίες.',es:'Contacta con Mythborn para soporte y colaboraciones.',ar:'تواصل مع Mythborn للدعم والتعاون.'})[locale];
       break;
     case 'home':
     default:
