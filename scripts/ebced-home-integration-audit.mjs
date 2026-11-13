@@ -49,6 +49,9 @@ const css = readFileSync(new URL('../src/astrology-platform/tokens.js', import.m
 assert.match(css, /\.astro-ebced-feature-inner\s*\{/);
 assert.match(css,/\.astro-ebced-photo-frame/);
 assert.match(css,/\.astro-ebced-photo/);
+assert.match(css,/immersive Ebced direction/);
+assert.match(css,/\.astro-ebced-feature \.astro-ebced-photo-frame\{position:absolute!important/);
+assert.match(css,/\.astro-ebced-feature \.astro-ebced-feature-copy\{position:relative/);
 assert.match(css, /\.astro-lang-options\s*\{/);
 assert.match(css, /prefers-reduced-motion:\s*reduce/);
 assert.match(css, /max-width:\s*1180px/);
