@@ -17,7 +17,7 @@
     return;
   }
   let chosen = 432;
-  let chosenLabel = 'Yumuşak ton';
+  let chosenLabel = 'Alternatif Akort (A4)';
   let ctx = null;
   let oscillators = [];
   let masterGain = null;
