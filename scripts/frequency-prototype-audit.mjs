@@ -43,6 +43,18 @@ assert.doesNotMatch(script,/\.play\(\)/);
 assert.doesNotMatch(html,/onload=|autoplay/);
 assert.match(router,/env\.ENVIRONMENT==='preview' && frequencyPrototypePath/);
 assert.doesNotMatch(router,/else if\(frequencyPrototypePath/);
+
+// Pure tone guarantee: one oscillator, no layered ratios or additional generated tones.
+assert.match(script,/oscillator = ctx\.createOscillator\(\)/);
+assert.match(script,/oscillator\.type = 'sine'/);
+assert.match(script,/oscillator\.frequency\.setValueAtTime\(chosen, ctx\.currentTime\)/);
+assert.equal((script.match(/ctx\.createOscillator\(\)/g)||[]).length,1,'exactly one oscillator required');
+assert.doesNotMatch(script,/ratio:\s*\.5|ratio:\s*1\.5|const voices\s*=/,'mixed subharmonics are forbidden');
+assert.match(script,/const MAX_GAIN = 0\.25/,'safe audio output bound changed unexpectedly');
+assert.match(script,/\(Number\(volume\.value\) \/ 30\) \* MAX_GAIN/);
+assert.match(html,/SAF SİNÜS SİNYALİ/);
+assert.match(html,/tek bir saf sinüs dalgası/);
+
 new vm.Script(script,{filename:'public/frequency-studio.js'});
 assert.ok(html.length>9000);
-console.log('frequency-prototype-audit: route, noindex, 4 tones, safe playback, mobile and CSP-friendly script PASS');
+console.log('frequency-prototype-audit: route, noindex, 11 pure sine tones, capped gain and safe playback, mobile and CSP-friendly script PASS');
