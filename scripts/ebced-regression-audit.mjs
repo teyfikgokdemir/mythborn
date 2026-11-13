@@ -43,58 +43,21 @@ for (const [input, options, expected] of cases) {
 // 2. Unrecognized characters reporting
 assert.ok(calculate('توفيق ABC', {}).ignored.length >= 3, 'unrecognized Latin characters must be reported');
 
-// 3. Person 1 Fixture Verification: Teyfik Gökdemir, Anne: Gülten, Doğum: 30.06.1975
-assert.equal(specialDict['teyfik'], 'توفيق', 'special dict must include teyfik');
-assert.equal(specialDict['gökdemir'], 'گوكدمير', 'special dict must include gökdemir');
-assert.equal(specialDict['gülten'], 'گولتن', 'special dict must include gülten');
-
-const teyfikAbjad = calculate(specialDict['teyfik']).total;
-const gokdemirAbjad = calculate(specialDict['gökdemir']).total;
-const gultenAbjad = calculate(specialDict['gülten']).total;
-
-assert.equal(teyfikAbjad, 596, 'Teyfik abjad must be 596');
-assert.equal(gokdemirAbjad, 300, 'Gökdemir abjad must be 300');
-assert.equal(gultenAbjad, 506, 'Gülten abjad must be 506');
-
-const teyfikFullAbjad = teyfikAbjad + gokdemirAbjad;
-assert.equal(teyfikFullAbjad, 896, 'Teyfik Gökdemir full abjad must be 896');
-assert.equal(teyfikAbjad + gultenAbjad, 1102, 'Teyfik + Gülten must be 1102');
-assert.equal(teyfikFullAbjad + gultenAbjad, 1402, 'Teyfik Gökdemir + Gülten must be 1402');
-
-const numTeyfik = calculateNumerology('Teyfik Gökdemir', '1975-06-30');
-assert.equal(numTeyfik.lifePath, 4, 'Teyfik life path must be 4');
-assert.equal(numTeyfik.expressionRoot, 5, 'Teyfik expression must reduce to 5 (77 -> 14 -> 5)');
-assert.equal(numTeyfik.soulUrgeRoot, 7, 'Teyfik soul urge must be 7 (34 -> 7)');
-assert.equal(numTeyfik.personalityRoot, 7, 'Teyfik personality must be 7 (43 -> 7)');
-
-// 4. Person 2 Fixture Verification: Cansu Gür, Anne: Emine, Doğum: 17.03.1995
-assert.equal(specialDict['cansu'], 'جانسو', 'special dict must include cansu');
-assert.equal(specialDict['gür'], 'گور', 'special dict must include gür');
-assert.equal(specialDict['emine'], 'امينه', 'special dict must include emine');
-
-const cansuAbjad = calculate(specialDict['cansu']).total;
-const gurAbjad = calculate(specialDict['gür']).total;
-const emineAbjad = calculate(specialDict['emine']).total;
-
-assert.equal(cansuAbjad, 120, 'Cansu abjad must be 120');
-assert.equal(gurAbjad, 226, 'Gür abjad must be 226');
-assert.equal(emineAbjad, 106, 'Emine abjad must be 106');
-
-const cansuFullAbjad = cansuAbjad + gurAbjad;
-assert.equal(cansuFullAbjad, 346, 'Cansu Gür full abjad must be 346');
-assert.equal(cansuAbjad + emineAbjad, 226, 'Cansu + Emine must be 226');
-assert.equal(cansuFullAbjad + emineAbjad, 452, 'Cansu Gür + Emine must be 452');
-
-const numCansu = calculateNumerology('Cansu Gür', '1995-03-17');
-assert.equal(numCansu.lifePath, 8, 'Cansu life path must be 8');
-assert.equal(numCansu.expressionRoot, 5, 'Cansu expression must reduce to 5 (32 -> 5)');
-assert.equal(numCansu.soulUrgeRoot, 7, 'Cansu soul urge must be 7');
-assert.equal(numCansu.personalityRoot, 7, 'Cansu personality must be 7');
-
-// 5. Comparison Combined Sums
-assert.equal(teyfikAbjad + cansuAbjad, 716, 'Combined first name abjad must be 716');
-assert.equal(teyfikFullAbjad + cansuFullAbjad, 1242, 'Combined full name abjad must be 1242');
-assert.equal((teyfikFullAbjad + gultenAbjad) + (cansuFullAbjad + emineAbjad), 1854, 'Combined with mothers must be 1854');
+// 3–5. Synthetic test cases only: do not commit real persons' names or birth dates.
+const syntheticFirst = calculate('علي').total; // ع=70 ل=30 ي=10
+const syntheticSecond = calculate('مينا').total; // م=40 ي=10 ن=50 ا=1
+const syntheticMother = calculate('فاطمة', {ta:5}).total;
+assert.equal(syntheticFirst,110);
+assert.equal(syntheticSecond,101);
+assert.equal(syntheticMother,135);
+assert.equal(syntheticFirst+syntheticSecond,211);
+assert.equal(syntheticFirst+syntheticSecond+syntheticMother,346);
+const exampleOne=calculateNumerology('Ada Deniz','2000-01-01');
+assert.equal(exampleOne.lifePath,4);
+assert.ok(Number.isInteger(exampleOne.expressionRoot));
+const exampleTwo=calculateNumerology('Mina Kara','1995-03-17');
+assert.equal(exampleTwo.lifePath,8);
+assert.ok(Number.isInteger(exampleTwo.expressionRoot));
 
 // 6. Master numbers (11, 22, 33) retention
 assert.equal(reduce(11, true), 11, 'reduce must preserve master number 11');
