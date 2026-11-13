@@ -131,9 +131,9 @@ for (const lang of ['tr','en','el','es']) {
 assert.match(page,/\.hero \.lead\{max-width:none;width:100%;/);
 assert.match(page,/white-space:nowrap/);
 assert.match(page,/EBCEd_GUIDE/);
-assert.match(page,/Mythborn_04_Isikli_Kitap_Hero\\.webp/);
-assert.match(page,/Mythborn_05_Ebced_Harf_Tablosu\\.webp/);
-assert.match(page,/Mythborn_02_Altin_Kutsal_Geometri\\.webp/);
+assert.ok(page.includes('Mythborn_04_Isikli_Kitap_Hero.webp'), 'missing Mythborn_04_Isikli_Kitap_Hero asset');
+assert.ok(page.includes('Mythborn_05_Ebced_Harf_Tablosu.webp'), 'missing Mythborn_05_Ebced_Harf_Tablosu asset');
+assert.ok(page.includes('Mythborn_02_Altin_Kutsal_Geometri.webp'), 'missing Mythborn_02_Altin_Kutsal_Geometri asset');
 assert.match(page,/ebced-guide-art/);
 assert.match(page,/sayısal değerler atayan tarihsel/);
 assert.match(page,/aria-label="Languages"/);
