@@ -62,6 +62,9 @@ assert.match(html,/Üç ayrı dünya\. Tek deneyim\./);
 assert.match(html,/İlişkiler ve Uyum/);
 assert.match(html,/GERÇEK ZAMANLI · TEK SİNÜS DALGASI/);
 assert.match(html,/class="listening-deck"/);
+assert.ok(html.indexOf('class="listening-deck"') < html.indexOf('class="frequency-group"'), 'player must precede tone catalog');
+assert.match(html,/\.studio\{display:block;margin:0 0 104px\}/);
+assert.match(html,/\.artwork\{position:absolute;inset:0 0 0 30%/);
 assert.match(html,/Sesin içinde/);
 assert.match(html,/tek bir saf sinüs dalgası/);
 
