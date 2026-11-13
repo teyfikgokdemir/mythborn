@@ -8,6 +8,7 @@ export const getRouteHref = (localeKey, routeKey = 'home') => {
   const routes = {
     home: p || '/',
     ebced: localeKey === 'ar' ? '/ebced' : `${p}/ebced`,
+    contact: `${p}${localeKey === 'tr' ? '/iletisim' : localeKey === 'en' ? '/contact' : localeKey === 'el' ? '/epikoinonia' : localeKey === 'es' ? '/contacto' : '/alittisal'}`,
     natal: `${p}${localeKey === 'tr' ? '/dogum-haritasi' : localeKey === 'en' ? '/birth-chart' : localeKey === 'el' ? '/genethlios-chartis' : localeKey === 'es' ? '/carta-natal' : '/kharitat-almilad'}`,
     zodiac: `${p}${localeKey === 'tr' ? '/burclar' : localeKey === 'en' ? '/zodiac-signs' : localeKey === 'el' ? '/zodia' : localeKey === 'es' ? '/signos-del-zodiaco' : '/al-abraj'}`,
     calendar: `${p}${localeKey === 'tr' ? '/gokyuzu-takvimi' : localeKey === 'en' ? '/sky-calendar' : localeKey === 'el' ? '/imerologio-ouranou' : localeKey === 'es' ? '/calendario-celeste' : '/altaqwim-alfalaki'}`,
@@ -455,6 +456,7 @@ export const renderAstrologyLayout = ({
               <li><a href="${getRouteHref(locale, 'kvkk')}">${safe(curLegal.kvkk)}</a></li>
               <li><a href="${getRouteHref(locale, 'privacy')}">${safe(curLegal.privacy)}</a></li>
               <li><a href="${getRouteHref(locale, 'terms')}">${safe(curLegal.terms)}</a></li>
+              <li><a href="${getRouteHref(locale, 'contact')}">${safe(({tr:'İletişim',en:'Contact',el:'Επικοινωνία',es:'Contacto',ar:'اتصل بنا'})[locale])}</a></li>
             </ul>
           </div>
         </div>
