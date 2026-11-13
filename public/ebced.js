@@ -993,22 +993,54 @@ function renderPersonCard(p, loc, titlePrefix = '') {
           <h2 class="person-title">${esc(p.name)}</h2>
           ${p.mother ? `<p class="mother-sub">${esc(p.mother)} evladı</p>` : ''}
         </div>
-        <div class="symbolic-badges">
-          <span class="badge badge-element badge-el-${p.elementIndex}">✦ ${elName}</span>
-          <span class="badge badge-zodiac">🪐 ${zodName}</span>
-        </div>
+        <span class="card-method-tag">${loc === 'tr' ? 'Harf değeri analizi' : loc === 'es' ? 'Análisis de letras' : loc === 'el' ? 'Ανάλυση γραμμάτων' : 'Letter value analysis'}</span>
       </div>
 
       <div class="arabic-display-box" dir="rtl" lang="ar">
         <span class="arabic-main">${esc(p.arabic)}</span>
         ${p.motherArabic ? `<span class="arabic-mom">+ ${esc(p.motherArabic)}</span>` : ''}
       </div>
+      <p class="arabic-hint">${(SYMBOL_INFO[loc]||SYMBOL_INFO.tr).nameFormat}</p>
+      ${renderSymbolicNote(p,loc,t)}
 
       <div class="stats-grid">
         ${statsHtml}
       </div>
     </article>
   `;
+}
+
+
+const SYMBOL_INFO = {
+ tr: {birth:'Doğum tarihine göre Güneş burcu',symbol:'İsmin Ebced değerinden sembolik eşleştirme',element:'Element',archetype:'Sembolik burç',explain:'Bu sonuçlar neden farklı?',answer:'Güneş burcu doğum tarihinden belirlenir. Sembolik burç ve element ise ismin Arap harfleriyle bulunan Ebced toplamının sırasıyla 12 ve 4 üzerinden kalanlarına göre eşleştirilir. Bunlar farklı sistemlerdir; sembolik Akrep sonucu doğum burcunun Akrep olduğu anlamına gelmez.',math:'Ebced toplamı',mod12:'12’ye göre sıra',mod4:'4’e göre sıra',caveat:'Bu eşleştirme, Ebced’in evrensel veya bilimsel olarak doğrulanmış bir kuralı değildir.',unknown:'Doğum tarihi girilmedi',nameFormat:'Gösterilen Arap harfleri hesaplamanın temelidir.'},
+ en: {birth:'Sun sign from birth date',symbol:'Symbolic match from name Abjad value',element:'Element',archetype:'Symbolic zodiac sign',explain:'Why are these different?',answer:'The Sun sign is based on the birth date. The symbolic zodiac and element are assigned from the Abjad letter total using its positions within cycles of 12 and 4. A symbolic Scorpio does not mean the person has a Scorpio Sun sign.',math:'Abjad total',mod12:'Position in 12',mod4:'Position in 4',caveat:'This correspondence is not a universal Abjad rule or a scientifically validated prediction.',unknown:'No birth date provided',nameFormat:'The Arabic spelling shown determines the calculation.'},
+ el: {birth:'Ηλιακό ζώδιο από την ημερομηνία γέννησης',symbol:'Συμβολική αντιστοιχία από το Αμπτζάντ',element:'Στοιχείο',archetype:'Συμβολικό ζώδιο',explain:'Γιατί διαφέρουν;',answer:'Το ηλιακό ζώδιο προκύπτει από την ημερομηνία γέννησης. Το συμβολικό ζώδιο και στοιχείο αντιστοιχίζονται στον αριθμό του ονόματος με κύκλους 12 και 4. Το συμβολικό ζώδιο δεν αλλάζει το ζώδιο γέννησης.',math:'Άθροισμα Αμπτζάντ',mod12:'Θέση στο 12',mod4:'Θέση στο 4',caveat:'Αυτή η αντιστοίχιση δεν είναι καθολικός ή επιστημονικά επιβεβαιωμένος κανόνας.',unknown:'Δεν δόθηκε ημερομηνία γέννησης',nameFormat:'Η εμφανιζόμενη αραβική γραφή καθορίζει τον υπολογισμό.'},
+ es: {birth:'Signo solar según la fecha de nacimiento',symbol:'Correspondencia simbólica del valor Ábyad',element:'Elemento',archetype:'Signo zodiacal simbólico',explain:'¿Por qué son distintos?',answer:'El signo solar se determina por la fecha de nacimiento. El signo y elemento simbólicos se asignan a partir del valor numérico del nombre en ciclos de 12 y 4. Un Escorpio simbólico no cambia el signo solar.',math:'Total Ábyad',mod12:'Posición entre 12',mod4:'Posición entre 4',caveat:'No es una regla universal del Ábyad ni una predicción con validación científica.',unknown:'Sin fecha de nacimiento',nameFormat:'El cálculo usa la escritura árabe mostrada.'}
+};
+const SUN_LABELS={
+ tr:['Oğlak','Kova','Balık','Koç','Boğa','İkizler','Yengeç','Aslan','Başak','Terazi','Akrep','Yay'],
+ en:['Capricorn','Aquarius','Pisces','Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius'],
+ el:['Αιγόκερως','Υδροχόος','Ιχθύες','Κριός','Ταύρος','Δίδυμοι','Καρκίνος','Λέων','Παρθένος','Ζυγός','Σκορπιός','Τοξότης'],
+ es:['Capricornio','Acuario','Piscis','Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario']
+};
+function sunSignByDate(date,loc){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(date||''))return null;
+ const [,month,day]=date.split('-').map(Number);
+ // Standard tropical calendar-date boundaries (not a calculated natal chart).
+ const cutoffs=[20,19,20,20,21,21,22,23,23,23,22,22];
+ const indexes=[0,1,2,3,4,5,6,7,8,9,10,11];
+ const index=day<cutoffs[month-1]?(indexes[month-1]+11)%12:indexes[month-1];
+ return (SUN_LABELS[loc]||SUN_LABELS.tr)[index];
+}
+function renderSymbolicNote(p,loc,t){
+ const l=SYMBOL_INFO[loc]||SYMBOL_INFO.tr;
+ const sun=sunSignByDate(p.date,loc);
+ const el=t.elementNames[p.elementIndex],z=t.zodiacNames[p.zodiacIndex];
+ return \`<section class="symbol-guide" aria-label="\${l.symbol}">
+  <div class="symbol-guide-item symbol-guide-birth"><span class="symbol-guide-label">\${l.birth}</span><strong>\${sun||l.unknown}</strong></div>
+  <div class="symbol-guide-item"><span class="symbol-guide-label">\${l.symbol}</span><strong>\${l.element}: \${el} <span class="symbol-guide-separator">·</span> \${l.archetype}: \${z}</strong></div>
+  <details class="symbol-guide-details"><summary>ⓘ \${l.explain}</summary><p>\${l.answer}</p><p class="symbol-guide-formula">\${l.math}: \${p.a.total} · \${l.mod12}: \${p.zodiacIndex} · \${l.mod4}: \${p.elementIndex}</p><p class="symbol-guide-caution">\${l.caveat}</p></details>
+ </section>\`;
 }
 
 // Render letter breakdown table
@@ -1079,8 +1111,8 @@ function renderThreeLayerInterpretation(p, loc) {
       <div class="interp-layer layer-symbolic">
         <h4 class="layer-title">${t.layerB}</h4>
         <p class="layer-body">
-          Klasik İslami ve kadim Doğu geleneklerinde toplam sayının 4 element ve 12 burç taksimiyle eşleştirilmesi usulüne göre:
-          Bu isim <strong>${elName}</strong> elementi ve <strong>${zodName}</strong> arketipiyle sembolik uyum içerisindedir.
+          ${(SYMBOL_INFO[loc]||SYMBOL_INFO.tr).answer}
+          <strong>${elName}</strong> · <strong>${zodName}</strong>.
           <em>${elDesc}</em>
         </p>
       </div>
