@@ -19,7 +19,7 @@
   let chosen = 432;
   let chosenLabel = 'Alternatif Akort (A4)';
   let ctx = null;
-  let oscillators = [];
+  let oscillator = null;
   let masterGain = null;
   let startedAt = 0;
   let sessionTimer = null;
@@ -36,7 +36,9 @@
     state.textContent = value ? 'CANLI SES · DİNLENİYOR' : 'HAZIR · SES KAPALI';
     buttons.forEach(button => { button.disabled = false; });
   };
-  const gainLevel = () => (Number(volume.value) / 30) * 0.065;
+  // Web Audio linear amplitude: capped at 0.25 (-12 dBFS peak) to avoid clipping.
+  const MAX_GAIN = 0.25;
+  const gainLevel = () => (Number(volume.value) / 30) * MAX_GAIN;
   const stop = async (explanation = 'Ses durduruldu.') => {
     clearTimeout(sessionTimer);
     clearInterval(ticker);
@@ -48,8 +50,9 @@
       masterGain.gain.setTargetAtTime(0, now, .12);
     }
     const oldCtx = ctx;
+    const oldOscillator = oscillator;
     ctx = null;
-    oscillators = [];
+    oscillator = null;
     masterGain = null;
     setPlaying(false);
     message(explanation);
@@ -57,6 +60,7 @@
       try {
         // Allow a gentle fade rather than an abrupt audio click.
         await new Promise(resolve => setTimeout(resolve, 380));
+        try { oldOscillator?.stop(); } catch { /* Oscillator may have stopped. */ }
         if (oldCtx.state !== 'closed') await oldCtx.close();
       } catch { /* AudioContext may close on navigation. */ }
     }
@@ -73,22 +77,14 @@
       masterGain.gain.setValueAtTime(0, ctx.currentTime);
       masterGain.gain.setTargetAtTime(gainLevel(), ctx.currentTime, .25);
       masterGain.connect(ctx.destination);
-      const voices = [
-        { ratio: 1, amplitude: .58 },
-        { ratio: .5, amplitude: .25 },
-        { ratio: 1.5, amplitude: .09 }
-      ];
-      for (const voice of voices) {
-        const oscillator = ctx.createOscillator();
-        const voiceGain = ctx.createGain();
-        oscillator.type = 'sine';
-        oscillator.frequency.value = chosen * voice.ratio;
-        voiceGain.gain.value = voice.amplitude;
-        oscillator.connect(voiceGain);
-        voiceGain.connect(masterGain);
-        oscillator.start();
-        oscillators.push(oscillator);
-      }
+      // ONE sine oscillator at the selected frequency: no subharmonics,
+      // additional oscillators, detuning or effects. The Hz label matches
+      // the generated waveform's only periodic component.
+      oscillator = ctx.createOscillator();
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(chosen, ctx.currentTime);
+      oscillator.connect(masterGain);
+      oscillator.start();
       setPlaying(true);
       startedAt = Date.now();
       const total = Number(duration.value) * 1000;
