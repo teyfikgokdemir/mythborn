@@ -1055,7 +1055,7 @@ const EXPLAINED_METRICS={
  personality:['Kişilik sayısı','İsimdeki sessiz harflerin Pisagor değerleri toplanır.','Modern numerolojide dışarıya yansıtılan özellikleri simgeler; psikolojik test değildir.'],
  life:['Yaşam yolu','Doğum tarihinin gün, ay ve yıl bileşenleri toplanıp numerolojik kurala göre indirgenir.','Modern numerolojide yaşam temalarıyla ilişkilendirilir; hayatın yönünü belirlemez.'],
  year:['Kişisel yıl','Doğum günü ve ayı, içinde bulunulan yılın rakamlarıyla birlikte indirgenir.','Yıla atanan sembolik bir temadır; yıl içinde ne olacağını öngörmez.'],
- raw:'İlk toplam',root:'Son sayı',how:'Nasıl hesaplanır?',meaning:'Geleneksel / sembolik anlam',note:'Sayılar matematiksel olarak hesaplanabilir; yorumlar tarihsel veya modern sembolik geleneklerden gelir.',
+ raw:'İlk toplam',root:'Son sayı',how:'Nasıl hesaplanır?',meaning:'Geleneksel / sembolik anlam',theme:'Bu sayının numerolojideki teması',note:'Sayılar matematiksel olarak hesaplanabilir; yorumlar tarihsel veya modern sembolik geleneklerden gelir.',
  summaryTitle:'Sonuçların Kısa Yorumu',summaryIntro:'Bu sayılar sana ne söylüyor?',summaryEnding:'Bunlar sembolik okumalardır; geleceği veya karakteri kesin biçimde belirlemez.',
  compareTitle:'İki Kişinin Sonuçları Ne Anlama Geliyor?',compareNote:'İsimlerden hesaplanan ortak sayı, iki insanın duygularını ya da ilişkinin geleceğini ölçmez. Farklı veya aynı sayılar birlikte konuşulabilecek temalar sunar.'
  },
@@ -1069,7 +1069,7 @@ const EXPLAINED_METRICS={
  personality:['Personality number','Sum the Pythagorean values of consonants in the name.','A modern symbolic theme of outward expression, not a psychological assessment.'],
  life:['Life path','Reduce and combine the day, month and year of birth using the stated numerology rule.','Associated with broad life themes in modern numerology, not a fixed life path.'],
  year:['Personal year','Combine birth day and month with the current calendar year, then reduce.','A symbolic yearly theme, not a forecast.'],
- raw:'Initial total',root:'Final number',how:'How it is calculated',meaning:'Traditional / symbolic interpretation',note:'The arithmetic is verifiable; interpretations come from historical or modern symbolic traditions.',
+ raw:'Initial total',root:'Final number',how:'How it is calculated',meaning:'Traditional / symbolic interpretation',theme:'This number’s numerology theme',note:'The arithmetic is verifiable; interpretations come from historical or modern symbolic traditions.',
  summaryTitle:'Your Results at a Glance',summaryIntro:'What do these numbers mean?',summaryEnding:'These are symbolic readings; they cannot reliably predict events or establish personality.',
  compareTitle:'Understanding Your Two-Person Results',compareNote:'A combined name number does not measure feelings or relationship outcomes. It may offer subjects for reflection.'
  },
@@ -1083,7 +1083,7 @@ const EXPLAINED_METRICS={
  personality:['Προσωπικότητα','Προστίθενται οι τιμές των συμφώνων.','Συμβολική ερμηνεία, όχι ψυχολογική αξιολόγηση.'],
  life:['Πορεία ζωής','Συνδυάζονται τα ψηφία ημέρας, μήνα και έτους γέννησης.','Σύγχρονη αριθμολογική ερμηνεία, όχι προορισμός ζωής.'],
  year:['Προσωπικό έτος','Συνδυάζονται ημέρα και μήνας γέννησης με το τρέχον έτος.','Συμβολική θεματική και όχι πρόβλεψη.'],
- raw:'Αρχικό άθροισμα',root:'Τελικός αριθμός',how:'Υπολογισμός',meaning:'Συμβολική ερμηνεία',note:'Οι υπολογισμοί ελέγχονται μαθηματικά· οι ερμηνείες είναι συμβολικές.',
+ raw:'Αρχικό άθροισμα',root:'Τελικός αριθμός',how:'Υπολογισμός',meaning:'Συμβολική ερμηνεία',theme:'Αριθμολογικό θέμα',note:'Οι υπολογισμοί ελέγχονται μαθηματικά· οι ερμηνείες είναι συμβολικές.',
  summaryTitle:'Συνοπτική Ερμηνεία',summaryIntro:'Τι δείχνουν οι αριθμοί;',summaryEnding:'Δεν προβλέπουν αξιόπιστα προσωπικότητα ή γεγονότα.',
  compareTitle:'Ερμηνεία Σύγκρισης',compareNote:'Ο κοινός αριθμός δεν μετρά συναισθήματα ούτε προβλέπει το μέλλον μιας σχέσης.'
  },
@@ -1097,14 +1097,17 @@ const EXPLAINED_METRICS={
  personality:['Personalidad','Se suman los valores de las consonantes.','Interpretación simbólica, no evaluación psicológica.'],
  life:['Camino de vida','Se combinan y reducen día, mes y año de nacimiento.','Tema de numerología moderna, no un destino fijo.'],
  year:['Año personal','Se combinan día y mes de nacimiento con el año actual.','Tema simbólico anual, no pronóstico.'],
- raw:'Total inicial',root:'Número final',how:'Cómo se calcula',meaning:'Interpretación simbólica',note:'Los cálculos son verificables; las interpretaciones son simbólicas.',
+ raw:'Total inicial',root:'Número final',how:'Cómo se calcula',meaning:'Interpretación simbólica',theme:'Tema numerológico',note:'Los cálculos son verificables; las interpretaciones son simbólicas.',
  summaryTitle:'Resumen de tus resultados',summaryIntro:'¿Qué significan estos números?',summaryEnding:'No permiten predecir eventos ni determinar la personalidad.',
  compareTitle:'Cómo leer la comparación',compareNote:'El número conjunto no mide sentimientos ni predice el futuro de una relación.'
  }
 };
-function summaryMetric(label, value, total, root, item, locale) {
+function summaryMetric(key, label, value, total, root, item, locale) {
  const t=EXPLAINED_METRICS[locale]||EXPLAINED_METRICS.tr;
- return `<details class="meaning-row"><summary><span>${esc(label)}</span><strong>${esc(value)}</strong><span class="meaning-chevron" aria-hidden="true">⌄</span></summary><div class="meaning-answer"><p><b>${esc(t.how)}</b> ${esc(item[1])} ${total!==null?`${esc(t.raw)}: <strong>${esc(total)}</strong>. ${root!==null?`${esc(t.root)}: <strong>${esc(root)}</strong>.`:''}`:''}</p><p><b>${esc(t.meaning)}</b> ${esc(item[2])}</p></div></details>`;
+ const isModern=['expression','soul','personality','life','year'].includes(key);
+ const theme=isModern&&(THEMES[reduce(Number(value),false)]||{})[locale] || (isModern&&(THEMES[reduce(Number(value),false)]||{}).tr);
+ const interpretation=theme?`<p><b>${esc(t.theme)}</b> ${esc(theme.title)}. ${esc(theme.positive)} ${esc(theme.care)}</p>`:'';
+ return `<details class="meaning-row"><summary><span>${esc(label)}</span><strong>${esc(value)}</strong><span class="meaning-chevron" aria-hidden="true">⌄</span></summary><div class="meaning-answer"><p><b>${esc(t.how)}</b> ${esc(item[1])} ${total!==null?`${esc(t.raw)}: <strong>${esc(total)}</strong>. ${root!==null?`${esc(t.root)}: <strong>${esc(root)}</strong>.`:''}`:''}</p><p><b>${esc(t.meaning)}</b> ${esc(item[2])}</p>${interpretation}</div></details>`;
 }
 function renderReadableExplanation(p,loc){
  const t=EXPLAINED_METRICS[loc]||EXPLAINED_METRICS.tr,n=p.numerology;
@@ -1117,7 +1120,7 @@ function renderReadableExplanation(p,loc){
   ['personality',n.personalityRoot,n.personality,n.personalityRoot],
   ...(n.lifePath!==null?[['life',n.lifePath,null,null],['year',n.personalYear,null,null]]:[])
  ];
- const explanations=blocks.map(([key,value,total,root])=>summaryMetric(t[key][0],value,total,root,t[key],loc)).join('');
+ const explanations=blocks.map(([key,value,total,root])=>summaryMetric(key,t[key][0],value,total,root,t[key],loc)).join('');
  return `<section class="result-card meaning-card"><div class="meaning-header"><span class="meaning-kicker">MYTHBORN · EBCED / NUMEROLOGY</span><h3>${esc(t.title)}</h3><p>${esc(t.intro)}</p></div><div class="meaning-grid">${explanations}</div><p class="meaning-disclaimer">${esc(t.note)}</p></section>`;
 }
 function renderPlainSummary(p,loc,other=null){
