@@ -155,7 +155,7 @@ export const renderHomeView = ({ locale = 'tr', isPreview = false }) => {
       </div>
     </section>
 
-    ${isPreview ? `<section class="astro-frequency-preview" id="frequency-studio" aria-labelledby="astro-frequency-preview-title">
+    ${`<section class="astro-frequency-preview" id="frequency-studio" aria-labelledby="astro-frequency-preview-title">
       <div class="astro-frequency-preview-visual" aria-hidden="true"><img src="/images/Mythborn_01_Kozmik_Usturlap.webp" loading="lazy" decoding="async" width="1792" height="1024" alt=""></div>
       <div class="astro-container astro-frequency-preview-inner">
         <div class="astro-frequency-preview-copy">
@@ -166,7 +166,7 @@ export const renderHomeView = ({ locale = 'tr', isPreview = false }) => {
           <small>${frequencyTeaser[loc].note}</small>
         </div>
       </div>
-    </section>` : ''}
+    </section>`}
 
     ${renderEbcedPromo(locale)}
 
