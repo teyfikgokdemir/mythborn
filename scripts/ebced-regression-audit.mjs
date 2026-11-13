@@ -107,6 +107,19 @@ for(const [personal,compare] of [
  assert.match(ebcedPage(compare,true),/id="comparison-back"/);
  assert.match(ebcedPage(personal,true),/noindex,follow/);
 }
+// 8b. Verify explanatory results and styled consent without changing consent actions.
+for (const feature of ['renderReadableExplanation','renderPlainSummary','EXPLAINED_METRICS','meaning-row','summaryMetric']) {
+  assert.ok(src.includes(feature), 'missing explanation: '+feature);
+}
+assert.ok(src.includes('html += renderReadableExplanation(p1, loc)'));
+assert.ok(src.includes('html += renderReadableExplanation(p2, loc)'));
+assert.ok(src.includes('html += renderPlainSummary(p1, loc, p2)'));
+for (const item of ['greater','lesser','maternal','expression','soul','personality','life','year']) {
+  assert.ok(src.includes(item+':['), 'explanation missing: '+item);
+}
+for(const token of ['.consent-dialog','[data-consent-reject]','[data-consent-accept]','.meaning-grid','.readable-summary']) {
+  assert.ok(page.includes(token), 'style missing: '+token);
+}
 // 9. Template markup assertions
 assert.match(page, /name="abjadSystem"/, 'markup must include abjadSystem selector');
 assert.match(page, /name="taValue"/, 'markup must include taValue selector');
