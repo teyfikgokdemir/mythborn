@@ -3201,4 +3201,14 @@ html[dir="rtl"] .retro-guidance-box {
 @media (prefers-reduced-motion: reduce) {
   .astro-ebced-orbit { animation: none !important; }
 }
+
+/* Keep header within viewport after adding a fifth primary link. */
+@media (min-width: 1181px) and (max-width: 1480px) {
+  .astro-header-actions .astro-cta-gold { display: none !important; }
+}
+@media (min-width: 1025px) and (max-width: 1180px) {
+  .astro-nav-desktop { display: none !important; }
+  .astro-menu-btn { display: inline-flex !important; }
+  .astro-header-actions .astro-cta-gold { display: none !important; }
+}
 `;
