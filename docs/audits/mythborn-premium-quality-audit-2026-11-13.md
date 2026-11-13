@@ -34,7 +34,7 @@ Ancak production şu an tam yayın onayı alamaz. Canlı sitemap 106 ham kayıt/
 
 - İncelenen `main`: `d19f334` — PR #101 merge commit'i.
 - Ayrı çalışma dalı: `audit/mythborn-premium-quality-20261113`.
-- Remote'a push, yeni PR, merge, preview mutation, D1 migration veya production deploy yapılmadı.
+- Dal `origin`a push edildi ve `main` hedefli PR #102 açıldı. GitHub CI, PR'a özgü izole preview Worker'ı yayımladı; preview D1 kontrolünde uygulanacak migration bulunmadı. Merge veya production deployment yapılmadı.
 - Graphify kaynak grafiği: 69 `src` dosyası, yaklaşık 121.622 kelime, 586 node, 1.484 edge, 15 community; import cycle bulunmadı. En bağlı düğümler `api`, `decorate`, `fetch`, `getRouteHref`, `handleAstrologyRequest`.
 
 ### PR #101
@@ -241,7 +241,7 @@ Canlı sentetik natal vaka `1990-01-15 10:30 Istanbul`: Güneş Oğlak, Ay Başa
 
 ## 13. Implemented Fixes
 
-Tümü yalnız `audit/mythborn-premium-quality-20261113` yerel dalında, küçük ve geri alınabilir değişikliklerdir.
+Tümü `audit/mythborn-premium-quality-20261113` dalı ve PR #102 içinde, küçük ve geri alınabilir değişikliklerdir.
 
 1. Cultural sitemap'ten superseded `contact` kayıtları kaldırıldı; astrology sitemap tek owner oldu.
 2. EN/EL/ES legal link'leri mevcut locale dokümanlarının gerçek slug'larına yönlendirildi.
@@ -276,8 +276,8 @@ Değişiklik boyutu: altı source/test dosyasında yaklaşık 80 ekleme, 5 silme
 | Local SEO audit | PASS | 2026-11-14 final `npm run seo:audit`, exit 0; 96 canonical sitemap URL; legal footer ve skip-link regresyonları |
 | Local build | PASS | 2026-11-14 final Wrangler `deploy --dry-run`, exit 0; 906 asset okundu, deployment yok |
 | Dependency audit | PASS | `npm audit --audit-level=high`: 0 vulnerability |
-| GitHub CI (audit branch) | NOT RUN | Dal remote'a push edilmedi |
-| Preview (audit branch) | NOT CREATED | Dış durum değiştirilmedi |
+| GitHub CI (audit branch) | PASS | PR #102: Mythborn Quality `audit`, Advanced Security `security-audit` ve Workers Builds başarılı |
+| Preview (audit branch) | PASS | `mythborn-preview-102`; preview D1 için uygulanacak migration yok; HTTP 200 doğrulandı |
 | Deployment | NOT PERFORMED | Kullanıcı sınırı korundu |
 | Production live | FAIL / unchanged | C-01…C-05 canlıda mevcut |
 
@@ -290,4 +290,4 @@ Değişiklik boyutu: altı source/test dosyasında yaklaşık 80 ekleme, 5 silme
 5. PR #97 güncel main ile çatışmasız hale gelmeli veya bu audit PR'ından açıkça ayrılmalı.
 6. Onaylı deploy sonrasında canlı sitemap, 404 link taraması, canonical/hreflang, headers, calculator result ve CWV yeniden ölçülmeli.
 
-**Son karar:** Build, local test, GitHub CI, preview, deployment ve canlı doğrulama ayrı kapılardır. Şu an yalnız yerel düzeltme seviyesi hedeflenmiştir; production readiness **BLOCKED**.
+**Son karar:** Build, local test, GitHub CI, preview, deployment ve canlı doğrulama ayrı kapılardır. Yerel düzeltmeler ve PR CI/preview kapıları geçmiştir; merge/production deployment yapılmamış, production live C-01…C-05 değişmemiştir. Metadata ve canlı doğrulama riskleri nedeniyle production readiness **BLOCKED**.
