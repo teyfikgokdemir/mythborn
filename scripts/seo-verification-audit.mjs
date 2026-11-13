@@ -1,4 +1,5 @@
 import worker from '../src/app-router.js';
+import { getRouteHref } from '../src/astrology-platform/layout.js';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
@@ -64,6 +65,24 @@ for (const path of coreRoutes) {
   add(result.body.includes('<link rel="canonical"'), `[Canonical Missing] ${path}`);
   add(result.body.includes('hreflang="en"'), `[Hreflang Missing] ${path} has no English alternate`);
   add(result.body.includes('class="astro-skip-link" href="#main-content"'), `[Skip Link] ${path} is missing the astrology skip link`);
+}
+
+// All supported locales must have distinct, non-empty localized SEO metadata.
+for (const routeKey of ['calendar', 'retros', 'transits', 'synastry', 'glossary', 'learning', 'horoscopes']) {
+  const tr = await fetchPath(getRouteHref('tr', routeKey));
+  const trTitle = tr.body.match(/<title>([^<]+)<\/title>/)?.[1];
+  const trDescription = tr.body.match(/<meta name="description" content="([^"]+)"/)?.[1];
+  add(Boolean(trTitle && trDescription), `[SEO Locale] ${routeKey} Turkish baseline metadata missing`);
+  for (const locale of ['en', 'el', 'es', 'ar']) {
+    const path = getRouteHref(locale, routeKey);
+    const response = await fetchPath(path);
+    const title = response.body.match(/<title>([^<]+)<\/title>/)?.[1];
+    const description = response.body.match(/<meta name="description" content="([^"]+)"/)?.[1];
+    add(response.status === 200, `[SEO Locale] ${path} returned HTTP ${response.status}`);
+    add(Boolean(title && description), `[SEO Locale] ${path} metadata missing`);
+    add(title !== trTitle, `[SEO Locale] ${path} still has Turkish title`);
+    add(description !== trDescription, `[SEO Locale] ${path} still has Turkish description`);
+  }
 }
 
 const localizedAstrologyHomes = ['/', '/en', '/gr', '/es', '/ar'];
