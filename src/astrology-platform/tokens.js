@@ -3060,4 +3060,155 @@ html[dir="rtl"] .retro-guidance-box {
   .learning-elite-action { width: 100%; }
   .learning-elite-btn { width: 100%; justify-content: center; }
 }
+
+/* Ebced discovery: one compact viewport below the main hero */
+.astro-ebced-feature {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: radial-gradient(ellipse at 78% 50%, rgba(116, 84, 36, .18), transparent 55%), #070a12;
+}
+.astro-ebced-feature-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(260px, .88fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 72px);
+  width: 100%;
+  min-height: min(690px, calc(100svh - 76px));
+  padding-top: clamp(24px, 4vh, 48px);
+  padding-bottom: clamp(24px, 4vh, 48px);
+}
+.astro-ebced-feature-copy { max-width: 650px; }
+.astro-ebced-feature h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 3.6vw, 54px);
+  line-height: 1.16;
+  font-weight: 400;
+  color: var(--cream);
+  margin: 18px 0;
+}
+.astro-ebced-lead {
+  max-width: 560px;
+  line-height: 1.7;
+  font-size: clamp(15px, 1.4vw, 18px);
+  color: var(--muted);
+  margin: 0 0 25px;
+}
+.astro-ebced-action { display: inline-flex; gap: 12px; }
+.astro-ebced-caption { color: var(--gold-bright); margin: 19px 0 7px; font-size: 12px; letter-spacing: .04em; }
+.astro-ebced-disclaimer { color: var(--dim); font-size: 12px; line-height: 1.6; margin: 0; }
+.astro-ebced-art {
+  width: min(100%, 410px);
+  aspect-ratio: 1;
+  justify-self: center;
+  position: relative;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,175,55,.10) 0 22%, transparent 62%);
+}
+.astro-ebced-orbit {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1px solid rgba(212,175,55,.34);
+  box-shadow: inset 0 0 50px rgba(212,175,55,.035), 0 0 42px rgba(212,175,55,.06);
+}
+.astro-ebced-orbit-outer { inset: 3%; border-style: dashed; opacity: .55; }
+.astro-ebced-orbit-inner { inset: 24%; opacity: .7; }
+.astro-ebced-art-core { display: grid; gap: 5px; text-align: center; color: var(--gold-bright); z-index: 1; }
+.astro-ebced-art-core > span { font-family: Georgia, serif; font-size: clamp(43px, 7vw, 76px); line-height: 1.2; }
+.astro-ebced-art-core small { font-size: 12px; letter-spacing: .18em; }
+.astro-ebced-glyph { position: absolute; font: 48px Georgia,serif; color: #cdaa63; text-shadow: 0 0 15px rgba(212,175,55,.23); }
+.astro-ebced-glyph-a { top: 8%; left: 43%; }
+.astro-ebced-glyph-b { bottom: 21%; left: 9%; }
+.astro-ebced-glyph-c { bottom: 21%; right: 9%; }
+@media (min-width: 901px) and (max-height: 710px) {
+  .astro-ebced-feature-inner { min-height: calc(100svh - 76px); }
+  .astro-ebced-art { width: min(35vh, 340px); }
+}
+@media (max-width: 900px) {
+  .astro-ebced-feature { min-height: 0; scroll-snap-align: none; }
+  .astro-ebced-feature-inner { min-height: 0; grid-template-columns: 1fr; text-align: center; gap: 20px; }
+  .astro-ebced-feature-copy { margin-inline: auto; }
+  .astro-ebced-lead { margin-inline: auto; }
+  .astro-ebced-art { width: min(54vw, 270px); }
+}
+@media (max-width: 440px) {
+  .astro-ebced-feature-inner { padding-top: 44px; padding-bottom: 36px; }
+  .astro-ebced-art { width: min(52vw, 200px); }
+  .astro-ebced-glyph { font-size: 27px; }
+}
+/* Header language picker: compact, keyboard accessible native details menu */
+.astro-lang-select { position: relative; z-index: 30; flex: 0 0 auto; }
+.astro-lang-select > summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 12px;
+  border: 1px solid rgba(212,175,55,.33);
+  border-radius: 9px;
+  background: rgba(255,255,255,.025);
+  color: var(--gold-bright);
+  font-size: 12px;
+  white-space: nowrap;
+}
+.astro-lang-select > summary::-webkit-details-marker { display: none; }
+.astro-lang-select > summary:hover, .astro-lang-select[open] > summary { border-color: var(--gold); background: rgba(212,175,55,.10); }
+.astro-lang-select > summary:focus-visible, .astro-lang-select a:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; }
+.astro-lang-options {
+  position: absolute;
+  top: calc(100% + 8px);
+  inset-inline-end: 0;
+  width: 190px;
+  padding: 7px;
+  border: 1px solid rgba(212,175,55,.35);
+  border-radius: 12px;
+  background: #10131d;
+  box-shadow: 0 24px 65px rgba(0,0,0,.64);
+  display: grid;
+  gap: 2px;
+  max-height: min(350px, 65vh);
+  overflow-y: auto;
+}
+.astro-lang-options a {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border-radius: 7px;
+  padding: 10px;
+  color: var(--cream);
+  font-size: 13px;
+}
+.astro-lang-options a span:first-child { width: 26px; color: var(--gold-bright); font-weight: 700; }
+.astro-lang-options a:hover, .astro-lang-options a[aria-current="page"] { background: rgba(212,175,55,.13); }
+.astro-nav-desktop { gap: clamp(8px, 1.25vw, 22px); }
+.astro-header-inner { gap: clamp(8px, 1vw, 18px); }
+@media (max-width: 1120px) {
+  .astro-lang-current { display: none; }
+  .astro-lang-select > summary { padding: 9px 10px; }
+}
+@media (max-width: 680px) {
+  .astro-header-actions .astro-lang-select { margin-inline-start: auto; }
+  .astro-lang-options { width: 185px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .astro-ebced-orbit-outer { animation: mythborn-ebced-orbit 65s linear infinite; }
+  @keyframes mythborn-ebced-orbit { to { transform: rotate(360deg); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .astro-ebced-orbit { animation: none !important; }
+}
+
+/* Keep header within viewport after adding a fifth primary link. */
+@media (min-width: 1181px) and (max-width: 1480px) {
+  .astro-header-actions .astro-cta-gold { display: none !important; }
+}
+@media (min-width: 1025px) and (max-width: 1180px) {
+  .astro-nav-desktop { display: none !important; }
+  .astro-menu-btn { display: inline-flex !important; }
+  .astro-header-actions .astro-cta-gold { display: none !important; }
+}
 `;

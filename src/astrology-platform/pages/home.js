@@ -1,6 +1,7 @@
 // Mythborn Astrology Platform — Homepage View
 import { ASTROLOGY_LOCALES, ZODIAC_SIGNS, ZODIAC_LOCALIZED } from '../i18n.js';
 import { getRouteHref } from '../layout.js';
+import { renderEbcedPromo } from '../ebced-promo.js';
 import { render24hTimePicker } from '../time-picker.js';
 
 const safe = (str = '') =>
@@ -145,6 +146,8 @@ export const renderHomeView = ({ locale = 'tr' }) => {
         </div>
       </div>
     </section>
+
+    ${renderEbcedPromo(locale)}
 
     <!-- 3. Kozmik Büyük Üçlü (Foundational Triad) with Generated Editorial Artworks -->
     <section class="astro-section astro-section-viewport" id="archetypes">
