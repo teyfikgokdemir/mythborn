@@ -3364,4 +3364,33 @@ html[dir="rtl"] .retro-guidance-box {
 .astro-contact-foot a{color:#d7b97c;white-space:nowrap}
 @media(max-width:700px){.astro-contact-page{padding:30px 0 70px}.astro-contact-heading{margin:45px auto 35px}.astro-contact-grid{grid-template-columns:1fr;gap:14px}.astro-contact-card p{min-height:0}.astro-contact-foot{flex-direction:column;align-items:flex-start}}
 
+
+/* Contact 2026 refinement: refined editorial surfaces, single action, restrained negative space. */
+.astro-contact-page{max-width:1160px;padding-top:clamp(26px,4vw,56px);padding-bottom:clamp(55px,7vw,100px)}
+.astro-contact-heading{margin:clamp(36px,4.6vw,64px) auto clamp(25px,3.5vw,46px);max-width:790px}
+.astro-contact-heading h1{font-size:clamp(40px,5.4vw,69px);line-height:1.12;margin:16px auto 17px}
+.astro-contact-heading p{max-width:600px;font-size:clamp(14px,1.2vw,17px);line-height:1.75}
+.astro-contact-grid{gap:clamp(13px,1.7vw,24px);align-items:stretch}
+.astro-contact-card{position:relative;isolation:isolate;display:flex;flex-direction:column;min-height:265px;padding:clamp(23px,2.65vw,37px);border:1px solid rgba(224,186,118,.21);border-radius:14px;background:linear-gradient(137deg,rgba(29,29,39,.93),rgba(10,12,20,.97) 68%);box-shadow:0 15px 47px rgba(0,0,0,.14);overflow:hidden;transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+.astro-contact-card:before{content:'';position:absolute;left:27px;right:27px;top:0;height:1px;background:linear-gradient(90deg,rgba(233,199,137,.7),rgba(233,199,137,.1) 70%,transparent);pointer-events:none}
+.astro-contact-card:after{content:'';position:absolute;inset:-36% -29% auto auto;width:68%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(192,144,67,.08),transparent 67%);pointer-events:none}
+.astro-contact-card-head{display:flex;align-items:center;gap:16px}
+.astro-contact-icon{display:grid;place-items:center;flex:0 0 58px;width:58px;height:58px;color:#ebc987;border:1px solid rgba(227,188,115,.3);border-radius:13px;background:linear-gradient(145deg,rgba(225,184,107,.11),rgba(225,184,107,.025))}
+.astro-contact-icon svg{width:35px;height:35px}
+.astro-contact-kicker{font-size:clamp(12px,1.02vw,14px);letter-spacing:.065em;color:#f2e4c6;text-transform:none}
+.astro-contact-description{min-height:0!important;margin:18px 0 20px!important;max-width:430px;color:#bfc0c9!important;font-size:14px!important;line-height:1.75!important}
+.astro-contact-card-bottom{margin-top:auto;padding-top:18px;border-top:1px solid rgba(226,190,120,.16)}
+.astro-contact-email{display:flex;justify-content:space-between;align-items:center;gap:14px;border:0;padding:0;color:#e9c98a;font-family:Georgia,serif;font-size:clamp(19px,2.15vw,30px);letter-spacing:-.012em;line-height:1.35;transition:color .2s ease}
+.astro-contact-email svg{flex:0 0 25px;width:25px;height:25px;color:#e8c680;transition:transform .2s ease}
+.astro-contact-email:hover{color:#fff1cd}
+.astro-contact-email:hover svg{transform:translate(2px,-2px)}
+.astro-contact-email:focus-visible{outline:2px solid #ffe2a1;outline-offset:6px;border-radius:3px}
+.astro-contact-action{display:block;margin:13px 0 0;border:0;padding:0;color:#9b9ca6;font-size:11px;letter-spacing:.055em}
+.astro-contact-card:hover{border-color:rgba(237,196,121,.55);box-shadow:0 19px 54px rgba(0,0,0,.22);transform:translateY(-2px)}
+.astro-contact-foot{margin-top:27px;padding-top:20px}
+[dir="rtl"] .astro-contact-card:before{left:27px;right:27px;background:linear-gradient(270deg,rgba(233,199,137,.7),rgba(233,199,137,.1) 70%,transparent)}
+@media(max-width:700px){.astro-contact-page{padding-top:24px}.astro-contact-heading{margin:38px auto 31px}.astro-contact-card{min-height:225px;padding:23px}.astro-contact-card-head{gap:13px}.astro-contact-icon{width:52px;height:52px;flex-basis:52px}.astro-contact-description{margin:16px 0 18px!important}.astro-contact-email{font-size:clamp(19px,5.5vw,27px)}}
+@media(hover:none){.astro-contact-card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.astro-contact-card,.astro-contact-email,.astro-contact-email svg{transition:none!important}.astro-contact-card:hover,.astro-contact-email:hover svg{transform:none}}
+
 `;
