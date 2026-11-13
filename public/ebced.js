@@ -1193,18 +1193,40 @@ function renderComparisonSection(p1, p2, loc) {
   `;
 }
 
-// Mode toggle handling
-if (modePersonal && modeCompare && secondBox) {
-  modePersonal.addEventListener('change', () => {
-    secondBox.classList.add('hidden');
-    const nameB = document.getElementById('bName');
-    if (nameB) nameB.removeAttribute('required');
-  });
-  modeCompare.addEventListener('change', () => {
-    secondBox.classList.remove('hidden');
-    const nameB = document.getElementById('bName');
-    if (nameB) nameB.setAttribute('required', 'required');
-  });
+// Separate comparison journey: each person has an independent form step.
+const isComparePage = form?.dataset.analysisMode === 'compare';
+const firstBox = document.querySelector('#first-person-container');
+const nextButton = document.querySelector('#comparison-next');
+const backButton = document.querySelector('#comparison-back');
+const submitButton = form?.querySelector('[type="submit"]');
+const steps = [...document.querySelectorAll('[data-step-marker]')];
+let comparisonStep = 1;
+function displayComparisonStep(number) {
+  if (!isComparePage) return;
+  comparisonStep = number;
+  firstBox.hidden = number === 2;
+  firstBox.classList.toggle('hidden', number === 2);
+  secondBox.hidden = number !== 2;
+  secondBox.classList.toggle('hidden', number !== 2);
+  nextButton.hidden = number === 2;
+  nextButton.classList.toggle('hidden', number === 2);
+  backButton.hidden = number === 1;
+  backButton.classList.toggle('hidden', number === 1);
+  submitButton.hidden = number === 1;
+  submitButton.classList.toggle('hidden', number === 1);
+  steps.forEach((item,i)=>item.classList.toggle('is-active',i+1 === number));
+}
+function validateFirstPerson() {
+  const name = document.getElementById('aName');
+  const arabic = document.getElementById('aArabic');
+  if (!name.value.trim()) { name.focus(); name.reportValidity(); return false; }
+  if (!arabic.value.trim()) { arabic.focus(); arabic.setCustomValidity('Please provide Arabic spelling.'); arabic.reportValidity(); arabic.setCustomValidity(''); return false; }
+  return true;
+}
+if (isComparePage && nextButton && backButton && secondBox) {
+  displayComparisonStep(1);
+  nextButton.addEventListener('click',()=>{if(validateFirstPerson()){displayComparisonStep(2);secondBox.querySelector('input')?.focus();}});
+  backButton.addEventListener('click',()=>{displayComparisonStep(1);firstBox.querySelector('input')?.focus();});
 }
 
 // Form submission handler
@@ -1212,7 +1234,7 @@ if (form) {
   form.addEventListener('submit', event => {
     event.preventDefault();
     try {
-      const isCompare = modeCompare && modeCompare.checked;
+      const isCompare = isComparePage;
       const getOpt = id => (document.getElementById(id) || {}).value;
 
       const options = {
