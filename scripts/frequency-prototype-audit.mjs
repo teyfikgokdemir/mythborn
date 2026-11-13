@@ -60,7 +60,9 @@ assert.match(html,/#anlam\.section-head h2\{white-space:nowrap/);
 assert.match(html,/\.guide\{align-self:start/);
 assert.match(html,/Üç ayrı dünya\. Tek deneyim\./);
 assert.match(html,/İlişkiler ve Uyum/);
-assert.match(html,/SAF SİNÜS SİNYALİ/);
+assert.match(html,/GERÇEK ZAMANLI · TEK SİNÜS DALGASI/);
+assert.match(html,/class="listening-deck"/);
+assert.match(html,/Sesin içinde/);
 assert.match(html,/tek bir saf sinüs dalgası/);
 
 new vm.Script(script,{filename:'public/frequency-studio.js'});
