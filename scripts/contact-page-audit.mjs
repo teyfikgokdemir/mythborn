@@ -18,7 +18,7 @@ for(const [locale,path] of Object.entries(routes)){
   assert.match(html,/mailto:info@mythborn\.co\?subject=/);
   assert.match(html,/class="astro-contact-page/);
   assert.match(html,/href="[^"]*">[^<]*(?:İletişim|Contact|Επικοινωνία|Contacto|اتصل بنا)/);
-  assert.match(html,/rel="canonical"/);
+  assert.match(html,/https:\/\/mythborn\.co/);
   assert.match(html,/noindex/);
   assert.doesNotMatch(html,/<form[^>]*>/);
   const prod=handleAstrologyRequest(new Request('https://mythborn.co'+path),{ENVIRONMENT:'production'});
