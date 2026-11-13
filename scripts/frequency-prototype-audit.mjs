@@ -10,7 +10,9 @@ assert.equal(frequencyPrototypePath('/frekans-studyo'),true);
 assert.equal(frequencyPrototypePath('/frequency-studio'),true);
 assert.equal(frequencyPrototypePath('/'),false);
 assert.match(html,/<html lang="tr">/);
-assert.match(html,/name="robots" content="noindex,nofollow"/);
+assert.match(html,/name="robots" content="index,follow,max-image-preview:large"/);
+assert.match(html,/rel="canonical" href="https:\/\/mythborn\.co\/frekans-studyo"/);
+assert.match(frequencyPrototypePage(true),/name="robots" content="noindex,nofollow"/);
 assert.match(html,/<meta name="viewport"/);
 assert.match(html,/FREQUENCY STUDIO/);
 assert.match(html,/data-frequency="174"/);
@@ -41,7 +43,9 @@ assert.match(script,/document.addEventListener\('visibilitychange'/);
 assert.doesNotMatch(script,/\.getUserMedia\(/);
 assert.doesNotMatch(script,/\.play\(\)/);
 assert.doesNotMatch(html,/onload=|autoplay/);
-assert.match(router,/env\.ENVIRONMENT==='preview' && frequencyPrototypePath/);
+assert.match(router,/if\(frequencyPrototypePath\(incoming\.pathname\)/);
+assert.match(router,/frequencyPrototypePage\(preview\)/);
+assert.match(router,/<url><loc>\$\{SITE\}\/frekans-studyo<\/loc>/);
 assert.doesNotMatch(router,/else if\(frequencyPrototypePath/);
 
 // Pure tone guarantee: one oscillator, no layered ratios or additional generated tones.
