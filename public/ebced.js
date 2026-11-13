@@ -993,22 +993,145 @@ function renderPersonCard(p, loc, titlePrefix = '') {
           <h2 class="person-title">${esc(p.name)}</h2>
           ${p.mother ? `<p class="mother-sub">${esc(p.mother)} evladı</p>` : ''}
         </div>
-        <div class="symbolic-badges">
-          <span class="badge badge-element badge-el-${p.elementIndex}">✦ ${elName}</span>
-          <span class="badge badge-zodiac">🪐 ${zodName}</span>
-        </div>
+        <span class="card-method-tag">${loc === 'tr' ? 'Harf değeri analizi' : loc === 'es' ? 'Análisis de letras' : loc === 'el' ? 'Ανάλυση γραμμάτων' : 'Letter value analysis'}</span>
       </div>
 
       <div class="arabic-display-box" dir="rtl" lang="ar">
         <span class="arabic-main">${esc(p.arabic)}</span>
         ${p.motherArabic ? `<span class="arabic-mom">+ ${esc(p.motherArabic)}</span>` : ''}
       </div>
+      <p class="arabic-hint">${(SYMBOL_INFO[loc]||SYMBOL_INFO.tr).nameFormat}</p>
+      ${renderSymbolicNote(p,loc,t)}
 
       <div class="stats-grid">
         ${statsHtml}
       </div>
     </article>
   `;
+}
+
+
+const SYMBOL_INFO = {
+ tr: {birth:'Doğum tarihine göre Güneş burcu',symbol:'İsmin Ebced değerinden sembolik eşleştirme',element:'Element',archetype:'Sembolik burç',explain:'Bu sonuçlar neden farklı?',answer:'Güneş burcu doğum tarihinden belirlenir. Sembolik burç ve element ise ismin Arap harfleriyle bulunan Ebced toplamının sırasıyla 12 ve 4 üzerinden kalanlarına göre eşleştirilir. Bunlar farklı sistemlerdir; sembolik Akrep sonucu doğum burcunun Akrep olduğu anlamına gelmez.',math:'Ebced toplamı',mod12:'12’ye göre sıra',mod4:'4’e göre sıra',caveat:'Bu eşleştirme, Ebced’in evrensel veya bilimsel olarak doğrulanmış bir kuralı değildir.',unknown:'Doğum tarihi girilmedi',nameFormat:'Gösterilen Arap harfleri hesaplamanın temelidir.'},
+ en: {birth:'Sun sign from birth date',symbol:'Symbolic match from name Abjad value',element:'Element',archetype:'Symbolic zodiac sign',explain:'Why are these different?',answer:'The Sun sign is based on the birth date. The symbolic zodiac and element are assigned from the Abjad letter total using its positions within cycles of 12 and 4. A symbolic Scorpio does not mean the person has a Scorpio Sun sign.',math:'Abjad total',mod12:'Position in 12',mod4:'Position in 4',caveat:'This correspondence is not a universal Abjad rule or a scientifically validated prediction.',unknown:'No birth date provided',nameFormat:'The Arabic spelling shown determines the calculation.'},
+ el: {birth:'Ηλιακό ζώδιο από την ημερομηνία γέννησης',symbol:'Συμβολική αντιστοιχία από το Αμπτζάντ',element:'Στοιχείο',archetype:'Συμβολικό ζώδιο',explain:'Γιατί διαφέρουν;',answer:'Το ηλιακό ζώδιο προκύπτει από την ημερομηνία γέννησης. Το συμβολικό ζώδιο και στοιχείο αντιστοιχίζονται στον αριθμό του ονόματος με κύκλους 12 και 4. Το συμβολικό ζώδιο δεν αλλάζει το ζώδιο γέννησης.',math:'Άθροισμα Αμπτζάντ',mod12:'Θέση στο 12',mod4:'Θέση στο 4',caveat:'Αυτή η αντιστοίχιση δεν είναι καθολικός ή επιστημονικά επιβεβαιωμένος κανόνας.',unknown:'Δεν δόθηκε ημερομηνία γέννησης',nameFormat:'Η εμφανιζόμενη αραβική γραφή καθορίζει τον υπολογισμό.'},
+ es: {birth:'Signo solar según la fecha de nacimiento',symbol:'Correspondencia simbólica del valor Ábyad',element:'Elemento',archetype:'Signo zodiacal simbólico',explain:'¿Por qué son distintos?',answer:'El signo solar se determina por la fecha de nacimiento. El signo y elemento simbólicos se asignan a partir del valor numérico del nombre en ciclos de 12 y 4. Un Escorpio simbólico no cambia el signo solar.',math:'Total Ábyad',mod12:'Posición entre 12',mod4:'Posición entre 4',caveat:'No es una regla universal del Ábyad ni una predicción con validación científica.',unknown:'Sin fecha de nacimiento',nameFormat:'El cálculo usa la escritura árabe mostrada.'}
+};
+const SUN_LABELS={
+ tr:['Oğlak','Kova','Balık','Koç','Boğa','İkizler','Yengeç','Aslan','Başak','Terazi','Akrep','Yay'],
+ en:['Capricorn','Aquarius','Pisces','Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius'],
+ el:['Αιγόκερως','Υδροχόος','Ιχθύες','Κριός','Ταύρος','Δίδυμοι','Καρκίνος','Λέων','Παρθένος','Ζυγός','Σκορπιός','Τοξότης'],
+ es:['Capricornio','Acuario','Piscis','Aries','Tauro','Géminis','Cáncer','Leo','Virgo','Libra','Escorpio','Sagitario']
+};
+function sunSignByDate(date,loc){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(date||''))return null;
+ const [,month,day]=date.split('-').map(Number);
+ // Standard tropical calendar-date boundaries (not a calculated natal chart).
+ const cutoffs=[20,19,20,20,21,21,22,23,23,23,22,22];
+ const indexes=[0,1,2,3,4,5,6,7,8,9,10,11];
+ const index=day<cutoffs[month-1]?indexes[month-1]:(indexes[month-1]+1)%12;
+ return (SUN_LABELS[loc]||SUN_LABELS.tr)[index];
+}
+function renderSymbolicNote(p,loc,t){
+ const l=SYMBOL_INFO[loc]||SYMBOL_INFO.tr;
+ const sun=sunSignByDate(p.date,loc);
+ const el=t.elementNames[p.elementIndex],z=t.zodiacNames[p.zodiacIndex];
+ return `<section class="symbol-guide" aria-label="${l.symbol}">
+  <div class="symbol-guide-item symbol-guide-birth"><span class="symbol-guide-label">${l.birth}</span><strong>${sun||l.unknown}</strong></div>
+  <div class="symbol-guide-item"><span class="symbol-guide-label">${l.symbol}</span><strong>${l.element}: ${el} <span class="symbol-guide-separator">·</span> ${l.archetype}: ${z}</strong></div>
+  <details class="symbol-guide-details"><summary>ⓘ ${l.explain}</summary><p>${l.answer}</p><p class="symbol-guide-formula">${l.math}: ${p.a.total} · ${l.mod12}: ${p.zodiacIndex} · ${l.mod4}: ${p.elementIndex}</p><p class="symbol-guide-caution">${l.caveat}</p></details>
+ </section>`;
+}
+
+
+const EXPLAINED_METRICS={
+ tr:{
+ title:'Rakamların Anlamı',intro:'Her sonucun neyi gösterdiğini ve hangi işlemle hesaplandığını aşağıdan inceleyebilirsin.',
+ greater:['Büyük Ebced','Arap harflerinin klasik sayısal değerleri toplanır.','Bu tarihsel bir harf-sayı hesabıdır; tek başına kişilik veya gelecek göstermez.'],
+ lesser:['Küçük Ebced','Bu araçta her harfin Büyük Ebced değeri 1–9 aralığına indirgenir ve toplanır.','Küçük Ebced adı altında birden fazla yöntem kullanılır; burada uygulanan kural budur.'],
+ maternal:['Anne adıyla birlikte','Ad ve soyadın Ebced toplamına annenin adının Ebced değeri eklenir.','Geleneksel uygulamalarda görülen ek bir hesaplamadır; kişisel kader tespiti değildir.'],
+ expression:['İfade / kader sayısı','Latin harfleri Pisagor tablosuyla 1–9 değerlerine çevrilir ve bütün harfler toplanır.','Modern numerolojide ifade tarzı ve yetenek temalarıyla ilişkilendirilir; gerçek kişiliği kanıtlamaz.'],
+ soul:['Ruh arzusu','İsimdeki sesli harflerin Pisagor değerleri toplanır.','Modern numerolojide sembolik istekler ve motivasyonlarla ilişkilendirilir.'],
+ personality:['Kişilik sayısı','İsimdeki sessiz harflerin Pisagor değerleri toplanır.','Modern numerolojide dışarıya yansıtılan özellikleri simgeler; psikolojik test değildir.'],
+ life:['Yaşam yolu','Doğum tarihinin gün, ay ve yıl bileşenleri toplanıp numerolojik kurala göre indirgenir.','Modern numerolojide yaşam temalarıyla ilişkilendirilir; hayatın yönünü belirlemez.'],
+ year:['Kişisel yıl','Doğum günü ve ayı, içinde bulunulan yılın rakamlarıyla birlikte indirgenir.','Yıla atanan sembolik bir temadır; yıl içinde ne olacağını öngörmez.'],
+ raw:'İlk toplam',root:'Son sayı',how:'Nasıl hesaplanır?',meaning:'Geleneksel / sembolik anlam',theme:'Bu sayının numerolojideki teması',note:'Sayılar matematiksel olarak hesaplanabilir; yorumlar tarihsel veya modern sembolik geleneklerden gelir.',
+ summaryTitle:'Sonuçların Kısa Yorumu',summaryIntro:'Bu sayılar sana ne söylüyor?',summaryEnding:'Bunlar sembolik okumalardır; geleceği veya karakteri kesin biçimde belirlemez.',
+ compareTitle:'İki Kişinin Sonuçları Ne Anlama Geliyor?',compareNote:'İsimlerden hesaplanan ortak sayı, iki insanın duygularını ya da ilişkinin geleceğini ölçmez. Farklı veya aynı sayılar birlikte konuşulabilecek temalar sunar.'
+ },
+ en:{
+ title:'Understand Your Numbers',intro:'Explore what each number means and how it was calculated.',
+ greater:['Greater Abjad','Sum the classical numerical values of the Arabic letters.','A historical letter-number calculation, not a personality or future prediction.'],
+ lesser:['Lesser Abjad','This tool reduces each Greater Abjad letter value to 1–9 and sums the results.','Several methods exist under this name; the tool displays its specific rule.'],
+ maternal:['Including mother’s name','Add the Abjad value of the mother’s name to the full-name total.','A traditional additional calculation, not a measure of destiny.'],
+ expression:['Expression number','Convert all Latin letters using the Pythagorean 1–9 table and sum them.','Modern numerology associates this with expression and abilities, not proven traits.'],
+ soul:['Soul urge','Sum the Pythagorean values of the vowels in the name.','A modern symbolic theme of wishes and motivation.'],
+ personality:['Personality number','Sum the Pythagorean values of consonants in the name.','A modern symbolic theme of outward expression, not a psychological assessment.'],
+ life:['Life path','Reduce and combine the day, month and year of birth using the stated numerology rule.','Associated with broad life themes in modern numerology, not a fixed life path.'],
+ year:['Personal year','Combine birth day and month with the current calendar year, then reduce.','A symbolic yearly theme, not a forecast.'],
+ raw:'Initial total',root:'Final number',how:'How it is calculated',meaning:'Traditional / symbolic interpretation',theme:'This number’s numerology theme',note:'The arithmetic is verifiable; interpretations come from historical or modern symbolic traditions.',
+ summaryTitle:'Your Results at a Glance',summaryIntro:'What do these numbers mean?',summaryEnding:'These are symbolic readings; they cannot reliably predict events or establish personality.',
+ compareTitle:'Understanding Your Two-Person Results',compareNote:'A combined name number does not measure feelings or relationship outcomes. It may offer subjects for reflection.'
+ },
+ el:{
+ title:'Τι σημαίνουν οι αριθμοί;',intro:'Δείτε τι σημαίνει κάθε αποτέλεσμα και πώς υπολογίστηκε.',
+ greater:['Μεγάλο Αμπτζάντ','Προστίθενται οι αριθμητικές τιμές των αραβικών γραμμάτων.','Ιστορικός υπολογισμός, όχι πρόβλεψη χαρακτήρα ή μέλλοντος.'],
+ lesser:['Μικρό Αμπτζάντ','Κάθε τιμή γράμματος ανάγεται σε 1–9 και αθροίζεται.','Υπάρχουν διαφορετικές μέθοδοι· αυτή είναι η συγκεκριμένη επιλογή.'],
+ maternal:['Με το όνομα μητέρας','Η τιμή του ονόματος της μητέρας προστίθεται στο πλήρες όνομα.','Παραδοσιακός συμβολικός υπολογισμός, όχι ένδειξη πεπρωμένου.'],
+ expression:['Αριθμός έκφρασης','Προστίθενται οι τιμές όλων των λατινικών γραμμάτων στον Πυθαγόρειο πίνακα.','Στη σύγχρονη αριθμολογία συνδέεται συμβολικά με την έκφραση.'],
+ soul:['Εσωτερική επιθυμία','Προστίθενται οι τιμές των φωνηέντων.','Συμβολική ερμηνεία επιθυμιών και κινήτρων.'],
+ personality:['Προσωπικότητα','Προστίθενται οι τιμές των συμφώνων.','Συμβολική ερμηνεία, όχι ψυχολογική αξιολόγηση.'],
+ life:['Πορεία ζωής','Συνδυάζονται τα ψηφία ημέρας, μήνα και έτους γέννησης.','Σύγχρονη αριθμολογική ερμηνεία, όχι προορισμός ζωής.'],
+ year:['Προσωπικό έτος','Συνδυάζονται ημέρα και μήνας γέννησης με το τρέχον έτος.','Συμβολική θεματική και όχι πρόβλεψη.'],
+ raw:'Αρχικό άθροισμα',root:'Τελικός αριθμός',how:'Υπολογισμός',meaning:'Συμβολική ερμηνεία',theme:'Αριθμολογικό θέμα',note:'Οι υπολογισμοί ελέγχονται μαθηματικά· οι ερμηνείες είναι συμβολικές.',
+ summaryTitle:'Συνοπτική Ερμηνεία',summaryIntro:'Τι δείχνουν οι αριθμοί;',summaryEnding:'Δεν προβλέπουν αξιόπιστα προσωπικότητα ή γεγονότα.',
+ compareTitle:'Ερμηνεία Σύγκρισης',compareNote:'Ο κοινός αριθμός δεν μετρά συναισθήματα ούτε προβλέπει το μέλλον μιας σχέσης.'
+ },
+ es:{
+ title:'Comprende tus números',intro:'Consulta qué significa cada resultado y cómo se calcula.',
+ greater:['Ábyad mayor','Se suman los valores clásicos de las letras árabes.','Cálculo histórico, no predicción de personalidad o futuro.'],
+ lesser:['Ábyad menor','Cada valor del Ábyad mayor se reduce a 1–9 antes de sumarlos.','Existen otros métodos; este es el que aplica la herramienta.'],
+ maternal:['Con el nombre de la madre','Se suma el valor Ábyad del nombre materno al nombre completo.','Cálculo simbólico tradicional, no una medida del destino.'],
+ expression:['Número de expresión','Se suman los valores de todas las letras con la tabla pitagórica.','La numerología moderna lo vincula simbólicamente con la expresión.'],
+ soul:['Deseo del alma','Se suman los valores de las vocales.','Interpretación simbólica de deseos y motivaciones.'],
+ personality:['Personalidad','Se suman los valores de las consonantes.','Interpretación simbólica, no evaluación psicológica.'],
+ life:['Camino de vida','Se combinan y reducen día, mes y año de nacimiento.','Tema de numerología moderna, no un destino fijo.'],
+ year:['Año personal','Se combinan día y mes de nacimiento con el año actual.','Tema simbólico anual, no pronóstico.'],
+ raw:'Total inicial',root:'Número final',how:'Cómo se calcula',meaning:'Interpretación simbólica',theme:'Tema numerológico',note:'Los cálculos son verificables; las interpretaciones son simbólicas.',
+ summaryTitle:'Resumen de tus resultados',summaryIntro:'¿Qué significan estos números?',summaryEnding:'No permiten predecir eventos ni determinar la personalidad.',
+ compareTitle:'Cómo leer la comparación',compareNote:'El número conjunto no mide sentimientos ni predice el futuro de una relación.'
+ }
+};
+function summaryMetric(key, label, value, total, root, item, locale) {
+ const t=EXPLAINED_METRICS[locale]||EXPLAINED_METRICS.tr;
+ const isModern=['expression','soul','personality','life','year'].includes(key);
+ const theme=isModern&&(THEMES[reduce(Number(value),false)]||{})[locale] || (isModern&&(THEMES[reduce(Number(value),false)]||{}).tr);
+ const interpretation=theme?`<p><b>${esc(t.theme)}</b> ${esc(theme.title)}. ${esc(theme.positive)} ${esc(theme.care)}</p>`:'';
+ return `<details class="meaning-row"><summary><span>${esc(label)}</span><strong>${esc(value)}</strong><span class="meaning-chevron" aria-hidden="true">⌄</span></summary><div class="meaning-answer"><p><b>${esc(t.how)}</b> ${esc(item[1])} ${total!==null?`${esc(t.raw)}: <strong>${esc(total)}</strong>. ${root!==null?`${esc(t.root)}: <strong>${esc(root)}</strong>.`:''}`:''}</p><p><b>${esc(t.meaning)}</b> ${esc(item[2])}</p>${interpretation}</div></details>`;
+}
+function renderReadableExplanation(p,loc){
+ const t=EXPLAINED_METRICS[loc]||EXPLAINED_METRICS.tr,n=p.numerology;
+ const blocks=[
+  ['greater',p.a.total,p.a.total,null],
+  ['lesser',p.a.totalSmall,p.a.totalSmall,null],
+  ...(p.m.parts.length?[['maternal',p.full,p.full,null]]:[]),
+  ['expression',n.expressionRoot,n.expression,n.expressionRoot],
+  ['soul',n.soulUrgeRoot,n.soulUrge,n.soulUrgeRoot],
+  ['personality',n.personalityRoot,n.personality,n.personalityRoot],
+  ...(n.lifePath!==null?[['life',n.lifePath,null,null],['year',n.personalYear,null,null]]:[])
+ ];
+ const explanations=blocks.map(([key,value,total,root])=>summaryMetric(key,t[key][0],value,total,root,t[key],loc)).join('');
+ return `<section class="result-card meaning-card"><div class="meaning-header"><span class="meaning-kicker">MYTHBORN · EBCED / NUMEROLOGY</span><h3>${esc(t.title)}</h3><p>${esc(t.intro)}</p></div><div class="meaning-grid">${explanations}</div><p class="meaning-disclaimer">${esc(t.note)}</p></section>`;
+}
+function renderPlainSummary(p,loc,other=null){
+ const t=EXPLAINED_METRICS[loc]||EXPLAINED_METRICS.tr;
+ const n=p.numerology,root=reduce(p.a.total,true);
+ const theme=(THEMES[root]&&THEMES[root][loc])||(THEMES[root]||THEMES[1]).tr;
+ const meaningful=`<p>${esc(t.greater[0])}: <strong>${p.a.total}</strong>. ${esc(t.greater[1])}</p>`;
+ const numerology=`<p>${esc(t.expression[0])}: <strong>${n.expressionRoot}</strong>. ${esc(t.expression[2])}</p>`;
+ const dateBlock=n.lifePath!==null?`<p>${esc(t.life[0])}: <strong>${n.lifePath}</strong>. ${esc(t.life[2])}</p>`:'';
+ const otherPart=other?`<p><strong>${esc(p.name)}</strong>: ${esc(t.greater[0])} ${p.a.total}, ${esc(t.expression[0])} ${n.expressionRoot}${n.lifePath!==null?', '+esc(t.life[0])+' '+n.lifePath:''}.</p><p><strong>${esc(other.name)}</strong>: ${esc(t.greater[0])} ${other.a.total}, ${esc(t.expression[0])} ${other.numerology.expressionRoot}${other.numerology.lifePath!==null?', '+esc(t.life[0])+' '+other.numerology.lifePath:''}.</p><p><strong>${esc(t.summaryTitle)}:</strong> ${esc(t.compareNote)}</p>`:'';
+ return `<section class="result-card readable-summary"><span class="summary-eyebrow">${esc(t.summaryIntro)}</span><h2>${esc(other?t.compareTitle:t.summaryTitle)}</h2>${meaningful}${numerology}${dateBlock}<p><strong>${esc(theme.title)}:</strong> ${esc(theme.positive)}</p>${otherPart}<p class="meaning-disclaimer">${esc(t.summaryEnding)}</p></section>`;
 }
 
 // Render letter breakdown table
@@ -1079,8 +1202,8 @@ function renderThreeLayerInterpretation(p, loc) {
       <div class="interp-layer layer-symbolic">
         <h4 class="layer-title">${t.layerB}</h4>
         <p class="layer-body">
-          Klasik İslami ve kadim Doğu geleneklerinde toplam sayının 4 element ve 12 burç taksimiyle eşleştirilmesi usulüne göre:
-          Bu isim <strong>${elName}</strong> elementi ve <strong>${zodName}</strong> arketipiyle sembolik uyum içerisindedir.
+          ${(SYMBOL_INFO[loc]||SYMBOL_INFO.tr).answer}
+          <strong>${elName}</strong> · <strong>${zodName}</strong>.
           <em>${elDesc}</em>
         </p>
       </div>
@@ -1193,18 +1316,40 @@ function renderComparisonSection(p1, p2, loc) {
   `;
 }
 
-// Mode toggle handling
-if (modePersonal && modeCompare && secondBox) {
-  modePersonal.addEventListener('change', () => {
-    secondBox.classList.add('hidden');
-    const nameB = document.getElementById('bName');
-    if (nameB) nameB.removeAttribute('required');
-  });
-  modeCompare.addEventListener('change', () => {
-    secondBox.classList.remove('hidden');
-    const nameB = document.getElementById('bName');
-    if (nameB) nameB.setAttribute('required', 'required');
-  });
+// Separate comparison journey: each person has an independent form step.
+const isComparePage = form?.dataset.analysisMode === 'compare';
+const firstBox = document.querySelector('#first-person-container');
+const nextButton = document.querySelector('#comparison-next');
+const backButton = document.querySelector('#comparison-back');
+const submitButton = form?.querySelector('[type="submit"]');
+const steps = [...document.querySelectorAll('[data-step-marker]')];
+let comparisonStep = 1;
+function displayComparisonStep(number) {
+  if (!isComparePage) return;
+  comparisonStep = number;
+  firstBox.hidden = number === 2;
+  firstBox.classList.toggle('hidden', number === 2);
+  secondBox.hidden = number !== 2;
+  secondBox.classList.toggle('hidden', number !== 2);
+  nextButton.hidden = number === 2;
+  nextButton.classList.toggle('hidden', number === 2);
+  backButton.hidden = number === 1;
+  backButton.classList.toggle('hidden', number === 1);
+  submitButton.hidden = number === 1;
+  submitButton.classList.toggle('hidden', number === 1);
+  steps.forEach((item,i)=>item.classList.toggle('is-active',i+1 === number));
+}
+function validateFirstPerson() {
+  const name = document.getElementById('aName');
+  const arabic = document.getElementById('aArabic');
+  if (!name.value.trim()) { name.focus(); name.reportValidity(); return false; }
+  if (!arabic.value.trim()) { arabic.focus(); arabic.setCustomValidity('Please provide Arabic spelling.'); arabic.reportValidity(); arabic.setCustomValidity(''); return false; }
+  return true;
+}
+if (isComparePage && nextButton && backButton && secondBox) {
+  displayComparisonStep(1);
+  nextButton.addEventListener('click',()=>{if(validateFirstPerson()){displayComparisonStep(2);secondBox.querySelector('input')?.focus();}});
+  backButton.addEventListener('click',()=>{displayComparisonStep(1);firstBox.querySelector('input')?.focus();});
 }
 
 // Form submission handler
@@ -1212,7 +1357,7 @@ if (form) {
   form.addEventListener('submit', event => {
     event.preventDefault();
     try {
-      const isCompare = modeCompare && modeCompare.checked;
+      const isCompare = isComparePage;
       const getOpt = id => (document.getElementById(id) || {}).value;
 
       const options = {
@@ -1238,6 +1383,7 @@ if (form) {
       if (p1.m.parts.length) {
         html += renderAbjadLedger(p1.m, 'Ebced Dökümü (Anne Adı)', loc);
       }
+      html += renderReadableExplanation(p1, loc);
       html += renderThreeLayerInterpretation(p1, loc);
 
       // 2. Person B (if comparison)
@@ -1248,11 +1394,15 @@ if (form) {
         if (p2.m.parts.length) {
           html += renderAbjadLedger(p2.m, 'Ebced Dökümü (2. Kişi Anne Adı)', loc);
         }
+        html += renderReadableExplanation(p2, loc);
         html += renderThreeLayerInterpretation(p2, loc);
 
         // 3. Comparison
         html += renderComparisonSection(p1, p2, loc);
       }
+
+      // Human-readable summary is intentionally the last interpretation before printing.
+      html += renderPlainSummary(p1, loc, p2);
 
       // 4. Print / PDF action button
       const t = I18N[loc] || I18N.tr;
