@@ -3211,4 +3211,66 @@ html[dir="rtl"] .retro-guidance-box {
   .astro-menu-btn { display: inline-flex !important; }
   .astro-header-actions .astro-cta-gold { display: none !important; }
 }
+
+/* Mythborn layout refinement · compact premium header + centered discovery */
+.astro-header { overflow:visible !important; }
+.astro-nav-desktop { font-size:12.5px; letter-spacing:.065em; gap:clamp(14px,1.6vw,27px); }
+.astro-nav-dropdown-btn { font-size:12.5px; letter-spacing:.065em; }
+.astro-header-inner { min-height:70px; padding-block:12px; max-width:1320px; }
+.astro-brand { letter-spacing:.20em; font-size:20px; }
+.astro-cta-gold { font-size:12px; }
+.astro-lang-select { isolation:isolate; }
+.astro-lang-select > summary { min-height:40px; }
+.astro-lang-options { z-index:1200; }
+.astro-ebced-feature {
+  min-height:unset !important;
+  scroll-snap-stop:normal;
+  background:
+    radial-gradient(ellipse at 66% 50%,rgba(164,118,45,.12),transparent 48%),
+    linear-gradient(135deg,#0c101a 0%,#080a11 55%,#0b0c16 100%);
+}
+.astro-ebced-feature-inner {
+  width:min(1160px,calc(100% - 64px)) !important;
+  max-width:1160px !important;
+  margin-inline:auto !important;
+  min-height:clamp(460px,76svh,650px) !important;
+  padding-block:clamp(58px,7vh,90px) !important;
+  grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr);
+  align-items:center;
+  gap:clamp(32px,5vw,88px);
+}
+.astro-ebced-feature-copy { max-width:590px; position:relative; z-index:1; }
+.astro-ebced-feature .astro-card-tag { display:inline-block;color:var(--gold-bright);letter-spacing:.16em;font-size:11px; }
+.astro-ebced-feature h2 {
+  font-size:clamp(36px,3.8vw,57px);
+  line-height:1.11;
+  letter-spacing:-.025em;
+  max-width:580px;
+  margin:20px 0;
+  text-wrap:balance;
+}
+.astro-ebced-lead { font-size:clamp(16px,1.3vw,18px);line-height:1.66;max-width:520px; margin-bottom:28px; }
+.astro-ebced-actions { display:flex;align-items:center;gap:13px;flex-wrap:wrap; }
+.astro-ebced-secondary {
+  display:inline-flex; align-items:center;justify-content:center;gap:9px;
+  min-height:45px; padding:12px 20px;color:var(--gold-bright);
+  border:1px solid rgba(212,175,55,.36);border-radius:10px;
+  background:rgba(212,175,55,.035);font-weight:600;font-size:13px;
+  transition:background .2s,border-color .2s;
+}
+.astro-ebced-secondary:hover { background:rgba(212,175,55,.12);border-color:var(--gold); }
+.astro-ebced-art { width:min(100%,360px);background:radial-gradient(circle,rgba(212,175,55,.09),transparent 65%); }
+.astro-ebced-caption { font-size:12px; margin:24px 0 7px; }
+@media (max-width:900px) {
+  .astro-ebced-feature-inner { width:min(100% - 34px,660px) !important;grid-template-columns:1fr;min-height:0 !important;padding-block:58px 47px !important;gap:26px; }
+  .astro-ebced-feature-copy { margin-inline:auto; }
+  .astro-ebced-feature h2 { font-size:clamp(33px,7vw,46px);margin:16px 0; }
+  .astro-ebced-actions {justify-content:center; }
+  .astro-ebced-art {width:min(54vw,230px);}
+}
+@media (max-width:420px) {
+  .astro-ebced-feature-inner {padding-block:44px 36px !important;}
+  .astro-ebced-actions a { flex:1 1 100%; }
+  .astro-ebced-art {width:min(49vw,190px);}
+}
 `;
