@@ -3343,4 +3343,25 @@ html[dir="rtl"] .retro-guidance-box {
 @media(max-width:600px){.astro-frequency-preview{min-height:580px}.astro-frequency-preview-inner{width:calc(100% - 36px);padding:65px 0}.astro-frequency-preview h2{font-size:clamp(47px,12vw,68px)}.astro-frequency-preview-copy>p{font-size:15px}.astro-frequency-preview-visual img{object-position:76% center}.astro-frequency-preview-visual:after{background:linear-gradient(90deg,rgba(5,8,15,.96),rgba(5,8,15,.82) 65%,rgba(5,8,15,.51))}.astro-frequency-preview-cta{min-height:48px}.astro-frequency-preview-copy>small{max-width:280px}}
 @media(prefers-reduced-motion:reduce){.astro-frequency-preview-cta{transition:none;transform:none!important}}
 
+
+/* Dedicated contact page, using the existing Mythborn visual tokens. */
+.astro-contact-page{padding:clamp(35px,6vw,85px) 0 clamp(75px,9vw,140px);max-width:1200px}
+.astro-contact-breadcrumb{display:flex;gap:12px;align-items:center;color:#9da2ae;font-size:12px}
+.astro-contact-breadcrumb a{color:#d5bd8b;text-decoration:none}
+.astro-contact-heading{max-width:860px;margin:clamp(45px,7vw,85px) auto clamp(34px,5vw,65px);text-align:center}
+.astro-contact-eyebrow,.astro-contact-kicker{font-size:11px;font-weight:700;letter-spacing:.16em;color:#d5b876}
+.astro-contact-heading h1{font:400 clamp(41px,6vw,80px)/1.1 Georgia,serif;letter-spacing:-.035em;color:#f4ecdf;margin:18px 0}
+.astro-contact-heading p{font-size:clamp(15px,1.5vw,19px);color:#bdbac5;line-height:1.8;max-width:640px;margin:0 auto}
+.astro-contact-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.astro-contact-card{padding:clamp(23px,3vw,45px);min-width:0;border:1px solid rgba(220,176,95,.27);background:linear-gradient(140deg,rgba(24,25,37,.86),rgba(10,12,21,.97));border-radius:13px}
+.astro-contact-card-top{display:flex;gap:13px;align-items:center}
+.astro-contact-mark{color:#edc77e;font-size:26px}
+.astro-contact-card p{min-height:66px;color:#b9bbc5;line-height:1.8;font-size:14px;margin:22px 0}
+.astro-contact-email{display:flex;justify-content:space-between;gap:10px;align-items:center;text-decoration:none;color:#f1d18b;font-size:clamp(17px,2vw,27px);overflow-wrap:anywhere;border-top:1px solid rgba(220,176,95,.15);padding-top:20px}
+.astro-contact-action{display:inline-flex;gap:18px;padding:12px 20px;margin-top:26px;border:1px solid #ba934f;border-radius:7px;color:#e7cb91;text-decoration:none;font-weight:650;font-size:13px}
+.astro-contact-card a:hover{color:#fff1c6}.astro-contact-card a:focus-visible,.astro-contact-foot a:focus-visible{outline:2px solid #e4c382;outline-offset:3px}
+.astro-contact-foot{display:flex;gap:20px;justify-content:space-between;align-items:center;border-top:1px solid rgba(220,176,95,.14);margin-top:34px;padding-top:22px;color:#9095a0;font-size:12px;line-height:1.7}
+.astro-contact-foot a{color:#d7b97c;white-space:nowrap}
+@media(max-width:700px){.astro-contact-page{padding:30px 0 70px}.astro-contact-heading{margin:45px auto 35px}.astro-contact-grid{grid-template-columns:1fr;gap:14px}.astro-contact-card p{min-height:0}.astro-contact-foot{flex-direction:column;align-items:flex-start}}
+
 `;
