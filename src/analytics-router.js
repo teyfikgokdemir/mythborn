@@ -51,11 +51,16 @@ const secureHtmlResponse=async response=>{
   headers.set('referrer-policy','strict-origin-when-cross-origin');
   headers.set('permissions-policy','camera=(), microphone=(), payment=(), geolocation=()');
   let html=await response.text();
+  html=html.replace(/<script\b(?=[^>]*\bsrc\s*=\s*(['"])\/refinement\.js(?:\?[^'"]*)?\1)[^>]*>\s*<\/script\s*>/gi,'');
   const analyticsScripts=[];
+  analyticsScripts.push('<script src="/refinement.js" defer></script>');
   if(!html.includes("traffic-counter.js")) analyticsScripts.push('<script src="https://teyfikgokdemir.com/traffic-counter.js" data-site="mythborn" defer></script>');
   if(!html.includes("privacy-traffic.js")) analyticsScripts.push('<script src="https://teyfikgokdemir.com/privacy-traffic.js" data-site="mythborn" defer></script>');
   if(!html.includes("cansu-umami-loader.js")) analyticsScripts.push('<script src="https://teyfikgokdemir.com/cansu-umami-loader.js" data-site="mythborn" defer></script>');
-  if(analyticsScripts.length) html=html.replace("</body>",`${analyticsScripts.join('')}</body>`);
+  if(analyticsScripts.length){
+    const scripts=analyticsScripts.join('');
+    html=/<\/body\s*>/i.test(html)?html.replace(/<\/body\s*>/i,`${scripts}</body>`):`${html}${scripts}`;
+  }
   return new Response(html,{status:response.status,statusText:response.statusText,headers});
 };
 
