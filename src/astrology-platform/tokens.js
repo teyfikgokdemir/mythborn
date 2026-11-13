@@ -3393,4 +3393,13 @@ html[dir="rtl"] .retro-guidance-box {
 @media(hover:none){.astro-contact-card:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){.astro-contact-card,.astro-contact-email,.astro-contact-email svg{transition:none!important}.astro-contact-card:hover,.astro-contact-email:hover svg{transform:none}}
 
+/* Contact hero: preserve a centered single-line editorial composition on desktop.
+   Smaller screens wrap naturally rather than shrinking text beyond readability. */
+.astro-contact-heading{width:100%;max-width:1160px;text-align:center}
+.astro-contact-heading h1,.astro-contact-heading p{margin-left:auto;margin-right:auto;text-align:center}
+@media(min-width:1100px){
+  .astro-contact-heading h1{max-width:none;font-size:clamp(39px,3.75vw,55px);letter-spacing:-.045em;white-space:nowrap}
+  .astro-contact-heading p{max-width:none;font-size:clamp(14px,1.06vw,16px);line-height:1.65;white-space:nowrap}
+}
+
 `;
