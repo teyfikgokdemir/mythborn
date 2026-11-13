@@ -232,11 +232,11 @@ export function ebcedPage(path, isPreview = true) {
   <title>${esc(isComparison ? t.modeCompare + ' | Mythborn' : t.metaTitle)}</title>
   <meta name="description" content="${esc(isComparison ? t.modeCompare + '. ' + t.metaDesc : t.metaDesc)}">
   <link rel="canonical" href="https://mythborn.co${path}">
-  <link rel="alternate" hreflang="tr" href="https://mythborn.co/ebced">
-  <link rel="alternate" hreflang="en" href="https://mythborn.co/en/ebced">
-  <link rel="alternate" hreflang="el" href="https://mythborn.co/gr/ebced">
-  <link rel="alternate" hreflang="es" href="https://mythborn.co/es/ebced">
-  <link rel="alternate" hreflang="x-default" href="https://mythborn.co/ebced">
+  <link rel="alternate" hreflang="tr" href="https://mythborn.co${currentTr}">
+  <link rel="alternate" hreflang="en" href="https://mythborn.co${currentEn}">
+  <link rel="alternate" hreflang="el" href="https://mythborn.co${currentGr}">
+  <link rel="alternate" hreflang="es" href="https://mythborn.co${currentEs}">
+  <link rel="alternate" hreflang="x-default" href="https://mythborn.co${currentTr}">
   <link rel="icon" type="image/svg+xml" href="/assets/astrology/mythborn-symbol.svg">
   <script type="application/ld+json">${JSON.stringify(schemaJson)}</script>
   <style>
