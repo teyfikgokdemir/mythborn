@@ -14,6 +14,16 @@ const languages = [
 
 for (const [locale, pathname, ebcedUrl, heading] of languages) {
   assert.equal(getRouteHref(locale, 'ebced'), ebcedUrl, `${locale} ebced URL`);
+  const liveHome = renderHomeView({ locale, isPreview: false });
+  assert.doesNotMatch(liveHome,/id="frequency-studio"/,`${locale} production should hide unlaunched studio`);
+  const previewHome = renderHomeView({ locale, isPreview: true });
+  assert.match(previewHome,/id="frequency-studio"/,`${locale} preview should show frequency promo`);
+  assert.match(previewHome,/href="\/frekans-studyo"/,`${locale} frequency promo link`);
+  const desktopPreview=renderAstrologyLayout({locale,isPreview:true,contentHtml:previewHome});
+  assert.match(desktopPreview,/class="astro-nav-frequency"/,`${locale} preview desktop nav`);
+  assert.match(desktopPreview,/href="\/frekans-studyo"/,`${locale} preview studio nav href`);
+  const desktopProd=renderAstrologyLayout({locale,isPreview:false,contentHtml:liveHome});
+  assert.doesNotMatch(desktopProd,/class="astro-nav-frequency"/,`${locale} production nav must hide preview-only link`);
   const home = renderHomeView({ locale });
   assert.equal((home.match(/id="astro-ebced-title"/g) || []).length, 1, `${locale} feature appears once`);
   assert.equal((home.match(/astro-ebced-feature-inner/g) || []).length, 1, `${locale} feature is single panel`);
