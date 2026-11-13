@@ -39,6 +39,23 @@ const allowAnalyticsProviders=policy=>{
   return next;
 };
 
+
+const CONSENT_PRESENTATION_STYLE = `<style id="mythborn-consent-design-v3">
+.consent-dialog{position:fixed!important;inset:auto 20px 20px auto!important;width:min(700px,calc(100vw - 40px))!important;max-height:calc(100dvh - 40px)!important;overflow-y:auto!important;box-sizing:border-box!important;z-index:2147483000!important;margin:0!important;padding:0!important;background:linear-gradient(145deg,#141823,#0b0e16)!important;border:1px solid rgba(224,188,114,.47)!important;border-radius:16px!important;box-shadow:0 22px 70px #000b,0 0 0 1px #ffffff06 inset!important;color:#eee9e1!important;font-family:system-ui,-apple-system,Segoe UI,sans-serif!important}
+.consent-dialog .consent-panel{display:grid!important;grid-template-columns:minmax(0,1fr) 135px!important;align-items:center!important;gap:22px!important;padding:23px 25px!important;margin:0!important;background:none!important;border:0!important;width:100%!important;box-sizing:border-box!important}
+.consent-dialog .consent-copy{min-width:0!important}
+.consent-dialog .consent-copy strong{display:block!important;margin:0 0 8px!important;font:500 22px/1.25 Georgia,serif!important;letter-spacing:0!important;color:#f5dfad!important}
+.consent-dialog .consent-copy p{margin:0!important;max-width:480px!important;color:#c6c4cf!important;font:400 12px/1.7 system-ui,-apple-system,Segoe UI,sans-serif!important}
+.consent-dialog .consent-copy a{color:#e9c77f!important;text-decoration:underline!important;text-underline-offset:3px!important}
+.consent-dialog .consent-actions{display:flex!important;flex-direction:column!important;gap:10px!important;margin:0!important;padding:0!important;min-width:0!important}
+.consent-dialog .consent-actions button{appearance:none!important;display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-width:0!important;min-height:43px!important;padding:11px 15px!important;margin:0!important;border-radius:9px!important;box-sizing:border-box!important;cursor:pointer!important;font:600 13px/1.2 system-ui,-apple-system,Segoe UI,sans-serif!important}
+.consent-dialog [data-consent-accept]{background:linear-gradient(110deg,#f3d995,#c69c46)!important;border:1px solid #dcb76c!important;color:#16151c!important}
+.consent-dialog [data-consent-reject]{background:#ffffff05!important;border:1px solid #ddbc7559!important;color:#eee2cd!important}
+.consent-dialog button:focus-visible,.consent-dialog a:focus-visible{outline:2px solid #ffe6a5!important;outline-offset:3px!important}
+@media(max-width:640px){.consent-dialog{inset:auto 10px max(10px,env(safe-area-inset-bottom))!important;width:calc(100vw - 20px)!important;max-height:65dvh!important;border-radius:14px!important}.consent-dialog .consent-panel{grid-template-columns:minmax(0,1fr)!important;padding:18px!important;gap:15px!important}.consent-dialog .consent-copy strong{font-size:19px!important}.consent-dialog .consent-copy p{font-size:12px!important;line-height:1.6!important}.consent-dialog .consent-actions{flex-direction:row!important}.consent-dialog .consent-actions button{flex:1!important;width:auto!important}}
+@media(prefers-reduced-motion:reduce){.consent-dialog *{transition:none!important;animation:none!important}}
+</style>`;
+
 const secureHtmlResponse=async response=>{
   const contentType=response.headers.get('content-type')||'';
   if(!contentType.includes('text/html'))return response;
@@ -51,6 +68,7 @@ const secureHtmlResponse=async response=>{
   headers.set('referrer-policy','strict-origin-when-cross-origin');
   headers.set('permissions-policy','camera=(), microphone=(), payment=(), geolocation=()');
   let html=await response.text();
+  if(!html.includes('mythborn-consent-design-v3'))html=html.replace(/<\/head\s*>/i,CONSENT_PRESENTATION_STYLE+'</head>');
   html=html.replace(/<script\b(?=[^>]*\bsrc\s*=\s*(['"])\/refinement\.js(?:\?[^'"]*)?\1)[^>]*>\s*<\/script\s*>/gi,'');
   const analyticsScripts=[];
   analyticsScripts.push('<script src="/refinement.js" defer></script>');
