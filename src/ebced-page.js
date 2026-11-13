@@ -1081,6 +1081,26 @@ export function ebcedPage(path, isPreview = true) {
 @media(max-width:420px){.ebced-language-full{display:none}.ebced-language summary{padding:8px 11px}.ebced-guide{padding:20px 16px}}
 @media(prefers-reduced-motion:reduce){.ebced-language-chevron{transition:none}}
 
+
+/* User-approved originals, locally hosted on this preview branch.
+   04 is the editorial header, 05 is the educational Abjad chart, 02 is a subdued numerology detail. */
+.ebced-illustrated-hero{position:relative;isolation:isolate;overflow:hidden;max-width:none!important;border:1px solid rgba(225,187,107,.17);border-radius:15px;padding:clamp(34px,3.8vw,54px) 28px;margin:8px auto 35px!important;min-height:270px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#080b13}
+.ebced-illustrated-hero::before{content:'';position:absolute;inset:0;z-index:-2;background:url('/images/Mythborn_04_Isikli_Kitap_Hero.webp') 64% 52%/cover no-repeat;filter:saturate(.86) brightness(.66)}
+.ebced-illustrated-hero::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(6,9,17,.84),rgba(6,9,17,.56) 45%,rgba(6,9,17,.68)),linear-gradient(0deg,rgba(6,9,17,.38),transparent 44%)}
+.ebced-illustrated-hero h1{color:#fff5e8;text-shadow:0 3px 25px #04070e}
+.ebced-illustrated-hero .lead{color:#e4dfdb;text-shadow:0 2px 10px #04070e}
+.ebced-illustrated-hero .telemetry-ribbon{margin-top:10px}
+.ebced-guide-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(200px,310px);gap:clamp(20px,3vw,39px);align-items:center}
+.ebced-guide-heading{max-width:100%}
+.ebced-guide-art{margin:0;min-width:0;height:202px;position:relative;overflow:hidden;border-radius:12px;border:1px solid rgba(220,177,101,.25);background:#090b12}
+.ebced-guide-art img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;filter:saturate(.87) brightness(.86)}
+.ebced-guide-art::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 50%,rgba(8,10,16,.25));pointer-events:none}
+.ebced-numerology-story{position:relative;isolation:isolate;overflow:hidden}
+.ebced-numerology-story::before{content:'';position:absolute;inset:0;z-index:-1;opacity:.14;background:url('/images/Mythborn_02_Altin_Kutsal_Geometri.webp') center 47%/cover no-repeat;pointer-events:none;mask-image:linear-gradient(90deg,transparent 5%,#000 100%)}
+@media(max-width:850px){.ebced-guide-intro{grid-template-columns:1fr}.ebced-guide-art{height:210px;max-width:520px}.ebced-illustrated-hero{min-height:235px;padding:35px 15px}.ebced-illustrated-hero::before{background-position:65% center}}
+@media(max-width:500px){.ebced-illustrated-hero{min-height:250px}.ebced-illustrated-hero::before{background-position:70% center}.ebced-illustrated-hero::after{background:rgba(6,9,17,.72)}.ebced-guide-art{height:175px}}
+@media print{.ebced-illustrated-hero::before,.ebced-illustrated-hero::after,.ebced-guide-art{display:none}}
+
     /* Print Stylesheet */
     @media print {
       body { background: #fff !important; color: #000 !important; }
@@ -1108,7 +1128,7 @@ export function ebcedPage(path, isPreview = true) {
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero ebced-illustrated-hero">
       <span class="eyebrow">${esc(t.badge)}</span>
       <h1>${esc((isComparison ? {tr:'İki Kişilik Ebced Uyumu',en:'Two-Person Abjad Reading',el:'Συμβολική Σύγκριση Δύο Προσώπων',es:'Comparación de Dos Personas'} : {tr:'Ebced & Numeroloji',en:'Abjad & Numerology',el:'Αμπτζάντ & Αριθμολογία',es:'Ábyad y Numerología'})[lang])}</h1>
       <p class="lead">${esc(({tr:'İsimlerin harf değerlerini hesapla, geleneksel sembolizmi keşfet ve sonuçları adım adım incele.',en:'Calculate letter values, explore traditional symbolism, and review every step.',el:'Υπολογίστε τις αριθμητικές τιμές των γραμμάτων και εξερευνήστε τις συμβολικές ερμηνείες.',es:'Calcula valores de letras y explora sus interpretaciones simbólicas.'})[lang])}</p>
@@ -1172,9 +1192,9 @@ export function ebcedPage(path, isPreview = true) {
 
     <!-- Explanatory guide, shown after the calculator results and before methodology -->
     <section class="ebced-guide" aria-labelledby="ebced-guide-heading">
-      <div class="ebced-guide-heading"><span class="eyebrow">${esc(EBCEd_GUIDE[lang].label)}</span><h2 id="ebced-guide-heading">${esc(EBCEd_GUIDE[lang].head)}</h2><p>${esc(EBCEd_GUIDE[lang].explanation)}</p></div>
+      <div class="ebced-guide-intro"><div class="ebced-guide-heading"><span class="eyebrow">${esc(EBCEd_GUIDE[lang].label)}</span><h2 id="ebced-guide-heading">${esc(EBCEd_GUIDE[lang].head)}</h2><p>${esc(EBCEd_GUIDE[lang].explanation)}</p></div><figure class="ebced-guide-art"><img src="/images/Mythborn_05_Ebced_Harf_Tablosu.webp" width="1792" height="1024" loading="lazy" decoding="async" alt="${esc(({tr:'Ebced harf tablosu, eski kitaplar ve altın feneri gösteren özgün sahne',en:'Original scene of an Abjad letter chart, antique books and a golden lantern',el:'Πρωτότυπη σκηνή με πίνακα γραμμάτων Αμπτζάντ και παλιά βιβλία',es:'Escena original de una tabla de letras Ábyad y libros antiguos'})[lang])}"></figure></div>
       <div class="ebced-guide-grid">
-        <article><h3>${esc(EBCEd_GUIDE[lang].numericHead)}</h3><p>${esc(EBCEd_GUIDE[lang].numeric)}</p></article>
+        <article class="ebced-numerology-story"><h3>${esc(EBCEd_GUIDE[lang].numericHead)}</h3><p>${esc(EBCEd_GUIDE[lang].numeric)}</p></article>
         <article><h3>${esc(EBCEd_GUIDE[lang].stepsHead)}</h3><p>${esc(EBCEd_GUIDE[lang].steps)}</p></article>
       </div>
       <div class="ebced-guide-tail"><p>${esc(EBCEd_GUIDE[lang].warning)}</p><div class="ebced-guide-links"><a href="${personalUrls[lang]}">${esc(EBCEd_GUIDE[lang].linkPersonal)} →</a><a href="${compareUrls[lang]}">${esc(EBCEd_GUIDE[lang].linkCompare)} ↗</a></div></div>
