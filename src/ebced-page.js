@@ -936,8 +936,8 @@ export function ebcedPage(path, isPreview = true) {
     <!-- Hero Section -->
     <section class="hero">
       <span class="eyebrow">${esc(t.badge)}</span>
-      <h1>${esc(isComparison ? t.modeCompare : t.title)}</h1>
-      <p class="lead">${esc(t.subtitle)}</p>
+      <h1>${esc((isComparison ? {tr:'İki Kişilik Ebced Uyumu',en:'Two-Person Abjad Reading',el:'Συμβολική Σύγκριση Δύο Προσώπων',es:'Comparación de Dos Personas'} : {tr:'Ebced & Numeroloji',en:'Abjad & Numerology',el:'Αμπτζάντ & Αριθμολογία',es:'Ábyad y Numerología'})[lang])}</h1>
+      <p class="lead">${esc(({tr:'İsimlerin harf değerlerini hesapla, geleneksel sembolizmi keşfet ve sonuçları adım adım incele.',en:'Calculate letter values, explore traditional symbolism, and review every step.',el:'Υπολογίστε τις αριθμητικές τιμές των γραμμάτων και εξερευνήστε τις συμβολικές ερμηνείες.',es:'Calcula valores de letras y explora sus interpretaciones simbólicas.'})[lang])}</p>
       <div class="telemetry-ribbon">
         
         <span class="telemetry-tag">${esc(t.pillPrivacy)}</span>
