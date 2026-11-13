@@ -69,7 +69,7 @@ export function renderEbcedPromo(locale = 'tr') {
           <p class="astro-ebced-disclaimer">${t.disclaimer}</p>
         </div>
         <figure class="astro-ebced-art astro-ebced-photo-frame">
-          <img class="astro-ebced-photo" src="/images/ebced-heritage.svg" loading="lazy" decoding="async" width="600" height="760" alt="${({tr:'Altın usturlap, ebced harfleri ve tarihî el yazması kitabı gösteren özgün illüstrasyon',en:'Original illustration of a brass astrolabe, Abjad letters and an antique manuscript',el:'Πρωτότυπη εικονογράφηση αστρολάβου, αραβικών γραμμάτων και χειρογράφου',es:'Ilustración original de un astrolabio, letras árabes y un manuscrito antiguo',ar:'رسم توضيحي أصلي لأسطرلاب وحروف أبجد ومخطوط قديم'})[locale]||'Illustration of historical Abjad artifacts'}">
+          <img class="astro-ebced-photo" src="/images/Mythborn_03_Usturlap_ve_Kadim_Kitap.webp" loading="lazy" decoding="async" width="1792" height="1024" alt="${({tr:'Altın usturlap, ebced harfleri ve tarihî el yazması kitabı gösteren özgün illüstrasyon',en:'Original cinematic artwork showing a brass astrolabe and an antique manuscript',el:'Πρωτότυπη εικονογράφηση αστρολάβου, αραβικών γραμμάτων και χειρογράφου',es:'Ilustración original de un astrolabio, letras árabes y un manuscrito antiguo',ar:'رسم توضيحي أصلي لأسطرلاب وحروف أبجد ومخطوط قديم'})[locale]||'Illustration of historical Abjad artifacts'}">
           <figcaption>${({tr:'EBCED GELENEĞİ · ÖZGÜN GÖRSEL',en:'ABJAD HERITAGE · ORIGINAL ARTWORK',el:'ΠΑΡΑΔΟΣΗ ΑΜΠΤΖΑΝΤ · ΠΡΩΤΟΤΥΠΟ ΕΡΓΟ',es:'TRADICIÓN ÁBYAD · ILUSTRACIÓN ORIGINAL',ar:'تراث أبجد · رسم أصلي'})[locale]}</figcaption>
         </figure>
       </div>
