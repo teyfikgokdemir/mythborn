@@ -52,6 +52,14 @@ assert.equal((script.match(/ctx\.createOscillator\(\)/g)||[]).length,1,'exactly 
 assert.doesNotMatch(script,/ratio:\s*\.5|ratio:\s*1\.5|const voices\s*=/,'mixed subharmonics are forbidden');
 assert.match(script,/const MAX_GAIN = 0\.25/,'safe audio output bound changed unexpectedly');
 assert.match(script,/\(Number\(volume\.value\) \/ 30\) \* MAX_GAIN/);
+// Design review: real asset and visual layout requirements from screenshots.
+assert.match(html,/frequency-hero-scene\.svg/);
+assert.match(html,/\.artwork-scene\{/);
+assert.match(html,/#anlam\.section-head\{/);
+assert.match(html,/#anlam\.section-head h2\{white-space:nowrap/);
+assert.match(html,/\.guide\{align-self:start/);
+assert.match(html,/Üç ayrı dünya\. Tek deneyim\./);
+assert.match(html,/İlişkiler ve Uyum/);
 assert.match(html,/SAF SİNÜS SİNYALİ/);
 assert.match(html,/tek bir saf sinüs dalgası/);
 
