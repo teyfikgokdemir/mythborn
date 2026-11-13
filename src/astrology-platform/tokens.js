@@ -3304,6 +3304,7 @@ html[dir="rtl"] .retro-guidance-box {
 `;
 
 
+export const EBCED_IMMERSIVE_CSS = `
 /* Approved immersive Ebced direction: uninterrupted visual with readable copy overlay.
    No separate framed image, no extra spacing, RTL-safe and mobile-safe. */
 .astro-ebced-feature{isolation:isolate;background:#080b12!important;min-height:clamp(520px,72svh,730px);display:flex;align-items:center}
@@ -3323,3 +3324,5 @@ html[dir="rtl"] .retro-guidance-box {
 @media(max-width:600px){.astro-ebced-feature,.astro-ebced-feature-inner{min-height:620px!important}.astro-ebced-feature-inner{width:calc(100% - 36px)!important;padding:60px 0 78px!important}.astro-ebced-feature .astro-ebced-feature-copy{width:100%}.astro-ebced-feature h2{font-size:clamp(37px,9.5vw,51px)}.astro-ebced-feature .astro-ebced-lead{font-size:15px}.astro-ebced-feature .astro-ebced-photo{object-position:74% 50%}.astro-ebced-feature .astro-ebced-photo-frame::before{background:linear-gradient(90deg,rgba(6,9,17,.96),rgba(6,9,17,.83) 65%,rgba(6,9,17,.54)),linear-gradient(0deg,rgba(6,9,17,.88),transparent 28%)}}
 @media(prefers-reduced-motion:reduce){.astro-ebced-feature .astro-ebced-photo{transition:none}}
 [dir="rtl"] .astro-ebced-feature .astro-ebced-photo-frame::before{background:linear-gradient(270deg,#070a12 0%,rgba(7,10,18,.95) 33%,rgba(7,10,18,.23) 75%,rgba(7,10,18,.07)),linear-gradient(0deg,rgba(7,10,18,.75),transparent 29%)}
+
+`;
