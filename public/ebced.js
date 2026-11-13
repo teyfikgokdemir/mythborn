@@ -1130,7 +1130,7 @@ function renderPlainSummary(p,loc,other=null){
  const meaningful=`<p>${esc(t.greater[0])}: <strong>${p.a.total}</strong>. ${esc(t.greater[1])}</p>`;
  const numerology=`<p>${esc(t.expression[0])}: <strong>${n.expressionRoot}</strong>. ${esc(t.expression[2])}</p>`;
  const dateBlock=n.lifePath!==null?`<p>${esc(t.life[0])}: <strong>${n.lifePath}</strong>. ${esc(t.life[2])}</p>`:'';
- const otherPart=other?`<p>${esc(t.compareNote)}</p>`:'';
+ const otherPart=other?`<p><strong>${esc(p.name)}</strong>: ${esc(t.greater[0])} ${p.a.total}, ${esc(t.expression[0])} ${n.expressionRoot}${n.lifePath!==null?', '+esc(t.life[0])+' '+n.lifePath:''}.</p><p><strong>${esc(other.name)}</strong>: ${esc(t.greater[0])} ${other.a.total}, ${esc(t.expression[0])} ${other.numerology.expressionRoot}${other.numerology.lifePath!==null?', '+esc(t.life[0])+' '+other.numerology.lifePath:''}.</p><p><strong>${esc(t.summaryTitle)}:</strong> ${esc(t.compareNote)}</p>`:'';
  return `<section class="result-card readable-summary"><span class="summary-eyebrow">${esc(t.summaryIntro)}</span><h2>${esc(other?t.compareTitle:t.summaryTitle)}</h2>${meaningful}${numerology}${dateBlock}<p><strong>${esc(theme.title)}:</strong> ${esc(theme.positive)}</p>${otherPart}<p class="meaning-disclaimer">${esc(t.summaryEnding)}</p></section>`;
 }
 
