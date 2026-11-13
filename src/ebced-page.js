@@ -907,6 +907,42 @@ export function ebcedPage(path, isPreview = true) {
 @media(max-width:760px) { .shell {width:calc(100% - 26px);} .topbar {flex-wrap:wrap;}.brand-name {font-size:17px;}.form-grid {grid-template-columns:1fr;} .analysis-path-nav {grid-template-columns:1fr 1fr;} .analysis-path {font-size:12px;} .nav-actions {gap:7px;} .person-fieldset {padding:17px 13px;} .step-progress span{font-size:11px;} .hero h1 {font-size:clamp(29px,8vw,40px);} }
 @media(max-width:390px) { .home-link {font-size:11px;padding:8px;} .ebced-language summary {font-size:12px;padding:9px;} .step-actions {flex-direction:column-reverse;} .step-actions button {width:100%;} }
 
+
+    /* Result experience: refined editorial layout and clear separation of calculation methods */
+    .person-summary-card { border:1px solid rgba(212,175,55,.24); background:linear-gradient(145deg,#121525,#0b0d18); padding:clamp(21px,3.8vw,44px); }
+    .person-summary-card .card-head { align-items:center; }
+    .person-summary-card .person-title { font-size:clamp(28px,3.8vw,43px); letter-spacing:-.018em; }
+    .card-method-tag { color:var(--gold-bright);border:1px solid rgba(212,175,55,.24);border-radius:999px;padding:9px 13px;font-size:11px;white-space:nowrap;letter-spacing:.04em; }
+    .person-summary-card .arabic-display-box { min-height:106px;display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;padding:18px 26px;background:linear-gradient(100deg,rgba(6,8,17,.85),rgba(19,20,30,.65));border:1px solid rgba(212,175,55,.26);margin-top:21px; }
+    .person-summary-card .arabic-main { font-size:clamp(31px,3.7vw,48px);line-height:1.7;color:#ebd29a;overflow-wrap:anywhere;text-align:center; }
+    .person-summary-card .arabic-mom { font-size:clamp(21px,2vw,27px);line-height:1.6;color:#d3cbdb;overflow-wrap:anywhere;text-align:center; }
+    .arabic-hint { margin:7px 0 23px;color:var(--muted);font-size:11px;text-align:center; }
+    .symbol-guide { display:grid;grid-template-columns:1fr 1.45fr;gap:13px;margin-bottom:23px; }
+    .symbol-guide-item { padding:17px 19px;background:rgba(212,175,55,.028);border:1px solid rgba(212,175,55,.17);border-radius:11px;display:flex;flex-direction:column;gap:10px; }
+    .symbol-guide-birth { background:rgba(212,175,55,.08);border-color:rgba(212,175,55,.33); }
+    .symbol-guide-label { font-size:11px;letter-spacing:.04em;color:var(--muted);font-weight:600;line-height:1.45; }
+    .symbol-guide-item strong { color:#e9dfc8;font-size:clamp(14px,1.3vw,17px);font-weight:600;line-height:1.4; }
+    .symbol-guide-birth strong { color:var(--gold-bright); }
+    .symbol-guide-separator { color:rgba(212,175,55,.55);padding:0 5px; }
+    .symbol-guide-details { grid-column:1/-1; border:1px solid rgba(212,175,55,.14);border-radius:11px;background:rgba(255,255,255,.013);padding:13px 18px; }
+    .symbol-guide-details summary { cursor:pointer;color:var(--gold-bright);font-weight:600;font-size:13px;line-height:1.5; }
+    .symbol-guide-details summary:focus-visible { outline:2px solid var(--gold-bright);outline-offset:4px; }
+    .symbol-guide-details p { color:var(--muted);line-height:1.7;font-size:13px;margin:10px 0 0; }
+    .symbol-guide-details .symbol-guide-formula { color:#f0deb7;font-size:12px; }
+    .symbol-guide-details .symbol-guide-caution { font-size:12px; }
+    .stats-grid { grid-template-columns:repeat(4,minmax(0,1fr));gap:12px; }
+    .stat-pill { min-width:0; padding:17px; background:#0b0d17;border:1px solid rgba(212,175,55,.12);border-radius:11px; }
+    .stat-label { font-size:11px;line-height:1.5;letter-spacing:.02em; }
+    .stat-val { font-size:clamp(24px,2.6vw,34px); }
+    @media(max-width:820px) { .stats-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+    @media(max-width:560px) {
+      .symbol-guide { grid-template-columns:1fr; }
+      .symbol-guide-details { grid-column:auto; }
+      .person-summary-card .arabic-display-box { padding:14px 10px;gap:8px; }
+      .person-summary-card .arabic-main { font-size:clamp(26px,7vw,38px); }
+      .card-method-tag { white-space:normal; }
+    }
+
     /* Print Stylesheet */
     @media print {
       body { background: #fff !important; color: #000 !important; }
