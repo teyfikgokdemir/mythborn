@@ -8,6 +8,7 @@ const contentByLocale = {
     title: 'İsminin ardındaki sayıları keşfet.',
     lead: 'Ebced geleneği ve numerolojiyle isimlerin harf değerlerini, sembolik anlamlarını ve iki kişilik karşılaştırmaları incele.',
     action: 'Ebced analizimi başlat',
+    compare: 'İki Kişilik Uyum Analizi',
     caption: 'Harf harf hesaplama · Anne adı · İlişki karşılaştırması',
     disclaimer: 'Tarihsel ve sembolik yorumlar; kesin gelecek tahmini değildir.'
   },
@@ -16,6 +17,7 @@ const contentByLocale = {
     title: 'Discover the numbers behind your name.',
     lead: 'Explore Abjad letter values, numerology themes and a two-person symbolic comparison.',
     action: 'Explore my Abjad reading',
+    compare: 'Compare Two People',
     caption: 'Letter-by-letter · Mother’s name · Two-person comparison',
     disclaimer: 'Historical and symbolic interpretations, not future predictions.'
   },
@@ -24,6 +26,7 @@ const contentByLocale = {
     title: 'Ανακάλυψε τους αριθμούς του ονόματός σου.',
     lead: 'Εξερεύνησε αριθμητικές τιμές γραμμάτων, αριθμολογία και συμβολική σύγκριση δύο προσώπων.',
     action: 'Ανακάλυψε το Αμπτζάντ',
+    compare: 'Σύγκριση δύο προσώπων',
     caption: 'Ανάλυση γραμμάτων · Όνομα μητέρας · Σύγκριση',
     disclaimer: 'Ιστορικές και συμβολικές ερμηνείες, όχι προβλέψεις.'
   },
@@ -32,6 +35,7 @@ const contentByLocale = {
     title: 'Descubre los números detrás de tu nombre.',
     lead: 'Explora los valores de las letras, la numerología y la comparación simbólica de dos personas.',
     action: 'Explorar mi análisis Ábyad',
+    compare: 'Comparar dos personas',
     caption: 'Letra por letra · Nombre materno · Comparación',
     disclaimer: 'Interpretaciones históricas y simbólicas, no predicciones.'
   },
@@ -40,6 +44,7 @@ const contentByLocale = {
     title: 'اكتشف القيم العددية وراء اسمك.',
     lead: 'تعرّف على حساب الأبجد والرموز العددية والمقارنة بين شخصين.',
     action: 'افتح الحاسبة (بالتركية)',
+    compare: 'مقارنة شخصين (بالتركية)',
     caption: 'حساب الحروف · اسم الأم · مقارنة شخصين',
     disclaimer: 'تفسيرات ثقافية ورمزية وليست تنبؤات بالمستقبل. الحاسبة متاحة حالياً بالتركية.'
   }
@@ -48,6 +53,7 @@ const contentByLocale = {
 export function renderEbcedPromo(locale = 'tr') {
   const t = contentByLocale[locale] || contentByLocale.tr;
   const href = getRouteHref(locale, 'ebced');
+  const compareHref = {tr:'/ebced/uyum',en:'/en/ebced/compatibility',el:'/gr/ebced/symvatotita',es:'/es/ebced/compatibilidad',ar:'/ebced/uyum'}[locale] || '/ebced/uyum';
   return `
     <section class="astro-ebced-feature astro-section-viewport" aria-labelledby="astro-ebced-title" id="ebced">
       <div class="astro-container astro-ebced-feature-inner">
@@ -55,7 +61,10 @@ export function renderEbcedPromo(locale = 'tr') {
           <span class="astro-card-tag">✦ ${t.kicker}</span>
           <h2 id="astro-ebced-title">${t.title}</h2>
           <p class="astro-ebced-lead">${t.lead}</p>
-          <a class="astro-btn-primary astro-ebced-action" href="${href}"><span>${t.action}</span><span aria-hidden="true">${locale === 'ar' ? '←' : '→'}</span></a>
+          <div class="astro-ebced-actions">
+            <a class="astro-btn-primary astro-ebced-action" href="${href}"><span>${t.action}</span><span aria-hidden="true">${locale === 'ar' ? '←' : '→'}</span></a>
+            <a class="astro-ebced-secondary" href="${compareHref}"><span>${t.compare}</span><span aria-hidden="true">↗</span></a>
+          </div>
           <p class="astro-ebced-caption">${t.caption}</p>
           <p class="astro-ebced-disclaimer">${t.disclaimer}</p>
         </div>
