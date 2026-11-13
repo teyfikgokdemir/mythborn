@@ -1036,11 +1036,11 @@ function renderSymbolicNote(p,loc,t){
  const l=SYMBOL_INFO[loc]||SYMBOL_INFO.tr;
  const sun=sunSignByDate(p.date,loc);
  const el=t.elementNames[p.elementIndex],z=t.zodiacNames[p.zodiacIndex];
- return \`<section class="symbol-guide" aria-label="\${l.symbol}">
-  <div class="symbol-guide-item symbol-guide-birth"><span class="symbol-guide-label">\${l.birth}</span><strong>\${sun||l.unknown}</strong></div>
-  <div class="symbol-guide-item"><span class="symbol-guide-label">\${l.symbol}</span><strong>\${l.element}: \${el} <span class="symbol-guide-separator">·</span> \${l.archetype}: \${z}</strong></div>
-  <details class="symbol-guide-details"><summary>ⓘ \${l.explain}</summary><p>\${l.answer}</p><p class="symbol-guide-formula">\${l.math}: \${p.a.total} · \${l.mod12}: \${p.zodiacIndex} · \${l.mod4}: \${p.elementIndex}</p><p class="symbol-guide-caution">\${l.caveat}</p></details>
- </section>\`;
+ return `<section class="symbol-guide" aria-label="${l.symbol}">
+  <div class="symbol-guide-item symbol-guide-birth"><span class="symbol-guide-label">${l.birth}</span><strong>${sun||l.unknown}</strong></div>
+  <div class="symbol-guide-item"><span class="symbol-guide-label">${l.symbol}</span><strong>${l.element}: ${el} <span class="symbol-guide-separator">·</span> ${l.archetype}: ${z}</strong></div>
+  <details class="symbol-guide-details"><summary>ⓘ ${l.explain}</summary><p>${l.answer}</p><p class="symbol-guide-formula">${l.math}: ${p.a.total} · ${l.mod12}: ${p.zodiacIndex} · ${l.mod4}: ${p.elementIndex}</p><p class="symbol-guide-caution">${l.caveat}</p></details>
+ </section>`;
 }
 
 // Render letter breakdown table
