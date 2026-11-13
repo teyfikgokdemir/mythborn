@@ -105,7 +105,7 @@ export default {
       if(pathname==='/sitemap.xml')return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>',{headers:{'content-type':'text/html; charset=utf-8'.replace('text/html','application/xml'),'cache-control':'no-store'}});
       if(!pathname.startsWith('/api/') && !/\.[a-z0-9]{2,8}$/i.test(pathname) && !pathname.startsWith('/cdn-cgi/'))return new Response(request.method==='HEAD'?null:comingSoonPage(pathname),{headers:{'content-type':'text/html; charset=utf-8','content-language':comingSoonLocale(pathname),'cache-control':'no-store'}});
     }
-    if(ebcedPath(incoming.pathname) && (request.method==='GET'||request.method==='HEAD'))return new Response(request.method==='HEAD'?null:ebcedPage(incoming.pathname),{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}});
+    if(ebcedPath(incoming.pathname) && (request.method==='GET'||request.method==='HEAD'))return new Response(request.method==='HEAD'?null:ebcedPage(incoming.pathname, env.ENVIRONMENT==='preview'),{headers:{'content-type':'text/html; charset=utf-8','cache-control':'no-store'}});
     if(isCulturalPath(incoming.pathname))return new Response(culturalPage(incoming.pathname),{headers:{'content-type':'text/html; charset=utf-8','content-language':culturalLocale(incoming.pathname),'cache-control':'public, max-age=300'}});
     if(incoming.pathname==='/el'||incoming.pathname.startsWith('/el/')){
       incoming.pathname='/gr'+incoming.pathname.slice(3);
