@@ -20,8 +20,8 @@ for(const [locale,path] of Object.entries(routes)){
   assert.match(html,/class="astro-contact-icon"/);
   assert.match(html,/class="astro-contact-card-bottom"/);
   assert.match(html,/class="astro-contact-email"/);
-  assert.equal((html.match(/href="mailto:support@mythborn\\.co/g)||[]).length,1,'one clear support action');
-  assert.equal((html.match(/href="mailto:info@mythborn\\.co/g)||[]).length,1,'one clear general enquiries action');
+  assert.equal((html.match(/href="mailto:support@mythborn\.co/g)||[]).length,1,'one clear support action');
+  assert.equal((html.match(/href="mailto:info@mythborn\.co/g)||[]).length,1,'one clear general enquiries action');
 
   assert.match(html,/href="[^"]*">[^<]*(?:İletişim|Contact|Επικοινωνία|Contacto|اتصل بنا)/);
   assert.match(html,/https:\/\/mythborn\.co/);
