@@ -3321,4 +3321,26 @@ html[dir="rtl"] .retro-guidance-box {
 @media(prefers-reduced-motion:reduce){.astro-ebced-feature .astro-ebced-photo{transition:none}}
 [dir="rtl"] .astro-ebced-feature .astro-ebced-photo-frame::before{background:linear-gradient(270deg,#070a12 0%,rgba(7,10,18,.95) 33%,rgba(7,10,18,.23) 75%,rgba(7,10,18,.07)),linear-gradient(0deg,rgba(7,10,18,.75),transparent 29%)}
 
+
+/* Frequency Studio: preview-only discoverability; no global design changes. */
+.astro-nav-desktop > .astro-nav-frequency{color:#e4c588!important;font-weight:700;letter-spacing:.075em}
+.astro-nav-desktop > .astro-nav-frequency:hover{color:#ffe2a0!important}
+.astro-frequency-preview{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(480px,68svh,690px);display:flex;align-items:center;background:#080b12;border-top:1px solid rgba(221,178,107,.2);border-bottom:1px solid rgba(221,178,107,.2)}
+.astro-frequency-preview-visual{position:absolute;inset:0;z-index:-1}
+.astro-frequency-preview-visual img{width:100%;height:100%;object-fit:cover;object-position:70% center;display:block;filter:saturate(.92) contrast(1.06) brightness(.83)}
+.astro-frequency-preview-visual:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,8,15,.98),rgba(5,8,15,.85) 31%,rgba(5,8,15,.38) 68%,rgba(5,8,15,.09)),linear-gradient(0deg,rgba(5,8,15,.7),transparent 30%,transparent 77%,rgba(5,8,15,.16))}
+.astro-frequency-preview-inner{width:min(100% - 80px,1320px);margin:auto;padding:80px 0;position:relative}
+.astro-frequency-preview-copy{width:min(660px,64%);position:relative}
+.astro-frequency-preview h2{font:400 clamp(49px,6vw,90px)/1.03 Georgia,serif;letter-spacing:-.044em;color:#f6ecdd;margin:20px 0 23px;text-shadow:0 2px 27px #020409}
+.astro-frequency-preview h2 em{color:#e1bb77;font-style:italic;font-weight:400}
+.astro-frequency-preview-copy>p{font-size:clamp(15px,1.4vw,19px);max-width:560px;color:#d1cbd0;line-height:1.85;margin:0 0 28px}
+.astro-frequency-preview-cta{display:inline-flex;align-items:center;justify-content:space-between;gap:26px;min-height:54px;padding:13px 22px;border-radius:100px;background:linear-gradient(110deg,#edcf8e,#bb8b3d);box-shadow:0 9px 34px rgba(205,153,75,.19);font-size:13px;font-weight:700;color:#111318!important;text-decoration:none}
+.astro-frequency-preview-cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.astro-frequency-preview-cta:focus-visible{outline:2px solid #ffe3a8;outline-offset:4px}
+.astro-frequency-preview-copy>small{display:block;margin-top:20px;color:#d3b77b;font-size:11px;letter-spacing:.08em;line-height:1.5}
+[dir="rtl"] .astro-frequency-preview-visual:after{background:linear-gradient(270deg,rgba(5,8,15,.98),rgba(5,8,15,.86) 34%,rgba(5,8,15,.34) 72%,rgba(5,8,15,.09))}
+@media(max-width:1000px){.astro-frequency-preview-inner{width:calc(100% - 54px)}.astro-frequency-preview-copy{width:min(100%,620px)}.astro-frequency-preview-visual:after{background:linear-gradient(90deg,rgba(5,8,15,.94),rgba(5,8,15,.72) 58%,rgba(5,8,15,.3))}}
+@media(max-width:600px){.astro-frequency-preview{min-height:580px}.astro-frequency-preview-inner{width:calc(100% - 36px);padding:65px 0}.astro-frequency-preview h2{font-size:clamp(47px,12vw,68px)}.astro-frequency-preview-copy>p{font-size:15px}.astro-frequency-preview-visual img{object-position:76% center}.astro-frequency-preview-visual:after{background:linear-gradient(90deg,rgba(5,8,15,.96),rgba(5,8,15,.82) 65%,rgba(5,8,15,.51))}.astro-frequency-preview-cta{min-height:48px}.astro-frequency-preview-copy>small{max-width:280px}}
+@media(prefers-reduced-motion:reduce){.astro-frequency-preview-cta{transition:none;transform:none!important}}
+
 `;
