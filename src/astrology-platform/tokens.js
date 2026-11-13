@@ -3301,10 +3301,6 @@ html[dir="rtl"] .retro-guidance-box {
   .astro-ebced-actions a { flex:1 1 100%; }
   .astro-ebced-art {width:min(49vw,190px);}
 }
-`;
-
-
-export const EBCED_IMMERSIVE_CSS = `
 /* Approved immersive Ebced direction: uninterrupted visual with readable copy overlay.
    No separate framed image, no extra spacing, RTL-safe and mobile-safe. */
 .astro-ebced-feature{isolation:isolate;background:#080b12!important;min-height:clamp(520px,72svh,730px);display:flex;align-items:center}
