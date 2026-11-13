@@ -18,6 +18,9 @@ for (const [locale, pathname, ebcedUrl, heading] of languages) {
   assert.equal((home.match(/id="astro-ebced-title"/g) || []).length, 1, `${locale} feature appears once`);
   assert.equal((home.match(/astro-ebced-feature-inner/g) || []).length, 1, `${locale} feature is single panel`);
   assert.ok(home.includes(heading), `${locale} feature is translated`);
+  assert.ok(home.includes('astro-ebced-photo-frame'), `${locale} authentic imagery is present`);
+  assert.ok(home.includes('upload.wikimedia.org'), `${locale} Met museum CC0 asset is used`);
+  assert.ok(home.includes('figcaption'), `${locale} image source is identified`);
   assert.ok(home.includes(`href="${ebcedUrl}"`), `${locale} feature links to tool`);
   assert.ok(home.indexOf('<!-- 1. Hero:') < home.indexOf('astro-ebced-feature'), `${locale} feature follows hero`);
   assert.ok(home.indexOf('astro-ebced-feature') < home.indexOf('<!-- 3. Kozmik Büyük Üçlü'), `${locale} feature precedes triad`);
@@ -44,6 +47,8 @@ for (const [locale, pathname, ebcedUrl, heading] of languages) {
 }
 const css = readFileSync(new URL('../src/astrology-platform/tokens.js', import.meta.url), 'utf8');
 assert.match(css, /\.astro-ebced-feature-inner\s*\{/);
+assert.match(css,/\.astro-ebced-photo-frame/);
+assert.match(css,/\.astro-ebced-photo/);
 assert.match(css, /\.astro-lang-options\s*\{/);
 assert.match(css, /prefers-reduced-motion:\s*reduce/);
 assert.match(css, /max-width:\s*1180px/);
