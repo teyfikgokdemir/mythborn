@@ -193,7 +193,7 @@ export const renderNatalChartView = ({ locale = 'tr', searchParams = {} }) => {
 
       <div style="margin-top:24px; text-align:center">
         <p style="font-size:12px; color:var(--dim); max-width:600px; margin:0 auto">
-          ${t.ethicalDisclaimer}
+          ${t.disclaimer}
         </p>
       </div>
     </div>

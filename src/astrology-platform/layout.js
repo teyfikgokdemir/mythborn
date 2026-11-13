@@ -4,6 +4,7 @@ import { SHARED_CSS } from './tokens.js';
 
 export const getRouteHref = (localeKey, routeKey = 'home') => {
   const p = localeKey === 'tr' ? '' : localeKey === 'el' ? '/gr' : `/${localeKey}`;
+  const legalPrefix = localeKey === 'ar' ? '/en' : p;
 
   const routes = {
     home: p || '/',
@@ -19,9 +20,9 @@ export const getRouteHref = (localeKey, routeKey = 'home') => {
     learning: `${p}${localeKey === 'tr' ? '/ogrenme-merkezi' : localeKey === 'en' ? '/learning-center' : localeKey === 'el' ? '/kentro-mathisis' : localeKey === 'es' ? '/centro-aprendizaje' : '/markaz-altaalum'}`,
     horoscopes: `${p}${localeKey === 'tr' ? '/burc-yorumlari' : localeKey === 'en' ? '/horoscopes' : localeKey === 'el' ? '/provlepseis' : localeKey === 'es' ? '/horoscopos' : '/altawaqushat'}`,
     approach: `${p}${localeKey === 'tr' ? '/yaklasim' : localeKey === 'en' ? '/approach' : localeKey === 'el' ? '/prosegisi' : localeKey === 'es' ? '/enfoque' : '/al-manhaj'}`,
-    kvkk: `${p}/kvkk`,
-    privacy: `${p}${localeKey === 'tr' ? '/gizlilik' : '/privacy'}`,
-    terms: `${p}${localeKey === 'tr' ? '/kullanim-kosullari' : '/terms'}`
+    kvkk: `${legalPrefix}/kvkk`,
+    privacy: `${legalPrefix}/gizlilik`,
+    terms: `${legalPrefix}/kullanim-kosullari`
   };
 
   return routes[routeKey] || (p || '/');
@@ -139,6 +140,13 @@ export const renderAstrologyLayout = ({
     }
   };
   const curLegal = legalLabels[locale] || legalLabels.tr;
+  const skipLabel = ({
+    tr: 'Ana içeriğe geç',
+    en: 'Skip to main content',
+    el: 'Μετάβαση στο κύριο περιεχόμενο',
+    es: 'Saltar al contenido principal',
+    ar: 'انتقل إلى المحتوى الرئيسي'
+  })[locale] || 'Skip to main content';
 
   const manifestoText = locale === 'tr' ? 'Açık kaynak efemeris modelleri ve matematiksel astronomiyle haritanızı hesaplayın; deterministik korku yerine sembolik öz-farkındalık kazanın.'
     : locale === 'en' ? 'Calculate your natal geometry with open-source mathematical ephemeris and archetypal psychology. Embracing conscious awareness over deterministic fear.'
@@ -339,6 +347,7 @@ export const renderAstrologyLayout = ({
   <style>${SHARED_CSS}</style>
 </head>
 <body>
+  <a class="astro-skip-link" href="#main-content">${safe(skipLabel)}</a>
   <div class="astro-shell">
     <header class="astro-header">
       <div class="astro-container astro-header-inner">

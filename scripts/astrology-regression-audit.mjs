@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { Body, Ecliptic, GeoVector } from 'astronomy-engine';
 import {
   calculateChartAngles,
@@ -11,6 +12,7 @@ import {
   nakshatraPlacement,
   vimshottariTimeline
 } from '../src/astrology.js';
+import { renderNatalChartView } from '../src/astrology-platform/pages/natal-chart.js';
 
 const circularDistance=(a,b)=>Math.min(Math.abs(a-b),360-Math.abs(a-b));
 const approx=(actual,expected,tolerance,message)=>assert.ok(circularDistance(actual,expected)<=tolerance,`${message}: ${actual}° (expected ${expected}° ±${tolerance}°)`);
@@ -27,6 +29,16 @@ const assertAngleGeometry=(date,latitude,longitude,label)=>{
   opposition(angles.midheaven,angles.imumCoeli,`${label} IC opposes MC`);
   return angles;
 };
+
+const sharedCss = await readFile(new URL('../src/astrology-platform/tokens.js', import.meta.url), 'utf8');
+assert.match(sharedCss, /@media \(max-width: 900px\)[\s\S]*?\.natal-console-grid\s*\{\s*grid-template-columns:\s*1fr/, 'Natal console stacks before phone widths can clip the calculator');
+assert.match(sharedCss, /@media \(max-width: 540px\)[\s\S]*?\.natal-form-row\s*\{\s*grid-template-columns:\s*1fr/, 'Natal date/time fields stack on narrow phones');
+
+const renderedNatalResult = renderNatalChartView({
+  locale: 'tr',
+  searchParams: { date: '1990-01-15', time: '10:30', city: 'Istanbul' }
+});
+assert.doesNotMatch(renderedNatalResult, /\bundefined\b/i, 'Calculated natal result never renders a literal undefined value');
 
 const istanbul1975=localToUtc('1975-06-30','00:30','Europe/Istanbul');
 assert.equal(istanbul1975.toISOString(),'1975-06-29T21:30:00.000Z','1975 Istanbul uses the historical IANA UTC+3 summer offset');
