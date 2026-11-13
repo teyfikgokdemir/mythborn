@@ -68,14 +68,10 @@ export function renderEbcedPromo(locale = 'tr') {
           <p class="astro-ebced-caption">${t.caption}</p>
           <p class="astro-ebced-disclaimer">${t.disclaimer}</p>
         </div>
-        <div class="astro-ebced-art" aria-hidden="true">
-          <div class="astro-ebced-orbit astro-ebced-orbit-outer"></div>
-          <div class="astro-ebced-orbit astro-ebced-orbit-inner"></div>
-          <span class="astro-ebced-glyph astro-ebced-glyph-a">ا</span>
-          <span class="astro-ebced-glyph astro-ebced-glyph-b">ب</span>
-          <span class="astro-ebced-glyph astro-ebced-glyph-c">ج</span>
-          <div class="astro-ebced-art-core"><span>ابجد</span><small>1 · 2 · 3 · 4</small></div>
-        </div>
+        <figure class="astro-ebced-art astro-ebced-photo-frame">
+          <img class="astro-ebced-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Astrolabe_of_%E2%80%98Umar_ibn_Yusuf_ibn_%E2%80%98Umar_ibn_%E2%80%98Ali_ibn_Rasul_al-Muzaffari_MET_wb-91.1.535ahb.jpeg/576px-Astrolabe_of_%E2%80%98Umar_ibn_Yusuf_ibn_%E2%80%98Umar_ibn_%E2%80%98Ali_ibn_Rasul_al-Muzaffari_MET_wb-91.1.535ahb.jpeg" loading="lazy" decoding="async" width="576" height="768" alt="${({tr:'1291 yılına tarihlenen, Arapça yazılarla süslü tarihî pirinç usturlap',en:'Historical engraved brass astrolabe dated to 1291',el:'Ιστορικός ορειχάλκινος αστρολάβος του 1291',es:'Astrolabio histórico de latón grabado, fechado en 1291',ar:'أسطرلاب نحاسي تاريخي من عام 1291'})[locale]||'Historical engraved brass astrolabe'}">
+          <figcaption>${({tr:'TARİHÎ USTURLAP · MET MÜZESİ · CC0',en:'HISTORICAL ASTROLABE · THE MET · CC0',el:'ΙΣΤΟΡΙΚΟΣ ΑΣΤΡΟΛΑΒΟΣ · THE MET · CC0',es:'ASTROLABIO HISTÓRICO · THE MET · CC0',ar:'أسطرلاب تاريخي · المتحف المتروبوليتان · CC0'})[locale]}</figcaption>
+        </figure>
       </div>
     </section>`;
 }
