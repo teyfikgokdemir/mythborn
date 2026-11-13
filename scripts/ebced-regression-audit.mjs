@@ -138,6 +138,21 @@ assert.match(page,/ebced-guide-art/);
 assert.match(page,/sayısal değerler atayan tarihsel/);
 assert.match(page,/aria-label="Languages"/);
 
+// Guard the newer production consent presentation against stale draft PR #97 v3 styling.
+// This does not change cookie acceptance/rejection or tracking behavior.
+const analyticsRouterSource = readFileSync(new URL('../src/analytics-router.js', import.meta.url), 'utf8');
+assert.match(analyticsRouterSource, /const CONSENT_PRESENTATION_STYLE = \`<style id="mythborn-consent-design-v4">/);
+assert.match(analyticsRouterSource, /if\(!html\.includes\('mythborn-consent-design-v4'\)\)/);
+assert.doesNotMatch(analyticsRouterSource, /mythborn-consent-design-v3/, 'stale consent v3 style must not return');
+
+// Four distinct localized relationship entry points must remain independently routable.
+for (const path of ['/ebced/uyum','/en/ebced/compatibility','/gr/ebced/symvatotita','/es/ebced/compatibilidad']) {
+  assert.ok(ebcedPath(path), `relationship route missing: ${path}`);
+  const html = ebcedPage(path, false);
+  assert.match(html, /data-analysis-mode="compare"/, `relationship analysis mode missing: ${path}`);
+  assert.match(html, /id="comparison-next"/, `step progression missing: ${path}`);
+}
+
 // 9. Template markup assertions
 assert.match(page, /name="abjadSystem"/, 'markup must include abjadSystem selector');
 assert.match(page, /name="taValue"/, 'markup must include taValue selector');
