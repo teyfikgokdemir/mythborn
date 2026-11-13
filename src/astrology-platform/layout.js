@@ -355,10 +355,6 @@ export const renderAstrologyLayout = ({
         </nav>
 
         <div class="astro-header-actions">
-          <a class="astro-cta-gold" href="${getRouteHref(locale, 'natal')}">
-            <span>${safe(clean(t.menu.ctaQuick))}</span>
-            <span aria-hidden="true">${isRtl ? '←' : '→'}</span>
-          </a>
           ${langSwitcherHtml}
           <button type="button" class="astro-menu-btn" data-drawer-open aria-expanded="false" aria-controls="astro-mobile-drawer" aria-label="Menu">
             <span aria-hidden="true">☰</span>
