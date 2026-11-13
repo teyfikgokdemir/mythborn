@@ -190,6 +190,7 @@ export const renderAstrologyLayout = ({
   const allDrawerItems = [
     { key: 'home', label: t.menu.home },
     { key: 'natal', label: t.menu.natal },
+    { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
     { key: 'zodiac', label: t.menu.zodiac },
     { key: 'calendar', label: t.menu.calendar },
     { key: 'horoscopes', label: locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Daily Horoscopes' : locale === 'el' ? 'Ημερήσιες Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'توقعات الأبراج' },

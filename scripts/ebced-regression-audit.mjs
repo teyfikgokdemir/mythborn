@@ -147,5 +147,12 @@ assert.match(page, /analysis-path-nav/, 'markup must include dedicated route tab
 assert.match(page, /step-progress/, 'markup must include comparison progress');
 assert.match(page, /id="second-person-container"/, 'markup must include second-person-container');
 assert.match(page, /WebApplication/, 'markup must include WebApplication schema');
+assert.match(page, /ebced-header/, 'markup must include approved header');
+assert.match(page, /ebced-breadcrumb/, 'markup must include hero breadcrumb');
+assert.match(page, /ebced-what/, 'markup must include Ebced Nedir two-column section');
+assert.match(page, /ebced-features-row/, 'markup must include 4-icon feature row');
+assert.match(page, /ebced-numerology/, 'markup must include Numerology horizontal section');
+assert.match(page, /ebced-cta-primary/, 'markup must include primary CTA');
+assert.match(page, /ebced-cta-secondary/, 'markup must include secondary CTA');
 
 console.log(`ebced-regression-audit: ${cases.length} arithmetic cases, synthetic fixtures, Numerology, Master Numbers, and route assertions PASS`);
