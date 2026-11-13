@@ -69,8 +69,8 @@ export function renderEbcedPromo(locale = 'tr') {
           <p class="astro-ebced-disclaimer">${t.disclaimer}</p>
         </div>
         <figure class="astro-ebced-art astro-ebced-photo-frame">
-          <img class="astro-ebced-photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Astrolabe_of_%E2%80%98Umar_ibn_Yusuf_ibn_%E2%80%98Umar_ibn_%E2%80%98Ali_ibn_Rasul_al-Muzaffari_MET_wb-91.1.535ahb.jpeg/576px-Astrolabe_of_%E2%80%98Umar_ibn_Yusuf_ibn_%E2%80%98Umar_ibn_%E2%80%98Ali_ibn_Rasul_al-Muzaffari_MET_wb-91.1.535ahb.jpeg" loading="lazy" decoding="async" width="576" height="768" alt="${({tr:'1291 yılına tarihlenen, Arapça yazılarla süslü tarihî pirinç usturlap',en:'Historical engraved brass astrolabe dated to 1291',el:'Ιστορικός ορειχάλκινος αστρολάβος του 1291',es:'Astrolabio histórico de latón grabado, fechado en 1291',ar:'أسطرلاب نحاسي تاريخي من عام 1291'})[locale]||'Historical engraved brass astrolabe'}">
-          <figcaption>${({tr:'TARİHÎ USTURLAP · MET MÜZESİ · CC0',en:'HISTORICAL ASTROLABE · THE MET · CC0',el:'ΙΣΤΟΡΙΚΟΣ ΑΣΤΡΟΛΑΒΟΣ · THE MET · CC0',es:'ASTROLABIO HISTÓRICO · THE MET · CC0',ar:'أسطرلاب تاريخي · المتحف المتروبوليتان · CC0'})[locale]}</figcaption>
+          <img class="astro-ebced-photo" src="/images/ebced-heritage.svg" loading="lazy" decoding="async" width="600" height="760" alt="${({tr:'Altın usturlap, ebced harfleri ve tarihî el yazması kitabı gösteren özgün illüstrasyon',en:'Original illustration of a brass astrolabe, Abjad letters and an antique manuscript',el:'Πρωτότυπη εικονογράφηση αστρολάβου, αραβικών γραμμάτων και χειρογράφου',es:'Ilustración original de un astrolabio, letras árabes y un manuscrito antiguo',ar:'رسم توضيحي أصلي لأسطرلاب وحروف أبجد ومخطوط قديم'})[locale]||'Illustration of historical Abjad artifacts'}">
+          <figcaption>${({tr:'EBCED GELENEĞİ · ÖZGÜN GÖRSEL',en:'ABJAD HERITAGE · ORIGINAL ARTWORK',el:'ΠΑΡΑΔΟΣΗ ΑΜΠΤΖΑΝΤ · ΠΡΩΤΟΤΥΠΟ ΕΡΓΟ',es:'TRADICIÓN ÁBYAD · ILUSTRACIÓN ORIGINAL',ar:'تراث أبجد · رسم أصلي'})[locale]}</figcaption>
         </figure>
       </div>
     </section>`;
