@@ -58,7 +58,7 @@
   window.dataLayer=window.dataLayer||[];
   window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
   window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
-  let gaLoaded=!!document.querySelector('script[data-mythborn-ga4]'),gaConfigured=window.__mythbornGaConfigured===true,adsConfigured=window.__mythbornAdsConfigured===true,gtmLoaded=false,clarityLoaded=false;
+  let gaLoaded=!!document.querySelector('script[data-mythborn-ga4]'),gaConfigured=window.__mythbornGaConfigured===true,gaConsentedPvSent=false,adsConfigured=window.__mythbornAdsConfigured===true,gtmLoaded=false,clarityLoaded=false;
   const consentState=analytics=>({
     analytics_storage: analytics?'granted':'denied',
     ad_storage:'denied',
@@ -101,6 +101,10 @@
       gaConfigured=true;
       window.__mythbornGaConfigured=true;
       window.gtag('config',GA4_ID,{send_page_view:true,anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
+      if(analytics)gaConsentedPvSent=true;
+    }else if(analytics&&!gaConsentedPvSent){
+      gaConsentedPvSent=true;
+      window.gtag('event','page_view',{page_path:location.pathname,page_title:document.title,language:locale});
     }
     if(analytics&&!adsConfigured){
       adsConfigured=true;
