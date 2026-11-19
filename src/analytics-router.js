@@ -25,6 +25,7 @@ const allowAnalyticsProviders=policy=>{
   next=appendSources(next,'frame-src',['https://www.googletagmanager.com']);
   next=appendSources(next,'connect-src',[
     'https://www.google-analytics.com',
+    'https://*.google-analytics.com',
     'https://analytics.google.com',
     'https://region1.google-analytics.com',
     'https://www.googletagmanager.com',
