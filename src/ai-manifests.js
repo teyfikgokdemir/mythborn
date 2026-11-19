@@ -67,7 +67,7 @@ export const AI_FACT_SHEET_JSON=JSON.stringify({
 	 individualReader:false,personalAppointmentService:false,
  contentPurpose:'Education, entertainment and self-reflection'
 },null,2);
-export const VIDEO_SITEMAP_XML='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"></urlset>';
+export const VIDEO_SITEMAP_XML='<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"><url><loc>https://mythborn.co/</loc></url></urlset>';
 export const generateSiteSitemapEntries=()=>{
  const locales=[['tr','/'],['en','/en'],['el','/gr'],['es','/es'],['ar','/ar']];
  const alternatives=locales.map(([lang,path])=>`<xhtml:link rel="alternate" hreflang="${lang}" href="${SITE}${path}"/>`).join('')+`<xhtml:link rel="alternate" hreflang="x-default" href="${SITE}/"/>`;
