@@ -152,11 +152,11 @@
   const trackEvent=(name,params={})=>{if(window.__qctAnalyticsConsent!==true||typeof window.gtag!=='function')return;window.gtag('event',name,{...params,page_path:location.pathname,language:locale})};
   document.addEventListener('click',event=>{const target=event.target.closest?.('[data-track]');if(!target)return;trackEvent(target.dataset.track,{link_text:(target.textContent||'').trim().slice(0,80)})},{passive:true});
   const copy={
-    tr:{title:'Çerez tercihleri',body:'Anonim toplu ve sınırlı çerezsiz ölçüm çalışabilir. Analitik çerezler ve oturum kaydı için tercihini seç.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
-    en:{title:'Cookie preferences',body:'Anonymous aggregate and limited cookieless measurement may run. Choose whether to allow analytics cookies and session recording.',policy:'Cookie policy',accept:'Accept',reject:'Reject'},
-    el:{title:'Προτιμήσεις cookies',body:'Μπορεί να λειτουργεί ανώνυμη συγκεντρωτική και περιορισμένη μέτρηση χωρίς cookies. Επίλεξε για cookies analytics και καταγραφή συνεδρίας.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
-    es:{title:'Preferencias de cookies',body:'Puede funcionar una medición agregada anónima y limitada sin cookies. Elige si permites cookies analíticas y grabación de sesión.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'},
-    ar:{title:'تفضيلات ملفات الارتباط',body:'قد يعمل قياس مجمّع مجهول ومحدود دون ملفات ارتباط. اختر ما إذا كنت تسمح بملفات التحليلات وتسجيل الجلسة.',policy:'سياسة ملفات الارتباط',accept:'قبول',reject:'رفض'}
+    tr:{title:'Çerez tercihleri',body:'Deneyiminizi geliştirmek, site trafiğini analiz etmek ve hizmet kalitemizi artırmak için çerezler kullanıyoruz.',policy:'Çerez politikası',accept:'Onayla',reject:'Reddet'},
+    en:{title:'Cookie preferences',body:'We use cookies to improve your experience, analyze site traffic and enhance our service quality.',policy:'Cookie policy',accept:'Accept',reject:'Reject'},
+    el:{title:'Προτιμήσεις cookies',body:'Χρησιμοποιούμε cookies για να βελτιώσουμε την εμπειρία σας, να αναλύσουμε την επισκεψιμότητα και να αναβαθμίσουμε τις υπηρεσίες μας.',policy:'Πολιτική cookies',accept:'Αποδοχή',reject:'Απόρριψη'},
+    es:{title:'Preferencias de cookies',body:'Utilizamos cookies para mejorar tu experiencia, analizar el tráfico del sitio y optimizar la calidad de nuestros servicios.',policy:'Política de cookies',accept:'Aceptar',reject:'Rechazar'},
+    ar:{title:'تفضيلات ملفات الارتباط',body:'نستخدم ملفات تعريف الارتباط لتحسين تجربتك وتحليل حركة المرور والارتقاء بجودة خدماتنا.',policy:'سياسة ملفات الارتباط',accept:'قبول',reject:'رفض'}
   }[locale];
   const policyHref='/cerezler';
   const dialog=document.createElement('aside');
