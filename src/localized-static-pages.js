@@ -18,13 +18,13 @@ export function legalMain(locale,path){
       '/gizlilik':['Gizlilik Politikası','Mythborn, hesap ve güvenlik için gerekli verileri yalnız belirtilen amaçlarla işler. Veriler üçüncü taraflara reklam amacıyla satılmaz. Erişim, düzeltme veya silme talebi için info@mythborn.co adresine yazabilirsiniz.'],
       '/kvkk':['KVKK Aydınlatma Metni','Bu metin, Türkiye’de 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamındaki veri işleme faaliyetlerini açıklar. Kimlik ve iletişim verileri üyelik, güvenlik ve yasal yükümlülükler için sınırlı biçimde işlenir.'],
       '/kullanim-kosullari':['Kullanım Koşulları','Mythborn içerikleri eğlence, eğitim ve kişisel farkındalık amaçlıdır. Kesin gelecek bilgisi, tıbbi, hukuki veya finansal tavsiye sunmaz. Hizmeti hukuka uygun ve başkalarının haklarına saygılı biçimde kullanmanız gerekir.'],
-      '/cerezler':['Çerez Politikası','Zorunlu çerezler oturum, güvenlik ve tercihlerin korunması için kullanılır. İsteğe bağlı analitik ve performans çerezleri ise site deneyimini geliştirmek ve ziyaret trafiğini analiz etmek amacıyla yalnızca açık onayınızla etkinleşir.']
+      '/cerezler':['Çerez Politikası','Zorunlu çerezler oturum, güvenlik ve tercihlerin korunması için kullanılır. İsteğe bağlı analitik ve performans çerezleri ise site deneyimini geliştirmek ve ziyaret trafiğini anonim olarak analiz etmek amacıyla yalnızca açık onayınızla etkinleşir.']
     },
     en:{
       '/gizlilik':['Privacy Policy','Mythborn processes only the data needed for accounts, security and the purposes described here. Personal data is not sold for advertising. You may request access, correction or deletion at info@mythborn.co.'],
       '/kvkk':['Turkish Data Protection Notice','This notice explains processing governed by Turkey’s Personal Data Protection Law No. 6698 (KVKK). It is not presented as local UK, EU or US law. Identity and contact data are processed only for membership, security and legal obligations.'],
       '/kullanim-kosullari':['Terms of Use','Mythborn content is for entertainment, education and personal reflection. It does not provide deterministic predictions or medical, legal or financial advice. You must use the service lawfully and respect the rights of others.'],
-      '/cerezler':['Cookie Policy','Essential cookies support sessions, security and saved preferences. Optional analytics and performance cookies are used to improve your experience and analyze site traffic only with your explicit consent.']
+      '/cerezler':['Cookie Policy','Essential cookies support sessions, security and saved preferences. Optional analytics and performance cookies are used to improve your experience and analyze anonymous site traffic only with your explicit consent.']
     },
     el:{
       '/gizlilik':['Πολιτική Απορρήτου','Το Mythborn επεξεργάζεται μόνο τα δεδομένα που απαιτούνται για λογαριασμούς, ασφάλεια και τους σκοπούς που περιγράφονται εδώ. Τα προσωπικά δεδομένα δεν πωλούνται για διαφήμιση. Για πρόσβαση, διόρθωση ή διαγραφή επικοινωνήστε στο info@mythborn.co.'],
