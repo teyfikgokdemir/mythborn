@@ -259,7 +259,15 @@ const GUIDES_EN = [
 
 export const GUIDE_SLUGS = GUIDES_TR.map((g) => g.slug);
 
-export const getGuidesList = (locale = 'tr') => (locale === 'tr' ? GUIDES_TR : GUIDES_EN);
+const GUIDE_IMAGES = {
+  'spirituel-yasam-nedir': '/images/cinematic/daily/daily-card-altar-960.webp',
+  'carl-jung-golge-ve-arketip': '/images/astrology/moon-archetype.jpg',
+  'meditasyon-ve-nefes-rehberi': '/images/Mythborn_01_Kozmik_Usturlap.webp',
+  'frekans-rezonans-ve-beyin-dalgalari': '/images/Mythborn_02_Altin_Kutsal_Geometri.webp'
+};
+
+export const getGuidesList = (locale = 'tr') =>
+  (locale === 'tr' ? GUIDES_TR : GUIDES_EN).map((g) => ({ ...g, image: GUIDE_IMAGES[g.slug] || '/images/cinematic/knowledge/celestial-knowledge-library-960.webp' }));
 
 export const getGuideBySlug = (locale = 'tr', slug = '') =>
   getGuidesList(locale).find((g) => g.slug === slug) || null;
@@ -290,16 +298,21 @@ export const renderGuidesHubView = ({ locale = 'tr', guideBaseHref = '/rehber' }
       <div class="astro-container">
         <div class="guides-hub-grid">
           ${items.map((g) => `
-            <article class="guide-hub-card" data-spotlight>
-              <div>
-                <div class="guide-meta-row">
-                  <span>${g.tag}</span>
-                  <span>${g.readTime}</span>
-                </div>
-                <h2>${g.title}</h2>
-                <p>${g.lead}</p>
+            <article class="guide-hub-card mb27-card-has-media" data-spotlight>
+              <div class="mb27-card-media">
+                <img src="${g.image}" alt="${g.title}" loading="lazy" decoding="async">
               </div>
-              <a class="sanc-btn-ghost" href="${guideBaseHref}/${g.slug}">${isTr ? 'Rehberi Oku →' : 'Read Guide →'}</a>
+              <div class="mb27-card-body">
+                <div>
+                  <div class="guide-meta-row">
+                    <span>${g.tag}</span>
+                    <span>${g.readTime}</span>
+                  </div>
+                  <h2>${g.title}</h2>
+                  <p>${g.lead}</p>
+                </div>
+                <a class="sanc-btn-ghost" href="${guideBaseHref}/${g.slug}">${isTr ? 'Rehberi Oku →' : 'Read Guide →'}</a>
+              </div>
             </article>
           `).join('')}
         </div>

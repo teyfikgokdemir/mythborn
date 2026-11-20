@@ -153,6 +153,8 @@
     let musicNodes = [];
     let musicGain = null;
     let bowlInterval = null;
+    let chordInterval = null;
+    let melodyInterval = null;
 
     let natureNodes = [];
     let natureGain = null;
@@ -358,11 +360,47 @@
       }
     };
 
+    // Soft cinematic ambient piano / harp note drifting into stereo temple reverb
+    const triggerAmbientPiano = (freq = 432, peak = 0.085) => {
+      if (!ctx || !dryBus || !reverbNode || !playing) return;
+      const now = ctx.currentTime;
+      const osc1 = ctx.createOscillator();
+      const osc2 = ctx.createOscillator();
+      const filt = ctx.createBiquadFilter();
+      const env = ctx.createGain();
+
+      osc1.type = 'sine';
+      osc2.type = 'triangle';
+      osc1.frequency.setValueAtTime(freq, now);
+      osc2.frequency.setValueAtTime(freq * 2, now);
+
+      filt.type = 'lowpass';
+      filt.frequency.setValueAtTime(1400, now);
+      filt.frequency.exponentialRampToValueAtTime(380, now + 4.2);
+
+      const g2 = ctx.createGain();
+      g2.gain.setValueAtTime(0.16, now);
+
+      env.gain.setValueAtTime(0.0001, now);
+      env.gain.exponentialRampToValueAtTime(peak, now + 0.09);
+      env.gain.exponentialRampToValueAtTime(0.0001, now + 5.4);
+
+      osc1.connect(filt);
+      osc2.connect(g2).connect(filt);
+      filt.connect(env);
+      env.connect(musicGain || dryBus);
+      env.connect(reverbNode);
+
+      osc1.start(now);
+      osc2.start(now);
+      osc1.stop(now + 5.5);
+      osc2.stop(now + 5.5);
+    };
+
     const buildMusicLayer = () => {
-      if (bowlInterval) {
-        clearInterval(bowlInterval);
-        bowlInterval = null;
-      }
+      if (bowlInterval) { clearInterval(bowlInterval); bowlInterval = null; }
+      if (chordInterval) { clearInterval(chordInterval); chordInterval = null; }
+      if (melodyInterval) { clearInterval(melodyInterval); melodyInterval = null; }
       stopNodes(musicNodes);
       if (!ctx || !playing) return;
       const mode = musicSelect ? musicSelect.value : 'bowls';
@@ -376,38 +414,72 @@
 
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(mode === 'temple' ? 460 : 350, ctx.currentTime);
-      filter.Q.setValueAtTime(0.8, ctx.currentTime);
+      filter.frequency.setValueAtTime(mode === 'temple' ? 520 : 440, ctx.currentTime);
+      filter.Q.setValueAtTime(0.75, ctx.currentTime);
       filter.connect(musicGain);
       musicNodes.push(filter);
 
-      const chord = mode === 'temple' ? [108, 162, 216, 270, 324] : [136.1, 204.15, 272.2, 408.3];
-      chord.forEach((hz, idx) => {
+      // 432 Hz-tuned evolving cinematic ambient chord progression (Dm9 -> Bbmaj7 -> Fmaj9 -> Csus2)
+      const progression = [
+        [72.0, 144.0, 216.0, 256.3, 324.0],
+        [57.15, 114.3, 171.4, 216.0, 288.0],
+        [85.7, 171.4, 216.0, 256.3, 324.0],
+        [64.08, 128.15, 192.2, 256.3, 288.0]
+      ];
+      let chordIdx = 0;
+      const padOscs = [];
+
+      progression[0].forEach((hz, idx) => {
         const osc = ctx.createOscillator();
         const g = ctx.createGain();
-        osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
+        osc.type = idx === 0 ? 'sine' : (idx % 2 === 0 ? 'sine' : 'triangle');
         osc.frequency.setValueAtTime(hz, ctx.currentTime);
-        g.gain.setValueAtTime(idx === 0 ? 0.30 : 0.13, ctx.currentTime);
+        g.gain.setValueAtTime(idx === 0 ? 0.28 : (idx === 1 ? 0.20 : 0.12), ctx.currentTime);
 
         const lfo = ctx.createOscillator();
         const lfoGain = ctx.createGain();
-        lfo.frequency.setValueAtTime(0.055 + idx * 0.022, ctx.currentTime);
-        lfoGain.gain.setValueAtTime(0.04, ctx.currentTime);
+        lfo.frequency.setValueAtTime(0.05 + idx * 0.018, ctx.currentTime);
+        lfoGain.gain.setValueAtTime(0.032, ctx.currentTime);
         lfo.connect(lfoGain).connect(g.gain);
 
         osc.connect(g).connect(filter);
         osc.start();
         lfo.start();
+        padOscs.push(osc);
         musicNodes.push(osc, g, lfo, lfoGain);
       });
 
-      const scale = [216, 243, 288, 324, 384, 432];
-      triggerBowlChime(scale[0], 0.13);
+      // Smooth 4.5-second chord glide every 14 seconds
+      chordInterval = setInterval(() => {
+        if (!playing || !ctx) return;
+        chordIdx = (chordIdx + 1) % progression.length;
+        const nextChord = progression[chordIdx];
+        const now = ctx.currentTime;
+        padOscs.forEach((osc, i) => {
+          osc.frequency.cancelScheduledValues(now);
+          osc.frequency.setValueAtTime(osc.frequency.value, now);
+          osc.frequency.exponentialRampToValueAtTime(nextChord[i], now + 4.5);
+        });
+      }, 14000);
+
+      // Gentle 432 Hz melodic piano / harp notes drifting through stereo reverb
+      const melodyScale = [288.0, 324.0, 342.8, 432.0, 512.6, 576.0, 648.0];
+      let noteStep = 0;
+      triggerAmbientPiano(melodyScale[3], 0.085);
+      melodyInterval = setInterval(() => {
+        if (!playing || !ctx) return;
+        const pick = melodyScale[(noteStep + Math.floor(Math.random() * 3)) % melodyScale.length];
+        noteStep += 1;
+        triggerAmbientPiano(pick, 0.07 + Math.random() * 0.03);
+      }, 3600);
+
+      // Periodic warm Tibetan singing bowl overtones
+      const bowlScale = [216.0, 288.0, 324.0, 432.0];
       bowlInterval = setInterval(() => {
         if (!playing || !ctx) return;
-        const note = scale[Math.floor(Math.random() * scale.length)];
-        triggerBowlChime(note, 0.11);
-      }, mode === 'temple' ? 6800 : 9500);
+        const note = bowlScale[Math.floor(Math.random() * bowlScale.length)];
+        triggerBowlChime(note, 0.09);
+      }, mode === 'temple' ? 9200 : 12000);
     };
 
     const buildNatureLayer = () => {
@@ -515,6 +587,8 @@
       playing = false;
       if (timerId) { clearInterval(timerId); timerId = null; }
       if (bowlInterval) { clearInterval(bowlInterval); bowlInterval = null; }
+      if (chordInterval) { clearInterval(chordInterval); chordInterval = null; }
+      if (melodyInterval) { clearInterval(melodyInterval); melodyInterval = null; }
       if (ctx && masterGain) {
         const now = ctx.currentTime;
         masterGain.gain.cancelScheduledValues(now);
