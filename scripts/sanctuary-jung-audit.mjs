@@ -87,10 +87,31 @@ assert(ebcedSrc.includes("'güneş': 'گونش'"), 'ebced güneş typo must be f
 assert(!ebcedSrc.includes("'zeynep:':"), 'ebced stray zeynep: key must be removed');
 assert(!ebcedSrc.includes('Kişisel Yıl (2026)'), 'ebced personal year must be dynamic');
 
-// 6. Verify sanctuary-audio.js syntax & safety
+// 6. Verify sanctuary-audio.js syntax, stereo reverb, cymatics & safety
 const audioSrc = readFileSync(new URL('../public/sanctuary-audio.js', import.meta.url), 'utf8');
 new vm.Script(audioSrc, { filename: 'public/sanctuary-audio.js' });
+assert(audioSrc.includes('createConvolver'), 'stereo temple reverb must be present');
+assert(audioSrc.includes('createAnalyser'), 'cymatics audio analyser must be present');
 assert(!/\.getUserMedia\(/.test(audioSrc), 'no microphone access');
 assert(!/autoplay/i.test(audioSrc), 'no autoplay');
 
-console.log('sanctuary-jung-audit: 5-locale sanctuary & jung pages, 13x 301 redirects, sitemap, ebced fixes, and sanctuary-audio.js PASS');
+// 7. Verify /rehber hub & all 4 long-form educational guides
+const guidePaths = [
+  '/rehber',
+  '/en/guides',
+  '/rehber/spirituel-yasam-nedir',
+  '/rehber/carl-jung-golge-ve-arketip',
+  '/rehber/meditasyon-ve-nefes-rehberi',
+  '/rehber/frekans-rezonans-ve-beyin-dalgalari',
+  '/en/guides/spirituel-yasam-nedir'
+];
+for (const gp of guidePaths) {
+  const res = await app.fetch(new Request(`https://mythborn.co${gp}`), env, {});
+  assert.equal(res.status, 200, `${gp} must return 200`);
+  const html = await res.text();
+  assert(html.includes('"@type":"FAQPage"'), `${gp} must include FAQPage schema`);
+  assert(!/\bundefined\b/i.test(html), `${gp} must not contain undefined`);
+}
+assert(sm.includes('https://mythborn.co/rehber/spirituel-yasam-nedir'), 'sitemap must include guide articles');
+
+console.log('sanctuary-jung-audit: 5-locale sanctuary/jung, /rehber + 4 guides, cymatics+reverb, 13x 301s, sitemap, ebced fixes PASS');

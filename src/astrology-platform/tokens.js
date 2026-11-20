@@ -3744,4 +3744,267 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-lead,
   }
 }
 
+/* =========================================================================
+   2027 GROUND-UP REBIRTH — HOMEPAGE, CYMATICS, QUOTES & EDUCATIONAL GUIDES
+   ========================================================================= */
+.mb27-home{position:relative}
+.mb27-hero{
+  position:relative;
+  isolation:isolate;
+  min-height:calc(100svh - 76px);
+  max-height:860px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(64px, 8vw, 110px) 0 clamp(56px, 7vw, 96px);
+  overflow:hidden;
+  border-bottom:1px solid rgba(214, 190, 146, 0.14);
+}
+.mb27-hero-aura{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(ellipse 68% 58% at 50% 34%, rgba(148, 169, 201, 0.15), transparent 68%),
+    radial-gradient(ellipse 46% 38% at 50% 56%, rgba(214, 190, 146, 0.08), transparent 72%);
+}
+.mb27-orbit{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  border-radius:50%;
+  border:1px solid rgba(214, 190, 146, 0.11);
+  pointer-events:none;
+}
+.mb27-orbit-1{width:min(82vw, 760px);height:min(82vw, 760px)}
+.mb27-orbit-2{width:min(60vw, 520px);height:min(60vw, 520px);border-color:rgba(148, 169, 201, 0.12)}
+.mb27-hero-inner{position:relative;z-index:2;text-align:center;max-width:960px}
+.mb27-h1{
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:clamp(40px, 6.2vw, 82px);
+  line-height:1.06;
+  letter-spacing:-0.03em;
+  color:#f6f2ea;
+  margin:0 auto 22px;
+  max-width:920px;
+}
+.mb27-lead{
+  font-size:clamp(15.5px, 1.35vw, 19px);
+  line-height:1.72;
+  color:#b4bfd4;
+  max-width:740px;
+  margin:0 auto 34px;
+}
+.mb27-hero-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-bottom:40px}
+.mb27-telemetry{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px 28px;
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--dim);
+}
+
+.mb27-section{padding:clamp(54px, 6.5vw, 92px) 0}
+.mb27-grid-4{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:18px;
+}
+.mb27-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:22px;
+  padding:28px 24px;
+  border-radius:18px;
+  border:1px solid rgba(214, 190, 146, 0.19);
+  background:linear-gradient(160deg, rgba(15, 21, 34, 0.9), rgba(8, 11, 18, 0.98));
+  transition:border-color .25s ease, transform .25s ease;
+}
+.mb27-card:hover{border-color:rgba(214, 190, 146, 0.48);transform:translateY(-2px)}
+.mb27-card-tag{
+  display:inline-block;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:12px;
+}
+.mb27-card h3{
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:21px;
+  line-height:1.28;
+  color:#f5f1e8;
+  margin:0 0 10px;
+}
+.mb27-card p{font-size:13.5px;line-height:1.72;color:var(--muted);margin:0}
+.mb27-card-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:600;
+  color:var(--gold-bright);
+  padding-top:12px;
+  border-top:1px solid rgba(214, 190, 146, 0.12);
+}
+
+/* Museum-Grade Interlude Quote Bands (Jung / Freud / Adler) */
+.mb27-quote-band{
+  padding:clamp(34px, 4.5vw, 56px) 0;
+  border-top:1px solid rgba(214, 190, 146, 0.12);
+  border-bottom:1px solid rgba(214, 190, 146, 0.12);
+  background:radial-gradient(ellipse 65% 80% at 50% 50%, rgba(214, 190, 146, 0.055), transparent 75%);
+}
+.mb27-quote{max-width:860px;margin:0 auto;text-align:center}
+.mb27-quote p{
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(19px, 2.2vw, 28px);
+  line-height:1.52;
+  color:#f0e6d2;
+  margin:0 0 14px;
+}
+.mb27-quote cite{
+  font-style:normal;
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* Live Cymatics Canvas + Curated Scene Cards */
+.sanc-cymatics-band{
+  display:grid;
+  grid-template-columns:minmax(260px, 0.9fr) minmax(0, 1.1fr);
+  gap:24px;
+  align-items:center;
+  padding-bottom:26px;
+  margin-bottom:24px;
+  border-bottom:1px solid rgba(214, 190, 146, 0.14);
+}
+.sanc-cymatics-wrap{
+  position:relative;
+  border-radius:16px;
+  border:1px solid rgba(214, 190, 146, 0.18);
+  background:radial-gradient(circle at 50% 50%, rgba(16, 23, 38, 0.92), rgba(8, 11, 18, 0.99));
+  padding:14px;
+  text-align:center;
+}
+.sanc-cymatics-canvas{display:block;width:100%;height:230px}
+.sanc-cymatics-caption{
+  display:block;
+  margin-top:6px;
+  font-size:10px;
+  letter-spacing:0.16em;
+  color:var(--dim);
+}
+.mb27-mini-player{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  margin-top:10px;
+  padding-top:12px;
+  border-top:1px solid rgba(214, 190, 146, 0.12);
+  text-align:left;
+}
+.sanc-scenes-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:12px}
+.sanc-scene-card{
+  text-align:left;
+  padding:20px 18px;
+  border-radius:14px;
+  border:1px solid rgba(214, 190, 146, 0.18);
+  background:rgba(8, 11, 18, 0.72);
+  color:var(--cream);
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  transition:border-color .22s, background .22s, transform .22s;
+}
+.sanc-scene-card strong{font-family:var(--font-serif);font-size:17px;font-weight:500;color:var(--gold-bright)}
+.sanc-scene-card span{font-size:12px;line-height:1.6;color:var(--muted)}
+.sanc-scene-card:hover{border-color:rgba(214, 190, 146, 0.5);transform:translateY(-2px)}
+.sanc-scene-card.is-active{border-color:var(--gold);background:rgba(214, 190, 146, 0.14)}
+
+/* Ethics Panel */
+.mb27-ethics-panel{
+  max-width:920px;
+  margin:0 auto;
+  text-align:center;
+  padding:clamp(32px, 4.2vw, 54px);
+  border-radius:22px;
+  border:1px solid rgba(214, 190, 146, 0.22);
+  background:linear-gradient(155deg, rgba(15, 21, 34, 0.9), rgba(8, 11, 18, 0.98));
+}
+.mb27-ethics-panel h2{font-family:var(--font-serif);font-weight:400;font-size:clamp(24px, 2.8vw, 38px);color:#f6f2ea;margin:0 0 14px}
+.mb27-ethics-panel p{font-size:15px;line-height:1.78;color:var(--muted);max-width:720px;margin:0 auto 24px}
+
+/* Educational Guides Hub & Article */
+.guides-hub-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:20px}
+.guide-hub-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:22px;
+  padding:clamp(26px, 3vw, 38px);
+  border-radius:18px;
+  border:1px solid rgba(214, 190, 146, 0.2);
+  background:linear-gradient(155deg, rgba(15, 21, 34, 0.9), rgba(8, 11, 18, 0.98));
+}
+.guide-meta-row{display:flex;justify-content:space-between;gap:12px;font-size:10.5px;font-weight:700;letter-spacing:0.15em;color:var(--gold);margin-bottom:12px}
+.guide-hub-card h2{font-family:var(--font-serif);font-weight:400;font-size:clamp(22px, 2.1vw, 28px);line-height:1.25;color:#f6f2ea;margin:0 0 12px}
+.guide-hub-card p{font-size:14.5px;line-height:1.74;color:var(--muted);margin:0}
+
+.guide-article-shell{
+  max-width:860px;
+  margin:0 auto;
+  padding:clamp(28px, 4vw, 54px);
+  border-radius:22px;
+  border:1px solid rgba(214, 190, 146, 0.2);
+  background:linear-gradient(160deg, rgba(15, 21, 34, 0.9), rgba(8, 11, 18, 0.98));
+}
+.guide-article-sec{margin-bottom:32px}
+.guide-article-sec h2{font-family:var(--font-serif);font-weight:400;font-size:clamp(22px, 2.2vw, 30px);color:var(--gold-bright);margin:0 0 14px}
+.guide-article-sec p{font-size:15.5px;line-height:1.82;color:#d6dce8;margin:0}
+.guide-article-list{list-style:none;display:flex;flex-direction:column;gap:12px;padding:0;margin:0}
+.guide-article-list li{
+  padding:14px 16px;
+  border-left:2px solid var(--gold);
+  border-radius:0 12px 12px 0;
+  background:rgba(8, 11, 18, 0.65);
+  font-size:14.5px;
+  line-height:1.75;
+  color:#dce2ef;
+}
+.guide-article-foot{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  align-items:center;
+  justify-content:space-between;
+  padding-top:26px;
+  border-top:1px solid rgba(214, 190, 146, 0.16);
+}
+
+@media(max-width:1080px){
+  .mb27-grid-4{grid-template-columns:repeat(2, minmax(0, 1fr))}
+  .sanc-cymatics-band{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .mb27-grid-4,.sanc-scenes-grid,.guides-hub-grid{grid-template-columns:1fr}
+  .mb27-hero{min-height:auto;max-height:none}
+}
+
 `;

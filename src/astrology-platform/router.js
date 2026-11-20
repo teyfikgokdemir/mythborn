@@ -10,6 +10,7 @@ import { renderSynastryView } from './pages/synastry.js';
 import { renderApproachView } from './pages/approach.js';
 import { renderSanctuaryView, getSanctuaryFaqItems } from './pages/sanctuary.js';
 import { renderJungView, getJungFaqItems } from './pages/jung.js';
+import { GUIDE_SLUGS, getGuideBySlug, getGuideFaqItems, renderGuidesHubView, renderGuideArticleView } from './pages/guides.js';
 import { generateDailyHoroscopes } from './horoscope-pipeline.js';
 import { getApproachFaqItems, getToolSeo } from './seo-content.js';
 
@@ -29,6 +30,9 @@ export const matchAstrologyRoute = (pathname = '/') => {
   if (['/meditasyon', '/meditation', '/rezonans', '/resonance'].includes(clean)) return 'redirect:sanctuary';
   if (clean === '/jung') return 'jung';
   if (clean === '/carl-jung' || clean === '/arketip' || clean === '/archetypes') return 'redirect:jung';
+  if (['/rehber', '/guides', '/odigoi', '/guias', '/al-dalil'].includes(clean)) return 'guides';
+  const guideMatch = clean.match(/^\/(?:rehber|guides|odigoi|guias|al-dalil)\/([a-z0-9-]+)$/);
+  if (guideMatch && GUIDE_SLUGS.includes(guideMatch[1])) return `guide:${guideMatch[1]}`;
   if (['/iletisim','/contact','/epikoinonia','/contacto','/alittisal'].includes(clean)) return 'contact';
   if (clean === '/dogum-haritasi' || clean === '/birth-chart' || clean === '/genethlios-chartis' || clean === '/carta-natal' || clean === '/kharitat-almilad') return 'natal';
   if (clean === '/burclar' || clean === '/12-burc' || clean === '/burc-rehberi' || clean === '/zodiac-signs' || clean === '/zodia' || clean === '/signos-del-zodiaco' || clean === '/al-abraj') return 'zodiac';
@@ -80,8 +84,26 @@ export const handleAstrologyRequest = (request, env) => {
   let title = '';
   let description = '';
   let faqItems = [];
+  let layoutRouteKey = routeKey;
+  let canonicalPath = getRouteHref(locale, routeKey);
 
-  switch (routeKey) {
+  if (routeKey.startsWith('guide:')) {
+    const slug = routeKey.slice('guide:'.length);
+    const guide = getGuideBySlug(locale, slug);
+    const baseHref = getRouteHref(locale, 'guides');
+    contentHtml = renderGuideArticleView({ locale, slug, guideBaseHref: baseHref });
+    title = guide ? guide.title : 'Mythborn Guide';
+    description = guide ? guide.lead : t.hero.lead;
+    faqItems = getGuideFaqItems(locale, slug);
+    layoutRouteKey = 'guides';
+    canonicalPath = `${baseHref}/${slug}`;
+  } else switch (routeKey) {
+    case 'guides':
+      contentHtml = renderGuidesHubView({ locale, guideBaseHref: getRouteHref(locale, 'guides') });
+      title = ({ tr: 'Bilinç, Carl Jung, Meditasyon ve Frekans Rehberleri', en: 'Consciousness, Carl Jung, Meditation & Resonance Guides', el: 'Οδηγοί Συνείδησης, Carl Jung & Διαλογισμού', es: 'Guías de Consciencia, Carl Jung y Meditación', ar: 'أدلة الوعي وكارل يونغ والتأمل' }[locale] || 'Consciousness & Awareness Guides');
+      description = ({ tr: 'Spiritüel yaşam, Carl Jung gölge çalışması, Trataka mum meditasyonu ve ses rezonansı üzerine eğitici uzun-form rehberler.', en: 'In-depth educational guides on mindful living, Carl Jung shadow work, candle meditation and sound resonance.', el: 'Αναλυτικοί οδηγοί για συνειδητή ζωή, Carl Jung, διαλογισμό και ήχο.', es: 'Guías educativas sobre vida consciente, Carl Jung, meditación y resonancia.', ar: 'أدلة تعليمية معمقة حول الحياة الواعية وكارل يونغ والتأمل.' }[locale] || t.hero.lead);
+      faqItems = getGuideFaqItems(locale, '');
+      break;
     case 'sanctuary':
       contentHtml = renderSanctuaryView({ locale });
       title = ({ tr: 'Canlı Meditasyon, Frekans & Doğa Sesleri Sığınağı', en: 'Live Meditation, Frequency & Nature Sound Sanctuary', el: 'Καταφύγιο Διαλογισμού, Συχνοτήτων & Ήχων Φύσης', es: 'Santuario de Meditación, Frecuencias y Sonidos de la Naturaleza', ar: 'ملاذ التأمل المباشر والترددات وأصوات الطبيعة' }[locale] || 'Meditation & Sound Sanctuary');
@@ -137,12 +159,12 @@ export const handleAstrologyRequest = (request, env) => {
 
   const html = renderAstrologyLayout({
     locale,
-    currentRouteKey: routeKey,
+    currentRouteKey: layoutRouteKey,
     title,
     description,
     contentHtml,
     isPreview,
-    canonicalUrl: `https://mythborn.co${getRouteHref(locale, routeKey)}`,
+    canonicalUrl: `https://mythborn.co${canonicalPath}`,
     faqItems
   });
 

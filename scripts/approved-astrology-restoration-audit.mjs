@@ -12,13 +12,13 @@ for(const [path,lang] of localeRoots){
   assert(html.includes('MYTHBORN'),path+' brand expected');
   assert(html.includes('/assets/astrology/mythborn-symbol.svg'),path+' approved astronomy design expected');
   assert(!/\bundefined\b/i.test(html),path+' must not render missing translation values');
-  assert((html.match(/class="astro-card"/g)||[]).length>=6,path+' must expose all localized analysis tools');
+  assert((html.match(/class="mb27-card/g)||[]).length>=8,path+' must expose flagship sanctuary, guide and instrument cards');
   if(lang==='en'){
     for(const token of ['Astrolojik Analiz Araçları','Doğum tarihi','Haritayı Çıkar','Sinastriyi İncele','Takvimi Gör','Transitleri Gör','Sözlüğü Oku']){
       assert(!html.includes(token),'English homepage must not contain Turkish fallback: '+token);
     }
   }
-  if(path==='/')assert(html.includes('Gökyüzünün Haritası, Ruhun Pusulası.'),'restore approved 64019e2c homepage headline');
+  if(path==='/')assert(html.includes('Sessizliğin İçinde Kendini Duy.'),'new 2027 sanctuary homepage headline expected');
   if(lang==='ar')assert(html.includes('dir="rtl"'),'Arabic RTL');
 }
 for(const path of ['/dogum-haritasi','/en/birth-chart','/gr/genethlios-chartis','/es/carta-natal','/ar/kharitat-almilad']){
