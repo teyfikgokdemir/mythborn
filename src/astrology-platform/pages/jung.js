@@ -4,8 +4,8 @@
 const JUNG_COPY = {
   tr: {
     eyebrow: 'CARL JUNG DERİNLİK PSİKOLOJİSİ · ARKETİP & GÖLGE AYNASI',
-    title: 'Bilinçdışını Görünür Kıl, Bütünlüğe Dön.',
-    lead: 'Carl Gustav Jung’un arketip, gölge çalışması, aktif imgelem ve eşzamanlılık (synchronicity) ilkeleriyle derin öz-farkındalık alanı.',
+    title: 'Bilinç Dışını Görünür Kıl, Bütünlüğe Dön.',
+    lead: 'Carl Gustav Jung’un arketip, gölge çalışması, aktif imgelem ve eşzamanlılık ilkeleriyle derin öz-farkındalık alanı.',
     mirrorEyebrow: 'İNTERAKTİF ARKETİP & GÖLGE AYNASI',
     mirrorTitle: 'Bugün Hangi Arketip Seni Çağırıyor?',
     mirrorSub: 'Bir arketip seç; aydınlık armağanını, gölge kutbunu ve bugün kendine sorabileceğin aktif imgelem sorusunu gör.',
@@ -96,7 +96,7 @@ const JUNG_COPY = {
       title: 'Dört Temel Kavramla Bilinç Haritası.',
       sub: 'Sembolleri kehanet gibi değil, ruhsal bütünleşmenin dili olarak okumak için temel Jung kavramları.',
       items: [
-        ['Persona ve Gölge (Shadow)', 'Persona topluma gösterdiğimiz maskedir; Gölge ise kabul görmediği için bilinçdışına ittiğimiz canlı parçalarımızdır. Bütünlük, gölgeyi yok ederek değil tanıyarak başlar.'],
+        ['Persona ve Gölge (Shadow)', 'Persona topluma gösterdiğimiz maskedir; Gölge ise kabul görmediği için bilinç dışına ittiğimiz canlı parçalarımızdır. Bütünlük, gölgeyi yok ederek değil tanıyarak başlar.'],
         ['Bireyleşme (Individuation)', 'Jung’a göre yaşamın ikinci yarısındaki asıl yolculuk, başkalarının beklentilerinden sıyrılıp kendi özgün Öz’üne (Self) ulaşma sürecidir.'],
         ['Eşzamanlılık (Synchronicity)', 'Aralarında nedensel bir bağ olmasa da içsel bir ruh haliyle dışsal bir olayın anlamlı biçimde örtüşmesi; dikkati derinleştiren sembolik bir aynadır.'],
         ['Aktif İmgelem (Active Imagination)', 'Rüya, sembol veya içsel imgelerle uyanık bilinçte diyalog kurma pratiği; Mythborn’daki Sığınak ve Theta odaları bu sakin gözlemi destekler.']

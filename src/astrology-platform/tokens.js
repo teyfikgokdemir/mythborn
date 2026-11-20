@@ -4113,9 +4113,16 @@ main > section.astro-hero:not(.astro-section-viewport) h1{
 }
 .sanc-hero .sanc-lead,
 main > section.astro-hero:not(.astro-section-viewport) .astro-hero-lead{
-  max-width:820px!important;
+  max-width:1040px!important;
   color:#e4e9f2!important;
   text-shadow:0 2px 16px rgba(4, 7, 14, 0.82);
+}
+@media(min-width:1120px){
+  .sanc-hero .sanc-lead,
+  .mb27-lead{
+    max-width:none!important;
+    white-space:nowrap;
+  }
 }
 .sanc-hero .sanc-eyebrow,
 main > section.astro-hero:not(.astro-section-viewport) .astro-hero-eyebrow{
