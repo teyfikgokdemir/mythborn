@@ -1,19 +1,20 @@
 // Mythborn Design System Tokens & Global Shared Styles
 export const SHARED_CSS = `
 :root {
-  --bg: #05070e;
-  --bg-gradient: radial-gradient(circle at 50% -20%, #151a30 0%, #080a14 60%, #04050a 100%);
-  --card: rgba(14, 18, 34, 0.65);
-  --card-elevated: rgba(20, 26, 48, 0.85);
-  --border: rgba(212, 175, 55, 0.18);
-  --border-hover: rgba(212, 175, 55, 0.45);
-  --gold: #d4af37;
-  --gold-bright: #f3cf7a;
-  --gold-dark: #8c7322;
-  --gold-gradient: linear-gradient(135deg, #f5d78e 0%, #d4af37 50%, #997a26 100%);
-  --cream: #f8f6f0;
-  --muted: #a6abbd;
-  --dim: #6b7280;
+  --bg: #080b12;
+  --bg-gradient: radial-gradient(circle at 50% -18%, #151e34 0%, #0b101b 55%, #080b12 100%);
+  --card: rgba(15, 21, 34, 0.72);
+  --card-elevated: rgba(21, 29, 46, 0.88);
+  --border: rgba(214, 190, 146, 0.18);
+  --border-hover: rgba(214, 190, 146, 0.46);
+  --gold: #d6be92;
+  --gold-bright: #ead7b2;
+  --gold-dark: #937d55;
+  --gold-gradient: linear-gradient(135deg, #efe0c0 0%, #d6be92 52%, #a68c5e 100%);
+  --moon-mist: #94a9c9;
+  --cream: #f4f1ea;
+  --muted: #a6b0c4;
+  --dim: #6f7a90;
   --font-serif: "Cinzel", "Playfair Display", Georgia, "Times New Roman", serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
@@ -3442,6 +3443,158 @@ html[dir="rtl"] .retro-guidance-box {
 @media(min-width:1100px){
   .astro-contact-heading h1{max-width:none;font-size:clamp(39px,3.75vw,55px);letter-spacing:-.045em;white-space:nowrap}
   .astro-contact-heading p{max-width:none;font-size:clamp(14px,1.06vw,16px);line-height:1.65;white-space:nowrap}
+}
+
+/* =========================================================================
+   2027 Deep Night Indigo (#080b12) & Pale Moon Gold (#d6be92) Sanctuary & Jung
+   ========================================================================= */
+[data-spotlight]{
+  position:relative;
+  overflow:hidden;
+}
+[data-spotlight]::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(214, 190, 146, 0.11), transparent 62%);
+  opacity:0;
+  transition:opacity .35s ease;
+  pointer-events:none;
+}
+[data-spotlight]:hover::before{opacity:1}
+
+.sanc-page{padding-bottom:clamp(64px,8vw,112px)}
+.sanc-center{text-align:center}
+.sanc-hero{padding:clamp(64px,8vw,108px) 0 clamp(36px,4.5vw,56px);border-bottom:1px solid rgba(214,190,146,.14);background:radial-gradient(ellipse 75% 70% at 50% 0%, rgba(148,169,201,.11), transparent 72%)}
+.sanc-eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.sanc-h1{font-family:var(--font-serif);font-weight:400;font-size:clamp(34px,4.4vw,62px);line-height:1.12;letter-spacing:-.025em;color:var(--cream);margin:0 auto 18px;max-width:980px}
+.sanc-lead{font-size:clamp(15px,1.25vw,18px);line-height:1.72;color:var(--muted);max-width:740px;margin:0 auto}
+.sanc-section{padding:clamp(44px,5.5vw,76px) 0}
+.sanc-head{max-width:860px;margin:0 auto clamp(28px,3.5vw,42px)}
+.sanc-head h2{font-family:var(--font-serif);font-weight:400;font-size:clamp(26px,3.1vw,42px);line-height:1.18;color:var(--cream);margin:0 0 12px}
+.sanc-head p{font-size:15px;line-height:1.72;color:var(--muted);margin:0 auto;max-width:680px}
+
+.sanc-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:26px}
+.sanc-tab{padding:11px 20px;border-radius:999px;border:1px solid rgba(214,190,146,.22);background:rgba(15,21,34,.75);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.sanc-tab:hover{border-color:rgba(214,190,146,.5);color:var(--cream)}
+.sanc-tab.is-active{background:rgba(214,190,146,.16);border-color:var(--gold);color:var(--gold-bright)}
+
+.sanc-room-card{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,52px);align-items:center;padding:clamp(26px,3.5vw,46px);border-radius:20px;border:1px solid rgba(214,190,146,.22);background:linear-gradient(145deg,rgba(15,21,34,.88),rgba(8,11,18,.96))}
+.sanc-room-card[hidden]{display:none}
+.sanc-room-wide{grid-template-columns:1fr}
+.sanc-room-copy h2{font-family:var(--font-serif);font-weight:400;font-size:clamp(24px,2.5vw,34px);color:var(--cream);margin:0 0 12px}
+.sanc-room-sub{font-size:15px;line-height:1.75;color:#cfd6e4;margin:0 0 16px}
+.sanc-room-note{font-size:13.5px;line-height:1.72;color:var(--muted);margin:0 0 22px}
+.sanc-btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.sanc-btn-gold{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:10px;border:1px solid var(--gold);background:var(--gold-gradient);color:#0b0e16;font-size:13.5px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .2s,filter .2s}
+.sanc-btn-gold:hover{transform:translateY(-1px);filter:brightness(1.06)}
+.sanc-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:10px;border:1px solid rgba(214,190,146,.32);background:rgba(15,21,34,.65);color:var(--gold-bright);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;transition:border-color .2s,background .2s}
+.sanc-btn-ghost:hover{border-color:var(--gold);background:rgba(214,190,146,.12)}
+
+/* Trataka Candle Visual */
+.sanc-room-visual{display:grid;place-items:center;min-height:270px;border-radius:16px;background:radial-gradient(circle at 50% 45%, rgba(214,190,146,.10), rgba(8,11,18,.9) 70%);border:1px solid rgba(214,190,146,.14);padding:24px}
+.trataka-stage{position:relative;width:140px;height:210px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.trataka-halo{position:absolute;top:16px;width:136px;height:136px;border-radius:50%;background:radial-gradient(circle, rgba(246,204,126,.34) 0%, rgba(214,158,76,.12) 45%, transparent 72%);animation:tratakaPulse 4.2s ease-in-out infinite alternate}
+.trataka-flame{position:relative;width:30px;height:66px;border-radius:50% 50% 45% 45% / 68% 68% 32% 32%;background:radial-gradient(ellipse at 50% 70%, #fff8dc 0%, #f5c976 48%, rgba(224,132,48,.85) 85%, transparent 100%);box-shadow:0 0 28px rgba(245,201,118,.55);transform-origin:50% 90%;animation:flameSway 3.4s ease-in-out infinite alternate}
+.trataka-core{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:10px;height:24px;border-radius:50%;background:#ffffff;opacity:.92}
+.trataka-wick{width:2px;height:12px;background:#3a322a;margin-top:-2px}
+.trataka-wax{width:54px;height:78px;border-radius:8px 8px 4px 4px;background:linear-gradient(180deg,#e9dfc8 0%,#b8a98e 100%);box-shadow:inset 0 6px 12px rgba(255,255,255,.35)}
+@keyframes flameSway{0%{transform:scaleY(1) rotate(-1.6deg)}50%{transform:scaleY(1.05) rotate(1.4deg)}100%{transform:scaleY(.97) rotate(-.8deg)}}
+@keyframes tratakaPulse{from{opacity:.72;transform:scale(.95)}to{opacity:1;transform:scale(1.07)}}
+
+/* Breath Orb */
+.breath-stage{display:grid;place-items:center;width:220px;height:220px}
+.breath-orb{width:146px;height:146px;border-radius:50%;border:1px solid rgba(214,190,146,.55);background:radial-gradient(circle at 38% 32%, rgba(214,190,146,.30), rgba(148,169,201,.14) 55%, rgba(8,11,18,.88) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;transition:transform 4s ease-in-out;box-shadow:0 0 42px rgba(214,190,146,.16)}
+.breath-phase{font-size:11px;letter-spacing:.18em;color:var(--gold-bright);font-weight:700}
+.breath-count{font-family:var(--font-serif);font-size:32px;color:var(--cream)}
+.sanc-inline-ctrl{margin-bottom:18px;max-width:380px}
+.sanc-inline-ctrl label{display:block;font-size:12px;color:var(--gold);letter-spacing:.06em;margin-bottom:8px}
+
+/* Theta Stages */
+.sanc-stages-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:22px 0}
+.sanc-stage-item{padding:20px 18px;border-radius:14px;border:1px solid rgba(214,190,146,.16);background:rgba(8,11,18,.68)}
+.sanc-stage-item h3{font-family:var(--font-serif);font-size:17px;color:var(--gold-bright);margin:0 0 8px}
+.sanc-stage-item p{font-size:13px;line-height:1.68;color:var(--muted);margin:0}
+
+/* 108 Mala */
+.mala-stage{width:100%;max-width:290px;text-align:center}
+.mala-counter-value{font-family:var(--font-serif);font-size:40px;color:var(--gold-bright);margin-bottom:12px}
+.mala-bar{height:6px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin-bottom:12px}
+.mala-bar span{display:block;height:100%;background:var(--gold-gradient);transition:width .25s ease}
+.mala-rounds{font-size:12.5px;color:var(--muted)}
+.sanc-mantra-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin:0 0 22px;padding:0}
+.sanc-mantra-list li{padding:11px 14px;border-left:2px solid var(--gold);background:rgba(8,11,18,.55);border-radius:0 10px 10px 0;font-size:13.5px;color:#e5dfd2;font-style:italic}
+
+/* Hybrid Mixer */
+.sanc-mixer{padding:clamp(24px,3.2vw,42px);border-radius:20px;border:1px solid rgba(214,190,146,.24);background:linear-gradient(155deg,rgba(15,21,34,.92),rgba(8,11,18,.98))}
+.sanc-mixer-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;padding-bottom:24px;border-bottom:1px solid rgba(214,190,146,.15)}
+.sanc-player-left{display:flex;align-items:center;gap:18px}
+.sanc-play-btn{width:64px;height:64px;border-radius:50%;border:1px solid var(--gold-bright);background:var(--gold-gradient);color:#0b0e16;font-size:20px;display:grid;place-items:center;cursor:pointer;flex:0 0 64px}
+.sanc-ring{width:14px;height:14px;border-radius:50%;background:rgba(214,190,146,.35);border:1px solid var(--gold)}
+.sanc-ring.is-playing{background:var(--gold-bright);box-shadow:0 0 18px rgba(214,190,146,.7);animation:tratakaPulse 1.6s ease-in-out infinite alternate}
+.sanc-state{font-size:11px;letter-spacing:.16em;color:var(--gold);font-weight:700}
+.sanc-timer-readout{font-family:var(--font-serif);font-size:28px;color:var(--cream);margin-top:2px}
+.sanc-timer-ctrl{min-width:190px}
+.sanc-timer-ctrl label{display:block;font-size:11.5px;color:var(--muted);margin-bottom:6px}
+.sanc-mixer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}
+.sanc-channel{padding:18px;border-radius:14px;border:1px solid rgba(214,190,146,.16);background:rgba(8,11,18,.65);display:flex;flex-direction:column;gap:12px}
+.sanc-channel label{font-size:12.5px;font-weight:600;color:var(--gold-bright)}
+.sanc-channel input[type=range]{width:100%;accent-color:#d6be92}
+.sanc-mixer-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-top:24px;padding-top:18px;border-top:1px solid rgba(214,190,146,.14);font-size:12px;color:var(--muted)}
+.sanc-link{color:var(--gold-bright);font-weight:600;white-space:nowrap}
+
+/* 4-Column Symmetrical Guide Grid */
+.sanc-guide-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.sanc-guide-card{padding:26px 22px;border-radius:16px;border:1px solid rgba(214,190,146,.18);background:linear-gradient(160deg,rgba(15,21,34,.84),rgba(8,11,18,.95))}
+.sanc-guide-card h3{font-family:var(--font-serif);font-size:18px;font-weight:500;color:var(--gold-bright);margin:0 0 10px}
+.sanc-guide-card p{font-size:13.5px;line-height:1.72;color:var(--muted);margin:0}
+.sanc-ethics-note{margin:20px auto 0;max-width:740px;font-size:12.5px;line-height:1.7;color:var(--dim)}
+
+/* Carl Jung Archetype & Shadow Mirror */
+.jung-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:24px}
+.jung-arch-card{text-align:left;padding:20px 18px;border-radius:14px;border:1px solid rgba(214,190,146,.18);background:rgba(15,21,34,.75);color:var(--cream);cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:border-color .2s,background .2s,transform .2s}
+.jung-arch-card strong{font-family:var(--font-serif);font-size:17px;font-weight:500;color:var(--gold-bright)}
+.jung-arch-card span{font-size:12.5px;line-height:1.6;color:var(--muted)}
+.jung-arch-card:hover{border-color:rgba(214,190,146,.48);transform:translateY(-2px)}
+.jung-arch-card.is-active{border-color:var(--gold);background:rgba(214,190,146,.14)}
+
+.jung-dossier{padding:clamp(24px,3.2vw,40px);border-radius:20px;border:1px solid rgba(214,190,146,.28);background:linear-gradient(145deg,rgba(19,27,44,.9),rgba(8,11,18,.98))}
+.jung-dossier-head{padding-bottom:20px;margin-bottom:22px;border-bottom:1px solid rgba(214,190,146,.16)}
+.jung-dossier-head h3{font-family:var(--font-serif);font-size:clamp(24px,2.4vw,34px);font-weight:400;color:var(--cream);margin:0 0 10px}
+.jung-dossier-head blockquote{margin:0;font-style:italic;font-size:15px;line-height:1.7;color:var(--gold-bright)}
+.jung-dossier-cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.jung-col{padding:18px;border-radius:14px;background:rgba(8,11,18,.68);border:1px solid rgba(214,190,146,.14)}
+.jung-col-prompt{border-color:rgba(214,190,146,.34);background:rgba(214,190,146,.07)}
+.jung-col-label{display:block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.jung-col p{font-size:13.5px;line-height:1.72;color:#dbe1ee;margin:0}
+
+.jung-sync-shell{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;padding:clamp(24px,3vw,38px);border-radius:20px;border:1px solid rgba(214,190,146,.22);background:linear-gradient(150deg,rgba(15,21,34,.88),rgba(8,11,18,.97))}
+.jung-sync-form .sanc-inline-ctrl{max-width:none}
+.jung-sync-list{display:flex;flex-direction:column;gap:12px;max-height:320px;overflow-y:auto}
+.jung-log-item{padding:14px 16px;border-radius:12px;border:1px solid rgba(214,190,146,.16);background:rgba(8,11,18,.72)}
+.jung-log-meta{font-size:11px;letter-spacing:.08em;color:var(--gold);margin-bottom:6px;font-weight:600}
+.jung-log-item p{font-size:13.5px;line-height:1.65;color:#dce2ef;margin:0}
+.jung-empty{font-size:13.5px;color:var(--muted);padding:20px;border:1px dashed rgba(214,190,146,.22);border-radius:12px;text-align:center}
+
+/* Homepage 2027 Sanctuary & Carl Jung Band */
+.home-sanctuary-band{padding:clamp(46px,6vw,78px) 0;border-top:1px solid var(--border);background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(148,169,201,.09), transparent 72%)}
+.home-sanctuary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:28px}
+.home-sanctuary-card{display:flex;flex-direction:column;justify-content:space-between;gap:18px;padding:clamp(26px,3.2vw,40px);border-radius:18px;border:1px solid rgba(214,190,146,.22);background:linear-gradient(150deg,rgba(15,21,34,.88),rgba(8,11,18,.97));transition:border-color .25s,transform .25s}
+.home-sanctuary-card:hover{border-color:rgba(214,190,146,.52);transform:translateY(-2px)}
+.home-sanctuary-card h3{font-family:var(--font-serif);font-size:clamp(22px,2.2vw,30px);font-weight:400;color:var(--cream);margin:8px 0 10px}
+.home-sanctuary-card p{font-size:14.5px;line-height:1.72;color:var(--muted);margin:0}
+
+@media(max-width:1024px){
+  .sanc-guide-grid,.jung-grid,.sanc-stages-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sanc-mixer-grid,.jung-dossier-cols{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .sanc-room-card,.jung-sync-shell,.home-sanctuary-grid{grid-template-columns:1fr}
+  .sanc-guide-grid,.jung-grid,.sanc-stages-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .trataka-flame,.trataka-halo,.sanc-ring.is-playing{animation:none!important}
+  .breath-orb{transition:none!important}
 }
 
 `;

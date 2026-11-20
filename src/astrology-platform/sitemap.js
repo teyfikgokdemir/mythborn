@@ -3,15 +3,12 @@ import { ASTROLOGY_LOCALES } from './i18n.js';
 import { getRouteHref } from './layout.js';
 
 export const ASTROLOGY_SITEMAP_ROUTES = [
+  'sanctuary',
+  'jung',
   'natal',
   'zodiac',
   'calendar',
-  'retros',
-  'transits',
   'synastry',
-  'glossary',
-  'learning',
-  'horoscopes',
   'approach',
   'contact'
 ];
