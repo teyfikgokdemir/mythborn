@@ -4008,8 +4008,26 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-lead,
 }
 
 /* =========================================================================
-   REAL CINEMATIC PHOTOGRAPHY FRAMING (HERO & EDITORIAL CARDS)
+   REAL CINEMATIC PHOTOGRAPHY FRAMING — VIBRANT & FULL-BLEED 2027 HEROES
    ========================================================================= */
+.mb27-hero{
+  min-height:clamp(540px, 78svh, 760px)!important;
+  max-height:780px!important;
+  padding:clamp(70px, 8vh, 110px) 0 clamp(64px, 7vh, 96px)!important;
+}
+.mb27-hero-inner{max-width:1120px!important}
+.mb27-h1{
+  font-size:clamp(34px, 4.4vw, 64px)!important;
+  line-height:1.1!important;
+  max-width:1120px!important;
+  text-shadow:0 4px 28px rgba(4, 7, 14, 0.78);
+}
+.mb27-lead{
+  max-width:860px!important;
+  color:#e4e9f2!important;
+  text-shadow:0 2px 18px rgba(4, 7, 14, 0.78);
+}
+.mb27-telemetry{color:#cfd6e4!important;text-shadow:0 2px 12px rgba(4,7,14,.75)}
 .mb27-hero-media{
   position:absolute;
   inset:0;
@@ -4021,19 +4039,92 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-lead,
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:center 38%;
-  opacity:0.42;
-  filter:saturate(0.86) contrast(1.06) brightness(0.76);
+  object-position:center 60%;
+  opacity:0.84;
+  filter:saturate(1.22) contrast(1.08) brightness(0.96);
 }
 .mb27-hero-media::after{
   content:'';
   position:absolute;
   inset:0;
   background:
-    radial-gradient(ellipse 75% 70% at 50% 42%, rgba(8, 11, 18, 0.25) 0%, rgba(8, 11, 18, 0.88) 82%),
-    linear-gradient(180deg, rgba(8, 11, 18, 0.55) 0%, rgba(8, 11, 18, 0.32) 48%, #080b12 100%);
+    linear-gradient(180deg, rgba(8, 11, 18, 0.52) 0%, rgba(8, 11, 18, 0.22) 45%, rgba(8, 11, 18, 0.42) 78%, #080b12 100%),
+    radial-gradient(ellipse 70% 55% at 50% 42%, rgba(8, 11, 18, 0.34) 0%, rgba(8, 11, 18, 0.12) 68%, rgba(8, 11, 18, 0.55) 100%);
 }
 
+/* Full-Bleed Edge-to-Edge Seamless Inner Heroes (NO boxed rectangle!) */
+main > section.astro-hero:not(.astro-section-viewport),
+.sanc-hero,
+.sanc-hero-fullbleed{
+  position:relative!important;
+  isolation:isolate!important;
+  width:100%!important;
+  min-height:clamp(340px, 44svh, 470px)!important;
+  display:flex!important;
+  align-items:center!important;
+  padding:clamp(54px, 6.5vw, 88px) 0!important;
+  border-bottom:1px solid rgba(214, 190, 146, 0.2)!important;
+  background:radial-gradient(ellipse 80% 70% at 50% 20%, rgba(28, 40, 68, 0.55), #080b12 78%)!important;
+  overflow:hidden!important;
+}
+main > section.astro-hero:not(.astro-section-viewport) > .astro-container,
+.sanc-hero > .astro-container,
+.sanc-hero-fullbleed > .astro-container{
+  max-width:1120px!important;
+  padding:0 24px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:none!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+main > section.astro-hero:not(.astro-section-viewport) > .astro-container::before,
+.sanc-hero > .astro-container::before{
+  display:none!important;
+}
+.sanc-hero-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 55%;
+  opacity:0.78;
+  filter:saturate(1.22) contrast(1.08) brightness(0.94);
+  z-index:0;
+  pointer-events:none;
+}
+.sanc-hero-fullbleed::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    linear-gradient(180deg, rgba(8, 11, 18, 0.48) 0%, rgba(8, 11, 18, 0.24) 48%, rgba(8, 11, 18, 0.88) 100%),
+    radial-gradient(ellipse 68% 60% at 50% 50%, rgba(8, 11, 18, 0.42) 0%, transparent 78%);
+  pointer-events:none;
+}
+.sanc-hero-content{position:relative;z-index:2}
+.sanc-hero .sanc-h1,
+main > section.astro-hero:not(.astro-section-viewport) h1{
+  font-size:clamp(32px, 4vw, 56px)!important;
+  max-width:1080px!important;
+  text-shadow:0 4px 26px rgba(4, 7, 14, 0.82);
+}
+.sanc-hero .sanc-lead,
+main > section.astro-hero:not(.astro-section-viewport) .astro-hero-lead{
+  max-width:820px!important;
+  color:#e4e9f2!important;
+  text-shadow:0 2px 16px rgba(4, 7, 14, 0.82);
+}
+.sanc-hero .sanc-eyebrow,
+main > section.astro-hero:not(.astro-section-viewport) .astro-hero-eyebrow{
+  background:rgba(8, 11, 18, 0.56)!important;
+  backdrop-filter:blur(10px);
+  border-color:rgba(234, 215, 178, 0.42)!important;
+}
+
+/* Vibrant, Crisp, Gallery-Bright Editorial Card Visuals */
 .mb27-card-has-media{
   padding:0!important;
   gap:0!important;
@@ -4044,26 +4135,26 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-lead,
   aspect-ratio:16 / 10;
   overflow:hidden;
   background:#0a0e18;
-  border-bottom:1px solid rgba(214, 190, 146, 0.14);
+  border-bottom:1px solid rgba(214, 190, 146, 0.16);
 }
 .mb27-card-media img{
   width:100%;
   height:100%;
   object-fit:cover;
   display:block;
-  filter:saturate(0.88) contrast(1.04) brightness(0.86);
+  filter:saturate(1.2) contrast(1.07) brightness(1.04);
   transition:transform .55s cubic-bezier(.16,1,.3,1), filter .35s ease;
 }
 .mb27-card-media::after{
   content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(180deg, rgba(8,11,18,0.06) 0%, rgba(8,11,18,0.58) 100%);
+  background:linear-gradient(180deg, transparent 58%, rgba(8, 11, 18, 0.38) 100%);
   pointer-events:none;
 }
 .mb27-card-has-media:hover .mb27-card-media img{
-  transform:scale(1.04);
-  filter:saturate(0.96) contrast(1.06) brightness(0.95);
+  transform:scale(1.05);
+  filter:saturate(1.28) contrast(1.1) brightness(1.08);
 }
 .mb27-card-body{
   display:flex;
@@ -4073,19 +4164,5 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-lead,
   flex:1;
   padding:22px 22px 24px;
 }
-
-.sanc-hero-photo{position:relative;overflow:hidden}
-.sanc-hero-bg{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:0.24;
-  filter:saturate(0.84) brightness(0.74);
-  z-index:0;
-  pointer-events:none;
-}
-.sanc-hero-content{position:relative;z-index:2}
 
 `;

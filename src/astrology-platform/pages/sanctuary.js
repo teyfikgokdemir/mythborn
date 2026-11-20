@@ -4,7 +4,7 @@
 const COPY = {
   tr: {
     eyebrow: 'CANLI MEDİTASYON · REZONANS & DOĞA SIĞINAĞI',
-    title: 'Sessizliğin İçinde Kendini Duy.',
+    title: 'Canlı Meditasyon & Doğa Sığınağı.',
     lead: 'Mum odağı (Trataka), iç benlik nefesi, Theta gevşemesi, 108 mantra sayacı ve canlı doğa sesleri tek sığınakta.',
     tabsLabel: 'Meditasyon Odaları',
     rooms: {
@@ -110,7 +110,7 @@ const COPY = {
   },
   en: {
     eyebrow: 'LIVE MEDITATION · RESONANCE & NATURE SANCTUARY',
-    title: 'Hear Yourself Inside the Stillness.',
+    title: 'Live Meditation & Nature Sanctuary.',
     lead: 'Candle gazing (Trataka), inner-self breathwork, Theta relaxation, 108 mala counter and live nature acoustics in one sanctuary.',
     tabsLabel: 'Meditation Rooms',
     rooms: {
@@ -262,15 +262,13 @@ export const renderSanctuaryView = ({ locale = 'tr' } = {}) => {
 
   return `
   <div class="sanc-page" data-sanctuary-app>
-    <!-- 1. Centered Single-Scroll Hero with Real Sanctuary Photography -->
-    <section class="sanc-hero">
-      <div class="astro-container sanc-center sanc-hero-photo">
-        <img class="sanc-hero-bg" src="/images/cinematic/daily/daily-card-altar-960.webp" alt="" width="960" height="640" fetchpriority="high" decoding="async" aria-hidden="true">
-        <div class="sanc-hero-content">
-          <span class="sanc-eyebrow">✦ ${c.eyebrow}</span>
-          <h1 class="sanc-h1">${c.title}</h1>
-          <p class="sanc-lead">${c.lead}</p>
-        </div>
+    <!-- 1. Full-Bleed Vibrant Sanctuary Hero -->
+    <section class="sanc-hero sanc-hero-fullbleed">
+      <img class="sanc-hero-bg" src="/images/sanctuary-hero-2027.jpg" alt="" width="1408" height="768" fetchpriority="high" decoding="async" aria-hidden="true">
+      <div class="astro-container sanc-center sanc-hero-content">
+        <span class="sanc-eyebrow">✦ ${c.eyebrow}</span>
+        <h1 class="sanc-h1">${c.title}</h1>
+        <p class="sanc-lead">${c.lead}</p>
       </div>
     </section>
 

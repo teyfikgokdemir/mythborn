@@ -260,8 +260,8 @@ const GUIDES_EN = [
 export const GUIDE_SLUGS = GUIDES_TR.map((g) => g.slug);
 
 const GUIDE_IMAGES = {
-  'spirituel-yasam-nedir': '/images/cinematic/daily/daily-card-altar-960.webp',
-  'carl-jung-golge-ve-arketip': '/images/astrology/moon-archetype.jpg',
+  'spirituel-yasam-nedir': '/images/sanctuary-hero-2027.jpg',
+  'carl-jung-golge-ve-arketip': '/images/jung-hero-2027.jpg',
   'meditasyon-ve-nefes-rehberi': '/images/Mythborn_01_Kozmik_Usturlap.webp',
   'frekans-rezonans-ve-beyin-dalgalari': '/images/Mythborn_02_Altin_Kutsal_Geometri.webp'
 };
@@ -286,10 +286,11 @@ export const renderGuidesHubView = ({ locale = 'tr', guideBaseHref = '/rehber' }
 
   return `
   <div class="sanc-page">
-    <section class="sanc-hero">
-      <div class="astro-container sanc-center">
+    <section class="sanc-hero sanc-hero-fullbleed">
+      <img class="sanc-hero-bg" src="/images/cinematic/knowledge/celestial-knowledge-library-1440.webp" alt="" width="1440" height="900" fetchpriority="high" decoding="async" aria-hidden="true">
+      <div class="astro-container sanc-center sanc-hero-content">
         <span class="sanc-eyebrow">✦ ${isTr ? 'BİLİNÇ & FARKINDALIK AKADEMİSİ · EĞİTİCİ REHBERLER' : 'CONSCIOUSNESS & AWARENESS LIBRARY · IN-DEPTH GUIDES'}</span>
-        <h1 class="sanc-h1">${isTr ? 'Derinleşmek İçin Açık, Sade ve Öğretici Rehberler.' : 'Clear, Grounded Guides for Deeper Awareness.'}</h1>
+        <h1 class="sanc-h1">${isTr ? 'Bilinç, Jung & Farkındalık Rehberleri.' : 'Consciousness, Jung & Awareness Guides.'}</h1>
         <p class="sanc-lead">${isTr ? 'Spiritüel yaşam ilkelerinden Carl Jung gölge çalışmasına, Trataka mum meditasyonundan ses rezonansının fiziğine kadar adım adım uygulamalı kütüphane.' : 'From mindful living principles and Carl Jung shadow work to candle meditation and the physics of sound resonance.'}</p>
       </div>
     </section>
@@ -329,8 +330,9 @@ export const renderGuideArticleView = ({ locale = 'tr', slug = '', guideBaseHref
 
   return `
   <div class="sanc-page">
-    <section class="sanc-hero">
-      <div class="astro-container sanc-center">
+    <section class="sanc-hero sanc-hero-fullbleed">
+      <img class="sanc-hero-bg" src="${g.image}" alt="" width="1408" height="768" fetchpriority="high" decoding="async" aria-hidden="true">
+      <div class="astro-container sanc-center sanc-hero-content">
         <span class="sanc-eyebrow">✦ ${g.tag} · ${g.readTime}</span>
         <h1 class="sanc-h1">${g.title}</h1>
         <p class="sanc-lead">${g.lead}</p>
