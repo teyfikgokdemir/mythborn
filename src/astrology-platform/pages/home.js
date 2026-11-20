@@ -168,6 +168,45 @@ export const renderHomeView = ({ locale = 'tr', isPreview = false }) => {
       </div>
     </section>`}
 
+    <!-- 2b. 2027 Consciousness, Live Meditation Sanctuary & Carl Jung Depth Psychology -->
+    <section class="home-sanctuary-band" id="sanctuary-showcase">
+      <div class="astro-container">
+        <div class="astro-section-head">
+          <span class="astro-card-tag">✦ ${loc === 'tr' ? 'BİLİNÇ, REZONANS & DERİNLİK PSİKOLOJİSİ' : loc === 'en' ? 'CONSCIOUSNESS, RESONANCE & DEPTH PSYCHOLOGY' : loc === 'el' ? 'ΣΥΝΕΙΔΗΣΗ, ΣΥΝΤΟΝΙΣΜΟΣ & ΨΥΧΟΛΟΓΙΑ ΒΑΘΟΥΣ' : loc === 'es' ? 'CONSCIENCIA, RESONANCIA Y PSICOLOGÍA PROFUNDA' : 'الوعي والرنين وعلم النفس العميق'}</span>
+          <h2>${loc === 'tr' ? 'Sessizlikte Kendini Duy, Gölgeni Tanı.' : loc === 'en' ? 'Enter Stillness, Meet Your Deeper Self.' : loc === 'el' ? 'Μπες στη Σιωπή, Γνώρισε τον Εαυτό σου.' : loc === 'es' ? 'Entra en la Quietud, Conoce tu Profundidad.' : 'ادخل السكون وتعرّف على عمقك.'}</h2>
+          <p>${loc === 'tr' ? 'Canlı mum ve nefes odaları, binaural frekanslar, doğa sesleri ve Carl Jung arketip aynası tek sığınakta.' : loc === 'en' ? 'Live candle & breath rooms, binaural brainwaves, nature acoustics and Carl Jung’s archetype mirror in one sanctuary.' : loc === 'el' ? 'Δωμάτια διαλογισμού, binaural συχνότητες, ήχοι φύσης και ο καθρέφτης αρχετύπων του Carl Jung.' : loc === 'es' ? 'Salas de meditación en vivo, frecuencias binaurales, sonidos de la naturaleza y el espejo de Carl Jung.' : 'غرف تأمل مباشرة وترددات وأصوات طبيعة ومرآة كارل يونغ في ملاذ واحد.'}</p>
+        </div>
+        <div class="home-sanctuary-grid">
+          <article class="home-sanctuary-card" data-spotlight>
+            <div>
+              <span class="astro-card-tag">✦ ${loc === 'tr' ? 'CANLI MEDİTASYON & DOĞA SESLERİ' : 'LIVE MEDITATION & NATURE ACOUSTICS'}</span>
+              <h3>${loc === 'tr' ? 'Sığınak: Mum, Nefes, Theta & 108 Mantra' : loc === 'en' ? 'Sanctuary: Candle, Breath, Theta & 108 Mala' : loc === 'el' ? 'Καταφύγιο: Κερί, Αναπνοή, Theta & 108 Μάντρα' : loc === 'es' ? 'Santuario: Vela, Respiración, Theta y 108 Mantras' : 'الملاذ: الشمعة، التنفس، ثيتا و١٠٨'}</h3>
+              <p>${loc === 'tr' ? 'Trataka mum alevi, görsel nefes küresi, 6 Hz Theta binaural gevşeme, Tibet çanağı harmonileri ve canlı gece yağmuru, okyanus, rüzgar, ateş mikseri.' : loc === 'en' ? 'Trataka flame focus, visual breath orb, 6 Hz Theta binaural relaxation, Tibetan bowl harmonics and live rain, ocean, wind & hearth mixer.' : loc === 'el' ? 'Εστίαση Trataka, σφαίρα αναπνοής, binaural 6 Hz Theta και ζωντανός μίκτης ήχων φύσης.' : loc === 'es' ? 'Foco Trataka, esfera de respiración, binaural 6 Hz Theta y mezclador en vivo de lluvia, océano y fuego.' : 'تأمل الشمعة وكرة التنفس وترددات ثيتا ومزيج أصوات الطبيعة المباشر.'}</p>
+            </div>
+            <div>
+              <a class="sanc-btn-gold" href="${getRouteHref(locale, 'sanctuary')}">
+                <span>${loc === 'tr' ? 'Sığınağa Gir' : loc === 'en' ? 'Enter Sanctuary' : loc === 'el' ? 'Είσοδος στο Καταφύγιο' : loc === 'es' ? 'Entrar al Santuario' : 'ادخل الملاذ'}</span>
+                <span aria-hidden="true">${arrow}</span>
+              </a>
+            </div>
+          </article>
+          <article class="home-sanctuary-card" data-spotlight>
+            <div>
+              <span class="astro-card-tag">✦ ${loc === 'tr' ? 'CARL GUSTAV JUNG · DERİNLİK PSİKOLOJİSİ' : 'CARL GUSTAV JUNG · DEPTH PSYCHOLOGY'}</span>
+              <h3>${loc === 'tr' ? 'Arketip, Gölge & Eşzamanlılık Aynası' : loc === 'en' ? 'Archetype, Shadow & Synchronicity Mirror' : loc === 'el' ? 'Καθρέφτης Αρχετύπων, Σκιάς & Συγχρονικότητας' : loc === 'es' ? 'Espejo de Arquetipos, Sombra y Sincronicidad' : 'مرآة النماذج الأصلية والظل والتزامن'}</h3>
+              <p>${loc === 'tr' ? 'Persona ve Gölge dengesini keşfet, 8 temel Jung arketipiyle aktif imgelem sorularını incele ve %100 yerel, gizli eşzamanlılık günlüğünü tut.' : loc === 'en' ? 'Explore Persona and Shadow dynamics across 8 core Jungian archetypes with active imagination prompts and a 100% private local synchronicity journal.' : loc === 'el' ? 'Εξερεύνησε 8 αρχέτυπα του Jung με ερωτήσεις σκιάς και ιδιωτικό ημερολόγιο συγχρονικότητας.' : loc === 'es' ? 'Explora 8 arquetipos de Jung, preguntas de sombra y un diario local y privado de sincronicidad.' : 'استكشف النماذج الأصلية ليونغ وأسئلة الظل ومذكرة تزامن محلية خاصة.'}</p>
+            </div>
+            <div>
+              <a class="sanc-btn-gold" href="${getRouteHref(locale, 'jung')}">
+                <span>${loc === 'tr' ? 'Jung Aynasını Aç' : loc === 'en' ? 'Open Jung Mirror' : loc === 'el' ? 'Άνοιγμα Καθρέφτη Jung' : loc === 'es' ? 'Abrir Espejo Jung' : 'افتح مرآة يونغ'}</span>
+                <span aria-hidden="true">${arrow}</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     ${renderEbcedPromo(locale)}
 
     <!-- 3. Kozmik Büyük Üçlü (Foundational Triad) with Generated Editorial Artworks -->

@@ -6,13 +6,10 @@ import { renderContactView } from './pages/contact.js';
 import { renderNatalChartView } from './pages/natal-chart.js';
 import { renderZodiacIndexView } from './pages/zodiac.js';
 import { renderSkyCalendarView } from './pages/sky-calendar.js';
-import { renderRetrogradesView } from './pages/retrogrades.js';
-import { renderTransitsView } from './pages/transits.js';
 import { renderSynastryView } from './pages/synastry.js';
-import { renderGlossaryView } from './pages/glossary.js';
 import { renderApproachView } from './pages/approach.js';
-import { renderLearningCenterView } from './pages/learning.js';
-import { renderHoroscopesView } from './pages/horoscopes.js';
+import { renderSanctuaryView, getSanctuaryFaqItems } from './pages/sanctuary.js';
+import { renderJungView, getJungFaqItems } from './pages/jung.js';
 import { generateDailyHoroscopes } from './horoscope-pipeline.js';
 import { getApproachFaqItems, getToolSeo } from './seo-content.js';
 
@@ -28,16 +25,20 @@ export const matchAstrologyRoute = (pathname = '/') => {
   const clean = pathname.toLowerCase().replace(/^\/(?:en|gr|el|es|ar)(?=\/|$)/, '') || '/';
 
   if (clean === '/' || clean === '') return 'home';
+  if (['/siginak', '/sanctuary', '/katafygio', '/santuario', '/al-maladh'].includes(clean)) return 'sanctuary';
+  if (['/meditasyon', '/meditation', '/rezonans', '/resonance'].includes(clean)) return 'redirect:sanctuary';
+  if (clean === '/jung') return 'jung';
+  if (clean === '/carl-jung' || clean === '/arketip' || clean === '/archetypes') return 'redirect:jung';
   if (['/iletisim','/contact','/epikoinonia','/contacto','/alittisal'].includes(clean)) return 'contact';
   if (clean === '/dogum-haritasi' || clean === '/birth-chart' || clean === '/genethlios-chartis' || clean === '/carta-natal' || clean === '/kharitat-almilad') return 'natal';
   if (clean === '/burclar' || clean === '/12-burc' || clean === '/burc-rehberi' || clean === '/zodiac-signs' || clean === '/zodia' || clean === '/signos-del-zodiaco' || clean === '/al-abraj') return 'zodiac';
   if (clean === '/gokyuzu-takvimi' || clean === '/sky-calendar' || clean === '/imerologio-ouranou' || clean === '/calendario-celeste' || clean === '/altaqwim-alfalaki') return 'calendar';
-  if (clean === '/retrolar' || clean === '/retrogrades' || clean === '/anadromes' || clean === '/retrogrados' || clean === '/harakat-altaraju') return 'retros';
-  if (clean === '/transitler' || clean === '/transits' || clean === '/diabaseis' || clean === '/transitos' || clean === '/al-uboor-alfalaki') return 'transits';
+  if (clean === '/retrolar' || clean === '/retrogrades' || clean === '/anadromes' || clean === '/retrogrados' || clean === '/harakat-altaraju') return 'redirect:calendar';
+  if (clean === '/transitler' || clean === '/transits' || clean === '/diabaseis' || clean === '/transitos' || clean === '/al-uboor-alfalaki') return 'redirect:calendar';
   if (clean === '/sinastri' || clean === '/synastry' || clean === '/synastria' || clean === '/sinastria' || clean === '/altawafuq-alfalaki') return 'synastry';
-  if (clean === '/astroloji-sozlugu' || clean === '/astrology-glossary' || clean === '/lexiko-astrologias' || clean === '/glosario-astrologia' || clean === '/qamus-al-tanjim') return 'glossary';
-  if (clean === '/ogrenme-merkezi' || clean === '/learning-center' || clean === '/kentro-mathisis' || clean === '/centro-aprendizaje' || clean === '/markaz-altaalum') return 'learning';
-  if (clean === '/burc-yorumlari' || clean === '/gunluk-burc-yorumlari' || clean === '/horoscopes' || clean === '/daily-horoscopes' || clean === '/provlepseis' || clean === '/horoscopos' || clean === '/altawaqushat') return 'horoscopes';
+  if (clean === '/astroloji-sozlugu' || clean === '/astrology-glossary' || clean === '/lexiko-astrologias' || clean === '/glosario-astrologia' || clean === '/qamus-al-tanjim') return 'redirect:approach';
+  if (clean === '/ogrenme-merkezi' || clean === '/learning-center' || clean === '/kentro-mathisis' || clean === '/centro-aprendizaje' || clean === '/markaz-altaalum') return 'redirect:jung';
+  if (clean === '/burc-yorumlari' || clean === '/gunluk-burc-yorumlari' || clean === '/horoscopes' || clean === '/daily-horoscopes' || clean === '/provlepseis' || clean === '/horoscopos' || clean === '/altawaqushat') return 'redirect:zodiac';
   if (clean === '/yaklasim' || clean === '/approach' || clean === '/prosegisi' || clean === '/enfoque' || clean === '/al-manhaj') return 'approach';
 
   return null;
@@ -65,6 +66,11 @@ export const handleAstrologyRequest = (request, env) => {
   const pathname = url.pathname;
   const locale = resolveAstrologyLocale(pathname);
   const routeKey = matchAstrologyRoute(pathname) || 'home';
+  if (routeKey.startsWith('redirect:')) {
+    const targetKey = routeKey.slice('redirect:'.length);
+    const targetHref = getRouteHref(locale, targetKey);
+    return Response.redirect(`${url.origin}${targetHref}`, 301);
+  }
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
   const isPreview = env?.ENVIRONMENT === 'preview';
 
@@ -76,6 +82,18 @@ export const handleAstrologyRequest = (request, env) => {
   let faqItems = [];
 
   switch (routeKey) {
+    case 'sanctuary':
+      contentHtml = renderSanctuaryView({ locale });
+      title = ({ tr: 'Canlı Meditasyon, Frekans & Doğa Sesleri Sığınağı', en: 'Live Meditation, Frequency & Nature Sound Sanctuary', el: 'Καταφύγιο Διαλογισμού, Συχνοτήτων & Ήχων Φύσης', es: 'Santuario de Meditación, Frecuencias y Sonidos de la Naturaleza', ar: 'ملاذ التأمل المباشر والترددات وأصوات الطبيعة' }[locale] || 'Meditation & Sound Sanctuary');
+      description = ({ tr: 'Mum meditasyonu (Trataka), iç benlik nefesi, Theta gevşemesi, 108 mantra sayacı, binaural frekanslar ve canlı doğa sesleri.', en: 'Candle gazing (Trataka), inner-self breathwork, Theta relaxation, 108 mala counter, binaural frequencies and live nature soundscapes.', el: 'Διαλογισμός κεριού, αναπνοή, χαλάρωση Theta, μετρητής 108 μάντρα και ήχοι φύσης.', es: 'Meditación con vela (Trataka), respiración consciente, relajación Theta, contador de 108 mantras y sonidos de la naturaleza.', ar: 'تأمل الشمعة والتنفس الواعي واسترخاء ثيتا وعداد ١٠٨ وأصوات الطبيعة.' }[locale] || t.hero.lead);
+      faqItems = getSanctuaryFaqItems(locale);
+      break;
+    case 'jung':
+      contentHtml = renderJungView({ locale, sanctuaryHref: getRouteHref(locale, 'sanctuary') });
+      title = ({ tr: 'Carl Jung Arketip, Gölge & Eşzamanlılık Aynası', en: 'Carl Jung Archetype, Shadow & Synchronicity Mirror', el: 'Carl Jung: Αρχέτυπα, Σκιά & Συγχρονικότητα', es: 'Carl Jung: Arquetipos, Sombra y Sincronicidad', ar: 'كارل يونغ: النماذج الأصلية والظل والتزامن' }[locale] || 'Carl Jung Archetype & Shadow Mirror');
+      description = ({ tr: 'Carl Jung derinlik psikolojisiyle arketip keşfi, gölge (shadow) yansıtma soruları, aktif imgelem ve gizli yerel eşzamanlılık günlüğü.', en: 'Explore Carl Jung’s archetypes, shadow integration prompts, active imagination and a 100% private local synchronicity journal.', el: 'Εξερευνήστε τα αρχέτυπα του Carl Jung, τη σκιά και το ιδιωτικό ημερολόγιο συγχρονικότητας.', es: 'Explora los arquetipos de Carl Jung, el trabajo con la sombra y un diario local y privado de sincronicidad.', ar: 'استكشف النماذج الأصلية لكارل يونغ وعمل الظل ومذكرة التزامن الخاصة.' }[locale] || t.hero.lead);
+      faqItems = getJungFaqItems(locale);
+      break;
     case 'natal':
       contentHtml = renderNatalChartView({ locale, searchParams });
       title = ({ tr: 'Doğum Haritası Hesaplama ve Yükselen Analizi', en: 'Birth Chart Calculation and Ascendant Analysis', el: 'Υπολογισμός Γενέθλιου Χάρτη και Ωροσκόπου', es: 'Cálculo de Carta Natal y Análisis del Ascendente', ar: 'حساب خريطة الميلاد وتحليل الطالع' }[locale] || 'Birth Chart Calculation');
@@ -93,35 +111,10 @@ export const handleAstrologyRequest = (request, env) => {
       title = ({tr:'Gökyüzü Takvimi ve Ay Evreleri',en:'Sky Calendar and Moon Phases',el:'Ουράνιο Ημερολόγιο και Φάσεις Σελήνης',es:'Calendario Celeste y Fases Lunares',ar:'التقويم الفلكي ومراحل القمر'})[locale];
       description = t.sections.skySub;
       break;
-    case 'retros':
-      contentHtml = renderRetrogradesView({ locale });
-      title = ({tr:'Gezegen Retroları Takvimi',en:'Planetary Retrogrades Calendar',el:'Ημερολόγιο Ανάδρομων Πλανητών',es:'Calendario de Planetas Retrógrados',ar:'تقويم تراجع الكواكب'})[locale];
-      description = ({tr:'Gezegen retroları ve gölge dönemleri rehberi.',en:'Explore planetary retrograde cycles and their shadow periods.',el:'Εξερευνήστε τους ανάδρομους κύκλους των πλανητών και τις περιόδους σκιάς τους.',es:'Explora los ciclos retrógrados de los planetas y sus períodos de sombra.',ar:'استكشف دورات تراجع الكواكب وفترات الظل المرتبطة بها.'})[locale];
-      break;
-    case 'transits':
-      contentHtml = renderTransitsView({ locale });
-      title = ({tr:'Gezegen Transitleri ve Açı Dinamikleri',en:'Planetary Transits and Aspects',el:'Πλανητικές Διελεύσεις και Όψεις',es:'Tránsitos Planetarios y Aspectos',ar:'عبور الكواكب والزوايا الفلكية'})[locale];
-      description = ({tr:'Canlı gezegen transitleri ve geometrik açılar.',en:'Explore current planetary transits and geometric aspects.',el:'Δείτε τις τρέχουσες πλανητικές διελεύσεις και τις γεωμετρικές όψεις.',es:'Consulta los tránsitos planetarios actuales y sus aspectos geométricos.',ar:'استكشف عبور الكواكب الحالي والزوايا الهندسية بينها.'})[locale];
-      break;
     case 'synastry':
       contentHtml = renderSynastryView({ locale, searchParams });
       title = ({tr:'Sinastri ve Çift Haritası Uyumu',en:'Synastry and Birth Chart Compatibility',el:'Συναστρία και Συμβατότητα Γενέθλιων Χαρτών',es:'Sinastría y Compatibilidad de Cartas Natales',ar:'التوافق الفلكي ومقارنة خرائط الميلاد'})[locale];
       description = ({tr:'İki harita arası ilişki ve uyum dinamikleri.',en:'Compare two birth charts to explore symbolic relationship dynamics.',el:'Συγκρίνετε δύο γενέθλιους χάρτες για να εξερευνήσετε συμβολικά τη δυναμική μιας σχέσης.',es:'Compara dos cartas natales para explorar dinámicas simbólicas de pareja.',ar:'قارن بين خريطتي ميلاد لاستكشاف ديناميكيات العلاقة بصورة رمزية.'})[locale];
-      break;
-    case 'glossary':
-      contentHtml = renderGlossaryView({ locale });
-      title = ({tr:'Astroloji Sözlüğü ve Temel Kavramlar',en:'Astrology Glossary and Key Concepts',el:'Αστρολογικό Λεξικό και Βασικές Έννοιες',es:'Glosario de Astrología y Conceptos Clave',ar:'قاموس التنجيم والمفاهيم الأساسية'})[locale];
-      description = t.sections.glossarySub;
-      break;
-    case 'learning':
-      contentHtml = renderLearningCenterView({ locale });
-      title = ({tr:'Astroloji Öğrenme Merkezi',en:'Astrology Learning Center',el:'Κέντρο Εκμάθησης Αστρολογίας',es:'Centro de Aprendizaje de Astrología',ar:'مركز تعلم التنجيم'})[locale];
-      description = ({tr:'Kozmik okuryazarlık, doğum haritası, evler ve açılar rehberliği.',en:'Learn the basics of birth charts, astrological houses and planetary aspects.',el:'Μάθετε τα βασικά των γενέθλιων χαρτών, των αστρολογικών οίκων και των πλανητικών όψεων.',es:'Aprende los fundamentos de las cartas natales, las casas y los aspectos planetarios.',ar:'تعرف على أساسيات خرائط الميلاد والبيوت الفلكية والزوايا بين الكواكب.'})[locale];
-      break;
-    case 'horoscopes':
-      contentHtml = renderHoroscopesView({ locale, searchParams });
-      title = ({tr:'12 Burç Günlük Gökyüzü Yorumları',en:'Daily Horoscopes for All 12 Zodiac Signs',el:'Ημερήσιες Προβλέψεις για τα 12 Ζώδια',es:'Horóscopos Diarios de los 12 Signos',ar:'الأبراج اليومية للعلامات الاثنتي عشرة'})[locale];
-      description = ({tr:'Astronomik verilere dayalı etik ve bilinçli burç rehberliği.',en:'Explore reflective daily zodiac guidance informed by astronomical data.',el:'Διαβάστε ημερήσιες συμβολικές ερμηνείες των ζωδίων με βάση αστρονομικά δεδομένα.',es:'Explora orientaciones simbólicas diarias para cada signo basadas en datos astronómicos.',ar:'استكشف قراءات يومية رمزية للأبراج تستند إلى بيانات فلكية.'})[locale];
       break;
     case 'approach':
       contentHtml = renderApproachView({ locale });

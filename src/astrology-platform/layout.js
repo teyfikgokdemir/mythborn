@@ -8,6 +8,8 @@ export const getRouteHref = (localeKey, routeKey = 'home') => {
 
   const routes = {
     home: p || '/',
+    sanctuary: `${p}${localeKey === 'tr' ? '/siginak' : localeKey === 'en' ? '/sanctuary' : localeKey === 'el' ? '/katafygio' : localeKey === 'es' ? '/santuario' : '/al-maladh'}`,
+    jung: `${p}/jung`,
     ebced: localeKey === 'ar' ? '/ebced' : `${p}/ebced`,
     contact: `${p}${localeKey === 'tr' ? '/iletisim' : localeKey === 'en' ? '/contact' : localeKey === 'el' ? '/epikoinonia' : localeKey === 'es' ? '/contacto' : '/alittisal'}`,
     natal: `${p}${localeKey === 'tr' ? '/dogum-haritasi' : localeKey === 'en' ? '/birth-chart' : localeKey === 'el' ? '/genethlios-chartis' : localeKey === 'es' ? '/carta-natal' : '/kharitat-almilad'}`,
@@ -160,12 +162,15 @@ export const renderAstrologyLayout = ({
     : locale === 'es' ? '↑ Volver Arriba'
     : '↑ إلى الأعلى';
 
-  // Primary desktop navigation items (NO redundant "Ana Sayfa" in navbar!)
+  const sanctuaryLabel = ({ tr: 'Sığınak & Meditasyon', en: 'Sanctuary & Meditation', el: 'Καταφύγιο & Διαλογισμός', es: 'Santuario y Meditación', ar: 'الملاذ والتأمل' })[locale] || 'Sanctuary';
+  const jungLabel = ({ tr: 'Carl Jung & Gölge', en: 'Carl Jung & Shadow', el: 'Carl Jung & Σκιά', es: 'Carl Jung y Sombra', ar: 'كارل يونغ والظل' })[locale] || 'Carl Jung';
+
+  // Primary desktop navigation items (focused, elite sanctuary + core instruments)
   const desktopPrimaryNav = [
+    { key: 'sanctuary', label: sanctuaryLabel },
+    { key: 'jung', label: jungLabel },
     { key: 'natal', label: t.menu.natal },
-    { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
-    { key: 'zodiac', label: t.menu.zodiac },
-    { key: 'calendar', label: t.menu.calendar }
+    { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' }
   ];
 
   // Frequency Studio is a published page; preserve the same link across all locales.
@@ -181,7 +186,7 @@ export const renderAstrologyLayout = ({
     })
     .join('');
 
-  // Dropdown items for instruments & consultation
+  // Dropdown items for instruments & consultation (zero 301-redirected legacy links)
   const exploreDropdownLabel = locale === 'tr' ? 'Keşif & Araçlar' : locale === 'en' ? 'Explore & Tools' : locale === 'el' ? 'Εργαλεία' : locale === 'es' ? 'Explorar' : 'أدوات فلكية';
   const dropdownHtml = `
     <div class="astro-nav-dropdown">
@@ -190,30 +195,25 @@ export const renderAstrologyLayout = ({
         <span aria-hidden="true">▾</span>
       </button>
       <div class="astro-nav-dropdown-menu">
-        <a href="${getRouteHref(locale, 'horoscopes')}">✦ ${locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Horoscopes' : locale === 'el' ? 'Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'الأبراج'}</a>
-        <a href="${getRouteHref(locale, 'transits')}">✦ ${safe(t.menu.transits)}</a>
-        <a href="${getRouteHref(locale, 'retros')}">✦ ${safe(t.menu.retros)}</a>
+        <a href="${getRouteHref(locale, 'calendar')}">✦ ${safe(t.menu.calendar)}</a>
+        <a href="${getRouteHref(locale, 'zodiac')}">✦ ${safe(t.menu.zodiac)}</a>
         <a href="${getRouteHref(locale, 'synastry')}">✦ ${safe(t.menu.synastry)}</a>
-        <a href="${getRouteHref(locale, 'glossary')}">✦ ${safe(t.menu.glossary)}</a>
-        <a href="${getRouteHref(locale, 'learning')}">✦ ${locale === 'tr' ? 'Öğrenme Merkezi' : locale === 'en' ? 'Learning Center' : locale === 'el' ? 'Κέντρο Μάθησης' : locale === 'es' ? 'Centro de Aprendizaje' : 'مركز التعلم'}</a>
         <a href="${getRouteHref(locale, 'approach')}">✦ ${safe(t.menu.approach)}</a>
+        <a href="${getRouteHref(locale, 'contact')}">✦ ${locale === 'tr' ? 'İletişim' : locale === 'en' ? 'Contact' : locale === 'el' ? 'Επικοινωνία' : locale === 'es' ? 'Contacto' : 'اتصل بنا'}</a>
       </div>
     </div>
   `;
 
   const allDrawerItems = [
     { key: 'home', label: t.menu.home },
+    { key: 'sanctuary', label: sanctuaryLabel },
+    { key: 'jung', label: jungLabel },
+    { key: 'frequency', label: frequencyTitle },
     { key: 'natal', label: t.menu.natal },
     { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
     { key: 'zodiac', label: t.menu.zodiac },
     { key: 'calendar', label: t.menu.calendar },
-    { key: 'frequency', label: frequencyTitle },
-    { key: 'horoscopes', label: locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Daily Horoscopes' : locale === 'el' ? 'Ημερήσιες Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'توقعات الأبراج' },
-    { key: 'transits', label: t.menu.transits },
-    { key: 'retros', label: t.menu.retros },
     { key: 'synastry', label: t.menu.synastry },
-    { key: 'glossary', label: t.menu.glossary },
-    { key: 'learning', label: locale === 'tr' ? 'Öğrenme Merkezi' : locale === 'en' ? 'Learning Center' : locale === 'el' ? 'Κέντρο Μάθησης' : locale === 'es' ? 'Centro de Aprendizaje' : 'مركز التعلم' },
     { key: 'approach', label: t.menu.approach }
   ];
 
