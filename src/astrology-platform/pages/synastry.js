@@ -67,12 +67,44 @@ export const renderSynastryView = ({ locale = 'tr', searchParams = {} }) => {
     }
   }
 
+  const synHero = {
+    tr: {
+      eyebrow: '✦ İKİ DOĞUM HARİTASI ARASI AÇISAL ETKİLEŞİM',
+      title: `${t.menu.synastry} ve İlişki Dinamikleri`,
+      lead: 'İki doğum haritası arasındaki gezegen temasları, iletişim eşikleri, çekim ve gelişim alanlarını matematiksel olarak karşılaştırın.'
+    },
+    en: {
+      eyebrow: '✦ ANGULAR INTERACTION BETWEEN TWO BIRTH CHARTS',
+      title: `${t.menu.synastry} & Relationship Dynamics`,
+      lead: 'Compare planetary aspects, communication thresholds, resonance and growth dynamics between two natal charts.'
+    },
+    el: {
+      eyebrow: '✦ ΓΩΝΙΑΚΗ ΑΛΛΗΛΕΠΙΔΡΑΣΗ ΔΥΟ ΓΕΝΕΘΛΙΩΝ ΧΑΡΤΩΝ',
+      title: `${t.menu.synastry} & Δυναμική Σχέσεων`,
+      lead: 'Συγκρίνετε πλανητικές όψεις, επικοινωνία, συντονισμό και πεδία εξέλιξης ανάμεσα σε δύο γενέθλιους χάρτες.'
+    },
+    es: {
+      eyebrow: '✦ INTERACCIÓN ANGULAR ENTRE DOS CARTAS NATALES',
+      title: `${t.menu.synastry} y Dinámicas de Relación`,
+      lead: 'Compara aspectos planetarios, comunicación, resonancia y áreas de crecimiento entre dos cartas natales.'
+    },
+    ar: {
+      eyebrow: '✦ التفاعل الزاوي بين خريطتي ميلاد',
+      title: `${t.menu.synastry} وديناميكيات العلاقة`,
+      lead: 'قارن الجوانب الكوكبية وحدود التواصل والرنين ومجالات النمو بين خريطتي ميلاد بدقة فلكية.'
+    }
+  }[loc] || {
+    eyebrow: '✦ ANGULAR INTERACTION BETWEEN TWO BIRTH CHARTS',
+    title: `${t.menu.synastry} & Relationship Dynamics`,
+    lead: 'Compare planetary aspects, communication thresholds, resonance and growth dynamics between two natal charts.'
+  };
+
   return `
     <section class="astro-hero">
       <div class="astro-container">
-        <span class="astro-hero-eyebrow">✦ İKİ DOĞUM HARİTASI ARASI AÇISAL ETKİLEŞİM</span>
-        <h1>${t.menu.synastry} ve İlişki Dinamikleri</h1>
-        <p class="astro-hero-lead">İki doğum haritası arasındaki gezegen temasları, iletişim eşikleri, çekim ve gelişim alanlarını matematiksel olarak karşılaştırın.</p>
+        <span class="astro-hero-eyebrow">${synHero.eyebrow}</span>
+        <h1>${synHero.title}</h1>
+        <p class="astro-hero-lead">${synHero.lead}</p>
       </div>
     </section>
 
