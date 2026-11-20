@@ -10,6 +10,7 @@ export const getRouteHref = (localeKey, routeKey = 'home') => {
     home: p || '/',
     sanctuary: `${p}${localeKey === 'tr' ? '/siginak' : localeKey === 'en' ? '/sanctuary' : localeKey === 'el' ? '/katafygio' : localeKey === 'es' ? '/santuario' : '/al-maladh'}`,
     jung: `${p}/jung`,
+    guides: `${p}${localeKey === 'tr' ? '/rehber' : localeKey === 'en' ? '/guides' : localeKey === 'el' ? '/odigoi' : localeKey === 'es' ? '/guias' : '/al-dalil'}`,
     ebced: localeKey === 'ar' ? '/ebced' : `${p}/ebced`,
     contact: `${p}${localeKey === 'tr' ? '/iletisim' : localeKey === 'en' ? '/contact' : localeKey === 'el' ? '/epikoinonia' : localeKey === 'es' ? '/contacto' : '/alittisal'}`,
     natal: `${p}${localeKey === 'tr' ? '/dogum-haritasi' : localeKey === 'en' ? '/birth-chart' : localeKey === 'el' ? '/genethlios-chartis' : localeKey === 'es' ? '/carta-natal' : '/kharitat-almilad'}`,
@@ -162,15 +163,16 @@ export const renderAstrologyLayout = ({
     : locale === 'es' ? '↑ Volver Arriba'
     : '↑ إلى الأعلى';
 
-  const sanctuaryLabel = ({ tr: 'Sığınak & Meditasyon', en: 'Sanctuary & Meditation', el: 'Καταφύγιο & Διαλογισμός', es: 'Santuario y Meditación', ar: 'الملاذ والتأمل' })[locale] || 'Sanctuary';
-  const jungLabel = ({ tr: 'Carl Jung & Gölge', en: 'Carl Jung & Shadow', el: 'Carl Jung & Σκιά', es: 'Carl Jung y Sombra', ar: 'كارل يونغ والظل' })[locale] || 'Carl Jung';
+  const sanctuaryLabel = ({ tr: 'Sığınak', en: 'Sanctuary', el: 'Καταφύγιο', es: 'Santuario', ar: 'الملاذ' })[locale] || 'Sanctuary';
+  const jungLabel = ({ tr: 'Carl Jung', en: 'Carl Jung', el: 'Carl Jung', es: 'Carl Jung', ar: 'كارل يونغ' })[locale] || 'Carl Jung';
+  const guidesLabel = ({ tr: 'Rehberler', en: 'Guides', el: 'Οδηγοί', es: 'Guías', ar: 'الأدلة' })[locale] || 'Guides';
 
-  // Primary desktop navigation items (focused, elite sanctuary + core instruments)
+  // Primary desktop navigation items (focused, elite sanctuary + depth + guides + tools)
   const desktopPrimaryNav = [
     { key: 'sanctuary', label: sanctuaryLabel },
     { key: 'jung', label: jungLabel },
-    { key: 'natal', label: t.menu.natal },
-    { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' }
+    { key: 'guides', label: guidesLabel },
+    { key: 'ebced', label: locale === 'tr' ? 'Ebced' : locale === 'ar' ? 'الأبجد' : locale === 'el' ? 'Αμπτζάντ' : locale === 'es' ? 'Ábyad' : 'Abjad' }
   ];
 
   // Frequency Studio is a published page; preserve the same link across all locales.
@@ -195,6 +197,7 @@ export const renderAstrologyLayout = ({
         <span aria-hidden="true">▾</span>
       </button>
       <div class="astro-nav-dropdown-menu">
+        <a href="${getRouteHref(locale, 'natal')}">✦ ${safe(t.menu.natal)}</a>
         <a href="${getRouteHref(locale, 'calendar')}">✦ ${safe(t.menu.calendar)}</a>
         <a href="${getRouteHref(locale, 'zodiac')}">✦ ${safe(t.menu.zodiac)}</a>
         <a href="${getRouteHref(locale, 'synastry')}">✦ ${safe(t.menu.synastry)}</a>
@@ -208,6 +211,7 @@ export const renderAstrologyLayout = ({
     { key: 'home', label: t.menu.home },
     { key: 'sanctuary', label: sanctuaryLabel },
     { key: 'jung', label: jungLabel },
+    { key: 'guides', label: guidesLabel },
     { key: 'frequency', label: frequencyTitle },
     { key: 'natal', label: t.menu.natal },
     { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },

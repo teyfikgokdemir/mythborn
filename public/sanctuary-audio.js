@@ -2,17 +2,134 @@
   'use strict';
 
   /* =========================================================================
-     MYTHBORN SANCTUARY ENGINE — Web Audio API Multi-Layer Synthesizer
-     Zero external MP3s, zero auto-play, safe gain ceiling, smooth fade-in/out.
-     Powers:
-       1. /siginak (Frequency/Binaural + Generative Pad/Bowls + 4 Nature Sounds
-          + Trataka Candle, Inner-Self Breath Orb, Theta/Astral Stages, 108 Mala)
-       2. /jung (Interactive Archetype & Shadow Mirror + Private Synchronicity Log)
+     MYTHBORN 2027 SANCTUARY AUDIO & CYMATICS ENGINE
+     - Procedural Stereo Temple Reverb (ConvolverNode, 0 KB download)
+     - Warm Harmonic Enrichment (fundamental + subtle sub-octave + pure fifth)
+     - True Stereo Binaural Brainwaves (Alpha 10 Hz, Theta 6 Hz, Delta 2 Hz)
+     - Generative Tibetan Singing Bowls & Breathing Warm Pad
+     - 4 Real-Time Nature Soundscapes (Rain, Ocean, Wind, Hearth/Candle)
+     - Live Cymatics / Sacred Resonance Canvas (AnalyserNode + 60fps geometry)
+     - 4 Curated One-Click Atmosphere Scenes
+     - Interactive Rooms: Candle, Breath Orb, Theta, 108 Mala, Jung Mirror
      ========================================================================= */
 
-  const MAX_TONE_GAIN = 0.22;
-  const MAX_MUSIC_GAIN = 0.20;
+  const MAX_TONE_GAIN = 0.20;
+  const MAX_MUSIC_GAIN = 0.22;
   const MAX_NATURE_GAIN = 0.26;
+
+  // --- Procedural Stereo Temple Reverb Impulse Response ---
+  const createReverbImpulse = (audioCtx, duration = 3.2, decay = 2.6) => {
+    const rate = audioCtx.sampleRate;
+    const length = Math.floor(rate * duration);
+    const impulse = audioCtx.createBuffer(2, length, rate);
+    for (let ch = 0; ch < 2; ch++) {
+      const data = impulse.getChannelData(ch);
+      for (let i = 0; i < length; i++) {
+        const env = Math.pow(1 - i / length, decay);
+        data[i] = (Math.random() * 2 - 1) * env * 0.45;
+      }
+    }
+    return impulse;
+  };
+
+  // --- Live Cymatics Sacred Resonance Visualizer ---
+  const initCymaticsCanvas = (canvas, getEnergy, isPlayingFn) => {
+    if (!canvas) return { setMode: () => {} };
+    const c = canvas.getContext('2d');
+    if (!c) return { setMode: () => {} };
+
+    const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let phase = 0;
+    let petals = 6;
+    let secondary = 12;
+
+    const setMode = (sceneKey) => {
+      if (sceneKey === 'temple' || sceneKey === 'candle') { petals = 6; secondary = 12; }
+      else if (sceneKey === 'theta') { petals = 8; secondary = 16; }
+      else if (sceneKey === 'shadow') { petals = 5; secondary = 10; }
+      else { petals = 9; secondary = 18; }
+    };
+
+    const draw = () => {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const w = Math.max(240, Math.floor(rect.width));
+      const h = Math.max(180, Math.floor(rect.height));
+      if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+      }
+      c.setTransform(dpr, 0, 0, dpr, 0, 0);
+      c.clearRect(0, 0, w, h);
+
+      const cx = w / 2;
+      const cy = h / 2;
+      const baseR = Math.min(w, h) * 0.34;
+      const active = isPlayingFn();
+      const energy = active ? Math.max(0.18, getEnergy()) : 0.08;
+
+      if (!reducedMotion) {
+        phase += active ? 0.012 + energy * 0.018 : 0.004;
+      }
+
+      // Deep Indigo Glow Core
+      const glow = c.createRadialGradient(cx, cy, 4, cx, cy, baseR * 1.45);
+      glow.addColorStop(0, `rgba(214, 190, 146, ${0.18 + energy * 0.22})`);
+      glow.addColorStop(0.5, `rgba(148, 169, 201, ${0.08 + energy * 0.1})`);
+      glow.addColorStop(1, 'rgba(8, 11, 18, 0)');
+      c.fillStyle = glow;
+      c.fillRect(0, 0, w, h);
+
+      // Outer reference astrolabe rings
+      [1.18, 0.92, 0.62].forEach((mult, idx) => {
+        c.beginPath();
+        c.arc(cx, cy, baseR * mult, 0, Math.PI * 2);
+        c.strokeStyle = `rgba(214, 190, 146, ${0.12 + idx * 0.05})`;
+        c.lineWidth = 1;
+        c.stroke();
+      });
+
+      // Harmonic Cymatic Interference Curves
+      for (let layer = 0; layer < 3; layer++) {
+        c.beginPath();
+        const k = layer === 0 ? petals : layer === 1 ? secondary : petals * 1.5;
+        const amp = (8 + energy * 24) * (1 - layer * 0.22);
+        const radius = baseR * (0.86 - layer * 0.16);
+        const dir = layer % 2 === 0 ? 1 : -1;
+
+        for (let a = 0; a <= Math.PI * 2 + 0.02; a += 0.025) {
+          const wave = Math.sin(k * a + phase * dir) * amp
+            + Math.cos((k / 2) * a - phase * 1.3 * dir) * (amp * 0.45);
+          const r = radius + wave;
+          const x = cx + Math.cos(a) * r;
+          const y = cy + Math.sin(a) * r;
+          if (a === 0) c.moveTo(x, y);
+          else c.lineTo(x, y);
+        }
+        c.closePath();
+        c.strokeStyle = layer === 0
+          ? `rgba(234, 215, 178, ${0.42 + energy * 0.42})`
+          : layer === 1
+            ? `rgba(148, 169, 201, ${0.26 + energy * 0.28})`
+            : `rgba(214, 190, 146, ${0.18 + energy * 0.24})`;
+        c.lineWidth = layer === 0 ? 1.6 : 1.05;
+        c.stroke();
+      }
+
+      // Luminous Center Point
+      c.beginPath();
+      c.arc(cx, cy, 4 + energy * 5, 0, Math.PI * 2);
+      c.fillStyle = 'rgba(246, 238, 220, 0.9)';
+      c.fill();
+
+      if (!reducedMotion) {
+        requestAnimationFrame(draw);
+      }
+    };
+
+    draw();
+    return { setMode };
+  };
 
   // --- Shared Web Audio Engine ---
   const initSanctuaryAudio = () => {
@@ -21,11 +138,15 @@
 
     let ctx = null;
     let masterGain = null;
+    let dryBus = null;
+    let reverbNode = null;
+    let reverbWet = null;
+    let analyser = null;
+    let analyserData = null;
     let playing = false;
     let timerId = null;
     let remainingSec = 0;
 
-    // Layer nodes
     let toneNodes = [];
     let toneGain = null;
 
@@ -36,7 +157,6 @@
     let natureNodes = [];
     let natureGain = null;
 
-    // UI elements
     const playBtn = root.querySelector('[data-sanc-play]');
     const stateEl = root.querySelector('[data-sanc-state]');
     const timerDisplay = root.querySelector('[data-sanc-timer-display]');
@@ -48,16 +168,28 @@
     const natureSelect = root.querySelector('[data-sanc-nature]');
     const natureVol = root.querySelector('[data-sanc-nature-vol]');
     const visualRing = root.querySelector('[data-sanc-ring]');
+    const cymaticsEl = root.querySelector('[data-cymatics-canvas]');
+    const sceneCards = root.querySelectorAll('[data-scene-card]');
+
+    const getEnergy = () => {
+      if (!analyser || !analyserData || !playing) return 0;
+      analyser.getByteFrequencyData(analyserData);
+      let sum = 0;
+      for (let i = 0; i < 32; i++) sum += analyserData[i];
+      return Math.min(1, sum / (32 * 140));
+    };
+
+    const cymatics = initCymaticsCanvas(cymaticsEl, getEnergy, () => playing);
 
     const TONE_MODES = {
       off: { type: 'off' },
-      '432': { type: 'sine', hz: 432 },
-      '528': { type: 'sine', hz: 528 },
-      '396': { type: 'sine', hz: 396 },
-      '639': { type: 'sine', hz: 639 },
-      '852': { type: 'sine', hz: 852 },
-      '963': { type: 'sine', hz: 963 },
-      '174': { type: 'sine', hz: 174 },
+      '432': { type: 'warm-sine', hz: 432 },
+      '528': { type: 'warm-sine', hz: 528 },
+      '396': { type: 'warm-sine', hz: 396 },
+      '639': { type: 'warm-sine', hz: 639 },
+      '852': { type: 'warm-sine', hz: 852 },
+      '963': { type: 'warm-sine', hz: 963 },
+      '174': { type: 'warm-sine', hz: 174 },
       'alpha-10': { type: 'binaural', left: 432, right: 442 },
       'theta-6': { type: 'binaural', left: 432, right: 438 },
       'delta-2': { type: 'binaural', left: 174, right: 176 }
@@ -70,7 +202,26 @@
         ctx = new AC();
         masterGain = ctx.createGain();
         masterGain.gain.setValueAtTime(0.0001, ctx.currentTime);
-        masterGain.connect(ctx.destination);
+
+        analyser = ctx.createAnalyser();
+        analyser.fftSize = 128;
+        analyserData = new Uint8Array(analyser.frequencyBinCount);
+
+        // Dry + Stereo Temple Reverb Bus
+        dryBus = ctx.createGain();
+        dryBus.gain.setValueAtTime(0.82, ctx.currentTime);
+
+        reverbNode = ctx.createConvolver();
+        reverbNode.buffer = createReverbImpulse(ctx, 3.2, 2.5);
+        reverbWet = ctx.createGain();
+        reverbWet.gain.setValueAtTime(0.42, ctx.currentTime);
+
+        dryBus.connect(masterGain);
+        reverbNode.connect(reverbWet);
+        reverbWet.connect(masterGain);
+
+        masterGain.connect(analyser);
+        analyser.connect(ctx.destination);
       }
       if (ctx.state === 'suspended') {
         ctx.resume().catch(() => {});
@@ -80,23 +231,18 @@
 
     const stopNodes = (list) => {
       list.forEach((n) => {
-        try {
-          if (typeof n.stop === 'function') n.stop();
-        } catch (_) {}
-        try {
-          if (typeof n.disconnect === 'function') n.disconnect();
-        } catch (_) {}
+        try { if (typeof n.stop === 'function') n.stop(); } catch (_) {}
+        try { if (typeof n.disconnect === 'function') n.disconnect(); } catch (_) {}
       });
       list.length = 0;
     };
 
     const sliderGain = (el, cap) => {
-      const v = el ? Number(el.value) : 0;
+      const v = el ? Number(el.value) : 45;
       return Math.max(0, Math.min(1, v / 100)) * cap;
     };
 
-    // --- Noise buffer factory for realistic nature synthesis ---
-    const createNoiseBuffer = (audioCtx, kind = 'pink', seconds = 4) => {
+    const createNoiseBuffer = (audioCtx, kind = 'pink', seconds = 5) => {
       const length = audioCtx.sampleRate * seconds;
       const buffer = audioCtx.createBuffer(2, length, audioCtx.sampleRate);
       for (let ch = 0; ch < 2; ch++) {
@@ -107,7 +253,7 @@
           const white = Math.random() * 2 - 1;
           if (kind === 'brown') {
             lastOut = (lastOut + 0.02 * white) / 1.02;
-            data[i] = lastOut * 3.2;
+            data[i] = lastOut * 3.1;
           } else {
             b0 = 0.99886 * b0 + white * 0.0555179;
             b1 = 0.99332 * b1 + white * 0.0750759;
@@ -123,14 +269,13 @@
       return buffer;
     };
 
-    // --- Synthesize single Tibetan singing bowl chime ---
-    const triggerBowlChime = (freq = 216, gainPeak = 0.11) => {
-      if (!ctx || !masterGain) return;
+    const triggerBowlChime = (freq = 216, gainPeak = 0.12) => {
+      if (!ctx || !dryBus || !reverbNode) return;
       const now = ctx.currentTime;
       const partials = [
-        { mult: 1, amp: 1.0, dur: 5.5 },
-        { mult: 2.756, amp: 0.22, dur: 3.4 },
-        { mult: 5.404, amp: 0.06, dur: 1.8 }
+        { mult: 1, amp: 1.0, dur: 6.2 },
+        { mult: 2.756, amp: 0.24, dur: 3.8 },
+        { mult: 5.404, amp: 0.05, dur: 2.0 }
       ];
       partials.forEach((p) => {
         const osc = ctx.createOscillator();
@@ -138,12 +283,13 @@
         osc.type = 'sine';
         osc.frequency.setValueAtTime(freq * p.mult, now);
         g.gain.setValueAtTime(0.0001, now);
-        g.gain.exponentialRampToValueAtTime(Math.max(0.0002, gainPeak * p.amp), now + 0.045);
+        g.gain.exponentialRampToValueAtTime(Math.max(0.0002, gainPeak * p.amp), now + 0.05);
         g.gain.exponentialRampToValueAtTime(0.0001, now + p.dur);
         osc.connect(g);
-        g.connect(musicGain || masterGain);
+        g.connect(musicGain || dryBus);
+        g.connect(reverbNode);
         osc.start(now);
-        osc.stop(now + p.dur + 0.05);
+        osc.stop(now + p.dur + 0.08);
       });
     };
 
@@ -156,16 +302,36 @@
 
       toneGain = ctx.createGain();
       toneGain.gain.setValueAtTime(sliderGain(toneVol, MAX_TONE_GAIN), ctx.currentTime);
-      toneGain.connect(masterGain);
+      toneGain.connect(dryBus);
+      toneGain.connect(reverbNode);
       toneNodes.push(toneGain);
 
-      if (spec.type === 'sine') {
-        const osc = ctx.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(spec.hz, ctx.currentTime);
-        osc.connect(toneGain);
-        osc.start();
-        toneNodes.push(osc);
+      if (spec.type === 'warm-sine') {
+        // Rich harmonic bed: fundamental + warm sub-octave + soft fifth
+        const harmonics = [
+          { hz: spec.hz, amp: 0.62 },
+          { hz: spec.hz * 0.5, amp: 0.28 },
+          { hz: spec.hz * 1.5, amp: 0.08 }
+        ];
+        harmonics.forEach((h, idx) => {
+          const osc = ctx.createOscillator();
+          const g = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(h.hz, ctx.currentTime);
+          g.gain.setValueAtTime(h.amp, ctx.currentTime);
+
+          // Slow breathing shimmer
+          const lfo = ctx.createOscillator();
+          const lfoG = ctx.createGain();
+          lfo.frequency.setValueAtTime(0.08 + idx * 0.03, ctx.currentTime);
+          lfoG.gain.setValueAtTime(h.amp * 0.12, ctx.currentTime);
+          lfo.connect(lfoG).connect(g.gain);
+
+          osc.connect(g).connect(toneGain);
+          osc.start();
+          lfo.start();
+          toneNodes.push(osc, g, lfo, lfoG);
+        });
       } else if (spec.type === 'binaural') {
         const leftOsc = ctx.createOscillator();
         const rightOsc = ctx.createOscillator();
@@ -177,8 +343,8 @@
         if (typeof ctx.createStereoPanner === 'function') {
           const leftPan = ctx.createStereoPanner();
           const rightPan = ctx.createStereoPanner();
-          leftPan.pan.setValueAtTime(-0.95, ctx.currentTime);
-          rightPan.pan.setValueAtTime(0.95, ctx.currentTime);
+          leftPan.pan.setValueAtTime(-0.92, ctx.currentTime);
+          rightPan.pan.setValueAtTime(0.92, ctx.currentTime);
           leftOsc.connect(leftPan).connect(toneGain);
           rightOsc.connect(rightPan).connect(toneGain);
           toneNodes.push(leftPan, rightPan);
@@ -204,28 +370,28 @@
 
       musicGain = ctx.createGain();
       musicGain.gain.setValueAtTime(sliderGain(musicVol, MAX_MUSIC_GAIN), ctx.currentTime);
-      musicGain.connect(masterGain);
+      musicGain.connect(dryBus);
+      musicGain.connect(reverbNode);
       musicNodes.push(musicGain);
 
-      // Warm breathing lowpass-filtered ambient drone
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(mode === 'temple' ? 420 : 320, ctx.currentTime);
-      filter.Q.setValueAtTime(0.7, ctx.currentTime);
+      filter.frequency.setValueAtTime(mode === 'temple' ? 460 : 350, ctx.currentTime);
+      filter.Q.setValueAtTime(0.8, ctx.currentTime);
       filter.connect(musicGain);
       musicNodes.push(filter);
 
-      const chord = mode === 'temple' ? [108, 162, 216, 270] : [136.1, 204.15, 272.2];
+      const chord = mode === 'temple' ? [108, 162, 216, 270, 324] : [136.1, 204.15, 272.2, 408.3];
       chord.forEach((hz, idx) => {
         const osc = ctx.createOscillator();
         const g = ctx.createGain();
         osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
         osc.frequency.setValueAtTime(hz, ctx.currentTime);
-        g.gain.setValueAtTime(idx === 0 ? 0.34 : 0.16, ctx.currentTime);
+        g.gain.setValueAtTime(idx === 0 ? 0.30 : 0.13, ctx.currentTime);
 
         const lfo = ctx.createOscillator();
         const lfoGain = ctx.createGain();
-        lfo.frequency.setValueAtTime(0.06 + idx * 0.025, ctx.currentTime);
+        lfo.frequency.setValueAtTime(0.055 + idx * 0.022, ctx.currentTime);
         lfoGain.gain.setValueAtTime(0.04, ctx.currentTime);
         lfo.connect(lfoGain).connect(g.gain);
 
@@ -235,14 +401,13 @@
         musicNodes.push(osc, g, lfo, lfoGain);
       });
 
-      // Gentle pentatonic Tibetan bowl strikes
       const scale = [216, 243, 288, 324, 384, 432];
-      triggerBowlChime(scale[0], 0.14);
+      triggerBowlChime(scale[0], 0.13);
       bowlInterval = setInterval(() => {
         if (!playing || !ctx) return;
         const note = scale[Math.floor(Math.random() * scale.length)];
         triggerBowlChime(note, 0.11);
-      }, mode === 'temple' ? 7500 : 10500);
+      }, mode === 'temple' ? 6800 : 9500);
     };
 
     const buildNatureLayer = () => {
@@ -253,7 +418,7 @@
 
       natureGain = ctx.createGain();
       natureGain.gain.setValueAtTime(sliderGain(natureVol, MAX_NATURE_GAIN), ctx.currentTime);
-      natureGain.connect(masterGain);
+      natureGain.connect(dryBus);
       natureNodes.push(natureGain);
 
       const src = ctx.createBufferSource();
@@ -263,7 +428,7 @@
       const filter = ctx.createBiquadFilter();
       if (mode === 'rain') {
         filter.type = 'bandpass';
-        filter.frequency.setValueAtTime(1150, ctx.currentTime);
+        filter.frequency.setValueAtTime(1120, ctx.currentTime);
         filter.Q.setValueAtTime(0.45, ctx.currentTime);
         src.connect(filter).connect(natureGain);
       } else if (mode === 'ocean') {
@@ -291,10 +456,10 @@
       } else if (mode === 'wind') {
         filter.type = 'bandpass';
         filter.frequency.setValueAtTime(420, ctx.currentTime);
-        filter.Q.setValueAtTime(2.6, ctx.currentTime);
+        filter.Q.setValueAtTime(2.4, ctx.currentTime);
         const lfo = ctx.createOscillator();
         const lfoDepth = ctx.createGain();
-        lfo.frequency.setValueAtTime(0.09, ctx.currentTime);
+        lfo.frequency.setValueAtTime(0.085, ctx.currentTime);
         lfoDepth.gain.setValueAtTime(210, ctx.currentTime);
         lfo.connect(lfoDepth).connect(filter.frequency);
         src.connect(filter).connect(natureGain);
@@ -305,7 +470,6 @@
         filter.frequency.setValueAtTime(240, ctx.currentTime);
         src.connect(filter).connect(natureGain);
 
-        // Soft crackle layer
         const crackleSrc = ctx.createBufferSource();
         const crackleBuf = ctx.createBuffer(1, ctx.sampleRate * 3, ctx.sampleRate);
         const cData = crackleBuf.getChannelData(0);
@@ -339,9 +503,7 @@
         playBtn.setAttribute('aria-pressed', active ? 'true' : 'false');
         playBtn.textContent = active ? '❚❚' : '▶';
       }
-      if (visualRing) {
-        visualRing.classList.toggle('is-playing', active);
-      }
+      if (visualRing) visualRing.classList.toggle('is-playing', active);
       if (stateEl) {
         stateEl.textContent = active
           ? (stateEl.dataset.labelPlaying || 'ACTIVE · RESONANCE')
@@ -351,14 +513,8 @@
 
     const stopSession = () => {
       playing = false;
-      if (timerId) {
-        clearInterval(timerId);
-        timerId = null;
-      }
-      if (bowlInterval) {
-        clearInterval(bowlInterval);
-        bowlInterval = null;
-      }
+      if (timerId) { clearInterval(timerId); timerId = null; }
+      if (bowlInterval) { clearInterval(bowlInterval); bowlInterval = null; }
       if (ctx && masterGain) {
         const now = ctx.currentTime;
         masterGain.gain.cancelScheduledValues(now);
@@ -385,7 +541,7 @@
       const now = audioCtx.currentTime;
       masterGain.gain.cancelScheduledValues(now);
       masterGain.gain.setValueAtTime(0.0001, now);
-      masterGain.gain.setTargetAtTime(1.0, now, 0.45);
+      masterGain.gain.setTargetAtTime(1.0, now, 0.55);
 
       remainingSec = Number(durationSelect ? durationSelect.value : 600) || 600;
       if (timerDisplay) timerDisplay.textContent = formatTime(remainingSec);
@@ -393,12 +549,47 @@
       timerId = setInterval(() => {
         remainingSec -= 1;
         if (timerDisplay) timerDisplay.textContent = formatTime(Math.max(0, remainingSec));
-        if (remainingSec <= 0) {
-          stopSession();
-        }
+        if (remainingSec <= 0) stopSession();
       }, 1000);
 
       updateUiState(true);
+    };
+
+    const applyScene = (sceneKey) => {
+      cymatics.setMode(sceneKey);
+      sceneCards.forEach((sc) => {
+        const active = sc.dataset.sceneCard === sceneKey;
+        sc.classList.toggle('is-active', active);
+        sc.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+      if (sceneKey === 'temple' || sceneKey === 'candle') {
+        if (toneSelect) toneSelect.value = '432';
+        if (musicSelect) musicSelect.value = 'bowls';
+        if (natureSelect) natureSelect.value = sceneKey === 'candle' ? 'fire' : 'rain';
+      } else if (sceneKey === 'theta') {
+        if (toneSelect) toneSelect.value = 'theta-6';
+        if (musicSelect) musicSelect.value = 'temple';
+        if (natureSelect) natureSelect.value = 'ocean';
+      } else if (sceneKey === 'shadow') {
+        if (toneSelect) toneSelect.value = '396';
+        if (musicSelect) musicSelect.value = 'temple';
+        if (natureSelect) natureSelect.value = 'fire';
+      } else if (sceneKey === 'dawn' || sceneKey === 'breath') {
+        if (toneSelect) toneSelect.value = sceneKey === 'breath' ? 'alpha-10' : '528';
+        if (musicSelect) musicSelect.value = 'bowls';
+        if (natureSelect) natureSelect.value = 'wind';
+      } else if (sceneKey === 'mantra') {
+        if (toneSelect) toneSelect.value = '528';
+        if (musicSelect) musicSelect.value = 'bowls';
+        if (natureSelect) natureSelect.value = 'rain';
+      }
+      if (playing) {
+        buildToneLayer();
+        buildMusicLayer();
+        buildNatureLayer();
+      } else {
+        startSession();
+      }
     };
 
     if (playBtn) {
@@ -408,56 +599,21 @@
       });
     }
 
+    sceneCards.forEach((btn) => {
+      btn.addEventListener('click', () => applyScene(btn.dataset.sceneCard));
+    });
+
+    root.querySelectorAll('[data-sanc-preset]').forEach((btn) => {
+      btn.addEventListener('click', () => applyScene(btn.dataset.sancPreset));
+    });
+
     if (toneSelect) toneSelect.addEventListener('change', () => { if (playing) buildToneLayer(); });
     if (musicSelect) musicSelect.addEventListener('change', () => { if (playing) buildMusicLayer(); });
     if (natureSelect) natureSelect.addEventListener('change', () => { if (playing) buildNatureLayer(); });
 
-    if (toneVol) {
-      toneVol.addEventListener('input', () => {
-        if (toneGain && ctx) toneGain.gain.setTargetAtTime(sliderGain(toneVol, MAX_TONE_GAIN), ctx.currentTime, 0.08);
-      });
-    }
-    if (musicVol) {
-      musicVol.addEventListener('input', () => {
-        if (musicGain && ctx) musicGain.gain.setTargetAtTime(sliderGain(musicVol, MAX_MUSIC_GAIN), ctx.currentTime, 0.08);
-      });
-    }
-    if (natureVol) {
-      natureVol.addEventListener('input', () => {
-        if (natureGain && ctx) natureGain.gain.setTargetAtTime(sliderGain(natureVol, MAX_NATURE_GAIN), ctx.currentTime, 0.08);
-      });
-    }
-
-    // One-click Sanctuary Presets from the 4 rooms
-    root.querySelectorAll('[data-sanc-preset]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const preset = btn.dataset.sancPreset;
-        if (preset === 'candle') {
-          if (toneSelect) toneSelect.value = '432';
-          if (musicSelect) musicSelect.value = 'off';
-          if (natureSelect) natureSelect.value = 'fire';
-        } else if (preset === 'breath') {
-          if (toneSelect) toneSelect.value = 'alpha-10';
-          if (musicSelect) musicSelect.value = 'bowls';
-          if (natureSelect) natureSelect.value = 'wind';
-        } else if (preset === 'theta') {
-          if (toneSelect) toneSelect.value = 'theta-6';
-          if (musicSelect) musicSelect.value = 'temple';
-          if (natureSelect) natureSelect.value = 'ocean';
-        } else if (preset === 'mantra') {
-          if (toneSelect) toneSelect.value = '528';
-          if (musicSelect) musicSelect.value = 'bowls';
-          if (natureSelect) natureSelect.value = 'rain';
-        }
-        if (playing) {
-          buildToneLayer();
-          buildMusicLayer();
-          buildNatureLayer();
-        } else {
-          startSession();
-        }
-      });
-    });
+    if (toneVol) toneVol.addEventListener('input', () => { if (toneGain && ctx) toneGain.gain.setTargetAtTime(sliderGain(toneVol, MAX_TONE_GAIN), ctx.currentTime, 0.08); });
+    if (musicVol) musicVol.addEventListener('input', () => { if (musicGain && ctx) musicGain.gain.setTargetAtTime(sliderGain(musicVol, MAX_MUSIC_GAIN), ctx.currentTime, 0.08); });
+    if (natureVol) natureVol.addEventListener('input', () => { if (natureGain && ctx) natureGain.gain.setTargetAtTime(sliderGain(natureVol, MAX_NATURE_GAIN), ctx.currentTime, 0.08); });
 
     // --- Interactive Room Tabs ---
     const tabs = root.querySelectorAll('[data-room-tab]');
@@ -470,10 +626,7 @@
           t.setAttribute('aria-selected', active ? 'true' : 'false');
           t.classList.toggle('is-active', active);
         });
-        panels.forEach((p) => {
-          const active = p.dataset.roomPanel === target;
-          p.hidden = !active;
-        });
+        panels.forEach((p) => { p.hidden = p.dataset.roomPanel !== target; });
       });
     });
 
@@ -512,8 +665,7 @@
 
       const applyStep = () => {
         const st = steps[stepIdx];
-        const label = breathPhaseEl.dataset['label_' + st.key] || st.key.toUpperCase();
-        breathPhaseEl.textContent = label;
+        breathPhaseEl.textContent = breathPhaseEl.dataset['label_' + st.key] || st.key.toUpperCase();
         breathCountEl.textContent = String(secLeft);
         breathOrb.style.transitionDuration = `${st.sec}s`;
         breathOrb.style.transform = `scale(${st.scale})`;
@@ -548,7 +700,7 @@
       });
     }
 
-    // --- Room 4: 108 Mala / Mantra Counter ---
+    // --- Room 4: 108 Mala Counter ---
     const malaBtn = root.querySelector('[data-mala-tap]');
     const malaReset = root.querySelector('[data-mala-reset]');
     const malaCountEl = root.querySelector('[data-mala-count]');
@@ -560,10 +712,7 @@
     const renderMala = () => {
       if (malaCountEl) malaCountEl.textContent = `${malaCount} / 108`;
       if (malaRoundEl) malaRoundEl.textContent = String(malaRounds);
-      if (malaRingEl) {
-        const pct = Math.min(100, (malaCount / 108) * 100);
-        malaRingEl.style.width = `${pct}%`;
-      }
+      if (malaRingEl) malaRingEl.style.width = `${Math.min(100, (malaCount / 108) * 100)}%`;
     };
 
     if (malaBtn) {
@@ -585,20 +734,15 @@
       });
     }
     if (malaReset) {
-      malaReset.addEventListener('click', () => {
-        malaCount = 0;
-        malaRounds = 0;
-        renderMala();
-      });
+      malaReset.addEventListener('click', () => { malaCount = 0; malaRounds = 0; renderMala(); });
     }
 
-    // Safety: silence audio when tab is hidden
     document.addEventListener('visibilitychange', () => {
       if (document.hidden && playing) stopSession();
     });
   };
 
-  // --- Carl Jung Interactive Archetype, Shadow & Synchronicity Mirror ---
+  // --- Carl Jung Interactive Archetype & Synchronicity Mirror ---
   const initJungMirror = () => {
     const jungRoot = document.querySelector('[data-jung-app]');
     if (!jungRoot) return;
@@ -625,7 +769,6 @@
       });
     });
 
-    // Private local-only Synchronicity Journal (zero network requests)
     const form = jungRoot.querySelector('[data-sync-form]');
     const list = jungRoot.querySelector('[data-sync-list]');
     const clearBtn = jungRoot.querySelector('[data-sync-clear]');
@@ -636,15 +779,10 @@
         const raw = localStorage.getItem(STORAGE_KEY);
         const parsed = raw ? JSON.parse(raw) : [];
         return Array.isArray(parsed) ? parsed : [];
-      } catch (_) {
-        return [];
-      }
+      } catch (_) { return []; }
     };
-
     const saveEntries = (entries) => {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(entries.slice(0, 30)));
-      } catch (_) {}
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(entries.slice(0, 30))); } catch (_) {}
     };
 
     const renderEntries = () => {
@@ -677,28 +815,19 @@
         const note = (noteInput ? noteInput.value : '').trim();
         if (!note) return;
         const entries = loadEntries();
-        entries.unshift({
-          date: new Date().toLocaleDateString(),
-          archetype: archInput ? archInput.value : 'Synchronicity',
-          note
-        });
+        entries.unshift({ date: new Date().toLocaleDateString(), archetype: archInput ? archInput.value : 'Synchronicity', note });
         saveEntries(entries);
         if (noteInput) noteInput.value = '';
         renderEntries();
       });
     }
-
     if (clearBtn) {
-      clearBtn.addEventListener('click', () => {
-        saveEntries([]);
-        renderEntries();
-      });
+      clearBtn.addEventListener('click', () => { saveEntries([]); renderEntries(); });
     }
-
     renderEntries();
   };
 
-  // --- Mouse-tracking spotlight sheen for 2027 cards ---
+  // --- Mouse-tracking spotlight sheen ---
   const initSpotlight = () => {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     document.querySelectorAll('[data-spotlight]').forEach((el) => {
@@ -716,9 +845,6 @@
     initSpotlight();
   };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    boot();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
 })();

@@ -1,359 +1,440 @@
-// Mythborn Astrology Platform — Homepage View
-import { ASTROLOGY_LOCALES, ZODIAC_SIGNS, ZODIAC_LOCALIZED } from '../i18n.js';
+// Mythborn 2027 — Ground-Up Ultra-Elite Homepage
+// Consciousness, Carl Jung Depth Psychology, Live Meditation & Sound Resonance Sanctuary
+import { ASTROLOGY_LOCALES } from '../i18n.js';
 import { getRouteHref } from '../layout.js';
-import { renderEbcedPromo } from '../ebced-promo.js';
-import { render24hTimePicker } from '../time-picker.js';
+import { getGuidesList } from './guides.js';
 
-const safe = (str = '') =>
-  String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-
-const frequencyTeaser = {
-  tr: { eyebrow: 'FREQUENCY STUDIO · SESİN GİZEMİ', title: 'Görünmeyeni <em>dinle.</em>', text: 'Gerçek frekansların sesini keşfet. On bir saf ton, kişisel ses deneyimleri ve bilimsel sınırları açıkça belirtilmiş dinleme rehberi.', action: 'Frekans Stüdyosu’nu keşfet', note: 'Ses deneyimi · 11 saf ton · Bilimsel dinleme rehberi' },
-  en: { eyebrow: 'FREQUENCY STUDIO · THE MYSTERY OF SOUND', title: 'Listen to the <em>unseen.</em>', text: 'Explore actual sound frequencies. Eleven pure tones, a personal listening experience and science-based guidance without therapeutic promises.', action: 'Explore Frequency Studio', note: 'Sound experience · 11 pure tones · Safe-listening guidance' },
-  el: { eyebrow: 'FREQUENCY STUDIO · ΤΟ ΜΥΣΤΗΡΙΟ ΤΟΥ ΗΧΟΥ', title: 'Άκου το <em>αόρατο.</em>', text: 'Εξερεύνησε πραγματικές συχνότητες ήχου με έντεκα καθαρούς τόνους και τεκμηριωμένη ενημέρωση για την ασφαλή ακρόαση.', action: 'Εξερεύνησε το στούντιο', note: 'Ήχος · 11 καθαροί τόνοι · Ασφαλής ακρόαση' },
-  es: { eyebrow: 'FREQUENCY STUDIO · EL MISTERIO DEL SONIDO', title: 'Escucha lo <em>invisible.</em>', text: 'Explora frecuencias sonoras reales, once tonos puros y orientación sobre escucha segura sin promesas terapéuticas.', action: 'Explorar Frequency Studio', note: 'Sonido · 11 tonos puros · Escucha segura' },
-  ar: { eyebrow: 'FREQUENCY STUDIO · أسرار الصوت', title: 'استمع إلى <em>ما لا يُرى.</em>', text: 'اكتشف ترددات صوتية حقيقية وأحد عشر نغمة نقية وإرشادات استماع آمنة دون وعود علاجية.', action: 'اكتشف استوديو الترددات', note: 'تجربة صوتية · ١١ نغمة · استماع آمن' }
+const HOME_COPY = {
+  tr: {
+    eyebrow: 'MYTHBORN · BİLİNÇ, ARKETİP & REZONANS SIĞINAĞI',
+    h1: 'Sessizliğin İçinde Kendini Duy.',
+    lead: 'Carl Jung derinlik psikolojisi, canlı meditasyon odaları, stereo yankılı frekans rezonansı ve kadim gökyüzü matematiği.',
+    ctaPrimary: 'Sığınağa Gir',
+    ctaSecondary: 'Carl Jung & Gölge',
+    telemetry: ['Web Audio Stereo Reverb', '0.001° Açık Astronomi', '%100 Yerel Gizlilik'],
+    pillarsEyebrow: 'DÖRT TEMEL DENEYİM ALANI',
+    pillarsTitle: 'Gürültüyü Bırak, Merkeze Dön.',
+    pillarsSub: 'Zihin, ses ve sembol dünyasını tek bir sakin sığınakta birleştiren dört ana kapı.',
+    pillars: [
+      {
+        tag: 'CANLI MEDİTASYON',
+        title: 'Sığınak Odaları',
+        desc: 'Mum odağı (Trataka), görsel nefes küresi, Theta gevşemesi ve Tibet çanağı sesli 108 mantra sayacı.',
+        cta: 'Sığınağa Gir',
+        route: 'sanctuary'
+      },
+      {
+        tag: 'DERİNLİK PSİKOLOJİSİ',
+        title: 'Carl Jung & Gölge',
+        desc: '8 temel Jung arketipi, Gölge yansıtma soruları, Aktif İmgelem ve %100 yerel Eşzamanlılık günlüğü.',
+        cta: 'Aynayı Aç',
+        route: 'jung'
+      },
+      {
+        tag: 'SES & DOĞA AKUSTİĞİ',
+        title: 'Kymatik Frekans Stüdyosu',
+        desc: 'Stereo tapınak yankılı 432/528 Hz, Binaural Alpha/Theta/Delta, Tibet çanağı ve 4 canlı doğa sesi.',
+        cta: 'Sesi Deneyimle',
+        route: 'sanctuary_mixer'
+      },
+      {
+        tag: 'EĞİTİCİ KÜTÜPHANE',
+        title: 'Bilinç & Yaşam Rehberi',
+        desc: 'Spiritüel yaşam ilkeleri, gölge çalışması, meditasyon protokolleri ve ses fiziği üzerine derin rehberler.',
+        cta: 'Rehberleri Oku',
+        route: 'guides'
+      }
+    ],
+    quotes: {
+      jung: {
+        text: '“Bilinçdışını bilinçli hale getirmedikçe o senin hayatını yönlendirecek ve sen buna kader diyeceksin.”',
+        author: 'Carl Gustav Jung'
+      },
+      freud: {
+        text: '“İfade edilmemiş duygular asla ölmez; yalnızca diri diri gömülür ve daha sonra daha karmaşık biçimlerde geri döner.”',
+        author: 'Sigmund Freud'
+      },
+      adler: {
+        text: '“İnsan geçmişinin kurbanı değil; deneyimlerine yüklediği anlamın mimarıdır.”',
+        author: 'Alfred Adler'
+      }
+    },
+    soundEyebrow: 'CANLI KYMATİK REZONANS · STEREO TAPINAK YANKISI',
+    soundTitle: 'Tek Tıkla Atmosferini Seç ve Dinle.',
+    soundSub: 'Kuru tonlar yerine stereo salon yankılı harmonikler, Tibet çanakları ve canlı doğa sesleriyle anında dinginlik.',
+    soundPureLink: 'Saf 11 Solfeggio Tonu Laboratuvarı (/frekans-studyo) ↗',
+    soundFullLink: 'Tüm Ses Mikseri & 4 Meditasyon Odası →',
+    guidesEyebrow: 'EĞİTİCİ & ÖĞRETİCİ KÜTÜPHANE',
+    guidesTitle: 'Anlamak, Dönüşümün İlk Adımıdır.',
+    guidesSub: 'Spiritüel yaşam, Jung psikolojisi, nefes ve rezonans üzerine adım adım uzun-form rehberler.',
+    guidesAll: 'Tüm Rehber Kütüphanesi →',
+    toolsEyebrow: 'KADİM SEMBOLLER & MATEMATİKSEL ARAÇLAR',
+    toolsTitle: 'Gökyüzü Matematiği ve Sembolik Aynalar.',
+    toolsSub: 'Gerçek astronomik hesaplamalar ve tarihsel sembol sistemleri; deterministik kehanet olmadan, şeffaf öz-farkındalık için.',
+    tools: [
+      {
+        tag: 'ASTRONOMY-ENGINE',
+        title: 'Doğum Haritası',
+        desc: 'Güneş, Ay, Yükselen, MC ve gezegen açılarını ±1 yay-dakika hassasiyetle hesapla.',
+        cta: 'Haritayı Çıkar',
+        route: 'natal'
+      },
+      {
+        tag: 'OSMANLICA & PİSAGOR',
+        title: 'Ebced & Numeroloji',
+        desc: 'Harf harf Ebced-i Kebîr / Sağîr dökümü ve Pisagor yaşam yolu analizi.',
+        cta: 'Hesaplamayı Aç',
+        route: 'ebced'
+      },
+      {
+        tag: 'İLİŞKİ GEOMETRİSİ',
+        title: 'Sinastri Uyumu',
+        desc: 'İki doğum haritası arasındaki açısal temasları, rezonansı ve denge eşiklerini incele.',
+        cta: 'Haritaları Karşılaştır',
+        route: 'synastry'
+      },
+      {
+        tag: 'GÖKYÜZÜ & 12 ARKETİP',
+        title: 'Ay Takvimi & Burçlar',
+        desc: 'Canlı Ay fazı, aydınlanma oranı ve 12 zodyak arketipinin ışık-gölge dengesi.',
+        cta: 'Gökyüzünü Gör',
+        route: 'calendar'
+      }
+    ],
+    ethicsEyebrow: 'ETİK SINIRLAR & YAKLAŞIM',
+    ethicsTitle: 'Korku Değil Berraklık. Kehanet Değil Bilinç.',
+    ethicsBody: 'Mythborn; tıbbi teşhis, klinik psikoterapi veya kesin gelecek vaadi sunmaz. Tüm meditasyon odaları, Jung arketipleri, ses atmosferleri ve astronomik hesaplamalar; bireyin özgür iradesini ve içsel berraklığını destekleyen şeffaf bir farkındalık alanıdır.',
+    ethicsCta: 'Yöntem ve Etik İlkelerimiz →'
+  },
+  en: {
+    eyebrow: 'MYTHBORN · CONSCIOUSNESS, ARCHETYPE & RESONANCE SANCTUARY',
+    h1: 'Hear Yourself Inside the Stillness.',
+    lead: 'Carl Jung depth psychology, live meditation rooms, stereo-reverb frequency resonance and open-source astronomical precision.',
+    ctaPrimary: 'Enter Sanctuary',
+    ctaSecondary: 'Carl Jung & Shadow',
+    telemetry: ['Web Audio Stereo Reverb', '0.001° Open Ephemeris', '100% Local Privacy'],
+    pillarsEyebrow: 'FOUR CORE SANCTUARY DOORS',
+    pillarsTitle: 'Step Beyond Noise, Return to Center.',
+    pillarsSub: 'Four serene experiences uniting depth psychology, breath, sound resonance and timeless symbolic literacy.',
+    pillars: [
+      {
+        tag: 'LIVE MEDITATION',
+        title: 'Sanctuary Rooms',
+        desc: 'Candle gazing (Trataka), visual breath orb, Theta relaxation and 108 mala counter with Tibetan bowl strikes.',
+        cta: 'Enter Sanctuary',
+        route: 'sanctuary'
+      },
+      {
+        tag: 'DEPTH PSYCHOLOGY',
+        title: 'Carl Jung & Shadow',
+        desc: '8 core Jungian archetypes, Shadow prompts, Active Imagination and a 100% private local Synchronicity journal.',
+        cta: 'Open Mirror',
+        route: 'jung'
+      },
+      {
+        tag: 'SOUND & NATURE',
+        title: 'Cymatics Sound Studio',
+        desc: 'Stereo temple-reverb 432/528 Hz, Binaural Alpha/Theta/Delta, Tibetan bowls and 4 live nature soundscapes.',
+        cta: 'Open Sound Mixer',
+        route: 'sanctuary_mixer'
+      },
+      {
+        tag: 'EDUCATIONAL LIBRARY',
+        title: 'Mindful Living Guides',
+        desc: 'In-depth guides on spiritual living, shadow work, meditation protocols and the physics of sound resonance.',
+        cta: 'Read Guides',
+        route: 'guides'
+      }
+    ],
+    quotes: {
+      jung: {
+        text: '“Until you make the unconscious conscious, it will direct your life and you will call it fate.”',
+        author: 'Carl Gustav Jung'
+      },
+      freud: {
+        text: '“Unexpressed emotions will never die. They are buried alive and will come forth later in uglier ways.”',
+        author: 'Sigmund Freud'
+      },
+      adler: {
+        text: '“We do not suffer from the shock of our experiences; we make out of them what aligns with the meaning we choose.”',
+        author: 'Alfred Adler'
+      }
+    },
+    soundEyebrow: 'LIVE CYMATICS RESONANCE · STEREO TEMPLE REVERB',
+    soundTitle: 'Choose an Atmosphere in One Click.',
+    soundSub: 'Instead of dry sine beeps, immerse yourself in stereo temple reverb, warm harmonics, singing bowls and live nature.',
+    soundPureLink: 'Open Pure 11-Tone Solfeggio Lab (/frekans-studyo) ↗',
+    soundFullLink: 'Open Full Mixer & 4 Meditation Rooms →',
+    guidesEyebrow: 'IN-DEPTH EDUCATIONAL LIBRARY',
+    guidesTitle: 'Understanding Is the First Threshold of Change.',
+    guidesSub: 'Clear, structured long-form guides on mindful living, Carl Jung, breathwork and acoustic resonance.',
+    guidesAll: 'Browse All Guides →',
+    toolsEyebrow: 'ANCIENT SYMBOLS & MATHEMATICAL INSTRUMENTS',
+    toolsTitle: 'Celestial Precision & Symbolic Mirrors.',
+    toolsSub: 'Real astronomical calculations and historical letter systems—offered for transparent reflection without fatalism.',
+    tools: [
+      {
+        tag: 'ASTRONOMY-ENGINE',
+        title: 'Birth Chart',
+        desc: 'Compute Sun, Moon, Ascendant, Midheaven and planetary aspects with ±1 arcminute accuracy.',
+        cta: 'Calculate Chart',
+        route: 'natal'
+      },
+      {
+        tag: 'ABJAD & PYTHAGOREAN',
+        title: 'Abjad & Numerology',
+        desc: 'Letter-by-letter Greater & Lesser Abjad breakdown paired with Pythagorean life path analysis.',
+        cta: 'Open Calculator',
+        route: 'ebced'
+      },
+      {
+        tag: 'RELATIONSHIP GEOMETRY',
+        title: 'Synastry Analysis',
+        desc: 'Compare two natal charts across angular aspects, harmony dynamics and growth thresholds.',
+        cta: 'Compare Charts',
+        route: 'synastry'
+      },
+      {
+        tag: 'LUNAR & 12 ARCHETYPES',
+        title: 'Sky Calendar & Zodiac',
+        desc: 'Live moon phase illumination and light-shadow dossiers for all 12 zodiacal archetypes.',
+        cta: 'Explore the Sky',
+        route: 'calendar'
+      }
+    ],
+    ethicsEyebrow: 'ETHICAL BOUNDARIES & METHODOLOGY',
+    ethicsTitle: 'Clarity Over Fear. Awareness Over Fatalism.',
+    ethicsBody: 'Mythborn does not offer medical diagnosis, clinical psychotherapy or fatalistic predictions. Every meditation room, Jungian reflection, soundscape and astronomical chart exists to support sovereign human agency and calm self-awareness.',
+    ethicsCta: 'Read Our Methodology & Ethics →'
+  }
 };
 
-export const renderHomeView = ({ locale = 'tr', isPreview = false }) => {
+export const renderHomeView = ({ locale = 'tr' } = {}) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
   const loc = locale === 'gr' ? 'el' : ['tr', 'en', 'el', 'es', 'ar'].includes(locale) ? locale : 'tr';
+  const c = HOME_COPY[loc] || HOME_COPY.en;
   const isRtl = t.dir === 'rtl';
   const arrow = isRtl ? '←' : '→';
-  const clean = (txt) => (txt || '').replace(/[→←\s]+$/, '');
+  const guides = getGuidesList(loc);
+  const guideBase = getRouteHref(locale, 'guides');
+  const sanctuaryHref = getRouteHref(locale, 'sanctuary');
 
-  // 12 Zodiac Cards — Fully Localized (Zero English in TR) + Radiant Astronomical Glyph Badges
-  const zodiacCardsHtml = ZODIAC_SIGNS.map((sign) => {
-    const signName = sign[loc] || sign.tr;
-    const titleText = locale === 'tr' ? `${signName} Burcu`
-      : locale === 'en' ? `${signName} Sign`
-      : locale === 'el' ? `Ζώδιο: ${signName}`
-      : locale === 'es' ? `Signo ${signName}`
-      : `برج ${signName}`;
-
-    const linkText = locale === 'tr' ? 'Detaylı İncele'
-      : locale === 'en' ? 'Explore Archetype'
-      : locale === 'el' ? 'Ανάλυση'
-      : locale === 'es' ? 'Explorar'
-      : 'استكشاف';
-
-    const elementLabel = (ZODIAC_LOCALIZED.elements[sign.element] && ZODIAC_LOCALIZED.elements[sign.element][loc]) || sign.element;
-    const qualityLabel = (ZODIAC_LOCALIZED.qualities[sign.quality] && ZODIAC_LOCALIZED.qualities[sign.quality][loc]) || sign.quality;
-    const rulerLabel = (ZODIAC_LOCALIZED.rulers[sign.ruler] && ZODIAC_LOCALIZED.rulers[sign.ruler][loc]) || sign.ruler;
-    const datesLabel = (ZODIAC_LOCALIZED.dates[sign.slug] && ZODIAC_LOCALIZED.dates[sign.slug][loc]) || sign.dates;
-
-    const upperElement = loc === 'tr' ? elementLabel.replace(/i/g, 'İ').toUpperCase() : elementLabel.toUpperCase();
-
-    return `
-      <article class="zodiac-natural-card">
-        <div class="zodiac-natural-header">
-          <div class="zodiac-icon-badge" aria-hidden="true">
-            <span class="zodiac-glyph-mark">${sign.symbol}</span>
-          </div>
-          <span class="zodiac-element-tag element-${sign.element}">${upperElement}</span>
-        </div>
-        <h3 class="zodiac-natural-title">${titleText}</h3>
-        <p class="zodiac-natural-ruler">🪐 ${rulerLabel} · ${qualityLabel}</p>
-        <div class="zodiac-natural-dates">${datesLabel}</div>
-        <a class="astro-card-link" style="margin-top:10px" href="${getRouteHref(locale, 'zodiac')}?sign=${sign.slug}#dossier">
-          <span>${clean(linkText)}</span>
-          <span aria-hidden="true">${arrow}</span>
-        </a>
-      </article>
-    `;
-  }).join('');
-
-  const quickCityHelperMap = {
-    tr: 'Türkiye’nin 81 ili ve tüm dünya şehirleri için anında koordinat ve saat dilimi eşlemesi.',
-    en: 'Instant coordinate and timezone lookup for global cities.',
-    el: 'Άμεσος εντοπισμός συντεταγμένων και ζώνης ώρας για πόλεις παγκοσμίως.',
-    es: 'Búsqueda instantánea de coordenadas y huso horario para ciudades globales.',
-    ar: 'تحديد فوري للإحداثيات والمنطقة الزمنية للمدن حول العالم.'
+  const resolveRoute = (key) => {
+    if (key === 'sanctuary_mixer') return `${sanctuaryHref}#ses-mikseri`;
+    return getRouteHref(locale, key);
   };
-
-  const quickCityPlaceholderMap = {
-    tr: 'İstanbul, Ankara, İzmir...',
-    en: 'London, New York, Paris...',
-    el: 'Αθήνα, Θεσσαλονίκη, London...',
-    es: 'Madrid, Barcelona, Buenos Aires...',
-    ar: 'الرياض، دبي، القاهرة...'
-  };
-
-  const quickCityDefaultMap = {
-    tr: 'Istanbul',
-    en: 'London',
-    el: 'Athens',
-    es: 'Madrid',
-    ar: 'Riyadh'
-  };
-
-  const toolCards = t.tools || [];
 
   return `
-    <!-- 1. Hero: Ultra-Luxury Celestial Cosmos Artwork & Clear CTAs -->
-    <section class="astro-hero astro-section-viewport">
-      <div class="astro-container">
-        <span class="astro-hero-eyebrow">✦ ${t.hero.eyebrow}</span>
-        <h1>${t.hero.title}</h1>
-        <p class="astro-hero-lead">${t.hero.lead}</p>
-        <div class="astro-hero-actions">
-          <a class="astro-btn-primary" href="${getRouteHref(locale, 'natal')}">
-            <span>${clean(t.hero.ctaPrimary)}</span>
+  <div class="mb27-home" data-sanctuary-app>
+    <!-- 1. Ground-Up 2027 Quiet-Luxury Sanctuary Hero -->
+    <section class="mb27-hero">
+      <div class="mb27-hero-aura" aria-hidden="true">
+        <div class="mb27-orbit mb27-orbit-1"></div>
+        <div class="mb27-orbit mb27-orbit-2"></div>
+      </div>
+      <div class="astro-container mb27-hero-inner">
+        <span class="sanc-eyebrow">✦ ${c.eyebrow}</span>
+        <h1 class="mb27-h1">${c.h1}</h1>
+        <p class="mb27-lead">${c.lead}</p>
+        <div class="mb27-hero-actions">
+          <a class="sanc-btn-gold" href="${sanctuaryHref}">
+            <span>${c.ctaPrimary}</span>
             <span aria-hidden="true">${arrow}</span>
           </a>
-          <a class="astro-btn-ghost" href="${getRouteHref(locale, 'calendar')}">
-            <span>${clean(t.hero.ctaSecondary)}</span>
+          <a class="sanc-btn-ghost" href="${getRouteHref(locale, 'jung')}">
+            <span>${c.ctaSecondary}</span>
             <span aria-hidden="true">${arrow}</span>
           </a>
         </div>
+        <div class="mb27-telemetry" aria-label="Platform standards">
+          ${c.telemetry.map((item) => `<span>✦ ${item}</span>`).join('')}
+        </div>
+      </div>
+    </section>
 
-        <!-- 2. Hızlı Doğum Haritası Başlangıç Akışı -->
-        <div class="astro-quick-box" id="quick-chart">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:10px">
-            <h3 style="font-family:var(--font-serif); font-size:20px; color:#fff">
-              ✦ ${t.quickNatal.title}
-            </h3>
-            <span style="font-size:11.5px; color:var(--gold); letter-spacing:0.04em">
-              ${t.timeStandardNotice}
-            </span>
-          </div>
-          <p style="font-size:13px; color:var(--muted); margin-bottom:16px; line-height:1.5">
-            ${t.quickNatal.sub}
-          </p>
-          <form action="${getRouteHref(locale, 'natal')}" method="get" autocomplete="off">
-            <div class="astro-quick-grid">
-              <div class="astro-quick-field">
-                <label for="qk-date">${t.quickNatal.labelDate}</label>
-                <input id="qk-date" name="date" type="date" required value="1995-03-21">
+    <!-- 2. Four Flagship Sanctuary Pillars (4-Column Symmetrical Grid, Zero 01-04 Numbers) -->
+    <section class="mb27-section" id="pillars">
+      <div class="astro-container">
+        <div class="sanc-center sanc-head">
+          <span class="sanc-eyebrow">✦ ${c.pillarsEyebrow}</span>
+          <h2>${c.pillarsTitle}</h2>
+          <p>${c.pillarsSub}</p>
+        </div>
+        <div class="mb27-grid-4">
+          ${c.pillars.map((p) => `
+            <article class="mb27-card" data-spotlight>
+              <div>
+                <span class="mb27-card-tag">${p.tag}</span>
+                <h3>${p.title}</h3>
+                <p>${p.desc}</p>
               </div>
-              <div class="astro-quick-field">
-                <label for="qk-hour">${t.quickNatal.labelTime} (24h)</label>
-                ${render24hTimePicker({ idPrefix: 'qk', name: 'time', defaultValue: '14:30', locale: loc, ariaLabelHour: t.quickNatal.labelTime })}
-              </div>
-              <div class="astro-quick-field">
-                <label for="qk-city">${t.quickNatal.labelCity}</label>
-                <input id="qk-city" name="city" type="text" required placeholder="${quickCityPlaceholderMap[loc] || quickCityPlaceholderMap.tr}" value="${quickCityDefaultMap[loc] || quickCityDefaultMap.tr}" autocomplete="off">
+              <a class="mb27-card-link" href="${resolveRoute(p.route)}">
+                <span>${p.cta}</span>
+                <span aria-hidden="true">${arrow}</span>
+              </a>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Interlude I — Carl Gustav Jung -->
+    <section class="mb27-quote-band" aria-label="Carl Gustav Jung">
+      <div class="astro-container">
+        <blockquote class="mb27-quote">
+          <p>${c.quotes.jung.text}</p>
+          <cite>— ${c.quotes.jung.author}</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 3. Interactive Live Cymatics & Stereo Reverb Sound Studio Preview -->
+    <section class="mb27-section" id="frequency-studio" aria-labelledby="mb27-sound-title">
+      <div class="astro-container">
+        <div class="sanc-center sanc-head">
+          <span class="sanc-eyebrow">✦ ${c.soundEyebrow}</span>
+          <h2 id="mb27-sound-title">${c.soundTitle}</h2>
+          <p>${c.soundSub}</p>
+        </div>
+
+        <div class="sanc-mixer" data-spotlight>
+          <div class="sanc-cymatics-band">
+            <div class="sanc-cymatics-wrap">
+              <canvas class="sanc-cymatics-canvas" data-cymatics-canvas aria-hidden="true"></canvas>
+              <div class="mb27-mini-player">
+                <button type="button" class="sanc-play-btn" data-sanc-play aria-pressed="false" aria-label="Play or pause resonance">▶</button>
+                <div>
+                  <div class="sanc-state" data-sanc-state data-label-idle="${loc === 'tr' ? 'HAZIR · SES KAPALI' : 'READY · SILENT'}" data-label-playing="${loc === 'tr' ? 'AKTİF · STEREO REZONANS' : 'ACTIVE · STEREO RESONANCE'}">${loc === 'tr' ? 'HAZIR · SES KAPALI' : 'READY · SILENT'}</div>
+                  <div class="sanc-timer-readout" data-sanc-timer-display>10:00</div>
+                </div>
               </div>
             </div>
-            <div style="font-size:10.5px; color:var(--dim); margin:-6px 0 14px 0">${quickCityHelperMap[loc] || quickCityHelperMap.tr}</div>
-            <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap">
-              <label style="font-size:12.5px; color:var(--dim); display:inline-flex; align-items:center; gap:8px; cursor:pointer">
-                <input type="checkbox" name="unknown_time" value="1" onchange="var h=document.getElementById('qk-hour'),m=document.getElementById('qk-min');if(h&&m){h.disabled=this.checked;m.disabled=this.checked;}">
-                <span>${t.quickNatal.unknownTime}</span>
-              </label>
-              <button type="submit" class="astro-quick-btn">
-                <span>${clean(t.quickNatal.submitBtn)}</span>
-                <span aria-hidden="true">${arrow}</span>
+            <div class="sanc-scenes-grid">
+              <button type="button" class="sanc-scene-card is-active" data-spotlight data-scene-card="temple" aria-pressed="true">
+                <strong>${loc === 'tr' ? 'Gece Tapınağı' : 'Night Temple'}</strong>
+                <span>${loc === 'tr' ? '432 Hz Harmoni · Yankılı Tibet Çanağı · Gece Yağmuru' : '432 Hz Harmonics · Temple Bowls · Night Rain'}</span>
+              </button>
+              <button type="button" class="sanc-scene-card" data-spotlight data-scene-card="theta" aria-pressed="false">
+                <strong>${loc === 'tr' ? 'Theta Eşiği & Astral' : 'Theta Threshold & Astral'}</strong>
+                <span>${loc === 'tr' ? '6 Hz Binaural · Derin Pad · Okyanus Dalgaları' : '6 Hz Binaural · Deep Pad · Ocean Waves'}</span>
+              </button>
+              <button type="button" class="sanc-scene-card" data-spotlight data-scene-card="shadow" aria-pressed="false">
+                <strong>${loc === 'tr' ? 'Gölge & İç Benlik' : 'Shadow & Inner Self'}</strong>
+                <span>${loc === 'tr' ? '396 Hz Derin Kök · Tapınak Drone · Sıcak Ateş' : '396 Hz Deep Root · Temple Drone · Warm Hearth'}</span>
+              </button>
+              <button type="button" class="sanc-scene-card" data-spotlight data-scene-card="dawn" aria-pressed="false">
+                <strong>${loc === 'tr' ? 'Şafak Berraklığı' : 'Dawn Clarity'}</strong>
+                <span>${loc === 'tr' ? '528 Hz Parlak Harmoni · Tibet Çanağı · Gece Rüzgarı' : '528 Hz Clear Harmonics · Bowls · Night Wind'}</span>
               </button>
             </div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    ${`<section class="astro-frequency-preview" id="frequency-studio" aria-labelledby="astro-frequency-preview-title">
-      <div class="astro-frequency-preview-visual" aria-hidden="true"><img src="/images/Mythborn_01_Kozmik_Usturlap.webp" loading="lazy" decoding="async" width="1792" height="1024" alt=""></div>
-      <div class="astro-container astro-frequency-preview-inner">
-        <div class="astro-frequency-preview-copy">
-          <span class="astro-card-tag">✦ ${frequencyTeaser[loc].eyebrow}</span>
-          <h2 id="astro-frequency-preview-title">${frequencyTeaser[loc].title}</h2>
-          <p>${frequencyTeaser[loc].text}</p>
-          <a class="astro-frequency-preview-cta" href="/frekans-studyo"><span>${frequencyTeaser[loc].action}</span><span aria-hidden="true">${isRtl ? '←' : '↗'}</span></a>
-          <small>${frequencyTeaser[loc].note}</small>
-        </div>
-      </div>
-    </section>`}
-
-    <!-- 2b. 2027 Consciousness, Live Meditation Sanctuary & Carl Jung Depth Psychology -->
-    <section class="home-sanctuary-band" id="sanctuary-showcase">
-      <div class="astro-container">
-        <div class="astro-section-head">
-          <span class="astro-card-tag">✦ ${loc === 'tr' ? 'BİLİNÇ, REZONANS & DERİNLİK PSİKOLOJİSİ' : loc === 'en' ? 'CONSCIOUSNESS, RESONANCE & DEPTH PSYCHOLOGY' : loc === 'el' ? 'ΣΥΝΕΙΔΗΣΗ, ΣΥΝΤΟΝΙΣΜΟΣ & ΨΥΧΟΛΟΓΙΑ ΒΑΘΟΥΣ' : loc === 'es' ? 'CONSCIENCIA, RESONANCIA Y PSICOLOGÍA PROFUNDA' : 'الوعي والرنين وعلم النفس العميق'}</span>
-          <h2>${loc === 'tr' ? 'Sessizlikte Kendini Duy, Gölgeni Tanı.' : loc === 'en' ? 'Enter Stillness, Meet Your Deeper Self.' : loc === 'el' ? 'Μπες στη Σιωπή, Γνώρισε τον Εαυτό σου.' : loc === 'es' ? 'Entra en la Quietud, Conoce tu Profundidad.' : 'ادخل السكون وتعرّف على عمقك.'}</h2>
-          <p>${loc === 'tr' ? 'Canlı mum ve nefes odaları, binaural frekanslar, doğa sesleri ve Carl Jung arketip aynası tek sığınakta.' : loc === 'en' ? 'Live candle & breath rooms, binaural brainwaves, nature acoustics and Carl Jung’s archetype mirror in one sanctuary.' : loc === 'el' ? 'Δωμάτια διαλογισμού, binaural συχνότητες, ήχοι φύσης και ο καθρέφτης αρχετύπων του Carl Jung.' : loc === 'es' ? 'Salas de meditación en vivo, frecuencias binaurales, sonidos de la naturaleza y el espejo de Carl Jung.' : 'غرف تأمل مباشرة وترددات وأصوات طبيعة ومرآة كارل يونغ في ملاذ واحد.'}</p>
-        </div>
-        <div class="home-sanctuary-grid">
-          <article class="home-sanctuary-card" data-spotlight>
-            <div>
-              <span class="astro-card-tag">✦ ${loc === 'tr' ? 'CANLI MEDİTASYON & DOĞA SESLERİ' : 'LIVE MEDITATION & NATURE ACOUSTICS'}</span>
-              <h3>${loc === 'tr' ? 'Sığınak: Mum, Nefes, Theta & 108 Mantra' : loc === 'en' ? 'Sanctuary: Candle, Breath, Theta & 108 Mala' : loc === 'el' ? 'Καταφύγιο: Κερί, Αναπνοή, Theta & 108 Μάντρα' : loc === 'es' ? 'Santuario: Vela, Respiración, Theta y 108 Mantras' : 'الملاذ: الشمعة، التنفس، ثيتا و١٠٨'}</h3>
-              <p>${loc === 'tr' ? 'Trataka mum alevi, görsel nefes küresi, 6 Hz Theta binaural gevşeme, Tibet çanağı harmonileri ve canlı gece yağmuru, okyanus, rüzgar, ateş mikseri.' : loc === 'en' ? 'Trataka flame focus, visual breath orb, 6 Hz Theta binaural relaxation, Tibetan bowl harmonics and live rain, ocean, wind & hearth mixer.' : loc === 'el' ? 'Εστίαση Trataka, σφαίρα αναπνοής, binaural 6 Hz Theta και ζωντανός μίκτης ήχων φύσης.' : loc === 'es' ? 'Foco Trataka, esfera de respiración, binaural 6 Hz Theta y mezclador en vivo de lluvia, océano y fuego.' : 'تأمل الشمعة وكرة التنفس وترددات ثيتا ومزيج أصوات الطبيعة المباشر.'}</p>
-            </div>
-            <div>
-              <a class="sanc-btn-gold" href="${getRouteHref(locale, 'sanctuary')}">
-                <span>${loc === 'tr' ? 'Sığınağa Gir' : loc === 'en' ? 'Enter Sanctuary' : loc === 'el' ? 'Είσοδος στο Καταφύγιο' : loc === 'es' ? 'Entrar al Santuario' : 'ادخل الملاذ'}</span>
-                <span aria-hidden="true">${arrow}</span>
-              </a>
-            </div>
-          </article>
-          <article class="home-sanctuary-card" data-spotlight>
-            <div>
-              <span class="astro-card-tag">✦ ${loc === 'tr' ? 'CARL GUSTAV JUNG · DERİNLİK PSİKOLOJİSİ' : 'CARL GUSTAV JUNG · DEPTH PSYCHOLOGY'}</span>
-              <h3>${loc === 'tr' ? 'Arketip, Gölge & Eşzamanlılık Aynası' : loc === 'en' ? 'Archetype, Shadow & Synchronicity Mirror' : loc === 'el' ? 'Καθρέφτης Αρχετύπων, Σκιάς & Συγχρονικότητας' : loc === 'es' ? 'Espejo de Arquetipos, Sombra y Sincronicidad' : 'مرآة النماذج الأصلية والظل والتزامن'}</h3>
-              <p>${loc === 'tr' ? 'Persona ve Gölge dengesini keşfet, 8 temel Jung arketipiyle aktif imgelem sorularını incele ve %100 yerel, gizli eşzamanlılık günlüğünü tut.' : loc === 'en' ? 'Explore Persona and Shadow dynamics across 8 core Jungian archetypes with active imagination prompts and a 100% private local synchronicity journal.' : loc === 'el' ? 'Εξερεύνησε 8 αρχέτυπα του Jung με ερωτήσεις σκιάς και ιδιωτικό ημερολόγιο συγχρονικότητας.' : loc === 'es' ? 'Explora 8 arquetipos de Jung, preguntas de sombra y un diario local y privado de sincronicidad.' : 'استكشف النماذج الأصلية ليونغ وأسئلة الظل ومذكرة تزامن محلية خاصة.'}</p>
-            </div>
-            <div>
-              <a class="sanc-btn-gold" href="${getRouteHref(locale, 'jung')}">
-                <span>${loc === 'tr' ? 'Jung Aynasını Aç' : loc === 'en' ? 'Open Jung Mirror' : loc === 'el' ? 'Άνοιγμα Καθρέφτη Jung' : loc === 'es' ? 'Abrir Espejo Jung' : 'افتح مرآة يونغ'}</span>
-                <span aria-hidden="true">${arrow}</span>
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    ${renderEbcedPromo(locale)}
-
-    <!-- 3. Kozmik Büyük Üçlü (Foundational Triad) with Generated Editorial Artworks -->
-    <section class="astro-section astro-section-viewport" id="archetypes">
-      <div class="astro-container">
-        <div class="astro-section-head">
-          <span class="astro-card-tag">✦ ${locale === 'tr' ? 'KOZMİK BÜYÜK ÜÇLÜ' : 'THE FOUNDATIONAL TRIAD'}</span>
-          <h2>${t.bigThree.title}</h2>
-          <p>${t.bigThree.sub}</p>
-        </div>
-        <div class="archetype-grid">
-          <!-- Sun Archetype Card -->
-          <article class="archetype-card">
-            <div class="archetype-art-wrap">
-              <img src="/images/astrology/sun-archetype.jpg" alt="${t.bigThree.sunTitle}" class="archetype-art-img" loading="lazy">
-            </div>
-            <div class="archetype-card-body">
-              <span class="archetype-card-glyph" aria-hidden="true">☉</span>
-              <h3 class="archetype-card-title">${t.bigThree.sunTitle}</h3>
-              <p class="archetype-card-desc">${t.bigThree.sunDesc}</p>
-            </div>
-          </article>
-
-          <!-- Moon Archetype Card -->
-          <article class="archetype-card">
-            <div class="archetype-art-wrap">
-              <img src="/images/astrology/moon-archetype.jpg" alt="${t.bigThree.moonTitle}" class="archetype-art-img" loading="lazy">
-            </div>
-            <div class="archetype-card-body">
-              <span class="archetype-card-glyph" aria-hidden="true">☽</span>
-              <h3 class="archetype-card-title">${t.bigThree.moonTitle}</h3>
-              <p class="archetype-card-desc">${t.bigThree.moonDesc}</p>
-            </div>
-          </article>
-
-          <!-- Ascendant Archetype Card -->
-          <article class="archetype-card">
-            <div class="archetype-art-wrap">
-              <img src="/images/astrology/ascendant-archetype.jpg" alt="${t.bigThree.risingTitle}" class="archetype-art-img" loading="lazy">
-            </div>
-            <div class="archetype-card-body">
-              <span class="archetype-card-glyph" aria-hidden="true">↑</span>
-              <h3 class="archetype-card-title">${t.bigThree.risingTitle}</h3>
-              <p class="archetype-card-desc">${t.bigThree.risingDesc}</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. 12 Zodiac Constellations Section with Tapestry Banner -->
-    <section class="astro-section astro-section-viewport" id="zodiac" style="border-top:1px solid var(--border)">
-      <div class="astro-container">
-        <div class="astro-section-head">
-          <span class="astro-card-tag">✦ ${locale === 'tr' ? '12 ZODYAK ARKETİPİ' : 'ZODIACAL ARCHETYPES'}</span>
-          <h2>${t.sections.zodiacTitle}</h2>
-          <p>${t.sections.zodiacSub}</p>
-        </div>
-
-        <!-- Editorial Celestial Tapestry Showcase -->
-        <div class="zodiac-tapestry-wrap">
-          <img src="/images/astrology/zodiac-celestial-tapestry.jpg" alt="12 Zodiac Celestial Tapestry" class="zodiac-tapestry-img" loading="lazy">
-          <div class="zodiac-tapestry-overlay">
-            <h3 class="zodiac-tapestry-title">${locale === 'tr' ? '12 Burç ve Gökyüzü Arketipleri' : 'The 12 Zodiac Archetypes'}</h3>
-            <p class="zodiac-tapestry-sub">${locale === 'tr' ? 'Kozmik zodyak çemberinde her burç, insanın evrenle kurduğu temel sembolik diyaloğu ve ruhsal potansiyeli temsil eder.' : 'Every archetype embodies a distinct human potential within the celestial sphere.'}</p>
           </div>
-        </div>
 
-        <div class="astro-grid-4">
-          ${zodiacCardsHtml}
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Astrological Analysis Instruments Grid -->
-    <section class="astro-section astro-section-viewport" id="instruments" style="border-top:1px solid var(--border)">
-      <div class="astro-container">
-        <div class="astro-section-head">
-          <span class="astro-card-tag">✦ ${locale === 'tr' ? 'HASSAS ANALİZ ARAÇLARI' : t.sections.toolsTitle.toUpperCase()}</span>
-          <h2>${safe(t.sections.toolsTitle)}</h2>
-          <p>${safe(t.sections.toolsSub)}</p>
-        </div>
-        <div class="astro-grid-3">
-          ${toolCards.map((tool) => `
-          <article class="astro-card">
-            <span class="astro-card-tag">✦ ${safe(tool.tag)}</span>
-            <h3>${safe(tool.title)}</h3>
-            <p>${safe(tool.description)}</p>
-            <a class="astro-card-link" href="${getRouteHref(locale, tool.route)}">
-              <span>${safe(tool.cta)}</span>
-              <span aria-hidden="true">${arrow}</span>
-            </a>
-          </article>`).join('')}
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. Arketip Külliyatı & Derin Psikoloji Köprüsü -->
-    <section class="astro-section astro-section-viewport" id="archetype-bridge" style="border-top:1px solid var(--border)">
-      <div class="astro-container">
-        <div class="astro-bridge-card">
-          <div class="astro-bridge-copy">
-            <span class="astro-card-tag">✦ ${loc === 'tr' ? 'MATEMATİKSEL ASTRONOMİ & DERİN PSİKOLOJİ' : loc === 'en' ? 'MATHEMATICAL ASTRONOMY & DEPTH PSYCHOLOGY' : loc === 'el' ? 'ΜΑΘΗΜΑΤΙΚΗ ΑΣΤΡΟΝΟΜΙΑ & ΨΥΧΟΛΟΓΙΑ' : loc === 'es' ? 'ASTRONOMÍA MATEMÁTICA Y PSICOLOGÍA' : 'الفلك الرياضي وعلم النفس الرمزي'}</span>
-            <h3>${loc === 'tr' ? '12 Burç Arketip Külliyatı ve Kişisel Portreler' : loc === 'en' ? '12 Zodiac Archetype Dossiers & Cosmic Portraits' : loc === 'el' ? '12 Ζωδιακά Αρχέτυπα & Κοσμικά Πορτρέτα' : loc === 'es' ? 'Dossiers de los 12 Arquetipos Zodiacales' : 'ملفات الأنماط الفلكية الـ 12 والبورتريه الكوني'}</h3>
-            <p>${loc === 'tr' ? 'Gök kubbedeki matematiksel devinimleri kişisel farkındalığa dönüştürün. Yüzeysel burç genellemelerinin ötesinde; Güneş, Ay ve Yükselen arketipinizin ışık ve gölge dengesini bilimsel şeffaflıkla inceleyin.' : loc === 'en' ? 'Translate cosmic geometry into authentic self-awareness. Transcending superficial horoscopes, discover the light and shadow dynamics of your Sun, Moon, and Ascendant.' : loc === 'el' ? 'Μετατρέψτε την ουράνια γεωμετρία σε ουσιαστική αυτογνωσία. Ανακαλύψτε τις δυναμικές φωτός και σκιάς του Ήλιου, της Σελήνης και του Ωροσκόπου σας.' : loc === 'es' ? 'Transforme la geometría celeste en autoconocimiento auténtico. Descubra las dinámicas de luz y sombra de su Sol, Luna y Ascendente.' : 'حول الحسابات الفلكية إلى وعي ذاتي حقيقي بعيداً عن التنبؤات السطحية. اكتشف توازن النور والظل لشمسك، قمرك، وطالعك.'}</p>
-            <div style="display:flex; gap:14px; flex-wrap:wrap">
-              <a class="astro-btn-primary" href="${getRouteHref(locale, 'zodiac')}">
-                <span>${loc === 'tr' ? '12 Burç Arketipini Keşfet' : loc === 'en' ? 'Explore 12 Archetypes' : loc === 'el' ? 'Εξερεύνηση 12 Ζωδίων' : loc === 'es' ? 'Explorar 12 Arquetipos' : 'استكشف الأبراج الـ 12'}</span>
-                <span aria-hidden="true">${arrow}</span>
-              </a>
-              <a class="astro-btn-ghost" href="${getRouteHref(locale, 'approach')}">
-                <span>${loc === 'tr' ? 'Etik İlkelerimiz' : loc === 'en' ? 'Ethical Principles' : loc === 'el' ? 'Ηθικές Αρχές' : loc === 'es' ? 'Principios Éticos' : 'المبادئ الأخلاقية'}</span>
-              </a>
-            </div>
+          <!-- Hidden defaults for homepage one-click preview -->
+          <div hidden>
+            <select data-sanc-duration><option value="600" selected>10m</option></select>
+            <select data-sanc-tone><option value="432" selected>432</option><option value="528">528</option><option value="396">396</option><option value="theta-6">theta-6</option><option value="alpha-10">alpha-10</option></select>
+            <input type="range" data-sanc-tone-vol value="42">
+            <select data-sanc-music><option value="bowls" selected>bowls</option><option value="temple">temple</option><option value="off">off</option></select>
+            <input type="range" data-sanc-music-vol value="48">
+            <select data-sanc-nature><option value="rain" selected>rain</option><option value="ocean">ocean</option><option value="wind">wind</option><option value="fire">fire</option></select>
+            <input type="range" data-sanc-nature-vol value="52">
           </div>
-          <div class="astro-bridge-media">
-            <img src="/images/astrology/zodiac-celestial-tapestry.jpg" alt="12 Zodiac Archetypes" loading="lazy">
+
+          <div class="sanc-mixer-foot">
+            <a href="${sanctuaryHref}#ses-mikseri" class="sanc-link">${c.soundFullLink}</a>
+            <a href="/frekans-studyo" class="sanc-link">${c.soundPureLink}</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 7. Yöntemimiz ve Astroloji Sınırları -->
-    <section class="astro-section astro-section-viewport" id="methodology" style="border-top:1px solid var(--border)">
+    <!-- Quote Interlude II — Sigmund Freud -->
+    <section class="mb27-quote-band" aria-label="Sigmund Freud">
       <div class="astro-container">
-        <div class="astro-section-head">
-          <span class="astro-card-tag">✦ ${safe(t.sections.ethicsTitle)}</span>
-          <h2>${safe(t.sections.ethicsTitle)}</h2>
-          <p>${safe(t.sections.ethicsSub)}</p>
+        <blockquote class="mb27-quote">
+          <p>${c.quotes.freud.text}</p>
+          <cite>— ${c.quotes.freud.author}</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 4. Educational Long-Form Guides Showcase (4-Column Symmetrical Grid) -->
+    <section class="mb27-section" id="guides">
+      <div class="astro-container">
+        <div class="sanc-center sanc-head">
+          <span class="sanc-eyebrow">✦ ${c.guidesEyebrow}</span>
+          <h2>${c.guidesTitle}</h2>
+          <p>${c.guidesSub}</p>
         </div>
-        <div class="astro-card" style="max-width:860px; margin:0 auto; background:linear-gradient(180deg, rgba(16, 21, 38, 0.6) 0%, rgba(9, 12, 22, 0.9) 100%)">
-          <ul style="list-style:none; display:flex; flex-direction:column; gap:16px; font-size:14.5px; line-height:1.7; color:var(--muted)">
-            <li style="display:flex; gap:12px; align-items:flex-start">
-              <span style="color:var(--gold-bright); font-size:16px">✦</span>
-              <span><strong style="color:#fff">Matematiksel Açıklık:</strong> Tüm gezegen boylamları açık kaynaklı efemeris algoritmalarıyla ve milisaniye hassasiyetinde hesaplanır.</span>
-            </li>
-            <li style="display:flex; gap:12px; align-items:flex-start">
-              <span style="color:var(--gold-bright); font-size:16px">✦</span>
-              <span><strong style="color:#fff">Determinizmin Reddi:</strong> Astroloji geleceği önceden haber veren bir kehanet değil, kişinin iç dinamiklerini anlamasına yardımcı olan arketipsel bir dildir.</span>
-            </li>
-            <li style="display:flex; gap:12px; align-items:flex-start">
-              <span style="color:var(--gold-bright); font-size:16px">✦</span>
-              <span><strong style="color:#fff">Etik Sınırlar:</strong> Tıbbi teşhis, kesin finansal tavsiye ve korku odaklı kaderci iddialara platformumuzda kesinlikle yer verilmez.</span>
-            </li>
-          </ul>
+        <div class="mb27-grid-4">
+          ${guides.map((g) => `
+            <article class="mb27-card" data-spotlight>
+              <div>
+                <span class="mb27-card-tag">${g.tag} · ${g.readTime}</span>
+                <h3>${g.title}</h3>
+                <p>${g.lead}</p>
+              </div>
+              <a class="mb27-card-link" href="${guideBase}/${g.slug}">
+                <span>${loc === 'tr' ? 'Rehberi Oku' : 'Read Guide'}</span>
+                <span aria-hidden="true">${arrow}</span>
+              </a>
+            </article>
+          `).join('')}
+        </div>
+        <div class="sanc-center" style="margin-top:28px">
+          <a class="sanc-btn-ghost" href="${guideBase}">${c.guidesAll}</a>
         </div>
       </div>
     </section>
+
+    <!-- Quote Interlude III — Alfred Adler -->
+    <section class="mb27-quote-band" aria-label="Alfred Adler">
+      <div class="astro-container">
+        <blockquote class="mb27-quote">
+          <p>${c.quotes.adler.text}</p>
+          <cite>— ${c.quotes.adler.author}</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 5. Ancient Symbols & Mathematical Instruments (4-Column Symmetrical Grid) -->
+    <section class="mb27-section" id="instruments">
+      <div class="astro-container">
+        <div class="sanc-center sanc-head">
+          <span class="sanc-eyebrow">✦ ${c.toolsEyebrow}</span>
+          <h2>${c.toolsTitle}</h2>
+          <p>${c.toolsSub}</p>
+        </div>
+        <div class="mb27-grid-4">
+          ${c.tools.map((item) => `
+            <article class="mb27-card astro-card" data-spotlight>
+              <div>
+                <span class="mb27-card-tag">${item.tag}</span>
+                <h3>${item.title}</h3>
+                <p>${item.desc}</p>
+              </div>
+              <a class="mb27-card-link" href="${resolveRoute(item.route)}">
+                <span>${item.cta}</span>
+                <span aria-hidden="true">${arrow}</span>
+              </a>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Ethical Manifesto & Boundaries -->
+    <section class="mb27-section" id="methodology">
+      <div class="astro-container">
+        <div class="mb27-ethics-panel" data-spotlight>
+          <span class="sanc-eyebrow">✦ ${c.ethicsEyebrow}</span>
+          <h2>${c.ethicsTitle}</h2>
+          <p>${c.ethicsBody}</p>
+          <a class="sanc-btn-ghost" href="${getRouteHref(locale, 'approach')}">${c.ethicsCta}</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script src="/sanctuary-audio.js" defer></script>
   `;
 };

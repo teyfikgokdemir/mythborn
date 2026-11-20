@@ -302,6 +302,16 @@ export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/siginak' } = {
       </div>
     </section>
 
+    <!-- Quote Interlude — Carl Gustav Jung & Alfred Adler -->
+    <section class="mb27-quote-band" aria-label="Depth Psychology Quote">
+      <div class="astro-container">
+        <blockquote class="mb27-quote">
+          <p>${locale === 'tr' ? '“Dışarı bakan rüya görür, içeri bakan uyanır.”' : '“Who looks outside, dreams; who looks inside, awakes.”'}</p>
+          <cite>— Carl Gustav Jung</cite>
+        </blockquote>
+      </div>
+    </section>
+
     <!-- 3. Private Local Synchronicity Journal -->
     <section class="sanc-section" id="eszamanlilik">
       <div class="astro-container">

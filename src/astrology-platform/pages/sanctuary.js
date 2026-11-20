@@ -374,7 +374,7 @@ export const renderSanctuaryView = ({ locale = 'tr' } = {}) => {
       </div>
     </section>
 
-    <!-- 3. Hybrid Frequency, Music & Nature Soundscape Mixer -->
+    <!-- 3. Hybrid Frequency, Music & Nature Soundscape Mixer with Live Cymatics Canvas -->
     <section class="sanc-section" id="ses-mikseri">
       <div class="astro-container">
         <div class="sanc-center sanc-head">
@@ -384,6 +384,32 @@ export const renderSanctuaryView = ({ locale = 'tr' } = {}) => {
         </div>
 
         <div class="sanc-mixer" data-spotlight>
+          <!-- Live Cymatics Resonance Visualizer + 4 Curated Atmosphere Scenes -->
+          <div class="sanc-cymatics-band">
+            <div class="sanc-cymatics-wrap">
+              <canvas class="sanc-cymatics-canvas" data-cymatics-canvas aria-hidden="true"></canvas>
+              <span class="sanc-cymatics-caption">${loc === 'tr' ? 'CANLI KYMATİK REZONANS · STEREO TAPINAK YANKISI' : 'LIVE CYMATICS RESONANCE · STEREO TEMPLE REVERB'}</span>
+            </div>
+            <div class="sanc-scenes-grid" role="group" aria-label="${loc === 'tr' ? 'Hazır ses sahneleri' : 'Curated sound scenes'}">
+              <button type="button" class="sanc-scene-card is-active" data-spotlight data-scene-card="temple" aria-pressed="true">
+                <strong>${loc === 'tr' ? 'Gece Tapınağı' : 'Night Temple'}</strong>
+                <span>${loc === 'tr' ? '432 Hz Sıcak Harmoni · Yankılı Tibet Çanağı · Gece Yağmuru' : '432 Hz Warm Harmonics · Temple Bowls · Night Rain'}</span>
+              </button>
+              <button type="button" class="sanc-scene-card" data-spotlight data-scene-card="theta" aria-pressed="false">
+                <strong>${loc === 'tr' ? 'Theta Eşiği & Astral' : 'Theta Threshold & Astral'}</strong>
+                <span>${loc === 'tr' ? '6 Hz Binaural (Kulaklık) · Derin Akor Pad · Okyanus Dalgaları' : '6 Hz Binaural (Headphones) · Deep Pad · Ocean Waves'}</span>
+              </button>
+              <button type="button" class="sanc-scene-card" data-spotlight data-scene-card="shadow" aria-pressed="false">
+                <strong>${loc === 'tr' ? 'Gölge & İç Benlik' : 'Shadow & Inner Self'}</strong>
+                <span>${loc === 'tr' ? '396 Hz Derin Kök · Tapınak Drone · Sıcak Ateş & Mum' : '396 Hz Deep Root · Temple Drone · Warm Hearth'}</span>
+              </button>
+              <button type="button" class="sanc-scene-card" data-spotlight data-scene-card="dawn" aria-pressed="false">
+                <strong>${loc === 'tr' ? 'Şafak Berraklığı' : 'Dawn Clarity'}</strong>
+                <span>${loc === 'tr' ? '528 Hz Parlak Harmoni · Tibet Çanağı · Gece Rüzgarı' : '528 Hz Clear Harmonics · Singing Bowls · Night Wind'}</span>
+              </button>
+            </div>
+          </div>
+
           <div class="sanc-mixer-top">
             <div class="sanc-player-left">
               <button type="button" class="sanc-play-btn" data-sanc-play aria-pressed="false" aria-label="Play or pause sanctuary audio">▶</button>

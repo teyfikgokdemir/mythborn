@@ -26,15 +26,11 @@ for (const [locale, pathname, ebcedUrl, heading] of languages) {
   const desktopProd=renderAstrologyLayout({locale,isPreview:false,contentHtml:liveHome});
   assert.match(desktopProd,/class="astro-nav-frequency"/,`${locale} production nav must show studio link`);
   const home = renderHomeView({ locale });
-  assert.equal((home.match(/id="astro-ebced-title"/g) || []).length, 1, `${locale} feature appears once`);
-  assert.equal((home.match(/astro-ebced-feature-inner/g) || []).length, 1, `${locale} feature is single panel`);
-  assert.ok(home.includes(heading), `${locale} feature is translated`);
-  assert.ok(home.includes('astro-ebced-photo-frame'), `${locale} authentic imagery is present`);
-  assert.ok(home.includes('/images/Mythborn_03_Usturlap_ve_Kadim_Kitap.webp'), `${locale} first-party image is used`);
-  assert.ok(home.includes('figcaption'), `${locale} image source is identified`);
-  assert.ok(home.includes(`href="${ebcedUrl}"`), `${locale} feature links to tool`);
-  assert.ok(home.indexOf('<!-- 1. Hero:') < home.indexOf('astro-ebced-feature'), `${locale} feature follows hero`);
-  assert.ok(home.indexOf('astro-ebced-feature') < home.indexOf('<!-- 3. Kozmik Büyük Üçlü'), `${locale} feature precedes triad`);
+  assert.ok(home.includes(`href="${ebcedUrl}"`), `${locale} homepage links to ebced tool`);
+  assert.ok(home.includes('data-cymatics-canvas'), `${locale} homepage includes live cymatics canvas`);
+  assert.ok(home.includes('Carl Gustav Jung'), `${locale} homepage includes Carl Jung quote`);
+  assert.ok(home.includes('Sigmund Freud'), `${locale} homepage includes Sigmund Freud quote`);
+  assert.ok(home.includes('Alfred Adler'), `${locale} homepage includes Alfred Adler quote`);
 
   const layout = renderAstrologyLayout({
     locale, currentRouteKey: 'home', contentHtml: home, isPreview: true
@@ -46,7 +42,6 @@ for (const [locale, pathname, ebcedUrl, heading] of languages) {
   assert.ok(layout.includes('content="noindex, nofollow"'), 'preview robots preserved');
   if (locale === 'ar') {
     assert.ok(layout.includes('dir="rtl"'), 'Arabic remains RTL');
-    assert.ok(home.includes('بالتركية'), 'Arabic tool fallback is disclosed');
   }
   const response = handleAstrologyRequest(
     new Request(`https://mythborn.co${pathname}`),
@@ -54,7 +49,7 @@ for (const [locale, pathname, ebcedUrl, heading] of languages) {
   );
   assert.equal(response.status, 200, `${locale} homepage returns 200`);
   assert.equal(response.headers.get('x-robots-tag'), 'noindex, nofollow');
-  assert.ok((await response.text()).includes('astro-ebced-feature'), `${locale} response contains feature`);
+  assert.ok((await response.text()).includes('mb27-home'), `${locale} response contains 2027 homepage`);
 }
 const css = readFileSync(new URL('../src/astrology-platform/tokens.js', import.meta.url), 'utf8');
 assert.match(css, /\.astro-ebced-feature-inner\s*\{/);
