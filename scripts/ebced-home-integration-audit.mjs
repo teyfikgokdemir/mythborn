@@ -18,13 +18,11 @@ for (const [locale, pathname, ebcedUrl, heading] of languages) {
   assert.match(liveHome,/id="frequency-studio"/,`${locale} production must show studio`);
   const previewHome = renderHomeView({ locale, isPreview: true });
   assert.match(previewHome,/id="frequency-studio"/,`${locale} preview should show frequency promo`);
-  assert.match(previewHome,/href="\/frekans-studyo"/,`${locale} frequency promo link`);
   const desktopPreview=renderAstrologyLayout({locale,isPreview:true,contentHtml:previewHome});
   assert.doesNotMatch(desktopPreview,/<a class="astro-cta-gold"[^>]*>/,`${locale} header CTA should not duplicate home hero`);
-  assert.match(desktopPreview,/class="astro-nav-frequency"/,`${locale} preview desktop nav`);
-  assert.match(desktopPreview,/href="\/frekans-studyo"/,`${locale} preview studio nav href`);
+  assert.ok(desktopPreview.includes(getRouteHref(locale, 'sanctuary')), `${locale} unified meditation-frequency nav link`);
   const desktopProd=renderAstrologyLayout({locale,isPreview:false,contentHtml:liveHome});
-  assert.match(desktopProd,/class="astro-nav-frequency"/,`${locale} production nav must show studio link`);
+  assert.ok(desktopProd.includes(getRouteHref(locale, 'sanctuary')), `${locale} production nav must show unified studio link`);
   const home = renderHomeView({ locale });
   assert.ok(home.includes(`href="${ebcedUrl}"`), `${locale} homepage links to ebced tool`);
   assert.ok(home.includes('data-cymatics-canvas'), `${locale} homepage includes live cymatics canvas`);

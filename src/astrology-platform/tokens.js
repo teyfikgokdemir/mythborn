@@ -4339,4 +4339,33 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-eyebrow{
   .jung-faq-grid{grid-template-columns:1fr}
 }
 
+/* Single-line section H2s on desktop + 4x2 Unified Studio Frequency Grid */
+.sanc-head{max-width:1140px!important}
+@media(min-width:1080px){
+  .sanc-head h2{
+    white-space:nowrap;
+    font-size:clamp(26px, 2.75vw, 39px)!important;
+  }
+}
+.sanc-track-grid{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:14px;
+  margin-top:24px;
+}
+.sanc-track-hz{
+  font-family:var(--font-serif);
+  font-size:28px;
+  font-weight:400;
+  color:var(--gold-bright);
+  line-height:1.1;
+}
+.sanc-track-hz small{
+  font-family:var(--font-sans);
+  font-size:12px;
+  color:var(--muted);
+}
+@media(max-width:1024px){.sanc-track-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}}
+@media(max-width:600px){.sanc-track-grid{grid-template-columns:1fr}}
+
 `;

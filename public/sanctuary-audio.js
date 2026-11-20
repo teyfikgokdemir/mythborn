@@ -181,8 +181,8 @@
 
     const syncStudioTrackVolume = () => {
       if (studioAudio) {
-        const v = musicVol ? Number(musicVol.value) : 65;
-        studioAudio.volume = Math.max(0, Math.min(1, v / 100)) * 0.78;
+        const v = musicVol ? Number(musicVol.value) : 90;
+        studioAudio.volume = Math.max(0, Math.min(1, v / 100));
       }
     };
 

@@ -8,7 +8,7 @@ export const getRouteHref = (localeKey, routeKey = 'home') => {
 
   const routes = {
     home: p || '/',
-    sanctuary: `${p}${localeKey === 'tr' ? '/siginak' : localeKey === 'en' ? '/sanctuary' : localeKey === 'el' ? '/katafygio' : localeKey === 'es' ? '/santuario' : '/al-maladh'}`,
+    sanctuary: `${p}${localeKey === 'tr' ? '/meditasyon-ve-frekans' : localeKey === 'en' ? '/meditation-and-frequencies' : localeKey === 'el' ? '/dialogismos-kai-sychnotites' : localeKey === 'es' ? '/meditacion-y-frecuencias' : '/altaamul-waltaraddudat'}`,
     jung: `${p}/jung`,
     guides: `${p}${localeKey === 'tr' ? '/rehber' : localeKey === 'en' ? '/guides' : localeKey === 'el' ? '/odigoi' : localeKey === 'es' ? '/guias' : '/al-dalil'}`,
     ebced: localeKey === 'ar' ? '/ebced' : `${p}/ebced`,
@@ -163,11 +163,11 @@ export const renderAstrologyLayout = ({
     : locale === 'es' ? '↑ Volver Arriba'
     : '↑ إلى الأعلى';
 
-  const sanctuaryLabel = ({ tr: 'Sığınak', en: 'Sanctuary', el: 'Καταφύγιο', es: 'Santuario', ar: 'الملاذ' })[locale] || 'Sanctuary';
+  const sanctuaryLabel = ({ tr: 'Meditasyon & Frekans', en: 'Meditation & Frequencies', el: 'Διαλογισμός & Συχνότητες', es: 'Meditación y Frecuencias', ar: 'التأمل والترددات' })[locale] || 'Meditation & Frequencies';
   const jungLabel = ({ tr: 'Carl Jung', en: 'Carl Jung', el: 'Carl Jung', es: 'Carl Jung', ar: 'كارل يونغ' })[locale] || 'Carl Jung';
   const guidesLabel = ({ tr: 'Rehberler', en: 'Guides', el: 'Οδηγοί', es: 'Guías', ar: 'الأدلة' })[locale] || 'Guides';
 
-  // Primary desktop navigation items (focused, elite sanctuary + depth + guides + tools)
+  // Primary desktop navigation items (unified flagship Meditation & Frequencies + Jung + Guides + Ebced)
   const desktopPrimaryNav = [
     { key: 'sanctuary', label: sanctuaryLabel },
     { key: 'jung', label: jungLabel },
@@ -175,10 +175,8 @@ export const renderAstrologyLayout = ({
     { key: 'ebced', label: locale === 'tr' ? 'Ebced' : locale === 'ar' ? 'الأبجد' : locale === 'el' ? 'Αμπτζάντ' : locale === 'es' ? 'Ábyad' : 'Abjad' }
   ];
 
-  // Frequency Studio is a published page; preserve the same link across all locales.
-  const frequencyTitle = ({ tr: 'Frekans Stüdyosu', en: 'Frequency Studio', el: 'Στούντιο Συχνοτήτων', es: 'Estudio de Frecuencias', ar: 'استوديو الترددات' })[locale] || 'Frequency Studio';
-  const frequencyHref = '/frekans-studyo';
-  const frequencyDesktopLink = `<a class="astro-nav-frequency" href="${frequencyHref}">${safe(frequencyTitle)}</a>`;
+  // Unified into Meditation & Frequencies (no duplicate top-bar link)
+  const frequencyDesktopLink = '';
 
   const primaryLinksHtml = desktopPrimaryNav
     .map((item) => {
@@ -214,7 +212,6 @@ export const renderAstrologyLayout = ({
     { key: 'sanctuary', label: sanctuaryLabel },
     { key: 'jung', label: jungLabel },
     { key: 'guides', label: guidesLabel },
-    { key: 'frequency', label: frequencyTitle },
     { key: 'natal', label: t.menu.natal },
     { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
     { key: 'zodiac', label: t.menu.zodiac },
@@ -225,7 +222,7 @@ export const renderAstrologyLayout = ({
 
   const drawerNavHtml = allDrawerItems
     .map((item) => {
-      const href = item.key === 'frequency' ? frequencyHref : getRouteHref(locale, item.key);
+      const href = getRouteHref(locale, item.key);
       const activeAttr = item.key === currentRouteKey ? ' aria-current="page"' : '';
       return `<a href="${href}"${activeAttr}><span>✦ ${safe(item.label)}</span><span aria-hidden="true">${isRtl ? '←' : '→'}</span></a>`;
     })
@@ -450,7 +447,6 @@ export const renderAstrologyLayout = ({
               <li><a href="${getRouteHref(locale, 'jung')}">${safe(jungLabel)}</a></li>
               <li><a href="${getRouteHref(locale, 'guides')}">${safe(guidesLabel)}</a></li>
               <li><a href="${getRouteHref(locale, 'guides')}/rezonans-kanunu-nedir">${locale === 'tr' ? 'Rezonans Kanunu' : 'Law of Resonance'}</a></li>
-              <li><a href="${frequencyHref}">${safe(frequencyTitle)}</a></li>
             </ul>
           </div>
 
