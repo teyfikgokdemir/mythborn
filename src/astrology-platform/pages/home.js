@@ -224,10 +224,26 @@ export const renderHomeView = ({ locale = 'tr' } = {}) => {
     return getRouteHref(locale, key);
   };
 
+  const pillarImages = {
+    sanctuary: '/images/cinematic/daily/daily-card-altar-960.webp',
+    jung: '/images/astrology/moon-archetype.jpg',
+    sanctuary_mixer: '/images/Mythborn_02_Altin_Kutsal_Geometri.webp',
+    guides: '/images/cinematic/knowledge/celestial-knowledge-library-960.webp'
+  };
+  const toolImages = {
+    natal: '/images/cinematic/astrology/birth-chart-observatory-960.webp',
+    ebced: '/images/Mythborn_03_Usturlap_ve_Kadim_Kitap.webp',
+    synastry: '/images/cinematic/katina/katina-relationship-960.webp',
+    calendar: '/images/astrology/zodiac-celestial-tapestry.jpg'
+  };
+
   return `
   <div class="mb27-home" data-sanctuary-app>
-    <!-- 1. Ground-Up 2027 Quiet-Luxury Sanctuary Hero -->
+    <!-- 1. Ground-Up 2027 Quiet-Luxury Sanctuary Hero with Real Celestial Photography -->
     <section class="mb27-hero">
+      <div class="mb27-hero-media" aria-hidden="true">
+        <img src="/images/cinematic/home/hero-celestial-1440.webp" alt="" width="1440" height="900" fetchpriority="high" decoding="async">
+      </div>
       <div class="mb27-hero-aura" aria-hidden="true">
         <div class="mb27-orbit mb27-orbit-1"></div>
         <div class="mb27-orbit mb27-orbit-2"></div>
@@ -262,16 +278,21 @@ export const renderHomeView = ({ locale = 'tr' } = {}) => {
         </div>
         <div class="mb27-grid-4">
           ${c.pillars.map((p) => `
-            <article class="mb27-card" data-spotlight>
-              <div>
-                <span class="mb27-card-tag">${p.tag}</span>
-                <h3>${p.title}</h3>
-                <p>${p.desc}</p>
+            <article class="mb27-card mb27-card-has-media" data-spotlight>
+              <div class="mb27-card-media">
+                <img src="${pillarImages[p.route] || '/images/Mythborn_01_Kozmik_Usturlap.webp'}" alt="${p.title}" loading="lazy" decoding="async">
               </div>
-              <a class="mb27-card-link" href="${resolveRoute(p.route)}">
-                <span>${p.cta}</span>
-                <span aria-hidden="true">${arrow}</span>
-              </a>
+              <div class="mb27-card-body">
+                <div>
+                  <span class="mb27-card-tag">${p.tag}</span>
+                  <h3>${p.title}</h3>
+                  <p>${p.desc}</p>
+                </div>
+                <a class="mb27-card-link" href="${resolveRoute(p.route)}">
+                  <span>${p.cta}</span>
+                  <span aria-hidden="true">${arrow}</span>
+                </a>
+              </div>
             </article>
           `).join('')}
         </div>
@@ -368,16 +389,21 @@ export const renderHomeView = ({ locale = 'tr' } = {}) => {
         </div>
         <div class="mb27-grid-4">
           ${guides.map((g) => `
-            <article class="mb27-card" data-spotlight>
-              <div>
-                <span class="mb27-card-tag">${g.tag} · ${g.readTime}</span>
-                <h3>${g.title}</h3>
-                <p>${g.lead}</p>
+            <article class="mb27-card mb27-card-has-media" data-spotlight>
+              <div class="mb27-card-media">
+                <img src="${g.image || '/images/cinematic/knowledge/celestial-knowledge-library-960.webp'}" alt="${g.title}" loading="lazy" decoding="async">
               </div>
-              <a class="mb27-card-link" href="${guideBase}/${g.slug}">
-                <span>${loc === 'tr' ? 'Rehberi Oku' : 'Read Guide'}</span>
-                <span aria-hidden="true">${arrow}</span>
-              </a>
+              <div class="mb27-card-body">
+                <div>
+                  <span class="mb27-card-tag">${g.tag} · ${g.readTime}</span>
+                  <h3>${g.title}</h3>
+                  <p>${g.lead}</p>
+                </div>
+                <a class="mb27-card-link" href="${guideBase}/${g.slug}">
+                  <span>${loc === 'tr' ? 'Rehberi Oku' : 'Read Guide'}</span>
+                  <span aria-hidden="true">${arrow}</span>
+                </a>
+              </div>
             </article>
           `).join('')}
         </div>
@@ -407,16 +433,21 @@ export const renderHomeView = ({ locale = 'tr' } = {}) => {
         </div>
         <div class="mb27-grid-4">
           ${c.tools.map((item) => `
-            <article class="mb27-card astro-card" data-spotlight>
-              <div>
-                <span class="mb27-card-tag">${item.tag}</span>
-                <h3>${item.title}</h3>
-                <p>${item.desc}</p>
+            <article class="mb27-card mb27-card-has-media astro-card" data-spotlight>
+              <div class="mb27-card-media">
+                <img src="${toolImages[item.route] || '/images/Mythborn_01_Kozmik_Usturlap.webp'}" alt="${item.title}" loading="lazy" decoding="async">
               </div>
-              <a class="mb27-card-link" href="${resolveRoute(item.route)}">
-                <span>${item.cta}</span>
-                <span aria-hidden="true">${arrow}</span>
-              </a>
+              <div class="mb27-card-body">
+                <div>
+                  <span class="mb27-card-tag">${item.tag}</span>
+                  <h3>${item.title}</h3>
+                  <p>${item.desc}</p>
+                </div>
+                <a class="mb27-card-link" href="${resolveRoute(item.route)}">
+                  <span>${item.cta}</span>
+                  <span aria-hidden="true">${arrow}</span>
+                </a>
+              </div>
             </article>
           `).join('')}
         </div>

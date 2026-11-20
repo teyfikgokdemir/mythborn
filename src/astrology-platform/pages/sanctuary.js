@@ -262,12 +262,15 @@ export const renderSanctuaryView = ({ locale = 'tr' } = {}) => {
 
   return `
   <div class="sanc-page" data-sanctuary-app>
-    <!-- 1. Centered Single-Scroll Hero -->
+    <!-- 1. Centered Single-Scroll Hero with Real Sanctuary Photography -->
     <section class="sanc-hero">
-      <div class="astro-container sanc-center">
-        <span class="sanc-eyebrow">✦ ${c.eyebrow}</span>
-        <h1 class="sanc-h1">${c.title}</h1>
-        <p class="sanc-lead">${c.lead}</p>
+      <div class="astro-container sanc-center sanc-hero-photo">
+        <img class="sanc-hero-bg" src="/images/cinematic/daily/daily-card-altar-960.webp" alt="" width="960" height="640" fetchpriority="high" decoding="async" aria-hidden="true">
+        <div class="sanc-hero-content">
+          <span class="sanc-eyebrow">✦ ${c.eyebrow}</span>
+          <h1 class="sanc-h1">${c.title}</h1>
+          <p class="sanc-lead">${c.lead}</p>
+        </div>
       </div>
     </section>
 

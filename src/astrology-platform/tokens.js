@@ -4007,4 +4007,85 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-lead,
   .mb27-hero{min-height:auto;max-height:none}
 }
 
+/* =========================================================================
+   REAL CINEMATIC PHOTOGRAPHY FRAMING (HERO & EDITORIAL CARDS)
+   ========================================================================= */
+.mb27-hero-media{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.mb27-hero-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 38%;
+  opacity:0.42;
+  filter:saturate(0.86) contrast(1.06) brightness(0.76);
+}
+.mb27-hero-media::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 75% 70% at 50% 42%, rgba(8, 11, 18, 0.25) 0%, rgba(8, 11, 18, 0.88) 82%),
+    linear-gradient(180deg, rgba(8, 11, 18, 0.55) 0%, rgba(8, 11, 18, 0.32) 48%, #080b12 100%);
+}
+
+.mb27-card-has-media{
+  padding:0!important;
+  gap:0!important;
+  overflow:hidden;
+}
+.mb27-card-media{
+  position:relative;
+  aspect-ratio:16 / 10;
+  overflow:hidden;
+  background:#0a0e18;
+  border-bottom:1px solid rgba(214, 190, 146, 0.14);
+}
+.mb27-card-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(0.88) contrast(1.04) brightness(0.86);
+  transition:transform .55s cubic-bezier(.16,1,.3,1), filter .35s ease;
+}
+.mb27-card-media::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(8,11,18,0.06) 0%, rgba(8,11,18,0.58) 100%);
+  pointer-events:none;
+}
+.mb27-card-has-media:hover .mb27-card-media img{
+  transform:scale(1.04);
+  filter:saturate(0.96) contrast(1.06) brightness(0.95);
+}
+.mb27-card-body{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:18px;
+  flex:1;
+  padding:22px 22px 24px;
+}
+
+.sanc-hero-photo{position:relative;overflow:hidden}
+.sanc-hero-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0.24;
+  filter:saturate(0.84) brightness(0.74);
+  z-index:0;
+  pointer-events:none;
+}
+.sanc-hero-content{position:relative;z-index:2}
+
 `;
