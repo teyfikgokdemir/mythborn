@@ -3597,4 +3597,151 @@ html[dir="rtl"] .retro-guidance-box {
   .breath-orb{transition:none!important}
 }
 
+/* =========================================================================
+   FAZ 2 — 2027 ULTRA-ELITE QUIET-LUXURY MASTER LAYER
+   Deep Night Indigo (#080b12 / #0f1522) · Pale Moon Gold (#d6be92) · Mist (#94a9c9)
+   ========================================================================= */
+textarea{resize:none!important}
+
+/* Frosted Deep Indigo Navigation Bar */
+.astro-nav{
+  background:rgba(8, 11, 18, 0.84)!important;
+  backdrop-filter:blur(18px) saturate(130%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(130%)!important;
+  border-bottom:1px solid rgba(214, 190, 146, 0.16)!important;
+}
+
+/* Zero hazy outer glow on primary buttons — crisp architectural gold finish */
+.astro-btn-primary,
+.sanc-btn-gold,
+.astro-frequency-preview-cta{
+  box-shadow:none!important;
+  border:1px solid rgba(234, 215, 178, 0.58)!important;
+  background:linear-gradient(135deg, #efe0c0 0%, #d6be92 52%, #b09565 100%)!important;
+  color:#080b12!important;
+  letter-spacing:0.02em;
+  transition:transform .22s cubic-bezier(.16,1,.3,1), filter .22s ease!important;
+}
+.astro-btn-primary:hover,
+.sanc-btn-gold:hover,
+.astro-frequency-preview-cta:hover{
+  transform:translateY(-1px)!important;
+  filter:brightness(1.06)!important;
+  box-shadow:none!important;
+}
+
+/* Ultra-Elite Inner-Page Hero Sanctuary Panel (All inner routes + Sanctuary + Jung) */
+main > section.astro-hero:not(.astro-section-viewport),
+.sanc-hero{
+  padding:clamp(34px, 4.5vw, 56px) 0 clamp(28px, 3.6vw, 44px)!important;
+  border-bottom:0!important;
+  background:none!important;
+}
+main > section.astro-hero:not(.astro-section-viewport) > .astro-container,
+.sanc-hero > .astro-container{
+  position:relative;
+  isolation:isolate;
+  max-width:1160px;
+  padding:clamp(42px, 5.2vw, 72px) clamp(24px, 4vw, 64px)!important;
+  border-radius:24px;
+  border:1px solid rgba(214, 190, 146, 0.24);
+  background:
+    radial-gradient(ellipse 75% 65% at 50% 0%, rgba(148, 169, 201, 0.16), transparent 68%),
+    radial-gradient(ellipse 55% 45% at 50% 100%, rgba(214, 190, 146, 0.07), transparent 72%),
+    linear-gradient(165deg, rgba(16, 23, 38, 0.94) 0%, rgba(8, 11, 18, 0.98) 100%);
+  box-shadow:0 28px 72px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(234, 215, 178, 0.22);
+  text-align:center;
+  overflow:hidden;
+}
+main > section.astro-hero:not(.astro-section-viewport) > .astro-container::before,
+.sanc-hero > .astro-container::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:12%;
+  right:12%;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(234, 215, 178, 0.78), transparent);
+  pointer-events:none;
+}
+main > section.astro-hero:not(.astro-section-viewport) .astro-hero-eyebrow,
+.sanc-hero .sanc-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 16px;
+  border-radius:999px;
+  border:1px solid rgba(214, 190, 146, 0.28);
+  background:rgba(214, 190, 146, 0.06);
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:0.2em;
+  color:var(--gold-bright);
+  margin-bottom:20px;
+}
+main > section.astro-hero:not(.astro-section-viewport) h1,
+.sanc-hero .sanc-h1{
+  font-family:var(--font-serif)!important;
+  font-weight:400!important;
+  font-size:clamp(32px, 4.1vw, 56px)!important;
+  line-height:1.12!important;
+  letter-spacing:-0.025em!important;
+  color:#f6f2ea!important;
+  margin:0 auto 16px!important;
+  max-width:960px!important;
+  text-align:center!important;
+}
+main > section.astro-hero:not(.astro-section-viewport) .astro-hero-lead,
+.sanc-hero .sanc-lead{
+  font-size:clamp(14.5px, 1.18vw, 17px)!important;
+  line-height:1.75!important;
+  color:#b4bfd4!important;
+  max-width:700px!important;
+  margin:0 auto!important;
+  text-align:center!important;
+}
+
+/* Unified Deep Night Indigo Velvet Glass Surfaces */
+.astro-card,
+.astro-form-card,
+.astro-quick-box,
+.astro-bridge-card,
+.zodiac-natural-card,
+.archetype-card{
+  border-color:rgba(214, 190, 146, 0.19)!important;
+  background:linear-gradient(155deg, rgba(15, 21, 34, 0.88) 0%, rgba(8, 11, 18, 0.96) 100%)!important;
+  box-shadow:0 18px 46px rgba(0, 0, 0, 0.28);
+}
+.astro-card:hover,
+.zodiac-natural-card:hover,
+.archetype-card:hover{
+  border-color:rgba(214, 190, 146, 0.44)!important;
+}
+
+/* Centered Section Headers */
+.astro-section-head{
+  text-align:center!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.astro-section-head h2{
+  font-family:var(--font-serif)!important;
+  font-weight:400!important;
+  letter-spacing:-0.02em!important;
+  color:#f6f2ea!important;
+}
+.astro-section-head p{
+  color:#a8b3c8!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+@media(max-width:680px){
+  main > section.astro-hero:not(.astro-section-viewport) > .astro-container,
+  .sanc-hero > .astro-container{
+    border-radius:18px;
+    padding:34px 20px!important;
+  }
+}
+
 `;
