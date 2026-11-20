@@ -365,14 +365,14 @@ export const renderHomeView = ({ locale = 'tr' } = {}) => {
               <option value="track:639hz">639hz</option>
               <option value="track:alpha-10hz">alpha-10hz</option>
             </select>
-            <input type="range" data-sanc-music-vol value="74">
+            <input type="range" data-sanc-music-vol value="90">
             <select data-sanc-nature><option value="rain" selected>rain</option><option value="ocean">ocean</option><option value="wind">wind</option><option value="fire">fire</option><option value="off">off</option></select>
             <input type="range" data-sanc-nature-vol value="26">
           </div>
 
           <div class="sanc-mixer-foot">
             <a href="${sanctuaryHref}#ses-mikseri" class="sanc-link">${c.soundFullLink}</a>
-            <a href="/frekans-studyo" class="sanc-link">${c.soundPureLink}</a>
+            <a href="${sanctuaryHref}#odalar" class="sanc-link">${loc === 'tr' ? '4 Canlı Meditasyon Odası →' : '4 Live Meditation Rooms →'}</a>
           </div>
         </div>
       </div>

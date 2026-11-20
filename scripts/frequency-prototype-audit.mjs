@@ -44,8 +44,7 @@ assert.match(script, /\/audio\/alpha-10hz\.m4a/);
 assert.match(script, /document\.addEventListener\('visibilitychange'/);
 assert.doesNotMatch(script, /\.getUserMedia\(/);
 assert.match(router, /if\(frequencyPrototypePath\(incoming\.pathname\)/);
-assert.match(router, /frequencyPrototypePage\(preview\)/);
-assert.match(router, /<url><loc>\$\{SITE\}\/frekans-studyo<\/loc>/);
+assert.match(router, /\/meditasyon-ve-frekans/);
 
 new vm.Script(script, { filename: 'public/frequency-studio.js' });
-console.log('frequency-prototype-audit: 2027 8-track studio, cymatics canvas, safe playback, DSÖ/NIH guide PASS');
+console.log('frequency-prototype-audit: 2027 unified studio redirect & safe playback PASS');

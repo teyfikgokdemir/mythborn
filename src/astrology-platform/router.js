@@ -26,8 +26,8 @@ export const matchAstrologyRoute = (pathname = '/') => {
   const clean = pathname.toLowerCase().replace(/^\/(?:en|gr|el|es|ar)(?=\/|$)/, '') || '/';
 
   if (clean === '/' || clean === '') return 'home';
-  if (['/siginak', '/sanctuary', '/katafygio', '/santuario', '/al-maladh'].includes(clean)) return 'sanctuary';
-  if (['/meditasyon', '/meditation', '/rezonans', '/resonance'].includes(clean)) return 'redirect:sanctuary';
+  if (['/meditasyon-ve-frekans', '/meditation-and-frequencies', '/dialogismos-kai-sychnotites', '/meditacion-y-frecuencias', '/altaamul-waltaraddudat'].includes(clean)) return 'sanctuary';
+  if (['/siginak', '/sanctuary', '/katafygio', '/santuario', '/al-maladh', '/meditasyon', '/meditation', '/rezonans', '/resonance', '/frekans-studyo', '/frequency-studio'].includes(clean)) return 'redirect:sanctuary';
   if (clean === '/jung') return 'jung';
   if (clean === '/carl-jung' || clean === '/arketip' || clean === '/archetypes') return 'redirect:jung';
   if (['/rehber', '/guides', '/odigoi', '/guias', '/al-dalil'].includes(clean)) return 'guides';

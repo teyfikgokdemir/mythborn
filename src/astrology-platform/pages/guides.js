@@ -8,7 +8,7 @@ const GUIDES_TR = [
     readTime: '5 dk okuma',
     title: 'Rezonans Kanunu Nedir? Kalp, Zihin ve Bilinçli Uyumun Özeti',
     lead: 'Fizikte titreşimsel uyum olarak başlayan rezonans kavramı, kişisel farkındalıkta içsel inançların dışsal seçimlerle nasıl örtüştüğünü anlatan güçlü bir aynadır.',
-    ctaHref: '/siginak#ses-mikseri',
+    ctaHref: '/meditasyon-ve-frekans#ses-mikseri',
     ctaLabel: '432 Hz & Doğa Rezonansı Stüdyosunu Aç →',
     sections: [
       {
@@ -44,7 +44,7 @@ const GUIDES_TR = [
     readTime: '6 dk okuma',
     title: 'Spiritüel Yaşam ve Bilinçli Farkındalık Nedir?',
     lead: 'Spiritüel yaşam; dogmalardan veya mucize vaatlerinden bağımsız olarak insanın kendi iç sesini duyması, anda kalması ve yaşamla anlamlı bir bağ kurmasıdır.',
-    ctaHref: '/siginak',
+    ctaHref: '/meditasyon-ve-frekans',
     ctaLabel: 'Canlı Meditasyon Sığınağını Dene →',
     sections: [
       {
@@ -121,7 +121,7 @@ const GUIDES_TR = [
     readTime: '6 dk okuma',
     title: 'Meditasyon Türleri: Mum (Trataka), İç Benlik Nefesi, Theta ve 108 Mantra',
     lead: 'Zihni zorla susturmaya çalışmadan dinginliğe ulaşmak için dört kadim pratiğin adım adım uygulanış rehberi.',
-    ctaHref: '/siginak',
+    ctaHref: '/meditasyon-ve-frekans',
     ctaLabel: 'Dört Meditasyon Odasını Şimdi Deneyimle →',
     sections: [
       {
@@ -155,7 +155,7 @@ const GUIDES_TR = [
     readTime: '6 dk okuma',
     title: 'Frekans, Rezonans ve Beyin Dalgaları (Alpha, Theta, Delta, Solfeggio)',
     lead: 'Hertz nedir, binaural vuruşlar kulaklıkta nasıl oluşur, 432 Hz ile 440 Hz arasındaki fark nedir ve güvenli dinleme sınırları nelerdir?',
-    ctaHref: '/siginak#ses-mikseri',
+    ctaHref: '/meditasyon-ve-frekans#ses-mikseri',
     ctaLabel: 'Kymatik & Stereo Yankılı Ses Stüdyosunu Aç →',
     sections: [
       {
@@ -193,7 +193,7 @@ const GUIDES_EN = [
     readTime: '5 min read',
     title: 'What Is the Law of Resonance? A Clear Summary of Heart, Mind & Alignment',
     lead: 'Rooted in acoustic physics as a metaphor, the Law of Resonance explores how inner beliefs, emotional coherence and daily choices shape what we notice and build.',
-    ctaHref: '/en/sanctuary#ses-mikseri',
+    ctaHref: '/en/meditation-and-frequencies#ses-mikseri',
     ctaLabel: 'Open 432 Hz & Nature Resonance Studio →',
     sections: [
       {
@@ -220,7 +220,7 @@ const GUIDES_EN = [
     readTime: '6 min read',
     title: 'What Is Mindful & Spiritual Living?',
     lead: 'Independent of dogma or miracle claims, spiritual living is the quiet art of presence, self-honesty and meaningful connection with life.',
-    ctaHref: '/en/sanctuary',
+    ctaHref: '/en/meditation-and-frequencies',
     ctaLabel: 'Enter the Live Meditation Sanctuary →',
     sections: [
       {
@@ -278,7 +278,7 @@ const GUIDES_EN = [
     readTime: '6 min read',
     title: 'Meditation Guide: Candle (Trataka), Breath, Theta & 108 Mala',
     lead: 'Step-by-step guidance for four timeless practices that calm the mind without forcing silence.',
-    ctaHref: '/en/sanctuary',
+    ctaHref: '/en/meditation-and-frequencies',
     ctaLabel: 'Experience All Four Sanctuary Rooms →',
     sections: [
       {
@@ -301,7 +301,7 @@ const GUIDES_EN = [
     readTime: '6 min read',
     title: 'Frequencies, Resonance & Brainwaves (Alpha, Theta, Delta)',
     lead: 'Understanding Hertz physics, stereo binaural beats, 432 Hz vs 440 Hz tuning and safe-listening guidelines.',
-    ctaHref: '/en/sanctuary#ses-mikseri',
+    ctaHref: '/en/meditation-and-frequencies#ses-mikseri',
     ctaLabel: 'Open Cymatics & Stereo Reverb Studio →',
     sections: [
       {
