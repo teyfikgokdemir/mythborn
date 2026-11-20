@@ -4261,4 +4261,82 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-eyebrow{
   .guide-featured-media{min-height:220px}
 }
 
+/* Rich Carl Jung Monograph, 3-School Comparison & FAQ */
+.jung-monograph-grid{
+  display:grid;
+  grid-template-columns:minmax(0, 1.3fr) minmax(280px, 0.9fr);
+  gap:clamp(24px, 4vw, 52px);
+  align-items:start;
+}
+.jung-monograph-copy h2{
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:clamp(26px, 2.8vw, 38px);
+  line-height:1.18;
+  color:#f6f2ea;
+  margin:0 0 18px;
+}
+.jung-monograph-copy p{
+  font-size:15.5px;
+  line-height:1.82;
+  color:#cbd3e3;
+  margin:0 0 16px;
+}
+.jung-monograph-facts{
+  padding:28px 26px;
+  border-radius:18px;
+  border:1px solid rgba(214, 190, 146, 0.22);
+  background:linear-gradient(155deg, rgba(16, 23, 38, 0.9), rgba(8, 11, 18, 0.98));
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+.jung-fact-row{padding-bottom:16px;border-bottom:1px solid rgba(214, 190, 146, 0.14)}
+.jung-fact-row:last-child{padding-bottom:0;border-bottom:0}
+.jung-fact-row strong{display:block;font-family:var(--font-serif);font-size:17px;font-weight:500;color:var(--gold-bright);margin-bottom:6px}
+.jung-fact-row span{display:block;font-size:13.5px;line-height:1.68;color:var(--muted)}
+
+.jung-compare-grid{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:18px}
+.jung-compare-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:20px;
+  padding:28px 24px;
+  border-radius:18px;
+  border:1px solid rgba(214, 190, 146, 0.2);
+  background:linear-gradient(160deg, rgba(15, 21, 34, 0.9), rgba(8, 11, 18, 0.98));
+}
+.jung-compare-card h3{font-family:var(--font-serif);font-weight:400;font-size:24px;color:#f6f2ea;margin:0 0 16px}
+.jung-compare-dl{margin:0;display:flex;flex-direction:column;gap:12px}
+.jung-compare-dl dt{font-size:10.5px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.jung-compare-dl dd{margin:0;font-size:13.5px;line-height:1.68;color:#cdd5e5}
+.jung-compare-quote{
+  margin:0;
+  padding-top:16px;
+  border-top:1px solid rgba(214, 190, 146, 0.14);
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-size:13.5px;
+  line-height:1.65;
+  color:var(--gold-bright);
+}
+
+.jung-faq-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:16px;max-width:1080px;margin:0 auto}
+.jung-faq-card{
+  padding:24px 22px;
+  border-radius:16px;
+  border:1px solid rgba(214, 190, 146, 0.18);
+  background:linear-gradient(160deg, rgba(15, 21, 34, 0.86), rgba(8, 11, 18, 0.97));
+}
+.jung-faq-card h3{font-family:var(--font-serif);font-weight:500;font-size:18px;color:var(--gold-bright);margin:0 0 10px}
+.jung-faq-card p{font-size:13.5px;line-height:1.74;color:var(--muted);margin:0}
+
+@media(max-width:1024px){
+  .jung-monograph-grid,.jung-compare-grid{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .jung-faq-grid{grid-template-columns:1fr}
+}
+
 `;

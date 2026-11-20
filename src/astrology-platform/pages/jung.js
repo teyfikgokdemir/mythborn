@@ -1,4 +1,4 @@
-// Mythborn 2027 — Carl Jung Depth Psychology: Archetypes, Shadow & Synchronicity Mirror
+// Mythborn 2027 — Carl Gustav Jung Depth Psychology Monograph, Interactive Archetype & Shadow Mirror
 // Localized across tr, en, el, es, ar — Deep Night Indigo (#080b12) & Pale Moon Gold (#d6be92)
 
 const JUNG_COPY = {
@@ -6,6 +6,48 @@ const JUNG_COPY = {
     eyebrow: 'CARL JUNG DERİNLİK PSİKOLOJİSİ · ARKETİP & GÖLGE AYNASI',
     title: 'Bilinç Dışını Görünür Kıl, Bütünlüğe Dön.',
     lead: 'Carl Gustav Jung’un arketip, gölge çalışması, aktif imgelem ve eşzamanlılık ilkeleriyle derin öz-farkındalık alanı.',
+    intro: {
+      eyebrow: 'ANALİTİK PSİKOLOJİNİN TEMELİ',
+      title: 'Carl Gustav Jung ve İnsan Ruhunun Haritası',
+      p1: 'İsviçreli psikiyatrist Carl Gustav Jung (1875–1961), insan zihnini yalnızca bastırılmış travmaların deposu olarak değil; anlam, yaratıcılık ve bütünlük arayan canlı bir sembol sistemi olarak okudu. Sigmund Freud ile başlayan derinlik yolculuğunu “Kolektif Bilinç Dışı”, “Arketipler”, “Gölge”, “Eşzamanlılık” ve “Bireyleşme” kavramlarıyla bambaşka bir ufka taşıdı.',
+      p2: 'Jung’a göre hayatın ilk yarısı toplumsal uyum, başarı ve kimlik (Persona) inşa etmekle geçer; ikinci yarısı ise taktığımız maskelerin ötesine geçip kendi özgün merkezimize (Self / Öz) dönme çağrısıdır. Bu yüzden rüyalar, tekrar eden ilişki kalıpları ve güçlü duygusal tetiklenmeler düşman değil; bilinç dışının bize gönderdiği dürüst mektuplardır.',
+      facts: [
+        ['Analitik Psikoloji', 'Zürih Burghölzli’deki klinik gözlemler ve mitoloji araştırmalarıyla kuruldu.'],
+        ['Kırmızı Kitap (Liber Novus)', 'Jung’un kendi bilinç dışıyla kurduğu 16 yıllık Aktif İmgelem günlüğü.'],
+        ['Bireyleşme (Individuation)', 'Kusursuz olmak değil; aydınlık ve gölge tüm parçaları bilinçli merkezde bütünleştirmek.']
+      ]
+    },
+    compare: {
+      eyebrow: 'DERİNLİK PSİKOLOJİSİNİN ÜÇ BÜYÜK MİMARI',
+      title: 'Carl Jung · Sigmund Freud · Alfred Adler',
+      sub: 'Aynı insan ruhuna üç farklı pencereden bakan üç büyük ekolün özeti.',
+      items: [
+        {
+          name: 'Carl Gustav Jung',
+          school: 'Analitik Psikoloji',
+          drive: 'Anlam arayışı ve Bireyleşme (Öz’e ulaşma).',
+          unconscious: 'Kişisel bilinç dışına ek olarak tüm insanlığın paylaştığı Kolektif Bilinç Dışı ve Arketipler.',
+          dreams: 'Rüyalar yalnızca geçmişi gizlemez; geleceğe ve ruhsal dengeye işaret eden sembolik mesajlardır.',
+          quote: '“Bilinç dışını bilinçli hale getirmedikçe o senin hayatını yönlendirecek ve sen buna kader diyeceksin.”'
+        },
+        {
+          name: 'Sigmund Freud',
+          school: 'Psikanaliz',
+          drive: 'Bilinç dışı dürtüler, haz ilkesi ve erken çocukluk çatışmaları.',
+          unconscious: 'Bastırılmış anılar, yasak arzular ve savunma mekanizmalarının saklandığı kişisel katman.',
+          dreams: 'Rüyalar bastırılmış isteklerin sembolik kılık değiştirmiş ifadesidir (“bilinç dışına giden kral yolu”).',
+          quote: '“İfade edilmemiş duygular asla ölmez; yalnızca diri diri gömülür ve daha sonra daha karmaşık biçimlerde geri döner.”'
+        },
+        {
+          name: 'Alfred Adler',
+          school: 'Bireysel Psikoloji',
+          drive: 'Ait olma duygusu, anlam üretme ve eksiklik hissini gelişime dönüştürme.',
+          unconscious: 'İnsanı geçmişten çok geleceğe dönük hedefleri, yaşam tarzı ve sosyal ilgisi yönlendirir.',
+          dreams: 'Rüyalar kişinin güncel yaşam sorunlarına karşı prova yaptığı ve yön aradığı zihinsel alanlardır.',
+          quote: '“İnsan geçmişinin kurbanı değil; deneyimlerine yüklediği anlamın mimarıdır.”'
+        }
+      ]
+    },
     mirrorEyebrow: 'İNTERAKTİF ARKETİP & GÖLGE AYNASI',
     mirrorTitle: 'Bugün Hangi Arketip Seni Çağırıyor?',
     mirrorSub: 'Bir arketip seç; aydınlık armağanını, gölge kutbunu ve bugün kendine sorabileceğin aktif imgelem sorusunu gör.',
@@ -80,6 +122,28 @@ const JUNG_COPY = {
         prompt: 'Üzerindeki tüm unvanları ve beklentileri bir dakikalığına bıraktığında geriye hangi sessiz hakikat kalıyor?'
       }
     ],
+    psyche: {
+      eyebrow: 'PSİŞE MİMARİSİ · RUHUN DÖRT KATMANI',
+      title: 'Bilinçten Kolektif Derinliğe İniş',
+      sub: 'Jung’un haritasında insan ruhu birbirini besleyen dört ana katmandan oluşur.',
+      layers: [
+        ['Persona (Sosyal Maske)', 'Toplumsal hayatta uyum sağlamak için taktığımız rol. Esnek kaldığında sağlıklıdır; ancak kişi kendini yalnızca unvanı veya “iyi insan” maskesiyle özdeşleştirdiğinde ruhsal yorgunluk başlar.'],
+        ['Ego (Bilinç Merkezi)', '“Ben” dediğimiz günlük farkındalık ve karar alma alanı. Ego geminin kaptanıdır ama okyanusun tamamı değildir; bilinç dışıyla iş birliği yaptığında olgunlaşır.'],
+        ['Kişisel Bilinç Dışı & Altın Gölge', 'Reddedilen öfke ve korkuların yanında, küçükken bastırdığımız yaratıcılık ve cesaret (“Altın Gölge”) de burada saklanır. Başkalarına aşırı hayranlık duymak çoğu zaman kendi Altın Gölge’ni görmektir.'],
+        ['Kolektif Bilinç Dışı & Öz (Self)', 'Tüm insanlıkta ortak olan mitolojik sembollerin kaynağı ve ruhun merkez noktası. Bireyleşme yolculuğu, Ego’nun bu daha geniş bütünlükle uyumlanmasıdır.']
+      ]
+    },
+    protocol: {
+      eyebrow: 'UYGULAMALI DERİNLİK PROTOKOLÜ',
+      title: 'Gölge Çalışması ve Aktif İmgelem Nasıl Yapılır?',
+      sub: 'Teoride bırakmadan, günde 10 dakikalık sakin öz-gözlemle uygulayabileceğin 4 aşama.',
+      steps: [
+        ['Tetikleyiciyi Yakala (Yansıtma Aynası)', 'Birine karşı aniden yükselen öfke, küçümseme veya kıskançlık hissettiğinde dur. “Bu tepki neden bu kadar yüksek?” sorusu gölgeye açılan ilk kapıdır.'],
+        ['Bedendeki Duyguyu Adlandır', 'Duyguyu hemen mantıkla bastırma. Göğüste sıkışma, çenede kasılma veya midede ağırlık gibi bedensel işareti yargılamadan 3 nefes boyunca izle.'],
+        ['Aktif İmgelemle Diyalog Kur', 'Sessiz bir alanda (istersen Mythborn Sığınak’ta 432 Hz eşliğinde) bu duyguyu karşına bir figür gibi oturt ve sor: “Beni neyden korumaya çalışıyorsun?”'],
+        ['Küçük Somut Bir Bütünleştirme Yap', 'Fark ettiğin ihtiyacı (örneğin net bir sınır koymak, dinlenmek veya dürüstçe hayır demek) o gün küçük ve gerçek bir adımla hayata geçir.']
+      ]
+    },
     sync: {
       eyebrow: 'EŞZAMANLILIK (SYNCHRONICITY) GÜNLÜĞÜ · %100 YEREL & GİZLİ',
       title: 'Anlamlı Tesadüfleri Kaydet.',
@@ -91,24 +155,57 @@ const JUNG_COPY = {
       clearBtn: 'Tümünü Temizle',
       empty: 'Henüz bir eşzamanlılık kaydı eklemedin. İlk gözlemini yukarıdan kaydedebilirsin.'
     },
-    essays: {
-      eyebrow: 'CARL JUNG DERİNLİK REHBERİ',
-      title: 'Dört Temel Kavramla Bilinç Haritası.',
-      sub: 'Sembolleri kehanet gibi değil, ruhsal bütünleşmenin dili olarak okumak için temel Jung kavramları.',
-      items: [
-        ['Persona ve Gölge (Shadow)', 'Persona topluma gösterdiğimiz maskedir; Gölge ise kabul görmediği için bilinç dışına ittiğimiz canlı parçalarımızdır. Bütünlük, gölgeyi yok ederek değil tanıyarak başlar.'],
-        ['Bireyleşme (Individuation)', 'Jung’a göre yaşamın ikinci yarısındaki asıl yolculuk, başkalarının beklentilerinden sıyrılıp kendi özgün Öz’üne (Self) ulaşma sürecidir.'],
-        ['Eşzamanlılık (Synchronicity)', 'Aralarında nedensel bir bağ olmasa da içsel bir ruh haliyle dışsal bir olayın anlamlı biçimde örtüşmesi; dikkati derinleştiren sembolik bir aynadır.'],
-        ['Aktif İmgelem (Active Imagination)', 'Rüya, sembol veya içsel imgelerle uyanık bilinçte diyalog kurma pratiği; Mythborn’daki Sığınak ve Theta odaları bu sakin gözlemi destekler.']
-      ]
-    },
-    ctaSanctuary: 'Sığınak & Theta Odasına Geç →',
+    faqTitle: 'Derinlik Psikolojisi Hakkında Sık Sorulanlar',
+    ctaSanctuary: 'Sığınak & 432 Hz Meditasyon Odasına Geç →',
+    ctaGuide: 'Carl Jung Uzun-Form Rehberini Oku →',
     ethics: 'Bu alan Carl Gustav Jung’un derinlik psikolojisi kavramlarını kişisel farkındalık ve editoryal tefekkür amacıyla sunar; klinik psikoterapi veya tıbbi tanı yerine geçmez.'
   },
   en: {
     eyebrow: 'CARL JUNG DEPTH PSYCHOLOGY · ARCHETYPE & SHADOW MIRROR',
     title: 'Make the Unconscious Visible, Return to Wholeness.',
     lead: 'A quiet reflection space built around Carl Gustav Jung’s archetypes, shadow work, active imagination and synchronicity.',
+    intro: {
+      eyebrow: 'FOUNDATIONS OF ANALYTICAL PSYCHOLOGY',
+      title: 'Carl Gustav Jung and the Architecture of the Psyche',
+      p1: 'Swiss psychiatrist Carl Gustav Jung (1875–1961) viewed the human psyche not merely as a vault of repressed trauma, but as a living symbolic system seeking meaning, balance and wholeness. Expanding beyond early psychoanalysis, he introduced the Collective Unconscious, Archetypes, the Shadow, Synchronicity and Individuation.',
+      p2: 'According to Jung, the first half of life builds social identity (the Persona), while the second half invites us to look beneath our masks and reunite with the authentic Self. Dreams, recurring relational patterns and emotional triggers are honest letters from the unconscious.',
+      facts: [
+        ['Analytical Psychology', 'Born from clinical observation in Zurich and comparative world mythology.'],
+        ['The Red Book (Liber Novus)', 'Jung’s 16-year private Active Imagination journal dialoguing with inner symbols.'],
+        ['Individuation', 'Becoming whole rather than perfect—integrating both light and shadow consciously.']
+      ]
+    },
+    compare: {
+      eyebrow: 'THREE PILLARS OF DEPTH PSYCHOLOGY',
+      title: 'Carl Jung · Sigmund Freud · Alfred Adler',
+      sub: 'Three foundational lenses on the human unconscious, dreams and transformation.',
+      items: [
+        {
+          name: 'Carl Gustav Jung',
+          school: 'Analytical Psychology',
+          drive: 'Search for meaning, wholeness and Individuation.',
+          unconscious: 'Personal unconscious plus the universal Collective Unconscious and Archetypes.',
+          dreams: 'Symbolic compensations pointing toward psychological balance and future growth.',
+          quote: '“Until you make the unconscious conscious, it will direct your life and you will call it fate.”'
+        },
+        {
+          name: 'Sigmund Freud',
+          school: 'Psychoanalysis',
+          drive: 'Unconscious drives, pleasure principle and early childhood conflict.',
+          unconscious: 'Personal reservoir of repressed memories, desires and defense mechanisms.',
+          dreams: 'Disguised fulfillment of repressed wishes (“the royal road to the unconscious”).',
+          quote: '“Unexpressed emotions will never die. They are buried alive and will come forth later in uglier ways.”'
+        },
+        {
+          name: 'Alfred Adler',
+          school: 'Individual Psychology',
+          drive: 'Belonging, purpose and transforming feelings of inadequacy into contribution.',
+          unconscious: 'Shaped by future-oriented goals, lifestyle choices and social interest.',
+          dreams: 'Mental rehearsals preparing the individual for current life challenges.',
+          quote: '“We do not suffer from the shock of our experiences; we make out of them what aligns with our chosen meaning.”'
+        }
+      ]
+    },
     mirrorEyebrow: 'INTERACTIVE ARCHETYPE & SHADOW MIRROR',
     mirrorTitle: 'Which Archetype Calls to You Today?',
     mirrorSub: 'Select an archetype to inspect its golden gift, shadow pole and an active imagination question for today.',
@@ -183,6 +280,28 @@ const JUNG_COPY = {
         prompt: 'If you set down every title and expectation for one minute, what quiet truth remains?'
       }
     ],
+    psyche: {
+      eyebrow: 'ARCHITECTURE OF THE PSYCHE · FOUR LAYERS',
+      title: 'From Social Mask to Collective Depth',
+      sub: 'Jung mapped the psyche across four interacting layers.',
+      layers: [
+        ['Persona (Social Mask)', 'The adaptive role we show society. Healthy when flexible, exhausting when mistaken for our entire identity.'],
+        ['Ego (Center of Consciousness)', 'Our waking sense of “I”. Essential for navigation, yet only a small island atop a vast psychic ocean.'],
+        ['Personal Unconscious & Golden Shadow', 'Holds repressed fears alongside disowned creativity and courage (the Golden Shadow we often admire in others).'],
+        ['Collective Unconscious & Self', 'Universal symbolic patterns shared across humanity, oriented toward wholeness (Individuation).']
+      ]
+    },
+    protocol: {
+      eyebrow: 'PRACTICAL REFLECTION PROTOCOL',
+      title: 'Four Grounded Steps for Shadow Work & Active Imagination',
+      sub: 'A calm 10-minute reflective sequence you can practice without dogma.',
+      steps: [
+        ['Catch the Trigger (Projection Mirror)', 'Notice sudden, disproportionate irritation or envy toward someone else—that emotional charge marks a shadow edge.'],
+        ['Name the Somatic Sensation', 'Pause before rationalizing. Observe tightness in chest, jaw or breath for three calm cycles.'],
+        ['Dialogue via Active Imagination', 'In stillness (optionally with 432 Hz in Mythborn Sanctuary), ask the emotion: “What are you trying to protect in me?”'],
+        ['Integrate with One Honest Action', 'Honor the underlying healthy need—such as setting a clear boundary or resting—through one concrete step today.']
+      ]
+    },
     sync: {
       eyebrow: 'SYNCHRONICITY JOURNAL · 100% LOCAL & PRIVATE',
       title: 'Record Meaningful Coincidences.',
@@ -194,18 +313,9 @@ const JUNG_COPY = {
       clearBtn: 'Clear All',
       empty: 'No synchronicity entries yet. Record your first observation above.'
     },
-    essays: {
-      eyebrow: 'CARL JUNG DEPTH GUIDE',
-      title: 'Four Core Pillars of Depth Awareness.',
-      sub: 'Reading symbols not as fatalistic predictions, but as a living language of psychological integration.',
-      items: [
-        ['Persona & Shadow', 'The Persona is our social mask; the Shadow holds the unlived traits pushed out of sight. Wholeness begins by acknowledging rather than denying the shadow.'],
-        ['Individuation', 'Jung’s lifelong process of distinguishing your authentic Self from collective expectations and inherited roles.'],
-        ['Synchronicity', 'Acausal meaningful coincidence where an inner psychological state resonates with an outer event—inviting deeper attention.'],
-        ['Active Imagination', 'Conscious dialogue with dreams, symbols and inner imagery; supported calmly by Mythborn’s Sanctuary and Theta rooms.']
-      ]
-    },
-    ctaSanctuary: 'Enter the Meditation Sanctuary →',
+    faqTitle: 'Frequently Asked Questions on Depth Psychology',
+    ctaSanctuary: 'Enter the Meditation & 432 Hz Sanctuary →',
+    ctaGuide: 'Read the Full Carl Jung Guide →',
     ethics: 'This page explores Carl Gustav Jung’s depth psychology concepts for personal reflection and education. It is not clinical psychotherapy or medical advice.'
   }
 };
@@ -220,7 +330,19 @@ export const getJungFaqItems = (locale = 'tr') => {
         answer: 'Gölge çalışması, bilinçli kimliğimizin (Persona) dışında bıraktığımız bastırılmış duygu, ihtiyaç ve potansiyelleri yargılamadan fark edip bütünleştirme sürecidir.'
       },
       {
-        question: 'Eşzamanlılık (Synchronicity) günlüğü verilerim sunucuya kaydediliyor mu?',
+        question: '“Altın Gölge” (Golden Shadow) ne anlama gelir?',
+        answer: 'Gölge yalnızca karanlık veya öfkeli yanlarımızı değil; cesaret, yaratıcılık veya liderlik gibi küçükken bastırdığımız parlak potansiyelleri de barındırır. Başkalarına duyduğumuz yoğun hayranlık çoğu zaman kendi Altın Gölge’mizin yansımasıdır.'
+      },
+      {
+        question: 'Eşzamanlılık (Synchronicity) sıradan tesadüften nasıl ayrılır?',
+        answer: 'Eşzamanlılıkta aralarında nedensel bir bağ olmayan içsel bir ruh hali ile dışsal bir olay, kişi için derin bir anlam ve içgörü taşıyacak biçimde örtüşür.'
+      },
+      {
+        question: 'Aktif İmgelem (Active Imagination) nasıl yapılır?',
+        answer: 'Zihni sakinleştirdikten sonra rüyadan veya güçlü bir duygudan gelen sembolü yargılamadan gözlemleyip ona sorular sorarak uyanık bilinçte diyalog kurma ve yazıya dökme pratiğidir.'
+      },
+      {
+        question: 'Eşzamanlılık günlüğü verilerim sunucuya kaydediliyor mu?',
         answer: 'Hayır. Günlük notlarınız yalnızca kendi tarayıcınızın yerel belleğinde (localStorage) tutulur; hiçbir sunucuya gönderilmez.'
       }
     ];
@@ -229,6 +351,10 @@ export const getJungFaqItems = (locale = 'tr') => {
     {
       question: 'What is Shadow work in Carl Jung’s psychology?',
       answer: 'Shadow work is the reflective practice of recognizing disowned traits, emotions and potentials outside our social Persona so they can be integrated consciously.'
+    },
+    {
+      question: 'What is the Golden Shadow?',
+      answer: 'The Shadow does not only hold difficult emotions; it also carries unlived strengths, creativity and courage that we often project onto people we intensely admire.'
     },
     {
       question: 'Are Synchronicity Journal notes sent to a server?',
@@ -240,6 +366,8 @@ export const getJungFaqItems = (locale = 'tr') => {
 export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/siginak' } = {}) => {
   const c = getJungCopy(locale);
   const first = c.archetypes[0];
+  const faqs = getJungFaqItems(locale);
+  const guideHref = locale === 'tr' ? '/rehber/carl-jung-golge-ve-arketip' : '/en/guides/carl-jung-golge-ve-arketip';
 
   return `
   <div class="sanc-page" data-jung-app>
@@ -253,8 +381,60 @@ export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/siginak' } = {
       </div>
     </section>
 
-    <!-- 2. Interactive Archetype & Shadow Mirror -->
+    <!-- 2. Analytical Psychology Monograph Intro -->
     <section class="sanc-section">
+      <div class="astro-container">
+        <div class="jung-monograph-grid">
+          <div class="jung-monograph-copy">
+            <span class="sanc-eyebrow">✦ ${c.intro.eyebrow}</span>
+            <h2>${c.intro.title}</h2>
+            <p>${c.intro.p1}</p>
+            <p>${c.intro.p2}</p>
+          </div>
+          <aside class="jung-monograph-facts" data-spotlight>
+            ${c.intro.facts.map(([fTitle, fDesc]) => `
+              <div class="jung-fact-row">
+                <strong>${fTitle}</strong>
+                <span>${fDesc}</span>
+              </div>
+            `).join('')}
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Jung · Freud · Adler Comparison -->
+    <section class="sanc-section" id="uc-ekol">
+      <div class="astro-container">
+        <div class="sanc-center sanc-head">
+          <span class="sanc-eyebrow">✦ ${c.compare.eyebrow}</span>
+          <h2>${c.compare.title}</h2>
+          <p>${c.compare.sub}</p>
+        </div>
+        <div class="jung-compare-grid">
+          ${c.compare.items.map((item) => `
+            <article class="jung-compare-card" data-spotlight>
+              <div>
+                <span class="mb27-card-tag">${item.school}</span>
+                <h3>${item.name}</h3>
+                <dl class="jung-compare-dl">
+                  <dt>${locale === 'tr' ? 'Temel İtici Güç' : 'Core Drive'}</dt>
+                  <dd>${item.drive}</dd>
+                  <dt>${locale === 'tr' ? 'Bilinç Dışı' : 'Unconscious'}</dt>
+                  <dd>${item.unconscious}</dd>
+                  <dt>${locale === 'tr' ? 'Rüyaların Anlamı' : 'Role of Dreams'}</dt>
+                  <dd>${item.dreams}</dd>
+                </dl>
+              </div>
+              <blockquote class="jung-compare-quote">${item.quote}</blockquote>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Interactive Archetype & Shadow Mirror -->
+    <section class="sanc-section" id="arketip-aynasi">
       <div class="astro-container">
         <div class="sanc-center sanc-head">
           <span class="sanc-eyebrow">✦ ${c.mirrorEyebrow}</span>
@@ -303,8 +483,8 @@ export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/siginak' } = {
       </div>
     </section>
 
-    <!-- Quote Interlude — Carl Gustav Jung & Alfred Adler -->
-    <section class="mb27-quote-band" aria-label="Depth Psychology Quote">
+    <!-- Quote Interlude — Carl Gustav Jung -->
+    <section class="mb27-quote-band" aria-label="Carl Gustav Jung">
       <div class="astro-container">
         <blockquote class="mb27-quote">
           <p>${locale === 'tr' ? '“Dışarı bakan rüya görür, içeri bakan uyanır.”' : '“Who looks outside, dreams; who looks inside, awakes.”'}</p>
@@ -313,7 +493,45 @@ export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/siginak' } = {
       </div>
     </section>
 
-    <!-- 3. Private Local Synchronicity Journal -->
+    <!-- 5. Four Layers of the Psyche -->
+    <section class="sanc-section" id="psise-mimarisi">
+      <div class="astro-container">
+        <div class="sanc-center sanc-head">
+          <span class="sanc-eyebrow">✦ ${c.psyche.eyebrow}</span>
+          <h2>${c.psyche.title}</h2>
+          <p>${c.psyche.sub}</p>
+        </div>
+        <div class="sanc-guide-grid">
+          ${c.psyche.layers.map(([lTitle, lDesc]) => `
+            <article class="sanc-guide-card" data-spotlight>
+              <h3>${lTitle}</h3>
+              <p>${lDesc}</p>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 4-Step Shadow Work & Active Imagination Protocol -->
+    <section class="sanc-section" id="golge-protokolu">
+      <div class="astro-container">
+        <div class="sanc-center sanc-head">
+          <span class="sanc-eyebrow">✦ ${c.protocol.eyebrow}</span>
+          <h2>${c.protocol.title}</h2>
+          <p>${c.protocol.sub}</p>
+        </div>
+        <div class="sanc-guide-grid">
+          ${c.protocol.steps.map(([sTitle, sDesc]) => `
+            <article class="sanc-guide-card" data-spotlight>
+              <h3>${sTitle}</h3>
+              <p>${sDesc}</p>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Private Local Synchronicity Journal -->
     <section class="sanc-section" id="eszamanlilik">
       <div class="astro-container">
         <div class="sanc-center sanc-head">
@@ -344,24 +562,26 @@ export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/siginak' } = {
       </div>
     </section>
 
-    <!-- 4. Ultra-Elite Editorial Guide (4-Column Symmetrical Grid) -->
-    <section class="sanc-section">
+    <!-- 8. Visible Depth Psychology FAQ + Sanctuary Bridge -->
+    <section class="sanc-section" id="jung-sss">
       <div class="astro-container">
         <div class="sanc-center sanc-head">
-          <span class="sanc-eyebrow">✦ ${c.essays.eyebrow}</span>
-          <h2>${c.essays.title}</h2>
-          <p>${c.essays.sub}</p>
+          <span class="sanc-eyebrow">✦ ${locale === 'tr' ? 'SIK SORULANLAR' : 'FREQUENTLY ASKED QUESTIONS'}</span>
+          <h2>${c.faqTitle}</h2>
         </div>
-        <div class="sanc-guide-grid">
-          ${c.essays.items.map(([eTitle, eDesc]) => `
-            <article class="sanc-guide-card" data-spotlight>
-              <h3>${eTitle}</h3>
-              <p>${eDesc}</p>
+        <div class="jung-faq-grid">
+          ${faqs.map((f) => `
+            <article class="jung-faq-card" data-spotlight>
+              <h3>${f.question}</h3>
+              <p>${f.answer}</p>
             </article>
           `).join('')}
         </div>
-        <div class="sanc-center" style="margin-top:34px">
-          <a href="${sanctuaryHref}" class="sanc-btn-gold">${c.ctaSanctuary}</a>
+        <div class="sanc-center" style="margin-top:36px">
+          <div class="sanc-btn-row" style="justify-content:center">
+            <a href="${sanctuaryHref}" class="sanc-btn-gold">${c.ctaSanctuary}</a>
+            <a href="${guideHref}" class="sanc-btn-ghost">${c.ctaGuide}</a>
+          </div>
           <p class="sanc-ethics-note">${c.ethics}</p>
         </div>
       </div>
