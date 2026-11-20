@@ -190,9 +190,11 @@ export const renderAstrologyLayout = ({
 
   // Dropdown items for instruments & consultation (zero 301-redirected legacy links)
   const exploreDropdownLabel = locale === 'tr' ? 'Keşif & Araçlar' : locale === 'en' ? 'Explore & Tools' : locale === 'el' ? 'Εργαλεία' : locale === 'es' ? 'Explorar' : 'أدوات فلكية';
+  const dropdownKeys = new Set(['natal', 'calendar', 'zodiac', 'synastry', 'approach', 'contact']);
+  const isDropdownActive = dropdownKeys.has(currentRouteKey);
   const dropdownHtml = `
     <div class="astro-nav-dropdown">
-      <button type="button" class="astro-nav-dropdown-btn">
+      <button type="button" class="astro-nav-dropdown-btn${isDropdownActive ? ' is-active' : ''}"${isDropdownActive ? ' aria-current="true"' : ''}>
         <span>${exploreDropdownLabel}</span>
         <span aria-hidden="true">▾</span>
       </button>
@@ -442,23 +444,24 @@ export const renderAstrologyLayout = ({
           </div>
 
           <div class="astro-footer-col">
-            <h4>✦ ${safe(t.footer.colTools)}</h4>
+            <h4>✦ ${locale === 'tr' ? 'SIĞINAK & BİLİNÇ' : 'SANCTUARY & DEPTH'}</h4>
             <ul>
-              <li><a href="${getRouteHref(locale, 'natal')}">${safe(t.menu.natal)}</a></li>
-              <li><a href="${getRouteHref(locale, 'synastry')}">${safe(t.menu.synastry)}</a></li>
-              <li><a href="${getRouteHref(locale, 'calendar')}">${safe(t.menu.calendar)}</a></li>
-              <li><a href="${getRouteHref(locale, 'transits')}">${safe(t.menu.transits)}</a></li>
-              <li><a href="${getRouteHref(locale, 'retros')}">${safe(t.menu.retros)}</a></li>
+              <li><a href="${getRouteHref(locale, 'sanctuary')}">${safe(sanctuaryLabel)}</a></li>
+              <li><a href="${getRouteHref(locale, 'jung')}">${safe(jungLabel)}</a></li>
+              <li><a href="${getRouteHref(locale, 'guides')}">${safe(guidesLabel)}</a></li>
+              <li><a href="${getRouteHref(locale, 'guides')}/rezonans-kanunu-nedir">${locale === 'tr' ? 'Rezonans Kanunu' : 'Law of Resonance'}</a></li>
+              <li><a href="${frequencyHref}">${safe(frequencyTitle)}</a></li>
             </ul>
           </div>
 
           <div class="astro-footer-col">
-            <h4>✦ ${safe(t.footer.colZodiac)}</h4>
+            <h4>✦ ${locale === 'tr' ? 'KADİM ARAÇLAR' : 'INSTRUMENTS'}</h4>
             <ul>
+              <li><a href="${getRouteHref(locale, 'natal')}">${safe(t.menu.natal)}</a></li>
+              <li><a href="${getRouteHref(locale, 'ebced')}">${locale === 'tr' ? 'Ebced & Numeroloji' : 'Abjad & Numerology'}</a></li>
+              <li><a href="${getRouteHref(locale, 'synastry')}">${safe(t.menu.synastry)}</a></li>
+              <li><a href="${getRouteHref(locale, 'calendar')}">${safe(t.menu.calendar)}</a></li>
               <li><a href="${getRouteHref(locale, 'zodiac')}">${safe(t.menu.zodiac)}</a></li>
-              <li><a href="${getRouteHref(locale, 'horoscopes')}">${locale === 'tr' ? 'Burç Yorumları' : locale === 'en' ? 'Daily Horoscopes' : locale === 'el' ? 'Ημερήσιες Προβλέψεις' : locale === 'es' ? 'Horóscopos' : 'توقعات الأبراج'}</a></li>
-              <li><a href="${getRouteHref(locale, 'glossary')}">${safe(t.menu.glossary)}</a></li>
-              <li><a href="${getRouteHref(locale, 'learning')}">${locale === 'tr' ? 'Öğrenme Merkezi' : locale === 'en' ? 'Learning Center' : locale === 'el' ? 'Κέντρο Μάθησης' : locale === 'es' ? 'Centro de Aprendizaje' : 'مركز التعلم'}</a></li>
               <li><a href="${getRouteHref(locale, 'approach')}">${safe(t.menu.approach)}</a></li>
             </ul>
           </div>

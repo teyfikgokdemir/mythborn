@@ -99,6 +99,8 @@ assert(!/autoplay/i.test(audioSrc), 'no autoplay');
 const guidePaths = [
   '/rehber',
   '/en/guides',
+  '/rehber/rezonans-kanunu-nedir',
+  '/en/guides/rezonans-kanunu-nedir',
   '/rehber/spirituel-yasam-nedir',
   '/rehber/carl-jung-golge-ve-arketip',
   '/rehber/meditasyon-ve-nefes-rehberi',

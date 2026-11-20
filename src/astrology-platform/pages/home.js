@@ -215,7 +215,7 @@ export const renderHomeView = ({ locale = 'tr' } = {}) => {
   const c = HOME_COPY[loc] || HOME_COPY.en;
   const isRtl = t.dir === 'rtl';
   const arrow = isRtl ? '←' : '→';
-  const guides = getGuidesList(loc);
+  const guides = getGuidesList(loc).slice(0, 4);
   const guideBase = getRouteHref(locale, 'guides');
   const sanctuaryHref = getRouteHref(locale, 'sanctuary');
 
