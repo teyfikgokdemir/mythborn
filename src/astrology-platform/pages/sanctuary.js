@@ -1,5 +1,6 @@
 // Mythborn 2027 — Unified Meditation & Studio Frequency Sanctuary (/meditasyon-ve-frekans)
 // Consolidates Meditation Rooms + 8 Real Studio Frequency Tracks (/audio/*.m4a) + Live Cymatics + Nature Layer
+import { renderReadingCuration } from './jung.js';
 
 const TRACKS_TR = [
   { key: 'track:432hz', hz: '432', unit: 'Hz', label: 'Derin Gevşeme & Denge', note: 'Akort referansı · Akşam dinginliği', active: true },
@@ -472,6 +473,7 @@ export const renderSanctuaryView = ({ locale = 'tr' } = {}) => {
         </div>
       </div>
     </section>
+    ${renderReadingCuration(locale, { id: 'okuma-listesi' })}
   </div>
   <script src="/sanctuary-audio.js" defer></script>
   `;

@@ -1,6 +1,7 @@
 // Mythborn Abjad & Numerology Platform Page
 // Haute Horlogerie Astronomical & Mathematical Symbolic Interface
 import { renderAstrologyLayout } from './astrology-platform/layout.js';
+import { renderReadingCuration } from './astrology-platform/pages/jung.js';
 
 const langs = {
   tr: {
@@ -1261,6 +1262,7 @@ export function ebcedPage(path, isPreview = true) {
     </details>
   </div>
   </div>
+  ${renderReadingCuration(lang, { id: 'okuma-listesi' })}
   <script src="/ebced.js" defer></script>`;
 
   return renderAstrologyLayout({

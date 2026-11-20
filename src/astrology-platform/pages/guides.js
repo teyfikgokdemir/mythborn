@@ -1,5 +1,6 @@
 // Mythborn 2027 — Consciousness, Carl Jung, Meditation & Sound Resonance Educational Library
 // Hub (/rehber) + 4 Deep Long-Form Educational Guides
+import { renderReadingCuration } from './jung.js';
 
 const GUIDES_TR = [
   {
@@ -509,6 +510,8 @@ export const renderGuidesHubView = ({ locale = 'tr', guideBaseHref = '/rehber' }
       </div>
     </section>
 
+    ${renderReadingCuration(locale, { id: 'okuma-listesi' })}
+
     <section class="sanc-section guides-faq-section">
       <div class="astro-container">
         <div class="sanc-head sanc-center">
@@ -642,6 +645,7 @@ export const renderGuideArticleView = ({ locale = 'tr', slug = '', guideBaseHref
         </div>` : ''}
       </div>
     </section>
+    ${renderReadingCuration(locale, { id: 'okuma-listesi' })}
   </div>
   <script>
     (function(){
