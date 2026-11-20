@@ -4368,4 +4368,140 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-eyebrow{
 @media(max-width:1024px){.sanc-track-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}}
 @media(max-width:600px){.sanc-track-grid{grid-template-columns:1fr}}
 
+/* =========================================================================
+   2027 ULTRA-ELITE MOBILE EXPERIENCE, SINGLE LANGUAGE SELECTOR & BOOK LIST
+   ========================================================================= */
+.mb-nowrap{white-space:nowrap}
+h1,h2,h3,.sanc-lead,.mb27-lead{text-wrap:balance}
+
+.jung-book-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+.jung-book-list li{padding-top:12px;border-top:1px solid rgba(214,190,146,.12)}
+.jung-book-list li:first-child{padding-top:0;border-top:0}
+.jung-book-list strong{display:block;font-family:var(--font-serif);font-size:16px;font-weight:500;color:var(--gold-bright);margin-bottom:5px}
+.jung-book-list span{display:block;font-size:13px;line-height:1.68;color:var(--muted)}
+
+/* Ultra-Elite Mobile Header & Velvet Glass Drawer */
+.astro-menu-btn{
+  width:44px!important;
+  height:44px!important;
+  border-radius:12px!important;
+  border:1px solid rgba(214,190,146,.28)!important;
+  background:rgba(15,21,34,.72)!important;
+  color:var(--gold-bright)!important;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.astro-drawer-panel{
+  background:linear-gradient(175deg, rgba(14,20,34,.98) 0%, rgba(8,11,18,.99) 100%)!important;
+  backdrop-filter:blur(28px)!important;
+  -webkit-backdrop-filter:blur(28px)!important;
+  border-left:1px solid rgba(214,190,146,.22)!important;
+  padding:22px 20px max(24px, env(safe-area-inset-bottom))!important;
+  width:min(86vw, 350px)!important;
+}
+.astro-drawer-head{
+  padding-bottom:18px!important;
+  margin-bottom:16px!important;
+  border-bottom:1px solid rgba(214,190,146,.16)!important;
+}
+.mb-drawer-close{
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  border:1px solid rgba(214,190,146,.26);
+  background:rgba(214,190,146,.07);
+  color:var(--gold-bright);
+  font-size:15px;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+.astro-drawer-links{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:4px!important;
+  overflow-y:auto;
+}
+.astro-drawer-links a{
+  min-height:46px!important;
+  padding:11px 14px!important;
+  border-radius:12px!important;
+  font-size:14.5px!important;
+  letter-spacing:.02em!important;
+  border:1px solid transparent!important;
+  color:#dce2ef!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  transition:background .2s, border-color .2s, color .2s;
+}
+.astro-drawer-links a[aria-current="page"],
+.astro-drawer-links a:hover{
+  background:rgba(214,190,146,.12)!important;
+  border-color:rgba(214,190,146,.28)!important;
+  color:var(--gold-bright)!important;
+}
+.mb-drawer-footer{
+  margin-top:auto;
+  padding-top:18px;
+  border-top:1px solid rgba(214,190,146,.16);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.mb-drawer-lang-bar{
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:6px;
+}
+.mb-drawer-lang-pill{
+  display:grid;
+  place-items:center;
+  min-height:38px;
+  border-radius:9px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  border:1px solid rgba(214,190,146,.2);
+  background:rgba(255,255,255,.03);
+  color:var(--muted);
+  text-decoration:none;
+}
+.mb-drawer-lang-pill.is-active{
+  border-color:var(--gold);
+  background:rgba(214,190,146,.18);
+  color:var(--gold-bright);
+}
+
+@media(max-width:1180px){
+  /* Single language selector on mobile: hide header dropdown, keep clean 5-pill bar in drawer */
+  .astro-header-actions .astro-lang-select{display:none!important}
+  .astro-menu-btn{display:inline-flex!important}
+}
+
+@media(max-width:760px){
+  .astro-container{padding-left:18px!important;padding-right:18px!important}
+  .astro-header-inner{height:66px!important}
+  .mb27-hero{min-height:auto!important;padding:54px 0 48px!important}
+  .mb27-h1{font-size:clamp(30px, 8.2vw, 42px)!important;line-height:1.12!important;margin-bottom:16px!important}
+  .mb27-lead{font-size:15px!important;line-height:1.68!important;margin-bottom:24px!important}
+  .mb27-hero-actions{flex-direction:column;align-items:stretch;gap:10px;margin-bottom:24px}
+  .mb27-hero-actions a{width:100%;justify-content:center}
+  .mb27-telemetry{gap:8px 16px;font-size:10px}
+  .mb27-section,.sanc-section{padding:38px 0!important}
+  .sanc-hero,.sanc-hero-fullbleed{min-height:280px!important;padding:46px 0!important}
+  .sanc-hero .sanc-h1{font-size:clamp(28px, 7.6vw, 38px)!important;line-height:1.14!important}
+  .sanc-hero .sanc-lead{font-size:14.5px!important;line-height:1.68!important}
+  .sanc-head h2{font-size:clamp(23px, 6.4vw, 30px)!important;line-height:1.22!important;white-space:normal!important}
+  .sanc-tabs{display:grid!important;grid-template-columns:repeat(2, minmax(0, 1fr))!important;gap:8px!important}
+  .sanc-tab{padding:11px 10px!important;font-size:12.5px!important;text-align:center}
+  .sanc-mixer,.sanc-room-card,.jung-dossier,.jung-sync-shell{padding:20px 16px!important;border-radius:16px!important}
+  .sanc-cymatics-canvas{height:175px!important}
+  .sanc-play-btn{width:56px!important;height:56px!important;flex-basis:56px!important}
+  .sanc-timer-readout{font-size:24px!important}
+  .mb27-quote p{font-size:18px!important;line-height:1.55!important}
+}
+
 `;

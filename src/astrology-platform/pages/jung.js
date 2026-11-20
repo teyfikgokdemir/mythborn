@@ -19,7 +19,7 @@ const JUNG_COPY = {
     },
     compare: {
       eyebrow: 'DERİNLİK PSİKOLOJİSİNİN ÜÇ BÜYÜK MİMARI',
-      title: 'Carl Jung · Sigmund Freud · Alfred Adler',
+      title: '<span class="mb-nowrap">Carl&nbsp;Jung</span> · <span class="mb-nowrap">Sigmund&nbsp;Freud</span> · <span class="mb-nowrap">Alfred&nbsp;Adler</span>',
       sub: 'Aynı insan ruhuna üç farklı pencereden bakan üç büyük ekolün özeti.',
       items: [
         {
@@ -156,7 +156,41 @@ const JUNG_COPY = {
       empty: 'Henüz bir eşzamanlılık kaydı eklemedin. İlk gözlemini yukarıdan kaydedebilirsin.'
     },
     faqTitle: 'Derinlik Psikolojisi Hakkında Sık Sorulanlar',
-    ctaSanctuary: 'Sığınak & 432 Hz Meditasyon Odasına Geç →',
+    books: {
+      eyebrow: 'KÜRATÖRLÜ OKUMA KÜLLİYATI · 9 TEMEL ESER',
+      title: 'Derinleşmek İsteyenler İçin Başyapıtlar.',
+      sub: 'Carl Jung, Sigmund Freud ve Alfred Adler’in dünyasını ilk elden tanımak için özgün okuma rehberi ve eser özetleri.',
+      authors: [
+        {
+          author: 'Carl Gustav Jung',
+          school: 'Analitik Psikoloji',
+          items: [
+            ['İnsan ve Sembolleri', 'Jung’un geniş okur kitlesi için hazırladığı en erişilebilir giriş; rüya dili, arketipler ve kolektif bilinç dışının temel haritası.'],
+            ['Dört Arketip', 'Anne, Yeniden Doğuş, Ruh ve Hilebaz arketipleri üzerinden bilinç dışının sembolik kalıplarını çözümler.'],
+            ['Anılar, Düşler, Düşünceler', 'Jung’un kendi içsel yolculuğunu, rüyalarını ve bireyleşme sürecini birinci ağızdan anlattığı otobiyografik başyapıt.']
+          ]
+        },
+        {
+          author: 'Sigmund Freud',
+          school: 'Psikanaliz',
+          items: [
+            ['Düşlerin Yorumu', 'Rüyaları bilinç dışına açılan sembolik bir kapı olarak ele alan ve modern psikolojinin yönünü değiştiren temel eser.'],
+            ['Günlük Yaşamın Psikopatolojisi', 'Dil sürçmeleri, unutkanlıklar ve küçük günlük hataların ardındaki bilinç dışı dinamikleri sade örneklerle inceler.'],
+            ['Uygarlığın Huzursuzluğu', 'Bireyin içsel dürtüleri ile toplumsal düzen arasındaki gerilimi felsefi ve psikolojik derinlikle tartışır.']
+          ]
+        },
+        {
+          author: 'Alfred Adler',
+          school: 'Bireysel Psikoloji',
+          items: [
+            ['İnsanı Tanıma Sanatı', 'Karakter gelişimi, sosyal ilgi, aile içi konum ve insan davranışlarının amaca dönük doğasını anlaşılır bir dille anlatır.'],
+            ['Yaşamın Anlam ve Amacı', 'Geçmiş travmaların mahkûmu olmak yerine deneyimlere yeni bir anlam ve yön kazandırma cesaretini işler.'],
+            ['Yaşama Sanatı', 'Eksiklik hissini sağlıklı gelişim ve toplumsal katkıya dönüştürmenin pratik ilkelerini sunar.']
+          ]
+        }
+      ]
+    },
+    ctaSanctuary: 'Meditasyon & Frekans Stüdyosuna Geç →',
     ctaGuide: 'Carl Jung Uzun-Form Rehberini Oku →',
     ethics: 'Bu alan Carl Gustav Jung’un derinlik psikolojisi kavramlarını kişisel farkındalık ve editoryal tefekkür amacıyla sunar; klinik psikoterapi veya tıbbi tanı yerine geçmez.'
   },
@@ -177,7 +211,7 @@ const JUNG_COPY = {
     },
     compare: {
       eyebrow: 'THREE PILLARS OF DEPTH PSYCHOLOGY',
-      title: 'Carl Jung · Sigmund Freud · Alfred Adler',
+      title: '<span class="mb-nowrap">Carl&nbsp;Jung</span> · <span class="mb-nowrap">Sigmund&nbsp;Freud</span> · <span class="mb-nowrap">Alfred&nbsp;Adler</span>',
       sub: 'Three foundational lenses on the human unconscious, dreams and transformation.',
       items: [
         {
@@ -314,7 +348,41 @@ const JUNG_COPY = {
       empty: 'No synchronicity entries yet. Record your first observation above.'
     },
     faqTitle: 'Frequently Asked Questions on Depth Psychology',
-    ctaSanctuary: 'Enter the Meditation & 432 Hz Sanctuary →',
+    books: {
+      eyebrow: 'CURATED READING LIBRARY · 9 ESSENTIAL WORKS',
+      title: 'Timeless Books for Deeper Exploration.',
+      sub: 'An original curated reading guide to the most influential works of Carl Jung, Sigmund Freud and Alfred Adler.',
+      authors: [
+        {
+          author: 'Carl Gustav Jung',
+          school: 'Analytical Psychology',
+          items: [
+            ['Man and His Symbols', 'Jung’s most accessible introduction to dream symbolism, archetypes and the collective unconscious.'],
+            ['Four Archetypes', 'A focused examination of the Mother, Rebirth, Spirit and Trickster patterns in psyche and culture.'],
+            ['Memories, Dreams, Reflections', 'Jung’s luminous inner autobiography recounting his visions, dreams and path of individuation.']
+          ]
+        },
+        {
+          author: 'Sigmund Freud',
+          school: 'Psychoanalysis',
+          items: [
+            ['The Interpretation of Dreams', 'The landmark treatise framing dreams as the royal road to understanding unconscious dynamics.'],
+            ['The Psychopathology of Everyday Life', 'Explores slips of the tongue, forgetting and subtle everyday parapraxes through accessible case notes.'],
+            ['Civilization and Its Discontents', 'Examines the enduring tension between individual instinctual freedom and collective social order.']
+          ]
+        },
+        {
+          author: 'Alfred Adler',
+          school: 'Individual Psychology',
+          items: [
+            ['Understanding Human Nature', 'Explains goal-directed behavior, social interest and how personality forms in relation to community.'],
+            ['What Life Could Mean to You', 'Focuses on agency—how the meaning we assign to experience shapes courage and direction.'],
+            ['The Science of Living', 'A practical guide to turning feelings of inferiority into constructive growth and contribution.']
+          ]
+        }
+      ]
+    },
+    ctaSanctuary: 'Enter the Meditation & Frequency Studio →',
     ctaGuide: 'Read the Full Carl Jung Guide →',
     ethics: 'This page explores Carl Gustav Jung’s depth psychology concepts for personal reflection and education. It is not clinical psychotherapy or medical advice.'
   }
@@ -561,6 +629,36 @@ export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/siginak' } = {
         </div>
       </div>
     </section>
+
+    <!-- 7b. Curated Reading Library (Jung, Freud & Adler — 9 Essential Works) -->
+    ${c.books ? `
+    <section class="sanc-section" id="okuma-listesi">
+      <div class="astro-container">
+        <div class="sanc-center sanc-head">
+          <span class="sanc-eyebrow">✦ ${c.books.eyebrow}</span>
+          <h2>${c.books.title}</h2>
+          <p>${c.books.sub}</p>
+        </div>
+        <div class="jung-compare-grid">
+          ${c.books.authors.map((group) => `
+            <article class="jung-compare-card" data-spotlight>
+              <div>
+                <span class="mb27-card-tag">${group.school}</span>
+                <h3>${group.author}</h3>
+                <ul class="jung-book-list">
+                  ${group.items.map(([bTitle, bSummary]) => `
+                    <li>
+                      <strong>${bTitle}</strong>
+                      <span>${bSummary}</span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    </section>` : ''}
 
     <!-- 8. Visible Depth Psychology FAQ + Sanctuary Bridge -->
     <section class="sanc-section" id="jung-sss">

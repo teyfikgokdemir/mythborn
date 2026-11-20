@@ -77,7 +77,7 @@ export const renderAstrologyLayout = ({
   const drawerLangHtml = langCodes.map((code) => {
     const isCur = code === locale;
     const href = getRouteHref(code, currentRouteKey);
-    return `<a href="${href}" lang="${code}" style="padding:7px 10px; border-radius:8px; font-size:11.5px; font-weight:600; text-align:center; text-decoration:none; border:1px solid ${isCur ? 'var(--gold)' : 'rgba(255,255,255,0.12)'}; background:${isCur ? 'rgba(212,175,55,0.18)' : 'rgba(255,255,255,0.03)'}; color:${isCur ? 'var(--gold-bright)' : 'var(--cream)'}">${langLabels[code]} · ${langFullNames[code]}</a>`;
+    return `<a href="${href}" lang="${code}" class="mb-drawer-lang-pill${isCur ? ' is-active' : ''}"${isCur ? ' aria-current="page"' : ''}>${langLabels[code]}</a>`;
   }).join('');
 
   const footerLangPillsHtml = langCodes.map((code) => {
@@ -346,7 +346,7 @@ export const renderAstrologyLayout = ({
   ${hreflangTags}
   ${ogTag}
   ${jsonLdTag}
-  <meta name="theme-color" content="#05070e">
+  <meta name="theme-color" content="#080b12">
   <style>${SHARED_CSS}</style>
 </head>
 <body>
@@ -368,7 +368,10 @@ export const renderAstrologyLayout = ({
         <div class="astro-header-actions">
           ${langSwitcherHtml}
           <button type="button" class="astro-menu-btn" data-drawer-open aria-expanded="false" aria-controls="astro-mobile-drawer" aria-label="Menu">
-            <span aria-hidden="true">☰</span>
+            <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
+              <line x1="0" y1="2" x2="20" y2="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="5" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
           </button>
         </div>
       </div>
@@ -382,25 +385,21 @@ export const renderAstrologyLayout = ({
             <img src="/assets/astrology/mythborn-symbol.svg" alt="" style="width:24px; height:24px; border-radius:50%">
             <span class="astro-brand-name" style="font-size:15px">MYTHBORN</span>
           </a>
-          <button type="button" class="astro-btn-ghost" style="padding:6px 12px; font-size:12px" data-drawer-close aria-label="Close">✕</button>
-        </div>
-
-        <!-- Dedicated Touch Language Grid for Mobile Drawer -->
-        <div style="padding:10px 0 14px 0; border-bottom:1px solid var(--border); margin-bottom:12px">
-          <span style="font-size:10px; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold); display:block; margin-bottom:8px">Kozmik Dil / Language</span>
-          <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:6px">
-            ${drawerLangHtml}
-          </div>
+          <button type="button" class="mb-drawer-close" data-drawer-close aria-label="Close">✕</button>
         </div>
 
         <nav class="astro-drawer-links" aria-label="Mobile Navigation">
           ${drawerNavHtml}
         </nav>
-        <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--border)">
-          <a class="astro-btn-primary" href="${getRouteHref(locale, 'natal')}" style="width:100%; justify-content:center">
-            <span>${safe(clean(t.menu.ctaQuick))}</span>
+
+        <div class="mb-drawer-footer">
+          <a class="sanc-btn-gold" href="${getRouteHref(locale, 'sanctuary')}" style="width:100%; justify-content:center">
+            <span>${safe(sanctuaryLabel)}</span>
             <span aria-hidden="true">${isRtl ? '←' : '→'}</span>
           </a>
+          <div class="mb-drawer-lang-bar" role="group" aria-label="Languages">
+            ${drawerLangHtml}
+          </div>
         </div>
       </div>
     </aside>
