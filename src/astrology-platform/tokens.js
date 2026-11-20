@@ -4172,4 +4172,93 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-eyebrow{
   padding:22px 22px 24px;
 }
 
+/* Fix nav active highlight: Frequency Studio must NOT look active on other pages */
+.astro-nav-frequency{
+  color:var(--muted)!important;
+  border-color:transparent!important;
+  background:transparent!important;
+}
+.astro-nav-frequency:hover,
+.astro-nav-frequency[aria-current="page"]{
+  color:var(--gold-bright)!important;
+}
+.astro-nav-dropdown-btn.is-active{
+  color:var(--gold-bright)!important;
+  border-bottom:1px solid var(--gold)!important;
+}
+
+/* Ultra-Elite Magazine Layout for /rehber */
+.guide-featured-card{
+  display:grid;
+  grid-template-columns:minmax(0, 1.15fr) minmax(0, 1fr);
+  gap:0;
+  margin-bottom:28px;
+  border-radius:20px;
+  border:1px solid rgba(214, 190, 146, 0.24);
+  background:linear-gradient(155deg, rgba(16, 23, 38, 0.92), rgba(8, 11, 18, 0.98));
+  overflow:hidden;
+  transition:border-color .25s ease;
+}
+.guide-featured-card:hover{border-color:rgba(214, 190, 146, 0.52)}
+.guide-featured-media{
+  display:block;
+  position:relative;
+  min-height:310px;
+  overflow:hidden;
+  background:#0a0e18;
+}
+.guide-featured-media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter:saturate(1.2) contrast(1.07) brightness(1.02);
+  transition:transform .6s cubic-bezier(.16,1,.3,1);
+}
+.guide-featured-card:hover .guide-featured-media img{transform:scale(1.04)}
+.guide-featured-body{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:24px;
+  padding:clamp(28px, 3.6vw, 46px);
+}
+.guide-featured-body h2{
+  font-family:var(--font-serif);
+  font-weight:400;
+  font-size:clamp(26px, 2.5vw, 36px);
+  line-height:1.2;
+  color:#f6f2ea;
+  margin:0 0 14px;
+}
+.guide-featured-body p{font-size:15px;line-height:1.78;color:#bcc6da;margin:0}
+.guide-inline-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  align-self:flex-start;
+  padding-bottom:6px;
+  border-bottom:1px solid rgba(214, 190, 146, 0.45);
+  color:var(--gold-bright);
+  font-size:13.5px;
+  font-weight:600;
+  letter-spacing:0.03em;
+  transition:gap .22s ease, border-color .22s ease, color .22s ease;
+}
+.guide-inline-cta:hover{gap:14px;border-color:var(--gold-bright);color:#fff6e2}
+.guide-hub-card h2 a:hover,.guide-featured-body h2 a:hover{color:var(--gold-bright)}
+
+/* Contact Page 2027 Deep Night Indigo Refinement */
+.astro-contact-page{padding-top:clamp(36px, 4.5vw, 58px)!important}
+.astro-contact-card{
+  background:linear-gradient(155deg, rgba(15, 21, 34, 0.92), rgba(8, 11, 18, 0.98))!important;
+  border-color:rgba(214, 190, 146, 0.22)!important;
+}
+.astro-contact-card:hover{border-color:rgba(214, 190, 146, 0.52)!important}
+
+@media(max-width:900px){
+  .guide-featured-card{grid-template-columns:1fr}
+  .guide-featured-media{min-height:220px}
+}
+
 `;

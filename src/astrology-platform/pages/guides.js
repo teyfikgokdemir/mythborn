@@ -3,6 +3,42 @@
 
 const GUIDES_TR = [
   {
+    slug: 'rezonans-kanunu-nedir',
+    tag: 'REZONANS & BİLİNÇLİ UYUM',
+    readTime: '5 dk okuma',
+    title: 'Rezonans Kanunu Nedir? Kalp, Zihin ve Bilinçli Uyumun Özeti',
+    lead: 'Fizikte titreşimsel uyum olarak başlayan rezonans kavramı, kişisel farkındalıkta içsel inançların dışsal seçimlerle nasıl örtüştüğünü anlatan güçlü bir aynadır.',
+    ctaHref: '/siginak#ses-mikseri',
+    ctaLabel: '432 Hz & Doğa Rezonansı Stüdyosunu Aç →',
+    sections: [
+      {
+        h: 'Rezonans Kanunu Özeti',
+        p: 'Fizikte rezonans, aynı veya uyumlu frekanstaki iki sistemin birbirini etkilemesi ve güçlendirmesidir (örneğin bir diyapazon titreştiğinde yakındaki aynı frekanslı diğer diyapazonun da ses vermesi). Pierre Franckh’ın popülerleştirdiği “Rezonans Kanunu” yaklaşımı ise bu metaforu insan psikolojisine taşır: Dünyayı olduğu gibi değil, içsel inanç kalıplarımızın ve duygusal odaklarımızın filtresinden görür ve o filtreye uygun seçimler yaparız.'
+      },
+      {
+        h: 'Rezonans ve Carl Jung’un Gölge Kavramı',
+        p: 'Sadece yüzeyde olumlu cümleler tekrarlamak (Persona) tek başına yeterli olmaz; çünkü bilinç dışındaki bastırılmış korku, yetersizlik veya savunma kalıpları (Gölge) kararlarımızı sessizce yönlendirir. Gerçek içsel uyum, zihnin istediği ile kalbin inandığının çelişmediği noktada başlar.'
+      },
+      {
+        h: 'Günlük Hayatta Bilinçli Uyum İçin 4 Adım',
+        bullets: [
+          'İçsel Gürültüyü Azalt: Günde 5–10 dakika nefes veya 432 Hz / doğa sesleriyle sinir sistemini sakinleştir; gergin zihin berrak seçim yapamaz.',
+          'Tekrarlayan İnançları Fark Et: “Hep benim başıma geliyor” dediğin kalıpları yazıya dök ve bunun hangi eski inançtan beslendiğini gözlemle.',
+          'Niyetini Netleştir: İstemediğin şeye odaklanmak yerine, inşa etmek istediğin dinginlik veya yönü şimdiki zamanda sade bir cümleyle tanımla.',
+          'Niyeti Somut Eylemle Birleştir: Rezonans pasif bekleyiş değildir; berrak bir içsel tutumu her gün küçük, tutarlı ve gerçekçi adımlarla desteklemekle çalışır.'
+        ]
+      },
+      {
+        h: 'Etik Sınır: Sihirli Düşünce Değil, Öz-Farkındalık',
+        p: 'Rezonans yaklaşımı; yaşanan zorluklar veya hastalıklar için kişinin kendini suçlaması (“bunu ben çektim”) anlamına gelmez. Bilimsel ve etik açıdan sağlıklı bakış; kontrol edemediğimiz dış koşulları kabul edip kontrol edebildiğimiz tek alana — kendi dikkatimize, sınırlarımıza ve eylemlerimize — sahip çıkmaktır.'
+      }
+    ],
+    faqs: [
+      { question: 'Rezonans Kanunu bilimsel bir fizik yasası mıdır?', answer: 'Akustik ve elektromanyetik rezonans kanıtlanmış fizik olgularıdır. Kişisel gelişimdeki “Rezonans Kanunu” ise bu fiziksel kavramın dikkat, inanç kalıpları ve seçici algı üzerine kurulmuş sembolik bir yorumudur.' },
+      { question: 'Sadece olumlu düşünmek rezonans için yeterli midir?', answer: 'Hayır. Bilinç dışındaki korkuları görmezden gelmeden dürüst öz-gözlem yapmak ve niyeti somut eylemle desteklemek gerekir.' }
+    ]
+  },
+  {
     slug: 'spirituel-yasam-nedir',
     tag: 'BİLİNÇLİ FARKINDALIK REHBERİ',
     readTime: '6 dk okuma',
@@ -152,6 +188,33 @@ const GUIDES_TR = [
 
 const GUIDES_EN = [
   {
+    slug: 'rezonans-kanunu-nedir',
+    tag: 'RESONANCE & CONSCIOUS ALIGNMENT',
+    readTime: '5 min read',
+    title: 'What Is the Law of Resonance? A Clear Summary of Heart, Mind & Alignment',
+    lead: 'Rooted in acoustic physics as a metaphor, the Law of Resonance explores how inner beliefs, emotional coherence and daily choices shape what we notice and build.',
+    ctaHref: '/en/sanctuary#ses-mikseri',
+    ctaLabel: 'Open 432 Hz & Nature Resonance Studio →',
+    sections: [
+      {
+        h: 'The Core Idea in Plain Language',
+        p: 'In physics, resonance occurs when two systems vibrating at compatible frequencies amplify one another. In modern mindfulness (popularized by Pierre Franckh), resonance serves as a psychological lens: we filter reality through our deepest beliefs and emotional habits, consistently gravitating toward choices that match them.'
+      },
+      {
+        h: 'Four Grounded Steps for Conscious Alignment',
+        bullets: [
+          'Quiet the Nervous System: Use 5–10 minutes of breathwork or 432 Hz soundscapes to step out of reactive stress.',
+          'Examine Hidden Beliefs: Notice repeating emotional patterns and Carl Jung’s Shadow triggers rather than masking them.',
+          'Clarify Intention: Articulate what you are building in calm, present language rather than rehearsing what you fear.',
+          'Pair Clarity with Action: Alignment is not passive wishing; it matures through consistent, grounded daily choices.'
+        ]
+      }
+    ],
+    faqs: [
+      { question: 'Is the Law of Resonance a literal medical or physical guarantee?', answer: 'No. Acoustic resonance is real physics, while the personal-growth Law of Resonance is a reflective framework for attention, belief awareness and intentional action.' }
+    ]
+  },
+  {
     slug: 'spirituel-yasam-nedir',
     tag: 'MINDFUL LIVING GUIDE',
     readTime: '6 min read',
@@ -260,10 +323,11 @@ const GUIDES_EN = [
 export const GUIDE_SLUGS = GUIDES_TR.map((g) => g.slug);
 
 const GUIDE_IMAGES = {
+  'rezonans-kanunu-nedir': '/images/Mythborn_02_Altin_Kutsal_Geometri.webp',
   'spirituel-yasam-nedir': '/images/sanctuary-hero-2027.jpg',
   'carl-jung-golge-ve-arketip': '/images/jung-hero-2027.jpg',
   'meditasyon-ve-nefes-rehberi': '/images/Mythborn_01_Kozmik_Usturlap.webp',
-  'frekans-rezonans-ve-beyin-dalgalari': '/images/Mythborn_02_Altin_Kutsal_Geometri.webp'
+  'frekans-rezonans-ve-beyin-dalgalari': '/images/Mythborn_03_Usturlap_ve_Kadim_Kitap.webp'
 };
 
 export const getGuidesList = (locale = 'tr') =>
@@ -283,6 +347,7 @@ export const getGuideFaqItems = (locale = 'tr', slug = '') => {
 export const renderGuidesHubView = ({ locale = 'tr', guideBaseHref = '/rehber' } = {}) => {
   const isTr = locale === 'tr';
   const items = getGuidesList(locale);
+  const [featured, ...rest] = items;
 
   return `
   <div class="sanc-page">
@@ -291,28 +356,52 @@ export const renderGuidesHubView = ({ locale = 'tr', guideBaseHref = '/rehber' }
       <div class="astro-container sanc-center sanc-hero-content">
         <span class="sanc-eyebrow">✦ ${isTr ? 'BİLİNÇ & FARKINDALIK AKADEMİSİ · EĞİTİCİ REHBERLER' : 'CONSCIOUSNESS & AWARENESS LIBRARY · IN-DEPTH GUIDES'}</span>
         <h1 class="sanc-h1">${isTr ? 'Bilinç, Jung & Farkındalık Rehberleri.' : 'Consciousness, Jung & Awareness Guides.'}</h1>
-        <p class="sanc-lead">${isTr ? 'Spiritüel yaşam ilkelerinden Carl Jung gölge çalışmasına, Trataka mum meditasyonundan ses rezonansının fiziğine kadar adım adım uygulamalı kütüphane.' : 'From mindful living principles and Carl Jung shadow work to candle meditation and the physics of sound resonance.'}</p>
+        <p class="sanc-lead">${isTr ? 'Rezonans Kanunu, spiritüel yaşam ilkeleri, Carl Jung gölge çalışması ve meditasyon rehberleri.' : 'The Law of Resonance, mindful living principles, Carl Jung shadow work and meditation guides.'}</p>
       </div>
     </section>
 
     <section class="sanc-section">
       <div class="astro-container">
-        <div class="guides-hub-grid">
-          ${items.map((g) => `
-            <article class="guide-hub-card mb27-card-has-media" data-spotlight>
-              <div class="mb27-card-media">
-                <img src="${g.image}" alt="${g.title}" loading="lazy" decoding="async">
+        ${featured ? `
+        <article class="guide-featured-card" data-spotlight>
+          <a class="guide-featured-media" href="${guideBaseHref}/${featured.slug}">
+            <img src="${featured.image}" alt="${featured.title}" loading="eager" decoding="async">
+          </a>
+          <div class="guide-featured-body">
+            <div>
+              <div class="guide-meta-row">
+                <span>✦ ${featured.tag}</span>
+                <span>${featured.readTime}</span>
               </div>
+              <h2><a href="${guideBaseHref}/${featured.slug}">${featured.title}</a></h2>
+              <p>${featured.lead}</p>
+            </div>
+            <a class="guide-inline-cta" href="${guideBaseHref}/${featured.slug}">
+              <span>${isTr ? 'Özet Rehberi Oku' : 'Read Summary Guide'}</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>` : ''}
+
+        <div class="guides-hub-grid">
+          ${rest.map((g) => `
+            <article class="guide-hub-card mb27-card-has-media" data-spotlight>
+              <a class="mb27-card-media" href="${guideBaseHref}/${g.slug}">
+                <img src="${g.image}" alt="${g.title}" loading="lazy" decoding="async">
+              </a>
               <div class="mb27-card-body">
                 <div>
                   <div class="guide-meta-row">
                     <span>${g.tag}</span>
                     <span>${g.readTime}</span>
                   </div>
-                  <h2>${g.title}</h2>
+                  <h2><a href="${guideBaseHref}/${g.slug}">${g.title}</a></h2>
                   <p>${g.lead}</p>
                 </div>
-                <a class="sanc-btn-ghost" href="${guideBaseHref}/${g.slug}">${isTr ? 'Rehberi Oku →' : 'Read Guide →'}</a>
+                <a class="guide-inline-cta" href="${guideBaseHref}/${g.slug}">
+                  <span>${isTr ? 'Rehberi Oku' : 'Read Guide'}</span>
+                  <span aria-hidden="true">→</span>
+                </a>
               </div>
             </article>
           `).join('')}

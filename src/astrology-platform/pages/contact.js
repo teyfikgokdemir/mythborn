@@ -13,15 +13,26 @@ const t=copy[locale]||copy.tr;
 const icon = kind => kind==='support'
   ? '<svg viewBox="0 0 48 48" aria-hidden="true" fill="none"><rect x="8" y="9" width="32" height="28" rx="7" stroke="currentColor" stroke-width="1.5"/><path d="M15 19h18M15 26h13M18 37l-4 5v-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>'
   : '<svg viewBox="0 0 48 48" aria-hidden="true" fill="none"><path d="M6 15 24 28 42 15M8 12h32a2 2 0 0 1 2 2v21a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V14a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const card=(label,description,email,subject,kind)=>`<article class="astro-contact-card astro-contact-card-${kind}">
+const card=(label,description,email,subject,kind)=>`<article class="astro-contact-card astro-contact-card-${kind}" data-spotlight>
   <div class="astro-contact-card-head"><span class="astro-contact-icon">${icon(kind)}</span><span class="astro-contact-kicker">${safe(label)}</span></div>
   <p class="astro-contact-description">${safe(description)}</p>
   <div class="astro-contact-card-bottom"><a class="astro-contact-email" href="mailto:${email}?subject=${encodeURIComponent(subject)}" aria-label="${safe(t.write)}: ${email}"><span>${email}</span><svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5 19 19 5M8 5h11v11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a><span class="astro-contact-action" aria-hidden="true">${safe(t.write)}</span></div>
 </article>`;
-return `<section class="astro-contact-page astro-container" aria-labelledby="astro-contact-title">
-<nav class="astro-contact-breadcrumb" aria-label="Breadcrumb"><a href="${getRouteHref(locale,'home')}">${safe(t.home)}</a><span aria-hidden="true">›</span><span>${safe(t.k.split(' · ')[0])}</span></nav>
-<header class="astro-contact-heading"><span class="astro-contact-eyebrow">✦ ${safe(t.k)}</span><h1 id="astro-contact-title">${safe(t.h)}</h1><p>${safe(t.lead)}</p></header>
+return `<div class="sanc-page">
+<section class="sanc-hero sanc-hero-fullbleed">
+  <img class="sanc-hero-bg" src="/images/cinematic/home/hero-celestial-1440.webp" alt="" width="1440" height="900" fetchpriority="high" decoding="async" aria-hidden="true">
+  <div class="astro-container sanc-center sanc-hero-content">
+    <header class="astro-contact-heading" style="margin:0 auto">
+      <span class="sanc-eyebrow astro-contact-eyebrow">✦ ${safe(t.k)}</span>
+      <h1 id="astro-contact-title" class="sanc-h1">${safe(t.h)}</h1>
+      <p class="sanc-lead">${safe(t.lead)}</p>
+    </header>
+  </div>
+</section>
+<section class="astro-contact-page astro-container" aria-labelledby="astro-contact-title">
 <div class="astro-contact-grid">${card(t.support,t.supportDesc,'support@mythborn.co','Mythborn Support','support')}${card(t.info,t.infoDesc,'info@mythborn.co','Mythborn General Enquiry','info')}</div>
 <div class="astro-contact-foot"><p>${safe(t.note)}</p><a href="${getRouteHref(locale,'privacy')}">${safe(t.privacy)} ↗</a></div>
-</section>`;
+</section>
+</div>
+<script src="/sanctuary-audio.js" defer></script>`;
 };
