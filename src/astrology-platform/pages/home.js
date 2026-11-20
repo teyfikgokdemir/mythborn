@@ -225,8 +225,8 @@ export const renderHomeView = ({ locale = 'tr' } = {}) => {
   };
 
   const pillarImages = {
-    sanctuary: '/images/cinematic/daily/daily-card-altar-960.webp',
-    jung: '/images/astrology/moon-archetype.jpg',
+    sanctuary: '/images/sanctuary-hero-2027.jpg',
+    jung: '/images/jung-hero-2027.jpg',
     sanctuary_mixer: '/images/Mythborn_02_Altin_Kutsal_Geometri.webp',
     guides: '/images/cinematic/knowledge/celestial-knowledge-library-960.webp'
   };
@@ -239,10 +239,10 @@ export const renderHomeView = ({ locale = 'tr' } = {}) => {
 
   return `
   <div class="mb27-home" data-sanctuary-app>
-    <!-- 1. Ground-Up 2027 Quiet-Luxury Sanctuary Hero with Real Celestial Photography -->
+    <!-- 1. Ground-Up 2027 Full-Bleed Vibrant Sanctuary Hero -->
     <section class="mb27-hero">
       <div class="mb27-hero-media" aria-hidden="true">
-        <img src="/images/cinematic/home/hero-celestial-1440.webp" alt="" width="1440" height="900" fetchpriority="high" decoding="async">
+        <img src="/images/sanctuary-hero-2027.jpg" alt="" width="1408" height="768" fetchpriority="high" decoding="async">
       </div>
       <div class="mb27-hero-aura" aria-hidden="true">
         <div class="mb27-orbit mb27-orbit-1"></div>
