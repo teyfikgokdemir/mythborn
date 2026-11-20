@@ -350,15 +350,24 @@ export const renderHomeView = ({ locale = 'tr' } = {}) => {
             </div>
           </div>
 
-          <!-- Hidden defaults for homepage one-click preview -->
+          <!-- Hidden defaults for homepage one-click studio playback -->
           <div hidden>
             <select data-sanc-duration><option value="600" selected>10m</option></select>
-            <select data-sanc-tone><option value="432" selected>432</option><option value="528">528</option><option value="396">396</option><option value="theta-6">theta-6</option><option value="alpha-10">alpha-10</option></select>
-            <input type="range" data-sanc-tone-vol value="42">
-            <select data-sanc-music><option value="bowls" selected>bowls</option><option value="temple">temple</option><option value="off">off</option></select>
-            <input type="range" data-sanc-music-vol value="48">
-            <select data-sanc-nature><option value="rain" selected>rain</option><option value="ocean">ocean</option><option value="wind">wind</option><option value="fire">fire</option></select>
-            <input type="range" data-sanc-nature-vol value="52">
+            <select data-sanc-tone><option value="off" selected>off</option><option value="432">432</option></select>
+            <input type="range" data-sanc-tone-vol value="28">
+            <select data-sanc-music>
+              <option value="track:432hz" selected>432hz</option>
+              <option value="track:528hz">528hz</option>
+              <option value="track:396hz">396hz</option>
+              <option value="track:852hz">852hz</option>
+              <option value="track:963hz">963hz</option>
+              <option value="track:174hz">174hz</option>
+              <option value="track:639hz">639hz</option>
+              <option value="track:alpha-10hz">alpha-10hz</option>
+            </select>
+            <input type="range" data-sanc-music-vol value="74">
+            <select data-sanc-nature><option value="rain" selected>rain</option><option value="ocean">ocean</option><option value="wind">wind</option><option value="fire">fire</option><option value="off">off</option></select>
+            <input type="range" data-sanc-nature-vol value="26">
           </div>
 
           <div class="sanc-mixer-foot">
