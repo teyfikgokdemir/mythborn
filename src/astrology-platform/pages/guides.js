@@ -1,5 +1,6 @@
 // Mythborn 2027 — Consciousness, Carl Jung, Meditation & Sound Resonance Educational Library
 // Hub (/rehber) + 4 Deep Long-Form Educational Guides
+import { renderReadingCuration } from './jung.js';
 
 const GUIDES_TR = [
   {
@@ -330,8 +331,21 @@ const GUIDE_IMAGES = {
   'frekans-rezonans-ve-beyin-dalgalari': '/images/Mythborn_03_Usturlap_ve_Kadim_Kitap.webp'
 };
 
+const GUIDE_CATEGORIES = {
+  'rezonans-kanunu-nedir': 'resonance',
+  'spirituel-yasam-nedir': 'mindfulness',
+  'carl-jung-golge-ve-arketip': 'psychology',
+  'meditasyon-ve-nefes-rehberi': 'mindfulness',
+  'frekans-rezonans-ve-beyin-dalgalari': 'resonance'
+};
+
 export const getGuidesList = (locale = 'tr') =>
-  (locale === 'tr' ? GUIDES_TR : GUIDES_EN).map((g) => ({ ...g, image: GUIDE_IMAGES[g.slug] || '/images/cinematic/knowledge/celestial-knowledge-library-960.webp' }));
+  (locale === 'tr' ? GUIDES_TR : GUIDES_EN).map((g, idx) => ({
+    ...g,
+    indexLabel: String(idx + 1).padStart(2, '0'),
+    category: GUIDE_CATEGORIES[g.slug] || 'mindfulness',
+    image: GUIDE_IMAGES[g.slug] || '/images/cinematic/knowledge/celestial-knowledge-library-960.webp'
+  }));
 
 export const getGuideBySlug = (locale = 'tr', slug = '') =>
   getGuidesList(locale).find((g) => g.slug === slug) || null;
@@ -340,62 +354,128 @@ export const getGuideFaqItems = (locale = 'tr', slug = '') => {
   const g = getGuideBySlug(locale, slug);
   if (g && Array.isArray(g.faqs)) return g.faqs;
   return locale === 'tr'
-    ? [{ question: 'Mythborn rehberleri bilimsel ve etik sınırları koruyor mu?', answer: 'Evet. Tüm farkındalık, Jung psikolojisi, meditasyon ve ses rehberleri şeffaf biçimde eğitim ve kişisel tefekkür amaçlıdır; tıbbi iddia içermez.' }]
-    : [{ question: 'Do Mythborn guides respect scientific and ethical boundaries?', answer: 'Yes. All mindfulness, Jungian, meditation and sound guides are strictly educational and reflective with zero medical claims.' }];
+    ? [
+        { question: 'Mythborn rehberleri bilimsel ve etik sınırları koruyor mu?', answer: 'Evet. Tüm farkındalık, Carl Jung psikolojisi, meditasyon ve ses rezonansı rehberleri şeffaf biçimde eğitim ve kişisel tefekkür amaçlıdır; tıbbi veya klinik iddia içermez.' },
+        { question: 'Yeni başlayan biri hangi sırayla okumalı?', answer: 'Önce Meditasyon & Nefes rehberiyle zihinsel dinginliği kurup ardından Carl Jung Gölge Çalışması ve Rezonans Kanunu özetine geçmeniz en verimli sıradır.' },
+        { question: 'Rehberlerdeki pratikleri sitede doğrudan uygulayabilir miyim?', answer: 'Evet. Her rehberin sonunda ilgili canlı araca (Meditasyon & Frekans Stüdyosu veya Carl Jung Arketip Aynası) tek tıkla geçebilirsiniz.' }
+      ]
+    : [
+        { question: 'Do Mythborn guides respect scientific and ethical boundaries?', answer: 'Yes. All mindfulness, Carl Jung depth psychology, meditation and sound resonance guides are strictly educational and reflective with zero medical claims.' },
+        { question: 'What is the recommended reading order for beginners?', answer: 'Start with the Meditation & Breath guide to establish calm focus, then continue with Carl Jung Shadow Work and the Law of Resonance summary.' },
+        { question: 'Can I practice these methods directly on Mythborn?', answer: 'Yes. Each guide links directly to our interactive Meditation & Frequency Studio or the Carl Jung Archetype Mirror.' }
+      ];
 };
 
 export const renderGuidesHubView = ({ locale = 'tr', guideBaseHref = '/rehber' } = {}) => {
   const isTr = locale === 'tr';
+  const homeHref = locale === 'tr' ? '/' : locale === 'el' ? '/gr' : `/${locale}`;
+  const sanctuaryHref = isTr ? '/meditasyon-ve-frekans' : '/en/meditation-and-frequencies';
+  const jungHref = isTr ? '/jung' : '/en/jung';
   const items = getGuidesList(locale);
   const [featured, ...rest] = items;
+  const hubFaqs = getGuideFaqItems(locale, '');
+
+  const filters = isTr
+    ? [
+        { key: 'all', label: 'Tüm Rehberler' },
+        { key: 'resonance', label: 'Rezonans & Ses' },
+        { key: 'psychology', label: 'Derinlik Psikolojisi' },
+        { key: 'mindfulness', label: 'Meditasyon & Farkındalık' }
+      ]
+    : [
+        { key: 'all', label: 'All Guides' },
+        { key: 'resonance', label: 'Resonance & Sound' },
+        { key: 'psychology', label: 'Depth Psychology' },
+        { key: 'mindfulness', label: 'Meditation & Mindful Living' }
+      ];
+
+  const pathSteps = isTr
+    ? [
+        { num: 'I', tag: 'SİNİR SİSTEMİ & DİNGİNLİK', title: 'Önce Zihni Sakinleştir', desc: 'Mum meditasyonu (Trataka), kutu nefesi ve 432 Hz stüdyo frekanslarıyla içsel gürültüyü azalt.', href: sanctuaryHref, cta: 'Stüdyoyu Aç →' },
+        { num: 'II', tag: 'DERİNLİK PSİKOLOJİSİ', title: 'Gölge ve Arketipleri Tanı', desc: 'Carl Jung’un bilinç dışı haritasıyla tekrarlayan tetikleyicileri ve içsel kalıpları dürüstçe gözlemle.', href: jungHref, cta: 'Jung Aynasını Aç →' },
+        { num: 'III', tag: 'BİLİNÇLİ UYUM', title: 'Niyeti Eylemle Birleştir', desc: 'Rezonans Kanunu özetiyle soyut dilekleri değil, berrak niyet ve tutarlı günlük adımları inşa et.', href: `${guideBaseHref}/rezonans-kanunu-nedir`, cta: 'Özeti Oku →' }
+      ]
+    : [
+        { num: 'I', tag: 'NERVOUS SYSTEM & STILLNESS', title: 'Settle the Mind First', desc: 'Quiet mental noise with Trataka candle focus, box breathing and 432 Hz acoustic resonance.', href: sanctuaryHref, cta: 'Open Studio →' },
+        { num: 'II', tag: 'DEPTH PSYCHOLOGY', title: 'Meet Shadow & Archetypes', desc: 'Use Carl Jung’s psychological map to observe repeating triggers and unconscious patterns honestly.', href: jungHref, cta: 'Open Jung Mirror →' },
+        { num: 'III', tag: 'CONSCIOUS ALIGNMENT', title: 'Pair Clarity with Action', desc: 'Read the Law of Resonance summary to unite clear inner intention with grounded daily choices.', href: `${guideBaseHref}/rezonans-kanunu-nedir`, cta: 'Read Summary →' }
+      ];
 
   return `
-  <div class="sanc-page">
-    <section class="sanc-hero sanc-hero-fullbleed">
+  <div class="sanc-page guides-elite-page">
+    <section class="sanc-hero sanc-hero-fullbleed guides-elite-hero">
       <img class="sanc-hero-bg" src="/images/cinematic/knowledge/celestial-knowledge-library-1440.webp" alt="" width="1440" height="900" fetchpriority="high" decoding="async" aria-hidden="true">
       <div class="astro-container sanc-center sanc-hero-content">
-        <span class="sanc-eyebrow">✦ ${isTr ? 'BİLİNÇ & FARKINDALIK AKADEMİSİ · EĞİTİCİ REHBERLER' : 'CONSCIOUSNESS & AWARENESS LIBRARY · IN-DEPTH GUIDES'}</span>
+        <span class="sanc-eyebrow">✦ ${isTr ? 'BİLİNÇ & FARKINDALIK AKADEMİSİ · EDİTÖRYAL MONOGRAFİLER' : 'CONSCIOUSNESS & AWARENESS ACADEMY · EDITORIAL MONOGRAPHS'}</span>
         <h1 class="sanc-h1">${isTr ? 'Bilinç, Jung & Farkındalık Rehberleri.' : 'Consciousness, Jung & Awareness Guides.'}</h1>
-        <p class="sanc-lead">${isTr ? 'Rezonans Kanunu, spiritüel yaşam ilkeleri, Carl Jung gölge çalışması ve meditasyon rehberleri.' : 'The Law of Resonance, mindful living principles, Carl Jung shadow work and meditation guides.'}</p>
+        <p class="sanc-lead">${isTr ? 'Rezonans Kanunu, spiritüel yaşam ilkeleri, Carl Jung gölge çalışması ve ses fiziği üzerine rafine kütüphane.' : 'A curated library on the Law of Resonance, mindful living, Carl Jung shadow work and acoustic physics.'}</p>
+        <div class="guides-hero-telemetry" aria-label="Library overview">
+          <span>✦ ${isTr ? '05 Derinlik Rehberi' : '05 In-Depth Guides'}</span>
+          <span class="guides-tel-dot" aria-hidden="true">·</span>
+          <span>${isTr ? '30 dk Toplam Okuma' : '30 min Total Reading'}</span>
+          <span class="guides-tel-dot" aria-hidden="true">·</span>
+          <span>${isTr ? 'Reklamsız & Etik Sınırlar' : 'Ad-Free & Ethical Boundaries'}</span>
+        </div>
       </div>
     </section>
 
-    <section class="sanc-section">
+    <section class="sanc-section guides-catalog-section">
       <div class="astro-container">
+        <div class="guides-toolbar">
+          <div class="guides-toolbar-head">
+            <span class="sanc-kicker">✦ ${isTr ? 'KÜRATÖRLÜ ARŞİV' : 'CURATED ARCHIVE'}</span>
+            <h2 class="guides-section-h2">${isTr ? 'Konuya Göre Keşfet' : 'Explore by Discipline'}</h2>
+          </div>
+          <div class="guides-filter-bar" role="tablist" aria-label="${isTr ? 'Rehber kategorileri' : 'Guide categories'}">
+            ${filters.map((f, i) => `
+              <button type="button" class="guides-filter-pill${i === 0 ? ' is-active' : ''}" data-guide-filter="${f.key}" role="tab" aria-selected="${i === 0 ? 'true' : 'false'}">${f.label}</button>
+            `).join('')}
+          </div>
+        </div>
+
         ${featured ? `
-        <article class="guide-featured-card" data-spotlight>
+        <article class="guide-featured-card guide-elite-featured" data-guide-item data-guide-cat="${featured.category}" data-spotlight>
           <a class="guide-featured-media" href="${guideBaseHref}/${featured.slug}">
+            <span class="guide-index-badge">${featured.indexLabel}</span>
             <img src="${featured.image}" alt="${featured.title}" loading="eager" decoding="async">
           </a>
           <div class="guide-featured-body">
             <div>
               <div class="guide-meta-row">
-                <span>✦ ${featured.tag}</span>
-                <span>${featured.readTime}</span>
+                <span class="guide-featured-kicker">✦ ${isTr ? 'ÖNE ÇIKAN MONOGRAFİ' : 'FEATURED MONOGRAPH'} · ${featured.tag}</span>
+                <span class="guide-read-pill">${featured.readTime}</span>
               </div>
               <h2><a href="${guideBaseHref}/${featured.slug}">${featured.title}</a></h2>
+              <div class="guide-gold-rule" aria-hidden="true"></div>
               <p>${featured.lead}</p>
             </div>
-            <a class="guide-inline-cta" href="${guideBaseHref}/${featured.slug}">
-              <span>${isTr ? 'Özet Rehberi Oku' : 'Read Summary Guide'}</span>
-              <span aria-hidden="true">→</span>
-            </a>
+            <div class="guide-featured-actions">
+              <a class="sanc-btn-gold" href="${guideBaseHref}/${featured.slug}">
+                <span>${isTr ? 'Özet Rehberi Oku' : 'Read Summary Guide'}</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a class="guide-inline-cta" href="${featured.ctaHref}">
+                <span>${isTr ? 'Stüdyoda Deneyimle' : 'Try in Studio'}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
         </article>` : ''}
 
-        <div class="guides-hub-grid">
+        <div class="guides-hub-grid guides-elite-grid">
           ${rest.map((g) => `
-            <article class="guide-hub-card mb27-card-has-media" data-spotlight>
+            <article class="guide-hub-card mb27-card-has-media guide-elite-card" data-guide-item data-guide-cat="${g.category}" data-spotlight>
               <a class="mb27-card-media" href="${guideBaseHref}/${g.slug}">
+                <span class="guide-index-badge">${g.indexLabel}</span>
                 <img src="${g.image}" alt="${g.title}" loading="lazy" decoding="async">
               </a>
               <div class="mb27-card-body">
                 <div>
                   <div class="guide-meta-row">
                     <span>${g.tag}</span>
-                    <span>${g.readTime}</span>
+                    <span class="guide-read-pill">${g.readTime}</span>
                   </div>
-                  <h2><a href="${guideBaseHref}/${g.slug}">${g.title}</a></h2>
+                  <h3><a href="${guideBaseHref}/${g.slug}">${g.title}</a></h3>
                   <p>${g.lead}</p>
                 </div>
                 <a class="guide-inline-cta" href="${guideBaseHref}/${g.slug}">
@@ -408,20 +488,92 @@ export const renderGuidesHubView = ({ locale = 'tr', guideBaseHref = '/rehber' }
         </div>
       </div>
     </section>
+
+    <section class="sanc-section guides-path-section">
+      <div class="astro-container">
+        <div class="sanc-head sanc-center">
+          <span class="sanc-kicker">✦ ${isTr ? 'ÖNERİLEN OKUMA & UYGULAMA ROTASI' : 'CURATED READING & PRACTICE PATH'}</span>
+          <h2>${isTr ? 'Nereden Başlamalı?' : 'Where to Begin?'}</h2>
+          <p>${isTr ? 'Teoride bırakmadan, sakinlikten derin öz-farkındalığa uzanan üç adımlı Mythborn akışı.' : 'A three-step Mythborn progression moving from stillness to deep self-awareness.'}</p>
+        </div>
+        <div class="guides-path-grid">
+          ${pathSteps.map((step) => `
+            <article class="guides-path-card" data-spotlight>
+              <div class="guides-path-num">${step.num}</div>
+              <span class="guides-path-tag">${step.tag}</span>
+              <h3>${step.title}</h3>
+              <p>${step.desc}</p>
+              <a class="guide-inline-cta" href="${step.href}">${step.cta}</a>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    </section>
+
+    ${renderReadingCuration(locale, { id: 'okuma-listesi' })}
+
+    <section class="sanc-section guides-faq-section">
+      <div class="astro-container">
+        <div class="sanc-head sanc-center">
+          <span class="sanc-kicker">✦ ${isTr ? 'ETİK SINIRLAR & SIK SORULANLAR' : 'ETHICAL BOUNDARIES & FAQ'}</span>
+          <h2>${isTr ? 'Rehberler Hakkında Merak Edilenler' : 'Frequently Asked Questions'}</h2>
+        </div>
+        <div class="guides-faq-list">
+          ${hubFaqs.map((f, i) => `
+            <details class="guides-faq-item"${i === 0 ? ' open' : ''}>
+              <summary><span>${f.question}</span><span class="guides-faq-plus" aria-hidden="true">+</span></summary>
+              <p>${f.answer}</p>
+            </details>
+          `).join('')}
+        </div>
+      </div>
+    </section>
   </div>
+  <script>
+    (function(){
+      var pills = document.querySelectorAll('[data-guide-filter]');
+      var cards = document.querySelectorAll('[data-guide-item]');
+      if (!pills.length || !cards.length) return;
+      pills.forEach(function(pill){
+        pill.addEventListener('click', function(){
+          var cat = pill.getAttribute('data-guide-filter');
+          pills.forEach(function(p){
+            var active = p === pill;
+            p.classList.toggle('is-active', active);
+            p.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          cards.forEach(function(card){
+            var show = cat === 'all' || card.getAttribute('data-guide-cat') === cat;
+            card.style.display = show ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
   <script src="/sanctuary-audio.js" defer></script>
   `;
 };
 
 export const renderGuideArticleView = ({ locale = 'tr', slug = '', guideBaseHref = '/rehber' } = {}) => {
   const isTr = locale === 'tr';
-  const g = getGuideBySlug(locale, slug) || getGuidesList(locale)[0];
+  const homeHref = locale === 'tr' ? '/' : locale === 'el' ? '/gr' : `/${locale}`;
+  const allGuides = getGuidesList(locale);
+  const g = getGuideBySlug(locale, slug) || allGuides[0];
+  const related = allGuides.filter((item) => item.slug !== g.slug).slice(0, 2);
 
   return `
-  <div class="sanc-page">
-    <section class="sanc-hero sanc-hero-fullbleed">
+  <div class="guide-read-progress-track" aria-hidden="true"><div id="guide-read-progress" class="guide-read-progress-bar"></div></div>
+  <div class="sanc-page guides-elite-page">
+    <section class="sanc-hero sanc-hero-fullbleed guides-elite-hero">
       <img class="sanc-hero-bg" src="${g.image}" alt="" width="1408" height="768" fetchpriority="high" decoding="async" aria-hidden="true">
       <div class="astro-container sanc-center sanc-hero-content">
+        <nav class="guide-breadcrumb" aria-label="Breadcrumb">
+          <a href="${homeHref}">${isTr ? 'Ana Sayfa' : 'Home'}</a>
+          <span aria-hidden="true">›</span>
+          <a href="${guideBaseHref}">${isTr ? 'Rehberler' : 'Guides'}</a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">${g.indexLabel}</span>
+        </nav>
         <span class="sanc-eyebrow">✦ ${g.tag} · ${g.readTime}</span>
         <h1 class="sanc-h1">${g.title}</h1>
         <p class="sanc-lead">${g.lead}</p>
@@ -430,23 +582,84 @@ export const renderGuideArticleView = ({ locale = 'tr', slug = '', guideBaseHref
 
     <section class="sanc-section">
       <div class="astro-container">
-        <article class="guide-article-shell" data-spotlight>
-          ${g.sections.map((sec) => `
+        <article class="guide-article-shell guide-article-elite" data-spotlight>
+          ${g.sections.map((sec, idx) => `
             <section class="guide-article-sec">
+              <div class="guide-sec-num">${String(idx + 1).padStart(2, '0')}</div>
               <h2>${sec.h}</h2>
               ${sec.p ? `<p>${sec.p}</p>` : ''}
               ${sec.bullets ? `<ul class="guide-article-list">${sec.bullets.map((b) => `<li>${b}</li>`).join('')}</ul>` : ''}
             </section>
           `).join('')}
 
+          ${g.faqs && g.faqs.length ? `
+          <section class="guide-article-sec guide-article-faq-wrap">
+            <div class="guide-sec-num">FAQ</div>
+            <h2>${isTr ? 'Kısa Sorular & Etik Netlik' : 'Quick Questions & Ethical Clarity'}</h2>
+            <div class="guides-faq-list" style="margin-top:16px">
+              ${g.faqs.map((f, i) => `
+                <details class="guides-faq-item"${i === 0 ? ' open' : ''}>
+                  <summary><span>${f.question}</span><span class="guides-faq-plus" aria-hidden="true">+</span></summary>
+                  <p>${f.answer}</p>
+                </details>
+              `).join('')}
+            </div>
+          </section>` : ''}
+
           <div class="guide-article-foot">
             <a class="sanc-btn-gold" href="${g.ctaHref}">${g.ctaLabel}</a>
             <a class="sanc-btn-ghost" href="${guideBaseHref}">${isTr ? '← Tüm Rehberler' : '← All Guides'}</a>
           </div>
         </article>
+
+        ${related.length ? `
+        <div class="guides-related-wrap">
+          <div class="guides-related-head">
+            <span class="sanc-kicker">✦ ${isTr ? 'OKUMAYA DEVAM ET' : 'CONTINUE READING'}</span>
+            <h2>${isTr ? 'Sıradaki Önerilen Rehberler' : 'Recommended Next Guides'}</h2>
+          </div>
+          <div class="guides-hub-grid guides-elite-grid">
+            ${related.map((r) => `
+              <article class="guide-hub-card mb27-card-has-media guide-elite-card" data-spotlight>
+                <a class="mb27-card-media" href="${guideBaseHref}/${r.slug}">
+                  <span class="guide-index-badge">${r.indexLabel}</span>
+                  <img src="${r.image}" alt="${r.title}" loading="lazy" decoding="async">
+                </a>
+                <div class="mb27-card-body">
+                  <div>
+                    <div class="guide-meta-row">
+                      <span>${r.tag}</span>
+                      <span class="guide-read-pill">${r.readTime}</span>
+                    </div>
+                    <h3><a href="${guideBaseHref}/${r.slug}">${r.title}</a></h3>
+                    <p>${r.lead}</p>
+                  </div>
+                  <a class="guide-inline-cta" href="${guideBaseHref}/${r.slug}">
+                    <span>${isTr ? 'Rehberi Oku' : 'Read Guide'}</span>
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </article>
+            `).join('')}
+          </div>
+        </div>` : ''}
       </div>
     </section>
+    ${renderReadingCuration(locale, { id: 'okuma-listesi' })}
   </div>
+  <script>
+    (function(){
+      var bar = document.getElementById('guide-read-progress');
+      if (!bar) return;
+      function update(){
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        var pct = h > 0 ? Math.min(100, Math.max(0, (window.scrollY / h) * 100)) : 0;
+        bar.style.width = pct + '%';
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+  </script>
   <script src="/sanctuary-audio.js" defer></script>
   `;
 };

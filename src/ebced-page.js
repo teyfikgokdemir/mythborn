@@ -1,5 +1,7 @@
 // Mythborn Abjad & Numerology Platform Page
 // Haute Horlogerie Astronomical & Mathematical Symbolic Interface
+import { renderAstrologyLayout } from './astrology-platform/layout.js';
+import { renderReadingCuration } from './astrology-platform/pages/jung.js';
 
 const langs = {
   tr: {
@@ -312,38 +314,10 @@ export function ebcedPage(path, isPreview = true) {
   }[lang];
   const g = EBCEd_GUIDE[lang];
 
-  const schemaJson = {
-    '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    'name': t.title,
-    'url': `https://mythborn.co${path}`,
-    'description': t.metaDesc,
-    'applicationCategory': 'LifestyleApplication',
-    'operatingSystem': 'All',
-    'inLanguage': ['tr', 'en', 'el', 'es']
-  };
-
-  return `<!doctype html>
-<html lang="${lang}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="robots" content="${isPreview ? 'noindex,follow' : 'index,follow'}">
-  <meta name="theme-color" content="#05070e">
-  <title>${esc(isComparison ? t.modeCompare + ' | Mythborn' : t.metaTitle)}</title>
-  <meta name="description" content="${esc(isComparison ? t.modeCompare + '. ' + t.metaDesc : t.metaDesc)}">
-  <link rel="canonical" href="https://mythborn.co${path}">
-  <link rel="alternate" hreflang="tr" href="https://mythborn.co${currentTr}">
-  <link rel="alternate" hreflang="en" href="https://mythborn.co${currentEn}">
-  <link rel="alternate" hreflang="el" href="https://mythborn.co${currentGr}">
-  <link rel="alternate" hreflang="es" href="https://mythborn.co${currentEs}">
-  <link rel="alternate" hreflang="x-default" href="https://mythborn.co${currentTr}">
-  <link rel="icon" type="image/svg+xml" href="/assets/astrology/mythborn-symbol.svg">
-  <script type="application/ld+json">${JSON.stringify(schemaJson)}</script>
+  const extraHeadHtml = `
   <style>
-    :root {
+    .ebced-page-wrap {
       --bg: #05070e;
-      --bg-radial: radial-gradient(circle at 50% -20%, #171f38 0%, #080b16 55%, #030408 100%);
       --card-bg: rgba(14, 18, 34, 0.78);
       --card-border: rgba(212, 175, 55, 0.22);
       --card-hover: rgba(212, 175, 55, 0.5);
@@ -353,106 +327,19 @@ export function ebcedPage(path, isPreview = true) {
       --cream: #f8f6f0;
       --muted: #a6abbd;
       --input-bg: rgba(8, 12, 22, 0.88);
-      --font-serif: "Cinzel", "Playfair Display", Georgia, "Times New Roman", serif;
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --font-arabic: "Amiri", "Traditional Arabic", "Scheherazade New", serif;
-      color-scheme: dark;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { overflow-x: clip; max-width: 100%; }
-    body {
-      background: var(--bg-radial);
-      background-attachment: fixed;
-      color: var(--cream);
-      font-family: var(--font-sans);
-      line-height: 1.6;
-      min-height: 100vh;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    .shell {
+    .ebced-page-wrap .shell {
       width: min(1320px, calc(100% - 32px));
       margin: 0 auto;
       padding: 0 0 80px;
     }
-    /* Brand & Navigation Header */
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding-bottom: 24px;
-      border-bottom: 1px solid var(--card-border);
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-    .brand-group {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: #fff;
-    }
-    .brand-logo {
-      width: 32px;
-      height: 32px;
-      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
-    }
-    .brand-name {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      letter-spacing: 0.22em;
-      font-weight: 600;
-      color: #fff;
-    }
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .home-link {
-      color: var(--gold-bright);
-      font-size: 13px;
-      text-decoration: none;
-      padding: 6px 12px;
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      background: var(--gold-dim);
-      transition: all 0.2s ease;
-    }
-    .home-link:hover {
-      border-color: var(--gold);
-      color: #fff;
-    }
-    .lang-pills {
-      display: inline-flex;
-      gap: 4px;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 3px;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-    }
-    .lang-pills a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 6px;
-      transition: all 0.2s;
-    }
-    .lang-pills a:hover { color: #fff; }
-    .lang-pills a.active {
-      color: var(--gold-bright);
-      background: var(--gold-dim);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-    }
     /* Hero section */
-    .hero {
+    .ebced-page-wrap .hero {
       text-align: center;
       margin-bottom: 36px;
     }
-    .eyebrow {
+    .ebced-page-wrap .eyebrow {
       display: inline-block;
       font-size: 11.5px;
       font-weight: 700;
@@ -461,7 +348,7 @@ export function ebcedPage(path, isPreview = true) {
       color: var(--gold);
       margin-bottom: 12px;
     }
-    h1 {
+    .ebced-page-wrap h1 {
       font-family: var(--font-serif);
       font-size: clamp(28px, 4.5vw, 46px);
       line-height: 1.2;
@@ -469,7 +356,7 @@ export function ebcedPage(path, isPreview = true) {
       margin-bottom: 16px;
       letter-spacing: 0.02em;
     }
-    .lead {
+    .ebced-page-wrap .lead {
       font-size: clamp(15px, 2vw, 17px);
       color: var(--muted);
       max-width: 820px;
@@ -565,7 +452,7 @@ export function ebcedPage(path, isPreview = true) {
       margin-bottom: 6px;
       text-transform: uppercase;
     }
-    input[type="text"], input[type="date"], select {
+    .ebced-page-wrap input[type="text"], .ebced-page-wrap input[type="date"], .ebced-page-wrap select {
       width: 100%;
       padding: 12px 14px;
       background: var(--input-bg);
@@ -577,7 +464,7 @@ export function ebcedPage(path, isPreview = true) {
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
       transition: all 0.2s ease;
     }
-    input:focus, select:focus {
+    .ebced-page-wrap input:focus, .ebced-page-wrap select:focus {
       outline: none;
       border-color: var(--gold-bright);
       box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -1112,46 +999,8 @@ export function ebcedPage(path, isPreview = true) {
 }
 @media(max-width:1179px){.hero .lead{white-space:normal}}
 
-/* Approved Header & Navigation */
-.ebced-header{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:74px;padding:12px 0;border-bottom:1px solid rgba(212,175,55,.16);position:relative;z-index:70}
-.ebced-nav{display:flex;align-items:center;gap:clamp(14px,1.6vw,26px)}
-.ebced-nav>a,.ebced-nav-drop summary{position:relative;color:#c9cad6;text-decoration:none;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:10px 2px;transition:color .2s;list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-.ebced-nav-drop summary::-webkit-details-marker{display:none}
-.ebced-nav>a:hover,.ebced-nav>a[aria-current="page"],.ebced-nav-drop summary:hover{color:#f5deb0}
-.ebced-nav>a[aria-current="page"]::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,transparent,#e6c16d,transparent);box-shadow:0 0 12px rgba(230,193,109,.65)}
-.ebced-nav-drop{position:relative}
-.ebced-nav-drop-menu{position:absolute;top:calc(100% + 10px);left:0;min-width:230px;padding:8px;background:rgba(10,13,22,.98);border:1px solid rgba(212,175,55,.28);border-radius:12px;box-shadow:0 22px 60px rgba(0,0,0,.78);display:grid;gap:2px;z-index:80}
-.ebced-nav-drop-menu a{display:block;padding:9px 12px;border-radius:8px;color:#dad8df;text-decoration:none;font-size:13px;letter-spacing:.01em;transition:background .18s,color .18s}
-.ebced-nav-drop-menu a:hover{background:rgba(212,175,55,.12);color:#f7dfaa}
-.ebced-header-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.ebced-header-cta{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;border:1px solid rgba(212,175,55,.42);background:rgba(212,175,55,.07);color:#f2dca9;font-size:12px;font-weight:600;text-decoration:none;white-space:nowrap;transition:border-color .2s,background .2s,transform .2s}
-.ebced-header-cta:hover{border-color:#e8c468;background:rgba(212,175,55,.15);transform:translateY(-1px)}
-
-.ebced-language{position:relative;isolation:isolate;z-index:60}
-.ebced-language summary{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:6px 13px;border-radius:999px;background:linear-gradient(140deg,rgba(222,181,107,.1),rgba(12,15,24,.95));border:1px solid rgba(225,188,117,.42);box-shadow:inset 0 1px rgba(255,255,255,.06);color:#f0dba7;font-size:12px;font-weight:650;letter-spacing:.04em;cursor:pointer;list-style:none}
-.ebced-language summary::-webkit-details-marker{display:none}
-.ebced-language summary:hover,.ebced-language[open] summary{border-color:rgba(243,205,125,.78);background:rgba(229,190,111,.14)}
-.ebced-language summary:focus-visible,.ebced-language-options a:focus-visible{outline:2px solid #f3cf7a;outline-offset:3px}
-.ebced-language-globe{height:16px;width:16px;flex:none;color:#d9b86c}
-.ebced-language-code{letter-spacing:.09em;font-size:11px;font-weight:700}
-.ebced-language-full{display:none}
-.ebced-language-chevron{font-size:13px;color:#d0b57d;transition:transform .2s}
-.ebced-language[open] .ebced-language-chevron{transform:rotate(180deg)}
-.ebced-language-options{position:absolute;inset-inline-end:0;top:calc(100% + 10px);min-width:195px;padding:7px;background:rgba(13,16,26,.99);border:1px solid rgba(226,189,120,.39);border-radius:13px;box-shadow:0 22px 65px #000b;display:grid;gap:3px;z-index:90}
-.ebced-language-options a{display:flex;align-items:center;gap:14px;color:#e6e0d7;font-size:13px;padding:10px 12px;border-radius:8px;text-decoration:none}
-.ebced-language-options a span{width:24px;font-size:10px;font-weight:750;color:#deb870;letter-spacing:.07em}
-.ebced-language-options a:hover,.ebced-language-options a[aria-current="page"]{background:rgba(213,173,104,.13);color:#ffe2a4}
-
-.ebced-mobile-menu{display:none;position:relative}
-.ebced-mobile-menu summary{display:inline-flex;align-items:center;justify-content:center;width:40px;height:38px;border-radius:10px;border:1px solid rgba(212,175,55,.35);background:rgba(14,18,30,.9);color:#f0dba7;cursor:pointer;list-style:none}
-.ebced-mobile-menu summary::-webkit-details-marker{display:none}
-.ebced-mobile-drawer{position:absolute;right:0;top:calc(100% + 10px);width:min(300px,calc(100vw - 32px));padding:12px;background:rgba(9,12,20,.99);border:1px solid rgba(212,175,55,.32);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.85);display:grid;gap:4px;z-index:95}
-.ebced-mobile-drawer a{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;border-radius:8px;color:#e7e4dc;text-decoration:none;font-size:13.5px}
-.ebced-mobile-drawer a[aria-current="page"],.ebced-mobile-drawer a:hover{background:rgba(212,175,55,.12);color:#f3cf7a}
-@media(max-width:1060px){.ebced-nav,.ebced-header-cta{display:none}.ebced-mobile-menu{display:block}}
-
 /* Approved Inner Hero (Section 4) */
-.ebced-illustrated-hero{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);align-items:center;gap:24px;min-height:260px;padding:28px 0 32px;border-bottom:1px solid rgba(212,175,55,.15);text-align:left;background:#060913}
+.ebced-illustrated-hero{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);align-items:center;gap:24px;min-height:260px;padding:34px 0 36px;border-bottom:1px solid rgba(212,175,55,.15);text-align:left;background:transparent}
 .ebced-hero-copy{position:relative;z-index:2;min-width:0}
 .ebced-breadcrumb{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#9ea4b8;margin-bottom:14px}
 .ebced-breadcrumb a{display:inline-flex;align-items:center;gap:6px;color:#c9b489;text-decoration:none;transition:color .18s}
@@ -1247,62 +1096,18 @@ export function ebcedPage(path, isPreview = true) {
     /* Print Stylesheet */
     @media print {
       body { background: #fff !important; color: #000 !important; }
-      .ebced-header, .ebced-illustrated-hero, .ebced-what, .ebced-numerology, .analysis-path-nav, #ebced-form, .info-panel, .print-action-bar, .footer { display: none !important; }
+      .astro-header, .astro-footer, .astro-scroll-top-btn, .ebced-illustrated-hero, .ebced-what, .ebced-numerology, .analysis-path-nav, #ebced-form, .info-panel, .print-action-bar { display: none !important; }
       .panel, .result-card { background: #fff !important; border: 1px solid #ddd !important; box-shadow: none !important; color: #000 !important; }
       .person-title, .stat-val, .card-prefix { color: #000 !important; }
       .arabic-display-box { background: #f8f8f8 !important; color: #000 !important; border: 1px solid #ccc !important; }
       .ledger-table th, .ledger-table td { color: #000 !important; border-bottom: 1px solid #ddd !important; }
       .reflection-box { background: #f9f9f9 !important; border-color: #ccc !important; color: #000 !important; }
     }
-  </style>
-</head>
-<body>
-  <main class="shell">
-    <!-- Approved Header -->
-    <header class="ebced-header">
-      <a href="${homeHref}" class="brand-group">
-        <img src="/assets/astrology/mythborn-symbol.svg" alt="Mythborn Symbol" class="brand-logo">
-        <span class="brand-name">MYTHBORN</span>
-      </a>
-      <nav class="ebced-nav" aria-label="Primary Navigation">
-        <a href="${navRoutes.natal}">${esc(navCopy.natal)}</a>
-        <a href="${navRoutes.ebced}" aria-current="page">${esc(navCopy.ebced)}</a>
-        <a href="${navRoutes.zodiac}">${esc(navCopy.zodiac)}</a>
-        <a href="${navRoutes.calendar}">${esc(navCopy.calendar)}</a>
-        <details class="ebced-nav-drop">
-          <summary>${esc(navCopy.tools)} <span aria-hidden="true">▾</span></summary>
-          <div class="ebced-nav-drop-menu">
-            <a href="${navRoutes.ebcedCompare}">✦ ${esc(navCopy.compare)}</a>
-            <a href="${navRoutes.horoscopes}">✦ ${esc(navCopy.horoscopes)}</a>
-            <a href="${navRoutes.transits}">✦ ${esc(navCopy.transits)}</a>
-            <a href="${navRoutes.retros}">✦ ${esc(navCopy.retros)}</a>
-            <a href="${navRoutes.synastry}">✦ ${esc(navCopy.synastry)}</a>
-            <a href="${navRoutes.glossary}">✦ ${esc(navCopy.glossary)}</a>
-            <a href="${navRoutes.learning}">✦ ${esc(navCopy.learning)}</a>
-            <a href="${navRoutes.approach}">✦ ${esc(navCopy.approach)}</a>
-          </div>
-        </details>
-      </nav>
-      <div class="ebced-header-right">
-        <a href="${navRoutes.natal}" class="ebced-header-cta">${esc(navCopy.cta)} →</a>
-        <details class="ebced-language"><summary aria-label="${lang === 'tr' ? 'Dili değiştir' : lang === 'el' ? 'Επιλογή γλώσσας' : lang === 'es' ? 'Elegir idioma' : 'Change language'}"><svg class="ebced-language-globe" aria-hidden="true" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M4 12h16M12 4c-5 4-5 12 0 16M12 4c5 4 5 12 0 16" stroke="currentColor" stroke-width="1.2"/></svg><span class="ebced-language-code">${lang === 'el' ? 'EL' : lang.toUpperCase()}</span><span class="ebced-language-full">${lang === 'tr' ? 'Türkçe' : lang === 'en' ? 'English' : lang === 'el' ? 'Ελληνικά' : 'Español'}</span><span class="ebced-language-chevron" aria-hidden="true">⌄</span></summary><nav class="ebced-language-options" aria-label="Languages"><a ${lang==='tr'?'aria-current="page"':''} href="${currentTr}"><span>TR</span>Türkçe</a><a ${lang==='en'?'aria-current="page"':''} href="${currentEn}"><span>EN</span>English</a><a ${lang==='el'?'aria-current="page"':''} href="${currentGr}"><span>EL</span>Ελληνικά</a><a ${lang==='es'?'aria-current="page"':''} href="${currentEs}"><span>ES</span>Español</a></nav></details>
-        <details class="ebced-mobile-menu">
-          <summary aria-label="${esc(navCopy.menu)}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></summary>
-          <nav class="ebced-mobile-drawer" aria-label="Mobile Navigation">
-            <a href="${homeHref}"><span>${esc(navCopy.home)}</span><span>→</span></a>
-            <a href="${navRoutes.natal}"><span>${esc(navCopy.natal)}</span><span>→</span></a>
-            <a href="${navRoutes.ebced}" aria-current="page"><span>${esc(navCopy.ebced)}</span><span>→</span></a>
-            <a href="${navRoutes.ebcedCompare}"><span>${esc(navCopy.compare)}</span><span>→</span></a>
-            <a href="${navRoutes.zodiac}"><span>${esc(navCopy.zodiac)}</span><span>→</span></a>
-            <a href="${navRoutes.calendar}"><span>${esc(navCopy.calendar)}</span><span>→</span></a>
-            <a href="${navRoutes.horoscopes}"><span>${esc(navCopy.horoscopes)}</span><span>→</span></a>
-            <a href="${navRoutes.synastry}"><span>${esc(navCopy.synastry)}</span><span>→</span></a>
-            <a href="${navRoutes.approach}"><span>${esc(navCopy.approach)}</span><span>→</span></a>
-          </nav>
-        </details>
-      </div>
-    </header>
+  </style>`;
 
+  const contentHtml = `
+  <div class="ebced-page-wrap">
+  <div class="shell">
     <!-- Section 4: Approved Inner Hero -->
     <section class="hero ebced-illustrated-hero">
       <div class="ebced-hero-copy">
@@ -1455,15 +1260,20 @@ export function ebcedPage(path, isPreview = true) {
         <p><em>${esc(t.disclaimer)}</em></p>
       </div>
     </details>
+  </div>
+  </div>
+  ${renderReadingCuration(lang, { id: 'okuma-listesi' })}
+  <script src="/ebced.js" defer></script>`;
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>© 2026 Mythborn. ${esc(t.privacyNote)}</p>
-      <p>${esc(t.disclaimer)}</p>
-    </footer>
-  </main>
-
-  <script src="/ebced.js" defer></script>
-</body>
-</html>`;
+  return renderAstrologyLayout({
+    locale: lang,
+    currentRouteKey: 'ebced',
+    title: isComparison ? t.modeCompare : t.metaTitle,
+    description: isComparison ? `${t.modeCompare}. ${t.metaDesc}` : t.metaDesc,
+    contentHtml,
+    isPreview,
+    canonicalUrl: `https://mythborn.co${path}`,
+    extraHeadHtml,
+    customLangUrls: { tr: currentTr, en: currentEn, el: currentGr, es: currentEs, ar: currentTr }
+  });
 }

@@ -46,7 +46,9 @@ export const renderAstrologyLayout = ({
   contentHtml = '',
   isPreview = false,
   canonicalUrl = '',
-  faqItems = []
+  faqItems = [],
+  extraHeadHtml = '',
+  customLangUrls = null
 }) => {
   const t = ASTROLOGY_LOCALES[locale] || ASTROLOGY_LOCALES.tr;
   const pageTitle = title ? `${safe(title)} — ${safe(t.navBrand)}` : `${safe(t.navBrand)} · ${safe(t.navTagline)}`;
@@ -66,23 +68,26 @@ export const renderAstrologyLayout = ({
 
   const clean = (txt) => (txt || '').replace(/[→←\s]+$/, '');
 
+  const resolveLangHref = (code) =>
+    (customLangUrls && customLangUrls[code]) ? customLangUrls[code] : getRouteHref(code, currentRouteKey);
+
   const langSwitcherHtml = `
     <details class="astro-lang-select">
       <summary aria-label="${locale === 'tr' ? 'Dil seç' : locale === 'ar' ? 'اختر اللغة' : 'Select language'}"><span aria-hidden="true">◎</span><span class="astro-lang-current">${langFullNames[locale]}</span><span class="astro-lang-chevron" aria-hidden="true">▾</span></summary>
       <div class="astro-lang-options" role="group" aria-label="Languages">
-        ${langCodes.map(code => `<a href="${getRouteHref(code, currentRouteKey)}" lang="${code}"${code === locale ? ' aria-current="page"' : ''}><span>${langLabels[code]}</span><span>${langFullNames[code]}</span></a>`).join('')}
+        ${langCodes.map(code => `<a href="${resolveLangHref(code)}" lang="${code}"${code === locale ? ' aria-current="page"' : ''}><span>${langLabels[code]}</span><span>${langFullNames[code]}</span></a>`).join('')}
       </div>
     </details>`;
 
   const drawerLangHtml = langCodes.map((code) => {
     const isCur = code === locale;
-    const href = getRouteHref(code, currentRouteKey);
+    const href = resolveLangHref(code);
     return `<a href="${href}" lang="${code}" class="mb-drawer-lang-pill${isCur ? ' is-active' : ''}"${isCur ? ' aria-current="page"' : ''}>${langLabels[code]}</a>`;
   }).join('');
 
   const footerLangPillsHtml = langCodes.map((code) => {
     const isCur = code === locale;
-    const href = getRouteHref(code, currentRouteKey);
+    const href = resolveLangHref(code);
     return `<a href="${href}" lang="${code}" class="astro-footer-lang-badge${isCur ? ' is-active' : ''}">${langLabels[code]}</a>`;
   }).join('');
 
@@ -217,7 +222,8 @@ export const renderAstrologyLayout = ({
     { key: 'zodiac', label: t.menu.zodiac },
     { key: 'calendar', label: t.menu.calendar },
     { key: 'synastry', label: t.menu.synastry },
-    { key: 'approach', label: t.menu.approach }
+    { key: 'approach', label: t.menu.approach },
+    { key: 'contact', label: locale === 'tr' ? 'İletişim' : locale === 'en' ? 'Contact' : locale === 'el' ? 'Επικοινωνία' : locale === 'es' ? 'Contacto' : 'اتصل بنا' }
   ];
 
   const drawerNavHtml = allDrawerItems
@@ -238,12 +244,12 @@ export const renderAstrologyLayout = ({
     : '';
 
   const hreflangTags = !isPreview ? `
-  <link rel="alternate" hreflang="tr" href="https://mythborn.co${getRouteHref('tr', currentRouteKey)}">
-  <link rel="alternate" hreflang="en" href="https://mythborn.co${getRouteHref('en', currentRouteKey)}">
-  <link rel="alternate" hreflang="el" href="https://mythborn.co${getRouteHref('el', currentRouteKey)}">
-  <link rel="alternate" hreflang="es" href="https://mythborn.co${getRouteHref('es', currentRouteKey)}">
-  <link rel="alternate" hreflang="ar" href="https://mythborn.co${getRouteHref('ar', currentRouteKey)}">
-  <link rel="alternate" hreflang="x-default" href="https://mythborn.co${getRouteHref('tr', currentRouteKey)}">` : '';
+  <link rel="alternate" hreflang="tr" href="https://mythborn.co${resolveLangHref('tr')}">
+  <link rel="alternate" hreflang="en" href="https://mythborn.co${resolveLangHref('en')}">
+  <link rel="alternate" hreflang="el" href="https://mythborn.co${resolveLangHref('el')}">
+  <link rel="alternate" hreflang="es" href="https://mythborn.co${resolveLangHref('es')}">
+  <link rel="alternate" hreflang="ar" href="https://mythborn.co${resolveLangHref('ar')}">
+  <link rel="alternate" hreflang="x-default" href="https://mythborn.co${resolveLangHref('tr')}">` : '';
 
   const ogLocale = locale === 'gr' ? 'el' : locale;
   const ogTag = `
@@ -348,6 +354,7 @@ export const renderAstrologyLayout = ({
   ${jsonLdTag}
   <meta name="theme-color" content="#080b12">
   <style>${SHARED_CSS}</style>
+  ${extraHeadHtml}
 </head>
 <body>
   <a class="astro-skip-link" href="#main-content">${safe(skipLabel)}</a>
@@ -492,12 +499,13 @@ export const renderAstrologyLayout = ({
         </div>
       </div>
     </footer>
-    <button type="button" id="astro-scroll-top" class="astro-scroll-top-btn" aria-label="${backToTopText}">
-      <svg class="astro-scroll-top-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M12 19V5M5 12l7-7 7 7"/>
-      </svg>
-    </button>
   </div>
+
+  <button type="button" id="astro-scroll-top" class="astro-scroll-top-btn" aria-label="${backToTopText}" title="${backToTopText}">
+    <svg class="astro-scroll-top-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
   <script>
     (function() {
@@ -527,51 +535,24 @@ export const renderAstrologyLayout = ({
         });
       }
 
-      // Dynamic Motion-Only Scroll Controller:
-      // Button appears ONLY while actively scrolling. Once scrolling stops and the page is stationary,
-      // it automatically fades out after 1.5s so it never stays statically on screen.
+      // Persistent Scroll-to-Top Controller:
+      // Smoothly reveals once the user scrolls past 220px and remains visible on every inner page
+      // until returning to the top.
       var topBtn = document.getElementById('astro-scroll-top');
       if (topBtn) {
-        var scrollTimer = null;
-        var isHovered = false;
-
-        topBtn.addEventListener('mouseenter', function() {
-          isHovered = true;
-          clearTimeout(scrollTimer);
-        });
-        topBtn.addEventListener('mouseleave', function() {
-          isHovered = false;
-          scheduleHide();
-        });
-        topBtn.addEventListener('touchstart', function() {
-          isHovered = true;
-          clearTimeout(scrollTimer);
-        }, { passive: true });
-        topBtn.addEventListener('click', function() {
-          isHovered = false;
-          topBtn.classList.remove('is-visible');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        function scheduleHide() {
-          clearTimeout(scrollTimer);
-          scrollTimer = setTimeout(function() {
-            if (!isHovered) {
-              topBtn.classList.remove('is-visible');
-            }
-          }, 1500);
-        }
-
-        window.addEventListener('scroll', function() {
+        function updateScrollTop() {
           var scrolled = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-          if (scrolled > 250) {
+          if (scrolled > 220) {
             topBtn.classList.add('is-visible');
-            scheduleHide();
           } else {
-            clearTimeout(scrollTimer);
             topBtn.classList.remove('is-visible');
           }
-        }, { passive: true });
+        }
+        topBtn.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        window.addEventListener('scroll', updateScrollTop, { passive: true });
+        updateScrollTop();
       }
     })();
   </script>

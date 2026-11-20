@@ -390,6 +390,40 @@ const JUNG_COPY = {
 
 const getJungCopy = (locale) => JUNG_COPY[locale] || JUNG_COPY.en;
 
+// Shared curated reading library (Jung, Freud, Adler — 9 essential works), reusable on every inner page.
+export const renderReadingCuration = (locale = 'tr', { compact = true, id = 'okuma-listesi' } = {}) => {
+  const c = getJungCopy(locale);
+  if (!c.books) return '';
+  return `
+    <section class="sanc-section jung-reading-curation" id="${id}">
+      <div class="astro-container">
+        <div class="sanc-center sanc-head">
+          <span class="sanc-eyebrow">✦ ${c.books.eyebrow}</span>
+          <h2>${c.books.title}</h2>
+          <p>${c.books.sub}</p>
+        </div>
+        <div class="jung-compare-grid">
+          ${c.books.authors.map((group) => `
+            <article class="jung-compare-card" data-spotlight>
+              <div>
+                <span class="mb27-card-tag">${group.school}</span>
+                <h3><span class="mb-nowrap">${group.author}</span></h3>
+                <ul class="jung-book-list">
+                  ${group.items.map(([bTitle, bSummary]) => `
+                    <li>
+                      <strong>${bTitle}</strong>
+                      <span>${bSummary}</span>
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    </section>`;
+};
+
 export const getJungFaqItems = (locale = 'tr') => {
   if (locale === 'tr') {
     return [
@@ -431,7 +465,7 @@ export const getJungFaqItems = (locale = 'tr') => {
   ];
 };
 
-export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/siginak' } = {}) => {
+export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/meditasyon-ve-frekans' } = {}) => {
   const c = getJungCopy(locale);
   const first = c.archetypes[0];
   const faqs = getJungFaqItems(locale);
