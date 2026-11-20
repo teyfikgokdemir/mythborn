@@ -159,6 +159,50 @@
     let natureNodes = [];
     let natureGain = null;
 
+    // Real Studio Frequency Tracks (/audio/*.m4a — lazy-loaded only on click, 100% iOS/Android/Desktop safe)
+    const STUDIO_TRACKS = {
+      'track:432hz': '/audio/432hz.m4a',
+      'track:528hz': '/audio/528hz.m4a',
+      'track:396hz': '/audio/396hz.m4a',
+      'track:174hz': '/audio/174hz.m4a',
+      'track:639hz': '/audio/639hz.m4a',
+      'track:852hz': '/audio/852hz.m4a',
+      'track:963hz': '/audio/963hz.m4a',
+      'track:alpha-10hz': '/audio/alpha-10hz.m4a'
+    };
+    let studioAudio = null;
+    let currentTrackUrl = '';
+
+    const stopStudioTrack = () => {
+      if (studioAudio) {
+        try { studioAudio.pause(); } catch (_) {}
+      }
+    };
+
+    const syncStudioTrackVolume = () => {
+      if (studioAudio) {
+        const v = musicVol ? Number(musicVol.value) : 65;
+        studioAudio.volume = Math.max(0, Math.min(1, v / 100)) * 0.78;
+      }
+    };
+
+    const playStudioTrack = (trackKey) => {
+      const url = STUDIO_TRACKS[trackKey];
+      if (!url) { stopStudioTrack(); return false; }
+      if (!studioAudio) {
+        studioAudio = new Audio();
+        studioAudio.loop = true;
+        studioAudio.preload = 'none';
+      }
+      if (currentTrackUrl !== url) {
+        studioAudio.src = url;
+        currentTrackUrl = url;
+      }
+      syncStudioTrackVolume();
+      studioAudio.play().catch(() => {});
+      return true;
+    };
+
     const playBtn = root.querySelector('[data-sanc-play]');
     const stateEl = root.querySelector('[data-sanc-state]');
     const timerDisplay = root.querySelector('[data-sanc-timer-display]');
@@ -402,9 +446,15 @@
       if (chordInterval) { clearInterval(chordInterval); chordInterval = null; }
       if (melodyInterval) { clearInterval(melodyInterval); melodyInterval = null; }
       stopNodes(musicNodes);
-      if (!ctx || !playing) return;
-      const mode = musicSelect ? musicSelect.value : 'bowls';
-      if (mode === 'off') return;
+      if (!playing) { stopStudioTrack(); return; }
+      const mode = musicSelect ? musicSelect.value : 'track:432hz';
+      if (mode === 'off') { stopStudioTrack(); return; }
+      if (STUDIO_TRACKS[mode]) {
+        playStudioTrack(mode);
+        return;
+      }
+      stopStudioTrack();
+      if (!ctx) return;
 
       musicGain = ctx.createGain();
       musicGain.gain.setValueAtTime(sliderGain(musicVol, MAX_MUSIC_GAIN), ctx.currentTime);
@@ -585,6 +635,7 @@
 
     const stopSession = () => {
       playing = false;
+      stopStudioTrack();
       if (timerId) { clearInterval(timerId); timerId = null; }
       if (bowlInterval) { clearInterval(bowlInterval); bowlInterval = null; }
       if (chordInterval) { clearInterval(chordInterval); chordInterval = null; }
@@ -637,25 +688,32 @@
         sc.setAttribute('aria-pressed', active ? 'true' : 'false');
       });
       if (sceneKey === 'temple' || sceneKey === 'candle') {
-        if (toneSelect) toneSelect.value = '432';
-        if (musicSelect) musicSelect.value = 'bowls';
+        if (toneSelect) toneSelect.value = 'off';
+        if (musicSelect) musicSelect.value = 'track:432hz';
         if (natureSelect) natureSelect.value = sceneKey === 'candle' ? 'fire' : 'rain';
       } else if (sceneKey === 'theta') {
-        if (toneSelect) toneSelect.value = 'theta-6';
-        if (musicSelect) musicSelect.value = 'temple';
+        if (toneSelect) toneSelect.value = 'off';
+        if (musicSelect) musicSelect.value = 'track:852hz';
         if (natureSelect) natureSelect.value = 'ocean';
       } else if (sceneKey === 'shadow') {
-        if (toneSelect) toneSelect.value = '396';
-        if (musicSelect) musicSelect.value = 'temple';
+        if (toneSelect) toneSelect.value = 'off';
+        if (musicSelect) musicSelect.value = 'track:396hz';
         if (natureSelect) natureSelect.value = 'fire';
-      } else if (sceneKey === 'dawn' || sceneKey === 'breath') {
-        if (toneSelect) toneSelect.value = sceneKey === 'breath' ? 'alpha-10' : '528';
-        if (musicSelect) musicSelect.value = 'bowls';
+      } else if (sceneKey === 'dawn') {
+        if (toneSelect) toneSelect.value = 'off';
+        if (musicSelect) musicSelect.value = 'track:528hz';
+        if (natureSelect) natureSelect.value = 'wind';
+      } else if (sceneKey === 'breath') {
+        if (toneSelect) toneSelect.value = 'off';
+        if (musicSelect) musicSelect.value = 'track:alpha-10hz';
         if (natureSelect) natureSelect.value = 'wind';
       } else if (sceneKey === 'mantra') {
-        if (toneSelect) toneSelect.value = '528';
-        if (musicSelect) musicSelect.value = 'bowls';
+        if (toneSelect) toneSelect.value = 'off';
+        if (musicSelect) musicSelect.value = 'track:963hz';
         if (natureSelect) natureSelect.value = 'rain';
+      } else if (STUDIO_TRACKS[sceneKey]) {
+        if (toneSelect) toneSelect.value = 'off';
+        if (musicSelect) musicSelect.value = sceneKey;
       }
       if (playing) {
         buildToneLayer();
@@ -686,7 +744,10 @@
     if (natureSelect) natureSelect.addEventListener('change', () => { if (playing) buildNatureLayer(); });
 
     if (toneVol) toneVol.addEventListener('input', () => { if (toneGain && ctx) toneGain.gain.setTargetAtTime(sliderGain(toneVol, MAX_TONE_GAIN), ctx.currentTime, 0.08); });
-    if (musicVol) musicVol.addEventListener('input', () => { if (musicGain && ctx) musicGain.gain.setTargetAtTime(sliderGain(musicVol, MAX_MUSIC_GAIN), ctx.currentTime, 0.08); });
+    if (musicVol) musicVol.addEventListener('input', () => {
+      syncStudioTrackVolume();
+      if (musicGain && ctx) musicGain.gain.setTargetAtTime(sliderGain(musicVol, MAX_MUSIC_GAIN), ctx.currentTime, 0.08);
+    });
     if (natureVol) natureVol.addEventListener('input', () => { if (natureGain && ctx) natureGain.gain.setTargetAtTime(sliderGain(natureVol, MAX_NATURE_GAIN), ctx.currentTime, 0.08); });
 
     // --- Interactive Room Tabs ---

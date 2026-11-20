@@ -82,9 +82,17 @@ const COPY = {
         'delta-2': 'Delta 2 Hz · Binaural Gece Dinlenmesi'
       },
       musics: {
-        off: 'Kapalı',
-        bowls: 'Tibet Çanağı & Derin Pad',
-        temple: 'Gece Tapınağı Drone & Harmoni'
+        'track:432hz': '432 Hz · Derin Gevşeme & Denge (Stüdyo)',
+        'track:528hz': '528 Hz · Dönüşüm & Berraklık (Stüdyo)',
+        'track:396hz': '396 Hz · Köklenme & Gölge Bırakma (Stüdyo)',
+        'track:174hz': '174 Hz · Topraklanma & Sükûnet (Stüdyo)',
+        'track:639hz': '639 Hz · Kalp Uyumu & Bağ (Stüdyo)',
+        'track:852hz': '852 Hz · Sezgi & İçsel Netlik (Stüdyo)',
+        'track:963hz': '963 Hz · Yüksek Sessizlik & Bütünlük (Stüdyo)',
+        'track:alpha-10hz': 'Alpha 10 Hz · Binaural Odak (Stüdyo)',
+        bowls: 'Canlı Tibet Çanağı & 432 Hz Pad',
+        temple: 'Canlı Gece Tapınağı Drone',
+        off: 'Kapalı'
       },
       natures: {
         off: 'Kapalı',
@@ -188,9 +196,17 @@ const COPY = {
         'delta-2': 'Delta 2 Hz · Binaural Night Rest'
       },
       musics: {
-        off: 'Off',
-        bowls: 'Tibetan Singing Bowls & Warm Pad',
-        temple: 'Night Temple Drone & Overtones'
+        'track:432hz': '432 Hz · Deep Relaxation & Balance (Studio)',
+        'track:528hz': '528 Hz · Transformation & Clarity (Studio)',
+        'track:396hz': '396 Hz · Grounding & Shadow Release (Studio)',
+        'track:174hz': '174 Hz · Deep Grounding & Rest (Studio)',
+        'track:639hz': '639 Hz · Heart Harmony & Connection (Studio)',
+        'track:852hz': '852 Hz · Intuition & Lucid Focus (Studio)',
+        'track:963hz': '963 Hz · High Stillness & Wholeness (Studio)',
+        'track:alpha-10hz': 'Alpha 10 Hz · Binaural Focus (Studio)',
+        bowls: 'Live Tibetan Singing Bowls & 432 Hz Pad',
+        temple: 'Live Night Temple Drone',
+        off: 'Off'
       },
       natures: {
         off: 'Off',
@@ -432,17 +448,17 @@ export const renderSanctuaryView = ({ locale = 'tr' } = {}) => {
             <div class="sanc-channel">
               <label for="sanc-tone">${c.mixer.toneLabel}</label>
               <select id="sanc-tone" data-sanc-tone>
-                ${optionHtml(c.mixer.tones, '432')}
+                ${optionHtml(c.mixer.tones, 'off')}
               </select>
-              <input type="range" min="0" max="100" value="42" data-sanc-tone-vol aria-label="${c.mixer.toneLabel}">
+              <input type="range" min="0" max="100" value="32" data-sanc-tone-vol aria-label="${c.mixer.toneLabel}">
             </div>
 
             <div class="sanc-channel">
               <label for="sanc-music">${c.mixer.musicLabel}</label>
               <select id="sanc-music" data-sanc-music>
-                ${optionHtml(c.mixer.musics, 'bowls')}
+                ${optionHtml(c.mixer.musics, 'track:432hz')}
               </select>
-              <input type="range" min="0" max="100" value="48" data-sanc-music-vol aria-label="${c.mixer.musicLabel}">
+              <input type="range" min="0" max="100" value="72" data-sanc-music-vol aria-label="${c.mixer.musicLabel}">
             </div>
 
             <div class="sanc-channel">
