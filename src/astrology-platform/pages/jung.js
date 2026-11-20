@@ -431,7 +431,7 @@ export const getJungFaqItems = (locale = 'tr') => {
   ];
 };
 
-export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/siginak' } = {}) => {
+export const renderJungView = ({ locale = 'tr', sanctuaryHref = '/meditasyon-ve-frekans' } = {}) => {
   const c = getJungCopy(locale);
   const first = c.archetypes[0];
   const faqs = getJungFaqItems(locale);

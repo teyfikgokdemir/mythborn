@@ -105,7 +105,7 @@ for(const [personal,compare] of [
  assert.match(ebcedPage(compare,true),/data-analysis-mode="compare"/);
  assert.match(ebcedPage(compare,true),/id="second-person-container"/);
  assert.match(ebcedPage(compare,true),/id="comparison-back"/);
- assert.match(ebcedPage(personal,true),/noindex,follow/);
+ assert.match(ebcedPage(personal,true),/noindex,\s*nofollow/);
 }
 // 8b. Verify explanatory results and styled consent without changing consent actions.
 for (const feature of ['renderReadableExplanation','renderPlainSummary','EXPLAINED_METRICS','meaning-row','summaryMetric']) {
@@ -120,12 +120,14 @@ for (const item of ['greater','lesser','maternal','expression','soul','personali
 for(const token of ['.consent-dialog','[data-consent-reject]','[data-consent-accept]','.meaning-grid','.readable-summary']) {
   assert.ok(page.includes(token), 'style missing: '+token);
 }
-// Premium UI & guidance: localized interpretation, accessible selector and single-line desktop intro.
+// Premium UI & guidance: localized interpretation, unified global header/scroll-top and single-line desktop intro.
 for (const lang of ['tr','en','el','es']) {
  const route = {tr:'/ebced',en:'/en/ebced',el:'/gr/ebced',es:'/es/ebced'}[lang];
  const rendered=ebcedPage(route,true);
  assert.match(rendered,/id="ebced-guide-heading"/,`guide missing: ${lang}`);
- assert.match(rendered,/ebced-language-globe/,`language selector missing: ${lang}`);
+ assert.match(rendered,/class="astro-header"/,`unified global header missing: ${lang}`);
+ assert.match(rendered,/class="astro-lang-select"/,`unified language selector missing: ${lang}`);
+ assert.match(rendered,/id="astro-scroll-top"/,`scroll-to-top button missing: ${lang}`);
  assert.match(rendered,/class="ebced-guide-grid"/,`guide layout missing: ${lang}`);
 }
 assert.match(page,/\.hero \.lead\{max-width:none;width:100%;/);
@@ -136,18 +138,16 @@ assert.ok(page.includes('Mythborn_05_Ebced_Harf_Tablosu.webp'), 'missing Mythbor
 assert.ok(page.includes('Mythborn_02_Altin_Kutsal_Geometri.webp'), 'missing Mythborn_02_Altin_Kutsal_Geometri asset');
 assert.match(page,/ebced-guide-art/);
 assert.match(page,/sayısal değerler atayan tarihsel/);
-assert.match(page,/aria-label="Languages"/);
 
 // 9. Template markup assertions
 assert.match(page, /name="abjadSystem"/, 'markup must include abjadSystem selector');
 assert.match(page, /name="taValue"/, 'markup must include taValue selector');
 assert.match(page, /name="shadda"/, 'markup must include shadda selector');
-assert.match(page, /noindex,follow/, 'markup must include noindex,follow');
+assert.match(page, /renderAstrologyLayout/, 'ebced page must use unified global renderAstrologyLayout');
 assert.match(page, /analysis-path-nav/, 'markup must include dedicated route tabs');
 assert.match(page, /step-progress/, 'markup must include comparison progress');
 assert.match(page, /id="second-person-container"/, 'markup must include second-person-container');
-assert.match(page, /WebApplication/, 'markup must include WebApplication schema');
-assert.match(page, /ebced-header/, 'markup must include approved header');
+assert.match(ebcedPage('/ebced', false), /WebApplication/, 'rendered output must include WebApplication schema');
 assert.match(page, /ebced-breadcrumb/, 'markup must include hero breadcrumb');
 assert.match(page, /ebced-what/, 'markup must include Ebced Nedir two-column section');
 assert.match(page, /ebced-features-row/, 'markup must include 4-icon feature row');

@@ -11,6 +11,7 @@ import { renderApproachView } from './pages/approach.js';
 import { renderSanctuaryView, getSanctuaryFaqItems } from './pages/sanctuary.js';
 import { renderJungView, getJungFaqItems } from './pages/jung.js';
 import { GUIDE_SLUGS, getGuideBySlug, getGuideFaqItems, renderGuidesHubView, renderGuideArticleView } from './pages/guides.js';
+import { renderLegalView, getLegalPageMeta } from './pages/legal.js';
 import { generateDailyHoroscopes } from './horoscope-pipeline.js';
 import { getApproachFaqItems, getToolSeo } from './seo-content.js';
 
@@ -44,6 +45,10 @@ export const matchAstrologyRoute = (pathname = '/') => {
   if (clean === '/ogrenme-merkezi' || clean === '/learning-center' || clean === '/kentro-mathisis' || clean === '/centro-aprendizaje' || clean === '/markaz-altaalum') return 'redirect:jung';
   if (clean === '/burc-yorumlari' || clean === '/gunluk-burc-yorumlari' || clean === '/horoscopes' || clean === '/daily-horoscopes' || clean === '/provlepseis' || clean === '/horoscopos' || clean === '/altawaqushat') return 'redirect:zodiac';
   if (clean === '/yaklasim' || clean === '/approach' || clean === '/prosegisi' || clean === '/enfoque' || clean === '/al-manhaj') return 'approach';
+  if (clean === '/kvkk') return 'kvkk';
+  if (clean === '/gizlilik' || clean === '/privacy') return 'privacy';
+  if (clean === '/kullanim-kosullari' || clean === '/terms') return 'terms';
+  if (clean === '/cerezler' || clean === '/cookies') return 'cookies';
 
   return null;
 };
@@ -149,6 +154,21 @@ export const handleAstrologyRequest = (request, env) => {
       title = ({tr:'İletişim ve Destek',en:'Contact and Support',el:'Επικοινωνία και Υποστήριξη',es:'Contacto y Soporte',ar:'التواصل والدعم'})[locale];
       description = ({tr:'Mythborn destek, teknik sorular ve iş birlikleri için iletişim adresleri.',en:'Contact Mythborn for support, technical questions and collaborations.',el:'Επικοινωνήστε με το Mythborn για υποστήριξη και συνεργασίες.',es:'Contacta con Mythborn para soporte y colaboraciones.',ar:'تواصل مع Mythborn للدعم والتعاون.'})[locale];
       break;
+    case 'kvkk':
+    case 'privacy':
+    case 'terms':
+    case 'cookies': {
+      const legalMeta = getLegalPageMeta(locale, routeKey);
+      contentHtml = renderLegalView({
+        locale,
+        type: routeKey,
+        contactHref: getRouteHref(locale, 'contact'),
+        homeHref: getRouteHref(locale, 'home')
+      });
+      title = legalMeta.title;
+      description = legalMeta.description;
+      break;
+    }
     case 'home':
     default:
       contentHtml = renderHomeView({ locale, isPreview });
