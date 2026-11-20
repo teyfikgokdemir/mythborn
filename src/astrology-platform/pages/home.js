@@ -47,7 +47,7 @@ const HOME_COPY = {
     ],
     quotes: {
       jung: {
-        text: '“Bilinçdışını bilinçli hale getirmedikçe o senin hayatını yönlendirecek ve sen buna kader diyeceksin.”',
+        text: '“Bilinç dışını bilinçli hale getirmedikçe o senin hayatını yönlendirecek ve sen buna kader diyeceksin.”',
         author: 'Carl Gustav Jung'
       },
       freud: {

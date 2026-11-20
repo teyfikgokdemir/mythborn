@@ -54,7 +54,7 @@ const GUIDES_TR = [
     sections: [
       {
         h: 'Persona ve Gölge (Shadow) Nedir?',
-        p: 'Persona, toplumsal hayatta uyum sağlamak için taktığımız sosyal maskedir. Gölge ise çocukluktan itibaren “kabul görmez” diyerek bilinçdışına ittiğimiz canlılık, öfke, kırılganlık veya yaratıcı güçtür. Jung’a göre gölgeyle yüzleşmeyen kişi, kendi bastırılmış parçalarını sürekli başkalarında yargılar (yansıtma / projeksiyon).'
+        p: 'Persona, toplumsal hayatta uyum sağlamak için taktığımız sosyal maskedir. Gölge ise çocukluktan itibaren “kabul görmez” diyerek bilinç dışına ittiğimiz canlılık, öfke, kırılganlık veya yaratıcı güçtür. Jung’a göre gölgeyle yüzleşmeyen kişi, kendi bastırılmış parçalarını sürekli başkalarında yargılar (yansıtma / projeksiyon).'
       },
       {
         h: 'Gölge Çalışmasına Nasıl Başlanır?',
@@ -66,7 +66,7 @@ const GUIDES_TR = [
         ]
       },
       {
-        h: 'Kolektif Bilinçdışı, Arketipler ve Eşzamanlılık',
+        h: 'Kolektif Bilinç Dışı, Arketipler ve Eşzamanlılık',
         p: 'Jung, tüm insanlığın ortak mitlerinde ve rüyalarında tekrar eden evrensel kalıplara “Arketip” adını verir (Bilge, Gölge, Anima/Animus, Kaşif, Yaratıcı, Öz). Eşzamanlılık (Synchronicity) ise aralarında fiziksel neden-sonuç bağı olmasa da içsel bir ruh haliyle dışsal bir olayın anlamlı biçimde kesişmesidir.'
       },
       {
