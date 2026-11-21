@@ -3472,7 +3472,7 @@ html[dir="rtl"] .retro-guidance-box {
 .sanc-section{padding:clamp(44px,5.5vw,76px) 0}
 .sanc-head{max-width:860px;margin:0 auto clamp(28px,3.5vw,42px)}
 .sanc-head h2{font-family:var(--font-serif);font-weight:400;font-size:clamp(26px,3.1vw,42px);line-height:1.18;color:var(--cream);margin:0 0 12px}
-.sanc-head p{font-size:15px;line-height:1.72;color:var(--muted);margin:0 auto;max-width:680px}
+.sanc-head p{font-size:15px;line-height:1.72;color:var(--muted);margin:0 auto;max-width:900px}
 
 .sanc-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:26px}
 .sanc-tab{padding:11px 20px;border-radius:999px;border:1px solid rgba(214,190,146,.22);background:rgba(15,21,34,.75);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
@@ -4324,9 +4324,15 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-eyebrow{
   border-top:1px solid rgba(214, 190, 146, 0.14);
   font-family:var(--font-serif);
   font-style:italic;
-  font-size:13.5px;
-  line-height:1.65;
+  font-size:clamp(10.5px, 0.82vw, 12.5px);
+  line-height:1.5;
   color:var(--gold-bright);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+@media(max-width:1024px){
+  .jung-compare-quote{white-space:normal;overflow:visible;text-overflow:clip;font-size:12.5px}
 }
 
 .jung-faq-grid{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:16px;max-width:1080px;margin:0 auto}
@@ -4352,6 +4358,11 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-eyebrow{
   .sanc-head h2{
     white-space:nowrap;
     font-size:clamp(26px, 2.75vw, 39px)!important;
+  }
+  /* Subtitle paragraphs: single line on desktop */
+  .sanc-head p{
+    max-width:none;
+    white-space:nowrap;
   }
 }
 .sanc-track-grid{
@@ -4502,6 +4513,7 @@ h1,h2,h3,.sanc-lead,.mb27-lead{text-wrap:balance}
   .sanc-hero .sanc-h1{font-size:clamp(28px, 7.6vw, 38px)!important;line-height:1.14!important}
   .sanc-hero .sanc-lead{font-size:14.5px!important;line-height:1.68!important}
   .sanc-head h2{font-size:clamp(23px, 6.4vw, 30px)!important;line-height:1.22!important;white-space:normal!important}
+  .sanc-head p{white-space:normal!important;max-width:600px!important}
   .sanc-tabs{display:grid!important;grid-template-columns:repeat(2, minmax(0, 1fr))!important;gap:8px!important}
   .sanc-tab{padding:11px 10px!important;font-size:12.5px!important;text-align:center}
   .sanc-mixer,.sanc-room-card,.jung-dossier,.jung-sync-shell{padding:20px 16px!important;border-radius:16px!important}

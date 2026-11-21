@@ -28,7 +28,7 @@ const JUNG_COPY = {
           drive: 'Anlam arayışı ve Bireyleşme (Öz’e ulaşma).',
           unconscious: 'Kişisel bilinç dışına ek olarak tüm insanlığın paylaştığı Kolektif Bilinç Dışı ve Arketipler.',
           dreams: 'Rüyalar yalnızca geçmişi gizlemez; geleceğe ve ruhsal dengeye işaret eden sembolik mesajlardır.',
-          quote: '“Bilinç dışını bilinçli hale getirmedikçe o senin hayatını yönlendirecek ve sen buna kader diyeceksin.”'
+          quote: '“Bilinç dışını bilinçli kılmazsan, o seni yönetir — buna kader dersin.”'
         },
         {
           name: 'Sigmund Freud',
@@ -36,7 +36,7 @@ const JUNG_COPY = {
           drive: 'Bilinç dışı dürtüler, haz ilkesi ve erken çocukluk çatışmaları.',
           unconscious: 'Bastırılmış anılar, yasak arzular ve savunma mekanizmalarının saklandığı kişisel katman.',
           dreams: 'Rüyalar bastırılmış isteklerin sembolik kılık değiştirmiş ifadesidir (“bilinç dışına giden kral yolu”).',
-          quote: '“İfade edilmemiş duygular asla ölmez; yalnızca diri diri gömülür ve daha sonra daha karmaşık biçimlerde geri döner.”'
+          quote: '“İfade edilmemiş duygular ölmez; gömülür ve daha karmaşık biçimde geri döner.”'
         },
         {
           name: 'Alfred Adler',
@@ -223,7 +223,7 @@ const JUNG_COPY = {
           drive: 'Search for meaning, wholeness and Individuation.',
           unconscious: 'Personal unconscious plus the universal Collective Unconscious and Archetypes.',
           dreams: 'Symbolic compensations pointing toward psychological balance and future growth.',
-          quote: '“Until you make the unconscious conscious, it will direct your life and you will call it fate.”'
+          quote: '“Until you make the unconscious conscious, you will call it fate.”'
         },
         {
           name: 'Sigmund Freud',
@@ -231,7 +231,7 @@ const JUNG_COPY = {
           drive: 'Unconscious drives, pleasure principle and early childhood conflict.',
           unconscious: 'Personal reservoir of repressed memories, desires and defense mechanisms.',
           dreams: 'Disguised fulfillment of repressed wishes (“the royal road to the unconscious”).',
-          quote: '“Unexpressed emotions will never die. They are buried alive and will come forth later in uglier ways.”'
+          quote: '“Unexpressed emotions never die; they are buried alive and return in uglier ways.”'
         },
         {
           name: 'Alfred Adler',
@@ -239,7 +239,7 @@ const JUNG_COPY = {
           drive: 'Belonging, purpose and transforming feelings of inadequacy into contribution.',
           unconscious: 'Shaped by future-oriented goals, lifestyle choices and social interest.',
           dreams: 'Mental rehearsals preparing the individual for current life challenges.',
-          quote: '“We do not suffer from the shock of our experiences; we make out of them what aligns with our chosen meaning.”'
+          quote: '“We do not suffer from our experiences; we make them align with our chosen meaning.”'
         }
       ]
     },
