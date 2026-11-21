@@ -6,183 +6,338 @@ const GUIDES_TR = [
   {
     slug: 'rezonans-kanunu-nedir',
     tag: 'REZONANS & BİLİNÇLİ UYUM',
-    readTime: '5 dk okuma',
+    readTime: '10 dk okuma',
     title: 'Rezonans Kanunu Nedir? Kalp, Zihin ve Bilinçli Uyumun Özeti',
-    lead: 'Fizikte titreşimsel uyum olarak başlayan rezonans kavramı, kişisel farkındalıkta içsel inançların dışsal seçimlerle nasıl örtüştüğünü anlatan güçlü bir aynadır.',
+    lead: 'Fizikte titreşimsel uyum olarak başlayan rezonans olgusu; nörobiyoloji, kalp-beyin tutarlılığı ve analitik psikolojinin kesişiminde içsel inançların dış dünyadaki seçimlerle nasıl yankılandığını açıklayan derinlikli bir farkındalık haritasıdır.',
     ctaHref: '/meditasyon-ve-frekans#ses-mikseri',
     ctaLabel: '432 Hz & Doğa Rezonansı Stüdyosunu Aç →',
     sections: [
       {
-        h: 'Rezonans Kanunu Özeti',
-        p: 'Fizikte rezonans, aynı veya uyumlu frekanstaki iki sistemin birbirini etkilemesi ve güçlendirmesidir (örneğin bir diyapazon titreştiğinde yakındaki aynı frekanslı diğer diyapazonun da ses vermesi). Pierre Franckh’ın popülerleştirdiği “Rezonans Kanunu” yaklaşımı ise bu metaforu insan psikolojisine taşır: Dünyayı olduğu gibi değil, içsel inanç kalıplarımızın ve duygusal odaklarımızın filtresinden görür ve o filtreye uygun seçimler yaparız.'
+        h: 'Fiziksel Bir Olgudan Zihinsel Bir Modele: Rezonansın Özü',
+        paragraphs: [
+          'Fizikte rezonans, belirli bir frekansta titreşen bir sistemin, aynı veya armonik frekansa sahip başka bir sistemi harici bir enerji aktarımı olmaksızın harekete geçirmesi ve titreşimini katlamasıdır. 1665 yılında Hollandalı fizikçi Christiaan Huygens\'in aynı ahşap kirişe asılı sarkaçlı saatlerin zamanla tamamen senkronize salındığını keşfetmesiyle başlayan bu olgu (entrainment), doğanın temel bir uyum yasasıdır.',
+          'Pierre Franckh\'ın popülerleştirdiği "Rezonans Kanunu" yaklaşımı ise bu evrensel fizik ilkesini insan bilincine ve bilişsel psikolojiye taşır: İnsan zihni dış dünyayı nötr ve tarafsız bir ayna gibi kaydetmez. Tersine, bilinçli veya bilinç dışı inançlarımızın, duygusal yatkınlıklarımızın ve beklentilerimizin oluşturduğu frekans filtresinden geçirerek anlamlandırır. Dış dünyada karşılaştığımız olaylar ve insan ilişkileri, içsel olarak en çok odaklandığımız ve gerçek kabul ettiğimiz temaların yankılanmasıdır.'
+        ],
+        quote: '“Evrenin gizemlerini anlamak istiyorsanız; enerji, frekans ve titreşim cinsinden düşünün.” — Nikola Tesla'
       },
       {
-        h: 'Rezonans ve Carl Jung’un Gölge Kavramı',
-        p: 'Sadece yüzeyde olumlu cümleler tekrarlamak (Persona) tek başına yeterli olmaz; çünkü bilinç dışındaki bastırılmış korku, yetersizlik veya savunma kalıpları (Gölge) kararlarımızı sessizce yönlendirir. Gerçek içsel uyum, zihnin istediği ile kalbin inandığının çelişmediği noktada başlar.'
-      },
-      {
-        h: 'Günlük Hayatta Bilinçli Uyum İçin 4 Adım',
-        bullets: [
-          'İçsel Gürültüyü Azalt: Günde 5–10 dakika nefes veya 432 Hz / doğa sesleriyle sinir sistemini sakinleştir; gergin zihin berrak seçim yapamaz.',
-          'Tekrarlayan İnançları Fark Et: “Hep benim başıma geliyor” dediğin kalıpları yazıya dök ve bunun hangi eski inançtan beslendiğini gözlemle.',
-          'Niyetini Netleştir: İstemediğin şeye odaklanmak yerine, inşa etmek istediğin dinginlik veya yönü şimdiki zamanda sade bir cümleyle tanımla.',
-          'Niyeti Somut Eylemle Birleştir: Rezonans pasif bekleyiş değildir; berrak bir içsel tutumu her gün küçük, tutarlı ve gerçekçi adımlarla desteklemekle çalışır.'
+        h: 'Kalp-Beyin Tutarlılığı: HeartMath Enstitüsü ve Biyofiziksel Uyum',
+        paragraphs: [
+          'Modern elektrofizyoloji araştırmaları, kalbin yalnızca kan pompalayan mekanik bir organ olmadığını; beyinden bağımsız yaklaşık 40.000 nöronluk karmaşık bir sinir ağına (içsel kalp sinir sistemi) sahip olduğunu kanıtlamıştır. Dahası, kalbin oluşturduğu elektromanyetik alan, beynin ürettiği manyetik alandan yaklaşık 5.000 kat daha güçlüdür ve bedenin metrelerce dışından hassas manyetometrelerle ölçülebilir.',
+          'HeartMath Enstitüsü\'nün yürüttüğü klinik çalışmalara göre, kişi minnettarlık, şefkat ve dinginlik gibi duyguları deneyimlediğinde, Kalp Hızı Değişkenliği (HRV) pürüzsüz ve düzenli bir sinüs dalgasına kavuşur (yaklaşık 0.1 Hz frekansında). Bu durum "Kalp-Beyin Tutarlılığı" (Heart-Brain Coherence) olarak adlandırılır. Tutarlılık sağlandığında, sempatik savaş-kaç tepkisi yatışır, parasempatik onarım devreye girer ve beyin korteksi en berrak karar alma moduna geçer. Rezonans bu bağlamda soyut bir dilek değil; ölçülebilir somatik bir biyolojik durumdur.'
         ]
       },
       {
-        h: 'Etik Sınır: Sihirli Düşünce Değil, Öz-Farkındalık',
-        p: 'Rezonans yaklaşımı; yaşanan zorluklar veya hastalıklar için kişinin kendini suçlaması (“bunu ben çektim”) anlamına gelmez. Bilimsel ve etik açıdan sağlıklı bakış; kontrol edemediğimiz dış koşulları kabul edip kontrol edebildiğimiz tek alana — kendi dikkatimize, sınırlarımıza ve eylemlerimize — sahip çıkmaktır.'
+        h: 'Ayna Nöronlar ve Limbik Rezonans: Sosyal Alanın Görünmez Ağı',
+        paragraphs: [
+          'İtalyan nörobiyolog Giacomo Rizzolatti ve ekibinin 1990\'larda keşfettiği ayna nöron sistemi, bir insanın bir eylemi yaparken veya bir duyguyu yaşarken ateşlenen nöronlarının, onu izleyen kişinin beyninde de aynı anda ateşlendiğini ortaya koydu. Thomas Lewis, Fari Amini ve Richard Lannon\'un "A General Theory of Love" eserinde detaylandırdığı "Limbik Rezonans", memelilerin birbirlerinin duygusal durumlarını sözsüz bir biçimde okuyup regüle etme yeteneğidir.',
+          'Bilinçli bir farkındalık geliştiren birey, kendi sinir sistemini sakinleştirdiğinde sadece kendi iç huzurunu korumakla kalmaz; girdiği odanın, ailesinin veya çalışma ortamının duygusal iklimini de yatıştırıcı bir çıpa (co-regulation) olarak dönüştürür. Karşılaştığımız dirençlerin veya çatışmaların çoğu, bizim yaydığımız bastırılmış gerginliğe verilen limbik bir yanıttır.'
+        ]
+      },
+      {
+        h: 'Carl Jung ve Eşzamanlılık: Neden Sadece Olumlu Düşünmek Yetmez?',
+        paragraphs: [
+          'Rezonans Kanunu\'nun popüler kültürde en çok sığlaştırıldığı nokta "sadece olumlu düşün ve çek" şeklindeki yapay olumlamalardır. Analitik psikolojinin kurucusu Carl Gustav Jung\'un ortaya koyduğu "Eşzamanlılık" (Synchronicity) ve "Gölge" (Shadow) kavramları, bu yanılsamayı kökünden yıkar.',
+          'Bilinç düzeyinde başarı veya sevgi isterken, bilinç dışında derin bir yetersizlik veya terk edilme korkusu taşıyorsanız; hayatınıza çekeceğiniz seçimler yüzeydeki istekleriniz değil, bilinç dışındaki bastırılmış inançlarınız olacaktır. Jung\'un dediği gibi: "Bilinç dışını bilinçli hale getirmedikçe, o senin hayatını yönetecek ve sen buna kader diyeceksin." Gerçek rezonans, karanlıkta kalan yönlerimizi dürüstçe kabul edip bütünleştirdiğimizde (individuation) doğal olarak ortaya çıkar.'
+        ],
+        quote: '“Gölgenizle yüzleşmeden ulaştığınız hiçbir aydınlık kalıcı değildir; insan ancak karanlığını tanıdığında bütünleşir.” — Carl Gustav Jung'
+      },
+      {
+        h: 'Günlük Hayatta Bilinçli Rezonans Kurmak İçin 5 Aşamalı Protokol',
+        paragraphs: [
+          'İçsel titreşimi dönüştürmek bir fantezi değil, günlük tutarlı pratiklerle sinir sistemini yeniden yapılandırma sürecidir:'
+        ],
+        bullets: [
+          'Sinir Sistemini Sıfırla (Somatik Zeminlenme): Günde 10–15 dakika 432 Hz veya doğa sesleri eşliğinde diyafram nefesi al. Zihin hiperaktif ve alarm modundayken berrak bir rezonans kurulamaz.',
+          'Tekrarlayan İnanç Döngülerini Teşhis Et: Hayatında sürekli tekrar eden tıkanıklıkları ("hep kandırılıyorum", "asla yeterli olamam") tarafsız bir araştırmacı gibi not et ve kaynağını fark et.',
+          'Odağını Yokluktan Varlığa Taşı: "Borçlarımdan kurtulmak istiyorum" odağı borç ve eksiklik bilincini besler; bunun yerine "Üretkenliğimi ve bereketimi paylaşıyorum" bilincine geç.',
+          'Kalp Tutarlılığı Egzersizi: Elini göğüs kafesine koy, nefesini kalbinden alıp verdiğini hayal et ve en az 3 dakika boyunca samimi bir şükran anını tüm hücrelerinde canlandır.',
+          'Mikro Eylemlerle Uyum Sağla: Rezonans pasif bir oturma eylemi değildir; içsel niyetini o gün atacağın küçük, tutarlı ve cesur bir adımla somutlaştır.'
+        ]
+      },
+      {
+        h: 'Etik ve Rasyonel Sınır: Büyülü Düşünce Yanılgısına Karşı Duruş',
+        paragraphs: [
+          'Rezonans Kanunu\'nu bir "suçlama aracına" dönüştürmek en büyük etik hatadır. Bir insanın başına gelen hastalıklar, toplumsal afetler veya çocukluk travmaları "sen bunu çektin" diyerek basite indirgenemez. Bu tür yaklaşımlar sahte bir kontrol yanılsaması üretir ve kişide suçluluk duygusu yaratır.',
+          'Mythborn\'un felsefi çerçevesinde rezonans; kontrol edemediğimiz dış dünyayı sihirle yönetmek değil, dış dünyadaki belirsizlikler karşısında içsel merkezimizi, tepkilerimizi ve değerlerimizi koruma olgunluğudur. Stoacıların "Amor Fati" (kaderini sev ve dönüştür) ilkesiyle birleşen rezonans, insanı kurban psikolojisinden çıkarıp kendi deneyiminin bilinçli mimarı yapar.'
+        ]
       }
     ],
     faqs: [
       { question: 'Rezonans Kanunu bilimsel bir fizik yasası mıdır?', answer: 'Akustik ve elektromanyetik rezonans kanıtlanmış fizik olgularıdır. Kişisel gelişimdeki “Rezonans Kanunu” ise bu fiziksel kavramın dikkat, inanç kalıpları ve seçici algı üzerine kurulmuş sembolik bir yorumudur.' },
-      { question: 'Sadece olumlu düşünmek rezonans için yeterli midir?', answer: 'Hayır. Bilinç dışındaki korkuları görmezden gelmeden dürüst öz-gözlem yapmak ve niyeti somut eylemle desteklemek gerekir.' }
+      { question: 'Sadece olumlu düşünmek rezonans için yeterli midir?', answer: 'Hayır. Bilinç dışındaki korkuları görmezden gelmeden dürüst öz-gözlem yapmak gerekir. Gerçek rezonans, sözcüklerle değil, sinir sisteminin ve inançların derin uyumuyla çalışır.' },
+      { question: 'Rezonans yaklaşımı tıbbi veya psikiyatrik tedavi yerine geçer mi?', answer: 'Kesinlikle hayır. Rezonans ve farkındalık çalışmaları felsefi ve kişisel gelişim araçlarıdır; klinik tanı, psikoterapi veya tıbbi tedavinin yerine asla geçemez.' }
     ]
   },
   {
     slug: 'spirituel-yasam-nedir',
-    tag: 'BİLİNÇLİ FARKINDALIK REHBERİ',
-    readTime: '6 dk okuma',
-    title: 'Spiritüel Yaşam ve Bilinçli Farkındalık Nedir?',
-    lead: 'Spiritüel yaşam; dogmalardan veya mucize vaatlerinden bağımsız olarak insanın kendi iç sesini duyması, anda kalması ve yaşamla anlamlı bir bağ kurmasıdır.',
-    ctaHref: '/meditasyon-ve-frekans',
-    ctaLabel: 'Canlı Meditasyon Sığınağını Dene →',
+    tag: 'FARKINDALIK & ÖZ-GÖZLEM',
+    readTime: '10 dk okuma',
+    title: 'Spiritüel Yaşam ve Bilinçli Farkındalık Nedir? Modern Bir Kılavuz',
+    lead: 'Spiritüellik; dogmalardan, kör inançlardan ve mucize vaatlerinden bağımsız olarak insanın kendi iç sesini duyması, anda kalması ve evrenle anlamlı bir bağ kurma sanatıdır.',
+    ctaHref: '/jung',
+    ctaLabel: 'Carl Jung Bilinç Dışı & Gölge Aynasını Aç →',
     sections: [
       {
-        h: 'Spiritüel Yaşam Ne Anlama Gelir?',
-        p: 'Spiritüel yaşam, günlük hayatın gürültüsü ve otomatik tepkileri arasında durup “Şu an ne hissediyorum, neye tepki veriyorum ve neye değer veriyorum?” sorusunu sorabilme kapasitesidir. Belirli bir inanç sistemine bağlı olmak zorunda değildir; özü, insanın zihin, beden ve anlam dünyası arasında sakin bir bütünlük kurmasıdır.'
+        h: 'Dogmalardan Arındırılmış Bir Tanım: Ruhsal Olgunluk Nedir?',
+        paragraphs: [
+          'Geleneksel olarak spiritüalite çoğu zaman dinle, ezoterik tarikatlarla ya da fizik ötesi ritüellerle karıştırılır. Oysa çağdaş felsefe ve nöro-fenomenoloji ışığında spiritüel yaşam; insanın yalnızca biyolojik bir tüketim mekanizması ya da sosyal rollerden ibaret olmadığını, evrensel bir bilincin ve anlam arayışının taşıyıcısı olduğunu kavramasıdır.',
+          'Viktor Frankl\'ın toplama kamplarındaki deneyimlerinden süzerek yazdığı "İnsanın Anlam Arayışı"nda belirttiği gibi, insanı ayakta tutan şey biyolojik konfor değil, yaşamına atfettiği derin gayedir. Modern spiritüalite; hayattan kaçmak değil, hayatın tam ortasında, acısıyla ve neşesiyle uyanık ve dürüst kalabilme cesaretidir.'
+        ],
+        quote: '“Yaşamak için bir nedeni olan kişi, hemen her nasıla katlanabilir.” — Friedrich Nietzsche'
       },
       {
-        h: 'Spiritüel Yaşamın Beş Temel İlkesi',
-        bullets: [
-          'Şimdi ve Burada Kalmak (Farkındalık): Geçmiş pişmanlıklar ile gelecek kaygıları arasındaki zihinsel sarkaçtan çıkıp nefesin ve anın gerçekliğine dönmek.',
-          'Kendini Tanıma ve Dürüst Öz-Gözlem: Yalnızca hoşumuza giden yanlarımızı değil, Carl Jung’un “Gölge” dediği bastırılmış duyguları da yargılamadan görebilmek.',
-          'Doğa ve Ritimle Bağ: Mevsim döngüleri, gece-gündüz ritmi, yağmur ve okyanus gibi doğal seslerle sinir sistemini yeniden dengelemek.',
-          'Şefkat ve Sınır Dengesi: Hem kendine hem başkalarına nazik olurken sağlıklı kişisel sınırları koruyabilmek.',
-          'Sürekli Öğrenme ve Tefekkür: Okuma, günlük tutma (journaling) ve sessiz gözlemle içsel berraklığı her gün beslemek.'
+        h: 'Tanık Bilinç (Observing Self) ve Düşüncelerle Özdeşleşmemek',
+        paragraphs: [
+          'İnsan beyni günde ortalama 60.000 düşünce üretir ve bilişsel psikolojinin ortaya koyduğu üzere bu düşüncelerin %80\'den fazlası geçmişin pişmanlıkları ya da geleceğin kurgusal kaygılarıyla örülüdür. Spiritüel uyanışın ilk ve en temel adımı; düşüncelerin kendisi olmadığınızı, o düşünceleri doğuran ve izleyen sessiz tanık (Observing Self / Sakshi) olduğunuzu fark etmektir.',
+          'Gökyüzünden geçen kara bulutlar gökyüzünün doğasını kirletemez ve değiştiremez. Benzer şekilde, zihninizden geçen öfke, korku veya yetersizlik düşünceleri de öz benliğinizi lekeleyemez. Meditatif farkındalık, düşünce akıntısına kapılıp sürüklenmek yerine, akıntının kenarında oturup suyun akışını yargılamadan izleyebilme ferasetidir.'
         ]
       },
       {
-        h: 'Günlük 15 Dakikalık Başlangıç Protokolü',
-        bullets: [
-          'İlk 3 Dakika — Nefes Koheransı: Sabah veya akşam 4-4-4-4 Kutu Nefesi ile sinir sistemini sakinleştir.',
-          'Orta 7 Dakika — Mum (Trataka) veya Sessiz Oturma: Gözlerini tek bir ışık noktasına ya da nefesine bırak; gelen düşünceleri itmeden izle.',
-          'Son 5 Dakika — Eşzamanlılık ve Farkındalık Günlüğü: Gün içinde seni en çok etkileyen tek duyguyu, rüyayı veya anlamlı tesadüfü üç cümleyle yaz.'
+        h: 'Spiritüel Bypass (Ruhsal Kaçış) Tehlikesi',
+        paragraphs: [
+          'Psikoterapist John Welwood tarafından kavramsallaştırılan "Spiritüel Bypass"; kişinin çözülmemiş çocukluk yaralarından, ilişki sorumluluklarından ve ham insan duygularından kaçmak için spiritüel kavramları ve jargonu bir kalkan olarak kullanmasıdır.',
+          '"Ben çok yüksek titreşimdeyim, öfke duymam", "Her şey kadersel, çabalamama gerek yok" gibi ifadeler çoğunlukla ruhsal olgunluk değil, derin bir savunma mekanizmasıdır. Bastırılan öfke ve yas yok olmaz; psikosomatik ağrılar, pasif agresif davranışlar veya ani panik ataklar olarak geri döner. Gerçek spiritüalite, göklerde uçmak değil; ayaklarını yere basarak toprağın çamuruyla ve insanın kırılganlığıyla barışabilmektir.'
         ]
       },
       {
-        h: 'Yanlış Bilinenler ve Etik Sınırlar',
-        p: 'Bilinçli spiritüel yaşam; gerçeklikten kopmak, zor duyguları bastırıp “sürekli pozitif kalmaya” çalışmak veya tıbbi/psikolojik desteği reddetmek değildir. Gerçek farkındalık ayakları yere sağlam basan, bilimsel gerçekliğe saygılı ve insanın özgür iradesini merkeze alan sakin bir olgunluktur.'
+        h: 'Stoacı Bilgelik ve Doğu Felsefesinin Buluşması: Amor Fati',
+        paragraphs: [
+          'Roma İmparatoru Marcus Aurelius\'un "Kendime Düşünceler"inde, Epiktetos\'un "Söylevler"inde ve Taoizm\'in kurucu metni Tao Te Ching\'de ortak bir hakikat yankılanır: İnsan ıstırabının ana kaynağı olayların kendisi değil, olaylar hakkında ürettiğimiz direnç ve yargılardır.',
+          'Stoacıların "Dichotomy of Control" (Kontrol İkiliği) ilkesi gereğince, dünyayı ikiye ayırırız: Kontrol edebildiklerimiz (kendi inançlarımız, eylemlerimiz, ahlaki seçimlerimiz) ve kontrol edemediklerimiz (başkalarının davranışları, geçmiş, doğa olayları). Friedrich Nietzsche\'nin "Amor Fati" (Kaderini Sev) dediği erdem; başımıza gelen zorlukları felaket olarak değil, ruhumuzu döven ve bizi olgunlaştıran birer imtihan olarak kucaklamaktır.'
+        ]
+      },
+      {
+        h: 'Günlük Hayatta Spiritüel Yaşamın 5 Temel İlkesi',
+        paragraphs: [
+          'Ruhsal pratik dağ başındaki bir mağarada değil, şehrin trafiğinde, aile sofrasında ve günlük kararlarda yaşanır:'
+        ],
+        bullets: [
+          'Sessizlikle Randevu (Solitude): Her gün en az 15 dakika telefon, müzik ve konuşma olmadan yalnızca kendi nefesinle otur. Kendi yalnızlığıyla barışamayan insan asla özgür olamaz.',
+          'Somatik Mevcudiyet: Gün boyu kafanın içindeki kurgusal hikayelerden çık; ayak tabanlarının yeri kavramasını, suyun tenine değmesini ve nefesini duyumsayarak bedene dön.',
+          'Radikal Dürüstlük: Başkalarının beklentilerini karşılamak için taktığın "iyi insan" maskesini incele; kırgınlığını, sınırlarını ve gerçek hislerini kendine itiraf et.',
+          'Yargısız Kabul: Bir insanla veya durumla karşılaştığında zihninin hemen "iyi/kötü" etiketi yapıştırma refleksini gözlemle ve durumun olduğu gibi var olmasına alan aç.',
+          'Anlamlı Hizmet (Karma Yoga): Ruhsal yolculuk benmerkezci bir aydınlanma peşinde koşmak değildir; kazandığın dinginliği çevrene şefkat, adalet ve destek olarak yansıtmaktır.'
+        ]
+      },
+      {
+        h: 'Etik ve Hukuki Sınırlar: Spiritüalite Bir Tıp Dalı Değildir',
+        paragraphs: [
+          'Spiritüel farkındalık çalışmaları, kişisel derinleşme ve felsefi arayış zeminidir. Klinik depresyon, bipolar bozukluk, kronik anksiyete veya şizofreni gibi biyolojik ve psikiyatrik temelli rahatsızlıklar mutlaka tıp hekimleri ve lisanslı klinik psikologlar tarafından tedavi edilmelidir.',
+          'Mythborn; mucizevi şifa vaatlerini, geleceği deterministik olarak haber veren kehanetleri ve ticari sömürüye dayalı ritüelleri kesin olarak reddeder. Bireyin aklını, iradesini ve bilimsel gerçekliği merkeze alan etik bir farkındalık yaklaşımını benimser.'
+        ]
       }
     ],
     faqs: [
-      { question: 'Spiritüel yaşama başlamak için günde ne kadar süre gerekir?', answer: 'Başlangıç için günde 10–15 dakikalık düzenli nefes, sessiz odaklanma ve kısa günlük tutma rutini yeterlidir; önemli olan süre uzunluğu değil sürekliliktir.' },
-      { question: 'Spiritüel yaşam belirli bir dine bağlı mıdır?', answer: 'Hayır. Farkındalık, nefes, öz-gözlem ve anlam arayışı her kültürde ve inançtan bağımsız olarak uygulanabilir.' }
+      { question: 'Spiritüel yaşam bir dine bağlı olmayı gerektirir mi?', answer: 'Hayır. Spiritüel yaşam herhangi bir inanç sistemiyle uyumlu olabileceği gibi, tamamen seküler, felsefi ve içsel farkındalık odaklı olarak da sürdürülebilir.' },
+      { question: 'Spiritüellik ile kişisel gelişim arasındaki fark nedir?', answer: 'Kişisel gelişim çoğunlukla ego ve performans optimizasyonuna (daha verimli olmak, daha çok başarmak) odaklanırken; spiritüalite egonun ötesindeki anlam, şefkat ve varoluşsal bağ ile ilgilenir.' },
+      { question: 'Günde kaç dakika pratik yapmak yeterlidir?', answer: 'Süreklilik süreden önemlidir. Günde 10–15 dakikalık dikkatli ve kesintisiz bir mevcudiyet pratiği, haftada bir yapılan uzun ve dağınık meditasyonlardan çok daha kalıcı nörolojik dönüşüm sağlar.' }
     ]
   },
   {
     slug: 'carl-jung-golge-ve-arketip',
     tag: 'DERİNLİK PSİKOLOJİSİ',
-    readTime: '7 dk okuma',
+    readTime: '12 dk okuma',
     title: 'Carl Jung: Gölge Çalışması, Arketipler ve Bireyleşme Rehberi',
-    lead: 'Carl Gustav Jung’un derinlik psikolojisi; sembolleri, rüyaları ve içsel çatışmaları kehanet olarak değil, ruhsal bütünleşmenin haritası olarak okur.',
+    lead: 'Carl Gustav Jung’un analitik psikolojisi; bastırılan karanlığın aydınlatılmasını, arketiplerin evrensel dilini ve insanın kendi “Öz”üne (Self) ulaşma yolculuğunu keşfeden en kapsamlı bilinç haritasıdır.',
     ctaHref: '/jung',
-    ctaLabel: 'Carl Jung Arketip & Gölge Aynasını Aç →',
+    ctaLabel: 'İnteraktif Arketip & Gölge Aynasını Başlat →',
     sections: [
       {
-        h: 'Persona ve Gölge (Shadow) Nedir?',
-        p: 'Persona, toplumsal hayatta uyum sağlamak için taktığımız sosyal maskedir. Gölge ise çocukluktan itibaren “kabul görmez” diyerek bilinç dışına ittiğimiz canlılık, öfke, kırılganlık veya yaratıcı güçtür. Jung’a göre gölgeyle yüzleşmeyen kişi, kendi bastırılmış parçalarını sürekli başkalarında yargılar (yansıtma / projeksiyon).'
+        h: 'Kolektif Bilinç Dışı ve Arketipler: İnsanlığın Ortak Mirası',
+        paragraphs: [
+          'Sigmund Freud bilinç dışını büyük ölçüde bireyin çocuklukta bastırdığı cinsel ve saldırgan dürtülerin saklandığı kişisel bir depo olarak görüyordu. İsviçreli psikiyatr Carl Gustav Jung ise hastalarının rüyalarını ve dünya mitolojilerini inceledikçe çok daha derin bir katmanın varlığını keşfetti: Kolektif Bilinç Dışı.',
+          'Kolektif Bilinç Dışı, kişisel deneyimlerden bağımsız olarak, insan türünün yüz binlerce yıllık evrimsel hafızasını taşır. Bu ortak hafızanın psişik yapı taşlarına "Arketipler" denir. Kahraman, Bilge Yaşlı, Büyük Anne, Anima (erkekteki dişil ilke), Animus (kadındaki eril ilke) ve Gölge; coğrafyadan ve çağdan bağımsız olarak masallarda, sanatta, dinlerde ve rüyalarda aynı evrensel sembollerle ortaya çıkar.'
+        ],
+        quote: '“Rüyalar, bilinçli zihnin dar pencerelerinden kaçan hakikatlerin sergilendiği kutsal tiyatro sahneleridir.” — Carl Gustav Jung'
       },
       {
-        h: 'Gölge Çalışmasına Nasıl Başlanır?',
-        bullets: [
-          'Tetikleyicileri Fark Et: Başka birinde seni orantısız biçimde öfkelendiren veya kıskandıran davranışları not al.',
-          'Yargılamadan Sor: “Bu davranış benim kendime yasakladığım hangi ihtiyacı ya da gücü hatırlatıyor?” sorusunu yaz.',
-          'Aktif İmgelem (Active Imagination): Zihninde beliren rüya sembolü veya duyguyla sessiz bir odada (örneğin Mythborn Sığınak’ta) diyalog kur.',
-          'Küçük Somut Adım: Bastırdığın sağlıklı bir ihtiyacı (örneğin “hayır” demek veya dinlenmek) o gün küçük bir eylemle onurlandır.'
+        h: 'Persona ve Gölge: Toplumsal Maskemiz ile Karanlık Odağımız',
+        paragraphs: [
+          'Çocukluktan itibaren ailemiz ve toplum tarafından onaylanmak için belirli davranışları öne çıkarır, kabul görmeyen yönlerimizi ise saklarız. Topluma sunduğumuz bu vitrin Jung tarafından "Persona" (Antik Yunan tiyatrosundaki maske) olarak adlandırılır. Persona gereklidir; çünkü sosyal ilişkileri ve sınırları korur.',
+          'Ancak uygar ve erdemli görünmek adına kendimizden bile sakladığımız, "bana yakışmaz" dediğimiz kıskançlık, bencillik, ilkel öfke ve bastırılmış tutkular yok olmaz. Tamamı psişenin arka odasında, yani "Gölge" (Shadow) katmanında toplanır. Gölge bilinç dışına itildikçe güçlenir ve en zayıf anlarımızda öfke patlamaları, yansıtma veya kendine zarar verme şeklinde bilinci ele geçirir.'
         ]
       },
       {
-        h: 'Kolektif Bilinç Dışı, Arketipler ve Eşzamanlılık',
-        p: 'Jung, tüm insanlığın ortak mitlerinde ve rüyalarında tekrar eden evrensel kalıplara “Arketip” adını verir (Bilge, Gölge, Anima/Animus, Kaşif, Yaratıcı, Öz). Eşzamanlılık (Synchronicity) ise aralarında fiziksel neden-sonuç bağı olmasa da içsel bir ruh haliyle dışsal bir olayın anlamlı biçimde kesişmesidir.'
+        h: 'Yansıtma (Projeksiyon) Mekanizması: Başkalarında Nefret Ettiğimiz Şeyler',
+        paragraphs: [
+          'Gölge ile çalışmanın en pratik kapısı başkalarına verdiğimiz aşırı duygusal tepkilerdir. Bir insanda veya grupta sizi orantısız biçimde öfkelendiren, tahammül sınırlarınızı aşan bir özellik görüyorsanız, Jungiyen yaklaşıma göre orada neredeyse kesinlikle bir "Yansıtma" (Projeksiyon) vardır.',
+          'Kendi içinde bencilliğini veya otoriter olma arzusunu bastırmış bir kişi, çevresindeki en ufak bir otoriter tavra aşırı ahlakçı bir öfkeyle saldırır. Dışarıdaki insanı düşman ilan etmek, kişinin kendi içindeki karanlıkla yüzleşmesinden çok daha kolaydır. Birey başkalarını yargılamayı bırakıp "Bu öfke benim içimdeki hangi bastırılmış yaraya ayna tutuyor?" diye sorduğunda gerçek dönüşüm başlar.'
+        ]
       },
       {
-        h: 'Bireyleşme (Individuation) Yolculuğu',
-        p: 'Bireyleşme, kusursuz olmak değil “bütün” olmaktır. Başkalarının beklentilerinden sıyrılıp hem aydınlık hem gölge yanlarını bilinçli bir merkezde (Self / Öz) toplayabilme sürecidir.'
+        h: 'Aktif İmgelem (Active Imagination) ve Rüyaların Sembolik Dili',
+        paragraphs: [
+          'Jung\'un 1913–1930 yılları arasında kendi bilinç dışına dalarak yazdığı ve çizdiği efsanevi eseri "Kırmızı Kitap" (Liber Novus), Aktif İmgelem yönteminin doğum yeridir. Aktif İmgelem; uyanık bilinç durumunu korurken, zihne gelen rüya imgeleri, arketipler ve gölge figürleriyle bilinçli bir diyalog kurma sanatıdır.',
+          'Rüyalar geleceği haber veren mekanik kehanetler değildir; psişenin dengesini sağlamak için gündüz gözden kaçırılan bilinç dışı gerçekleri semboller aracılığıyla sahneleyen psişik telafi (compensation) mekanizmalarıdır. Rüyadaki canavarlar çoğu zaman öldürülmesi gereken düşmanlar değil, bilince entegre edilmeyi bekleyen yaralı gölge parçalarıdır.'
+        ]
+      },
+      {
+        h: 'Bireyleşme (Individuation): Kusursuzluk Değil, Bütünlük',
+        paragraphs: [
+          'Bireyleşme süreci, analitik psikolojinin nihai hedefidir. Bu süreç, kişinin ailesinden, toplumun basmakalıp yargılarından ve egonun dar sınırlarından sıyrılarak kendi gerçek merkezine, yani "Benlik"e (Self / Das Selbst) ulaşmasıdır.',
+          'Jungiyen terapi insanı "kusursuz" veya "günahsız" yapmayı hedeflemez; çünkü doğada kusursuzluk donuk ve cansızdır. Asıl amaç "bütünlük"tür (wholeness). Hem ışığını hem karanlığını tanıyan, gölgesinin enerjisini yaratıcılığa ve koruyucu sınırlara dönüştüren insan, psişik dengesine kavuşur.'
+        ],
+        quote: '“Ben iyi biri olmak istemiyorum; ben bütün olmak istiyorum.” — Carl Gustav Jung'
+      },
+      {
+        h: 'Gölge Entegrasyonu İçin 5 Aşamalı Pratik Rehber',
+        paragraphs: [
+          'Gölge çalışması entelektüel bir gevezelik değil, cesaret isteyen bir içsel yüzleşmedir:'
+        ],
+        bullets: [
+          'Tetikleyicileri Kaydet: Seni çileden çıkaran kişileri ve durumları listele. Onların hangi özelliği sende yoğun tiksinti veya öfke uyandırıyor?',
+          'Ahlakçı İfadelerini Sorgula: "Ben asla böyle biri değilim" diye yemin ettiğin her cümlenin tersini incele; o yönünün gölgede yaşadığını kabul et.',
+          'Gölge Figürünle Konuş: Rüyanda veya hayalinde seni korkutan o figürü karşına al ve sor: "Bana neyi hatırlatmaya geldin? Hayatımda neyi bastırıyorum?"',
+          'Sanat ve Yazıyla Sağaltım: Bastırılmış enerjiyi doğrudan dışa vurmak yerine günlük tutarak, resim yaparak veya bedensel hareketle dönüştür.',
+          'Şefkatli Entegrasyon: Gölgeni bir düşman gibi yok etmeye çalışma; onun çocuklukta seni korumak için oluşmuş ilkel bir zırh olduğunu anla ve onu yetişkin bilincine dahil et.'
+        ]
       }
     ],
     faqs: [
-      { question: 'Gölge çalışması terapi yerine geçer mi?', answer: 'Hayır. Gölge ve arketip çalışması güçlü bir öz-farkındalık aracıdır ancak klinik psikoterapi veya tıbbi destek yerine geçmez.' },
-      { question: 'Eşzamanlılık (Synchronicity) ne demektir?', answer: 'Jung’un tanımladığı biçimiyle içsel bir psikolojik durumun dış dünyadaki bir olayla anlamlı fakat nedensel olmayan biçimde örtüşmesidir.' }
+      { question: 'Gölge çalışması tehlikeli midir?', answer: 'Ağır travması veya psikotik yatkınlığı olan kişilerde gölge çalışması mutlaka bir uzman eşliğinde yapılmalıdır. Ancak sağlıklı bireyler için gölge çalışması bastırılmış enerjiyi serbest bırakan en güvenli öz-farkındalık sürecidir.' },
+      { question: 'Gölge tamamen yok edilebilir mi?', answer: 'Hayır. Gölge psişenin ayrılmaz bir parçasıdır. Amaç gölgeyi yok etmek değil; onunla dost olmak, farkında olmak ve enerjisini yaratıcılığa kanalize etmektir.' },
+      { question: 'Arketipler gerçek varlıklar mıdır?', answer: 'Hayır, arketipler metafizik varlıklar değil; insan beyninin ve kolektif hafızasının milyonlarca yılda geliştirdiği evrensel psikolojik algı ve tepki şablonlarıdır.' }
     ]
   },
   {
     slug: 'meditasyon-ve-nefes-rehberi',
-    tag: 'PRATİK MEDİTASYON',
-    readTime: '6 dk okuma',
-    title: 'Meditasyon Türleri: Mum (Trataka), İç Benlik Nefesi, Theta ve 108 Mantra',
-    lead: 'Zihni zorla susturmaya çalışmadan dinginliğe ulaşmak için dört kadim pratiğin adım adım uygulanış rehberi.',
+    tag: 'SOMATİK DENGE & NEFES',
+    readTime: '10 dk okuma',
+    title: 'Meditasyon Türleri, Nefes Biyomekaniği ve Zihinsel Dinginlik',
+    lead: 'Zihni zorla susturmak yerine düşüncelerin akışını izlemeyi, vagus sinirini uyararak sinir sistemini regüle etmeyi ve bedeni derin gevşemeye ulaştırmayı hedefleyen bilimsel meditasyon rehberi.',
     ctaHref: '/meditasyon-ve-frekans',
-    ctaLabel: 'Dört Meditasyon Odasını Şimdi Deneyimle →',
+    ctaLabel: 'Doğrudan Meditasyon & Frekans Stüdyosunu Başlat →',
     sections: [
       {
-        h: '1. Mum Meditasyonu (Trataka)',
-        p: 'Trataka, gözleri tek bir sabit ışık noktasına (mum alevine) yumuşakça odaklayarak görsel ve zihinsel dağınıklığı azaltma pratiğidir. Düşünceleri kovmak yerine dikkati nazikçe alevin parlak çekirdeğine geri getirmek yeterlidir.'
-      },
-      {
-        h: '2. İç Benlik ve Nefes Koheransı',
-        bullets: [
-          '4-4-4-4 Kutu Nefesi: 4 sn al, 4 sn tut, 4 sn ver, 4 sn bekle. Zihinsel berraklık ve denge için idealdir.',
-          '4-7-8 Sakinleştirici Nefes: Nefes verişi uzatarak parasempatik sinir sistemini (dinlen-sindir modu) aktive eder.',
-          '5-5 Kalp Koheransı: Eşit ve yumuşak akışla kalp-nefes ritmini uyumlu hale getirir.'
+        h: 'Zihni Zorla Susturmak Yanılgısı: Tanık Zihin Ekolü',
+        paragraphs: [
+          'Meditasyona yeni başlayanların en sık yaptığı hata ve vazgeçme sebebi, zihindeki düşünceleri "tamamen durdurmaya" çalışmaktır. Oysa beynin biyolojik görevi düşünce üretmektir; kalbin kan pompalaması veya ciğerlerin oksijen alması gibi. Zihni susturmaya çalışmak, dalgalı bir denizi sopayla döverek sakinleştirmeye çalışmaya benzer; yalnızca daha çok köpük üretir.',
+          'Kadim meditasyon geleneklerinin ve çağdaş nöro-bilimin önerdiği yaklaşım "Açık İzleme"dir (Open Monitoring). Meditasyon, nehirde yüzen balıklar gibi akıp giden düşüncelere kapılıp sürüklenmek yerine, nehrin kıyısına oturup onların gelişini ve gidişini yargılamadan izlemektir. Düşünceyi fark ettiğiniz an, hipnozdan uyandığınız andır.'
         ]
       },
       {
-        h: '3. Theta Eşiği ve Derin Gevşeme',
-        p: 'Uyku ile uyanıklık arasındaki sakin eşik (Theta) durumunda beden tamamen gevşerken farkındalık uyanık kalır. Aşamalı beden taraması ve kulaklıkla dinlenen 6 Hz binaural ritim bu sakin gözlem alanını destekler.'
+        h: 'Vagus Siniri ve Nefes Biyomekaniği: Biyolojik Fren Sistemi',
+        paragraphs: [
+          '10. kranial sinir olan Vagus Siniri, beyin sapından çıkarak kalp, akciğerler, mide ve bağırsaklara kadar uzanan parasempatik sinir sisteminin ana otoyoludur. Nefes alırken diyafram aşağı iner, göğüs içi basınç değişir ve kalp atışı hafifçe hızlanır (sempatik uyarım). Nefes verirken ise diyafram gevşer, kalp atışı yavaşlar ve Vagus siniri asetilkolin salgılayarak bedene "güvendesin" mesajı verir.',
+          'Bu fizyolojik gerçeğe "Respiratuar Sinüs Aritmisi" (RSA) denir. Nefes verme süresini alma süresinden daha uzun tuttuğumuz her an (örneğin 4 saniye alıp 6 saniye vermek), vücudun biyolojik fren pedalına basmış oluruz. Amigdala sakinleşir, kortizol üretimi durur ve beden hücresel yenilenme moduna geçer.'
+        ],
+        quote: '“Nefes, zihin ile beden arasındaki tek köprüdür; zihni kontrol edemiyorsanız nefesi kontrol edin, zihin onu takip edecektir.” — Kadim Pranayama Öğretisi'
       },
       {
-        h: '4. 108 Mantra ve Niyet Tekrarı',
-        p: '108 boncuklu mala veya dijital tespih ritmi, zihne dokunsal bir çapa sunar. Kısa, olumlu ve şimdiki zamanda kurulan tek bir niyet cümlesini her çan tınısında tekrarlamak dikkati sakinleştirir.'
+        h: '4 Temel Meditasyon Ekolü ve Zihinsel Faydaları',
+        paragraphs: [
+          'Her insanın sinir sistemi yapısı ve ihtiyaçları farklıdır; bu nedenle tek tip bir meditasyon yerine amaca uygun ekolü seçmek gerekir:'
+        ],
+        bullets: [
+          'Zazen (Zen Oturuşu): Belirli bir nesneye veya hayale odaklanmadan, yalnızca doğru bir omurga duruşu ve nefesle "saf varoluş"ta kalma pratiğidir. Zihinsel dayanıklılığı ve netliği artırır.',
+          'Vipassana (Beden Taraması & İçgörü): Dikkati baştan ayağa bedendeki tüm duyumlar (ısı, karıncalanma, ağırlık) üzerinde yargısızca gezdirmektir. Duyguların bedendeki geçici doğasını (anicca) anlamayı sağlar.',
+          'Trataka (Mum & Işık Meditasyonu): Gözleri kırpmadan tek bir mum alevine odaklanarak dikkat dağınıklığını tek bir noktaya toplama (Dharana) yöntemidir. Odaklanma gücünü ve epifiz bezini uyarır.',
+          'Metta (Şefkat & Sevgi Meditasyonu): Önce kendi varlığına, sonra sevdiklerine ve nihayet zorlandığı kişilere içtenlikle esenlik ve huzur dileme pratiğidir. Amigdala reaktivitesini düşürür.'
+        ]
+      },
+      {
+        h: 'Klinik Olarak Kanıtlanmış 3 Güçlü Nefes Protokolü',
+        paragraphs: [
+          'Stres anında saniyeler içinde sinir sisteminizi yeniden dengeye getirecek nefes teknikleri:'
+        ],
+        bullets: [
+          'Fizyolojik İç Çekiş (Physiological Sigh - Dr. Andrew Huberman): Burundan üst üste iki derin nefes alıp (biri ciğeri doldurur, ikincisi sönmüş alveolleri patlatırcasına açar) ağızdan yavaşça ve tamamen bırakmak. Kalp atışını 30 saniyede yavaşlatan en hızlı biyolojik reset yöntemidir.',
+          'Kutu Nefesi (Box Breathing - Navy SEAL Protokolü): 4 saniye nefes al, 4 saniye ciğerleri dolu tut, 4 saniye nefes ver, 4 saniye ciğerleri boş tut. Yüksek stres altında panik dalgasını kırıp muhakeme yeteneğini geri getirir.',
+          '4-7-8 Nefesi (Dr. Andrew Weil): 4 saniye burundan al, 7 saniye tut, 8 saniye boyunca dudakları büzerek üfler gibi ver. Gece uykusuzluğu ve yatakta dönüp duran kaygılı zihin için doğal bir uyku ilacıdır.'
+        ]
+      },
+      {
+        h: 'Evde Sessizlik Alanı Kurmak ve Duruş Ergonomisi',
+        paragraphs: [
+          'Meditasyon için karmaşık ritüel araçlarına ihtiyacınız yoktur. İhtiyacınız olan tek şey; omurganızın dik durabileceği rahat bir minder veya sandalye, hava akımından uzak sessiz bir köşe ve kendinize ayırdığınız kesintisiz 15 dakikadır.',
+          'Bağdaş kurmak zorunda değilsiniz. Ayak tabanlarınızın yere bastığı düz bir sandalyede, omuzlar serbest, çene yere paralel ve eller dizlerin üzerinde oturmak sinir sisteminin en az dirençle dengelenmesini sağlar. Gözleri tamamen kapatmak uykuya meylediyorsa, bakışları 45 derece açıyla yere, tek bir noktaya yumuşakça sabitlemek zihni uyanık tutar.'
+        ]
+      },
+      {
+        h: 'Zihinsel Dirençler: "Meditasyon Yapamıyorum" Efsanesi',
+        paragraphs: [
+          'Meditasyon yaparken zihninizin sürekli market alışverişine, dünkü tartışmaya veya yarınki işlere kayması "başarısız olduğunuz" anlamına gelmez. Tam tersine; zihnin dağıldığını fark ettiğiniz an, bilincin uykudan uyandığı sihirli andır.',
+          'Her fark edişte kendinize kızmadan, sabırla ve şefkatle dikkati tekrar nefesin ritmine davet etmek, zihinsel kası güçlendiren bir antrenmandır. Günde sadece 10 dakika tutarlı pratik yapmak, ayda bir yapılan 2 saatlik oturumdan nöroplastisite açısından çok daha derin faydalar sağlar.'
+        ]
       }
     ],
     faqs: [
-      { question: 'Meditasyon yaparken aklıma sürekli düşünceler geliyor, yanlış mı yapıyorum?', answer: 'Hayır. Meditasyonun amacı düşünceyi sıfırlamak değil, düşüncenin geldiğini fark edip yargılamadan nefese veya muma geri dönmektir.' }
+      { question: 'Günde kaç dakika meditasyon yapmalıyım?', answer: 'Yeni başlayanlar için günde 10–15 dakika idealdir. Önemli olan sürenin uzunluğu değil, her gün aynı saatte tutarlı bir alışkanlık haline getirilmesidir.' },
+      { question: 'Meditasyon yaparken uykum geliyor, ne yapmalıyım?', answer: 'Bu çok yaygındır; çünkü beyin gevşeme sinyali aldığında bunu uykuyla eşleştirir. Uykuyu önlemek için dik oturun, gözlerinizi hafifçe aralık bırakın veya sabah saatlerinde pratik yapın.' },
+      { question: 'Meditasyon anksiyetemi artırırsa ne yapmalıyım?', answer: 'Bazen içsel sessizlik bastırılmış kaygıları yüzeye çıkarabilir. Bu durumda gözleri açın, etraftaki 5 nesneye odaklanarak çevreyle temas kurun (5-4-3-2-1 zeminlenme kuralı).' }
     ]
   },
   {
     slug: 'frekans-rezonans-ve-beyin-dalgalari',
-    tag: 'SES & REZONANS FİZİĞİ',
-    readTime: '6 dk okuma',
-    title: 'Frekans, Rezonans ve Beyin Dalgaları (Alpha, Theta, Delta, Solfeggio)',
-    lead: 'Hertz nedir, binaural vuruşlar kulaklıkta nasıl oluşur, 432 Hz ile 440 Hz arasındaki fark nedir ve güvenli dinleme sınırları nelerdir?',
+    tag: 'SES FİZİĞİ & BEYİN DALGALARI',
+    readTime: '10 dk okuma',
+    title: 'Frekans, Rezonans ve Beyin Dalgaları (Solfeggio, Binaural Fiziği)',
+    lead: 'Ses dalgalarının biyofiziksel etkileri, EEG ile ölçülen beyin ritimleri (Alpha, Theta, Delta), 432 Hz akort felsefesi ve saf frekanslarla zihinsel odaklanma bilimi.',
     ctaHref: '/meditasyon-ve-frekans#ses-mikseri',
-    ctaLabel: 'Kymatik & Stereo Yankılı Ses Stüdyosunu Aç →',
+    ctaLabel: 'Canlı Cymatics & Stereo Stüdyo Mikserini Aç →',
     sections: [
       {
-        h: 'Hertz (Hz) ve Rezonans Fiziği',
-        p: 'Hertz, bir ses dalgasının saniyede kaç kez titreştiğini ölçen fiziksel birimdir. Düşük Hz değerleri daha pes (kalın), yüksek Hz değerleri daha tiz (ince) duyulur. Sesin perdesi ile ses şiddeti (desibel) birbirinden farklı kavramlardır.'
+        h: 'Sesin Maddi Gücü: Cymatics ve Biyo-akustik Fiziği',
+        paragraphs: [
+          'Ses soyut bir fantezi değil, hava moleküllerinin sıkışıp genleşmesiyle yayılan mekanik bir basınç dalgasıdır. 18. yüzyılda Ernst Chladni\'nin kum taneleriyle metal plakalarda yaptığı deneyler ve 20. yüzyılda Hans Jenny\'nin su ve sıvılar üzerinde geliştirdiği "Cymatics" araştırmaları; ses frekanslarının maddeyi kusursuz geometrik desenler halinde organize ettiğini gözler önüne sermiştir.',
+          'Yetişkin bir insan bedeninin yaklaşık %60–70\'i sudan oluşur. Bu biyofiziksel gerçeklik, dışarıdan uygulanan akustik titreşimlerin ve rezonans dalgalarının yalnızca kulak zarımızı değil; hücrelerimizi, bağ dokularımızı ve sinir sistemi sıvılarımızı da doğrudan etkilediğini açıklar. Ses, bedenin derin katmanlarına ulaşan invaziv olmayan bir masaj gibidir.'
+        ],
+        quote: '“Geleceğin tıbbı, frekansların tıbbı olacaktır.” — Albert Einstein'
       },
       {
-        h: 'Binaural Beyin Dalgaları Nasıl Çalışır?',
+        h: 'EEG Beyin Dalgaları Spektrumu: Zihinsel Hallerimizin Haritası',
+        paragraphs: [
+          'Elektroensefalografi (EEG) ile ölçülen beyin dalgaları, nöronların senkronize elektriksel aktivitesidir. Farklı zihinsel durumlarda farklı frekans aralıkları baskın hale gelir:'
+        ],
         bullets: [
-          'Alpha (8–12 Hz fark, ör. 10 Hz): Sakin uyanıklık, rahat odaklanma ve yaratıcı akış ritmiyle ilişkilendirilir.',
-          'Theta (4–7 Hz fark, ör. 6 Hz): Derin meditasyon, rüya eşiği ve aktif imgelem sırasında öne çıkan yavaş dalga bandıdır.',
-          'Delta (1–3 Hz fark, ör. 2 Hz): Derin gece dinlenmesi ve zihinsel sükûnet için kullanılan en yavaş ritimdir.',
-          'Neden Kulaklık Gerekir?: Sol kulağa 432 Hz, sağ kulağa 438 Hz verildiğinde iki dalga beyinde 6 Hz’lik yumuşak bir ritmik fark olarak algılanır.'
+          'Delta Dalgaları (0.5 – 4 Hz): Derin, rüyasız uyku durumu. Büyüme hormonu salgılanması, hücresel tamirat ve bağışıklık sisteminin yenilenmesi bu frekansta gerçekleşir.',
+          'Theta Dalgaları (4 – 8 Hz): REM uykusu, derin meditasyon, sezgisel kavrayış ve hipnagojik eşik. Çocukluk anılarına ve yaratıcı çağrışımlara en açık olunan zihinsel alandır.',
+          'Alpha Dalgaları (8 – 13 Hz): Sakin ama uyanık farkındalık. Gözler kapatıldığında beynin arka bölgesinde yükselir; stres hormonlarını azaltırken öğrenme kapasitesini katlar.',
+          'Beta Dalgaları (13 – 30 Hz): Günlük odaklanmış zihinsel aktivite, problem çözme ve mantıksal analiz. Ancak sürekli yüksek Beta durumunda kalmak tükenmişlik ve anksiyete doğurur.',
+          'Gamma Dalgaları (30 – 100 Hz): Üst düzey bilişsel entegrasyon, ani kavrayış (Aha! anı) ve şefkat meditasyonu yapan deneyimli uygulayıcılarda ölçülen tepe senkronizasyon.'
         ]
       },
       {
-        h: 'Solfeggio Tonları ve 432 Hz vs 440 Hz',
-        p: '174–963 Hz arasındaki Solfeggio dizisi modern farkındalık kültüründe sembolik temalarla (topraklanma, arınma, sezgi) anılır. 432 Hz ise standart 440 Hz’e göre biraz daha sıcak duyulan alternatif bir müzikal akort referansıdır. Mythborn, bilimsel fizik ile kültürel sembolizmi şeffaf biçimde ayırır.'
+        h: 'Binaural Beat Fiziği: Beyin Dalgalarını Sesle Eşleme (Entrainment)',
+        paragraphs: [
+          '1839 yılında Heinrich Wilhelm Dove tarafından keşfedilen Binaural Beat olgusu, beyin sapındaki ses işleme mekanizmasının mucizevi bir sonucudur. Örneğin sol kulağa 200 Hz, sağ kulağa 206 Hz saf sinüs tonu verildiğinde, iki kulak arasındaki 6 Hz\'lik fark fiziksel olarak havada mevcut değildir.',
+          'Beyin sapındaki "Superior Olivary Complex" iki kulağın sinyallerini birleştirirken aradaki bu 6 Hz\'lik ritmik dalgalanmayı kendisi üretir. Nöronlar zamanla bu ritme kilitlenir (Frequency Following Response) ve tüm beyin 6 Hz (Theta dalgası) frekansına senkronize olur. Bu etkinin gerçekleşebilmesi için mutlaka stereo kulaklık kullanılması zorunludur.'
+        ]
       },
       {
-        h: 'Güvenli ve Zengin Dinleme İlkeleri',
-        p: 'Kuru bir sinüs dalgası uzun süre dinlendiğinde kulağı yorabilir. Mythborn Sığınak’taki stereo tapınak yankısı, alt harmonikler ve canlı yağmur/okyanus/rüzgar/ateş katmanları dinlemeyi yumuşatır. Her zaman düşük sesle başlayın; kulak çınlaması veya rahatsızlık olursa seansı durdurun.'
+        h: '432 Hz ve 440 Hz Tartışması: Akustik Doğallık ve Pisagorik Akort',
+        paragraphs: [
+          '1953 yılında Uluslararası Standardizasyon Örgütü (ISO), global konser akordunu A4 = 440 Hz olarak standartlaştırmıştır. Ancak Giuseppe Verdi, Rudolf Steiner ve Pisagor geleneği; A4 = 432 Hz frekansının suyun armonik rezonansına, altın orana (Fibonacci serisi) ve insan sesinin doğal dinamiklerine çok daha uygun olduğunu savunmuştur.',
+          '432 Hz ile çalınan müzikler laboratuvar ortamında dinletildiğinde, dinleyiciler sesin göğüs kafesinde daha sıcak, daha az agresif ve kulak yorgunluğu yaratmayan bir dinginlik hissi oluşturduğunu bildirir. Mythborn Stüdyosu\'nda sunduğumuz tüm armonik tonlar, bu matematiksel ve doğal armoni gözetilerek üretilmiştir.'
+        ]
+      },
+      {
+        h: 'Solfeggio Frekanslarının Sembolik ve Armonik Arka Planı',
+        paragraphs: [
+          'Tarihsel kökleri Orta Çağ Gregoryen ilahilerine (Ut queant laxis) kadar uzanan Solfeggio skalası, belirli matematiksel sayı kalıplarına (3, 6, 9 prensipleri) dayanan kadim bir armonik sistemdir:'
+        ],
+        bullets: [
+          '396 Hz (Ut): Kök çakra rezonansı; derinlerdeki suçluluk, yetersizlik ve korku kalıplarının zihinsel olarak çözülmesine odaklanır.',
+          '417 Hz (Re): Sakral merkez; geçmiş travmaların yarattığı dirençleri kırmak ve değişimi kolaylaştırmak için kullanılır.',
+          '528 Hz (Mi): "Mucize Frekansı" olarak anılır; doğanın biyolojik onarım harmoniklerine ve kalp merkezli dönüşüme işaret eder.',
+          '639 Hz (Fa): İletişim, empati ve ilişkilerdeki çatışmaları şefkatle çözmeye yardımcı olan armoni.',
+          '741 Hz (Sol): Zihinsel berraklık, sezgi ve içsel toksik düşünce döngülerinden arınma frekansı.',
+          '852 Hz (La): Üçüncü göz ve üst bilinç; yanılsamalardan arınarak ruhsal hakikati görme odağı.'
+        ]
+      },
+      {
+        h: 'Ses Hijyeni ve Güvenli Dinleme Protokolü',
+        paragraphs: [
+          'Frekans çalışmaları mucizevi bir hap değildir; bedenin ve zihnin sessizliğe ulaşmasını kolaylaştıran bir köprüdür. Günde 20–30 dakika kısık veya orta ses seviyesinde, rahat bir ortamda dinlemek yeterlidir.',
+          'Derin Theta (4–8 Hz) veya Delta (0.5–4 Hz) frekansları dinlerken araç kullanılmamalı veya yüksek dikkat gerektiren makineler işletilmemelidir. Ses seansını tamamladıktan sonra birkaç dakika sessizlikte oturmak, deneyimlenen dinginliğin sinir sistemine kalıcı olarak entegre olmasını sağlar.'
+        ]
       }
     ],
     faqs: [
-      { question: 'Frekans dinlemek tıbbi tedavi yerine geçer mi?', answer: 'Hayır. Frekanslar, doğa sesleri ve meditasyon müziği kişisel dinginlik ve odaklanma alanı sunar; tıbbi tedavi veya klinik terapi değildir.' }
+      { question: 'Binaural beat dinlemek için neden kulaklık şarttır?', answer: 'Çünkü iki kulağa farklı frekanslar gönderilmesi gerekir. Hoparlörden dinlendiğinde sesler havada birbirine karışır ve beyin sapındaki üçüncü frekans üretimi gerçekleşemez.' },
+      { question: 'Frekanslar hastalıkları iyileştirir mi?', answer: 'Frekanslar doğrudan tıbbi bir tedavi veya ilaç değildir. Ancak stres hormonlarını azaltarak ve parasempatik sistemi aktive ederek bedenin kendi doğal onarım mekanizmalarına alan açar.' },
+      { question: 'Günde kaç saat frekans dinleyebilirim?', answer: 'Günde 20–45 dakika stereo kulaklıkla dinlemek yeterlidir. Beynin aşırı uyarılmasını önlemek için seansların ardından mutlaka sessizlik molaları verilmelidir.' }
     ]
   }
 ];
@@ -1001,8 +1156,8 @@ const GUIDES_UI = {
     heroEyebrow: 'BİLİNÇ & FARKINDALIK AKADEMİSİ · EDİTÖRYAL MONOGRAFİLER',
     heroH1: 'Bilinç, Jung & Farkındalık Rehberleri.',
     heroLead: 'Rezonans Kanunu, spiritüel yaşam ilkeleri, Carl Jung gölge çalışması ve ses fiziği üzerine rafine kütüphane.',
-    telemetryGuides: '05 Derinlik Rehberi',
-    telemetryReading: '30 dk Toplam Okuma',
+    telemetryGuides: '5 Akademik Monografi',
+    telemetryReading: '55 dk Derin Okuma',
     telemetryEthics: 'Reklamsız & Etik Sınırlar',
     kicker: 'KÜRATÖRLÜ ARŞİV',
     sectionH2: 'Konuya Göre Keşfet',
@@ -1386,18 +1541,18 @@ export const renderGuideArticleView = ({ locale = 'tr', slug = '', guideBaseHref
     <section class="sanc-section">
       <div class="astro-container">
         <article class="guide-article-shell guide-article-elite" data-spotlight>
-          ${g.sections.map((sec, idx) => `
+          ${g.sections.map((sec) => `
             <section class="guide-article-sec">
-              <div class="guide-sec-num">${String(idx + 1).padStart(2, '0')}</div>
               <h2>${sec.h}</h2>
               ${sec.p ? `<p>${sec.p}</p>` : ''}
+              ${sec.paragraphs ? sec.paragraphs.map((p) => `<p>${p}</p>`).join('') : ''}
+              ${sec.quote ? `<blockquote class="guide-article-quote">${sec.quote}</blockquote>` : ''}
               ${sec.bullets ? `<ul class="guide-article-list">${sec.bullets.map((b) => `<li>${b}</li>`).join('')}</ul>` : ''}
             </section>
           `).join('')}
 
           ${g.faqs && g.faqs.length ? `
           <section class="guide-article-sec guide-article-faq-wrap">
-            <div class="guide-sec-num">FAQ</div>
             <h2>${ui.faqTitle}</h2>
             <div class="guides-faq-list" style="margin-top:16px">
               ${g.faqs.map((f, i) => `

@@ -3992,9 +3992,22 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-lead,
   border:1px solid rgba(214, 190, 146, 0.2);
   background:linear-gradient(160deg, rgba(15, 21, 34, 0.9), rgba(8, 11, 18, 0.98));
 }
-.guide-article-sec{margin-bottom:32px}
-.guide-article-sec h2{font-family:var(--font-serif);font-weight:400;font-size:clamp(22px, 2.2vw, 30px);color:var(--gold-bright);margin:0 0 14px}
-.guide-article-sec p{font-size:15.5px;line-height:1.82;color:#d6dce8;margin:0}
+.guide-article-sec{margin-bottom:36px}
+.guide-article-sec h2{font-family:var(--font-serif);font-weight:400;font-size:clamp(22px, 2.2vw, 30px);color:var(--gold-bright);margin:0 0 16px}
+.guide-article-sec p{font-size:15.5px;line-height:1.84;color:#d6dce8;margin:0 0 16px}
+.guide-article-sec p:last-child{margin-bottom:0}
+.guide-article-quote{
+  margin:22px 0;
+  padding:18px 24px;
+  border-left:3px solid var(--gold-bright);
+  background:rgba(214, 190, 146, 0.05);
+  border-radius:0 14px 14px 0;
+  font-family:var(--font-serif);
+  font-style:italic;
+  font-size:16.5px;
+  line-height:1.65;
+  color:var(--cream);
+}
 .guide-article-list{list-style:none;display:flex;flex-direction:column;gap:12px;padding:0;margin:0}
 .guide-article-list li{
   padding:14px 16px;
