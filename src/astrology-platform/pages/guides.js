@@ -1239,7 +1239,6 @@ export const renderGuidesHubView = ({ locale = 'tr', guideBaseHref = '/rehber' }
         ${featured ? `
         <article class="guide-featured-card guide-elite-featured" data-guide-item data-guide-cat="${featured.category}" data-spotlight>
           <a class="guide-featured-media" href="${guideBaseHref}/${featured.slug}">
-            <span class="guide-index-badge">${featured.indexLabel}</span>
             <img src="${featured.image}" alt="${featured.title}" loading="eager" decoding="async">
           </a>
           <div class="guide-featured-body">
@@ -1269,7 +1268,6 @@ export const renderGuidesHubView = ({ locale = 'tr', guideBaseHref = '/rehber' }
           ${rest.map((g) => `
             <article class="guide-hub-card mb27-card-has-media guide-elite-card" data-guide-item data-guide-cat="${g.category}" data-spotlight>
               <a class="mb27-card-media" href="${guideBaseHref}/${g.slug}">
-                <span class="guide-index-badge">${g.indexLabel}</span>
                 <img src="${g.image}" alt="${g.title}" loading="lazy" decoding="async">
               </a>
               <div class="mb27-card-body">
@@ -1303,11 +1301,10 @@ export const renderGuidesHubView = ({ locale = 'tr', guideBaseHref = '/rehber' }
         <div class="guides-path-grid">
           ${pathSteps.map((step) => `
             <article class="guides-path-card" data-spotlight>
-              <div class="guides-path-num">${step.num}</div>
-              <span class="guides-path-tag">${step.tag}</span>
+              <span class="guides-path-tag">✦ ${step.tag}</span>
               <h3>${step.title}</h3>
               <p>${step.desc}</p>
-              <a class="guides-path-link" href="${step.href}">${step.cta}</a>
+              <a class="guides-path-link" href="${step.href}"><span>${step.cta}</span> <span aria-hidden="true">→</span></a>
             </article>
           `).join('')}
         </div>
@@ -1378,7 +1375,7 @@ export const renderGuideArticleView = ({ locale = 'tr', slug = '', guideBaseHref
           <span aria-hidden="true">›</span>
           <a href="${guideBaseHref}">${ui.breadcrumbGuides}</a>
           <span aria-hidden="true">›</span>
-          <span aria-current="page">${g.indexLabel}</span>
+          <span aria-current="page">${g.tag}</span>
         </nav>
         <span class="sanc-eyebrow">✦ ${g.tag} · ${g.readTime}</span>
         <h1 class="sanc-h1">${g.title}</h1>
@@ -1428,7 +1425,6 @@ export const renderGuideArticleView = ({ locale = 'tr', slug = '', guideBaseHref
             ${related.map((r) => `
               <article class="guide-hub-card mb27-card-has-media guide-elite-card" data-spotlight>
                 <a class="mb27-card-media" href="${guideBaseHref}/${r.slug}">
-                  <span class="guide-index-badge">${r.indexLabel}</span>
                   <img src="${r.image}" alt="${r.title}" loading="lazy" decoding="async">
                 </a>
                 <div class="mb27-card-body">
