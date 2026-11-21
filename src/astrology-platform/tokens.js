@@ -3035,9 +3035,9 @@ html[dir="rtl"] .retro-guidance-box {
 .seo-answer-block,
 .seo-faq-block,
 .seo-related-block {
-  max-width: 1060px;
+  max-width: 1240px;
   margin: 28px auto 0;
-  padding: 28px 30px;
+  padding: 28px 32px;
   background: linear-gradient(145deg, rgba(14, 18, 34, 0.7) 0%, rgba(6, 8, 16, 0.88) 100%);
   border: 1px solid rgba(212, 175, 55, 0.18);
   border-radius: 18px;
@@ -3049,7 +3049,18 @@ html[dir="rtl"] .retro-guidance-box {
   margin: 8px 0 12px;
   font-size: clamp(22px, 3vw, 30px);
 }
-.seo-answer-block p,
+.seo-answer-block p {
+  color: rgba(248, 246, 240, 0.78);
+  line-height: 1.75;
+  font-size: 14px;
+  margin: 0;
+}
+@media(min-width: 1080px){
+  .seo-answer-block p {
+    white-space: nowrap !important;
+    font-size: clamp(12px, 0.86vw, 13.5px) !important;
+  }
+}
 .seo-faq-item p {
   color: rgba(248, 246, 240, 0.78);
   line-height: 1.75;
