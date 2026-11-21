@@ -109,7 +109,7 @@ export const renderHoroscopesView = ({ locale = 'tr', searchParams = {} }) => {
       <div class="astro-container">
         <span class="astro-hero-eyebrow">✦ CANLI EFEMERİS VE ARKETİPSEL PSİKOLOJİ ENTEGRASYONU</span>
         <h1>${locale === 'tr' ? 'Günlük Gökyüzü Burç Güncesi & Kozmik Barometre' : locale === 'en' ? 'Daily Celestial Weather & Astrometric Horoscopes' : locale === 'el' ? 'Ημερήσιο Ουράνιο Χρονικό & Κοσμικό Βαρόμετρο' : locale === 'es' ? 'Crónica Celeste Diaria y Barómetro Cósmico' : 'اليوميات الفلكية اليومية والبارومتر الكوني'}</h1>
-        <p class="astro-hero-lead">${locale === 'tr' ? 'Gezegenlerin Dünya’dan gözlemlenen anlık dereceleri ve Ay fazı ışığında hazırlanan günlük psikolojik farkındalık rehberi. Deterministik kehanet veya korku dili yerine, döngüleri bilinçli karşılama kılavuzu.' : locData.disclaimer}</p>
+        <p class="astro-hero-lead">${{tr:'Gezegenlerin Dünya’dan gözlemlenen anlık dereceleri ve Ay fazı ışığında hazırlanan günlük psikolojik farkındalık rehberi. Deterministik kehanet veya korku dili yerine, döngüleri bilinçli karşılama kılavuzu.',en:'Daily psychological awareness guide based on observed planetary degrees and Moon phase. A conscious navigation of cycles rather than deterministic fatalism.',el:'Ημερήσιος οδηγός ψυχολογικής επίγνωσης βάσει των πλανητικών θέσεων και της σεληνιακής φάσης.',es:'Guía diaria de consciencia psicológica basada en las posiciones planetarias y la fase lunar.',ar:'دليل يومي لليقظة النفسية يستند إلى درجات الكواكب الملحوظة ومرحلة القمر.'}[locale] || locData.disclaimer}</p>
 
         <!-- Canlı Astronomik Gökyüzü Barometresi -->
         <div class="horoscope-weather-ribbon">
@@ -120,17 +120,17 @@ export const renderHoroscopesView = ({ locale = 'tr', searchParams = {} }) => {
             </div>
             <div class="horoscope-weather-pill">
               <span style="color:var(--gold-bright)" aria-hidden="true">☉</span>
-              <span>${locale === 'tr' ? 'Güneş' : 'Sun'}: <strong>${pilotData.metadata.sunPlacement}</strong></span>
+              <span>${{tr:'Güneş',en:'Sun',el:'Ήλιος',es:'Sol',ar:'الشمس'}[locale] || 'Sun'}: <strong>${pilotData.metadata.sunPlacement}</strong></span>
             </div>
             <div class="horoscope-weather-pill">
               <span style="color:var(--gold-bright)" aria-hidden="true">☽</span>
-              <span>${locale === 'tr' ? 'Ay' : 'Moon'}: <strong>${pilotData.metadata.moonPhase}</strong></span>
+              <span>${{tr:'Ay',en:'Moon',el:'Σελήνη',es:'Luna',ar:'القمر'}[locale] || 'Moon'}: <strong>${pilotData.metadata.moonPhase}</strong></span>
             </div>
           </div>
           <div class="horoscope-weather-cluster">
             <div class="horoscope-weather-pill">
               <span style="color:var(--gold-bright)">✦</span>
-              <span>${locale === 'tr' ? 'Efemeris Doğruluğu: 0.001° · 24h TSI' : '0.001° Ephemeris Precision'}</span>
+              <span>${{tr:'Efemeris Doğruluğu: 0.001° · 24h TSI',en:'0.001° Ephemeris Precision',el:'Ακρίβεια Εφημερίδας: 0.001°',es:'Precisión de Efemérides: 0.001°',ar:'دقة التقويم الفلكي: 0.001°'}[locale] || '0.001° Ephemeris Precision'}</span>
             </div>
           </div>
         </div>
@@ -152,7 +152,7 @@ export const renderHoroscopesView = ({ locale = 'tr', searchParams = {} }) => {
                 ${spotlightMeta.symbol || '✦'}
               </div>
               <div>
-                <span class="astro-card-tag">✦ ${locale === 'tr' ? 'GÜNÜN KOZMİK MERKEZİNDE' : 'COSMIC FOCUS OF THE DAY'}</span>
+                <span class="astro-card-tag">✦ ${{tr:'GÜNÜN KOZMİK MERKEZİNDE',en:'COSMIC FOCUS OF THE DAY',el:'ΚΟΣΜΙΚΗ ΕΣΤΙΑΣΗ ΤΗΣ ΗΜΕΡΑΣ',es:'ENFOQUE CÓSMICO DEL DÍA',ar:'التركيز الكوني لليوم'}[locale] || 'COSMIC FOCUS OF THE DAY'}</span>
                 <h2 class="horoscope-spotlight-title">${spotlightSign.name} Burcu Günlük Odak Analizi</h2>
               </div>
             </div>
@@ -171,11 +171,11 @@ export const renderHoroscopesView = ({ locale = 'tr', searchParams = {} }) => {
 
             <!-- Kozmik Barometre Metrikleri -->
             <div class="horoscope-spotlight-meters">
-              <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold); display:block; margin-bottom:4px">✦ ${locale === 'tr' ? 'Günün Enerji Dağılımı' : 'Energy Distribution'}</span>
+              <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold); display:block; margin-bottom:4px">✦ ${{tr:'Günün Enerji Dağılımı',en:'Energy Distribution',el:'Κατανομή Ενέργειας Ημέρας',es:'Distribución de Energía del Día',ar:'توزيع طاقة اليوم'}[locale] || 'Energy Distribution'}</span>
               
               <div class="meter-row">
                 <div class="meter-label-row">
-                  <span>${locale === 'tr' ? 'Zihinsel & Sezgisel Netlik' : 'Mental Clarity'}</span>
+                  <span>${{tr:'Zihinsel & Sezgisel Netlik',en:'Mental Clarity',el:'Διανοητική & Διαισθητική Διαύγεια',es:'Claridad Mental e Intuitiva',ar:'الوضوح الفكري والحدسي'}[locale] || 'Mental Clarity'}</span>
                   <strong>92%</strong>
                 </div>
                 <div class="meter-track"><div class="meter-fill" style="width:92%"></div></div>
@@ -183,7 +183,7 @@ export const renderHoroscopesView = ({ locale = 'tr', searchParams = {} }) => {
 
               <div class="meter-row">
                 <div class="meter-label-row">
-                  <span>${locale === 'tr' ? 'Karar & Eylem İradesi' : 'Action & Drive'}</span>
+                  <span>${{tr:'Karar & Eylem İradesi',en:'Action & Drive',el:'Βούληση Απόφασης & Δράσης',es:'Voluntad de Acción y Decisión',ar:'إرادة القرار والعمل'}[locale] || 'Action & Drive'}</span>
                   <strong>86%</strong>
                 </div>
                 <div class="meter-track"><div class="meter-fill" style="width:86%"></div></div>
@@ -191,14 +191,14 @@ export const renderHoroscopesView = ({ locale = 'tr', searchParams = {} }) => {
 
               <div class="meter-row">
                 <div class="meter-label-row">
-                  <span>${locale === 'tr' ? 'Duygusal Denge & Huzur' : 'Emotional Grounding'}</span>
+                  <span>${{tr:'Duygusal Denge & Huzur',en:'Emotional Grounding',el:'Συναισθηματική Ισορροπία & Γαλήνη',es:'Equilibrio y Serenidad Emocional',ar:'التوازن العاطفي والسكينة'}[locale] || 'Emotional Grounding'}</span>
                   <strong>78%</strong>
                 </div>
                 <div class="meter-track"><div class="meter-fill" style="width:78%"></div></div>
               </div>
 
               <div style="margin-top:8px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); font-size:11.5px; color:var(--dim)">
-                ${locale === 'tr' ? '☉ Güneş ve Ay açısal rezonansı temel alınarak modellenmiştir.' : 'Modelled on current Sun-Moon transit geometry.'}
+                ${{tr:'☉ Güneş ve Ay açısal rezonansı temel alınarak modellenmiştir.',en:'Modelled on current Sun-Moon transit geometry.',el:'Μοντελοποιημένο με βάση τη γεωμετρία διελεύσεων Ήλιου-Σελήνης.',es:'Modelado a partir de la geometría de tránsitos Sol-Luna.',ar:'مبني وفق هندسة عبور الشمس والقمر الفلكية الحالية.'}[locale] || 'Modelled on current Sun-Moon transit geometry.'}
               </div>
             </div>
           </div>
@@ -211,8 +211,8 @@ export const renderHoroscopesView = ({ locale = 'tr', searchParams = {} }) => {
       <div class="astro-container">
         <div class="astro-section-head" style="margin-bottom:28px">
           <span class="astro-card-tag">✦ 12 BURÇ İÇİN BİREYSEL GÜNCEL DOSYALAR</span>
-          <h2>${locale === 'tr' ? 'Tüm Burçların Günlük Farkındalık Rehberi' : 'Daily Guidance for All 12 Signs'}</h2>
-          <p>${locale === 'tr' ? 'Kendi burcunuzu ve yükselen burcunuzu birlikte okuyarak günün gökyüzü dinamiğini iki katmanlı olarak keşfedebilirsiniz.' : 'Read both your Sun sign and Ascendant to synthesize the day’s cosmic geometry.'}</p>
+          <h2>${{tr:'Tüm Burçların Günlük Farkındalık Rehberi',en:'Daily Guidance for All 12 Signs',el:'Ημερήσιος Οδηγός Επίγνωσης για Όλα τα Ζώδια',es:'Guía de Consciencia Diaria para los 12 Signos',ar:'دليل اليقظة اليومية لجميع الأبراج الـ 12'}[locale] || 'Daily Guidance for All 12 Signs'}</h2>
+          <p>${{tr:'Kendi burcunuzu ve yükselen burcunuzu birlikte okuyarak günün gökyüzü dinamiğini iki katmanlı olarak keşfedebilirsiniz.',en:'Read both your Sun sign and Ascendant to synthesize the day’s cosmic geometry.',el:'Διαβάστε τόσο το ζώδιο όσο και τον ωροσκόπο σας για να συνθέσετε την κοσμική γεωμετρία της ημέρας.',es:'Lee tanto tu signo solar como tu ascendente para sintetizar la geometría celeste del día.',ar:'اقرأ كلاً من برجك الشمسي وطالعك لاستيعاب ديناميكية المشهد الفلكي اليومي بطبقتين متكاملتين.'}[locale] || 'Read both your Sun sign and Ascendant.'}</p>
         </div>
 
         <div class="daily-chronicle-grid">

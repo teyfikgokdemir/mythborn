@@ -128,7 +128,7 @@ export const renderSynastryView = ({ locale = 'tr', searchParams = {} }) => {
                 </div>
                 <div class="astro-form-group">
                   <label for="p1-city">${locale === 'tr' ? 'Doğum Şehri *' : locale === 'en' ? 'City of Birth *' : locale === 'el' ? 'Πόλη Γέννησης *' : locale === 'es' ? 'Ciudad de Nacimiento *' : 'مدينة الميلاد *'}</label>
-                  <input type="text" id="p1-city" name="p1_city" required value="${p1City || 'Istanbul'}" placeholder="${locale === 'tr' ? 'İstanbul, Ankara, İzmir...' : 'London, New York, Paris...'}" autocomplete="off">
+                  <input type="text" id="p1-city" name="p1_city" required value="${p1City || 'Istanbul'}" placeholder="${{tr:'İstanbul, Ankara, İzmir...',en:'London, New York, Paris...',el:'Αθήνα, Θεσσαλονίκη, Πάτρα...',es:'Madrid, Barcelona, Buenos Aires...',ar:'القاهرة، الرياض، دبي...'}[locale] || 'London, New York, Paris...'}" autocomplete="off">
                   <div class="natal-city-quick-picks" style="margin-top:6px">
                     <button type="button" onclick="document.getElementById('p1-city').value='Istanbul'">İstanbul</button>
                     <button type="button" onclick="document.getElementById('p1-city').value='Ankara'">Ankara</button>
@@ -153,7 +153,7 @@ export const renderSynastryView = ({ locale = 'tr', searchParams = {} }) => {
                 </div>
                 <div class="astro-form-group">
                   <label for="p2-city">${locale === 'tr' ? 'Doğum Şehri *' : locale === 'en' ? 'City of Birth *' : locale === 'el' ? 'Πόλη Γέννησης *' : locale === 'es' ? 'Ciudad de Nacimiento *' : 'مدينة الميلاد *'}</label>
-                  <input type="text" id="p2-city" name="p2_city" required value="${p2City || 'Ankara'}" placeholder="${locale === 'tr' ? 'Ankara, İstanbul, İzmir...' : 'Paris, Rome, Athens...'}" autocomplete="off">
+                  <input type="text" id="p2-city" name="p2_city" required value="${p2City || 'Ankara'}" placeholder="${{tr:'Ankara, İstanbul, İzmir...',en:'Paris, Rome, Athens...',el:'Θεσσαλονίκη, Αθήνα, Ηράκλειο...',es:'Barcelona, Madrid, Bogotá...',ar:'دبي، القاهرة، بيروت...'}[locale] || 'Paris, Rome, Athens...'}" autocomplete="off">
                   <div class="natal-city-quick-picks" style="margin-top:6px">
                     <button type="button" onclick="document.getElementById('p2-city').value='Ankara'">Ankara</button>
                     <button type="button" onclick="document.getElementById('p2-city').value='Istanbul'">İstanbul</button>
@@ -200,43 +200,55 @@ export const renderSynastryView = ({ locale = 'tr', searchParams = {} }) => {
             <!-- Derinlemesine İlişki ve Uyum Analiz Raporu -->
             <div style="margin-bottom:28px; padding:28px 30px; background:linear-gradient(165deg, rgba(14,18,34,0.92) 0%, rgba(6,8,16,0.98) 100%); border:1px solid rgba(212,175,55,0.35); border-radius:18px; box-shadow:0 18px 45px rgba(0,0,0,0.65)">
               <div style="border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:14px; margin-bottom:20px">
-                <span class="astro-card-tag">✦ ARKETİPSEL İLİŞKİ SENTEZİ</span>
+                <span class="astro-card-tag">✦ ${{tr:'ARKETİPSEL İLİŞKİ SENTEZİ',en:'ARCHETYPAL RELATIONSHIP SYNTHESIS',el:'ΑΡΧΕΤΥΠΙΚΗ ΣΥΝΘΕΣΗ ΣΧΕΣΗΣ',es:'SÍNTESIS RELACIONAL ARQUETÍPICA',ar:'التوليف الرمزي للعلاقة'}[locale] || 'ARCHETYPAL RELATIONSHIP SYNTHESIS'}</span>
                 <h3 style="font-family:var(--font-serif); font-size:22px; color:#fff; margin:4px 0 0">
-                  ${locale === 'tr' ? `${synastryResult.p1Sun.sign} & ${synastryResult.p2Sun.sign} Arasındaki Ruhsal Çekim ve Büyüme Alanları` : `${synastryResult.p1Sun.sign} & ${synastryResult.p2Sun.sign} Relational Synthesis`}
+                  ${{tr:`${synastryResult.p1Sun.sign} & ${synastryResult.p2Sun.sign} Arasındaki Ruhsal Çekim ve Büyüme Alanları`,en:`${synastryResult.p1Sun.sign} & ${synastryResult.p2Sun.sign} Relational Synthesis`,el:`Ψυχική Έλξη & Τομείς Ανάπτυξης ανάμεσα σε ${synastryResult.p1Sun.sign} & ${synastryResult.p2Sun.sign}`,es:`Atracción Espiritual y Crecimiento entre ${synastryResult.p1Sun.sign} y ${synastryResult.p2Sun.sign}`,ar:`التجاذب الروحي ومسارات النضج بين ${synastryResult.p1Sun.sign} و ${synastryResult.p2Sun.sign}`}[locale] || `${synastryResult.p1Sun.sign} & ${synastryResult.p2Sun.sign} Relational Synthesis`}
                 </h3>
               </div>
 
               <div style="display:flex; flex-direction:column; gap:16px">
                 <div style="padding:16px 20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px">
                   <h4 style="font-family:var(--font-serif); font-size:16px; color:var(--gold); margin:0 0 6px">
-                    ☉☉ ${locale === 'tr' ? 'Yaşam Amaçları & İrade Uyumu' : 'Core Life Purpose & Will'}
+                    ☉☉ ${{tr:'Yaşam Amaçları & İrade Uyumu',en:'Core Life Purpose & Will',el:'Σκοπός Ζωής & Αρμονία Βούλησης',es:'Propósito Vital y Voluntad Compartida',ar:'أهداف الحياة وتوافق الإرادة'}[locale] || 'Core Life Purpose & Will'}
                   </h4>
                   <p style="font-size:13.5px; color:rgba(248,246,240,0.85); line-height:1.7; margin:0">
-                    ${locale === 'tr'
-                      ? `1. Kişi (${synastryResult.p1Sun.sign}) kendi varoluşunu ${getSignCompendium(synastryResult.p1Sun.signId).soulEssence.tr.slice(0, 100)}... şeklinde deneyimlerken; 2. Kişi (${synastryResult.p2Sun.sign}) ${getSignCompendium(synastryResult.p2Sun.signId).soulEssence.tr.slice(0, 100)}... dinamikleriyle hareket eder. Birbirinizi değiştirmeye çalışmak yerine zıt kutupların tamamlayıcılığına saygı duymak ilişkinin en sağlam omurgasıdır.`
-                      : `The synthesis of ${synastryResult.p1Sun.sign} and ${synastryResult.p2Sun.sign} bridges distinct modes of expression, requiring mutual celebration of autonomy rather than projection.`}
+                    ${{
+                      tr: `1. Kişi (${synastryResult.p1Sun.sign}) ile 2. Kişi (${synastryResult.p2Sun.sign}) arasındaki enerjiler birbirini tamamlayan iki farklı pencere sunar. Birbirinizi değiştirmeye çalışmak yerine özgün kimliklere saygı duymak ilişkinin en sağlam omurgasıdır.`,
+                      en: `The synthesis of ${synastryResult.p1Sun.sign} and ${synastryResult.p2Sun.sign} bridges distinct modes of expression, requiring mutual celebration of autonomy rather than projection.`,
+                      el: `Η σύνθεση του/της ${synastryResult.p1Sun.sign} και του/της ${synastryResult.p2Sun.sign} γεφυρώνει διαφορετικούς τρόπους έκφρασης, απαιτώντας σεβασμό της προσωπικής αυτονομίας χωρίς προβολές.`,
+                      es: `La síntesis de ${synastryResult.p1Sun.sign} y ${synastryResult.p2Sun.sign} une dos formas de autoexpresión que florecen cuando se respeta la autonomía mutua sin proyecciones.`,
+                      ar: `يمثل التفاعل بين ${synastryResult.p1Sun.sign} و ${synastryResult.p2Sun.sign} جسراً بين نمطين أصيلين للتعبير، حيث يزدهر التوافق باحترام استقلالية كل طرف دون محاولة التغيير القسري.`
+                    }[locale] || `The synthesis of ${synastryResult.p1Sun.sign} and ${synastryResult.p2Sun.sign} bridges distinct modes of expression.`}
                   </p>
                 </div>
 
                 <div style="padding:16px 20px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.06); border-radius:12px">
                   <h4 style="font-family:var(--font-serif); font-size:16px; color:var(--gold); margin:0 0 6px">
-                    ☽☽ ${locale === 'tr' ? 'Duygusal Dil & Mahremiyet Sığınakları' : 'Emotional Intimacy & Soul Sanctuary'}
+                    ☽☽ ${{tr:'Duygusal Dil & Mahremiyet Sığınakları',en:'Emotional Intimacy & Soul Sanctuary',el:'Συναισθηματική Γλώσσα & Καταφύγιο Οικειότητας',es:'Lenguaje Emocional e Intimidad',ar:'اللغة العاطفية وملاذ الحميمية'}[locale] || 'Emotional Intimacy & Soul Sanctuary'}
                   </h4>
                   <p style="font-size:13.5px; color:rgba(248,246,240,0.85); line-height:1.7; margin:0">
-                    ${locale === 'tr'
-                      ? `Ay burçları (${synastryResult.p1Moon.sign} ve ${synastryResult.p2Moon.sign}), kriz anlarında nasıl tepki verdiğinizi ve şefkati nasıl aradığınızı fısıldar. Biri içine kapanırken diğeri konuşmak isteyebilir. Farklılıkları kusur değil, birbirinizi besleyecek zenginlikler olarak kabul ettiğinizde sarsılmaz bir duygusal liman inşa edilir.`
-                      : `The Moon placements (${synastryResult.p1Moon.sign} and ${synastryResult.p2Moon.sign}) reveal your private attachment styles and vulnerability rhythms.`}
+                    ${{
+                      tr: `Ay burçları (${synastryResult.p1Moon.sign} ve ${synastryResult.p2Moon.sign}), kriz anlarında nasıl tepki verdiğinizi ve şefkati nasıl aradığınızı fısıldar. Biri içine kapanırken diğeri konuşmak isteyebilir. Farklılıkları kusur değil, birbirinizi besleyecek zenginlikler olarak kabul ettiğinizde sarsılmaz bir duygusal liman inşa edilir.`,
+                      en: `The Moon placements (${synastryResult.p1Moon.sign} and ${synastryResult.p2Moon.sign}) reveal your private attachment styles and vulnerability rhythms. Honoring differences turns emotional friction into a resilient haven.`,
+                      el: `Οι θέσεις της Σελήνης (${synastryResult.p1Moon.sign} και ${synastryResult.p2Moon.sign}) αποκαλύπτουν τους προσωπικούς ρυθμούς οικειότητας και ευαλωτότητας. Η αποδοχή των διαφορών χτίζει ασφαλές συναισθηματικό καταφύγιο.`,
+                      es: `Las posiciones lunares (${synastryResult.p1Moon.sign} y ${synastryResult.p2Moon.sign}) reflejan sus estilos de apego y vulnerabilidad íntima. Comprender sus ritmos afectivos afianza un puerto seguro.`,
+                      ar: `تكشف مواقع القمر (${synastryResult.p1Moon.sign} و ${synastryResult.p2Moon.sign}) عن أساليب الارتباط وإيقاع الأمان الداخلي لدى كل طرف؛ واحتواء الفروق يبني ملاذاً عاطفياً آمناً.`
+                    }[locale] || `The Moon placements reveal your private attachment styles and vulnerability rhythms.`}
                   </p>
                 </div>
 
                 <div style="padding:16px 20px; background:rgba(212,175,55,0.04); border:1px solid rgba(212,175,55,0.22); border-radius:12px">
                   <h4 style="font-family:var(--font-serif); font-size:16px; color:var(--gold-bright); margin:0 0 6px">
-                    ✦ ${locale === 'tr' ? 'Kozmik İlişki Pusulası' : 'Cosmic Compass for the Couple'}
+                    ✦ ${{tr:'Kozmik İlişki Pusulası',en:'Cosmic Compass for the Couple',el:'Κοσμική Πυξίδα Σχέσης',es:'Brújula Cósmica de la Pareja',ar:'البوصلة الكونية للشريكين'}[locale] || 'Cosmic Compass for the Couple'}
                   </h4>
                   <p style="font-size:13.5px; color:#f8f6f0; line-height:1.7; margin:0">
-                    ${locale === 'tr'
-                      ? `Haritanızdaki ${synastryResult.counts.harmonious} uyumlu açı akışı kolaylaştırırken, ${synastryResult.counts.challenging} gelişim açısı ilişkinin büyüme motorudur. Gerilim açıları bir ayrılık fermanı değil; olgunlaşmak, dinlemeyi öğrenmek ve birbirinizi yüceltmek için kozmik bir davettir.`
-                      : `Harmonious aspects supply natural ease, while challenging aspects provide the evolutionary fuel that matures mutual devotion.`}
+                    ${{
+                      tr: `Haritanızdaki ${synastryResult.counts.harmonious} uyumlu açı akışı kolaylaştırırken, ${synastryResult.counts.challenging} gelişim açısı ilişkinin büyüme motorudur. Gerilim açıları bir ayrılık fermanı değil; olgunlaşmak, dinlemeyi öğrenmek ve birbirinizi yüceltmek için kozmik bir davettir.`,
+                      en: `Harmonious aspects (${synastryResult.counts.harmonious}) provide organic ease, while growth aspects (${synastryResult.counts.challenging}) supply the evolutionary fuel that matures mutual devotion.`,
+                      el: `Οι αρμονικές όψεις (${synastryResult.counts.harmonious}) προσφέρουν φυσική ροή, ενώ οι όψεις εξέλιξης (${synastryResult.counts.challenging}) τροφοδοτούν τη συναισθηματική ωρίμανση του ζευγαριού.`,
+                      es: `Los aspectos armónicos (${synastryResult.counts.harmonious}) brindan fluidez natural, mientras que los de crecimiento (${synastryResult.counts.challenging}) nutren la madurez y la evolución del vínculo.`,
+                      ar: `تمنح الاتصالات المتناغمة (${synastryResult.counts.harmonious}) تدفقاً عفوياً، بينما تشكل اتصالات التحدي (${synastryResult.counts.challenging}) وقود النضج والتطور الواعي بين الشريكين.`
+                    }[locale] || `Harmonious aspects provide ease, while growth aspects mature the bond.`}
                   </p>
                 </div>
               </div>

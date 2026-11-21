@@ -89,14 +89,15 @@ assert.match(symbolicHtml,/896/);
 assert.match(symbolicHtml,/Bu sonuçlar neden farklı/);
 assert.match(symbolicHtml,/evrensel veya bilimsel/);
 
-// 8. Distinct routes for personal and relationship readings in all four locales.
+// 8. Distinct routes for personal and relationship readings in all five locales.
 const page = readFileSync(new URL('../src/ebced-page.js', import.meta.url), 'utf8');
 const {ebcedPath,ebcedPage} = await import('../src/ebced-page.js');
 for(const [personal,compare] of [
  ['/ebced','/ebced/uyum'],
  ['/en/ebced','/en/ebced/compatibility'],
  ['/gr/ebced','/gr/ebced/symvatotita'],
- ['/es/ebced','/es/ebced/compatibilidad']
+ ['/es/ebced','/es/ebced/compatibilidad'],
+ ['/ar/ebced','/ar/ebced/tawafuq']
 ]){
  assert.ok(ebcedPath(personal),personal);
  assert.ok(ebcedPath(compare),compare);
@@ -121,8 +122,8 @@ for(const token of ['.consent-dialog','[data-consent-reject]','[data-consent-acc
   assert.ok(page.includes(token), 'style missing: '+token);
 }
 // Premium UI & guidance: localized interpretation, unified global header/scroll-top and single-line desktop intro.
-for (const lang of ['tr','en','el','es']) {
- const route = {tr:'/ebced',en:'/en/ebced',el:'/gr/ebced',es:'/es/ebced'}[lang];
+for (const lang of ['tr','en','el','es','ar']) {
+ const route = {tr:'/ebced',en:'/en/ebced',el:'/gr/ebced',es:'/es/ebced',ar:'/ar/ebced'}[lang];
  const rendered=ebcedPage(route,true);
  assert.match(rendered,/id="ebced-guide-heading"/,`guide missing: ${lang}`);
  assert.match(rendered,/class="astro-header"/,`unified global header missing: ${lang}`);

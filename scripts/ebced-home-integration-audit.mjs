@@ -9,7 +9,7 @@ const languages = [
   ['en', '/en', '/en/ebced', 'Discover the numbers'],
   ['el', '/gr', '/gr/ebced', 'Ανακάλυψε'],
   ['es', '/es', '/es/ebced', 'Descubre los números'],
-  ['ar', '/ar', '/ebced', 'اكتشف القيم']
+  ['ar', '/ar', '/ar/ebced', 'اكتشف القيم']
 ];
 
 for (const [locale, pathname, ebcedUrl, heading] of languages) {

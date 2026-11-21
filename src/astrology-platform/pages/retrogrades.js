@@ -318,7 +318,7 @@ export const renderRetrogradesView = ({ locale = 'tr' }) => {
                   <span>${locale === 'tr' ? 'Günlük Hız' : locale === 'en' ? 'Daily Speed' : locale === 'el' ? 'Ταχύτητα' : locale === 'es' ? 'Velocidad' : 'السرعة اليومية'}: <strong>${r.dailySpeed}°/g</strong></span>
                 </div>
               </div>
-            `).join('') : `<p style="color:var(--muted); font-size:14px; margin:8px 0; text-align:center">${locale === 'tr' ? 'Şu anda geri harekette olan majör gezegen bulunmamaktadır. Gökyüzü doğrudan (direct) akışta.' : 'No major retrograde planets at this moment. Planetary motions are direct.'}</p>`}
+            `).join('') : `<p style="color:var(--muted); font-size:14px; margin:8px 0; text-align:center">${{tr:'Şu anda geri harekette olan majör gezegen bulunmamaktadır. Gökyüzü doğrudan (direct) akışta.',en:'No major retrograde planets at this moment. Planetary motions are direct.',el:'Δεν υπάρχουν κύριοι ανάδρομοι πλανήτες αυτή τη στιγμή. Οι πλανητικές κινήσεις είναι ορθόδρομες.',es:'No hay planetas mayores en movimiento retrógrado en este momento.',ar:'لا توجد كواكب رئيسية متراجعة في هذا الوقت؛ والحركة الفلكية مستقيمة.'}[locale] || 'No major retrograde planets at this moment.'}</p>`}
           </div>
         </div>
       </div>

@@ -4297,6 +4297,13 @@ main > section.astro-hero:not(.astro-section-viewport) .astro-hero-eyebrow{
 .jung-fact-row span{display:block;font-size:13.5px;line-height:1.68;color:var(--muted)}
 
 .jung-compare-grid{display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:18px}
+.jung-trio-title{display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.35rem 0.65rem}
+.jung-trio-name{white-space:nowrap}
+.jung-trio-sep{color:var(--gold);opacity:0.45;font-weight:300}
+@media(max-width:640px){
+  .jung-trio-title{display:flex;flex-direction:column;gap:0.35rem}
+  .jung-trio-sep{display:none!important}
+}
 .jung-compare-card{
   display:flex;
   flex-direction:column;

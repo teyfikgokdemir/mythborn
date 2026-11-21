@@ -237,7 +237,7 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
 }[c]));
 
-export const ebcedPath=p=>/^\/(?:(?:en|gr|es)\/)?ebced(?:\/(?:uyum|compatibility|symvatotita|compatibilidad))?\/?$/.test(p);
+export const ebcedPath=p=>/^\/(?:(?:en|gr|es|ar)\/)?ebced(?:\/(?:uyum|compatibility|symvatotita|compatibilidad|tawafuq))?\/?$/.test(p);
 
 function renderPersonBlock(id, legend, t) {
   return `
@@ -275,7 +275,7 @@ function renderPersonBlock(id, legend, t) {
 }
 
 export function ebcedPage(path, isPreview = true) {
-  const isComparison = /\/(?:uyum|compatibility|symvatotita|compatibilidad)\/?$/.test(path);
+  const isComparison = /\/(?:uyum|compatibility|symvatotita|compatibilidad|tawafuq)\/?$/.test(path);
   const lang = path.startsWith('/en/') ? 'en'
     : path.startsWith('/gr/') ? 'el'
     : path.startsWith('/es/') ? 'es'
@@ -283,12 +283,13 @@ export function ebcedPage(path, isPreview = true) {
 
   const t = langs[lang] || langs.tr;
 
-  const personalUrls = { tr: '/ebced', en: '/en/ebced', el: '/gr/ebced', es: '/es/ebced' };
-  const compareUrls = { tr: '/ebced/uyum', en: '/en/ebced/compatibility', el: '/gr/ebced/symvatotita', es: '/es/ebced/compatibilidad' };
+  const personalUrls = { tr: '/ebced', en: '/en/ebced', el: '/gr/ebced', es: '/es/ebced', ar: '/ar/ebced' };
+  const compareUrls = { tr: '/ebced/uyum', en: '/en/ebced/compatibility', el: '/gr/ebced/symvatotita', es: '/es/ebced/compatibilidad', ar: '/ar/ebced/tawafuq' };
   const currentTr = (isComparison ? compareUrls : personalUrls).tr;
   const currentEn = (isComparison ? compareUrls : personalUrls).en;
   const currentGr = (isComparison ? compareUrls : personalUrls).el;
   const currentEs = (isComparison ? compareUrls : personalUrls).es;
+  const currentAr = (isComparison ? compareUrls : personalUrls).ar;
 
   const homeHref = lang === 'en' ? '/en' : lang === 'el' ? '/gr' : lang === 'es' ? '/es' : '/';
   const navPrefix = lang === 'tr' ? '' : lang === 'el' ? '/gr' : `/${lang}`;
@@ -310,7 +311,8 @@ export function ebcedPage(path, isPreview = true) {
     tr: { home: 'Ana Sayfa', natal: 'Doğum Haritası', ebced: 'Ebced & Numeroloji', zodiac: '12 Burç Rehberi', calendar: 'Gökyüzü Takvimi', tools: 'Keşif & Araçlar', cta: 'Ücretsiz Haritanı Çıkar', horoscopes: 'Burç Yorumları', transits: 'Canlı Transitler', retros: 'Gezegen Retroları', synastry: 'Sinastri & Uyum', glossary: 'Astroloji Sözlüğü', learning: 'Öğrenme Merkezi', approach: 'Yöntem ve Etik', compare: 'İki Kişilik Ebced Uyumu', menu: 'Menü' },
     en: { home: 'Home', natal: 'Birth Chart', ebced: 'Abjad & Numerology', zodiac: '12 Zodiac Signs', calendar: 'Sky Calendar', tools: 'Explore & Tools', cta: 'Free Birth Chart', horoscopes: 'Horoscopes', transits: 'Live Transits', retros: 'Retrogrades', synastry: 'Synastry & Harmony', glossary: 'Astrology Glossary', learning: 'Learning Center', approach: 'Method & Ethics', compare: 'Two-Person Abjad', menu: 'Menu' },
     el: { home: 'Αρχική', natal: 'Γενέθλιος Χάρτης', ebced: 'Αμπτζάντ & Αριθμολογία', zodiac: 'Οδηγός 12 Ζωδίων', calendar: 'Ουράνιο Ημερολόγιο', tools: 'Εργαλεία', cta: 'Δωρεάν Χάρτης', horoscopes: 'Προβλέψεις', transits: 'Ζωντανές Διελεύσεις', retros: 'Ανάδρομοι Πλανήτες', synastry: 'Συναστρία', glossary: 'Λεξικό Αστρολογίας', learning: 'Κέντρο Μάθησης', approach: 'Μέθοδος & Ηθική', compare: 'Σύγκριση Αμπτζάντ', menu: 'Μενού' },
-    es: { home: 'Inicio', natal: 'Carta Natal', ebced: 'Ábyad y Numerología', zodiac: '12 Signos', calendar: 'Calendario Celeste', tools: 'Explorar', cta: 'Carta Natal Gratis', horoscopes: 'Horóscopos', transits: 'Tránsitos en Vivo', retros: 'Retrógrados', synastry: 'Sinastría', glossary: 'Glosario Astrológico', learning: 'Centro de Aprendizaje', approach: 'Método y Ética', compare: 'Comparación Ábyad', menu: 'Menú' }
+    es: { home: 'Inicio', natal: 'Carta Natal', ebced: 'Ábyad y Numerología', zodiac: '12 Signos', calendar: 'Calendario Celeste', tools: 'Explorar', cta: 'Carta Natal Gratis', horoscopes: 'Horóscopos', transits: 'Tránsitos en Vivo', retros: 'Retrógrados', synastry: 'Sinastría', glossary: 'Glosario Astrológico', learning: 'Centro de Aprendizaje', approach: 'Método y Ética', compare: 'Comparación Ábyad', menu: 'Menú' },
+    ar: { home: 'الرئيسية', natal: 'خريطة الميلاد', ebced: 'حساب الجمل والأعداد', zodiac: 'دليل الأبراج الـ 12', calendar: 'التقويم الفلكي', tools: 'الأدوات والاستكشاف', cta: 'استخرج خريطتك مجاناً', horoscopes: 'التوقعات الفلكية', transits: 'العبور المباشر', retros: 'حركات التراجع', synastry: 'التوافق الفلكي', glossary: 'قاموس التنجيم', learning: 'مركز التعلم', approach: 'المنهج والأخلاقيات', compare: 'توافق حساب الجمل', menu: 'القائمة' }
   }[lang];
   const g = EBCEd_GUIDE[lang];
 
@@ -1117,14 +1119,14 @@ export function ebcedPage(path, isPreview = true) {
           <span aria-current="page">${esc(navCopy.ebced)}</span>
         </nav>
         <span class="eyebrow">${esc(t.badge)}</span>
-        <h1>${esc((isComparison ? {tr:'İki Kişilik Ebced Uyumu',en:'Two-Person Abjad Reading',el:'Συμβολική Σύγκριση Δύο Προσώπων',es:'Comparación de Dos Personas'} : {tr:'Ebced & Numeroloji',en:'Abjad & Numerology',el:'Αμπτζάντ & Αριθμολογία',es:'Ábyad y Numerología'})[lang])}</h1>
+        <h1>${esc((isComparison ? {tr:'İki Kişilik Ebced Uyumu',en:'Two-Person Abjad Reading',el:'Συμβολική Σύγκριση Δύο Προσώπων',es:'Comparación de Dos Personas',ar:'توافق حساب الجمل لشخصين'} : {tr:'Ebced & Numeroloji',en:'Abjad & Numerology',el:'Αμπτζάντ & Αριθμολογία',es:'Ábyad y Numerología',ar:'حساب الجمل والأعداد'})[lang])}</h1>
         <div class="ebced-lead-row">
           <span class="ebced-lead-rule" aria-hidden="true"></span>
-          <p class="lead">${esc(({tr:'İsimlerin harf ve sayı değerlerini hesapla, sembolik anlamlarını keşfet ve sonuçları adım adım incele.',en:'Calculate the letter and number values of names, explore their symbolic meanings, and review every step.',el:'Υπολογίστε τις αριθμητικές τιμές των ονομάτων, εξερευνήστε τη συμβολική τους σημασία και δείτε κάθε βήμα.',es:'Calcula los valores de letras y números de los nombres, explora su simbolismo y revisa cada paso.'})[lang])}</p>
+          <p class="lead">${esc(({tr:'İsimlerin harf ve sayı değerlerini hesapla, sembolik anlamlarını keşfet ve sonuçları adım adım incele.',en:'Calculate the letter and number values of names, explore their symbolic meanings, and review every step.',el:'Υπολογίστε τις αριθμητικές τιμές των ονομάτων, εξερευνήστε τη συμβολική τους σημασία και δείτε κάθε βήμα.',es:'Calcula los valores de letras y números de los nombres, explora su simbolismo y revisa cada paso.',ar:'احسب القيم الحسابية والعددية للأسماء، واستكشف معانيها الرمزية، وراجع تفاصيل كل خطوة بدقة.'})[lang])}</p>
         </div>
       </div>
       <figure class="ebced-hero-art">
-        <img src="/images/Mythborn_04_Isikli_Kitap_Hero.webp" width="1792" height="1024" decoding="async" alt="${esc(({tr:'Işıklı kadim kitap, pirinç usturlap ve astronomik gök küresini gösteren sahne',en:'Illuminated antique manuscript, brass astrolabe and armillary sphere',el:'Φωτισμένο αρχαίο βιβλίο, ορειχάλκινος αστρολάβος και σφαίρα',es:'Libro antiguo iluminado, astrolabio de latón y esfera armilar'})[lang])}">
+        <img src="/images/Mythborn_04_Isikli_Kitap_Hero.webp" width="1792" height="1024" decoding="async" alt="${esc(({tr:'Işıklı kadim kitap, pirinç usturlap ve astronomik gök küresini gösteren sahne',en:'Illuminated antique manuscript, brass astrolabe and armillary sphere',el:'Φωτισμένο αρχαίο βιβλίο, ορειχάλκινος αστρολάβος και σφαίρα',es:'Libro antiguo iluminado, astrolabio de latón y esfera armilar',ar:'مخطوطة مضيئة عتيقة واسطرلاب نحاسي وكرة فلكية'})[lang])}">
       </figure>
     </section>
 
@@ -1154,7 +1156,7 @@ export function ebcedPage(path, isPreview = true) {
         </div>
       </div>
       <figure class="ebced-guide-art">
-        <img src="/images/Mythborn_05_Ebced_Harf_Tablosu.webp" width="1792" height="1024" loading="lazy" decoding="async" alt="${esc(({tr:'Ebced harf tablosu, eski kitaplar ve altın feneri gösteren özgün sahne',en:'Original scene of an Abjad letter chart, antique books and a golden lantern',el:'Πρωτότυπη σκηνή με πίνακα γραμμάτων Αμπτζάντ και παλιά βιβλία',es:'Escena original de una tabla de letras Ábyad y libros antiguos'})[lang])}">
+        <img src="/images/Mythborn_05_Ebced_Harf_Tablosu.webp" width="1792" height="1024" loading="lazy" decoding="async" alt="${esc(({tr:'Ebced harf tablosu, eski kitaplar ve altın feneri gösteren özgün sahne',en:'Original scene of an Abjad letter chart, antique books and a golden lantern',el:'Πρωτότυπη σκηνή με πίνακα γραμμάτων Αμπτζάντ και παλιά βιβλία',es:'Escena original de una tabla de letras Ábyad y libros antiguos',ar:'مشهد جدول حروف حساب الجمل والكتب القديمة ومصباح ذهبي'})[lang])}">
       </figure>
     </section>
 
@@ -1162,7 +1164,7 @@ export function ebcedPage(path, isPreview = true) {
     <section class="ebced-numerology" aria-labelledby="ebced-numerology-heading">
       <div class="ebced-numerology-left">
         <figure class="ebced-numerology-art">
-          <img src="/images/Mythborn_02_Altin_Kutsal_Geometri.webp" width="1024" height="1024" loading="lazy" decoding="async" alt="${esc(({tr:'Altın kutsal geometri ve yaşam çiçeği sembolü',en:'Golden sacred geometry flower of life pattern',el:'Χρυσή ιερή γεωμετρία',es:'Geometría sagrada dorada'})[lang])}">
+          <img src="/images/Mythborn_02_Altin_Kutsal_Geometri.webp" width="1024" height="1024" loading="lazy" decoding="async" alt="${esc(({tr:'Altın kutsal geometri ve yaşam çiçeği sembolü',en:'Golden sacred geometry flower of life pattern',el:'Χρυσή ιερή γεωμετρία',es:'Geometría sagrada dorada',ar:'هندسة مقدسة ذهبية ونمط زهرة الحياة'})[lang])}">
         </figure>
         <div class="ebced-numerology-copy">
           <span class="eyebrow">${esc(g.numLabel)}</span>
@@ -1204,8 +1206,8 @@ export function ebcedPage(path, isPreview = true) {
       ${isComparison ? `<div id="second-person-container" class="person-step hidden" hidden>
         ${renderPersonBlock('b', t.person2Legend, t)}
       </div>
-      <div class="step-actions"><button id="comparison-back" class="step-secondary hidden" type="button" hidden>← ${lang === 'tr' ? 'Önceki Kişi' : lang === 'es' ? 'Anterior' : lang === 'el' ? 'Πίσω' : 'Previous person'}</button>
-      <button id="comparison-next" class="step-primary" type="button">${lang === 'tr' ? 'İkinci Kişiye Geç' : lang === 'es' ? 'Continuar con la segunda persona' : lang === 'el' ? 'Συνέχεια στο δεύτερο άτομο' : 'Continue to second person'} →</button></div>` : ''}
+      <div class="step-actions"><button id="comparison-back" class="step-secondary hidden" type="button" hidden>← ${lang === 'tr' ? 'Önceki Kişi' : lang === 'es' ? 'Anterior' : lang === 'el' ? 'Πίσω' : lang === 'ar' ? 'الشخص السابق' : 'Previous person'}</button>
+      <button id="comparison-next" class="step-primary" type="button">${lang === 'tr' ? 'İkinci Kişiye Geç' : lang === 'es' ? 'Continuar con la segunda persona' : lang === 'el' ? 'Συνέχεια στο δεύτερο άτομο' : lang === 'ar' ? 'الانتقال إلى الشخص الثاني' : 'Continue to second person'} →</button></div>` : ''}
       <!-- Advanced Calculation Parameters -->
       <details class="config-accordion">
         <summary class="config-summary">
@@ -1274,6 +1276,6 @@ export function ebcedPage(path, isPreview = true) {
     isPreview,
     canonicalUrl: `https://mythborn.co${path}`,
     extraHeadHtml,
-    customLangUrls: { tr: currentTr, en: currentEn, el: currentGr, es: currentEs, ar: currentTr }
+    customLangUrls: { tr: currentTr, en: currentEn, el: currentGr, es: currentEs, ar: currentAr }
   });
 }

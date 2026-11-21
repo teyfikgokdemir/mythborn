@@ -102,9 +102,9 @@ export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
   return `
     <section class="astro-hero" style="padding-bottom:20px">
       <div class="astro-container">
-        <span class="astro-hero-eyebrow">✦ 12 BURÇ ARKETİPİ, DERİN PSİKOLOJİ & KOZMİK MİZAÇ</span>
+        <span class="astro-hero-eyebrow">✦ ${{tr:'12 BURÇ ARKETİPİ, DERİN PSİKOLOJİ & KOZMİK MİZAÇ',en:'12 ZODIAC ARCHETYPES, DEPTH PSYCHOLOGY & COSMIC TEMPERAMENT',el:'12 ΖΩΔΙΑΚΑ ΑΡΧΕΤΥΠΑ, ΨΥΧΟΛΟΓΙΑ ΤΟΥ ΒΑΘΟΥΣ & ΚΟΣΜΙΚΗ ΙΔΙΟΣΥΓΚΡΑΣΙΑ',es:'12 ARQUETIPOS ZODIACALES, PSICOLOGÍA PROFUNDA Y TEMPERAMENTO CÓSMICO',ar:'النماذج الأصلية للأبراج الـ 12 وعلم نفس الأعماق والمزاج الكوني'}[locale] || '12 ZODIAC ARCHETYPES'}</span>
         <h1>${t.sections.zodiacTitle}</h1>
-        <p class="astro-hero-lead">${locale === 'tr' ? 'Her burç; yaşamın farklı bir arzusunu, ışığını ve gölgesini temsil eden kadim bir arketiptir. Kendinizi, partnerinizi ve sevdiklerinizi yüzeysel genellemelerle değil, derin psikolojik boyutlarıyla keşfedin.' : t.sections.zodiacSub}</p>
+        <p class="astro-hero-lead">${{tr:'Her burç; yaşamın farklı bir arzusunu, ışığını ve gölgesini temsil eden kadim bir arketiptir. Kendinizi, partnerinizi ve sevdiklerinizi yüzeysel genellemelerle değil, derin psikolojik boyutlarıyla keşfedin.',en:'Each sign is a timeless archetype carrying distinct light, shadow and soul desires. Explore psychological depths rather than superficial stereotypes.',el:'Κάθε ζώδιο είναι ένα διαχρονικό αρχέτυπο που φέρει φως, σκιά και βαθύτερες επιθυμίες.',es:'Cada signo es un arquetipo atemporal con luz, sombra y aspiraciones esenciales.',ar:'كل برج هو نموذج أصيل خالد يحمل النور والظل والدوافع النفسية العميقة.'}[locale] || t.sections.zodiacSub}</p>
 
         <!-- 12 Burç Hızlı Gezinti Çubuğu -->
         <div class="zodiac-selector-scroll">
@@ -129,19 +129,19 @@ export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
                   <span class="zodiac-quality-tag">${qualityLabel.toUpperCase()}</span>
                   <span class="zodiac-ruler-tag">🪐 ${rulerLabel}</span>
                 </div>
-                <h2 class="zodiac-dossier-title">${activeSignName} Burcu: ${activeArchetype}</h2>
+                <h2 class="zodiac-dossier-title">${activeSignName} ${{tr:'Burcu',en:'Archetype',el:'Ζώδιο',es:'Signo',ar:'برج'}[locale] || 'Sign'}: ${activeArchetype}</h2>
                 <span class="zodiac-dossier-dates">${datesLabel}</span>
               </div>
             </div>
             <a href="${getRouteHref(locale, 'natal')}" class="astro-cta-gold" style="margin-left:auto">
-              <span>${locale === 'tr' ? `${activeSignName} Haritanı Çıkar` : t.menu.ctaQuick}</span>
+              <span>${{tr:`${activeSignName} Haritanı Çıkar`,en:`Generate ${activeSignName} Chart`,el:`Γενέθλιος Χάρτης για ${activeSignName}`,es:`Generar Carta de ${activeSignName}`,ar:`استخرج خريطة ${activeSignName}`}[locale] || t.menu.ctaQuick}</span>
               <span aria-hidden="true">${arrow}</span>
             </a>
           </div>
 
           <!-- 1. Ruhsal Öz & Çekirdek Portre -->
           <div class="zodiac-dossier-block">
-            <h4 class="zodiac-dossier-block-title">✦ ${locale === 'tr' ? 'Ruhsal Çekirdek & Yaşam Motivasyonu' : 'Soul Essence & Core Drive'}</h4>
+            <h4 class="zodiac-dossier-block-title">✦ ${{tr:'Ruhsal Çekirdek & Yaşam Motivasyonu',en:'Soul Essence & Core Drive',el:'Πυρήνας Ύπαρξης & Κινητήριος Δύναμη',es:'Esencia Espiritual y Motivación Vital',ar:'الجوهر الروحي والدافع الأساسي'}[locale] || 'Soul Essence & Core Drive'}</h4>
             <p class="zodiac-dossier-lead-text">${activeSoul}</p>
           </div>
 
@@ -150,7 +150,7 @@ export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
             <div class="zodiac-light-box">
               <h4 class="zodiac-light-title">
                 <span style="color:#4ade80">✦</span>
-                <span>${locale === 'tr' ? 'Işık & Doğuştan Gelen Üstün Yetenekler' : 'Radiance & Natural Gifts'}</span>
+                <span>${{tr:'Işık & Doğuştan Gelen Üstün Yetenekler',en:'Radiance & Natural Gifts',el:'Φως & Έμφυτα Χαρίσματα',es:'Luz y Talentos Innatos',ar:'النور والمواهب الفطرية'}[locale] || 'Radiance & Natural Gifts'}</span>
               </h4>
               <ul class="zodiac-bullet-list">
                 ${activeStrengths.map(s => `<li>${s}</li>`).join('')}
@@ -160,7 +160,7 @@ export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
             <div class="zodiac-shadow-box">
               <h4 class="zodiac-shadow-title">
                 <span style="color:#f87171">✦</span>
-                <span>${locale === 'tr' ? 'Gölge Yönler & Kendini Sabote Ettiği Kör Noktalar' : 'Shadows & Blind Spots'}</span>
+                <span>${{tr:'Gölge Yönler & Kendini Sabote Ettiği Kör Noktalar',en:'Shadows & Blind Spots',el:'Σκιές & Τυφλά Σημεία',es:'Sombras y Puntos Ciegos',ar:'الظلال ونقاط التعطيل الذاتي'}[locale] || 'Shadows & Blind Spots'}</span>
               </h4>
               <ul class="zodiac-bullet-list">
                 ${activeShadows.map(s => `<li>${s}</li>`).join('')}
@@ -173,7 +173,7 @@ export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
             <div class="zodiac-theme-box">
               <h4 class="zodiac-theme-title">
                 <span>❤️</span>
-                <span>${locale === 'tr' ? 'Aşk, Bağlanma ve Sevgi Dili' : 'Love & Relational Dynamics'}</span>
+                <span>${{tr:'Aşk, Bağlanma ve Sevgi Dili',en:'Love & Relational Dynamics',el:'Αγάπη, Δεσμός & Γλώσσα Συναισθήματος',es:'Amor, Vínculo y Lenguaje Afectivo',ar:'الحب والارتباط ولغة المشاعر'}[locale] || 'Love & Relational Dynamics'}</span>
               </h4>
               <p class="zodiac-theme-text">${activeLove}</p>
             </div>
@@ -181,7 +181,7 @@ export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
             <div class="zodiac-theme-box">
               <h4 class="zodiac-theme-title">
                 <span>⚡</span>
-                <span>${locale === 'tr' ? 'Kariyer, Üretkenlik ve Başarı Alanı' : 'Vocation, Drive & Mastery'}</span>
+                <span>${{tr:'Kariyer, Üretkenlik ve Başarı Alanı',en:'Vocation, Drive & Mastery',el:'Σταδιοδρομία, Παραγωγικότητα & Κατάκτηση',es:'Vocación, Productividad y Logro',ar:'المسار المهني والإنتاجية والإنجاز'}[locale] || 'Vocation, Drive & Mastery'}</span>
               </h4>
               <p class="zodiac-theme-text">${activeCareer}</p>
             </div>
@@ -189,24 +189,24 @@ export const renderZodiacIndexView = ({ locale = 'tr', searchParams = {} }) => {
 
           <!-- 4. Ruhsal Tekamül & Yaşam Dersi -->
           <div class="zodiac-dossier-block" style="margin-top:20px; background:rgba(212,175,55,0.04); border-color:rgba(212,175,55,0.2)">
-            <h4 class="zodiac-dossier-block-title" style="color:var(--gold-bright)">✦ ${locale === 'tr' ? 'Kozmik Yaşam Dersi & Ruhsal Denge' : 'Evolutionary Life Lesson'}</h4>
+            <h4 class="zodiac-dossier-block-title" style="color:var(--gold-bright)">✦ ${{tr:'Kozmik Yaşam Dersi & Ruhsal Denge',en:'Evolutionary Life Lesson',el:'Εξελικτικό Μάθημα Ζωής & Ισορροπία',es:'Lección de Vida Evolutiva y Equilibrio',ar:'الدرس التطوري للحياة والتوازن الروحي'}[locale] || 'Evolutionary Life Lesson'}</h4>
             <p class="zodiac-dossier-lead-text" style="color:#f8f6f0">${activeLesson}</p>
           </div>
 
           <!-- 5. Büyük Üçlüdeki Yeri -->
           <div class="zodiac-big3-role-box">
-            <h4 class="zodiac-dossier-block-title">✦ ${locale === 'tr' ? `${activeSignName} Burcunun Büyük Üçlüdeki Rolü` : 'Role in the Cosmic Big Three'}</h4>
+            <h4 class="zodiac-dossier-block-title">✦ ${{tr:`${activeSignName} Burcunun Büyük Üçlüdeki Rolü`,en:`${activeSignName} in the Cosmic Big Three`,el:`Ο ρόλος του/της ${activeSignName} στη Μεγάλη Τριάδα`,es:`Rol de ${activeSignName} en los Tres Grandes`,ar:`دور ${activeSignName} في الثلاثي الأكبر`}[locale] || `${activeSignName} in the Big Three`}</h4>
             <div class="zodiac-big3-grid">
               <div class="zodiac-big3-col">
-                <strong style="color:var(--gold)">☉ ${locale === 'tr' ? 'Güneş Bu Burçtaysa' : 'If Sun is Here'}:</strong>
+                <strong style="color:var(--gold)">☉ ${{tr:'Güneş Bu Burçtaysa',en:'If Sun is Here',el:'Αν ο Ήλιος είναι εδώ',es:'Si el Sol está aquí',ar:'إذا كانت الشمس هنا'}[locale] || 'If Sun is Here'}:</strong>
                 <p>${activeInBigThree.sun}</p>
               </div>
               <div class="zodiac-big3-col">
-                <strong style="color:var(--gold)">☽ ${locale === 'tr' ? 'Ay Bu Burçtaysa' : 'If Moon is Here'}:</strong>
+                <strong style="color:var(--gold)">☽ ${{tr:'Ay Bu Burçtaysa',en:'If Moon is Here',el:'Αν η Σελήνη είναι εδώ',es:'Si la Luna está aquí',ar:'إذا كان القمر هنا'}[locale] || 'If Moon is Here'}:</strong>
                 <p>${activeInBigThree.moon}</p>
               </div>
               <div class="zodiac-big3-col">
-                <strong style="color:var(--gold)">↑ ${locale === 'tr' ? 'Yükselen Bu Burçtaysa' : 'If Ascendant is Here'}:</strong>
+                <strong style="color:var(--gold)">↑ ${{tr:'Yükselen Bu Burçtaysa',en:'If Ascendant is Here',el:'Αν ο Ωροσκόπος είναι εδώ',es:'Si el Ascendente está aquí',ar:'إذا كان الطالع هنا'}[locale] || 'If Ascendant is Here'}:</strong>
                 <p>${activeInBigThree.rising}</p>
               </div>
             </div>

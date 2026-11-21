@@ -4,14 +4,14 @@ import { SHARED_CSS } from './tokens.js';
 
 export const getRouteHref = (localeKey, routeKey = 'home') => {
   const p = localeKey === 'tr' ? '' : localeKey === 'el' ? '/gr' : `/${localeKey}`;
-  const legalPrefix = localeKey === 'ar' ? '/en' : p;
+  const legalPrefix = p;
 
   const routes = {
     home: p || '/',
     sanctuary: `${p}${localeKey === 'tr' ? '/meditasyon-ve-frekans' : localeKey === 'en' ? '/meditation-and-frequencies' : localeKey === 'el' ? '/dialogismos-kai-sychnotites' : localeKey === 'es' ? '/meditacion-y-frecuencias' : '/altaamul-waltaraddudat'}`,
     jung: `${p}/jung`,
     guides: `${p}${localeKey === 'tr' ? '/rehber' : localeKey === 'en' ? '/guides' : localeKey === 'el' ? '/odigoi' : localeKey === 'es' ? '/guias' : '/al-dalil'}`,
-    ebced: localeKey === 'ar' ? '/ebced' : `${p}/ebced`,
+    ebced: `${p}/ebced`,
     contact: `${p}${localeKey === 'tr' ? '/iletisim' : localeKey === 'en' ? '/contact' : localeKey === 'el' ? '/epikoinonia' : localeKey === 'es' ? '/contacto' : '/alittisal'}`,
     natal: `${p}${localeKey === 'tr' ? '/dogum-haritasi' : localeKey === 'en' ? '/birth-chart' : localeKey === 'el' ? '/genethlios-chartis' : localeKey === 'es' ? '/carta-natal' : '/kharitat-almilad'}`,
     zodiac: `${p}${localeKey === 'tr' ? '/burclar' : localeKey === 'en' ? '/zodiac-signs' : localeKey === 'el' ? '/zodia' : localeKey === 'es' ? '/signos-del-zodiaco' : '/al-abraj'}`,
@@ -25,7 +25,8 @@ export const getRouteHref = (localeKey, routeKey = 'home') => {
     approach: `${p}${localeKey === 'tr' ? '/yaklasim' : localeKey === 'en' ? '/approach' : localeKey === 'el' ? '/prosegisi' : localeKey === 'es' ? '/enfoque' : '/al-manhaj'}`,
     kvkk: `${legalPrefix}/kvkk`,
     privacy: `${legalPrefix}/gizlilik`,
-    terms: `${legalPrefix}/kullanim-kosullari`
+    terms: `${legalPrefix}/kullanim-kosullari`,
+    cookies: `${legalPrefix}/cerezler`
   };
 
   return routes[routeKey] || (p || '/');
@@ -71,9 +72,11 @@ export const renderAstrologyLayout = ({
   const resolveLangHref = (code) =>
     (customLangUrls && customLangUrls[code]) ? customLangUrls[code] : getRouteHref(code, currentRouteKey);
 
+  const langSelectAria = ({ tr: 'Dil seç', en: 'Select language', el: 'Επιλογή γλώσσας', es: 'Seleccionar idioma', ar: 'اختر اللغة' })[locale] || 'Select language';
+
   const langSwitcherHtml = `
     <details class="astro-lang-select">
-      <summary aria-label="${locale === 'tr' ? 'Dil seç' : locale === 'ar' ? 'اختر اللغة' : 'Select language'}"><span aria-hidden="true">◎</span><span class="astro-lang-current">${langFullNames[locale]}</span><span class="astro-lang-chevron" aria-hidden="true">▾</span></summary>
+      <summary aria-label="${langSelectAria}"><span aria-hidden="true">◎</span><span class="astro-lang-current">${langFullNames[locale]}</span><span class="astro-lang-chevron" aria-hidden="true">▾</span></summary>
       <div class="astro-lang-options" role="group" aria-label="Languages">
         ${langCodes.map(code => `<a href="${resolveLangHref(code)}" lang="${code}"${code === locale ? ' aria-current="page"' : ''}><span>${langLabels[code]}</span><span>${langFullNames[code]}</span></a>`).join('')}
       </div>
@@ -218,7 +221,7 @@ export const renderAstrologyLayout = ({
     { key: 'jung', label: jungLabel },
     { key: 'guides', label: guidesLabel },
     { key: 'natal', label: t.menu.natal },
-    { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد (بالتركية)' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
+    { key: 'ebced', label: locale === 'tr' ? 'Ebced & Numeroloji' : locale === 'ar' ? 'الأبجد وعلم الأرقام' : locale === 'el' ? 'Αμπτζάντ & Αριθμολογία' : locale === 'es' ? 'Ábyad y Numerología' : 'Abjad & Numerology' },
     { key: 'zodiac', label: t.menu.zodiac },
     { key: 'calendar', label: t.menu.calendar },
     { key: 'synastry', label: t.menu.synastry },
@@ -293,7 +296,7 @@ export const renderAstrologyLayout = ({
           {
             "@type": "ListItem",
             "position": 1,
-            "name": locale === 'tr' ? "Ana Sayfa" : "Home",
+            "name": ({ tr: 'Ana Sayfa', en: 'Home', el: 'Αρχική', es: 'Inicio', ar: 'الرئيسية' })[locale] || 'Home',
             "item": `https://mythborn.co${getRouteHref(locale, 'home')}`
           },
           {
@@ -439,7 +442,7 @@ export const renderAstrologyLayout = ({
             </a>
             <p class="astro-footer-manifesto">${manifestoText}</p>
             <div class="astro-footer-engine-badge">
-              <span>✦ High-Precision Ephemeris Engine · v2.4</span>
+              <span>✦ ${({ tr: 'Yüksek Hassasiyetli Efemeris Motoru · v2.4', en: 'High-Precision Ephemeris Engine · v2.4', el: 'Μηχανή Εφημερίδων Υψηλής Ακρίβειας · v2.4', es: 'Motor de Efemérides de Alta Precisión · v2.4', ar: 'محرك التقويم الفلكي عالي الدقة · v2.4' })[locale] || 'High-Precision Ephemeris Engine · v2.4'}</span>
             </div>
             <button type="button" class="astro-back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="${backToTopText}">
               <span>${backToTopText}</span>
@@ -447,20 +450,20 @@ export const renderAstrologyLayout = ({
           </div>
 
           <div class="astro-footer-col">
-            <h4>✦ ${locale === 'tr' ? 'SIĞINAK & BİLİNÇ' : 'SANCTUARY & DEPTH'}</h4>
+            <h4>✦ ${({ tr: 'SIĞINAK & BİLİNÇ', en: 'SANCTUARY & DEPTH', el: 'ΚΑΤΑΦΥΓΙΟ & ΒΑΘΟΣ', es: 'SANTUARIO Y CONSCIENCIA', ar: 'الملاذ والوعي' })[locale] || 'SANCTUARY & DEPTH'}</h4>
             <ul>
               <li><a href="${getRouteHref(locale, 'sanctuary')}">${safe(sanctuaryLabel)}</a></li>
               <li><a href="${getRouteHref(locale, 'jung')}">${safe(jungLabel)}</a></li>
               <li><a href="${getRouteHref(locale, 'guides')}">${safe(guidesLabel)}</a></li>
-              <li><a href="${getRouteHref(locale, 'guides')}/rezonans-kanunu-nedir">${locale === 'tr' ? 'Rezonans Kanunu' : 'Law of Resonance'}</a></li>
+              <li><a href="${getRouteHref(locale, 'guides')}/rezonans-kanunu-nedir">${({ tr: 'Rezonans Kanunu', en: 'Law of Resonance', el: 'Νόμος της Συντονισμού', es: 'Ley de la Resonancia', ar: 'قانون الرنين' })[locale] || 'Law of Resonance'}</a></li>
             </ul>
           </div>
 
           <div class="astro-footer-col">
-            <h4>✦ ${locale === 'tr' ? 'KADİM ARAÇLAR' : 'INSTRUMENTS'}</h4>
+            <h4>✦ ${({ tr: 'KADİM ARAÇLAR', en: 'INSTRUMENTS', el: 'ΕΡΓΑΛΕΙΑ', es: 'HERRAMIENTAS', ar: 'الأدوات الفلكية' })[locale] || 'INSTRUMENTS'}</h4>
             <ul>
               <li><a href="${getRouteHref(locale, 'natal')}">${safe(t.menu.natal)}</a></li>
-              <li><a href="${getRouteHref(locale, 'ebced')}">${locale === 'tr' ? 'Ebced & Numeroloji' : 'Abjad & Numerology'}</a></li>
+              <li><a href="${getRouteHref(locale, 'ebced')}">${({ tr: 'Ebced & Numeroloji', en: 'Abjad & Numerology', el: 'Αμπτζάντ & Αριθμολογία', es: 'Ábyad y Numerología', ar: 'الأبجد وعلم الأرقام' })[locale] || 'Abjad & Numerology'}</a></li>
               <li><a href="${getRouteHref(locale, 'synastry')}">${safe(t.menu.synastry)}</a></li>
               <li><a href="${getRouteHref(locale, 'calendar')}">${safe(t.menu.calendar)}</a></li>
               <li><a href="${getRouteHref(locale, 'zodiac')}">${safe(t.menu.zodiac)}</a></li>

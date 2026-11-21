@@ -4,6 +4,9 @@ const LEGAL_COPY = {
   tr: {
     eyebrow: 'MYTHBORN · HUKUKİ ŞEFFAFLIK & GİZLİLİK',
     updated: 'Güncelleme: 2026–2027',
+    zeroStorage: 'Sıfır Veri Depolama',
+    contactCta: 'İletişim Sayfası →',
+    homeCta: '← Ana Sayfa',
     contactTitle: 'Veri Sorumlusu ve İletişim',
     contactLead: 'Gizlilik, KVKK kapsamındaki haklarınız veya kullanım koşulları hakkındaki tüm sorularınız için doğrudan bizimle iletişime geçebilirsiniz:',
     pages: {
@@ -47,6 +50,9 @@ const LEGAL_COPY = {
   en: {
     eyebrow: 'MYTHBORN · LEGAL TRANSPARENCY & PRIVACY',
     updated: 'Updated: 2026–2027',
+    zeroStorage: 'Zero Data Storage',
+    contactCta: 'Contact Page →',
+    homeCta: '← Home',
     contactTitle: 'Data Controller & Contact',
     contactLead: 'For any questions regarding privacy, data protection rights, or terms of service, please contact us directly:',
     pages: {
@@ -86,18 +92,155 @@ const LEGAL_COPY = {
         ]
       }
     }
+  },
+  el: {
+    eyebrow: 'MYTHBORN · ΝΟΜΙΚΗ ΔΙΑΦΑΝΕΙΑ & ΑΠΟΡΡΗΤΟ',
+    updated: 'Ενημέρωση: 2026–2027',
+    zeroStorage: 'Μηδενική Αποθήκευση Δεδομένων',
+    contactCta: 'Σελίδα Επικοινωνίας →',
+    homeCta: '← Αρχική',
+    contactTitle: 'Υπεύθυνος Επεξεργασίας & Επικοινωνία',
+    contactLead: 'Για οποιαδήποτε απορία σχετικά με το απόρρητο, τα δικαιώματα προστασίας δεδομένων ή τους όρους χρήσης, επικοινωνήστε απευθείας μαζί μας:',
+    pages: {
+      kvkk: {
+        title: 'Ενημέρωση KVKK & Προστασίας Δεδομένων',
+        lead: 'Διαφανής επισκόπηση της αρχιτεκτονικής μηδενικής αποθήκευσης και των αρχών επεξεργασίας βάσει του τουρκικού Νόμου 6698 (KVKK) και των προτύπων GDPR.',
+        sections: [
+          { h: '1. Αρχιτεκτονική Τοπικής Εκτέλεσης Μηδενικής Αποθήκευσης', p: 'Ο Γενέθλιος Χάρτης, η Συναστρία, οι υπολογιστές Αμπτζάντ & Αριθμολογίας, το Ημερολόγιο Συγχρονικότητας Carl Jung και το Στούντιο Διαλογισμού εκτελούνται αποκλειστικά τοπικά στον περιηγητή σας. Προσωπικά ονόματα, ημερομηνίες γέννησης και σημειώσεις δεν αποστέλλονται ούτε αποθηκεύονται στους διακομιστές μας.' },
+          { h: '2. Αυστηρά Περιορισμένα Τεχνικά Δεδομένα', p: 'Ενδέχεται να υποβάλλονται σε επεξεργασία μόνο απαραίτητα τεχνικά δεδομένα ασφαλείας και — αποκλειστικά με τη ρητή συγκατάθεσή σας — ανώνυμα στατιστικά επισκεψιμότητας. Τα προσωπικά δεδομένα δεν πωλούνται ποτέ για διαφήμιση.' },
+          { h: '3. Τα Δικαιώματά σας', p: 'Μπορείτε να ζητήσετε ανά πάσα στιγμή ενημέρωση, πρόσβαση, διόρθωση ή διαγραφή δεδομένων γράφοντας στο info@mythborn.co.' }
+        ]
+      },
+      privacy: {
+        title: 'Πολιτική Απορρήτου',
+        lead: 'Το απόρρητο αποτελεί θεμελιώδη αρχή σχεδιασμού του Mythborn: τα προσωπικά σας στοιχεία παραμένουν στη συσκευή σας.',
+        sections: [
+          { h: '1. Τοπικός Υπολογισμός στον Περιηγητή', p: 'Όλοι οι αστρονομικοί υπολογισμοί, οι αναλύσεις Αμπτζάντ/Αριθμολογίας, η σύνθεση ήχου και οι προσωπικές σημειώσεις παραμένουν αποκλειστικά στη συσκευή σας.' },
+          { h: '2. Cookies με Προτεραιότητα τη Συγκατάθεση', p: 'Τα προαιρετικά cookies ανάλυσης ενεργοποιούνται μόνο με τη ρητή συγκατάθεσή σας και μπορούν να απενεργοποιηθούν ανά πάσα στιγμή.' },
+          { h: '3. Καμία Πώληση Δεδομένων', p: 'Το Mythborn δεν πωλεί, δεν ενοικιάζει και δεν διαβιβάζει δεδομένα επισκεπτών σε διαφημιστικά δίκτυα ή μεσίτες δεδομένων.' }
+        ]
+      },
+      terms: {
+        title: 'Όροι Χρήσης',
+        lead: 'Ηθικά όρια, εκπαιδευτικό εύρος περιεχομένου και αρχές ορθής χρήσης για την πλατφόρμα Mythborn.',
+        sections: [
+          { h: '1. Εκπαιδευτικό & Συμβολικό Πλαίσιο', p: 'Όλα τα εργαλεία αστρολογίας, Αμπτζάντ, αριθμολογίας, οι οδηγοί ψυχολογίας Carl Jung, τα δωμάτια διαλογισμού και οι συχνότητες παρέχονται αποκλειστικά για πολιτισμική έρευνα, εκπαίδευση και προσωπικό στοχασμό.' },
+          { h: '2. Όχι Ιατρική, Κλινική ή Νομική Συμβουλή', p: 'Κανένα περιεχόμενο δεν συνιστά βέβαιη πρόβλεψη μέλλοντος, ιατρική διάγνωση ή θεραπεία, κλινική ψυχοθεραπεία ή νομική/οικονομική συμβουλή.' },
+          { h: '3. Υπεύθυνη Χρήση', p: 'Συμφωνείτε να χρησιμοποιείτε την πλατφόρμα νόμιμα και να αποφεύγετε αυτοματοποιημένες καταχρήσεις ή παρεμβολές στην υπηρεσία.' }
+        ]
+      },
+      cookies: {
+        title: 'Πολιτική Cookies',
+        lead: 'Απαραίτητη τεχνική αποθήκευση και προαιρετικές μετρήσεις βάσει συγκατάθεσης.',
+        sections: [
+          { h: '1. Απαραίτητη Αποθήκευση', p: 'Χρησιμοποιείται αυστηρά για την ασφάλεια, την επιλογή γλώσσας και τη βασική λειτουργικότητα.' },
+          { h: '2. Προαιρετική Ανάλυση', p: 'Η ανώνυμη μέτρηση επισκεψιμότητας ενεργοποιείται μόνο μετά από τη ρητή συγκατάθεσή σας.' }
+        ]
+      }
+    }
+  },
+  es: {
+    eyebrow: 'MYTHBORN · TRANSPARENCIA LEGAL Y PRIVACIDAD',
+    updated: 'Actualización: 2026–2027',
+    zeroStorage: 'Cero Almacenamiento de Datos',
+    contactCta: 'Página de Contacto →',
+    homeCta: '← Inicio',
+    contactTitle: 'Responsable de Datos y Contacto',
+    contactLead: 'Para cualquier consulta sobre privacidad, derechos de protección de datos o términos de uso, contáctanos directamente:',
+    pages: {
+      kvkk: {
+        title: 'Aviso de Protección de Datos (KVKK y GDPR)',
+        lead: 'Resumen transparente de nuestra arquitectura de cero almacenamiento y principios de privacidad conforme a la Ley N.º 6698 (KVKK) y estándares GDPR.',
+        sections: [
+          { h: '1. Arquitectura Local sin Almacenamiento', p: 'La Carta Natal, Sinastría, Ábyad y Numerología, el Diario de Sincronicidad de Carl Jung y el Estudio de Meditación se ejecutan localmente en tu navegador. Nombres, datos de nacimiento y notas personales nunca se envían ni guardan en servidores de Mythborn.' },
+          { h: '2. Datos Técnicos Estrictamente Limitados', p: 'Solo pueden procesarse registros técnicos esenciales de seguridad y —únicamente con tu consentimiento explícito— métricas anónimas agregadas. Nunca se venden datos personales para publicidad.' },
+          { h: '3. Tus Derechos', p: 'Puedes solicitar información, acceso, corrección o eliminación de tus datos en cualquier momento escribiendo a info@mythborn.co.' }
+        ]
+      },
+      privacy: {
+        title: 'Política de Privacidad',
+        lead: 'La privacidad forma parte de la arquitectura base de Mythborn: tus datos personales permanecen en tu dispositivo.',
+        sections: [
+          { h: '1. Ejecución Local en el Navegador', p: 'Todos los cálculos astronómicos, análisis de Ábyad/Numerología, síntesis de audio Web y notas del diario permanecen dentro de tu navegador.' },
+          { h: '2. Cookies con Consentimiento Previo', p: 'Las cookies analíticas opcionales solo se activan con tu consentimiento explícito y pueden desactivarse en cualquier momento.' },
+          { h: '3. Cero Venta de Datos', p: 'Mythborn nunca vende, alquila ni cede datos de visitantes a redes publicitarias o intermediarios de datos.' }
+        ]
+      },
+      terms: {
+        title: 'Términos de Uso',
+        lead: 'Límites éticos, alcance educativo y principios de uso responsable de Mythborn.',
+        sections: [
+          { h: '1. Alcance Educativo y Reflexivo', p: 'Todos los recursos de astrología, Ábyad, numerología, guías de psicología profunda de Carl Jung, salas de meditación y frecuencias sonoras se ofrecen exclusivamente con fines culturales, educativos y de introspección personal.' },
+          { h: '2. No es Consejo Médico, Clínico ni Legal', p: 'Ningún contenido constituye predicción determinista, diagnóstico ni tratamiento médico, psicoterapia clínica o asesoramiento legal o financiero.' },
+          { h: '3. Uso Responsable', p: 'Aceptas utilizar la plataforma de forma lícita y abstenerte de extracciones automatizadas abusivas o interrupciones del servicio.' }
+        ]
+      },
+      cookies: {
+        title: 'Política de Cookies',
+        lead: 'Almacenamiento técnico esencial y preferencias analíticas opcionales con tu consentimiento.',
+        sections: [
+          { h: '1. Almacenamiento Esencial', p: 'Se utiliza exclusivamente para seguridad, idioma seleccionado y funcionamiento básico.' },
+          { h: '2. Analítica Opcional', p: 'La medición anónima de tráfico se activa únicamente tras tu consentimiento explícito.' }
+        ]
+      }
+    }
+  },
+  ar: {
+    eyebrow: 'ميثبورن · الشفافية القانونية والخصوصية',
+    updated: 'التحديث: 2026–2027',
+    zeroStorage: 'بدون تخزين بيانات',
+    contactCta: 'صفحة التواصل ←',
+    homeCta: '→ الرئيسية',
+    contactTitle: 'جهة التحكم بالبيانات والتواصل',
+    contactLead: 'لأي استفسار حول الخصوصية أو حقوق حماية البيانات أو شروط الاستخدام، يمكنك التواصل معنا مباشرة:',
+    pages: {
+      kvkk: {
+        title: 'إشعار حماية البيانات والخصوصية (KVKK و GDPR)',
+        lead: 'توضيح شفاف لبنية عدم تخزين البيانات ومبادئ المعالجة وفقاً لقانون حماية البيانات رقم 6698 ومعايير GDPR.',
+        sections: [
+          { h: '1. بنية محلية بدون تخزين على الخادم', p: 'تعمل أدوات خريطة الميلاد والتوافق الفلكي والأبجد وعلم الأرقام ومذكرة التزامن لكارل يونغ واستوديو التأمل والترددات محلياً داخل متصفحك بالكامل. لا تُرسل الأسماء أو تواريخ الميلاد أو الملاحظات إلى خوادم ميثبورن ولا تُحفظ في أي قاعدة بيانات.' },
+          { h: '2. بيانات تقنية محدودة للغاية', p: 'تُعالج فقط سجلات الأمان التقنية الضرورية وإحصاءات الزيارات المجهولة بموافقتك الصريحة فقط. لا تُباع أي بيانات شخصية لأغراض إعلانية أبداً.' },
+          { h: '3. حقوقك', p: 'يحق لك طلب الاطلاع أو التصحيح أو الحذف في أي وقت عبر البريد الإلكتروني info@mythborn.co.' }
+        ]
+      },
+      privacy: {
+        title: 'سياسة الخصوصية',
+        lead: 'الخصوصية مبدأ أساسي في تصميم ميثبورن: مدخلاتك وتأملاتك الشخصية تبقى على جهازك فقط.',
+        sections: [
+          { h: '1. التنفيذ المحلي داخل المتصفح', p: 'تُجرى جميع الحسابات الفلكية وتحليلات الأبجد وعلم الأرقام وتوليد الصوت وملاحظات المذكرة محلياً في متصفحك.' },
+          { h: '2. ملفات تعريف الارتباط بالموافقة', p: 'تُفعَّل تحليلات الأداء الاختيارية بموافقتك الصريحة فقط ويمكنك تعطيلها في أي وقت.' },
+          { h: '3. عدم بيع البيانات', p: 'لا يبيع ميثبورن ولا يؤجر ولا يشارك بيانات الزوار مع شبكات إعلانية أو جهات خارجية تحت أي ظرف.' }
+        ]
+      },
+      terms: {
+        title: 'شروط الاستخدام',
+        lead: 'الحدود الأخلاقية ونطاق المحتوى التعليمي ومبادئ الاستخدام المشروع لمنصة ميثبورن.',
+        sections: [
+          { h: '1. النطاق التعليمي والتأملي', p: 'تُقدَّم جميع أدوات التنجيم الفلكي والأبجد وعلم الأرقام وأدلة علم نفس الأعماق لكارل يونغ وغرف التأمل والترددات لأغراض البحث الثقافي والتعليم والتأمل الذاتي فقط.' },
+          { h: '2. ليس استشارة طبية أو نفسية أو قانونية', p: 'لا يمثل أي محتوى تنبؤاً حتمياً بالمستقبل ولا تشخيصاً أو علاجاً طبياً ولا علاجاً نفسياً سريرياً ولا مشورة قانونية أو مالية.' },
+          { h: '3. الاستخدام المسؤول', p: 'توافق على استخدام المنصة بصورة مشروعة وتجنب السحب الآلي المسيء أو محاولات تعطيل الخدمة.' }
+        ]
+      },
+      cookies: {
+        title: 'سياسة ملفات تعريف الارتباط',
+        lead: 'التخزين التقني الضروري وتفضيلات القياس الاختيارية القائمة على الموافقة.',
+        sections: [
+          { h: '1. التخزين الضروري', p: 'يُستخدم حصرياً للأمان وحفظ تفضيل اللغة وعمل الوظائف الأساسية.' },
+          { h: '2. التحليلات الاختيارية', p: 'تعمل قياسات الزيارات المجهولة فقط بعد موافقتك الصريحة.' }
+        ]
+      }
+    }
   }
 };
 
 export const getLegalPageMeta = (locale = 'tr', type = 'privacy') => {
-  const pack = LEGAL_COPY[locale === 'tr' ? 'tr' : 'en'];
+  const pack = LEGAL_COPY[locale] || LEGAL_COPY.en;
   const page = pack.pages[type] || pack.pages.privacy;
   return { title: page.title, description: page.lead };
 };
 
 export const renderLegalView = ({ locale = 'tr', type = 'privacy', contactHref = '/iletisim', homeHref = '/' } = {}) => {
-  const isTr = locale === 'tr';
-  const pack = LEGAL_COPY[isTr ? 'tr' : 'en'];
+  const pack = LEGAL_COPY[locale] || LEGAL_COPY.en;
   const page = pack.pages[type] || pack.pages.privacy;
 
   return `
@@ -110,7 +253,7 @@ export const renderLegalView = ({ locale = 'tr', type = 'privacy', contactHref =
         <div class="sanc-meta-strip">
           <span>${pack.updated}</span>
           <span>·</span>
-          <span>${isTr ? 'Sıfır Veri Depolama' : 'Zero Data Storage'}</span>
+          <span>${pack.zeroStorage}</span>
         </div>
       </div>
     </section>
@@ -131,8 +274,8 @@ export const renderLegalView = ({ locale = 'tr', type = 'privacy', contactHref =
           </section>
 
           <div class="guide-article-foot">
-            <a class="sanc-btn-gold" href="${contactHref}">${isTr ? 'İletişim Sayfası →' : 'Contact Page →'}</a>
-            <a class="sanc-btn-ghost" href="${homeHref}">${isTr ? '← Ana Sayfa' : '← Home'}</a>
+            <a class="sanc-btn-gold" href="${contactHref}">${pack.contactCta}</a>
+            <a class="sanc-btn-ghost" href="${homeHref}">${pack.homeCta}</a>
           </div>
         </article>
       </div>
