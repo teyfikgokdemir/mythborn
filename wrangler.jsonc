@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mythborn",
+  "account_id": "f94dc9e270a0a5c3f12011783999a1ef",
   "main": "src/analytics-router.js",
   "compatibility_date": "2026-07-20",
   "workers_dev": true,
