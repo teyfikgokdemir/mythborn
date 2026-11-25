@@ -3,37 +3,330 @@
   "host": {
     "identifier": "https://mythborn.co",
     "displayName": "Mythborn",
-    "description": "Independent multilingual Tarot and astrology knowledge platform.",
-    "documentationUrl": "https://mythborn.co/astroloji"
+    "documentationUrl": "https://mythborn.co/yaklasim"
   },
-  "languages": [
-    "tr",
-    "en",
-    "el",
-    "es",
-    "ar"
-  ],
-  "resources": [
+  "entries": [
     {
-      "title": "Homepage",
-      "url": "https://mythborn.co/"
+      "identifier": "urn:air:mythborn.co:website:homepage",
+      "displayName": "Mythborn Homepage",
+      "type": "text/html",
+      "url": "https://mythborn.co/",
+      "description": "Mythborn public homepage and platform overview.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What is Mythborn and what topics does it cover?",
+        "Where can I find Mythborn's public resources?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     },
     {
-      "title": "Tarot",
-      "url": "https://mythborn.co/tarot"
+      "identifier": "urn:air:mythborn.co:website:meditation-frequency",
+      "displayName": "Meditation and Frequency Studio",
+      "type": "text/html",
+      "url": "https://mythborn.co/meditasyon-ve-frekans",
+      "description": "Public meditation rooms and studio frequency listening experience.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What meditation and frequency experiences does Mythborn offer?",
+        "Where can I listen to Mythborn's studio frequency recordings?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     },
     {
-      "title": "Astrology",
-      "url": "https://mythborn.co/astroloji"
+      "identifier": "urn:air:mythborn.co:website:jung-depth-psychology",
+      "displayName": "Carl Jung Depth Psychology",
+      "type": "text/html",
+      "url": "https://mythborn.co/jung",
+      "description": "Educational content about Carl Jung, archetypes, shadow work and depth psychology.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What does Mythborn explain about Carl Jung and archetypes?",
+        "Where can I learn about shadow work on Mythborn?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     },
     {
-      "title": "Blog",
-      "url": "https://mythborn.co/blog"
+      "identifier": "urn:air:mythborn.co:website:guides",
+      "displayName": "Mythborn Guides",
+      "type": "text/html",
+      "url": "https://mythborn.co/rehber",
+      "description": "Public educational guides about mindfulness, meditation, resonance and symbolic topics.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What educational guides are available on Mythborn?",
+        "Where can I find Mythborn's mindfulness and meditation guides?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:resonance-guide",
+      "displayName": "Law of Resonance Guide",
+      "type": "text/html",
+      "url": "https://mythborn.co/rehber/rezonans-kanunu-nedir",
+      "description": "Explanatory guide about the concept of resonance.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What does the Law of Resonance mean in Mythborn's guide?",
+        "Where can I read Mythborn's resonance guide?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:about",
+      "displayName": "About Mythborn",
+      "type": "text/html",
+      "url": "https://mythborn.co/hakkinda",
+      "description": "Public information about Mythborn and its editorial approach.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What is Mythborn's purpose and editorial approach?",
+        "Who is Mythborn and what does the platform publish?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:library",
+      "displayName": "Mythborn Library",
+      "type": "text/html",
+      "url": "https://mythborn.co/kutuphane",
+      "description": "Public content library covering the platform's published topics.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What topics are covered in the Mythborn library?",
+        "Where can I browse Mythborn's public content library?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:tarot-symbolism",
+      "displayName": "Tarot Symbolism",
+      "type": "text/html",
+      "url": "https://mythborn.co/tarot-sembolizm",
+      "description": "Educational and cultural information about Tarot symbolism.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What do Tarot symbols mean in cultural traditions?",
+        "Where can I learn about Tarot symbolism on Mythborn?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:bioenergy-culture",
+      "displayName": "Bioenergy Culture",
+      "type": "text/html",
+      "url": "https://mythborn.co/bioenerji-kulturu",
+      "description": "Cultural and conceptual information about bioenergy.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "How is bioenergy understood in cultural and spiritual traditions?",
+        "Where does Mythborn explain bioenergy concepts?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:evil-eye-rituals",
+      "displayName": "Evil Eye Beliefs and Rituals",
+      "type": "text/html",
+      "url": "https://mythborn.co/nazar-ritueller",
+      "description": "Information about evil-eye beliefs and traditional rituals.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What are traditional evil-eye beliefs and rituals?",
+        "Where can I read about nazar traditions on Mythborn?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:talismans-symbols",
+      "displayName": "Talismans and Symbols",
+      "type": "text/html",
+      "url": "https://mythborn.co/tilsimlar-semboller",
+      "description": "Information about talismanic objects and symbolic traditions.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What are talismans and how are they used in symbolic traditions?",
+        "Where can I explore talisman and symbol traditions?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:meditation-mindfulness",
+      "displayName": "Meditation and Mindfulness",
+      "type": "text/html",
+      "url": "https://mythborn.co/meditasyon-farkindalik",
+      "description": "Public educational content about meditation and mindfulness.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What meditation and mindfulness resources does Mythborn provide?",
+        "Where can I learn basic meditation concepts on Mythborn?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:contact",
+      "displayName": "Contact Mythborn",
+      "type": "text/html",
+      "url": "https://mythborn.co/iletisim",
+      "description": "Official public contact page for Mythborn.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "How can I contact Mythborn?",
+        "Where is Mythborn's official contact page?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:blog",
+      "displayName": "Mythborn Blog",
+      "type": "text/html",
+      "url": "https://mythborn.co/blog",
+      "description": "Public articles and informational posts published by Mythborn.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What articles has Mythborn published?",
+        "Where can I read Mythborn blog posts?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     }
-  ],
-  "policies": {
-    "purpose": "Education, entertainment and self-reflection",
-    "individualReader": false,
-    "personalConsultation": false
-  }
+  ]
 }

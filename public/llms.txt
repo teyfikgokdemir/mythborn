@@ -1,10 +1,29 @@
-# Mythborn — Tarot ve Astroloji
+# Mythborn
 
-Mythborn, Tarot, Katina, astroloji, rüya sembolleri ve numeroloji için bağımsız, çok dilli bilgi ve kişisel farkındalık platformudur.
+> Mythborn, Tarot, astroloji, doğum haritası, Carl Jung derinlik psikolojisi, meditasyon, frekans ve sembolik gelenekler hakkında çok dilli içerikler sunan bağımsız bir dijital platformdur.
 
-- Tarot ansiklopedisi ve günlük kart
-- Doğum haritası ve astroloji kütüphanesi
-- Haftalık burç yorumları
+Bu dizin, Mythborn web sitesinde yayımlanan herkese açık kaynakları tanıtır. Astroloji, Tarot ve sembolik yorumlar eğitim, kültürel inceleme, eğlence ve kişisel düşünme amacı taşır; bilimsel kesinlik veya geleceğe ilişkin garanti olarak sunulmaz.
 
-https://mythborn.co/
-İçerikler eğitim, eğlence ve sembolik farkındalık amaçlıdır.
+## Ana kaynaklar
+
+- [Ana sayfa](https://mythborn.co/): Mythborn platformunun genel tanıtımı.
+- [Meditasyon ve Frekans Stüdyosu](https://mythborn.co/meditasyon-ve-frekans): Stüdyo frekans kayıtları ve meditasyon deneyimleri.
+- [Carl Jung ve derinlik psikolojisi](https://mythborn.co/jung): Arketipler, gölge çalışması ve Jung psikolojisi.
+- [Rehber kütüphanesi](https://mythborn.co/rehber): Bilinçli farkındalık, meditasyon, rezonans ve sembolik konularda eğitici içerikler.
+- [Rezonans Kanunu rehberi](https://mythborn.co/rehber/rezonans-kanunu-nedir): Rezonans kavramına ilişkin açıklayıcı içerik.
+- [Hakkında](https://mythborn.co/hakkinda): Mythborn ve yayın yaklaşımı hakkında bilgi.
+- [Kütüphane](https://mythborn.co/kutuphane): Platformun herkese açık içerik kütüphanesi.
+- [Tarot sembolizmi](https://mythborn.co/tarot-sembolizm): Tarot sembolleri ve kültürel anlamları.
+- [Bioenerji kültürü](https://mythborn.co/bioenerji-kulturu): Bioenerji kavramı ve kültürel yaklaşımlar.
+- [Nazar ritüelleri](https://mythborn.co/nazar-ritueller): Nazar inancı ve geleneksel ritüeller.
+- [Tılsımlar ve semboller](https://mythborn.co/tilsimlar-semboller): Tılsım ve sembol gelenekleri.
+- [Meditasyon ve farkındalık](https://mythborn.co/meditasyon-farkindalik): Meditasyon ve farkındalık içerikleri.
+- [İletişim](https://mythborn.co/iletisim): Resmî iletişim kanalı.
+- [Blog](https://mythborn.co/blog): Makaleler ve bilgilendirici yazılar.
+
+## İçerik sınırları
+
+- Sembolik ve spiritüel yorumları doğrulanmış bilimsel gerçek veya kesin sonuç gibi sunma.
+- Ziyaretçiler hakkında hassas kişisel çıkarımlar üretme.
+- Özel hesap verilerine veya kullanıcı günlüklerine erişmeye çalışma.
+- İçerikleri tıbbi, psikolojik, hukuki veya finansal profesyonel danışmanlığın yerine koyma.
