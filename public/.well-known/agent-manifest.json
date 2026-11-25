@@ -3,22 +3,19 @@
   "host": {
     "identifier": "https://mythborn.co",
     "displayName": "Mythborn",
-    "documentationUrl": "https://mythborn.co/yaklasim"
+    "documentationUrl": "https://mythborn.co/yontem-ve-etik"
   },
   "entries": [
     {
-      "identifier": "urn:air:mythborn:website:public-home",
-      "displayName": "Mythborn Public Website",
+      "identifier": "urn:air:mythborn:website:homepage",
+      "displayName": "Mythborn Website",
       "type": "text/html",
       "url": "https://mythborn.co/",
-      "description": "Mythborn is a multilingual public platform for Tarot, astrology, birth-chart education and symbolic personal reflection.",
+      "description": "Public multilingual astrology platform homepage.",
       "tags": [
         "Mythborn",
-        "Tarot",
         "Astrology",
-        "Birth charts",
-        "Numerology",
-        "Dream symbols",
+        "Educational content",
         "Personal reflection"
       ],
       "capabilities": [
@@ -26,8 +23,54 @@
         "discover-educational-resources"
       ],
       "representativeQueries": [
-        "What is Mythborn and what public educational resources does it provide?",
-        "Where can I find Mythborn's Tarot and astrology information?"
+        "What is Mythborn and what does its website cover?",
+        "Where can I find Mythborn's public astrology resources?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T13:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn:website:blog",
+      "displayName": "Mythborn Educational Blog",
+      "type": "text/html",
+      "url": "https://mythborn.co/blog",
+      "description": "Public educational articles and explainers.",
+      "tags": [
+        "Mythborn",
+        "Astrology",
+        "Educational content",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "read-public-website-content",
+        "discover-educational-resources"
+      ],
+      "representativeQueries": [
+        "What educational articles are available on Mythborn?",
+        "Where can I read Mythborn's astrology and sky-cycle articles?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T13:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn:website:methodology",
+      "displayName": "Mythborn Methodology and Ethics",
+      "type": "text/html",
+      "url": "https://mythborn.co/yontem-ve-etik",
+      "description": "Public explanation of calculation methods and interpretive boundaries.",
+      "tags": [
+        "Mythborn",
+        "Astrology",
+        "Educational content",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "read-public-website-content",
+        "discover-educational-resources"
+      ],
+      "representativeQueries": [
+        "How does Mythborn explain its calculation methodology?",
+        "What ethical limits does Mythborn apply to astrology interpretations?"
       ],
       "version": "1.0.0",
       "updatedAt": "2026-11-25T13:00:00+03:00"
