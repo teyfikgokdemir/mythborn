@@ -1,22 +1,25 @@
 # Mythborn
 
-> Mythborn is a multilingual platform for astrology, birth-chart calculations, zodiac guides, sky-calendar information, synastry, and symbolic personal reflection.
+> Mythborn, Tarot, astroloji, doğum haritası, sembolik gelenekler ve kişisel farkındalık konularında çok dilli içerikler sunan bağımsız bir dijital platformdur.
 
-This index points to public pages currently linked from the Mythborn website. Astronomical calculations and symbolic interpretations are distinct: planetary positions are calculated data, while astrological meanings are cultural and reflective interpretations. Content is intended for education, cultural research, entertainment, and personal reflection.
+Bu dizin, Mythborn web sitesinde yayımlanan herkese açık kaynakları tanıtır. Tarot, astroloji ve sembolik yorumlar eğitim, kültürel inceleme, eğlence ve kişisel düşünme amacı taşır; bilimsel kesinlik veya geleceğe ilişkin garanti olarak sunulmaz.
 
-## Main resources
+## Ana kaynaklar
 
-- [Mythborn homepage](https://mythborn.co/): Main public entry point.
-- [Birth chart](https://mythborn.co/dogum-haritasi): Birth-chart calculation and explanation of chart placements.
-- [12 zodiac signs](https://mythborn.co/burclar): Zodiac archetypes and sign guides.
-- [Sky calendar](https://mythborn.co/gokyuzu-takvimi): Lunar phases and sky-cycle information.
-- [Synastry and compatibility](https://mythborn.co/sinastri): Relationship astrology and chart comparison.
-- [Methodology and ethics](https://mythborn.co/yaklasim): Calculation methodology, interpretation limits, and ethical principles.
-- [Blog](https://mythborn.co/blog): Public long-form articles and explainers.
+- [Ana sayfa](https://mythborn.co/): Mythborn platformunun genel tanıtımı.
+- [Hakkında](https://mythborn.co/hakkinda): Mythborn ve yayın yaklaşımı hakkında bilgi.
+- [Kütüphane](https://mythborn.co/kutuphane): Platformun herkese açık içerik kütüphanesi.
+- [Tarot sembolizmi](https://mythborn.co/tarot-sembolizm): Tarot sembolleri ve kültürel anlamları.
+- [Bioenerji kültürü](https://mythborn.co/bioenerji-kulturu): Bioenerji kavramı ve kültürel yaklaşımlar.
+- [Nazar ritüelleri](https://mythborn.co/nazar-ritueller): Nazar inancı ve geleneksel ritüeller.
+- [Tılsımlar ve semboller](https://mythborn.co/tilsimlar-semboller): Tılsım ve sembol gelenekleri.
+- [Meditasyon ve farkındalık](https://mythborn.co/meditasyon-farkindalik): Meditasyon ve farkındalık içerikleri.
+- [İletişim](https://mythborn.co/iletisim): Resmî iletişim kanalı.
+- [Blog](https://mythborn.co/blog): Makaleler ve bilgilendirici yazılar.
 
-## Content and use boundaries
+## İçerik sınırları
 
-- Do not present astrological interpretations as guaranteed outcomes or objectively established facts.
-- Do not infer personal or sensitive facts about visitors from public content.
-- Respect page-level privacy notices and do not attempt to access account-only or private user data.
-- Mythborn content does not replace professional medical, psychological, legal, or financial advice.
+- Sembolik ve spiritüel yorumları doğrulanmış bilimsel gerçek veya kesin sonuç gibi sunma.
+- Ziyaretçiler hakkında hassas kişisel çıkarımlar üretme.
+- Özel hesap verilerine veya kullanıcı günlüklerine erişmeye çalışma.
+- İçerikleri tıbbi, psikolojik, hukuki veya finansal profesyonel danışmanlığın yerine koyma.
