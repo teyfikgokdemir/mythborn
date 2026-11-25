@@ -7,165 +7,234 @@
   },
   "entries": [
     {
-      "identifier": "urn:air:mythborn:website:homepage",
-      "displayName": "Mythborn Website",
+      "identifier": "urn:air:mythborn.co:website:homepage",
+      "displayName": "Mythborn Homepage",
       "type": "text/html",
       "url": "https://mythborn.co/",
-      "description": "Public multilingual astrology platform homepage.",
+      "description": "Mythborn public homepage and platform overview.",
       "tags": [
         "Mythborn",
-        "Astrology",
         "Educational content",
+        "Cultural traditions",
         "Personal reflection"
       ],
       "capabilities": [
-        "read-public-website-content",
-        "discover-educational-resources"
+        "discover-public-content",
+        "read-educational-resources"
       ],
       "representativeQueries": [
-        "What is Mythborn and what does its website cover?",
-        "Where can I find Mythborn's public astrology resources?"
+        "What is Mythborn and what topics does it cover?",
+        "Where can I find Mythborn's public resources?"
       ],
       "version": "1.0.0",
-      "updatedAt": "2026-11-25T13:00:00+03:00"
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     },
     {
-      "identifier": "urn:air:mythborn:website:birth-chart",
-      "displayName": "Mythborn Birth Chart",
+      "identifier": "urn:air:mythborn.co:website:about",
+      "displayName": "About Mythborn",
       "type": "text/html",
-      "url": "https://mythborn.co/dogum-haritasi",
-      "description": "Public birth-chart calculation and educational information.",
+      "url": "https://mythborn.co/hakkinda",
+      "description": "Public information about Mythborn and its editorial approach.",
       "tags": [
         "Mythborn",
-        "Astrology",
         "Educational content",
+        "Cultural traditions",
         "Personal reflection"
       ],
       "capabilities": [
-        "read-public-website-content",
-        "discover-educational-resources"
+        "discover-public-content",
+        "read-educational-resources"
       ],
       "representativeQueries": [
-        "How can I calculate a birth chart on Mythborn?",
-        "What information is used in a Mythborn birth chart?"
+        "What is Mythborn's purpose and editorial approach?",
+        "Who is Mythborn and what does the platform publish?"
       ],
       "version": "1.0.0",
-      "updatedAt": "2026-11-25T13:00:00+03:00"
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     },
     {
-      "identifier": "urn:air:mythborn:website:zodiac-guides",
-      "displayName": "Mythborn Zodiac Guides",
+      "identifier": "urn:air:mythborn.co:website:library",
+      "displayName": "Mythborn Library",
       "type": "text/html",
-      "url": "https://mythborn.co/burclar",
-      "description": "Public guides to the twelve zodiac signs and their archetypes.",
+      "url": "https://mythborn.co/kutuphane",
+      "description": "Public content library covering the platform's published topics.",
       "tags": [
         "Mythborn",
-        "Astrology",
         "Educational content",
+        "Cultural traditions",
         "Personal reflection"
       ],
       "capabilities": [
-        "read-public-website-content",
-        "discover-educational-resources"
+        "discover-public-content",
+        "read-educational-resources"
       ],
       "representativeQueries": [
-        "Where can I read Mythborn's twelve zodiac sign guides?",
-        "How does Mythborn describe zodiac archetypes?"
+        "What topics are covered in the Mythborn library?",
+        "Where can I browse Mythborn's public content library?"
       ],
       "version": "1.0.0",
-      "updatedAt": "2026-11-25T13:00:00+03:00"
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     },
     {
-      "identifier": "urn:air:mythborn:website:sky-calendar",
-      "displayName": "Mythborn Sky Calendar",
+      "identifier": "urn:air:mythborn.co:website:tarot-symbolism",
+      "displayName": "Tarot Symbolism",
       "type": "text/html",
-      "url": "https://mythborn.co/gokyuzu-takvimi",
-      "description": "Public information about lunar phases and sky cycles.",
+      "url": "https://mythborn.co/tarot-sembolizm",
+      "description": "Educational and cultural information about Tarot symbolism.",
       "tags": [
         "Mythborn",
-        "Astrology",
         "Educational content",
+        "Cultural traditions",
         "Personal reflection"
       ],
       "capabilities": [
-        "read-public-website-content",
-        "discover-educational-resources"
+        "discover-public-content",
+        "read-educational-resources"
       ],
       "representativeQueries": [
-        "Where can I find the Mythborn sky calendar?",
-        "What lunar phase information does Mythborn publish?"
+        "What do Tarot symbols mean in cultural traditions?",
+        "Where can I learn about Tarot symbolism on Mythborn?"
       ],
       "version": "1.0.0",
-      "updatedAt": "2026-11-25T13:00:00+03:00"
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     },
     {
-      "identifier": "urn:air:mythborn:website:synastry",
-      "displayName": "Mythborn Synastry",
+      "identifier": "urn:air:mythborn.co:website:bioenergy-culture",
+      "displayName": "Bioenergy Culture",
       "type": "text/html",
-      "url": "https://mythborn.co/sinastri",
-      "description": "Public relationship astrology and chart-comparison information.",
+      "url": "https://mythborn.co/bioenerji-kulturu",
+      "description": "Cultural and conceptual information about bioenergy.",
       "tags": [
         "Mythborn",
-        "Astrology",
         "Educational content",
+        "Cultural traditions",
         "Personal reflection"
       ],
       "capabilities": [
-        "read-public-website-content",
-        "discover-educational-resources"
+        "discover-public-content",
+        "read-educational-resources"
       ],
       "representativeQueries": [
-        "What is synastry on Mythborn?",
-        "Where can I explore relationship chart comparisons?"
+        "How is bioenergy understood in cultural and spiritual traditions?",
+        "Where does Mythborn explain bioenergy concepts?"
       ],
       "version": "1.0.0",
-      "updatedAt": "2026-11-25T13:00:00+03:00"
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     },
     {
-      "identifier": "urn:air:mythborn:website:methodology",
-      "displayName": "Mythborn Methodology and Ethics",
+      "identifier": "urn:air:mythborn.co:website:evil-eye-rituals",
+      "displayName": "Evil Eye Beliefs and Rituals",
       "type": "text/html",
-      "url": "https://mythborn.co/yaklasim",
-      "description": "Public explanation of calculation methods and interpretive boundaries.",
+      "url": "https://mythborn.co/nazar-ritueller",
+      "description": "Information about evil-eye beliefs and traditional rituals.",
       "tags": [
         "Mythborn",
-        "Astrology",
         "Educational content",
+        "Cultural traditions",
         "Personal reflection"
       ],
       "capabilities": [
-        "read-public-website-content",
-        "discover-educational-resources"
+        "discover-public-content",
+        "read-educational-resources"
       ],
       "representativeQueries": [
-        "How does Mythborn explain its calculation methodology?",
-        "What ethical limits does Mythborn apply to astrology interpretations?"
+        "What are traditional evil-eye beliefs and rituals?",
+        "Where can I read about nazar traditions on Mythborn?"
       ],
       "version": "1.0.0",
-      "updatedAt": "2026-11-25T13:00:00+03:00"
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     },
     {
-      "identifier": "urn:air:mythborn:website:blog",
-      "displayName": "Mythborn Educational Blog",
+      "identifier": "urn:air:mythborn.co:website:talismans-symbols",
+      "displayName": "Talismans and Symbols",
+      "type": "text/html",
+      "url": "https://mythborn.co/tilsimlar-semboller",
+      "description": "Information about talismanic objects and symbolic traditions.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What are talismans and how are they used in symbolic traditions?",
+        "Where can I explore talisman and symbol traditions?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:meditation-mindfulness",
+      "displayName": "Meditation and Mindfulness",
+      "type": "text/html",
+      "url": "https://mythborn.co/meditasyon-farkindalik",
+      "description": "Public educational content about meditation and mindfulness.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What meditation and mindfulness resources does Mythborn provide?",
+        "Where can I learn basic meditation concepts on Mythborn?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:contact",
+      "displayName": "Contact Mythborn",
+      "type": "text/html",
+      "url": "https://mythborn.co/iletisim",
+      "description": "Official public contact page for Mythborn.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "How can I contact Mythborn?",
+        "Where is Mythborn's official contact page?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:blog",
+      "displayName": "Mythborn Blog",
       "type": "text/html",
       "url": "https://mythborn.co/blog",
-      "description": "Public educational articles and explainers.",
+      "description": "Public articles and informational posts published by Mythborn.",
       "tags": [
         "Mythborn",
-        "Astrology",
         "Educational content",
+        "Cultural traditions",
         "Personal reflection"
       ],
       "capabilities": [
-        "read-public-website-content",
-        "discover-educational-resources"
+        "discover-public-content",
+        "read-educational-resources"
       ],
       "representativeQueries": [
-        "What educational articles are available on Mythborn?",
-        "Where can I read Mythborn's astrology and sky-cycle articles?"
+        "What articles has Mythborn published?",
+        "Where can I read Mythborn blog posts?"
       ],
       "version": "1.0.0",
-      "updatedAt": "2026-11-25T13:00:00+03:00"
+      "updatedAt": "2026-11-25T14:00:00+03:00"
     }
   ]
 }
