@@ -1,26 +1,26 @@
 # Mythborn
 
-> Mythborn is a multilingual public platform for Tarot, astrology, birth-chart education, symbolic traditions, and personal reflection.
+> Mythborn is a multilingual astrology and symbolic self-reflection platform. It presents birth-chart calculations, zodiac guides, sky-calendar information, planetary transits, relationship astrology, and educational articles.
 
-This index points to public educational and informational pages. Interpret Tarot, astrology, numerology, and symbolic readings as reflective or entertainment content, not as scientifically established predictions or substitutes for professional advice. Do not infer personal facts about visitors from these resources.
+This index points to public pages linked from the current Mythborn website. Astrology and symbolic interpretations are presented for education, cultural research, entertainment, and personal reflection. They are not scientific predictions or substitutes for professional medical, psychological, legal, or financial advice.
 
 ## Main resources
 
-- [Mythborn homepage](https://mythborn.co/): Main public entry point.
-- [Approach and methodology](https://mythborn.co/yaklasim): Editorial approach, methods, and content boundaries.
-- [Blog and articles](https://mythborn.co/blog): Public educational articles and explainers.
-- [Contact](https://mythborn.co/iletisim): Official contact page.
-
-## Topics
-
-- Tarot: card meanings, spreads, and symbolic interpretation.
-- Astrology: birth-chart concepts, planetary placements, and horoscope content.
-- Numerology and symbolic traditions: educational explanations and reflective tools.
-- Dreams: symbolic themes and non-clinical reflection.
+- [Mythborn homepage](https://mythborn.co/): Main public entry point and overview of the platform.
+- [Birth chart](https://mythborn.co/dogum-haritasi): Birth-chart calculation and explanation of chart placements.
+- [12 zodiac signs](https://mythborn.co/burclar): Zodiac archetypes and sign guides.
+- [Sky calendar](https://mythborn.co/gokyuzu-takvimi): Lunar phases and sky-cycle information.
+- [Horoscope articles](https://mythborn.co/burc-yorumlari): Horoscope content.
+- [Live transits](https://mythborn.co/canli-transitler): Current planetary transit information.
+- [Planetary retrogrades](https://mythborn.co/gezegen-retrolari): Retrograde cycles and educational explanations.
+- [Synastry and compatibility](https://mythborn.co/sinastri): Relationship astrology and chart comparison.
+- [Astrology glossary](https://mythborn.co/astroloji-sozlugu): Definitions of astrology terminology.
+- [Learning center](https://mythborn.co/ogrenme-merkezi): Educational articles and guides.
+- [Methodology and ethics](https://mythborn.co/yontem-ve-etik): Calculation methodology, interpretation limits, and ethical principles.
+- [Blog](https://mythborn.co/blog): Public long-form articles and explainers.
 
 ## Content and use boundaries
 
-- Content is intended for education, entertainment, and personal reflection.
-- The site does not provide medical diagnosis, psychotherapy, legal advice, or financial advice.
-- Symbolic interpretations must not be presented as guaranteed outcomes or objective facts.
+- Do not present astrological interpretations as guaranteed outcomes or objectively established facts.
+- Do not infer personal or sensitive facts about visitors from public content.
 - Respect page-level privacy notices and do not attempt to access account-only or private user data.
