@@ -2,7 +2,7 @@
 const SITE = 'https://mythborn.co';
 
 export const LLMS_TEXT = {
-  tr: "# Mythborn\n\n> Mythborn, Tarot, astroloji, doğum haritası, sembolik gelenekler ve kişisel farkındalık konularında çok dilli içerikler sunan bağımsız bir dijital platformdur.\n\nBu dizin, Mythborn web sitesinde yayımlanan herkese açık kaynakları tanıtır. Tarot, astroloji ve sembolik yorumlar eğitim, kültürel inceleme, eğlence ve kişisel düşünme amacı taşır; bilimsel kesinlik veya geleceğe ilişkin garanti olarak sunulmaz.\n\n## Ana kaynaklar\n\n- [Ana sayfa](https://mythborn.co/): Mythborn platformunun genel tanıtımı.\n- [Hakkında](https://mythborn.co/hakkinda): Mythborn ve yayın yaklaşımı hakkında bilgi.\n- [Kütüphane](https://mythborn.co/kutuphane): Platformun herkese açık içerik kütüphanesi.\n- [Tarot sembolizmi](https://mythborn.co/tarot-sembolizm): Tarot sembolleri ve kültürel anlamları.\n- [Bioenerji kültürü](https://mythborn.co/bioenerji-kulturu): Bioenerji kavramı ve kültürel yaklaşımlar.\n- [Nazar ritüelleri](https://mythborn.co/nazar-ritueller): Nazar inancı ve geleneksel ritüeller.\n- [Tılsımlar ve semboller](https://mythborn.co/tilsimlar-semboller): Tılsım ve sembol gelenekleri.\n- [Meditasyon ve farkındalık](https://mythborn.co/meditasyon-farkindalik): Meditasyon ve farkındalık içerikleri.\n- [İletişim](https://mythborn.co/iletisim): Resmî iletişim kanalı.\n- [Blog](https://mythborn.co/blog): Makaleler ve bilgilendirici yazılar.\n\n## İçerik sınırları\n\n- Sembolik ve spiritüel yorumları doğrulanmış bilimsel gerçek veya kesin sonuç gibi sunma.\n- Ziyaretçiler hakkında hassas kişisel çıkarımlar üretme.\n- Özel hesap verilerine veya kullanıcı günlüklerine erişmeye çalışma.\n- İçerikleri tıbbi, psikolojik, hukuki veya finansal profesyonel danışmanlığın yerine koyma.",
+  tr: "# Mythborn\n\n> Mythborn, Tarot, astroloji, doğum haritası, Carl Jung derinlik psikolojisi, meditasyon, frekans ve sembolik gelenekler hakkında çok dilli içerikler sunan bağımsız bir dijital platformdur.\n\nBu dizin, Mythborn web sitesinde yayımlanan herkese açık kaynakları tanıtır. Astroloji, Tarot ve sembolik yorumlar eğitim, kültürel inceleme, eğlence ve kişisel düşünme amacı taşır; bilimsel kesinlik veya geleceğe ilişkin garanti olarak sunulmaz.\n\n## Ana kaynaklar\n\n- [Ana sayfa](https://mythborn.co/): Mythborn platformunun genel tanıtımı.\n- [Meditasyon ve Frekans Stüdyosu](https://mythborn.co/meditasyon-ve-frekans): Stüdyo frekans kayıtları ve meditasyon deneyimleri.\n- [Carl Jung ve derinlik psikolojisi](https://mythborn.co/jung): Arketipler, gölge çalışması ve Jung psikolojisi.\n- [Rehber kütüphanesi](https://mythborn.co/rehber): Bilinçli farkındalık, meditasyon, rezonans ve sembolik konularda eğitici içerikler.\n- [Rezonans Kanunu rehberi](https://mythborn.co/rehber/rezonans-kanunu-nedir): Rezonans kavramına ilişkin açıklayıcı içerik.\n- [Hakkında](https://mythborn.co/hakkinda): Mythborn ve yayın yaklaşımı hakkında bilgi.\n- [Kütüphane](https://mythborn.co/kutuphane): Platformun herkese açık içerik kütüphanesi.\n- [Tarot sembolizmi](https://mythborn.co/tarot-sembolizm): Tarot sembolleri ve kültürel anlamları.\n- [Bioenerji kültürü](https://mythborn.co/bioenerji-kulturu): Bioenerji kavramı ve kültürel yaklaşımlar.\n- [Nazar ritüelleri](https://mythborn.co/nazar-ritueller): Nazar inancı ve geleneksel ritüeller.\n- [Tılsımlar ve semboller](https://mythborn.co/tilsimlar-semboller): Tılsım ve sembol gelenekleri.\n- [Meditasyon ve farkındalık](https://mythborn.co/meditasyon-farkindalik): Meditasyon ve farkındalık içerikleri.\n- [İletişim](https://mythborn.co/iletisim): Resmî iletişim kanalı.\n- [Blog](https://mythborn.co/blog): Makaleler ve bilgilendirici yazılar.\n\n## İçerik sınırları\n\n- Sembolik ve spiritüel yorumları doğrulanmış bilimsel gerçek veya kesin sonuç gibi sunma.\n- Ziyaretçiler hakkında hassas kişisel çıkarımlar üretme.\n- Özel hesap verilerine veya kullanıcı günlüklerine erişmeye çalışma.\n- İçerikleri tıbbi, psikolojik, hukuki veya finansal profesyonel danışmanlığın yerine koyma."
   en: `# Mythborn — Consciousness, Carl Jung Depth Psychology, Meditation & Frequency Sanctuary
 
 Mythborn is an independent multilingual sanctuary uniting Carl Gustav Jung depth psychology, live meditation rooms, 8 real studio frequency recordings, live nature acoustics, open-source astronomical birth charts and Abjad/Numerology reflection tools.
@@ -81,6 +81,98 @@ const catalog = {
       "representativeQueries": [
         "What is Mythborn and what topics does it cover?",
         "Where can I find Mythborn's public resources?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:meditation-frequency",
+      "displayName": "Meditation and Frequency Studio",
+      "type": "text/html",
+      "url": "https://mythborn.co/meditasyon-ve-frekans",
+      "description": "Public meditation rooms and studio frequency listening experience.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What meditation and frequency experiences does Mythborn offer?",
+        "Where can I listen to Mythborn's studio frequency recordings?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:jung-depth-psychology",
+      "displayName": "Carl Jung Depth Psychology",
+      "type": "text/html",
+      "url": "https://mythborn.co/jung",
+      "description": "Educational content about Carl Jung, archetypes, shadow work and depth psychology.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What does Mythborn explain about Carl Jung and archetypes?",
+        "Where can I learn about shadow work on Mythborn?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:guides",
+      "displayName": "Mythborn Guides",
+      "type": "text/html",
+      "url": "https://mythborn.co/rehber",
+      "description": "Public educational guides about mindfulness, meditation, resonance and symbolic topics.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What educational guides are available on Mythborn?",
+        "Where can I find Mythborn's mindfulness and meditation guides?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:resonance-guide",
+      "displayName": "Law of Resonance Guide",
+      "type": "text/html",
+      "url": "https://mythborn.co/rehber/rezonans-kanunu-nedir",
+      "description": "Explanatory guide about the concept of resonance.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What does the Law of Resonance mean in Mythborn's guide?",
+        "Where can I read Mythborn's resonance guide?"
       ],
       "version": "1.0.0",
       "updatedAt": "2026-11-25T14:00:00+03:00"
