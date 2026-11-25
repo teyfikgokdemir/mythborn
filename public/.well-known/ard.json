@@ -30,6 +30,98 @@
       "updatedAt": "2026-11-25T14:00:00+03:00"
     },
     {
+      "identifier": "urn:air:mythborn.co:website:meditation-frequency",
+      "displayName": "Meditation and Frequency Studio",
+      "type": "text/html",
+      "url": "https://mythborn.co/meditasyon-ve-frekans",
+      "description": "Public meditation rooms and studio frequency listening experience.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What meditation and frequency experiences does Mythborn offer?",
+        "Where can I listen to Mythborn's studio frequency recordings?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:jung-depth-psychology",
+      "displayName": "Carl Jung Depth Psychology",
+      "type": "text/html",
+      "url": "https://mythborn.co/jung",
+      "description": "Educational content about Carl Jung, archetypes, shadow work and depth psychology.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What does Mythborn explain about Carl Jung and archetypes?",
+        "Where can I learn about shadow work on Mythborn?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:guides",
+      "displayName": "Mythborn Guides",
+      "type": "text/html",
+      "url": "https://mythborn.co/rehber",
+      "description": "Public educational guides about mindfulness, meditation, resonance and symbolic topics.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What educational guides are available on Mythborn?",
+        "Where can I find Mythborn's mindfulness and meditation guides?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
+      "identifier": "urn:air:mythborn.co:website:resonance-guide",
+      "displayName": "Law of Resonance Guide",
+      "type": "text/html",
+      "url": "https://mythborn.co/rehber/rezonans-kanunu-nedir",
+      "description": "Explanatory guide about the concept of resonance.",
+      "tags": [
+        "Mythborn",
+        "Educational content",
+        "Cultural traditions",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "discover-public-content",
+        "read-educational-resources"
+      ],
+      "representativeQueries": [
+        "What does the Law of Resonance mean in Mythborn's guide?",
+        "Where can I read Mythborn's resonance guide?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T14:00:00+03:00"
+    },
+    {
       "identifier": "urn:air:mythborn.co:website:about",
       "displayName": "About Mythborn",
       "type": "text/html",
