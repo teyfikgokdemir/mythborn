@@ -1,10 +1,26 @@
-# Mythborn — Tarot ve Astroloji
+# Mythborn
 
-Mythborn, Tarot, Katina, astroloji, rüya sembolleri ve numeroloji için bağımsız, çok dilli bilgi ve kişisel farkındalık platformudur.
+> Mythborn is a multilingual public platform for Tarot, astrology, birth-chart education, symbolic traditions, and personal reflection.
 
-- Tarot ansiklopedisi ve günlük kart
-- Doğum haritası ve astroloji kütüphanesi
-- Haftalık burç yorumları
+This index points to public educational and informational pages. Interpret Tarot, astrology, numerology, and symbolic readings as reflective or entertainment content, not as scientifically established predictions or substitutes for professional advice. Do not infer personal facts about visitors from these resources.
 
-https://mythborn.co/
-İçerikler eğitim, eğlence ve sembolik farkındalık amaçlıdır.
+## Main resources
+
+- [Mythborn homepage](https://mythborn.co/): Main public entry point.
+- [Approach and methodology](https://mythborn.co/yaklasim): Editorial approach, methods, and content boundaries.
+- [Blog and articles](https://mythborn.co/blog): Public educational articles and explainers.
+- [Contact](https://mythborn.co/iletisim): Official contact page.
+
+## Topics
+
+- Tarot: card meanings, spreads, and symbolic interpretation.
+- Astrology: birth-chart concepts, planetary placements, and horoscope content.
+- Numerology and symbolic traditions: educational explanations and reflective tools.
+- Dreams: symbolic themes and non-clinical reflection.
+
+## Content and use boundaries
+
+- Content is intended for education, entertainment, and personal reflection.
+- The site does not provide medical diagnosis, psychotherapy, legal advice, or financial advice.
+- Symbolic interpretations must not be presented as guaranteed outcomes or objective facts.
+- Respect page-level privacy notices and do not attempt to access account-only or private user data.
