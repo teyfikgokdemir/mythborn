@@ -3,37 +3,34 @@
   "host": {
     "identifier": "https://mythborn.co",
     "displayName": "Mythborn",
-    "description": "Independent multilingual Tarot and astrology knowledge platform.",
-    "documentationUrl": "https://mythborn.co/astroloji"
+    "documentationUrl": "https://mythborn.co/yaklasim"
   },
-  "languages": [
-    "tr",
-    "en",
-    "el",
-    "es",
-    "ar"
-  ],
-  "resources": [
+  "entries": [
     {
-      "title": "Homepage",
-      "url": "https://mythborn.co/"
-    },
-    {
-      "title": "Tarot",
-      "url": "https://mythborn.co/tarot"
-    },
-    {
-      "title": "Astrology",
-      "url": "https://mythborn.co/astroloji"
-    },
-    {
-      "title": "Blog",
-      "url": "https://mythborn.co/blog"
+      "identifier": "urn:air:mythborn:website:public-home",
+      "displayName": "Mythborn Public Website",
+      "type": "text/html",
+      "url": "https://mythborn.co/",
+      "description": "Mythborn is a multilingual public platform for Tarot, astrology, birth-chart education and symbolic personal reflection.",
+      "tags": [
+        "Mythborn",
+        "Tarot",
+        "Astrology",
+        "Birth charts",
+        "Numerology",
+        "Dream symbols",
+        "Personal reflection"
+      ],
+      "capabilities": [
+        "read-public-website-content",
+        "discover-educational-resources"
+      ],
+      "representativeQueries": [
+        "What is Mythborn and what public educational resources does it provide?",
+        "Where can I find Mythborn's Tarot and astrology information?"
+      ],
+      "version": "1.0.0",
+      "updatedAt": "2026-11-25T13:00:00+03:00"
     }
-  ],
-  "policies": {
-    "purpose": "Education, entertainment and self-reflection",
-    "individualReader": false,
-    "personalConsultation": false
-  }
+  ]
 }
