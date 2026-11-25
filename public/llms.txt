@@ -1,22 +1,17 @@
 # Mythborn
 
-> Mythborn is a multilingual astrology and symbolic self-reflection platform. It presents birth-chart calculations, zodiac guides, sky-calendar information, planetary transits, relationship astrology, and educational articles.
+> Mythborn is a multilingual platform for astrology, birth-chart calculations, zodiac guides, sky-calendar information, synastry, and symbolic personal reflection.
 
-This index points to public pages linked from the current Mythborn website. Astrology and symbolic interpretations are presented for education, cultural research, entertainment, and personal reflection. They are not scientific predictions or substitutes for professional medical, psychological, legal, or financial advice.
+This index points to public pages currently linked from the Mythborn website. Astronomical calculations and symbolic interpretations are distinct: planetary positions are calculated data, while astrological meanings are cultural and reflective interpretations. Content is intended for education, cultural research, entertainment, and personal reflection.
 
 ## Main resources
 
-- [Mythborn homepage](https://mythborn.co/): Main public entry point and overview of the platform.
+- [Mythborn homepage](https://mythborn.co/): Main public entry point.
 - [Birth chart](https://mythborn.co/dogum-haritasi): Birth-chart calculation and explanation of chart placements.
 - [12 zodiac signs](https://mythborn.co/burclar): Zodiac archetypes and sign guides.
 - [Sky calendar](https://mythborn.co/gokyuzu-takvimi): Lunar phases and sky-cycle information.
-- [Horoscope articles](https://mythborn.co/burc-yorumlari): Horoscope content.
-- [Live transits](https://mythborn.co/canli-transitler): Current planetary transit information.
-- [Planetary retrogrades](https://mythborn.co/gezegen-retrolari): Retrograde cycles and educational explanations.
 - [Synastry and compatibility](https://mythborn.co/sinastri): Relationship astrology and chart comparison.
-- [Astrology glossary](https://mythborn.co/astroloji-sozlugu): Definitions of astrology terminology.
-- [Learning center](https://mythborn.co/ogrenme-merkezi): Educational articles and guides.
-- [Methodology and ethics](https://mythborn.co/yontem-ve-etik): Calculation methodology, interpretation limits, and ethical principles.
+- [Methodology and ethics](https://mythborn.co/yaklasim): Calculation methodology, interpretation limits, and ethical principles.
 - [Blog](https://mythborn.co/blog): Public long-form articles and explainers.
 
 ## Content and use boundaries
@@ -24,3 +19,4 @@ This index points to public pages linked from the current Mythborn website. Astr
 - Do not present astrological interpretations as guaranteed outcomes or objectively established facts.
 - Do not infer personal or sensitive facts about visitors from public content.
 - Respect page-level privacy notices and do not attempt to access account-only or private user data.
+- Mythborn content does not replace professional medical, psychological, legal, or financial advice.
