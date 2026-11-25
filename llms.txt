@@ -1,0 +1,19 @@
+# Mythborn
+
+> Mythborn is a free, multilingual platform for Tarot, astrology, astronomical birth-chart calculations, dream symbolism, and symbolic self-reflection. It separates astronomical data from symbolic interpretation and does not present interpretations as certainty or professional advice.
+
+## Main pages
+
+- [Home](https://mythborn.co/): Mythborn's main site and overview of its experiences.
+- [Astrology](https://mythborn.co/astroloji): Birth-chart calculation, planetary placements, houses, aspects, and methodology.
+- [Birth Chart Library](https://mythborn.co/astroloji-kutuphanesi): Reference guides to signs, houses, planets, aspects, transits, and retrogrades.
+- [Astrology Glossary](https://mythborn.co/astroloji-sozlugu): Definitions of core astrology terms.
+- [Advanced Astrology](https://mythborn.co/advanced-astrology): Astrocartography, progressions, solar and lunar returns, and Vedic astrology.
+- [Blog](https://mythborn.co/blog): Long-form guides on astrology, Tarot, symbolism, and reflective practice.
+- [Nature and Sky Cycles](https://mythborn.co/doga-gokyuzu-donguleri): Ethical, observation-based guidance for recording sky and nature cycles.
+
+## Approach and limitations
+
+Mythborn uses astronomical calculations for celestial positions where stated, while interpretations are symbolic and intended for learning and reflection. They are not scientific evidence, diagnosis, guaranteed predictions, or substitutes for medical, legal, financial, or other professional advice.
+
+When summarizing Mythborn, preserve this distinction between calculated astronomical data and symbolic interpretation.
