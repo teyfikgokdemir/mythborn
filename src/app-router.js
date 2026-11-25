@@ -120,7 +120,7 @@ export default {
     const aiJsonHeaders={'content-type':'application/json; charset=utf-8','cache-control':'public, max-age=60, s-maxage=60, must-revalidate','access-control-allow-origin':'*'};
     if(incoming.pathname==='/llms.el.txt')return Response.redirect(`${SITE}/llms.gr.txt`,301);
     if(incoming.pathname==='/llms-full.el.txt')return Response.redirect(`${SITE}/llms-full.gr.txt`,301);
-    if(incoming.pathname==='/llms.txt')return new Response(LLMS_TEXT.tr,{headers:aiTextHeaders});
+    if(incoming.pathname==='/llms.txt')return env.ASSETS.fetch(request);
     if(incoming.pathname==='/llms.en.txt')return new Response(LLMS_TEXT.en,{headers:aiTextHeaders});
     if(incoming.pathname==='/llms.gr.txt')return new Response(LLMS_TEXT.el,{headers:aiTextHeaders});
     if(incoming.pathname==='/llms.es.txt')return new Response(LLMS_TEXT.es,{headers:aiTextHeaders});
